@@ -1,15 +1,15 @@
 import { lazy } from 'react';
+import { Layout } from './Layout/Layout';
 import { Route, Routes } from 'react-router-dom';
 import { RestrictedRoute, PrivateRoute } from '../helpers';
-import OurFriendsPage from '../pages/OurFriendsPage';
-import { Layout } from './Layout/Layout';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const NewsPage = lazy(() => import('../pages/NewsPage'));
-const NoticesPage = lazy(() => import('../pages/NoticesPage'));
-const LoginPage = lazy(() => import('../pages/LoginPage'));
-const RegisterPage = lazy(() => import('../pages/RegisterPage'));
 const UserPage = lazy(() => import('../pages/UserPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const NoticesPage = lazy(() => import('../pages/NoticesPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage'));
+const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
 
 export const App = () => {
   return (
