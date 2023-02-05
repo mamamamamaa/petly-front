@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
-import { serviceReducer } from './services/serviceSlice';
+import { friendsReducer } from './friends/friendsSlice';
 import { newsReducer } from './news/newsSlice';
 import { noticeReducer } from './notices/noticeSlice';
 import { userReducer } from './user/userSlice';
@@ -25,7 +25,7 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    services: serviceReducer,
+    friends: friendsReducer,
     news: newsReducer,
     notices: noticeReducer,
     user: userReducer,

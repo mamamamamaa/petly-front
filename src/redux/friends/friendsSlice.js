@@ -3,13 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isLoading: false,
   error: null,
-  news: [],
+  friends: [],
 };
 
-const newsSlice = createSlice({
-  name: 'news',
+const friendsSlice = createSlice({
+  name: 'friends',
   initialState,
   extraReducers: builder => builder,
 });
 
-export const newsReducer = newsSlice.reducer;
+export const friendsReducer = friendsSlice.reducer;
