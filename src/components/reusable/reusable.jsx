@@ -34,6 +34,7 @@ export const Badge = styled.div`
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
+  cursor: pointer;
   :hover {
     background: ${theme.colors.primary};
     color: ${theme.colors.accentText};
@@ -45,17 +46,39 @@ export const Badge = styled.div`
 `;
 
 export const Card = styled.div`
+  width: 280px;
   height: 606px;
-  left: 20px;
-  top: 388px;
-
-  background: #ffffff;
-  /* Тень для карточек */
-
+  background: ${theme.colors.primary};
+  /* background: ${theme.colors.accentText}; */
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 20px 20px;
-  @media (min-width: 420px) {
-    border-radius: 0px 0px 20px 20px;
+  cursor: pointer;
+  @media (min-width: 768px) {
+    border-radius: 0px 0px 40px 40px;
+    height: 246px;
+    width: 336px;
+  }
+  @media (min-width: 1280px) {
+    width: 288px;
+    height: 606px;
+  }
+`;
+
+export const FriendsCard = styled.div`
+  width: 280px;
+  height: 192px;
+  background: ${theme.colors.navText};
+  /* background: ${theme.colors.accentText}; */
+  border-radius: 20px;
+  cursor: pointer;
+  @media (min-width: 768px) {
+    border-radius: 40px;
+    width: 336px;
+    height: 246px;
+  }
+  @media (min-width: 1280px) {
+    width: 395px;
+    height: 287px;
   }
 `;
 
@@ -71,10 +94,17 @@ export const Button = styled.div`
   background: ${theme.colors.accentText};
   border: 2px solid #f59256;
   border-radius: 40px;
+  cursor: pointer;
   :hover {
     border: 2px solid #ff6101;
-    :hover {
-      color: #ff6101;
-    }
   }
+`;
+
+export const AddPet = styled.div`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f59256;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  cursor: pointer;
 `;

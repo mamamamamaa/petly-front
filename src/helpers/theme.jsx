@@ -10,6 +10,5 @@ export const theme = {
     background: '#FDF7F2',
     primary: '#F59256',
     secondary: '#FDF7F2',
-    accent: '#609',
   },
 };
