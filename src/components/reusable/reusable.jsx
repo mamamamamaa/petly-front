@@ -1,0 +1,110 @@
+import styled from '@emotion/styled';
+
+import { theme } from '../../helpers/theme';
+
+export const Container = styled.div`
+  margin: 0 auto;
+  @media (max-width: 767px) {
+    padding: 0 20px;
+  }
+  @media (min-width: 768px) {
+    width: 768px;
+    padding: 0 32px;
+  }
+  @media (min-width: 320px) {
+    width: 320px;
+  }
+  @media (min-width: 768px) {
+    width: 768px;
+  }
+  @media (min-width: 1280px) {
+    width: 1280px;
+    padding: 0 16px;
+  }
+`;
+
+export const Badge = styled.div`
+  padding: 8px 28px;
+  display: inline;
+  height: 35px;
+  background: ${theme.colors.accentText};
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  :hover {
+    background: ${theme.colors.primary};
+    color: ${theme.colors.accentText};
+  }
+  @media (min-width: 768px) {
+    padding: 10px 28px;
+    height: 35px;
+  }
+`;
+
+export const Card = styled.div`
+  width: 280px;
+  height: 606px;
+  background: ${theme.colors.primary};
+  /* background: ${theme.colors.accentText}; */
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  border-radius: 0px 0px 20px 20px;
+  cursor: pointer;
+  @media (min-width: 768px) {
+    border-radius: 0px 0px 40px 40px;
+    height: 246px;
+    width: 336px;
+  }
+  @media (min-width: 1280px) {
+    width: 288px;
+    height: 606px;
+  }
+`;
+
+export const FriendsCard = styled.div`
+  width: 280px;
+  height: 192px;
+  background: ${theme.colors.navText};
+  /* background: ${theme.colors.accentText}; */
+  border-radius: 20px;
+  cursor: pointer;
+  @media (min-width: 768px) {
+    border-radius: 40px;
+    width: 336px;
+    height: 246px;
+  }
+  @media (min-width: 1280px) {
+    width: 395px;
+    height: 287px;
+  }
+`;
+
+export const Button = styled.div`
+  display: inline;
+  padding: 8px 28px;
+  height: 38px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  color: ${theme.colors.primary};
+  background: ${theme.colors.accentText};
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  cursor: pointer;
+  :hover {
+    border: 2px solid #ff6101;
+  }
+`;
+
+export const AddPet = styled.div`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f59256;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  cursor: pointer;
+`;
