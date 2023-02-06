@@ -8,7 +8,7 @@ const AppBar = () => {
     const { isLoggedIn } = useAuth();
     return (
         <div>
-            <span>petly</span>
+            <span>pe<span>t</span>ly</span>
             <Navigation />
             <div>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</div>
         </div>

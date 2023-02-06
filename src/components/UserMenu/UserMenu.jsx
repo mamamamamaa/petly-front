@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const UserMenu = () => {
     return (
         <NavLink to="/user">
-            Account
+            <svg></svg> Account
         </NavLink>
     )
 };
