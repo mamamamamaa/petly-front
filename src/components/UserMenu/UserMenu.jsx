@@ -2,10 +2,12 @@ import { NavLink } from "react-router-dom";
 
 
 
-export const UserMenu = () => {
+const UserMenu = () => {
     return (
-        <NavLink>
+        <NavLink to="/user">
             Account
         </NavLink>
     )
 };
+
+export default UserMenu;

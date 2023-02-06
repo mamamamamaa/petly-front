@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../redux/hooks";
 
-export const Navigation = () => {
+const Navigation = () => {
     // const { isLoggedIn } = useAuth();
     return (
         <nav>
             <ul>
                 <li>
                     <NavLink
-                    // to="/"
+                    to="/news"
         
                      >
                      News
@@ -16,7 +16,8 @@ export const Navigation = () => {
                 </li>
                 <li>
                     <NavLink
-                    // to="/"
+                    // Specify the route?
+                    to="/notice/sell"
         
                      >
                      Find pet
@@ -24,7 +25,7 @@ export const Navigation = () => {
                 </li>
                 <li>
                     <NavLink
-                    // to="/"
+                    to="/friends"
         
                      >
                      Our friends
@@ -34,3 +35,5 @@ export const Navigation = () => {
         </nav>
     )
 };
+
+export default Navigation;
