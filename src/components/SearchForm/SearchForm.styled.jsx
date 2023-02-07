@@ -14,6 +14,8 @@ export const SearchTitle = styled.label`
 `;
 
 export const SearchField = styled.input`
+  display: block;
+  margin-top: 28px;
   background: ${theme.colors.accentText};
   background-color: grey;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
