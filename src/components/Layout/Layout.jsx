@@ -6,7 +6,7 @@ import { Card } from '../reusable/reusable';
 import { Button } from '../reusable/reusable';
 import { FriendsCard } from '../reusable/reusable';
 import { AddPet } from '../reusable/reusable';
-
+import SearchForm from 'components/SearchForm';
 
 export const Layout = () => {
   return (
@@ -19,6 +19,9 @@ export const Layout = () => {
       Layout
       <header>
         <AppBar />
+        <SearchForm >
+          Find your favorite pet
+        </SearchForm>
       </header>
       <Suspense>
         <Outlet />
