@@ -1,17 +1,24 @@
-
 import { useAuth } from "../../redux/hooks";
 import Navigation from "../Navigation/Navigation";
 import AuthMenu from "../AuthMenu/AuthMenu";
 import UserMenu from "../UserMenu/UserMenu";
+import {BarContainer,
+        LogoBlack,
+        LogoAccent,
+        MenuWrpr,
+        UserMenuWrpr
+} from "./AppBar.styled";
 
 const AppBar = () => {
     const { isLoggedIn } = useAuth();
     return (
-        <div>
-            <span>pe<span>t</span>ly</span>
-            <Navigation />
-            <div>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</div>
-        </div>
+        <BarContainer>
+            <LogoBlack>pe<LogoAccent>t</LogoAccent>ly</LogoBlack>
+                <MenuWrpr>
+                    <Navigation />
+                    <UserMenuWrpr>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</UserMenuWrpr>
+                </MenuWrpr>
+        </BarContainer>
     )
 };
 
