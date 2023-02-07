@@ -7,8 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import { persistor, store } from './redux/store';
 import { ThemeProvider } from '@emotion/react';
-import { theme } from './helpers/theme';
-import { Container } from './components/reusable/reusable';
+import { theme } from './utils/theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,9 +15,7 @@ root.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <Container>
-            <App />
-          </Container>
+          <App />
         </BrowserRouter>
       </PersistGate>
     </Provider>
