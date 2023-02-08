@@ -15,7 +15,7 @@ export const SearchTitle = styled.label`
 
 export const SearchField = styled.input`
   height: 50px; //rm for build
-  font-size: 40px; //rm for built
+  font-size: 20px; //rm for built
   display: block;
   margin-top: 28px;
   background: ${theme.colors.accentText};
