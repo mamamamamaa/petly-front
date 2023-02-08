@@ -6,7 +6,9 @@ export const BarContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 20px 42px 20px;
+    /* padding: 16px 20px 42px 20px; */
+    padding-bottom: 46px;
+    padding-top: 16px;
     margin: 0 auto;
     outline: 1px solid red;
 `;
@@ -28,7 +30,7 @@ export const LogoAccent = styled.span`
 export const MenuWrpr = styled.div`
     /* opacity: 0;
     visibility: hidden; */
-    pointer-events: none;
+    /* pointer-events: none; */
     z-index: 100;
     position: fixed;
     left: 0;
@@ -36,6 +38,9 @@ export const MenuWrpr = styled.div`
     width: 100vw;
     height: 100vh;
     background-color: ${props => props.theme.colors.secondary};
+    opacity: ${({ isClosed }) => isClosed ? 0 : 1};
+    visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
+    pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
 `;
 
 export const MenuContainer = styled.div`

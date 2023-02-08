@@ -30,12 +30,14 @@ const AppBar = () => {
                 <BurgerBtn onClick={ToggleClickHandler}>
                     {!isMenuOpen ? <BurgerIcon/> : <CloseIcon/>}
                 </BurgerBtn>
-                <MenuWrpr>
+                
+                <MenuWrpr isClosed={!isMenuOpen}>
                 <MenuContainer>
                     <Navigation />
                     <UserMenuWrpr>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</UserMenuWrpr>
                 </MenuContainer>
                 </MenuWrpr>
+                
         </BarContainer>
     )
 };
