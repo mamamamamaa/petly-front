@@ -8,13 +8,25 @@ axios.defaults.baseURL = "https://petly-back.";
 export const updateUserData = createAsyncThunk(
     "user/updateUser",
     
-    async (query, thunkAPI) => {
+    async ({ name,
+    email,
+    birthday,
+    phone,
+    city,
+    favorites}, thunkAPI) => {
         try {
-            const response = await axios.get("/user/userProfile");
+            // const token = thunkAPI.getState().auth.token
+            const response = await axios.post("/userprofile", {name,
+    email,
+    birthday,
+    phone,
+    city,
+    favorites});
+            //const {data} = await.axios.patch(`/userprofile/userProfile)
             return response.data;
         }
         catch (e) { 
              return thunkAPI.rejectWithValue(e.message);
         }
   
-});
+}); // add token 

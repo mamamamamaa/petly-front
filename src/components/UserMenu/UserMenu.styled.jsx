@@ -26,3 +26,29 @@ export const UserPhoto = styled.img`
   height: 233px;
   border-radius: 50%;
 `;
+
+export const Btn = styled.button`
+  display: flex;
+  align-items: center;
+  border: ;
+  background: none;
+  position: absolute;
+  fill: #F59256 ;
+  @media (max-width: 479px) {
+    top: 228px;
+    right: -25px;
+  }
+`
+export const Span = styled.span`
+  margin-left: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  color: ;
+`;
+export const Wrap = styled.span`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;

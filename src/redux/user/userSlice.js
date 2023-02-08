@@ -24,7 +24,7 @@ const userSlice = createSlice({
     //get user info ? 
     //update user
     [updateUserData.pending](state) {
-      state.erroe = null;
+      state.error = null;
     },
     [updateUserData.fulfilled](state, action) {
       //state.isLoading = false;
@@ -36,6 +36,23 @@ const userSlice = createSlice({
       state.error = action.payload;
     },
   },
+    // extraReducers(builder) {
+    //     builder
+    //         .addCase(updateUserData.pending, (state, action) => {
+    //             state.error = null;
+    //         })
+    //         .addCase(updateUserData.fulfilled, (state, action) => {
+    //             state.status = "succeeded"
+    //            state.data = {...state.data,  ...action.payload };
+    //         })
+    //         .addCase(updateUserData.rejected, (state, action) => {
+    //             state.status = "failed"
+    //             state.error = action.error.message
+    //         })
+    //         
+    //         })
+
+
      //builder => builder,
 });
 
