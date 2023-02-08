@@ -1,13 +1,9 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import AppBar from '../AppBar/AppBar';
-import { Badge } from '../reusable/reusable';
-import { Card } from '../reusable/reusable';
-import { Button } from '../reusable/reusable';
-import { FriendsCard } from '../reusable/reusable';
-import { AddPet } from '../reusable/reusable';
-
 import SearchForm from 'components/SearchForm/SearchForm';
+import { Container } from '../../utils/reusable';
+
 export const Layout = () => {
   return (
     <Container>

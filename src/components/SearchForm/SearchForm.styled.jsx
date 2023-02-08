@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { theme } from '../../helpers/theme';
+import { theme } from '../../utils/theme';
 import zoom from '../reusable/svg/zoom.svg';
 
 export const SearchTitle = styled.label`
@@ -14,10 +14,12 @@ export const SearchTitle = styled.label`
 `;
 
 export const SearchField = styled.input`
+  height: 50px; //rm for build
+  font-size: 40px; //rm for built
   display: block;
   margin-top: 28px;
   background: ${theme.colors.accentText};
-  background-color: grey;
+  background-color: grey; //rm for built
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
   padding-left: 12px;
@@ -37,3 +39,4 @@ export const SearchField = styled.input`
   }
 `;
 
+export const NoticesCategoriesList = styled.ul``;

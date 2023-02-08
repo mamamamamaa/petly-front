@@ -1,4 +1,8 @@
-import { SearchTitle, SearchField } from './SearchForm.styled';
+import {
+  SearchTitle,
+  SearchField,
+  NoticesCategoriesList,
+} from './SearchForm.styled';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 const instance = axios.create({
@@ -30,7 +34,7 @@ const SearchForm = ({ children }) => {
           const response = await getStrict().then(responseHttp => {
             return responseHttp;
           });
-          setPets([...response]);
+          setPets([response]);
         } catch (error) {
           console.error(error);
         }
@@ -47,7 +51,7 @@ const SearchForm = ({ children }) => {
     };
     getTrendingHttp();
   }, [firstName, option]);
-
+// FrontEnd - NoticesPage - Компонент рендериться на маршрут /notices/:categoryName Компонент рендерить: - форму пошуку NoticesSearch - блок навігації NoticesCategoriesNav - список оголошень NoticesCategoriesList - кнопку відкриття модалки для створення оголошення AddNoticeButton Під час першого входу на сторінку рендериться список оголошень з продажу
   return (
     <>
       <SearchTitle>
@@ -77,11 +81,11 @@ const SearchForm = ({ children }) => {
         />
       </SearchTitle>
       {pets.length > 0 ? (
-        <ul>
+        <NoticesCategoriesList>
           {pets.map(({ _id, title }) => (
             <li key={_id}>{title}</li>
           ))}
-        </ul>
+        </NoticesCategoriesList>
       ) : null}
     </>
   );
