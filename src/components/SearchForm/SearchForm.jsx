@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const SearchForm = ({ children }) => {
   const [firstName, setFirstName] = useState('');
-  const [option, setOption] = useState('');
+  const [option, setOption] = useState('one');
   const instance = axios.create({
     baseURL: 'http://localhost:3001',
   });
@@ -24,7 +24,7 @@ const SearchForm = ({ children }) => {
   };
   if (firstName !== '') {
     console.log(option);
-    option ? getStrict() : getAll();
+    option === 'one' ? getStrict() : getAll();
   }
 
   return (
@@ -35,11 +35,11 @@ const SearchForm = ({ children }) => {
         value={firstName}
         onChange={e => setFirstName(e.target.value)}
       />
-      Radio buttons:
+      Use strict search:
       <input
         type="radio"
         name="myRadio"
-        value="option"
+        value="one"
         onChange={e => {
           console.log(e.target.value);
           return setOption(e.target.value);
@@ -50,10 +50,9 @@ const SearchForm = ({ children }) => {
       <input
         type="radio"
         name="myRadio"
-        value="option"
+        value="all"
         onChange={e => setOption(e.target.value)}
       />
-      Use strict search:
     </SearchTitle>
   );
 };
