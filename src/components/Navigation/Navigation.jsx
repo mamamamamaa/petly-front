@@ -1,38 +1,44 @@
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 // import { useAuth } from "../../redux/hooks";
+import { Nav,
+    NavList,
+    NavListItem,
+    NavigLink
+} from "./Navigation.styled";
+
 
 const Navigation = () => {
     // const { isLoggedIn } = useAuth();
     return (
-        <nav>
-            <ul>
-                <li>
-                    <NavLink
+        <Nav>
+            <NavList>
+                <NavListItem>
+                    <NavigLink
                     to="/news"
         
                      >
                      News
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
+                    </NavigLink>
+                </NavListItem>
+                <NavListItem>
+                    <NavigLink
                     // Specify the route?
                     to="/notice/sell"
         
                      >
                      Find pet
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
+                    </NavigLink>
+                </NavListItem>
+                <NavListItem>
+                    <NavigLink
                     to="/friends"
         
                      >
                      Our friends
-                    </NavLink>
-                </li>
-            </ul>
-        </nav>
+                    </NavigLink>
+                </NavListItem>
+            </NavList>
+        </Nav>
     )
 };
 

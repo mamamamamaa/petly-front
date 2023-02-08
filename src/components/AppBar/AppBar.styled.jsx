@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { media } from "../Layout/Layout.styled";
 
 
 export const BarContainer = styled.div`
@@ -17,15 +18,16 @@ export const LogoBlack = styled.span`
     font-size: 28px;
     line-height: 42px;
     letter-spacing: 0.07em;
+    z-index: 101;
 `;
 
 export const LogoAccent = styled.span`
     color: ${props => props.theme.colors.primary};
 `;
 
-export const MenuContainer = styled.div`
-    opacity: 0;
-    visibility: hidden;
+export const MenuWrpr = styled.div`
+    /* opacity: 0;
+    visibility: hidden; */
     pointer-events: none;
     z-index: 100;
     position: fixed;
@@ -33,13 +35,18 @@ export const MenuContainer = styled.div`
     top: 0;
     width: 100vw;
     height: 100vh;
+    background-color: ${props => props.theme.colors.secondary};
 `;
 
-export const MenuWrpr = styled.div`
+export const MenuContainer = styled.div`
     /* visibility: hidden; */
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    position: relative;
+    padding-top: 104px;
+    /* height: 100%; */
 `;
 
 export const UserMenuWrpr = styled.div`
@@ -55,7 +62,7 @@ export const BurgerBtn = styled.button`
     height: 40px;
     background-color: transparent;
     border: none;
-    
+    z-index: 101;
 `;
 
 // export const MenuIcon = styled.svg`
