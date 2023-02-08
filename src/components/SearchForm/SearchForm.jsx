@@ -10,6 +10,8 @@ import {
   Breed,
   Place,
   Age,
+  PetSpan,
+  PetDetails,
 } from './SearchForm.styled';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -101,10 +103,21 @@ const SearchForm = ({ children }) => {
             ({ _id, photoUrl = noPoster, title, breed, place, age }) => (
               <NoticeCategoryItem key={_id}>
                 <PhotoPet src={photoUrl} alt="Pet" />
-                <Title>{title}</Title>
-                <Breed>{breed}</Breed>
-                <Place>{place}</Place>
-                <Age>{age}</Age>
+                <PetDetails>
+                  <Title>{title}</Title>
+                  <Breed>
+                    <PetSpan>Breed:</PetSpan>
+                    <PetSpan>{breed}</PetSpan>
+                  </Breed>
+                  <Place>
+                    <PetSpan>Place:</PetSpan>
+                    <PetSpan>{place}</PetSpan>
+                  </Place>
+                  <Age>
+                    <PetSpan>Age:</PetSpan>
+                    <PetSpan>{age}</PetSpan>
+                  </Age>
+                </PetDetails>
               </NoticeCategoryItem>
             )
           )}

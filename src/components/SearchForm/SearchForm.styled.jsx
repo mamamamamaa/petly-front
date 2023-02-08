@@ -78,12 +78,26 @@ export const Title = styled.h2`
   letter-spacing: -0.01em;
   color: #111111;
 `;
-export const Breed = styled.p`
-  margin-right: 1em;
+export const PetSpan = styled.span`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #111111;
+  :last-of-type {
+    margin-left: 40px;
+  }
 `;
-export const Place = styled.p`
-  margin-right: 1em;
+export const Breed = styled.div`
+  //margin-right: 1em;
 `;
-export const Age = styled.p`
-  margin-right: 1em;
+export const Place = styled.div`
+  //margin-right: 1em;
+`;
+export const Age = styled.div`
+  //margin-right: 1em;
+`;
+export const PetDetails = styled.div`
+  padding: 20px;
 `;
