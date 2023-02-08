@@ -87,6 +87,9 @@ export const Title = styled.h3`
 `;
 export const PetSpanWrapper = styled.div`
   margin-bottom: 8px;
+  :last-child {
+    margin-bottom: 50px;
+  }
 `;
 export const PetSpan = styled.span`
   font-family: 'Manrope';
@@ -103,6 +106,7 @@ export const PetDetails = styled.div`
   padding: 20px;
 `;
 export const PetDetailsButton = styled.button`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,4 +124,7 @@ export const PetDetailsButton = styled.button`
   @media (min-width: 768px) {
     width: 248px;
   }
+`;
+export const PetDetailsButtonText = styled.p`
+  color: #f59256;
 `;

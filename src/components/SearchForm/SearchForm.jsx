@@ -10,6 +10,8 @@ import {
   PetSpanWrapper,
   PetSpan,
   PetDetails,
+  PetDetailsButton,
+  PetDetailsButtonText,
 } from './SearchForm.styled';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -115,6 +117,9 @@ const SearchForm = ({ children }) => {
                     <PetSpan>Age:</PetSpan>
                     <PetSpan>{age}</PetSpan>
                   </PetSpanWrapper>
+                  <PetDetailsButton>
+                    <PetDetailsButtonText>Learn More</PetDetailsButtonText>
+                  </PetDetailsButton>
                 </PetDetails>
               </NoticeCategoryItem>
             )
