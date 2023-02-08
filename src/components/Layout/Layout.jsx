@@ -6,16 +6,11 @@ import { Card } from '../reusable/reusable';
 import { Button } from '../reusable/reusable';
 import { FriendsCard } from '../reusable/reusable';
 import { AddPet } from '../reusable/reusable';
-import SearchForm from 'components/SearchForm/SearchForm';
 
+import SearchForm from 'components/SearchForm/SearchForm';
 export const Layout = () => {
   return (
-    <>
-      <AddPet></AddPet>
-      <Button>sd</Button>
-      <Badge>kj</Badge>
-      <Card />
-      <FriendsCard />
+    <Container>
       Layout
       <header>
         <AppBar />
@@ -23,9 +18,9 @@ export const Layout = () => {
           Find your favorite pet
         </SearchForm>
       </header>
-      <Suspense>
+      <Suspense fallback={null} >
         <Outlet />
       </Suspense>
-    </>
+    </Container>
   );
 };

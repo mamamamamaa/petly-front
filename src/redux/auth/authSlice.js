@@ -5,7 +5,8 @@ const extraActions = [login, logout, register, refresh];
 
 const initialState = {
   user: { name: null, email: null },
-  token: null,
+  accessToken: null,
+  refreshToken: null,
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
@@ -19,13 +20,15 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
-        state.token = action.payload.token;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
-        state.token = action.payload.token;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
       })
       .addCase(refresh.pending, state => {

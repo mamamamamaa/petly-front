@@ -1,13 +1,14 @@
 import { useSelector } from 'react-redux';
 
 export const useAuth = () => {
-  const token = useSelector(state => state.auth.token);
+  const accessToken = useSelector(state => state.auth.accessToken);
+  const refreshToken = useSelector(state => state.auth.refreshToken);
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const user = useSelector(state => state.auth.user);
   const isRefreshing = useSelector(state => state.auth.isRefreshing);
   const error = useSelector(state => state.auth.error);
 
-  return { token, isLoggedIn, user, isRefreshing, error };
+  return { accessToken, refreshToken, isLoggedIn, user, isRefreshing, error };
 };
 
 export const useNews = () => {
