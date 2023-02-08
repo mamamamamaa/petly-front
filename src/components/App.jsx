@@ -1,6 +1,6 @@
 import { lazy, useEffect } from 'react';
 import { Layout } from './Layout/Layout';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { RestrictedRoute, PrivateRoute } from '../helpers';
 import { useDispatch } from 'react-redux';
 import { refresh } from '../redux/auth/operations';
@@ -56,6 +56,7 @@ export const App = () => {
           }
         />
       </Route>
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };
