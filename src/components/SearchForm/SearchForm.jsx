@@ -5,9 +5,16 @@ import {
   NoticeCategoryItem,
   RadioBtn,
   RadioBtnLabel,
+  PhotoPet,
+  Title,
+  Breed,
+  Place,
+  Age,
 } from './SearchForm.styled';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import noPoster from '../../noPoster.jpg';
+
 const instance = axios.create({
   baseURL: 'http://localhost:3001',
 });
@@ -90,9 +97,17 @@ const SearchForm = ({ children }) => {
       </SearchTitle>
       {pets.length > 0 ? (
         <NoticesCategoriesList>
-          {pets.map(({ _id, title }) => (
-            <NoticeCategoryItem key={_id}>{title}</NoticeCategoryItem>
-          ))}
+          {pets.map(
+            ({ _id, photoUrl = noPoster, title, breed, place, age }) => (
+              <NoticeCategoryItem key={_id}>
+                <PhotoPet src={photoUrl} alt="Pet" />
+                <Title>{title}</Title>
+                <Breed>{breed}</Breed>
+                <Place>{place}</Place>
+                <Age>{age}</Age>
+              </NoticeCategoryItem>
+            )
+          )}
         </NoticesCategoriesList>
       ) : null}
     </>

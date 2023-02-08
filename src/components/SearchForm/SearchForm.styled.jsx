@@ -41,7 +41,12 @@ export const SearchField = styled.input`
 
 export const NoticesCategoriesList = styled.ul``;
 
-export const NoticeCategoryItem = styled.li``;
+export const NoticeCategoryItem = styled.li`
+  background: #ffffff;
+
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  border-radius: 0px 0px 20px 20px;
+`;
 
 export const RadioBtnLabel = styled.label`
   :last-of-type {
@@ -51,5 +56,34 @@ export const RadioBtnLabel = styled.label`
 `;
 
 export const RadioBtn = styled.input`
+  margin-right: 1em;
+`;
+
+export const PhotoPet = styled.img`
+  object-fit: cover;
+  height: 288px;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: 336px;
+  }
+  @media (min-width: 1280px) {
+    width: 288px; 
+`;
+export const Title = styled.h2`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 38px;
+  letter-spacing: -0.01em;
+  color: #111111;
+`;
+export const Breed = styled.p`
+  margin-right: 1em;
+`;
+export const Place = styled.p`
+  margin-right: 1em;
+`;
+export const Age = styled.p`
   margin-right: 1em;
 `;
