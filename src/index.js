@@ -12,7 +12,7 @@ import { Container } from './components/reusable/reusable';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ThemeProvider theme={{ theme }}>
+  <ThemeProvider theme={theme}>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>

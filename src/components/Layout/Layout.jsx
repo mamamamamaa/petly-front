@@ -6,7 +6,7 @@ import { Card } from '../reusable/reusable';
 import { Button } from '../reusable/reusable';
 import { FriendsCard } from '../reusable/reusable';
 import { AddPet } from '../reusable/reusable';
-import SearchForm from 'components/SearchForm';
+import SearchForm from 'components/SearchForm/SearchForm';
 
 export const Layout = () => {
   return (
