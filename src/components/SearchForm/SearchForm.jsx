@@ -2,6 +2,9 @@ import {
   SearchTitle,
   SearchField,
   NoticesCategoriesList,
+  NoticeCategoryItem,
+  RadioBtn,
+  RadioBtnLabel,
 } from './SearchForm.styled';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -51,7 +54,8 @@ const SearchForm = ({ children }) => {
     };
     getTrendingHttp();
   }, [firstName, option]);
-// FrontEnd - NoticesPage - Компонент рендериться на маршрут /notices/:categoryName Компонент рендерить: - форму пошуку NoticesSearch - блок навігації NoticesCategoriesNav - список оголошень NoticesCategoriesList - кнопку відкриття модалки для створення оголошення AddNoticeButton Під час першого входу на сторінку рендериться список оголошень з продажу
+  // FrontEnd - NoticesPage - Компонент рендериться на маршрут /notices/:categoryName Компонент рендерить: - форму пошуку NoticesSearch - блок навігації NoticesCategoriesNav - список оголошень NoticesCategoriesList - кнопку відкриття модалки для створення оголошення AddNoticeButton Під час першого входу на сторінку рендериться список оголошень з продажу
+  // FrontEnd - NoticesPage - Компонент рендерить список всіх оголошень відповідної категорії - NoticeCategoryItem, данні по яким отримує з бекенду
   return (
     <>
       <SearchTitle>
@@ -61,29 +65,33 @@ const SearchForm = ({ children }) => {
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
         />
-        Use strict search:
-        <input
-          type="radio"
-          name="myRadio"
-          value="one"
-          onChange={e => {
-            console.log(e.target.value);
-            return setOption(e.target.value);
-          }}
-        />
-        Show all notices
-        <input
-          defaultChecked={true}
-          type="radio"
-          name="myRadio"
-          value="all"
-          onChange={e => setOption(e.target.value)}
-        />
+        <RadioBtnLabel>
+          <RadioBtn
+            type="radio"
+            name="myRadio"
+            value="one"
+            onChange={e => {
+              console.log(e.target.value);
+              return setOption(e.target.value);
+            }}
+          />
+          Strict search
+        </RadioBtnLabel>
+        <RadioBtnLabel>
+          <RadioBtn
+            defaultChecked={true}
+            type="radio"
+            name="myRadio"
+            value="all"
+            onChange={e => setOption(e.target.value)}
+          />
+          Show all notices
+        </RadioBtnLabel>
       </SearchTitle>
       {pets.length > 0 ? (
         <NoticesCategoriesList>
           {pets.map(({ _id, title }) => (
-            <li key={_id}>{title}</li>
+            <NoticeCategoryItem key={_id}>{title}</NoticeCategoryItem>
           ))}
         </NoticesCategoriesList>
       ) : null}

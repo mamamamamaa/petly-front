@@ -40,3 +40,16 @@ export const SearchField = styled.input`
 `;
 
 export const NoticesCategoriesList = styled.ul``;
+
+export const NoticeCategoryItem = styled.li``;
+
+export const RadioBtnLabel = styled.label`
+  :last-of-type {
+    display: inline-block;
+    margin-left: 2em;
+  }
+`;
+
+export const RadioBtn = styled.input`
+  margin-right: 1em;
+`;
