@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 import { media } from "../Layout/Layout.styled";
 
 
-export const Nav = styled.nav`
+// export const Nav = styled.nav`
     
-    /* text-align: center; */
-`;
+//     /* text-align: center; */
+// `;
 
 export const NavList = styled.ul`
     list-style: none;
@@ -15,6 +15,11 @@ export const NavList = styled.ul`
     align-items: center;
     justify-content: center;
     flex-direction: column; 
+    ${media.tablet} {
+        opacity: ${({ isClosed }) => isClosed ? 0 : 1};
+        visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
+        pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
+    }
 `;
 
 export const NavListItem = styled.li`

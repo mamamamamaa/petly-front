@@ -7,10 +7,11 @@ import { Nav,
 } from "./Navigation.styled";
 
 
-const Navigation = () => {
+const Navigation = ({isClosed}) => {
     // const { isLoggedIn } = useAuth();
+
     return (
-        <Nav>
+        // <Nav>
             <NavList>
                 <NavListItem>
                     <NavigLink
@@ -38,7 +39,7 @@ const Navigation = () => {
                     </NavigLink>
                 </NavListItem>
             </NavList>
-        </Nav>
+        // </Nav>
     )
 };
 

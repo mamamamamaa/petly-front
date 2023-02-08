@@ -8,9 +8,13 @@ export const BarContainer = styled.div`
     justify-content: space-between;
     /* padding: 16px 20px 42px 20px; */
     padding-bottom: 46px;
-    padding-top: 16px;
+    /* padding-top: 16px; */
     margin: 0 auto;
     outline: 1px solid red;
+    /* position: fixed; */
+    ${media.tablet} {
+
+    }
 `;
 
 export const LogoBlack = styled.span`
@@ -28,9 +32,6 @@ export const LogoAccent = styled.span`
 `;
 
 export const MenuWrpr = styled.div`
-    /* opacity: 0;
-    visibility: hidden; */
-    /* pointer-events: none; */
     z-index: 100;
     position: fixed;
     left: 0;
@@ -41,17 +42,45 @@ export const MenuWrpr = styled.div`
     opacity: ${({ isClosed }) => isClosed ? 0 : 1};
     visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
     pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
+    ${media.tablet} {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        position: static;
+
+    }
 `;
 
 export const MenuContainer = styled.div`
-    /* visibility: hidden; */
-    position: relative;
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-between;
-    position: relative;
     padding-top: 104px;
     /* height: 100%; */
+    ${media.tablet} {
+        flex-direction: row;
+        padding-top: 0;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        background-color: ${props => props.theme.colors.secondary};
+    }
+`;
+
+
+export const Nav = styled.nav`
+    ${media.tablet} {
+        /* display: flex; */
+        position: relative;
+        margin-top: 160px;
+        opacity: ${({ isClosed }) => isClosed ? 0 : 1};
+        visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
+        pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
+    }
+    /* text-align: center; */
 `;
 
 export const UserMenuWrpr = styled.div`
@@ -68,6 +97,11 @@ export const BurgerBtn = styled.button`
     background-color: transparent;
     border: none;
     z-index: 101;
+    ${media.desktop} {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+    }
 `;
 
 // export const MenuIcon = styled.svg`
