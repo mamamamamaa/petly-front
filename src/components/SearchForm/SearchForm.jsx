@@ -7,9 +7,7 @@ import {
   RadioBtnLabel,
   PhotoPet,
   Title,
-  Breed,
-  Place,
-  Age,
+  PetSpanWrapper,
   PetSpan,
   PetDetails,
 } from './SearchForm.styled';
@@ -105,18 +103,18 @@ const SearchForm = ({ children }) => {
                 <PhotoPet src={photoUrl} alt="Pet" />
                 <PetDetails>
                   <Title>{title}</Title>
-                  <Breed>
+                  <PetSpanWrapper>
                     <PetSpan>Breed:</PetSpan>
                     <PetSpan>{breed}</PetSpan>
-                  </Breed>
-                  <Place>
+                  </PetSpanWrapper>
+                  <PetSpanWrapper>
                     <PetSpan>Place:</PetSpan>
                     <PetSpan>{place}</PetSpan>
-                  </Place>
-                  <Age>
+                  </PetSpanWrapper>
+                  <PetSpanWrapper>
                     <PetSpan>Age:</PetSpan>
                     <PetSpan>{age}</PetSpan>
-                  </Age>
+                  </PetSpanWrapper>
                 </PetDetails>
               </NoticeCategoryItem>
             )

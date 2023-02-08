@@ -39,9 +39,14 @@ export const SearchField = styled.input`
   }
 `;
 
-export const NoticesCategoriesList = styled.ul``;
+export const NoticesCategoriesList = styled.ul`
+  list-style-type: none;
+`;
 
 export const NoticeCategoryItem = styled.li`
+  :not(last-child) {
+    margin-bottom: 32px;
+  }
   background: #ffffff;
 
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -63,13 +68,14 @@ export const PhotoPet = styled.img`
   object-fit: cover;
   height: 288px;
   width: 100%;
+  cursor: pointer;
   @media (min-width: 768px) {
     width: 336px;
   }
   @media (min-width: 1280px) {
     width: 288px; 
 `;
-export const Title = styled.h2`
+export const Title = styled.h3`
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
@@ -77,6 +83,10 @@ export const Title = styled.h2`
   line-height: 38px;
   letter-spacing: -0.01em;
   color: #111111;
+  margin-bottom: 20px;
+`;
+export const PetSpanWrapper = styled.div`
+  margin-bottom: 8px;
 `;
 export const PetSpan = styled.span`
   font-family: 'Manrope';
@@ -85,19 +95,29 @@ export const PetSpan = styled.span`
   font-size: 16px;
   line-height: 22px;
   color: #111111;
-  :last-of-type {
+  :last-child {
     margin-left: 40px;
   }
 `;
-export const Breed = styled.div`
-  //margin-right: 1em;
-`;
-export const Place = styled.div`
-  //margin-right: 1em;
-`;
-export const Age = styled.div`
-  //margin-right: 1em;
-`;
 export const PetDetails = styled.div`
   padding: 20px;
+`;
+export const PetDetailsButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 28px;
+  gap: 10px;
+  height: 38px;
+  border: 2px solid ${theme.colors.primary};
+  border-radius: 40px;
+  background: ${theme.colors.accentText};
+  cursor: pointer;
+  color: ${theme.colors.primary};
+  :last-child {
+    color: ${theme.colors.accentButton};
+  }
+  @media (min-width: 768px) {
+    width: 248px;
+  }
 `;
