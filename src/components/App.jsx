@@ -3,7 +3,8 @@ import { Layout } from './Layout/Layout';
 import { Route, Routes } from 'react-router-dom';
 import { RestrictedRoute, PrivateRoute } from '../helpers';
 import { useDispatch } from 'react-redux';
-import { refresh } from '../redux/auth/operations';
+import { current, refresh } from '../redux/auth/operations';
+import { useAuth } from '../redux/hooks';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const NewsPage = lazy(() => import('../pages/NewsPage'));
@@ -14,11 +15,25 @@ const RegisterPage = lazy(() => import('../pages/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
 
 export const App = () => {
+  const { expiresIn, accessToken } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refresh());
+    dispatch(current());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!accessToken || !expiresIn) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      console.log(accessToken);
+      dispatch(refresh());
+    }, expiresIn);
+
+    return () => clearInterval(interval);
+  }, [dispatch, expiresIn, accessToken]);
 
   return (
     <Routes>

@@ -7,7 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import { persistor, store } from './redux/store';
 import { ThemeProvider } from '@emotion/react';
-import { theme } from './utils/theme';
+import { theme } from './utils';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
