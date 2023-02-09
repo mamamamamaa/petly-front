@@ -1,5 +1,14 @@
+import React from 'react';
+
+import FriendsList from '../components/OurFriends/FriendsList/FriendList';
+
 const OurFriendsPage = () => {
-  return <>Our friends page</>;
+  return (
+    <div>
+      <title>Our Friends</title>
+      <FriendsList />
+    </div>
+  );
 };
 
 export default OurFriendsPage;
