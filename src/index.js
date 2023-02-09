@@ -11,10 +11,10 @@ import { theme } from './utils';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ThemeProvider theme={ theme }>
+  <ThemeProvider theme={theme}>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
+        <BrowserRouter basename="/">
           <App />
         </BrowserRouter>
       </PersistGate>
