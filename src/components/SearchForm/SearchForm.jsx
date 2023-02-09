@@ -108,7 +108,7 @@ const SearchForm = ({ children }) => {
               <NoticeCategoryItem key={_id}>
                 <PhotoPetWrapper>
                   <PhotoPet src={photoUrl} alt="Pet" />
-                  <AddToFavWrapper>
+                  <AddToFavWrapper to="/notice/addfavorite/_id" end>
                     <AddToFav src={heart} alt="Add to favorites" />
                   </AddToFavWrapper>
                 </PhotoPetWrapper>

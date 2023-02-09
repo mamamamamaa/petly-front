@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import { theme } from '../../utils/theme';
 import zoom from '../../utils/svg/zoom.svg';
-import heart from '../../utils/svg/heart.svg';
 
 export const SearchTitle = styled.label`
   font-family: 'Manrope';
@@ -97,7 +96,7 @@ export const PhotoPet = styled.img`
     width: 288px; 
 `;
 
-export const AddToFavWrapper = styled.div`
+export const AddToFavWrapper = styled(NavLink)`
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -112,15 +111,6 @@ export const AddToFavWrapper = styled.div`
 
 export const AddToFav = styled.img`
   position: absolute;
-  // z-index: 2;
-  //   color: black;
-  //   background-image: url(${heart});
-  //   background-size: 44px 44px;
-  //   background-repeat: no-repeat;
-  //   background-position: right 12px center;
-  //   &.active {
-  //     color: blue;
-  //   }
 `;
 export const Title = styled.h3`
   font-family: 'Manrope';
