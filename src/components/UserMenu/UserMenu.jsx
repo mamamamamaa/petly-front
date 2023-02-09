@@ -1,12 +1,13 @@
 import { NavLink } from "react-router-dom";
+import { UserLink, UserIcon } from "./UserMenu.styled";
 
 
 
 const UserMenu = () => {
     return (
-        <NavLink to="/user">
-            <svg><use href="../reusable/svg/account.svg"></use></svg> Account
-        </NavLink>
+        <UserLink to="/user">
+            <UserIcon/> Account
+        </UserLink>
     )
 };
 

@@ -59,6 +59,10 @@ export const NavigLink = styled(NavLink)`
     align-items: center;
     letter-spacing: 0.04em;
     text-decoration: none;
+    /* :active {
+        color: ${props => props.theme.colors.primary};
+        text-decoration: underline;
+    }; */
     ${media.tablet} {
         font-size: 48px;
         line-height: 66px;

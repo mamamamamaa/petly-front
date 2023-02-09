@@ -1,6 +1,4 @@
-// import { NavLink } from "react-router-dom";
-// import { useAuth } from "../../redux/hooks";
-import { Nav,
+import {
     NavList,
     NavListItem,
     NavigLink
@@ -8,10 +6,8 @@ import { Nav,
 
 
 const Navigation = () => {
-    // const { isLoggedIn } = useAuth();
 
     return (
-        // <Nav>
             <NavList>
                 <NavListItem>
                     <NavigLink
@@ -39,7 +35,6 @@ const Navigation = () => {
                     </NavigLink>
                 </NavListItem>
             </NavList>
-        // </Nav>
     )
 };
 

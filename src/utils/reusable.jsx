@@ -4,7 +4,6 @@ import { theme } from '../utils/theme';
 
 export const Container = styled.div`
   font-family: ${theme.fonts.body};
-  background: ${theme.colors.mainBg};
   margin: 0 auto;
   @media (max-width: 767px) {
     padding: 0 20px;
