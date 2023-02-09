@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import  AppBar  from '../AppBar/AppBar';
-import { Container } from '../../utils/reusable';
+import AppBar from '../AppBar/AppBar';
+import { Container } from '../../utils';
+
 
 export const Layout = () => {
   return (
@@ -10,7 +11,7 @@ export const Layout = () => {
       <header>
         <AppBar />
       </header>
-      <Suspense fallback={null} >
+      <Suspense fallback={null}>
         <Outlet />
       </Suspense>
     </Container>
