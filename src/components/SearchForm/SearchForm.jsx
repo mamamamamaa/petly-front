@@ -12,10 +12,14 @@ import {
   PetDetails,
   PetDetailsButton,
   PetDetailsButtonText,
+  AddToFav,
+  AddToFavWrapper,
+  PhotoPetWrapper,
 } from './SearchForm.styled';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import noPoster from '../../noPoster.jpg';
+import heart from '../../utils/svg/heart.svg';
 
 const instance = axios.create({
   baseURL: 'http://localhost:3001',
@@ -94,7 +98,7 @@ const SearchForm = ({ children }) => {
             value="all"
             onChange={e => setOption(e.target.value)}
           />
-          Show all notices
+          Common search
         </RadioBtnLabel>
       </SearchTitle>
       {pets.length > 0 ? (
@@ -102,7 +106,12 @@ const SearchForm = ({ children }) => {
           {pets.map(
             ({ _id, photoUrl = noPoster, title, breed, place, age }) => (
               <NoticeCategoryItem key={_id}>
-                <PhotoPet src={photoUrl} alt="Pet" />
+                <PhotoPetWrapper>
+                  <PhotoPet src={photoUrl} alt="Pet" />
+                  <AddToFavWrapper>
+                    <AddToFav src={heart} alt="Add to favorites" />
+                  </AddToFavWrapper>
+                </PhotoPetWrapper>
                 <PetDetails>
                   <Title>{title}</Title>
                   <PetSpanWrapper>

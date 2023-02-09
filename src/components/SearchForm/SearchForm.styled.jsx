@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-
+import { NavLink } from 'react-router-dom';
 import { theme } from '../../utils/theme';
-import zoom from '../reusable/svg/zoom.svg';
+import zoom from '../../utils/svg/zoom.svg';
+import heart from '../../utils/svg/heart.svg';
 
 export const SearchTitle = styled.label`
   font-family: 'Manrope';
@@ -50,8 +51,8 @@ export const NoticesCategoriesList = styled.ul`
   @media (min-width: 1280px) {
     flex-basis: calc(100% / 4-32px);
   }
-  `;
-  
+`;
+
 export const NoticeCategoryItem = styled.li`
   :not(last-child) {
     margin-bottom: 32px;
@@ -75,7 +76,15 @@ export const RadioBtn = styled.input`
   margin-right: 1em;
 `;
 
+export const PhotoPetWrapper = styled.div`
+  position: relative;
+  top: 0;
+  left: 0;
+`;
 export const PhotoPet = styled.img`
+  position: relative;
+  top: 0;
+  left: 0;
   object-fit: cover;
   height: 288px;
   width: 100%;
@@ -86,6 +95,32 @@ export const PhotoPet = styled.img`
   }
   @media (min-width: 1280px) {
     width: 288px; 
+`;
+
+export const AddToFavWrapper = styled.div`
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ffffff99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const AddToFav = styled.img`
+  position: absolute;
+  // z-index: 2;
+  //   color: black;
+  //   background-image: url(${heart});
+  //   background-size: 44px 44px;
+  //   background-repeat: no-repeat;
+  //   background-position: right 12px center;
+  //   &.active {
+  //     color: blue;
+  //   }
 `;
 export const Title = styled.h3`
   font-family: 'Manrope';
