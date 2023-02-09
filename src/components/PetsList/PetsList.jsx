@@ -1,4 +1,4 @@
-export const PetsList = () => {
+export const PetsList = ({pets, onDelete}) => {
     return <ul>
     <li>
         <article>
