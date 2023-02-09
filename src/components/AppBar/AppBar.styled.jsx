@@ -14,6 +14,7 @@ export const BarContainer = styled.div`
     /* position: fixed; */
     ${media.tablet} {
         align-items: flex-start;
+        position: -1;
         /* justify-content: space-around; */
     }
 `;
@@ -48,7 +49,12 @@ export const MenuWrpr = styled.div`
         visibility: visible;
         pointer-events: auto;
         position: static;
-
+        background-color: inherit;
+        outline: 1px solid blue;
+        width: auto;
+        height: auto;
+        padding-top: 0;
+        /* order: 0; */
     }
 `;
 
@@ -59,15 +65,8 @@ export const MenuContainer = styled.div`
     padding-top: 104px;
     /* height: 100%; */
     ${media.tablet} {
-        flex-direction: row;
         padding-top: 0;
-        z-index: 100;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        background-color: ${props => props.theme.colors.secondary};
+        
     }
 `;
 
@@ -75,26 +74,32 @@ export const MenuContainer = styled.div`
 export const Nav = styled.nav`
     ${media.tablet} {
         display: flex;
-        /* position: relative; */
-        margin-top: 160px;
+        align-items: center;
+        justify-content: center;
         opacity: ${({ isClosed }) => isClosed ? 0 : 1};
         visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
         pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
-        margin-left: auto;
-        margin-right: auto;
+        /* margin-left: auto;
+        margin-right: auto; */
+        margin: 0, auto;
         z-index: 100;
         position: fixed;
         left: 0;
         top: 0;
-        width: 100vw;
-        height: 100vh;
-    }
-    /* text-align: center; */
+        /* width: 100vw;
+        height: 100vh; */
+        width: 100%;
+        height: 100%;
+        background-color: ${props => props.theme.colors.secondary};
+        outline: 1px solid green;
+        /* padding-top: 160px; */
+    } 
 `;
 
 export const UserMenuWrpr = styled.div`
     ${media.tablet} {
-
+        padding-top: 0;
+        /* z-index: 101; */
     }
 `;
 
@@ -108,6 +113,9 @@ export const BurgerBtn = styled.button`
     background-color: transparent;
     border: none;
     z-index: 101;
+    ${media.tablet} {
+        order: +1;
+    }
     ${media.desktop} {
         visibility: hidden;
         opacity: 0;

@@ -19,6 +19,7 @@ export const NavList = styled.ul`
         opacity: ${({ isClosed }) => isClosed ? 0 : 1};
         visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
         pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
+        padding-top: 160px;
     }
 `;
 
@@ -27,10 +28,12 @@ export const NavListItem = styled.li`
     margin-bottom: 40px;
     :hover,
     :focus{
-        /* color: ${props => props.theme.colors.primary}; */
-        color: #F59256;
+        color: ${props => props.theme.colors.primary};
         text-decoration: underline;
     };
+    ${media.tablet} {
+            margin-bottom: 60px;
+        }
 `;
 
 export const NavigLink = styled(NavLink)`
@@ -43,4 +46,8 @@ export const NavigLink = styled(NavLink)`
     align-items: center;
     letter-spacing: 0.04em;
     text-decoration: none;
+    ${media.tablet} {
+        font-size: 48px;
+        line-height: 66px;
+    }
 `;
