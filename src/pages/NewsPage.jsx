@@ -5,10 +5,11 @@ import { useSearchParams } from 'react-router-dom';
 // =======
 import SearchBar from '../SearchBarNews/SearchBarNews';
 // =======
+const { REACT_APP_SERVER_HOST } = process.env;
 
 export async function fetchSearchNews(query) {
   const { data } = await axios.get(
-    `http://localhost:3001/api/news?query=${query}`
+    `${REACT_APP_SERVER_HOST}/api/news?query=${query}`
   );
   return data;
 }
