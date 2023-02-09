@@ -7,7 +7,7 @@ import { Nav,
 } from "./Navigation.styled";
 
 
-const Navigation = ({isClosed}) => {
+const Navigation = () => {
     // const { isLoggedIn } = useAuth();
 
     return (

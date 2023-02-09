@@ -48,6 +48,7 @@ export const NavigLink = styled(NavLink)`
 `;
 
 export const Sp = styled.span`
+  font-family: Manrope;
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;

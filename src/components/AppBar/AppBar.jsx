@@ -13,7 +13,8 @@ import {BarContainer,
         MenuContainer,
         UserMenuWrpr,
         BurgerBtn,
-        Nav
+        Nav,
+        TabletWrapper
 } from "./AppBar.styled";
 
 
@@ -28,18 +29,18 @@ const AppBar = () => {
     return (
         <BarContainer>
             <LogoBlack>pe<LogoAccent>t</LogoAccent>ly</LogoBlack>
+                <TabletWrapper>
                 <BurgerBtn onClick={ToggleClickHandler}>
                     {!isMenuOpen ? <BurgerIcon/> : <CloseIcon/>}
                 </BurgerBtn>
                 
                 <MenuWrpr isClosed={!isMenuOpen}>
-                <MenuContainer>
                     <Nav isClosed={!isMenuOpen}>
                         <Navigation/>
                     </Nav>
                     <UserMenuWrpr>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</UserMenuWrpr>
-                </MenuContainer>
                 </MenuWrpr>
+                </TabletWrapper>
                 
         </BarContainer>
     )

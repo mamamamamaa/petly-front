@@ -21,6 +21,11 @@ export const NavList = styled.ul`
         pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
         padding-top: 160px;
     }
+    ${media.desktop} {
+        flex-direction: row;
+        padding-top: 0;
+        justify-content: space-between;
+    }
 `;
 
 export const NavListItem = styled.li`
@@ -33,10 +38,18 @@ export const NavListItem = styled.li`
     };
     ${media.tablet} {
             margin-bottom: 60px;
-        }
+        };
+    ${media.desktop} {
+       margin-bottom: 0;
+       margin-left: 80px;
+       :first-child{
+        margin-left: 0;
+       };
+    };
 `;
 
 export const NavigLink = styled(NavLink)`
+    font-family: Manrope;
     color: inherit;
     font-style: normal;
     font-weight: 500;
@@ -49,5 +62,9 @@ export const NavigLink = styled(NavLink)`
     ${media.tablet} {
         font-size: 48px;
         line-height: 66px;
+    }
+    ${media.desktop} {
+        font-size: 20px;
+        line-height: 27px;
     }
 `;
