@@ -1,12 +1,12 @@
-import styled from "@emotion/styled";
-import { media } from "../Layout/Layout.styled";
-import { theme } from "../../utils/theme.jsx";
-import { Form, Field } from "formik";
-import { Link } from "react-router-dom";
-import MaskedInput from "react-text-mask";
-import mobileBackground from "../../utils/images/h-log-registr-mobile.png";
-import tabletBackground from "../../utils/images/h-log-registr-tablet.png";
-import desktopBackground from "../../utils/images/h-log-registr-tablet.png";
+import styled from '@emotion/styled';
+import { media } from '../Layout/Layout.styled';
+import { theme } from '../../utils';
+import { Form, Field } from 'formik';
+import { Link } from 'react-router-dom';
+// import MaskedInput from 'react-text-mask';
+import mobileBackground from '../../utils/images/h-log-registr-mobile.png';
+import tabletBackground from '../../utils/images/h-log-registr-tablet.png';
+import desktopBackground from '../../utils/images/h-log-registr-tablet.png';
 
 export const FormContainer = styled.div`
   width: 100%;
@@ -34,7 +34,7 @@ export const Title = styled.h2`
   margin-top: 0;
   ${media.tabletAndDesktop} {
     font-size: 36px;
-    font-weight: ${theme.fontWeights.medium};
+    font-weight: ${theme.fontWeights.normal};
   }
 `;
 export const Form1 = styled(Form)`
@@ -53,9 +53,9 @@ export const Form1 = styled(Form)`
     padding: 60px 0 40px 0;
     background-color: ${theme.colors.white};
     border-radius: 40px;
-    -webkit-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
-    -moz-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
-    box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
+    -webkit-box-shadow: 7px 4px 14px 0 rgba(0, 0, 0, 0.11);
+    -moz-box-shadow: 7px 4px 14px 0 rgba(0, 0, 0, 0.11);
+    box-shadow: 7px 4px 14px 0 rgba(0, 0, 0, 0.11);
   }
   ${media.desktop} {
     width: 618px;
@@ -104,7 +104,7 @@ export const Input = styled(Field)`
     width: 458px;
   }
 `;
-export const PhoneInput = styled(MaskedInput)`
+export const PhoneInput = styled(Field)`
   width: 280px;
   padding: 11px 0 12px 14px;
   background: ${theme.colors.background};
@@ -222,7 +222,7 @@ export const BackButton = styled.button`
 export const ErrBox = styled.div`
   position: absolute;
   white-space: nowrap;
-  bottom: 0px;
+  bottom: 0;
   left: 15px;
   color: red;
   font-size: 14px;

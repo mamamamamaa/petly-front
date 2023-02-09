@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useFormik, Formik } from "formik";
-import { object, string, ref } from "yup";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useFormik, Formik } from 'formik';
+import { object, string, ref } from 'yup';
 // import Spinner from "../Spinner";
-import { ImEye, ImEyeBlocked } from "react-icons/im";
+import { ImEye, ImEyeBlocked } from 'react-icons/im';
 
 // import { useAuth } from "../../redux/hooks";
-import { register } from "../../redux/auth/operations";
+import { register } from '../../redux/auth/operations';
 
 import {
   Form1,
@@ -19,27 +19,7 @@ import {
   PhoneInput,
   ShowPassword,
   StyledLink,
-} from "./RegisterForm.styled";
-
-const phoneNumberMask = [
-  '+',
-  /\d/,
-  /\d/,
-  '(',
-  /[0-9]/,
-  /\d/,
-  /\d/,
-  ')',
-  /\d/,
-  /\d/,
-  /\d/,
-  '-',
-  /\d/,
-  /\d/,
-  '-',
-  /\d/,
-  /\d/,
-];
+} from './RegisterForm.styled';
 
 const registerSchema = object().shape({
   password: string()
@@ -60,12 +40,8 @@ const registerSchema = object().shape({
     .min(2, 'min 2 symbols')
     .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters')
     .required('Name is required'),
-  phone: string()
-    .min(13, 'Too Short!')
-    .matches(
-      /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){12}(\s*)?$/,
-      'bad phone number'
-    )
+  mobilePhone: string()
+    .matches(/^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/, 'Bad phone number')
     .required('Phone is required'),
   city: string()
     .matches(
@@ -79,7 +55,6 @@ const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-//   const loading = useSelector(useAuth);
   const dispatch = useDispatch();
 
   const showForm = () => {
@@ -90,191 +65,188 @@ const RegisterForm = () => {
   };
 
   const onSubmit = values => {
-    const { name, email, password, phone, city } = values;
+    const { name, email, password, mobilePhone, city } = values;
     dispatch(
       register({
         name,
         email,
         password,
-        phone,
+        mobilePhone,
         city,
       }),
       hideForm()
     );
-    //console.log(values);
   };
+
   const formik = useFormik({
     initialValues: {
       name: '',
       email: '',
       password: '',
       confirmPassword: '',
-      phone: '',
+      mobilePhone: '',
       city: '',
     },
     validationSchema: registerSchema,
     onSubmit,
   });
-
   const isValid =
     (formik.errors.email && formik.touched.email) ||
     (formik.errors.password && formik.touched.password) ||
     (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
     formik.values.email === '' ||
-    formik.values.confirmPassword === ''
-      ? true
-      : false;
+    formik.values.confirmPassword === '';
 
   const showPassword = () => {
     setShowPass(!showPass);
   };
+
   const showConfirmPassword = () => {
     setShowConfirmPass(!showConfirmPass);
   };
+
   return (
     <>
       {/* {loading ? (
         <Spinner />
       ) : ( */}
-        <FormContainer>
-          <Formik validationSchema={registerSchema}>
-            <Form1 onSubmit={formik.handleSubmit}>
-              <Title>Registration</Title>
-              {isShown && (
-                <>
-                  <div>
-                    <Input
-                      name="email"
-                      type="email"
-                      placeholder="Email"
-                      onChange={formik.handleChange}
-                      value={formik.values.email}
-                      onBlur={formik.handleBlur}
-                    />
+      <FormContainer>
+        <Formik validationSchema={registerSchema}>
+          <Form1 onSubmit={formik.handleSubmit}>
+            <Title>Registration</Title>
+            {isShown && (
+              <>
+                <div>
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                    onBlur={formik.handleBlur}
+                  />
 
-                    {formik.errors.email || formik.touched.email ? (
-                      <ErrBox>{formik.errors.email}</ErrBox>
-                    ) : null}
-                  </div>
-                </>
-              )}
+                  {formik.errors.email || formik.touched.email ? (
+                    <ErrBox>{formik.errors.email}</ErrBox>
+                  ) : null}
+                </div>
+              </>
+            )}
 
-              {isShown && (
-                <>
-                  <div>
-                    <Input
-                      name="password"
-                      type={showPass ? 'text' : 'password'}
-                      placeholder="Password"
-                      onChange={formik.handleChange}
-                      value={formik.values.password}
-                      onBlur={formik.handleBlur}
-                    />
+            {isShown && (
+              <>
+                <div>
+                  <Input
+                    name="password"
+                    type={showPass ? 'text' : 'password'}
+                    placeholder="Password"
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                    onBlur={formik.handleBlur}
+                  />
 
-                    <ShowPassword onClick={showPassword}>
-                      {!showPass ? <ImEyeBlocked /> : <ImEye />}
-                    </ShowPassword>
-                    {formik.errors.password && formik.touched.password ? (
-                      <ErrBox>{formik.errors.password}</ErrBox>
-                    ) : null}
-                  </div>
-                </>
-              )}
-              {isShown && (
-                <>
-                  <div>
-                    <Input
-                      name="confirmPassword"
-                      type={showConfirmPass ? 'text' : 'password'}
-                      placeholder="Confirm Password"
-                      onChange={formik.handleChange}
-                      value={formik.values.confirmPassword}
-                      onBlur={formik.handleBlur}
-                    />
-                    <ShowPassword onClick={showConfirmPassword}>
-                      {!showConfirmPass ? <ImEyeBlocked /> : <ImEye />}
-                    </ShowPassword>
-                    {formik.errors.confirmPassword &&
-                    formik.touched.confirmPassword ? (
-                      <ErrBox>{formik.errors.confirmPassword}</ErrBox>
-                    ) : null}
-                  </div>
-                </>
-              )}
-              {isShown && (
-                <Button type="button" onClick={showForm} disabled={isValid}>
-                  Next
-                </Button>
-              )}
-              {!isShown && (
-                <>
-                  <div>
-                    <Input
-                      name="name"
-                      type="text"
-                      placeholder="Name"
-                      onChange={formik.handleChange}
-                      value={formik.values.name}
-                      onBlur={formik.handleBlur}
-                    />
+                  <ShowPassword onClick={showPassword}>
+                    {!showPass ? <ImEyeBlocked /> : <ImEye />}
+                  </ShowPassword>
+                  {formik.errors.password && formik.touched.password ? (
+                    <ErrBox>{formik.errors.password}</ErrBox>
+                  ) : null}
+                </div>
+              </>
+            )}
+            {isShown && (
+              <>
+                <div>
+                  <Input
+                    name="confirmPassword"
+                    type={showConfirmPass ? 'text' : 'password'}
+                    placeholder="Confirm Password"
+                    onChange={formik.handleChange}
+                    value={formik.values.confirmPassword}
+                    onBlur={formik.handleBlur}
+                  />
+                  <ShowPassword onClick={showConfirmPassword}>
+                    {!showConfirmPass ? <ImEyeBlocked /> : <ImEye />}
+                  </ShowPassword>
+                  {formik.errors.confirmPassword &&
+                  formik.touched.confirmPassword ? (
+                    <ErrBox>{formik.errors.confirmPassword}</ErrBox>
+                  ) : null}
+                </div>
+              </>
+            )}
+            {isShown && (
+              <Button type="button" onClick={showForm} disabled={isValid}>
+                Next
+              </Button>
+            )}
+            {!isShown && (
+              <>
+                <div>
+                  <Input
+                    name="name"
+                    type="text"
+                    placeholder="Name"
+                    onChange={formik.handleChange}
+                    value={formik.values.name}
+                    onBlur={formik.handleBlur}
+                  />
 
-                    {formik.errors.name && formik.touched.name ? (
-                      <ErrBox>{formik.errors.name}</ErrBox>
-                    ) : null}
-                  </div>
-                </>
-              )}
-              {!isShown && (
-                <>
-                  <div>
-                    <Input
-                      name="city"
-                      type="text"
-                      placeholder="City, region"
-                      onChange={formik.handleChange}
-                      value={formik.values.city}
-                      onBlur={formik.handleBlur}
-                    />
+                  {formik.errors.name && formik.touched.name ? (
+                    <ErrBox>{formik.errors.name}</ErrBox>
+                  ) : null}
+                </div>
+              </>
+            )}
+            {!isShown && (
+              <>
+                <div>
+                  <Input
+                    name="city"
+                    type="text"
+                    placeholder="City, region"
+                    onChange={formik.handleChange}
+                    value={formik.values.city}
+                    onBlur={formik.handleBlur}
+                  />
 
-                    {formik.errors.city && formik.touched.city ? (
-                      <ErrBox>{formik.errors.city}</ErrBox>
-                    ) : null}
-                  </div>
-                </>
-              )}
-              {!isShown && (
-                <>
-                  <div>
-                    <PhoneInput
-                      mask={phoneNumberMask}
-                      id="phone"
-                      type="phone"
-                      placeholder="Mobile phone"
-                      onChange={formik.handleChange}
-                      value={formik.values.phone}
-                      onBlur={formik.handleBlur}
-                      name="phone"
-                    />
+                  {formik.errors.city && formik.touched.city ? (
+                    <ErrBox>{formik.errors.city}</ErrBox>
+                  ) : null}
+                </div>
+              </>
+            )}
+            {!isShown && (
+              <>
+                <div>
+                  <PhoneInput
+                    type="text"
+                    placeholder="Mobile phone"
+                    onChange={formik.handleChange}
+                    value={formik.values.mobilePhone}
+                    onBlur={formik.handleBlur}
+                    name="mobilePhone"
+                  />
 
-                    {formik.errors.phone && formik.touched.phone ? (
-                      <ErrBox>{formik.errors.phone}</ErrBox>
-                    ) : null}
-                  </div>
-                </>
-              )}
-              {!isShown && <Button type="submit">Registration</Button>}
-              {!isShown && (
-                <BackButton type="button" onClick={hideForm}>
-                  Back
-                </BackButton>
-              )}
-              <div>
-                <span>Already have an account?</span>{' '}
-                <StyledLink to="/login">Login</StyledLink>
-              </div>
-            </Form1>
-          </Formik>
-        </FormContainer>
+                  {formik.errors.mobilePhone && formik.touched.mobilePhone ? (
+                    <ErrBox>{formik.errors.mobilePhone}</ErrBox>
+                  ) : null}
+                </div>
+              </>
+            )}
+            {!isShown && <Button type="submit">Registration</Button>}
+            {!isShown && (
+              <BackButton type="button" onClick={hideForm}>
+                Back
+              </BackButton>
+            )}
+            <div>
+              <span>Already have an account?</span>{' '}
+              <StyledLink to="/login">Login</StyledLink>
+            </div>
+          </Form1>
+        </Formik>
+      </FormContainer>
       {/* )} */}
     </>
   );
