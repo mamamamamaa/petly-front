@@ -1,28 +1,11 @@
-export const PetsList = ({pets, onDelete}) => {
+import { UserPetCard } from "../UserPetCard/UserPetCard";
+
+export const PetsList = ({pets}) => {
     return <ul>
-    <li>
-        <article>
-            <button type="button">delete</button>
-            <img alt="" src=""/>
-            <ul>
-                <li>
-                    <p>Name:</p>
-                    <p></p>
-                </li>
-                <li>
-                    <p>Date of birth:</p>
-                    <p></p>
-                </li>
-                <li>
-                    <p>Breed:</p>
-                    <p></p>
-                </li>
-                <li>
-                    <p>Comments:</p>
-                    <p></p>
-                </li>
-            </ul>
-        </article>
-    </li>            
+        {pets.map((pet)=>{
+            return <li key={pet._id}>
+                <UserPetCard pet={pet} />
+            </li>
+        })} 
 </ul>
 }
