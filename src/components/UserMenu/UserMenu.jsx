@@ -3,16 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { NavLink } from "react-router-dom";
 import { UserPhoto, Card, Btn, Span, Wrap} from './UserMenu.styled';
-//import { Container } from "../../utils/reusable";
+import { Container } from "../../utils/reusable";
+import { updateUserData } from '../../redux/user/operations';
 
 
-const UserMenu = ({}) => {
-    dispatch = useDispatch();
+const UserMenu = () => {
+  const  dispatch = useDispatch();
+const userPhoto = useSelector()
 
     const onChangeHandler = e => {
     const formData = new FormData();
     formData.append('avatar', e.target.files[0]);
-    dispatch(updateUserInfo(formData));
+    dispatch(updateUserData(formData));
   };
 
 
@@ -23,21 +25,23 @@ const UserMenu = ({}) => {
             <Container>
                 <Card>
                     <div>
-                        <UserPhoto
-                        //добавить useSelector на аватар
-                            alt="photo" />
+                        {userPhoto ? (
+                            <UserPhoto src={userPhoto} alt="photo" />
+                        ) : (<img alt=""/>)}
                     </div>
                     <Btn>
-                       <label htmlFor="image_uploads">
+                       <label htmlFor="photo_uploads">
                         <Wrap>
                         {' '}
-                    <Icon width="20" height="20" />
+                    {/* <Icon width="20" height="20" /> */}
                     <Span>Edit photo</Span>
                     </Wrap>
                     </label> 
                     </Btn>
                     <input
                         type="file"
+                        name="photo_uploads"
+                        style = {{width: 10, heigh: 10}}
                         //style={ }
                         onChange={onChangeHandler}
                     />
