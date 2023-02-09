@@ -41,16 +41,27 @@ export const SearchField = styled.input`
 
 export const NoticesCategoriesList = styled.ul`
   list-style-type: none;
-`;
-
+  @media (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: calc(100% / 2-32px);
+    margin-left: -32px;
+  }
+  @media (min-width: 1280px) {
+    flex-basis: calc(100% / 4-32px);
+  }
+  `;
+  
 export const NoticeCategoryItem = styled.li`
   :not(last-child) {
     margin-bottom: 32px;
   }
   background: #ffffff;
-
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 20px 20px;
+  @media (min-width: 768px) {
+    margin-left: 32px;
+  }
 `;
 
 export const RadioBtnLabel = styled.label`
@@ -68,6 +79,7 @@ export const PhotoPet = styled.img`
   object-fit: cover;
   height: 288px;
   width: 100%;
+  display: block;
   cursor: pointer;
   @media (min-width: 768px) {
     width: 336px;
@@ -87,7 +99,7 @@ export const Title = styled.h3`
 `;
 export const PetSpanWrapper = styled.div`
   margin-bottom: 8px;
-  :last-child {
+  :last-of-type {
     margin-bottom: 50px;
   }
 `;
@@ -111,7 +123,6 @@ export const PetDetailsButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 8px 28px;
-  gap: 10px;
   height: 38px;
   border: 2px solid ${theme.colors.primary};
   border-radius: 40px;
@@ -123,6 +134,7 @@ export const PetDetailsButton = styled.button`
   }
   @media (min-width: 768px) {
     width: 248px;
+    margin: 0 auto;
   }
 `;
 export const PetDetailsButtonText = styled.p`
