@@ -1,9 +1,8 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import AppBar from '../AppBar/AppBar';
-import SearchForm from 'components/SearchForm/SearchForm';
 import { Container } from '../../utils/reusable';
-
+import SearchForm from 'components/SearchForm/SearchForm';
 export const Layout = () => {
   return (
     <Container>
@@ -14,7 +13,7 @@ export const Layout = () => {
           Find your favorite pet
         </SearchForm>
       </header>
-      <Suspense fallback={null} >
+      <Suspense fallback={null}>
         <Outlet />
       </Suspense>
     </Container>
