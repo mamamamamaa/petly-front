@@ -1,4 +1,4 @@
-export const selectFriends = state => state.friends;
+export const selectFriends = state => state.friends.friends;
 
 export const selectIsLoading = state => state.friends.isLoading;
 

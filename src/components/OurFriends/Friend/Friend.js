@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Friend = ({ friend }) => {
+const Friend = friend => {
   const { address, addressUrl, email, phone, title, url, workDays, imageUrl } =
     friend;
 
