@@ -32,7 +32,7 @@ const AppBar = () => {
                     {!isMenuOpen ? <BurgerIcon/> : <CloseIcon/>}
                 </BurgerBtn>
                 
-                <MenuWrpr>
+                <MenuWrpr isClosed={!isMenuOpen}>
                 <MenuContainer>
                     <Nav isClosed={!isMenuOpen}>
                         <Navigation/>

@@ -13,7 +13,8 @@ export const BarContainer = styled.div`
     outline: 1px solid red;
     /* position: fixed; */
     ${media.tablet} {
-
+        align-items: flex-start;
+        /* justify-content: space-around; */
     }
 `;
 
@@ -73,18 +74,28 @@ export const MenuContainer = styled.div`
 
 export const Nav = styled.nav`
     ${media.tablet} {
-        /* display: flex; */
-        position: relative;
+        display: flex;
+        /* position: relative; */
         margin-top: 160px;
         opacity: ${({ isClosed }) => isClosed ? 0 : 1};
         visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
         pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 100;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
     }
     /* text-align: center; */
 `;
 
 export const UserMenuWrpr = styled.div`
-    
+    ${media.tablet} {
+
+    }
 `;
 
 export const BurgerBtn = styled.button`
