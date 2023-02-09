@@ -7,6 +7,7 @@ export const useAuth = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const user = useSelector(state => state.auth.user);
   const isRefreshing = useSelector(state => state.auth.isRefreshing);
+  // const isLoading = useSelector(state => state.auth.isLoading);
   const error = useSelector(state => state.auth.error);
 
   return {

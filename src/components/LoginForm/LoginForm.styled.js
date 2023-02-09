@@ -39,7 +39,7 @@ export const Title = styled.h1`
   text-align: center;
   color: ${theme.colors.black};
   ${media.tablet} {
-    font-weight: ${theme.fontWeights.medium};
+    font-weight: ${theme.fontWeights.normal};
     font-size: 36px;
   }
 `;
@@ -57,7 +57,7 @@ export const Input = styled(Field)`
   height: 40px;
   padding-left: 14px;
   font-family: 'Manrope';
-  font-weight: ${theme.fontWeights.regular};
+  font-weight: ${theme.fontWeights.news};
   font-size: 14px;
   line-height: 1.4;
   align-items: center;
@@ -68,7 +68,7 @@ export const Input = styled(Field)`
   border-radius: 40px;
   &::placeholder {
     font-style: normal;
-    font-weight: ${theme.fontWeights.regular};
+    font-weight: ${theme.fontWeights.news};
     font-size: 14px;
     line-height: 1.36;
     letter-spacing: 0.04em;
@@ -87,7 +87,7 @@ export const Input = styled(Field)`
     background: ${theme.colors.secondary};
     &::placeholder {
       font-style: normal;
-      font-weight: ${theme.fontWeights.regular};
+      font-weight: ${theme.fontWeights.news};
       font-size: 18px;
       line-height: 1.38;
       letter-spacing: 0.04em;
@@ -102,7 +102,7 @@ export const Input = styled(Field)`
     background: ${theme.colors.secondary};
     &::placeholder {
       font-style: normal;
-      font-weight: ${theme.fontWeights.regular};
+      font-weight: ${theme.fontWeights.news};
       font-size: 18px;
       line-height: 1.38;
       letter-spacing: 0.04em;
@@ -128,7 +128,7 @@ export const Button = styled.button`
   background-color: ${theme.colors.primary};
   cursor: pointer;
   font-family: 'Manrope';
-  font-weight: ${theme.fontWeights.medium};
+  font-weight: ${theme.fontWeights.normal};
   font-size: 20px;
   line-height: 1.35px;
   align-items: center;
@@ -156,7 +156,7 @@ export const Text = styled.div`
   justify-content: center;
   font-family: 'Manrope';
   font-style: normal;
-  font-weight: ${theme.fontWeights.regular};
+  font-weight: ${theme.fontWeights.news};
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.04em;
