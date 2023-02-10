@@ -14,39 +14,43 @@ import {
   AddToFavWrapper,
   PhotoPetWrapper,
 } from './SearchForm.styled';
-import axios from 'axios';
+// import axios from 'axios';
 import { useState, useEffect } from 'react';
 import noPoster from '../../noPoster.jpg';
 import heart from '../../utils/svg/heart.svg';
-
-const instance = axios.create({
-  baseURL: 'http://localhost:3001',
-});
+import { search } from '../../redux/notices/operations';
+import { useDispatch } from 'react-redux';
+// const instance = axios.create({
+//   baseURL: 'http://localhost:3001',
+// });
 
 const SearchForm = ({ children }) => {
   const [firstName, setFirstName] = useState('');
   const [pets, setPets] = useState([]);
+    const dispatch = useDispatch();
   useEffect(() => {
-    const getAll = async () => {
-      const { data } = await instance.get(
-        `/api/notices/searchManyTitles?title=${firstName}`
-      );
-      console.log(data);
-      return data;
-    };
+    // const getAll = async () => {
+    //   const { data } = await instance.get(
+    //     `/api/notices/searchManyTitles?title=${firstName}`
+    //   );
+    //   console.log(data);
+    //   return data;
+    // };
 
     const getTrendingHttp = async () => {
       try {
-        const response = await getAll().then(responseHttp => {
+        // const response = await getAll().then(responseHttp => {
+        const response = await dispatch(search()).then(responseHttp => {
           return responseHttp;
         });
-        setPets([...response]);
+        console.log(response.payload);
+        setPets([...response.payload]);
       } catch (error) {
         console.error(error);
       }
     };
     getTrendingHttp();
-  }, [firstName]);
+  }, [firstName, dispatch]);
   // FrontEnd - NoticesPage - Компонент рендериться на маршрут /notices/:categoryName Компонент рендерить: - форму пошуку NoticesSearch - блок навігації NoticesCategoriesNav - список оголошень NoticesCategoriesList - кнопку відкриття модалки для створення оголошення AddNoticeButton Під час першого входу на сторінку рендериться список оголошень з продажу
   // FrontEnd - NoticesPage - Компонент рендерить список всіх оголошень відповідної категорії - NoticeCategoryItem, данні по яким отримує з бекенду
   return (

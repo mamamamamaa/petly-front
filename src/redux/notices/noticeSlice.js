@@ -6,6 +6,7 @@ const initialState = {
   sellNotices: [],
   goodHandsNotices: [],
   LostFondNotices: [],
+  searchNotices: [],
 };
 
 const noticeSlice = createSlice({
