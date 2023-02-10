@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { theme } from '../../utils/theme';
 import zoom from '../../utils/svg/zoom.svg';
 
-export const SearchTitle = styled.label`
+export const NoticesSearch = styled.label`
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;

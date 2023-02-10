@@ -1,5 +1,5 @@
 import {
-  SearchTitle,
+  NoticesSearch,
   SearchField,
   NoticesCategoriesList,
   NoticeCategoryItem,
@@ -35,14 +35,14 @@ const SearchForm = ({ children }) => {
   // FrontEnd - NoticesPage - Компонент рендерить список всіх оголошень відповідної категорії - NoticeCategoryItem, данні по яким отримує з бекенду
   return (
     <>
-      <SearchTitle>
+      <NoticesSearch>
         {children}
         <SearchField
           placeholder="Search"
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
         />
-      </SearchTitle>
+      </NoticesSearch>
       {pets.length > 0 ? (
         <NoticesCategoriesList>
           {pets.map(
