@@ -11,6 +11,7 @@ const initialState = {
     birthday: '',
     phone: '',
     city: '',
+    avatar: '',
     favorites: [],
     
   }
