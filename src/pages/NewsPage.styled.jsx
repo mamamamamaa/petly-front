@@ -133,10 +133,9 @@ export const DateBox = styled.div`
   color: rgba(17, 17, 17, 0.6);
 `;
 
-export const Button = styled.button`
+export const BoxHref = styled.a`
   font-weight: 500;
   font-size: 16px;
-  background-color: transparent;
-  border: 1px solid transparent;
+  text-decoration: none;
   color: #f59256;
 `;
