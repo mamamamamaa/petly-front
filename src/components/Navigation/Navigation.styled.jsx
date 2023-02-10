@@ -72,12 +72,4 @@ export const NavigLink = styled(NavLink)`
         color: ${props => props.theme.colors.primary};
         text-decoration: underline;
     };
-    /* ${media.tablet} {
-        font-size: 48px;
-        line-height: 66px;
-    }
-    ${media.desktop} {
-        font-size: 20px;
-        line-height: 27px;
-    } */
 `;
