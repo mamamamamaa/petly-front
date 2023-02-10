@@ -5,15 +5,16 @@ import {
   NoticeCategoryItem,
 } from './SearchForm.styled';
 import { useState, useEffect } from 'react';
-import noPoster from '../../noPoster.jpg';
-import { search } from '../../redux/notices/operations';
+import noPoster from 'noPoster.jpg';
+import { search } from 'redux/notices/operations';
+// import { sell } from 'redux/notices/operations';
 import { useDispatch } from 'react-redux';
-import Notices from '../../pages/NoticesPage';
+import { NoticeCategoryItemTemplate } from 'components/NoticeCategoryItemTemplate/NoticeCategoryItemTemplate';
 
 const SearchForm = ({ children }) => {
   const [firstName, setFirstName] = useState('');
   const [pets, setPets] = useState([]);
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     const getTrendingHttp = async () => {
       try {
@@ -44,23 +45,15 @@ const SearchForm = ({ children }) => {
       </SearchTitle>
       {pets.length > 0 ? (
         <NoticesCategoriesList>
-          {/* {pets.map(
-            ({ _id, photoUrl = noPoster, title, breed, place, age }) => (
-              
-            )
-          )} */}
           {pets.map(
             ({ _id, photoUrl = noPoster, title, breed, place, age }) => (
               <NoticeCategoryItem key={_id}>
-                <Notices {...{ _id, photoUrl, title, breed, place, age }} />
+                <NoticeCategoryItemTemplate
+                  {...{ _id, photoUrl, title, breed, place, age }}
+                />
               </NoticeCategoryItem>
             )
           )}
-          {/* {friends.map(friend => (
-            <li key={friend._id}>
-              <Friend friend={friend} />
-            </li>
-          ))} */}
         </NoticesCategoriesList>
       ) : null}
     </>

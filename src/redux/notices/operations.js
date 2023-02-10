@@ -19,3 +19,17 @@ export const search = createAsyncThunk(
     }
   }
 );
+export const sell = createAsyncThunk(
+  'notices/sell',
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.get(
+        `/api/notices`
+      );
+      console.log(res.data);
+      return res.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
