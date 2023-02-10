@@ -19,7 +19,7 @@ export const PetsData = () => {
 
     useEffect(() => {
         dispatch(fetchUserPets());
-      }, [dispatch]);
+    }, [dispatch]);
 
     const handleModal =()=>{
         setShowModal(prevShowModal=>!prevShowModal);
