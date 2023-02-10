@@ -3,12 +3,8 @@ import styled from '@emotion/styled';
 import { media } from "../Layout/Layout.styled";
 
 
-// export const Nav = styled.nav`
-    
-//     /* text-align: center; */
-// `;
-
 export const NavList = styled.ul`
+    margin: 0;
     list-style: none;
     padding-left: 0;
     display: flex;
@@ -29,16 +25,35 @@ export const NavList = styled.ul`
 `;
 
 export const NavListItem = styled.li`
+    font-family: ${props => props.theme.fonts.body};
+    font-style: normal;
+    font-weight: ${props => props.theme.fontWeights.normal};
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
     color: ${props => props.theme.colors.navText};
-    margin-bottom: 40px;
     :hover,
     :focus{
         color: ${props => props.theme.colors.primary};
         text-decoration: underline;
+        font-weight: 700;
     };
+    ${media.mobile} {
+        font-size: 32px;
+        line-height: 44px;
+        margin-bottom: 40px;
+        :last-of-type{
+            margin-bottom: 0;
+        }
+    }
     ${media.tablet} {
-            margin-bottom: 60px;
-        };
+        font-size: 48px;
+        line-height: 66px;
+        margin-bottom: 60px;
+        :last-of-type{
+            margin-bottom: 0;
+        }
+    };
     ${media.desktop} {
        margin-bottom: 0;
        margin-left: 80px;
@@ -49,26 +64,18 @@ export const NavListItem = styled.li`
 `;
 
 export const NavigLink = styled(NavLink)`
-    font-family: Manrope;
     color: inherit;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.04em;
     text-decoration: none;
     &.active {
         color: ${props => props.theme.colors.primary};
         text-decoration: underline;
     };
-    ${media.tablet} {
+    /* ${media.tablet} {
         font-size: 48px;
         line-height: 66px;
     }
     ${media.desktop} {
         font-size: 20px;
         line-height: 27px;
-    }
+    } */
 `;

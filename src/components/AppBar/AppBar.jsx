@@ -20,7 +20,7 @@ import {BarContainer,
 const AppBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     console.log(isMenuOpen);
-    const ToggleClickHandler = () => {
+    const toggleClickHandler = () => {
       setIsMenuOpen(!isMenuOpen);
     }
 
@@ -29,7 +29,7 @@ const AppBar = () => {
         <BarContainer>
             <LogoBlack>pe<LogoAccent>t</LogoAccent>ly</LogoBlack>
                 <TabletWrapper>
-                <BurgerBtn onClick={ToggleClickHandler}>
+                <BurgerBtn onClick={toggleClickHandler}>
                     {!isMenuOpen ? <BurgerIcon/> : <CloseIcon/>}
                 </BurgerBtn>
                 

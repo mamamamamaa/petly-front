@@ -7,12 +7,13 @@ import {
 
 const Navigation = () => {
 
+
     return (
             <NavList>
                 <NavListItem>
                     <NavigLink
                     to="/news"
-        
+                
                      >
                      News
                     </NavigLink>

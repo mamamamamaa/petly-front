@@ -8,6 +8,7 @@ export const User = styled.ul`
   align-items: center;
   justify-content: center;
   padding-left: 0;
+  margin: 0;
 `;
 export const Button = styled.li`
   display: flex;
@@ -15,15 +16,13 @@ export const Button = styled.li`
   justify-content: center;
   border: 2px solid #f59256;
   border-radius: 40px;
-  /* width: 100%; */
-  background: #fff;
+  background: ${props => props.theme.colors.accentText};
   color: ${props => props.theme.colors.titleText};
   :last-child {
     margin-left: 20px;
   }
   :hover,
   :focus {
-    /* border: 2px solid #ff6101; */
     background-color: ${props => props.theme.colors.primary};
     color: ${props => props.theme.colors.accentText};
   }
@@ -40,6 +39,7 @@ export const NavigLink = styled(NavLink)`
   align-items: center;
   justify-content: center;
   color: inherit;
+  
   padding: 10px 28px;
   text-decoration: none;
   ${media.mobile} {
@@ -48,12 +48,19 @@ export const NavigLink = styled(NavLink)`
 `;
 
 export const Sp = styled.span`
-  font-family: Manrope;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 27px;
-  ${media.mobile} {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  font-family: ${props => props.theme.fonts.body};
+  font-style: normal;
+  font-weight: ${props => props.theme.fontWeights.normal};
+  letter-spacing: 0.04em;
+  ${media.nobile} {
     font-size: 14px;
     line-height: 19px;
+  }
+  ${media.tablet} {
+    font-size: 20px;
+    line-height: 27px;
   }
 `;
