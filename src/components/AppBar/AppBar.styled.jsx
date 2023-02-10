@@ -8,7 +8,17 @@ export const BarContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     margin: 0 auto;
-    outline: 1px solid red;
+    ${media.mobile} {
+        padding-top: 16px;
+    };
+    ${media.tablet} {
+        padding-top: 24px;
+    };
+    ${media.desktop} {
+        padding-top: 20px;
+    };
+    
+    /* outline: 1px solid red; */
 `;
 
 export const LogoBlack = styled.span`
@@ -71,7 +81,7 @@ export const MenuWrpr = styled.div`
         pointer-events: auto;
         position: static;
         background-color: inherit;
-        outline: 1px solid blue;
+        /* outline: 1px solid blue; */
         width: auto;
         height: auto;
         padding-top: 0;
@@ -105,7 +115,7 @@ export const Nav = styled.nav`
         width: 100%;
         height: 100%;
         background-color: ${props => props.theme.colors.secondary};
-        outline: 1px solid green;
+        /* outline: 1px solid green; */
         ${media.desktop} {
             opacity: 1;
             visibility: visible;
