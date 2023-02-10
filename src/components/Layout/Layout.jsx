@@ -1,17 +1,17 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import AppBar from '../AppBar/AppBar';
-import { Container } from '../../utils/reusable';
-import SearchForm from 'components/SearchForm/SearchForm';
+import { Container } from 'utils/reusable';
+import NoticesPage from 'pages/NoticesPage';
 export const Layout = () => {
   return (
     <Container>
       Layout
       <header>
         <AppBar />
-        <SearchForm >
+        <NoticesPage >
           Find your favorite pet
-        </SearchForm>
+        </NoticesPage>
       </header>
       <Suspense fallback={null}>
         <Outlet />
