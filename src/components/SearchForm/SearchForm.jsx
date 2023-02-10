@@ -3,22 +3,12 @@ import {
   SearchField,
   NoticesCategoriesList,
   NoticeCategoryItem,
-  PhotoPet,
-  Title,
-  PetSpanWrapper,
-  PetSpan,
-  PetDetails,
-  PetDetailsButton,
-  PetDetailsButtonText,
-  AddToFav,
-  AddToFavWrapper,
-  PhotoPetWrapper,
 } from './SearchForm.styled';
 import { useState, useEffect } from 'react';
 import noPoster from '../../noPoster.jpg';
-import heart from '../../utils/svg/heart.svg';
 import { search } from '../../redux/notices/operations';
 import { useDispatch } from 'react-redux';
+import Notices from '../../pages/NoticesPage';
 
 const SearchForm = ({ children }) => {
   const [firstName, setFirstName] = useState('');
@@ -51,40 +41,26 @@ const SearchForm = ({ children }) => {
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
         />
-        
       </SearchTitle>
       {pets.length > 0 ? (
         <NoticesCategoriesList>
+          {/* {pets.map(
+            ({ _id, photoUrl = noPoster, title, breed, place, age }) => (
+              
+            )
+          )} */}
           {pets.map(
             ({ _id, photoUrl = noPoster, title, breed, place, age }) => (
               <NoticeCategoryItem key={_id}>
-                <PhotoPetWrapper>
-                  <PhotoPet src={photoUrl} alt="Pet" />
-                  <AddToFavWrapper to="/notice/addfavorite/_id" end>
-                    <AddToFav src={heart} alt="Add to favorites" />
-                  </AddToFavWrapper>
-                </PhotoPetWrapper>
-                <PetDetails>
-                  <Title>{title}</Title>
-                  <PetSpanWrapper>
-                    <PetSpan>Breed:</PetSpan>
-                    <PetSpan>{breed}</PetSpan>
-                  </PetSpanWrapper>
-                  <PetSpanWrapper>
-                    <PetSpan>Place:</PetSpan>
-                    <PetSpan>{place}</PetSpan>
-                  </PetSpanWrapper>
-                  <PetSpanWrapper>
-                    <PetSpan>Age:</PetSpan>
-                    <PetSpan>{age}</PetSpan>
-                  </PetSpanWrapper>
-                  <PetDetailsButton>
-                    <PetDetailsButtonText>Learn More</PetDetailsButtonText>
-                  </PetDetailsButton>
-                </PetDetails>
+                <Notices {...{ _id, photoUrl, title, breed, place, age }} />
               </NoticeCategoryItem>
             )
           )}
+          {/* {friends.map(friend => (
+            <li key={friend._id}>
+              <Friend friend={friend} />
+            </li>
+          ))} */}
         </NoticesCategoriesList>
       ) : null}
     </>
