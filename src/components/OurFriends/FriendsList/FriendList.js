@@ -10,7 +10,7 @@ import { FriendsCard } from '../../../utils/reusable';
 
 const { selectFriends, selectIsLoading } = friendsSelectors;
 
-const FriendsList = ({ children }) => {
+const FriendsList = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const friends = useSelector(selectFriends);

@@ -9,35 +9,15 @@ export const StyledFriend = styled.div`
   h3 {
     min-height: 38px;
   }
-  h3 > a {
+  a {
     text-decoration-line: underline;
   }
-  > div {
+  div {
     display: flex;
     gap: 12px;
     margin-top: 12px;
   }
-  dl {
-    text-align: left;
-    > div {
-      margin-bottom: 4px;
 
-      &:has(button:hover) {
-      }
-      &:has(a:hover) {
-      }
-      button {
-        border: none;
-        background-color: transparent;
-      }
-    }
-    a {
-      text-decoration-line: underline;
-    }
-  }
-  dd {
-    margin: 0;
-  }
   img {
     width: 110px;
     height: 78px;
