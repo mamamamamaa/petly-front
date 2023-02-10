@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
+import moment from 'moment';
 // =======
 import SearchBar from '../utils/searchBar/searchBar';
 import {
@@ -78,11 +79,16 @@ export default function NewsPage() {
     <Container>
       <MainHeader>News</MainHeader>
       <SearchBar onSubmit={handlerFormSubmit} />
-      {isLoading && <h2>... Загрузка</h2>}
+      {isLoading && <h2>... is loading</h2>}
       <ListNews news={searchNews} />
       <Toaster />
     </Container>
   );
+}
+
+// функция преобразования даты в правильный формат
+function NewDate({ date }) {
+  return moment(date).format('L');
 }
 
 // ================= функция разметки
@@ -96,7 +102,9 @@ function ListNews({ news }) {
             <Header>{item.title}</Header>
             <Paragraph>{item.body}</Paragraph>
             <Wraper>
-              <DateBox>{item.datePublished}</DateBox>
+              <DateBox>
+                <NewDate date={item.datePublished} />
+              </DateBox>
               <BoxHref
                 href={item.url}
                 target="_blank"
