@@ -3,8 +3,6 @@ import {
   SearchField,
   NoticesCategoriesList,
   NoticeCategoryItem,
-  RadioBtn,
-  RadioBtnLabel,
   PhotoPet,
   Title,
   PetSpanWrapper,
@@ -27,7 +25,6 @@ const instance = axios.create({
 
 const SearchForm = ({ children }) => {
   const [firstName, setFirstName] = useState('');
-  const [option, setOption] = useState('all');
   const [pets, setPets] = useState([]);
   useEffect(() => {
     const getAll = async () => {
@@ -37,36 +34,19 @@ const SearchForm = ({ children }) => {
       console.log(data);
       return data;
     };
-    const getStrict = async () => {
-      const { data } = await instance.get(
-        `/api/notices/searchOneTitle?title=${firstName}`
-      );
-      console.log(data);
-      return data;
-    };
+
     const getTrendingHttp = async () => {
-      if (option === 'one') {
-        try {
-          const response = await getStrict().then(responseHttp => {
-            return responseHttp;
-          });
-          setPets([response]);
-        } catch (error) {
-          console.error(error);
-        }
-      } else {
-        try {
-          const response = await getAll().then(responseHttp => {
-            return responseHttp;
-          });
-          setPets([...response]);
-        } catch (error) {
-          console.error(error);
-        }
+      try {
+        const response = await getAll().then(responseHttp => {
+          return responseHttp;
+        });
+        setPets([...response]);
+      } catch (error) {
+        console.error(error);
       }
     };
     getTrendingHttp();
-  }, [firstName, option]);
+  }, [firstName]);
   // FrontEnd - NoticesPage - Компонент рендериться на маршрут /notices/:categoryName Компонент рендерить: - форму пошуку NoticesSearch - блок навігації NoticesCategoriesNav - список оголошень NoticesCategoriesList - кнопку відкриття модалки для створення оголошення AddNoticeButton Під час першого входу на сторінку рендериться список оголошень з продажу
   // FrontEnd - NoticesPage - Компонент рендерить список всіх оголошень відповідної категорії - NoticeCategoryItem, данні по яким отримує з бекенду
   return (
@@ -78,28 +58,7 @@ const SearchForm = ({ children }) => {
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
         />
-        <RadioBtnLabel>
-          <RadioBtn
-            type="radio"
-            name="myRadio"
-            value="one"
-            onChange={e => {
-              console.log(e.target.value);
-              return setOption(e.target.value);
-            }}
-          />
-          Strict search
-        </RadioBtnLabel>
-        <RadioBtnLabel>
-          <RadioBtn
-            defaultChecked={true}
-            type="radio"
-            name="myRadio"
-            value="all"
-            onChange={e => setOption(e.target.value)}
-          />
-          Common search
-        </RadioBtnLabel>
+        
       </SearchTitle>
       {pets.length > 0 ? (
         <NoticesCategoriesList>

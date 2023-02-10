@@ -63,18 +63,6 @@ export const NoticeCategoryItem = styled.li`
     margin-left: 32px;
   }
 `;
-
-export const RadioBtnLabel = styled.label`
-  :last-of-type {
-    display: inline-block;
-    margin-left: 2em;
-  }
-`;
-
-export const RadioBtn = styled.input`
-  margin-right: 1em;
-`;
-
 export const PhotoPetWrapper = styled.div`
   position: relative;
   top: 0;
