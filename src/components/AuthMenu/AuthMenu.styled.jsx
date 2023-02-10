@@ -14,7 +14,7 @@ export const Button = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #f59256;
+  border: 2px solid ${props => props.theme.colors.primary};
   border-radius: 40px;
   background: ${props => props.theme.colors.accentText};
   color: ${props => props.theme.colors.titleText};
@@ -59,7 +59,7 @@ export const Sp = styled.span`
     font-size: 14px;
     line-height: 19px;
   }
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     font-size: 20px;
     line-height: 27px;
   }

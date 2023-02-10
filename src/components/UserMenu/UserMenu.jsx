@@ -1,5 +1,5 @@
 import { UserLink, Text } from "./UserMenu.styled";
-import { AccountIcon } from "../reusable/svg/account";
+import { AccountIcon } from "../../utils/svg/account";
 
 
 

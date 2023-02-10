@@ -55,10 +55,12 @@ export const NavListItem = styled.li`
         }
     };
     ${media.desktop} {
-       margin-bottom: 0;
-       margin-left: 80px;
-       :first-child{
-        margin-left: 0;
+        font-size: 20px;
+        line-height: 27px;
+        margin-bottom: 0;
+        margin-left: 80px;
+       :first-of-type{
+            margin-left: 0;
        };
     };
 `;

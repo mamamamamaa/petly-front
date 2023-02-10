@@ -6,7 +6,7 @@ export const UserLink = styled(NavLink)`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #f59256;
+    border: 2px solid ${props => props.theme.colors.primary};
     border-radius: 40px;
     background-color: ${props => props.theme.colors.primary};
     color: ${props => props.theme.colors.accentText};

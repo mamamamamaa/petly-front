@@ -9,12 +9,6 @@ export const BarContainer = styled.div`
     justify-content: space-between;
     margin: 0 auto;
     outline: 1px solid red;
-    ${media.tablet} {
-       
-    };
-    ${media.desktop} {
-       
-    }
 `;
 
 export const LogoBlack = styled.span`
@@ -28,7 +22,7 @@ export const LogoBlack = styled.span`
         font-size: 28px;
         line-height: 42px;
     }
-    ${media.tablet} {
+    ${media.tabletAndDesktop} {
         font-size: 32px;
         line-height: 48px;
     }
@@ -39,10 +33,17 @@ export const LogoAccent = styled.span`
 `;
 
 export const TabletWrapper = styled.div`
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        ${media.tablet} {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        ${media.desktop} {
+            justify-self: flex-end;
+            display: flex;
+        }  
 `;
+
 
 export const MenuWrpr = styled.div`
     display: flex;
@@ -74,7 +75,6 @@ export const MenuWrpr = styled.div`
         width: auto;
         height: auto;
         padding-top: 0;
-        /* order: 0; */
     }
     ${media.desktop} {
         margin-left: 80px;
@@ -82,7 +82,7 @@ export const MenuWrpr = styled.div`
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        min-width: 1074px;
+        min-width: 1105px;
     }
 `;
 
@@ -127,7 +127,6 @@ export const UserMenuWrpr = styled.div`
     ${media.tablet} {
         padding-top: 0;
         align-self: flex-end;
-
     }
 `;
 
@@ -140,6 +139,7 @@ export const BurgerBtn = styled.button`
     height: 40px;
     background-color: transparent;
     border: none;
+    position: relative;
     z-index: 21;
     ${media.tablet} {
         order: +1;

@@ -3,8 +3,8 @@ import { useAuth } from "../../redux/hooks";
 import Navigation from "../Navigation/Navigation";
 import AuthMenu from "../AuthMenu/AuthMenu";
 import UserMenu from "../UserMenu/UserMenu";
-import { BurgerIcon } from "../reusable/svg/burgerBtn";
-import { CloseIcon } from "../reusable/svg/close";
+import { BurgerIcon } from "../../utils/svg/burgerBtn";
+import { CloseIcon } from "../../utils/svg/close";
 
 import {BarContainer,
         LogoBlack,
@@ -37,8 +37,7 @@ const AppBar = () => {
                     <Nav isClosed={!isMenuOpen}>
                         <Navigation/>
                     </Nav>
-                    {/* <UserMenuWrpr>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</UserMenuWrpr> */}
-                    <UserMenuWrpr><UserMenu/></UserMenuWrpr>
+                    <UserMenuWrpr>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</UserMenuWrpr>
                 </MenuWrpr>
                 </TabletWrapper>
                 
