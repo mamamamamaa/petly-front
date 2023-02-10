@@ -14,38 +14,25 @@ import {
   AddToFavWrapper,
   PhotoPetWrapper,
 } from './SearchForm.styled';
-// import axios from 'axios';
 import { useState, useEffect } from 'react';
 import noPoster from '../../noPoster.jpg';
 import heart from '../../utils/svg/heart.svg';
 import { search } from '../../redux/notices/operations';
 import { useDispatch } from 'react-redux';
-// const instance = axios.create({
-//   baseURL: 'http://localhost:3001',
-// });
 
 const SearchForm = ({ children }) => {
   const [firstName, setFirstName] = useState('');
   const [pets, setPets] = useState([]);
     const dispatch = useDispatch();
   useEffect(() => {
-    // const getAll = async () => {
-    //   const { data } = await instance.get(
-    //     `/api/notices/searchManyTitles?title=${firstName}`
-    //   );
-    //   console.log(data);
-    //   return data;
-    // };
-
     const getTrendingHttp = async () => {
       try {
-        // const response = await getAll().then(responseHttp => {
         const response = await dispatch(search(firstName)).then(
           responseHttp => {
             return responseHttp;
           }
         );
-        console.log(response.payload);
+        console.log(response);
         setPets([...response.payload]);
       } catch (error) {
         console.error(error);

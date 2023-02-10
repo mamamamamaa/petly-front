@@ -129,6 +129,7 @@ export const PetSpan = styled.span`
 `;
 export const PetDetails = styled.div`
   padding: 20px;
+  background-color: darkslategray;
 `;
 export const PetDetailsButton = styled.button`
   width: 100%;
@@ -139,7 +140,8 @@ export const PetDetailsButton = styled.button`
   height: 38px;
   border: 2px solid ${theme.colors.primary};
   border-radius: 40px;
-  background: ${theme.colors.accentText};
+  // background: ${theme.colors.accentText};
+  background-color: darkslategray;
   cursor: pointer;
   color: ${theme.colors.primary};
   :last-child {
