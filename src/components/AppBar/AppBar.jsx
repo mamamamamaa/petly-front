@@ -19,7 +19,7 @@ import {BarContainer,
 
 const AppBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    console.log(isMenuOpen);
+
     const toggleClickHandler = () => {
       setIsMenuOpen(!isMenuOpen);
     }
@@ -35,7 +35,7 @@ const AppBar = () => {
                 
                 <MenuWrpr isClosed={!isMenuOpen}>
                     <Nav isClosed={!isMenuOpen}>
-                        <Navigation/>
+                        <Navigation close={toggleClickHandler}/>
                     </Nav>
                     <UserMenuWrpr>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</UserMenuWrpr>
                 </MenuWrpr>

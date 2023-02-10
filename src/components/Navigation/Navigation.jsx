@@ -5,7 +5,7 @@ import {
 } from "./Navigation.styled";
 
 
-const Navigation = () => {
+const Navigation = ({close}) => {
 
 
     return (
@@ -13,7 +13,7 @@ const Navigation = () => {
                 <NavListItem>
                     <NavigLink
                     to="/news"
-                
+                    onClick={close}
                      >
                      News
                     </NavigLink>
@@ -22,7 +22,7 @@ const Navigation = () => {
                     <NavigLink
                     // Specify the route?
                     to="/notice/sell"
-        
+                    onClick={close}
                      >
                      Find pet
                     </NavigLink>
@@ -30,7 +30,7 @@ const Navigation = () => {
                 <NavListItem>
                     <NavigLink
                     to="/friends"
-        
+                    onClick={close}
                      >
                      Our friends
                     </NavigLink>
