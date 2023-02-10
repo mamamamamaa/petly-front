@@ -16,7 +16,7 @@ export const Input = styled(Field)`
   border-radius: 24px;
   color: #535353;
   background-color: #fff;
-  border: 1px solid red;
+  border: 1px solid #fff;
   font-weight: 500px;
 
   @media screen and (max-width: 767px) {
@@ -41,7 +41,7 @@ export const SearchFormButton = styled.button`
   align-items: center;
   justify-content: center;
   background-color: #fff;
-  border: 1px solid green;
+  border: 1px solid #fff;
   color: black;
   cursor: pointer;
   outline: none;
@@ -72,4 +72,3 @@ export const InputBox = styled.div`
     width: 280px;
   }
 `;
-
