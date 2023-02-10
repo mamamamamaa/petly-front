@@ -1,14 +1,28 @@
-import React from 'react';
+// import React from 'react';
 
+// import FriendsList from '../components/OurFriends/FriendsList/FriendList';
+
+// const OurFriendsPage = () => {
+//   return (
+//     <div>
+//       <title>Our Friends</title>
+//       <FriendsList />
+//     </div>
+//   );
+// };
+
+// export default OurFriendsPage;
+
+import React from 'react';
+import FriendsContainer from '../components/OurFriends/FriendsContainer/FriendsContainer';
 import FriendsList from '../components/OurFriends/FriendsList/FriendList';
 
-const OurFriendsPage = () => {
+const FriendsPage = () => {
   return (
-    <div>
-      <title>Our Friends</title>
+    <FriendsContainer>
       <FriendsList />
-    </div>
+    </FriendsContainer>
   );
 };
 
-export default OurFriendsPage;
+export default FriendsPage;

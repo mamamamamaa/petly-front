@@ -66,21 +66,25 @@ export const Card = styled.div`
 `;
 
 export const FriendsCard = styled.div`
-  /* width: 280px; */
+  /* display: flex; */
+  /* width: 100%; */
+
+  width: 280px;
   height: 192px;
   background: ${theme.colors.accentText};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
   cursor: pointer;
-  @media (min-width: 768px) {
+  /* @media (min-width: 768px) {
     border-radius: 40px;
-    /* width: 336px; */
+    width: 336px;
     height: 246px;
+    gap: 32px;
   }
   @media (min-width: 1280px) {
-    /* width: 395px; */
+    width: 395px;
     height: 287px;
-  }
+  } */
 `;
 
 export const Button = styled.div`

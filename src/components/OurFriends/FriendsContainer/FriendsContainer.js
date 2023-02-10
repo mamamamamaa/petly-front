@@ -1,11 +1,12 @@
 import React from 'react';
+import StyledContainer from './FriendsContainer.styled';
 
 const FriendsContainer = ({ children }) => {
   return (
-    <div>
+    <StyledContainer>
       <h2>Our Friends</h2>
       {children}
-    </div>
+    </StyledContainer>
   );
 };
 

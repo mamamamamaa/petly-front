@@ -5,10 +5,12 @@ import friendsSelectors from '../../../redux/friends/selectors';
 import fetchFriends from '../../../redux/friends/operations';
 import Spinner from '../../../components/Spinner/Spinner';
 import Friend from '../Friend/Friend';
+import { StyledList } from './FriendList.styled';
+import { FriendsCard } from '../../../utils/reusable';
 
 const { selectFriends, selectIsLoading } = friendsSelectors;
 
-const FriendsList = () => {
+const FriendsList = ({ children }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const friends = useSelector(selectFriends);
@@ -18,14 +20,14 @@ const FriendsList = () => {
   }, [dispatch]);
 
   return (
-    <ul>
+    <StyledList>
       {isLoading && <Spinner />}
       {friends.map(friend => (
-        <li key={friend._id}>
+        <FriendsCard key={friend._id}>
           <Friend friend={friend} />
-        </li>
+        </FriendsCard>
       ))}
-    </ul>
+    </StyledList>
   );
 };
 
