@@ -3,7 +3,6 @@ import { theme } from '../../utils/theme';
 import zoom from '../../utils/svg/zoom.svg';
 import { NavLink } from 'react-router-dom';
 
-
 export const NoticesCategoriesNav = styled.div`
   text-decoration: none;
 `;

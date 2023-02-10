@@ -9,9 +9,7 @@ export const Layout = () => {
       Layout
       <header>
         <AppBar />
-        <NoticesPage >
-          Find your favorite pet
-        </NoticesPage>
+        <NoticesPage />
       </header>
       <Suspense fallback={null}>
         <Outlet />

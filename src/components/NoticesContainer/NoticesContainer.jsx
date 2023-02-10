@@ -12,34 +12,35 @@ import { NoticeCategoryItemTemplate } from 'components/NoticeCategoryItemTemplat
 
 export const NoticesContainer = ({ firstName, setFirstName, pets = [] }) => {
   return (
-    <NoticesCategoriesNav>
-      <NoticesNavLink />
-      <NoticesNavLink />
-      <NoticesNavLink />
-      <NoticesNavLink />
-      <NoticesNavLink />
-      <NoticesSearch>
-        {/* {children} */}
-        <SearchField
-          placeholder="Search"
-          value={firstName}
-          onChange={e => setFirstName(e.target.value)}
-        />
-      </NoticesSearch>
-      {pets.length > 0 ? (
-        <NoticesCategoriesList>
-          {pets.map(
-            ({ _id, photoUrl = noPoster, title, breed, place, age }) => (
-              <NoticeCategoryItem key={_id}>
-                <NoticeCategoryItemTemplate
-                  {...{ _id, photoUrl, title, breed, place, age }}
-                />
-              </NoticeCategoryItem>
-            )
-          )}
-        </NoticesCategoriesList>
-      ) : null}
-    </NoticesCategoriesNav>
+    <>
+      <NoticesCategoriesNav>
+        <NoticesSearch>
+          <SearchField
+            placeholder="Search"
+            value={firstName}
+            onChange={e => setFirstName(e.target.value)}
+          />
+        </NoticesSearch>
+        <NoticesNavLink />
+        <NoticesNavLink />
+        <NoticesNavLink />
+        <NoticesNavLink />
+        <NoticesNavLink />
+        {pets.length > 0 ? (
+          <NoticesCategoriesList>
+            {pets.map(
+              ({ _id, photoUrl = noPoster, title, breed, place, age }) => (
+                <NoticeCategoryItem key={_id}>
+                  <NoticeCategoryItemTemplate
+                    {...{ _id, photoUrl, title, breed, place, age }}
+                  />
+                </NoticeCategoryItem>
+              )
+            )}
+          </NoticesCategoriesList>
+        ) : null}
+      </NoticesCategoriesNav>
+    </>
   );
 };
 export default NoticesContainer;
