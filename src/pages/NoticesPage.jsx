@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-const Notices = () => {
+const NoticesPage = () => {
   return (
     <>
       <Suspense>
@@ -11,4 +11,4 @@ const Notices = () => {
   );
 };
 
-export default Notices;
+export default NoticesPage;

@@ -3,6 +3,8 @@ import {
   SearchField,
   NoticesCategoriesList,
   NoticeCategoryItem,
+  NoticesCategoriesNav,
+  NoticesNavLink,
 } from './SearchForm.styled';
 import { useState, useEffect } from 'react';
 import noPoster from 'noPoster.jpg';
@@ -34,7 +36,12 @@ const SearchForm = ({ children }) => {
   // FrontEnd - NoticesPage - Компонент рендериться на маршрут /notices/:categoryName Компонент рендерить: - форму пошуку NoticesSearch - блок навігації NoticesCategoriesNav - список оголошень NoticesCategoriesList - кнопку відкриття модалки для створення оголошення AddNoticeButton Під час першого входу на сторінку рендериться список оголошень з продажу
   // FrontEnd - NoticesPage - Компонент рендерить список всіх оголошень відповідної категорії - NoticeCategoryItem, данні по яким отримує з бекенду
   return (
-    <>
+    <NoticesCategoriesNav>
+      <NoticesNavLink />
+      <NoticesNavLink />
+      <NoticesNavLink />
+      <NoticesNavLink />
+      <NoticesNavLink />
       <NoticesSearch>
         {children}
         <SearchField
@@ -56,7 +63,7 @@ const SearchForm = ({ children }) => {
           )}
         </NoticesCategoriesList>
       ) : null}
-    </>
+    </NoticesCategoriesNav>
   );
 };
 export default SearchForm;
