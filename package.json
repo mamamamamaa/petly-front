@@ -1,5 +1,4 @@
 {
-  "homepage": "https://mamamamamaa.github.io/petly-front/",
   "name": "petly-front",
   "version": "0.1.0",
   "private": true,
@@ -27,7 +26,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:js": "eslint src/**/*.{js,jsx}"
   },
   "eslintConfig": {
     "extends": [
