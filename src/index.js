@@ -14,7 +14,7 @@ root.render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/">
+        <BrowserRouter basename="/petly-front/">
           <App />
         </BrowserRouter>
       </PersistGate>
