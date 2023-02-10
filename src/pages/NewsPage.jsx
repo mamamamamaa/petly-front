@@ -34,6 +34,7 @@ export default function NewsPage() {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams);
   useEffect(() => {
     async function fetchNews(query) {
       try {
