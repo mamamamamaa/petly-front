@@ -22,7 +22,7 @@ const Friend = ({ friend }) => {
       <Description>
         <Image src={imageUrl} alt="company logo" />
 
-        <ul>
+        <DescList>
           <Item>
             Time:
             <p></p>
@@ -64,7 +64,7 @@ const Friend = ({ friend }) => {
               )}
             </p>
           </Item>
-        </ul>
+        </DescList>
       </Description>
     </>
   );

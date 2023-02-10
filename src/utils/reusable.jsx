@@ -66,7 +66,7 @@ export const Card = styled.div`
 
 export const FriendsCard = styled.div`
   width: 280px;
-  height: 192px;
+  /* height: 192px; */
   padding: 12px 4px;
   background: ${theme.colors.accentText};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);

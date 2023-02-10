@@ -53,11 +53,9 @@ export const Image = styled.img`
   }
 `;
 
-// export const DescList = styled.ul`
-//   display: flex;
-//   gap: 12px;
-//   flex-wrap: wrap;
-// `;
+export const DescList = styled.ul`
+  justify-content: center;
+`;
 
 export const Item = styled.li`
   font-weight: ${theme.fontWeights.normal};
@@ -72,11 +70,13 @@ export const Item = styled.li`
     margin-bottom: 8px;
     font-size: 14px;
     line-height: 1.35;
+    flex-basis: calc((100%) / 2 - 16px);
   }
   @media screen and (min-width: 1280px) {
     margin-bottom: 12px;
     font-size: 16px;
     line-height: 1.4;
+    flex-basis: calc((100% - 64px) / 3);
   }
   &:last-child {
     margin-bottom: 0;
