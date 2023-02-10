@@ -37,7 +37,8 @@ const AppBar = () => {
                     <Nav isClosed={!isMenuOpen}>
                         <Navigation/>
                     </Nav>
-                    <UserMenuWrpr>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</UserMenuWrpr>
+                    {/* <UserMenuWrpr>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</UserMenuWrpr> */}
+                    <UserMenuWrpr><UserMenu/></UserMenuWrpr>
                 </MenuWrpr>
                 </TabletWrapper>
                 

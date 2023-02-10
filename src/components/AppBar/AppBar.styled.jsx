@@ -180,14 +180,6 @@ export const BurgerBtn = styled.button`
     }
 `;
 
-// export const MenuIcon = styled.svg`
-    
-
-//         /* */
-//         width: 30px;
-//         height: 20px;
-//         outline: 1px solid red;
-// `;
 
 
 
