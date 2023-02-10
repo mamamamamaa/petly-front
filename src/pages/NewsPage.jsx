@@ -15,7 +15,7 @@ import {
   Paragraph,
   Wraper,
   DateBox,
-  Button,
+  BoxHref,
 } from './NewsPage.styled';
 // =======
 
@@ -97,7 +97,13 @@ function ListNews({ news }) {
             <Paragraph>{item.body}</Paragraph>
             <Wraper>
               <DateBox>{item.datePublished}</DateBox>
-              <Button>Read more</Button>
+              <BoxHref
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read more
+              </BoxHref>
             </Wraper>
           </Box>
         </Li>
