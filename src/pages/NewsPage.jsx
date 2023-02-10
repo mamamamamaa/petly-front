@@ -21,6 +21,9 @@ import {
 
 // ================= запрос
 export async function fetchSearchNews(query) {
+  if (query === '') {
+    query = 'animals';
+  }
   const { data } = await axios.get(
     `http://localhost:3001/api/news?query=${query}`
   );
@@ -34,7 +37,7 @@ export default function NewsPage() {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
+  // console.log(searchParams);
   useEffect(() => {
     async function fetchNews(query) {
       try {
