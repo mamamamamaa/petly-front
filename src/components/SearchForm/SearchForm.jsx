@@ -40,9 +40,11 @@ const SearchForm = ({ children }) => {
     const getTrendingHttp = async () => {
       try {
         // const response = await getAll().then(responseHttp => {
-        const response = await dispatch(search()).then(responseHttp => {
-          return responseHttp;
-        });
+        const response = await dispatch(search(firstName)).then(
+          responseHttp => {
+            return responseHttp;
+          }
+        );
         console.log(response.payload);
         setPets([...response.payload]);
       } catch (error) {

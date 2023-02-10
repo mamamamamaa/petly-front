@@ -7,10 +7,12 @@ axios.defaults.baseURL = HOST;
 
 export const search = createAsyncThunk(
   'notices/search',
-  async (_, thunkAPI) => {
+  async (firstName, thunkAPI) => {
     try {
-        const res = await axios.get('/api/notices/searchManyTitles');
-        console.log(res.data);
+      const res = await axios.get(
+        `/api/notices/searchManyTitles?title=${firstName}`
+      );
+      console.log(res.data);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
