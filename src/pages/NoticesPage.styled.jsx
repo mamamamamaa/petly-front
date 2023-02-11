@@ -15,8 +15,9 @@ export const NoticesSearch = styled.label`
 `;
 
 export const SearchField = styled.input`
-  height: 50px; //rm for build
-  font-size: 20px; //rm for built
+  height: 40px;
+  border: 0;
+  width: 100%;
   display: block;
   margin-top: 28px;
   background: ${theme.colors.accentText};
@@ -36,6 +37,15 @@ export const SearchField = styled.input`
     line-height: 22px;
     letter-spacing: 0.04em;
     color: #535353;
+  }
+  ${media.tablet} {
+    margin-right: 48px;
+    margin-left: 48px;
+  }
+  ${media.desktop} {
+    width: 608px;
+    margin-right: 320px;
+    margin-left: 320px;
   }
 `;
 
