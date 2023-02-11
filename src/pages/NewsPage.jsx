@@ -2,22 +2,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
-import moment from 'moment';
 // =======
-import SearchBar from '../utils/searchBar/searchBar';
-import {
-  Container,
-  MainHeader,
-  Ul,
-  Li,
-  Box,
-  ColorBox,
-  Header,
-  Paragraph,
-  Wraper,
-  DateBox,
-  BoxHref,
-} from './NewsPage.styled';
+import SearchBar from '../utils/SearchBar/searchBar';
+import ListNews from '../components/ListNews/ListNews';
+import { Container, MainHeader } from './NewsPage.styled';
 // =======
 
 // ================= запрос
@@ -83,39 +71,5 @@ export default function NewsPage() {
       <ListNews news={searchNews} />
       <Toaster />
     </Container>
-  );
-}
-
-// функция преобразования даты в правильный формат
-function NewDate({ date }) {
-  return moment(date).format('L');
-}
-
-// ================= функция разметки
-function ListNews({ news }) {
-  return (
-    <Ul>
-      {news.map(item => (
-        <Li key={item.id}>
-          <Box>
-            <ColorBox></ColorBox>
-            <Header>{item.title}</Header>
-            <Paragraph>{item.body}</Paragraph>
-            <Wraper>
-              <DateBox>
-                <NewDate date={item.datePublished} />
-              </DateBox>
-              <BoxHref
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Read more
-              </BoxHref>
-            </Wraper>
-          </Box>
-        </Li>
-      ))}
-    </Ul>
   );
 }
