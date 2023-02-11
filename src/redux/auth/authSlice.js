@@ -64,7 +64,6 @@ const authSlice = createSlice({
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
-        console.log(state.user);
       })
       .addMatcher(
         isAnyOf(...extraActions.map(action => action.pending)),
