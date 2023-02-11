@@ -75,10 +75,13 @@ export const NoticesNavLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ffffff;
+  background-color: #ffffff;
   border: 2px solid #f59256;
   border-radius: 40px;
   padding: 10px 28px;
+  &.active {
+    background-color: #f59256;
+  }
 `;
 export const NoticesNavText = styled.p`
   font-style: normal;
