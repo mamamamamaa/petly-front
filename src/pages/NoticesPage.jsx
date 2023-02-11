@@ -12,7 +12,13 @@ import {
   NoticesNavText,
   NoticesNavLi,
   NoticesNavUl,
+  AddPetToNoticesBtn,
+  AddPetToNoticesImg,
+  AddPetToNoticesText,
+  NoticesNavWrapper,
+  AddPetToNoticesBtnWrapper,
 } from './NoticesPage.styled';
+import cross from 'utils/svg/cross.svg';
 
 const NoticesPage = () => {
   const [firstName, setFirstName] = useState('');
@@ -45,34 +51,41 @@ const NoticesPage = () => {
           onChange={e => setFirstName(e.target.value)}
         />
       </NoticesSearch>
-      <NoticesNavUl>
-        <NoticesNavLi>
-          <NoticesNavLink to="sell">
-            <NoticesNavText>sell</NoticesNavText>
-          </NoticesNavLink>
-        </NoticesNavLi>
-        <NoticesNavLi>
-          <NoticesNavLink to="lost">
-            <NoticesNavText>lost/found</NoticesNavText>
-          </NoticesNavLink>
-        </NoticesNavLi>
-        <NoticesNavLi>
-          <NoticesNavLink to="good-hands">
-            <NoticesNavText>in good hands</NoticesNavText>
-          </NoticesNavLink>
-        </NoticesNavLi>
-        <NoticesNavLi>
-          <NoticesNavLink to="favorite-ads">
-            <NoticesNavText>favorite ads</NoticesNavText>
-          </NoticesNavLink>
-        </NoticesNavLi>
-        <NoticesNavLi>
-          <NoticesNavLink to="my-ads">
-            <NoticesNavText>my ads</NoticesNavText>
-          </NoticesNavLink>
-        </NoticesNavLi>
-      </NoticesNavUl>
-
+      <NoticesNavWrapper>
+        <NoticesNavUl>
+          <NoticesNavLi>
+            <NoticesNavLink to="sell">
+              <NoticesNavText>sell</NoticesNavText>
+            </NoticesNavLink>
+          </NoticesNavLi>
+          <NoticesNavLi>
+            <NoticesNavLink to="lost">
+              <NoticesNavText>lost/found</NoticesNavText>
+            </NoticesNavLink>
+          </NoticesNavLi>
+          <NoticesNavLi>
+            <NoticesNavLink to="good-hands">
+              <NoticesNavText>in good hands</NoticesNavText>
+            </NoticesNavLink>
+          </NoticesNavLi>
+          <NoticesNavLi>
+            <NoticesNavLink to="favorite-ads">
+              <NoticesNavText>favorite ads</NoticesNavText>
+            </NoticesNavLink>
+          </NoticesNavLi>
+          <NoticesNavLi>
+            <NoticesNavLink to="my-ads">
+              <NoticesNavText>my ads</NoticesNavText>
+            </NoticesNavLink>
+          </NoticesNavLi>
+        </NoticesNavUl>
+        <AddPetToNoticesBtnWrapper><AddPetToNoticesText>Add pet</AddPetToNoticesText>
+          <AddPetToNoticesBtn to="">
+            
+            <AddPetToNoticesImg src={cross} alt="Add pet to notices" />
+          </AddPetToNoticesBtn>
+        </AddPetToNoticesBtnWrapper>
+      </NoticesNavWrapper>
       <NoticesContainer
         {...{
           firstName,

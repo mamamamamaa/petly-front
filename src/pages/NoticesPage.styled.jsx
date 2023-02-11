@@ -48,7 +48,10 @@ export const SearchField = styled.input`
     margin-left: 320px;
   }
 `;
-
+export const NoticesNavWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 export const NoticesNavUl = styled.ul`
   list-style: none;
   display: flex;
@@ -84,6 +87,18 @@ export const NoticesNavText = styled.p`
   letter-spacing: 0.04em;
   color: #111111;
 `;
+export const AddPetToNoticesBtnWrapper = styled.div`
+  width: 176px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  ${media.mobile} {
+    display: none;
+  }
+  ${media.desktop} {
+    width: 129px;
+  }
+`;
 export const AddPetToNoticesBtn = styled.button`
   ${media.mobile} {
     position: absolute;
@@ -98,7 +113,15 @@ export const AddPetToNoticesBtn = styled.button`
     border: 0;
   }
   ${media.tabletAndDesktop} {
-    display: none;
+    width: 44px;
+    height: 44px;
+    background: #f59256;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 export const AddPetToNoticesImg = styled.img`
@@ -106,9 +129,6 @@ export const AddPetToNoticesImg = styled.img`
     position: absolute;
     top: 21px;
     right: 29px;
-  }
-  ${media.tabletAndDesktop} {
-    display: none;
   }
 `;
 export const AddPetToNoticesText = styled.span`
@@ -124,6 +144,12 @@ export const AddPetToNoticesText = styled.span`
     right: 18px;
   }
   ${media.tabletAndDesktop} {
-    display: none;
+    display: block;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 27px;
+    color: #111111;
   }
 `;
