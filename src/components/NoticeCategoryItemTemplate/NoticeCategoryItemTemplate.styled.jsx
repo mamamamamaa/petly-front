@@ -22,6 +22,7 @@ export const PhotoPet = styled.img`
   }
   ${media.desktop} {
     width: 288px;
+  }
 `;
 export const AdvWrapper = styled.div`
   position: absolute;

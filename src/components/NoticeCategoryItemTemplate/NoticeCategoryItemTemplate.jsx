@@ -27,6 +27,7 @@ import { useAuth } from '../../redux/hooks';
 import { useDispatch } from 'react-redux';
 import { deleteNotice } from '../../redux/notices/operations';
 import { useState } from 'react';
+import CardNewDate from '../../utils/CardNewDate/cardNewDate';
 
 export const NoticeCategoryItemTemplate = ({
   _id,
@@ -82,8 +83,9 @@ export const NoticeCategoryItemTemplate = ({
         </PetSpanWrapper>
         <PetSpanWrapper>
           <PetSpan>Age:</PetSpan>
-          {/*<PetSpan>{dateOfBirth}</PetSpan>*/}
-          <PetSpan>date</PetSpan>
+          <PetSpan>
+            <CardNewDate date={dateOfBirth} />
+          </PetSpan>
         </PetSpanWrapper>
         <PetDetailsButton>
           <PetDetailsButtonText>Learn More</PetDetailsButtonText>
