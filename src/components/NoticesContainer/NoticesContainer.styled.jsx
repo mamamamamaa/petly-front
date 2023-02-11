@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-// import { theme } from 'utils/theme';
 import { NavLink } from 'react-router-dom';
+// import { media } from 'components/Layout/Layout.styled';
 
 export const NoticesCategoriesNav = styled.div`
   text-decoration: none;

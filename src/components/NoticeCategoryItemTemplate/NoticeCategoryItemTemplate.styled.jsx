@@ -77,6 +77,7 @@ export const Title = styled.h3`
   letter-spacing: -0.01em;
   color: #111111;
   margin-bottom: 20px;
+  max-width: 240px;
 `;
 export const PetSpanWrapper = styled.div`
   margin-bottom: 8px;
