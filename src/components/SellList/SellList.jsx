@@ -14,16 +14,7 @@ export const SellList = () => {
 
   return (
     <>
-      <NoticesContainer
-        pets={sellNotices}
-        {
-          ...{
-            // firstName,
-            // setFirstName,
-            // pets,
-          }
-        }
-      />
+      <NoticesContainer pets={sellNotices} />
     </>
   );
 };

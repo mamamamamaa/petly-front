@@ -20,25 +20,50 @@ import {
   AddPetToNotBtnMob,
 } from './NoticeCategoryItemTemplate.styled';
 import heart from 'utils/svg/heart.svg';
+import strokeHeart from 'utils/svg/strokeHeart.svg';
 import cross from 'utils/svg/cross.svg';
 import recycleBin from 'utils/svg/recycleBin.svg';
+import { useAuth } from '../../redux/hooks';
+import { useDispatch } from 'react-redux';
+import { deleteNotice } from '../../redux/notices/operations';
+import { useState } from 'react';
 
 export const NoticeCategoryItemTemplate = ({
+  _id,
   photoUrl,
   title,
   breed,
+  type,
   place,
-  age,
+  dateOfBirth,
+  owner,
 }) => {
+  const dispatch = useDispatch();
+  const { user } = useAuth();
+
+  const isFavorite = user.favorite.includes(_id);
+  const isOwn = owner === user.id;
+
+  const [fav, setFav] = useState(isFavorite);
+
   return (
     <>
       <PhotoPetWrapper>
         <PhotoPet src={photoUrl} alt="Pet" />
         <AdvWrapper>
-          <AdvTitle>In good hands</AdvTitle>
+          <AdvTitle>{type}</AdvTitle>
         </AdvWrapper>
-        <AddToFavBtn to="">
-          <AddToFavImg src={heart} alt="Add to favorites" />
+        <AddToFavBtn
+          to=""
+          onClick={() => {
+            setFav(prevState => !prevState);
+          }}
+        >
+          {fav ? (
+            <AddToFavImg src={strokeHeart} alt="Remove from favorites" />
+          ) : (
+            <AddToFavImg src={heart} alt="Add to favorites" />
+          )}
         </AddToFavBtn>
         <AddPetToNotBtnMob to="">
           <AddPetToNotImgMob src={cross} alt="Add pet to notices" />
@@ -57,20 +82,27 @@ export const NoticeCategoryItemTemplate = ({
         </PetSpanWrapper>
         <PetSpanWrapper>
           <PetSpan>Age:</PetSpan>
-          <PetSpan>{age}</PetSpan>
+          {/*<PetSpan>{dateOfBirth}</PetSpan>*/}
+          <PetSpan>date</PetSpan>
         </PetSpanWrapper>
         <PetDetailsButton>
           <PetDetailsButtonText>Learn More</PetDetailsButtonText>
         </PetDetailsButton>
-        <PetDeleteButton>
-          <PetDeleteButtonDiv>
-            <PetDeleteButtonText>Delete</PetDeleteButtonText>
-            <PetDeleteButtonImg
-              src={recycleBin}
-              alt="Recycle bin"
-            ></PetDeleteButtonImg>
-          </PetDeleteButtonDiv>
-        </PetDeleteButton>
+        {isOwn && (
+          <PetDeleteButton
+            onClick={() => {
+              dispatch(deleteNotice({ id: _id, type }));
+            }}
+          >
+            <PetDeleteButtonDiv>
+              <PetDeleteButtonText>Delete</PetDeleteButtonText>
+              <PetDeleteButtonImg
+                src={recycleBin}
+                alt="Recycle bin"
+              ></PetDeleteButtonImg>
+            </PetDeleteButtonDiv>
+          </PetDeleteButton>
+        )}
       </PetDetails>
     </>
   );
