@@ -5,17 +5,17 @@ import { useUser } from '../../redux/hooks';
 
 import { NavLink } from "react-router-dom";
 import {
-  Wrapper, DivPhoto, Shadow, UserPhoto, ImgAvatar, Card, Btn, Span, Wrap, FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut } from './UserCard.styled';
+  Wrapper, DivPhoto, Shadow, UserPhoto, ImgAvatar, InputAvatar, Card, Btn, Span, Wrap, FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut } from './UserCard.styled';
 
 import { Container } from "../../utils/reusable";
 import { HiCamera } from "react-icons/hi2";
 import { HiPencil } from "react-icons/hi";
 import { FiLogOut } from "react-icons/fi";
-import { updateUserData } from '../../redux/user/operations';
+import { updateUserData, getUserData } from '../../redux/user/operations';
 
 import { Formik, useFormik } from 'formik';
 
-//import { useEffect } from 'react';
+import { useEffect } from 'react';
 
 //console.log(getUserData());
 
@@ -36,13 +36,15 @@ import { Formik, useFormik } from 'formik';
 
 
 const UserCard = () => {
- //=========for avatar============
+    //=========for avatar============
    
-  const dispatch = useDispatch();
-  const userPhoto = useUser();
-    //const userData = useSelector(selectUserData);//достать данные после auth
+    const dispatch = useDispatch();
+    const userPhoto = useUser();
+    console.log(userPhoto)
+    //const userData = useUser();//достать данные после auth
   
     const onChangeHandler = e => {
+        console.log("1111")
     const formData = new FormData();
       formData.append('avatar', e.target.files[0]);
       console.log(e.target.files)
@@ -76,9 +78,10 @@ const UserCard = () => {
     },onSubmit,
     });
   
-//   useEffect(() => {
-//    dispatch(getUserData())
-//  },[dispatch])
+  useEffect(() => {
+      dispatch(getUserData())
+      console.log("uuu")
+ },[dispatch])
 
     return (
 
@@ -86,29 +89,30 @@ const UserCard = () => {
            
             <Container>
                 <Card>
-                    <Wrapper>
+            <Wrapper>
+               <Shadow>
                     <DivPhoto>
-                        <Shadow>
+                       
                       {userPhoto ? (
                             <UserPhoto src={userPhoto} alt="photo" />
                         ) : (<ImgAvatar src={HiCamera} alt=""/>)}
-                    </Shadow></DivPhoto>
+                    </DivPhoto></Shadow>
                     <Btn>
                        <label htmlFor="photo_uploads">
-                    <Wrap>
+                    <Wrap >
                         {' '}
                     <HiCamera color="#F59256" width="20" height="20" />
                     <Span>Edit photo</Span>
                     </Wrap>
                     </label> 
                                         
-                    <input
+                    <InputAvatar
+                        onClick={onChangeHandler}        
                         id="photo_uploads"
                         type="file"
                         name="photo_uploads"
-                        
-                        style={{ opacity: 0, width: 0, height: 0 }} 
-                       onChange={onChangeHandler}
+                        style={{  width: 0, height: 0 }} 
+                       
                     />
                     </Btn></Wrapper>
                     
@@ -117,7 +121,7 @@ const UserCard = () => {
          
             <Form1>
             <DivInput>
-            <label display="block" textDecoration="none" align-content="flex-start">
+            <label   align-content="flex-start">
                                     
               Name:
               <Input 

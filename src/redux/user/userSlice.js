@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf} from '@reduxjs/toolkit';
-import { updateUserData } from './operations';
+import { updateUserData, getUserData } from './operations';
 
-const extraActions = [updateUserData];
+const extraActions = [updateUserData, getUserData];
 
 const initialState = {
   isLoading: false,
@@ -25,6 +25,9 @@ const userSlice = createSlice({
   
   extraReducers(builder) {
     builder
+      .addCase(getUserData.pending, (state, action) => {
+        state.error = null;
+      })
       .addCase(updateUserData.pending, (state, action) => {
         state.error = null;
       })

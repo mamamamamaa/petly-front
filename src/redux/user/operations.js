@@ -1,7 +1,10 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://petly-back.onrender.com";
+const { REACT_APP_SERVER_HOST: HOST } = process.env;
+
+axios.defaults.baseURL = HOST;
+//axios.defaults.baseURL = "https://localhost:3001";
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -10,30 +13,30 @@ const setAuthHeader = token => {
 
 
 
-// export const getUserData = createAsyncThunk(
-//     'user/getUser',
-//   async (_, thunkAPI) => {
-//       try {
+export const getUserData = createAsyncThunk(
+    'user/getUser',
+  async (_, thunkAPI) => {
+      try {
        
-//           const response = await axios.get('/api/userprofile');
-//           setAuthHeader(response.data.token); 
+          const response = await axios.get('/api/userprofile');
+          setAuthHeader(response.data.token); 
        
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
 
 
 export const updateUserData = createAsyncThunk(
     "user/updateUser",    
     async (userData, thunkAPI) => {
         try {
-            
+            console.log(userData)
             const response = await axios.put("/api/auth/update", userData);
              setAuthHeader(response.data.auth.accessToken);       
-           
+           console.log(response.data)
             //const {data} = await.axios.patch(`/userprofile/userProfile)
             return response.data;
         }

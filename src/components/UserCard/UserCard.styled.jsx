@@ -75,7 +75,9 @@ export const Btn = styled.button`
     right: 25px;
   }
 `
-
+export const InputAvatar = styled.input`
+  z-index: 100 ;
+`
 export const Span = styled.span`
   margin-left: 4px;
   font-weight: 400;
