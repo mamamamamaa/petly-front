@@ -20,7 +20,6 @@ export const SearchField = styled.input`
   display: block;
   margin-top: 28px;
   background: ${theme.colors.accentText};
-  background-color: grey; //rm for built
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
   padding-left: 12px;
