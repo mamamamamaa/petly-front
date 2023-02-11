@@ -41,7 +41,7 @@ export const AdvTitle = styled.span`
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.04em;
-  color: #111111;
+  color: ${theme.colors.titleText};
   margin-left: 20px;
   margin-top: 6px;
 `;
@@ -117,7 +117,7 @@ export const Title = styled.h3`
   font-size: 28px;
   line-height: 38px;
   letter-spacing: -0.01em;
-  color: #111111;
+  color: ${theme.colors.titleText};
   margin-bottom: 20px;
   max-width: 240px;
   overflow: hidden;
@@ -135,7 +135,7 @@ export const PetSpan = styled.span`
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  color: #111111;
+  color: ${theme.colors.titleText};
   :last-child {
     margin-left: 40px;
   }

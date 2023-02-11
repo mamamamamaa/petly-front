@@ -89,7 +89,7 @@ export const NoticesNavText = styled.p`
   font-size: 20px;
   line-height: 27px;
   letter-spacing: 0.04em;
-  color: #111111;
+  color: ${theme.colors.titleText};
 `;
 export const AddPetToNoticesBtnWrapper = styled.div`
   width: 176px;
@@ -135,6 +135,6 @@ export const AddPetToNoticesText = styled.span`
     font-weight: 500;
     font-size: 20px;
     line-height: 27px;
-    color: #111111;
+    color: ${theme.colors.titleText};
   }
 `;
