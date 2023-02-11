@@ -1,15 +1,30 @@
 import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { media } from "../Layout/Layout.styled";
 import { theme } from "../../utils/theme.jsx";
-import { Field } from "formik";
+import { Field, Form } from "formik";
 
 export const Container = styled.div`
+  padding-top: 42px;
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: calc(100vh - 74px);
+  ${media.tablet} {
+    padding-top: 204px;
+    height: calc(100vh - 96px);
+  }
+  ${media.desktop} {
+    padding-top: 80px;
+    height: calc(100vh - 88px);
+  }
+`;
+
+export const FormLogin = styled(Form)`
   width: 280px;
   padding-inline: 0px;
-  padding-top: 42px;
   padding-bottom: 0px;
-  background-color: ${theme.colors.secondary};
+  background-color: transparent;
   margin-inline: auto;
   box-sizing: border-box;
   ${media.tablet} {
@@ -59,7 +74,7 @@ export const Input = styled(Field)`
   font-family: 'Manrope';
   font-weight: ${theme.fontWeights.news};
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.3;
   align-items: center;
   letter-spacing: 0.04em;
   color: ${theme.colors.black};
@@ -134,11 +149,44 @@ export const Button = styled.button`
   align-items: center;
   text-align: center;
   letter-spacing: 0.04em;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
-    color: ${theme.colors.black};
+    /* color: ${theme.colors.black};
     border: 2px solid ${theme.colors.primary};
-    background-color: ${theme.colors.accentText};
+    background-color: ${theme.colors.accentText}; */
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
+  }
+  :disabled {
+    opacity: 0.5;
+    cursor: auto;
+    transform: none;
+    transition: none;
+  }
+  :disabled:before {
+    transform: none;
+    transition: none;
   }
   ${media.tablet} {
     width: 458px;
@@ -163,9 +211,14 @@ export const Text = styled.div`
   color: ${theme.colors.gray};
 `;
 
-export const Link = styled(NavLink)`
+export const StyledLink = styled(NavLink)`
   color: ${theme.colors.blue};
   text-decoration: none;
+  transition: color ${theme.colors.background};
+  :hover,
+  :focus {
+    color: ${theme.colors.primary};
+  }
 `;
 
 export const ErrorText = styled.div`
