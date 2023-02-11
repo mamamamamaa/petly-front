@@ -10,7 +10,8 @@ import { Container } from "../../utils/reusable";
 import { HiCamera } from "react-icons/hi2";
 import { HiPencil } from "react-icons/hi";
 import { FiLogOut } from "react-icons/fi";
-import { updateUserData, logout } from '../../redux/user/operations';
+import { updateUserData } from '../../redux/user/operations';
+import { logout } from '../../redux/auth/operations';
 
 import { Formik, useFormik } from 'formik';
 
