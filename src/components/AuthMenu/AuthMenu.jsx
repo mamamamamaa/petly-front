@@ -1,19 +1,18 @@
-import { NavLink } from "react-router-dom";
-import { Button, Sp, User } from "./AuthMenu.styled";
+import { Button, Sp, User, NavigLink } from "./AuthMenu.styled";
 
 
 const AuthMenu = () => {
     return (
         <User>
             <Button>
-                <NavLink to="/login">
+                <NavigLink to="/login">
                 <Sp>Login</Sp>
-                </NavLink>
+                </NavigLink>
             </Button>
             <Button>
-                <NavLink to="/register">
+                <NavigLink to="/register">
                 <Sp>Registration</Sp>
-                </NavLink>
+                </NavigLink>
             </Button>
         </User>
     )

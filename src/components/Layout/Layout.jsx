@@ -6,7 +6,6 @@ import NoticesPage from 'pages/NoticesPage';
 export const Layout = () => {
   return (
     <Container>
-      Layout
       <header>
         <AppBar />
         <NoticesPage />
