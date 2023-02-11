@@ -24,7 +24,7 @@ export const sell = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await axios.get(
-        `/api/notices`
+        `/api/notices?type=sell`
       );
       console.log(res.data);
       return res.data;

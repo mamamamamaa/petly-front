@@ -54,7 +54,7 @@ const NoticesPage = () => {
       <NoticesNavWrapper>
         <NoticesNavUl>
           <NoticesNavLi>
-            <NoticesNavLink to="/sell">
+            <NoticesNavLink to="sell">
               <NoticesNavText>sell</NoticesNavText>
             </NoticesNavLink>
           </NoticesNavLi>
@@ -79,9 +79,9 @@ const NoticesPage = () => {
             </NoticesNavLink>
           </NoticesNavLi>
         </NoticesNavUl>
-        <AddPetToNoticesBtnWrapper><AddPetToNoticesText>Add pet</AddPetToNoticesText>
+        <AddPetToNoticesBtnWrapper>
+          <AddPetToNoticesText>Add pet</AddPetToNoticesText>
           <AddPetToNoticesBtn to="">
-            
             <AddPetToNoticesImg src={cross} alt="Add pet to notices" />
           </AddPetToNoticesBtn>
         </AddPetToNoticesBtnWrapper>
