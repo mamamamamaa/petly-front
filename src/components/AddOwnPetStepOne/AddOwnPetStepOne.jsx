@@ -1,16 +1,13 @@
 import { Field, Form, Formik } from "formik";
-
 export const AddOwnPetStepOne = ({next, data, cancel}) => {
     // зробити запит на отримання всіх порід тварин
     const breeds = ["I don`t know", "Persian", "American Shorthair", "Chartreux", "Bombay", "Burmese", "Maine Coon", "Birman", "Himalayan", "Nebelung", "Norwegian Forest", "Siberian", "Scottish Fold","Bengal", "Ragdoll", "Siamese", "British Shorthair", "Exotic Shorthair", "Abyssinian", "Tonkinese", "Other"];
-
     const handleSubmit = (values, actions) => {
         console.log('values', values);
         console.log('actions', actions);
         actions.validateForm();
         next(values);
     }
-
     return <Formik 
     initialValues={data}
     onSubmit={handleSubmit}>
@@ -27,8 +24,7 @@ export const AddOwnPetStepOne = ({next, data, cancel}) => {
         <Field as="select" name="breed" required>
             {breeds.map(breed=> <option value={breed.toLocaleLowerCase()} key={breed}>{breed}</option>)}                    
         </Field>
-    </label>
-    
+    </label>    
     <button type="button" 
     onClick={()=>cancel()}
     >Cancel</button>  
