@@ -5,6 +5,7 @@ import {fetchUserPets } from "../../redux/user/operations";
 import { Modal } from "../Modal/Modal";
 import { ModalAddsPet } from "../ModalAddsPet/ModalAddsPet";
 import { PetsList } from "../PetsList/PetsList";
+import { Section } from "./PetsData.styled";
 const selectPets = state => state.user.pets;
 const selectIsLoading = state=> state.isLoading;
 const selectError = state => state.error;
@@ -26,7 +27,7 @@ export const PetsData = () => {
     }
 
     return (
-    <section>
+    <Section>
         <h2>My pets:</h2>
         <p>Add pet</p>
         <button type="button" onClick={handleModal}>+</button>
@@ -35,6 +36,6 @@ export const PetsData = () => {
         { !error && !isLoading && pets.length===0 && <div>you have no pets yet</div> }
         { !error && !isLoading && pets.length>0 && <PetsList pets={pets}/>} 
         { showModal && <Modal onClose={handleModal}><ModalAddsPet onClose={handleModal}/></Modal>}
-    </section>
+    </Section>
     )
 };
