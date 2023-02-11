@@ -52,16 +52,16 @@ const NoticesPage = () => {
           </NoticesNavLink>
         </NoticesNavLi>
         <NoticesNavLi>
-          <NoticesNavLink to="lost">lost/found</NoticesNavLink>
+          <NoticesNavLink to="lost"><NoticesNavText>lost/found</NoticesNavText></NoticesNavLink>
         </NoticesNavLi>
         <NoticesNavLi>
-          <NoticesNavLink to="good-hands">in good hands</NoticesNavLink>
+          <NoticesNavLink to="good-hands"><NoticesNavText>in good hands</NoticesNavText></NoticesNavLink>
         </NoticesNavLi>
         <NoticesNavLi>
-          <NoticesNavLink to="favorite-ads">favorite ads</NoticesNavLink>
+          <NoticesNavLink to="favorite-ads"><NoticesNavText>favorite ads</NoticesNavText></NoticesNavLink>
         </NoticesNavLi>
         <NoticesNavLi>
-          <NoticesNavLink to="my-ads">my ads</NoticesNavLink>
+          <NoticesNavLink to="my-ads"><NoticesNavText>my ads</NoticesNavText></NoticesNavLink>
         </NoticesNavLi>
       </NoticesNavUl>
 

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-// import { theme } from '../../utils/theme';
+// import { theme } from 'utils/theme';
 import { NavLink } from 'react-router-dom';
 
 export const NoticesCategoriesNav = styled.div`
@@ -22,7 +22,7 @@ export const NoticesCategoriesList = styled.ul`
 `;
 
 export const NoticeCategoryItem = styled.li`
-  :not(last-child) {
+  :not(:last-child) {
     margin-bottom: 32px;
   }
   background: #ffffff;

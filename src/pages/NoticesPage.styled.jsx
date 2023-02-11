@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { theme } from 'utils/theme';
 import { NavLink } from 'react-router-dom';
 import zoom from 'utils/svg/zoom.svg';
+import { media } from 'components/Layout/Layout.styled';
 
 export const NoticesSearch = styled.label`
   font-family: 'Manrope';
@@ -42,11 +43,19 @@ export const SearchField = styled.input`
 export const NoticesNavUl = styled.ul`
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
+  padding-top: 28px;
+  padding-bottom: 30px;
+  ${media.tabletAndDesktop} {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
 `;
 export const NoticesNavLi = styled.li`
   height: 47px;
-  :not(last-child) {
+  :not(:last-child) {
     margin-right: 12px;
+    margin-bottom: 12px;
   }
 `;
 export const NoticesNavLink = styled(NavLink)`
