@@ -23,8 +23,21 @@ export const sell = createAsyncThunk(
   'notices/sell',
   async (_, thunkAPI) => {
     try {
+      const res = await axios.get(`/api/notices/paginateNotice?type=sell`);
+      console.log(res.data);
+      return res.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const goodHands = createAsyncThunk(
+  'notices/good-hands',
+  async (_, thunkAPI) => {
+    try {
       const res = await axios.get(
-        `/api/notices?type=sell`
+        `/api/notices/paginateNotice?type=good-hands`
       );
       console.log(res.data);
       return res.data;

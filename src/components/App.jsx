@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { current, refresh } from '../redux/auth/operations';
 import { useAuth } from '../redux/hooks';
 // import { SellList } from 'components/SellList/SellList';
-// import { InGoodHandsList } from 'components/InGoodHandsList/InGoodHandsList';
+import { InGoodHandsList } from 'components/InGoodHandsList/InGoodHandsList';
 // import { LostFoundList } from 'components/LostFoundList/LostFoundList';
 const HomePage = lazy(() => import('../pages/HomePage'));
 const NewsPage = lazy(() => import('../pages/NewsPage'));
@@ -40,13 +40,13 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
+        <Route index element={<NoticesPage />} />
 
         <Route path="/news" element={<NewsPage />} />
 
         <Route path="/notice" element={<NoticesPage />}>
           {/* <Route path="sell" element={<SellList />} /> */}
-          {/* <Route path="good-hands" element={<InGoodHandsList />} /> */}
+          <Route path="good-hands" element={<InGoodHandsList />} />
           {/* <Route path="lost" element={<LostFoundList/>} /> */}
         </Route>
 
