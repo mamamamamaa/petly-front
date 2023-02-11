@@ -50,7 +50,7 @@ export const ModalAddsPet = ({onClose}) => {
         
     }
 
-    const [currentStep, setCurrentStep] = useState(1);
+    const [currentStep, setCurrentStep] = useState(0);
 
     const steps = [
     <AddOwnPetStepOne next={handleNextStep} data={data} cancel={cancelData}/>, 
