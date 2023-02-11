@@ -1,4 +1,4 @@
-import { Formik, Form, ErrorMessage } from "formik"
+import { Formik, ErrorMessage } from "formik"
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
 
@@ -6,13 +6,14 @@ import {login}  from "../../redux/auth/operations";
 
 import {
     Container,
+    FormLogin,
     FieldLogin,
     FieldPass,
     Title,
     Input,
     Button,
     Text,
-    Link,
+    StyledLink,
     ErrorText
     
 } from "./LoginForm.styled";
@@ -58,14 +59,14 @@ const LoginForm = () => {
         
     return (
         <Container>
-            <Title>Login</Title>
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 validationSchema={loginSchema}
             >
                 
-                <Form autoComplete="on">
+                <FormLogin autoComplete="on">
+                <Title>Login</Title>
                     <FieldLogin>
                         <label htmlFor="email">  
                             <Input id="loginEmail" type="email" name="email" placeholder="Email" />
@@ -83,13 +84,10 @@ const LoginForm = () => {
                                   
                     <Button type="submit">Login</Button>
                     <Text>
-                        <p> Don't have an account?
-                            <span >
-                                <Link to='/register'>Register</Link>
-                            </span>
-                        </p>                         
+                        <span>Don't have an account?</span>{' '}
+                        <StyledLink to='/register'>Register</StyledLink>                
                     </Text>
-                </Form>
+                </FormLogin>
             </Formik>
         </Container>
     )

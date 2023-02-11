@@ -12,7 +12,6 @@ export const search = createAsyncThunk(
       const res = await axios.get(
         `/api/notices/searchManyTitles?title=${firstName}`
       );
-      console.log(res.data);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -34,12 +33,12 @@ export const sell = createAsyncThunk(
 
 export const goodHands = createAsyncThunk(
   'notices/good-hands',
-  async (_, thunkAPI) => {
+  async (page = 1, thunkAPI) => {
+    const limit = 20;
     try {
       const res = await axios.get(
-        `/api/notices/paginateNotice?type=good-hands`
+        `/api/notices?type=sell`
       );
-      console.log(res.data);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

@@ -10,7 +10,7 @@ export const NoticesContainer = ({ pets = [] }) => {
   return (
     <>
       <NoticesCategoriesNav>
-        {pets.length > 0 ? (
+        {pets.length > 0 && (
           <NoticesCategoriesList>
             {pets.map(
               ({ _id, photoUrl = noPoster, title, breed, place, age }) => (
@@ -29,7 +29,7 @@ export const NoticesContainer = ({ pets = [] }) => {
               )
             )}
           </NoticesCategoriesList>
-        ) : null}
+        )}
       </NoticesCategoriesNav>
     </>
   );

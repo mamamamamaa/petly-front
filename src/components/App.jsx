@@ -5,9 +5,10 @@ import { RestrictedRoute, PrivateRoute } from '../helpers';
 import { useDispatch } from 'react-redux';
 import { current, refresh } from '../redux/auth/operations';
 import { useAuth } from '../redux/hooks';
-// import { SellList } from 'components/SellList/SellList';
+import { SellList } from 'components/SellList/SellList';
 import { InGoodHandsList } from 'components/InGoodHandsList/InGoodHandsList';
-// import { LostFoundList } from 'components/LostFoundList/LostFoundList';
+import { LostFoundList } from 'components/LostFoundList/LostFoundList';
+
 const HomePage = lazy(() => import('../pages/HomePage'));
 const NewsPage = lazy(() => import('../pages/NewsPage'));
 const UserPage = lazy(() => import('../pages/UserPage'));
@@ -30,7 +31,6 @@ export const App = () => {
     }
 
     const interval = setInterval(() => {
-      console.log(accessToken);
       dispatch(refresh());
     }, expiresIn);
 
@@ -45,9 +45,9 @@ export const App = () => {
         <Route path="/news" element={<NewsPage />} />
 
         <Route path="/notice" element={<NoticesPage />}>
-          {/* <Route path="sell" element={<SellList />} /> */}
+          <Route path="sell" element={<SellList />} />
           <Route path="good-hands" element={<InGoodHandsList />} />
-          {/* <Route path="lost" element={<LostFoundList/>} /> */}
+          <Route path="lost" element={<LostFoundList />} />
         </Route>
 
         <Route path="/friends" element={<OurFriendsPage />} />

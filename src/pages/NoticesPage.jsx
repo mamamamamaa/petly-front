@@ -19,8 +19,10 @@ import {
   AddPetToNoticesBtnWrapper,
 } from './NoticesPage.styled';
 import cross from 'utils/svg/cross.svg';
+import { useAuth } from '../redux/hooks';
 
 const NoticesPage = () => {
+  const { isLoggedIn } = useAuth();
   const [firstName, setFirstName] = useState('');
   const [pets, setPets] = useState([]);
   const dispatch = useDispatch();
@@ -68,16 +70,20 @@ const NoticesPage = () => {
               <NoticesNavText>in good hands</NoticesNavText>
             </NoticesNavLink>
           </NoticesNavLi>
-          <NoticesNavLi>
-            <NoticesNavLink to="favorite-ads">
-              <NoticesNavText>favorite ads</NoticesNavText>
-            </NoticesNavLink>
-          </NoticesNavLi>
-          <NoticesNavLi>
-            <NoticesNavLink to="my-ads">
-              <NoticesNavText>my ads</NoticesNavText>
-            </NoticesNavLink>
-          </NoticesNavLi>
+          {isLoggedIn && (
+            <NoticesNavLi>
+              <NoticesNavLink to="favorite-ads">
+                <NoticesNavText>favorite ads</NoticesNavText>
+              </NoticesNavLink>
+            </NoticesNavLi>
+          )}
+          {isLoggedIn && (
+            <NoticesNavLi>
+              <NoticesNavLink to="my-ads">
+                <NoticesNavText>my ads</NoticesNavText>
+              </NoticesNavLink>
+            </NoticesNavLi>
+          )}
         </NoticesNavUl>
         <AddPetToNoticesBtnWrapper>
           <AddPetToNoticesText>Add pet</AddPetToNoticesText>
@@ -86,13 +92,13 @@ const NoticesPage = () => {
           </AddPetToNoticesBtn>
         </AddPetToNoticesBtnWrapper>
       </NoticesNavWrapper>
-      <NoticesContainer
-        {...{
-          firstName,
-          setFirstName,
-          pets,
-        }}
-      />
+      {/*<NoticesContainer*/}
+      {/*  {...{*/}
+      {/*    firstName,*/}
+      {/*    setFirstName,*/}
+      {/*    pets,*/}
+      {/*  }}*/}
+      {/*/>*/}
       <Suspense>
         <Outlet />
       </Suspense>
