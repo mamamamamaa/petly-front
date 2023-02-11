@@ -54,7 +54,7 @@ const NoticesPage = () => {
       <NoticesNavWrapper>
         <NoticesNavUl>
           <NoticesNavLi>
-            <NoticesNavLink to="sell">
+            <NoticesNavLink to="/sell">
               <NoticesNavText>sell</NoticesNavText>
             </NoticesNavLink>
           </NoticesNavLi>
