@@ -4,7 +4,7 @@ import { login, logout, register, current, refresh } from './operations';
 const extraActions = [login, logout, register, current, refresh];
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { name: null, email: null, favorite: [], id: null },
   accessToken: null,
   refreshToken: null,
   expiresIn: null,
@@ -21,6 +21,8 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
+        state.user.favorite = action.payload.favorite;
+        state.user.id = action.payload.id;
         state.accessToken = action.payload.accessToken;
         state.expiresIn = action.payload.expiresIn;
         state.refreshToken = action.payload.refreshToken;
@@ -32,7 +34,9 @@ const authSlice = createSlice({
       .addCase(current.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
-        state.user.refreshToken = action.payload.refreshToken;
+        state.user.favorite = action.payload.favorite;
+        state.user.id = action.payload.id;
+        state.refreshToken = action.payload.refreshToken;
         state.expiresIn = action.payload.expiresIn;
         state.isLoggedIn = true;
         state.isRefreshing = false;
@@ -53,7 +57,7 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(logout.fulfilled, (state, action) => {
-        state.user = { name: null, email: null };
+        state.user = { name: null, email: null, favorite: [], id: null };
         state.token = null;
         state.isLoggedIn = false;
       })

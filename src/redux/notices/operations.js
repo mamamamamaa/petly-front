@@ -32,3 +32,45 @@ export const sell = createAsyncThunk(
     }
   }
 );
+
+export const goodHands = createAsyncThunk(
+  'notices/goodHands',
+  async (page = 1, thunkAPI) => {
+    const limit = 20;
+    try {
+      const res = await axios.get(
+        `/api/notices/paginateNotice?type=good-hands&page=${page}&limit=${limit}`
+      );
+      return res.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const lostFound = createAsyncThunk(
+  'notices/lostFound',
+  async (page = 1, thunkAPI) => {
+    const limit = 20;
+    try {
+      const res = await axios.get(
+        `/api/notices/paginateNotice?type=lost/found&page=${page}&limit=${limit}`
+      );
+      return res.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const deleteNotice = createAsyncThunk(
+  'notices/delete',
+  async ({ id, type }, thunkAPI) => {
+    try {
+      await axios.delete(`/api/notices/${id}`);
+      return { id, type };
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

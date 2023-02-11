@@ -21,7 +21,7 @@ export const PhotoPet = styled.img`
     width: 336px;
   }
   ${media.desktop} {
-    width: 288px; 
+    width: 288px;
 `;
 export const AdvWrapper = styled.div`
   position: absolute;
@@ -45,7 +45,6 @@ export const AdvTitle = styled.span`
   margin-left: 20px;
   margin-top: 6px;
 `;
-
 
 export const AddPetToNotBtnMob = styled.button`
   ${media.mobile} {
@@ -91,8 +90,8 @@ export const AddPetToNotTextMob = styled.span`
   }
 `;
 
-
 export const AddToFavBtn = styled.button`
+  cursor: pointer;
   width: 44px;
   height: 44px;
   border-radius: 50%;

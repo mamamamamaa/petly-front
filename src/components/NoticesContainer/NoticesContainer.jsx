@@ -13,7 +13,16 @@ export const NoticesContainer = ({ pets = [] }) => {
         {pets.length > 0 && (
           <NoticesCategoriesList>
             {pets.map(
-              ({ _id, photoUrl = noPoster, title, breed, place, age }) => (
+              ({
+                _id,
+                photoUrl = noPoster,
+                title,
+                type,
+                breed,
+                place,
+                dateOfBirth,
+                owner,
+              }) => (
                 <NoticeCategoryItem key={_id}>
                   <NoticeCategoryItemTemplate
                     {...{
@@ -21,8 +30,10 @@ export const NoticesContainer = ({ pets = [] }) => {
                       photoUrl,
                       title,
                       breed,
+                      type,
                       place,
-                      age,
+                      dateOfBirth,
+                      owner,
                     }}
                   />
                 </NoticeCategoryItem>
