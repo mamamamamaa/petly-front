@@ -17,10 +17,10 @@ export const PhotoPet = styled.img`
   width: 100%;
   display: block;
   cursor: pointer;
-  @media (min-width: 768px) {
+  ${media.tablet} {
     width: 336px;
   }
-  @media (min-width: 1280px) {
+  ${media.desktop} {
     width: 288px; 
 `;
 export const AdvWrapper = styled.div`
@@ -157,7 +157,7 @@ export const PetDetailsButton = styled.button`
   color: ${theme.colors.primary};
   margin-bottom: 12px;
   color: ${theme.colors.accentButton};
-  @media (min-width: 768px) {
+  ${media.tabletAndDesktop} {
     width: 248px;
     margin-left: auto;
     margin-right: auto;
@@ -176,7 +176,7 @@ export const PetDeleteButton = styled.button`
   justify-content: center;
   align-items: center;
   height: 38px;
-  @media (min-width: 768px) {
+  ${media.tabletAndDesktop} {
     width: 248px;
     margin-left: auto;
     margin-right: auto;
