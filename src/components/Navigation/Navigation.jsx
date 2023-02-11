@@ -31,6 +31,14 @@ const Navigation = () => {
                      Our friends
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink
+                    to="/user"
+        
+                     >
+                     User
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     )
