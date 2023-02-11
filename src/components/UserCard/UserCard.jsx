@@ -17,7 +17,7 @@ import { Formik, useFormik } from 'formik';
 
 import { useEffect } from 'react';
 
-//console.log(getUserData());
+console.log(getUserData());
 
 
  //import {logout} from "../../redux/auth/authSlice"
