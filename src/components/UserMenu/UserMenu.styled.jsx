@@ -55,6 +55,14 @@ export const UserPhoto = styled.img`
  
 `;
 
+export const ImgAvatar = styled.img`
+  filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+  width: 233px;
+  height: 233px;
+  border-radius: 50%;
+ 
+`;
+
 export const Btn = styled.button`
   display: flex;
   align-items: center;  
