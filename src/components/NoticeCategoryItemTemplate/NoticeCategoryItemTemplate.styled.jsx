@@ -99,6 +99,8 @@ export const Title = styled.h3`
   color: #111111;
   margin-bottom: 20px;
   max-width: 240px;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 export const PetSpanWrapper = styled.div`
   margin-bottom: 8px;
