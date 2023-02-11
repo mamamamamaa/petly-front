@@ -15,12 +15,10 @@ import {
   PetDeleteButtonDiv,
   PetDeleteButtonImg,
   PetDeleteButtonText,
+  AddPetToNotTextMob,
+  AddPetToNotImgMob,
+  AddPetToNotBtnMob,
 } from './NoticeCategoryItemTemplate.styled';
-import {
-  AddPetToNoticesBtn,
-  AddPetToNoticesImg,
-  AddPetToNoticesText,
-} from 'pages/NoticesPage.styled';
 import heart from 'utils/svg/heart.svg';
 import cross from 'utils/svg/cross.svg';
 import recycleBin from 'utils/svg/recycleBin.svg';
@@ -42,10 +40,10 @@ export const NoticeCategoryItemTemplate = ({
         <AddToFavBtn to="">
           <AddToFavImg src={heart} alt="Add to favorites" />
         </AddToFavBtn>
-        <AddPetToNoticesBtn to="">
-          <AddPetToNoticesImg src={cross} alt="Add pet to notices" />
-          <AddPetToNoticesText>Add pet</AddPetToNoticesText>
-        </AddPetToNoticesBtn>
+        <AddPetToNotBtnMob to="">
+          <AddPetToNotImgMob src={cross} alt="Add pet to notices" />
+          <AddPetToNotTextMob>Add pet</AddPetToNotTextMob>
+        </AddPetToNotBtnMob>
       </PhotoPetWrapper>
       <PetDetails>
         <Title>{title}</Title>
