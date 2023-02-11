@@ -39,6 +39,7 @@ export const SearchField = styled.input`
     color: #535353;
   }
   ${media.tablet} {
+    width: 608px;
     margin-right: 48px;
     margin-left: 48px;
   }
