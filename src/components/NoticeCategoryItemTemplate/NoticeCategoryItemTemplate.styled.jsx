@@ -134,14 +134,42 @@ export const PetDetailsButton = styled.button`
   background: ${theme.colors.accentText};
   cursor: pointer;
   color: ${theme.colors.primary};
-  :last-child {
-    color: ${theme.colors.accentButton};
-  }
+  margin-bottom: 12px;
+  color: ${theme.colors.accentButton};
   @media (min-width: 768px) {
     width: 248px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 export const PetDetailsButtonText = styled.p`
   color: #f59256;
+`;
+export const PetDeleteButton = styled.button`
+  color: #ff6101;
+  background: ${theme.colors.accentText};
+  width: 100%;
+  border: 2px solid #ff6101;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 38px;
+  @media (min-width: 768px) {
+    width: 248px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+`;
+export const PetDeleteButtonDiv = styled.div`
+  width: 86px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const PetDeleteButtonText = styled.span`
+  display: block;
+  color: #ff6101;
+`;
+export const PetDeleteButtonImg = styled.img`
 `;

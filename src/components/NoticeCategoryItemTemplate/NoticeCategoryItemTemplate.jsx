@@ -14,9 +14,14 @@ import {
   AddPetToNoticesText,
   AdvWrapper,
   AdvTitle,
+  PetDeleteButton,
+  PetDeleteButtonDiv,
+  PetDeleteButtonImg,
+  PetDeleteButtonText,
 } from './NoticeCategoryItemTemplate.styled';
 import heart from 'utils/svg/heart.svg';
 import cross from 'utils/svg/cross.svg';
+import recycleBin from 'utils/svg/recycleBin.svg';
 
 export const NoticeCategoryItemTemplate = ({
   photoUrl,
@@ -57,6 +62,12 @@ export const NoticeCategoryItemTemplate = ({
         <PetDetailsButton>
           <PetDetailsButtonText>Learn More</PetDetailsButtonText>
         </PetDetailsButton>
+        <PetDeleteButton>
+          <PetDeleteButtonDiv>
+            <PetDeleteButtonText>Delete</PetDeleteButtonText>
+            <PetDeleteButtonImg src={recycleBin} alt="Recycle bin"></PetDeleteButtonImg>
+          </PetDeleteButtonDiv>
+        </PetDeleteButton>
       </PetDetails>
     </>
   );
