@@ -13,6 +13,7 @@ export const Card = styled.div`
   
   width: 280px;
   height: 537px;
+  padding: 20px 12px 20px 12px;
   background: ${theme.colors.accentText};
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius:  20px;
@@ -84,6 +85,8 @@ export const Wrap = styled.span`
 
 export const FormWrap = styled.div`
 width: 100%;
+padding: 0;
+
 `
 export const Form1 = styled(Form)`
  position: relative;
@@ -92,17 +95,42 @@ export const Form1 = styled(Form)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 44px;
-  padding-bottom: 40px;
+  
   margin: 0 auto;
 
 
 `
+export const DivInput = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px
+`
+export const Label = styled.label`
+  width: 56px;
+  font-weight: 400;  
+  color: #111111;
+  margin-right: 10px;
+  font-size: 24px;
+  line-height: 1.36;
+  `
+
+
 export const Input = styled(Field)`
-  flex-wrap: nowrap;
-  border: none;
-  margin-bottom: 8px;
-  margin-left: 25px;
+  // margin-left: 25px;
+
+  width: 160px;
+  height: 24px;
+  margin-right: 14px;
+  padding-left: 0 px;
+  border: 1px solid transparent;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-size: 14px;
+  
+  color: #111111;
+  background-color: #FFFFFF;
+  outline: none;
   //margin: 0 auto;
 `
 
@@ -111,8 +139,22 @@ export const BtnInput = styled.button`
   align-items: center;
   justify-content: center;
   background: ${theme.colors.mainBg};
-  border-radius: ;
+  border-radius: 50%;
   border: none;
   width: 30px;
   height: 30px;
+`
+
+export const BtnLogOut = styled.button`
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  
+  border: none;
+  color: rgba(17, 17, 17, 0.6);
+  background: none;
+  margin-top: 12px;
+  padding: 0;
 `

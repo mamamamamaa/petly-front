@@ -34,5 +34,10 @@ export const useFriends = () => {
 };
 
 export const useUser = () => {
-  return;
+  const user = useSelector(state => state.auth.user);
+  
+  return {
+    user,
+    
+  }  
 };

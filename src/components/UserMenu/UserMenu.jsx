@@ -1,40 +1,54 @@
 import { useDispatch } from 'react-redux';
+//import { useUser } from '../../redux/hooks';
 
 
 import { NavLink } from "react-router-dom";
 import {
-    Wrapper,
-    DivPhoto,
-    Shadow,
-    UserPhoto,
-    Card,
-    Btn,
-    Span,
-    Wrap,
-    Title,
-    FormWrap,
-    Form1,
-    Input,
-    BtnInput
-} from './UserMenu.styled';
+  Wrapper, DivPhoto, Shadow, UserPhoto, Card, Btn, Span, Wrap, Title,
+  FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut } from './UserMenu.styled';
 
 import { Container } from "../../utils/reusable";
 import { HiCamera } from "react-icons/hi2";
-import {HiPencil} from "react-icons/hi"
+import { HiPencil } from "react-icons/hi";
+import { FiLogOut } from "react-icons/fi";
 import { updateUserData } from '../../redux/user/operations';
 
-import { Formik,  useFormik } from 'formik';
+import { Formik, useFormik } from 'formik';
+//import { useEffect } from 'react';
+
+//console.log(getUserData());
+
+
+ //import {logout} from "../../redux/auth/authSlice"
+// ===============================================
+// logOutBtn
+     
+  //   const dispatch = useDispatch()
+    
+  //   const onLogOutHandler = () = {
+      
+  //     dispatch(logout())  
+  //   }
+
+  //  onClick={onLogOutHandler}
+  // ===============================================
+
 
 const UserMenu = () => {
-//const selectUserAvatar = state => state.user.avatarUrl;   
-const  dispatch = useDispatch();
-//const userPhoto = useSelector(selectUserAvatar)
-
+ 
+    //const selectUserData = state => state.user;    
+  const dispatch = useDispatch();
+  //const {user} = useUser();
+    //const userPhoto = useSelector(selectUserAvatar)
+    //const userData = useSelector(selectUserData);//достать данные после auth
+  
     const onChangeHandler = e => {
     const formData = new FormData();
     formData.append('avatar', e.target.files[0]);
     dispatch(updateUserData(formData));
-  };
+    };
+  
+  
 //////формик 
     const onSubmit = values => {
     const { name, email, birthday, mobilePhone, city } = values;
@@ -50,10 +64,7 @@ const  dispatch = useDispatch();
      
     );
   };
-    
-    
-    
-    
+     
     const formik = useFormik({
     initialValues: {
       name: '',
@@ -62,8 +73,11 @@ const  dispatch = useDispatch();
       mobilePhone: '',
       city: '',
     },onSubmit,
-  });
-
+    });
+  
+//   useEffect(() => {
+//    dispatch(getUserData())
+//  },[dispatch])
 
     return (
         <NavLink to="/user">
@@ -102,24 +116,24 @@ const  dispatch = useDispatch();
             <Formik onSubmit={formik.handleSubmit}>           
          
             <Form1>
-            <div>
+            <DivInput>
             <label display="block" textDecoration="none" align-content="flex-start">
                                     
-              Name
+              Name:
               <Input 
                     name="name"
                     type="name"
-                    placeholder="Name"
+                    placeholder="Name:"
                     onChange={formik.handleChange}
                     value={formik.values.name} />
-            <BtnInput ><HiPencil color="#F59256"/></BtnInput>
+            
             </label>
+            <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>
+            </DivInput>
             
-            </div>
-            
-            <div>               
+            <DivInput>               
             <label>
-              Email
+              Email:
             <Input
                     name="email"
                     type="email"
@@ -127,9 +141,10 @@ const  dispatch = useDispatch();
                     onChange={formik.handleChange}
                     value={formik.values.email} />
             </label>
-            </div> 
+            <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>
+            </DivInput> 
                             
-            <div>
+            <DivInput>
             <label>
               Birthday: 
             <Input name="Birthday:"
@@ -137,9 +152,10 @@ const  dispatch = useDispatch();
                    placeholder="00.00.0000"
                />
             </label>
-            </div>                
+            <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>        
+            </DivInput>                
                             
-            <div>
+            <DivInput>
             <label>
               Phone:
             <Input name="mobilePhone"
@@ -149,9 +165,10 @@ const  dispatch = useDispatch();
                     value={formik.values.mobilePhone}/>                              
                                        
             </label>
-            </div>                
+            <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>
+            </DivInput>                
                             
-            <div>
+            <DivInput>
             <label>
               City:
             <Input  name="city"
@@ -161,20 +178,24 @@ const  dispatch = useDispatch();
                     value={formik.values.city}/>
                                                 
             </label>
-             <label>
-              <Input type="radio" name="picked" value="HiPencil"/>
-              <HiPencil color="#F59256"/>
-            </label>                       
-            </div>                
+            <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>                   
+            </DivInput>                
 
-            <BtnInput type="submit">Submit</BtnInput>
+            
           </Form1>
         
         </Formik>
                  
-        </FormWrap>
-                    {/* <BtnInput type="submit" color="#F59256"><HiPencil/></BtnInput> */}
-        <button></button>
+            </FormWrap>
+            
+            <BtnInput><HiPencil color="rgba(17, 17, 17, 0.6)" /></BtnInput>
+            
+            {/* <BtnInput type="submit" color="#F59256"><HiPencil/></BtnInput> */}
+            
+            
+            <BtnLogOut>
+              <FiLogOut color="#F59256" />Log Out
+            </BtnLogOut>
         </Card>
 
             </Container>

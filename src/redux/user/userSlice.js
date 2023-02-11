@@ -1,5 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf} from '@reduxjs/toolkit';
 import { updateUserData } from './operations';
+
+const extraActions = [updateUserData];
 
 const initialState = {
   isLoading: false,
@@ -20,40 +22,42 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  // extraReducers: {
-
-  //   //get user info ? 
-  //   //update user
-  //   [updateUserData.pending](state) {
-  //     state.error = null;
-  //   },
-  //   [updateUserData.fulfilled](state, action) {
-  //     //state.isLoading = false;
-  //     //state.error = null;
-  //     state.data = {...state.data,  ...action.payload };
-  //   },
-  //   [updateUserData.rejected](state, action) {
-  //     state.isLoading = false;
-  //     state.error = action.payload;
-  //   },
-  // },
-    extraReducers(builder) {
-        builder
-            .addCase(updateUserData.pending, (state, action) => {
-                state.error = null;
-            })
-            .addCase(updateUserData.fulfilled, (state, action) => {
-                state.status = "succeeded"
-               state.data = {...state.data,  ...action.payload };
-            })
-            .addCase(updateUserData.rejected, (state, action) => {
-                state.status = "failed"
-                state.error = action.error.message
-            })
-            
-            }
-
-
+  
+  extraReducers(builder) {
+    builder
+      .addCase(updateUserData.pending, (state, action) => {
+        state.error = null;
+      })
+      .addCase(updateUserData.fulfilled, (state, action) => {
+        state.status = "succeeded"
+        state.data = { ...state.data, ...action.payload };
+      })
+      .addCase(updateUserData.rejected, (state, action) => {
+        state.status = "failed"
+        state.error = action.error.message
+      })
+      .addMatcher(
+        isAnyOf(...extraActions.map(action => action.pending)),
+        state => {
+          state.error = null;
+        }
+    )
+      .addMatcher(
+      isAnyOf(...extraActions.map(action => action.fulfilled)),
+      state => {
+        state.error = null;
+        state.isLoading = false
+      }
+    )
+    .addMatcher(
+      isAnyOf(...extraActions.map(action => action.rejected)),
+      (state, action) => {
+        state.error = action.payload;
+        state.isLoading = false
+      }
+    )
+    
+  }
      //builder => builder,
 });
 
