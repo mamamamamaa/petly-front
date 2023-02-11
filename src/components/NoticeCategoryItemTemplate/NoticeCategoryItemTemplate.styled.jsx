@@ -34,6 +34,7 @@ export const AddToFavBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 0;
 `;
 
 export const AddToFavImg = styled.img`
@@ -49,6 +50,7 @@ export const AddPetToNoticesBtn = styled.button`
   top: 67px;
   right: 0;
   cursor: pointer;
+  border: 0;
 `;
 export const AddPetToNoticesImg = styled.img`
   position: absolute;
