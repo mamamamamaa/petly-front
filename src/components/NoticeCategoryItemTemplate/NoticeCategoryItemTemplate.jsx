@@ -6,11 +6,15 @@ import {
   PetDetails,
   PetDetailsButton,
   PetDetailsButtonText,
-  AddToFav,
-  AddToFavWrapper,
   PhotoPetWrapper,
+  AddToFavImg,
+  AddToFavBtn,
+  AddPetToNoticesBtn,
+  AddPetToNoticesImg,
+  AddPetToNoticesText,
 } from './NoticeCategoryItemTemplate.styled';
 import heart from 'utils/svg/heart.svg';
+import cross from 'utils/svg/cross.svg';
 
 export const NoticeCategoryItemTemplate = ({
   photoUrl,
@@ -23,9 +27,13 @@ export const NoticeCategoryItemTemplate = ({
     <>
       <PhotoPetWrapper>
         <PhotoPet src={photoUrl} alt="Pet" />
-        <AddToFavWrapper to="/notice/addfavorite/_id" end>
-          <AddToFav src={heart} alt="Add to favorites" />
-        </AddToFavWrapper>
+        <AddToFavBtn to="" end>
+          <AddToFavImg src={heart} alt="Add to favorites" />
+        </AddToFavBtn>
+        <AddPetToNoticesBtn to="" end>
+          <AddPetToNoticesImg src={cross} alt="Add pet to notices" />
+          <AddPetToNoticesText>Add pet</AddPetToNoticesText>
+        </AddPetToNoticesBtn>
       </PhotoPetWrapper>
       <PetDetails>
         <Title>{title}</Title>
