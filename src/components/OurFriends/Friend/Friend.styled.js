@@ -93,3 +93,54 @@ export const AdressLink = styled.a`
     color: ${theme.colors.primary};
   }
 `;
+export const WorkingModal = styled.div`
+  position: absolute;
+  max-width: 120px;
+  max-height: 160px;
+
+  background: ${theme.colors.accentText};
+  border: 1px solid ${theme.colors.primary};
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: ${theme.fontWeights.normal};
+  font-size: 12px;
+  line-height: ${theme.lineHeights.body};
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  background-color: ${theme.colors.accentText};
+`;
+
+export const Day = styled.li`
+  display: flex;
+  justify-content: space-between;
+  :not(:last-child) {
+    margin-bottom: 4px;
+  }
+`;
+
+export const DayOfWeek = styled.span`
+  margin-right: 4px;
+`;
+
+export const HoursBtn = styled.button`
+  position: relative;
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+  line-height: ${theme.lineHeights.body};
+  font-weight: ${theme.fontWeights.normal};
+  padding: 0;
+  cursor: pointer;
+  &:hover {
+    color: ${theme.colors.primary};
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+  }
+`;

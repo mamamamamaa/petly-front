@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Title,
@@ -8,18 +8,28 @@ import {
   Image,
   Item,
   AdressLink,
+  HoursBtn,
 } from './Friend.styled';
 
 import defaultImage from '../images/defaultImage.jpg';
+import HoursModal from '../Friend/HoursModal';
 
 const Friend = ({ friend }) => {
+  const [showModal, setShowModal] = useState(false);
+
   const { address, addressUrl, email, phone, title, url, workDays, imageUrl } =
     friend;
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   return (
     <>
       <Title>
-        <Link href={url}>{title}</Link>
+        <Link href={url} target="_blank" rel="noopener noreferrer">
+          {title}
+        </Link>
       </Title>
 
       <Description>
@@ -27,8 +37,16 @@ const Friend = ({ friend }) => {
 
         <DescList>
           <Item>
-            Time:
-            <p></p>
+            Time: <br />
+            {!workDays || workDays.length === 0 ? (
+              '--------------------'
+            ) : (
+              <HoursBtn type="button" onClick={toggleModal}>
+                {workDays.find(day => day.isOpen === true).from} -
+                {workDays.find(day => day.isOpen === true).to}
+              </HoursBtn>
+            )}
+            {showModal && <HoursModal timeTable={workDays} />}
           </Item>
 
           <Item>
@@ -40,7 +58,13 @@ const Friend = ({ friend }) => {
                 `${address}`
               )
             ) : (
-              <AdressLink href={addressUrl}>{address}</AdressLink>
+              <AdressLink
+                href={addressUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {address}
+              </AdressLink>
             )}
           </Item>
 
