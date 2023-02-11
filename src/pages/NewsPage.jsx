@@ -23,7 +23,7 @@ import {
 // ================= запрос
 export async function fetchSearchNews(query) {
   if (query === '') {
-    query = 'animals';
+    query = 'dog';
   }
   const { data } = await axios.get(
     `http://localhost:3001/api/news?query=${query}`
@@ -34,7 +34,7 @@ export async function fetchSearchNews(query) {
 // ================= логика
 export default function NewsPage() {
   const [searchNews, setSearchNews] = useState([]);
-  const [query, setQuery] = useState('animals');
+  const [query, setQuery] = useState('dog');
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
