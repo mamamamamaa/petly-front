@@ -16,10 +16,10 @@ const setAuthHeader = token => {
 export const fetchUserPets = createAsyncThunk(
     "ownPets/getAll",
     async (_, thunkAPI) => {
-        setAuthHeader('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTQzY2FiNDhlYTYyNTdhYTZlZDgzZiIsInR5cGUiOiJhY2Nlc3NUb2tlbiIsImlhdCI6MTY3NTkwMzkyMywiZXhwIjoxNjc1OTkwMzIzfQ.5jB8p2CRT-u1JFCI62JRMppfbJoXwj8Fr8WmzDH7GRw');
+        setAuthHeader('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTZjN2Y3ZWMxMDA1ZGQxNTM3M2Y5OCIsInR5cGUiOiJhY2Nlc3NUb2tlbiIsImlhdCI6MTY3NjA2ODk5NywiZXhwIjoxNjc2MTU1Mzk3fQ.M1Z1wMhdokFaif4XwyCDyQie9MZQBagyRR85D6TfcGY');
         try {
-            const response = await axios.get("/userprofile");           
-            return response.data.pets;
+            const response = await axios.get("/userprofile"); 
+            return response.data.data.pets;
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);
         }
@@ -29,14 +29,11 @@ export const fetchUserPets = createAsyncThunk(
 export const deleteOneOwnPet = createAsyncThunk(
     "ownPets/deleteOneOwnPet",
     async (petId, thunkAPI) => {
-        setAuthHeader('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTQzY2FiNDhlYTYyNTdhYTZlZDgzZiIsInR5cGUiOiJhY2Nlc3NUb2tlbiIsImlhdCI6MTY3NTkwMzkyMywiZXhwIjoxNjc1OTkwMzIzfQ.5jB8p2CRT-u1JFCI62JRMppfbJoXwj8Fr8WmzDH7GRw');
-        console.log(petId);
+        setAuthHeader('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTZjN2Y3ZWMxMDA1ZGQxNTM3M2Y5OCIsInR5cGUiOiJhY2Nlc3NUb2tlbiIsImlhdCI6MTY3NjA2ODk5NywiZXhwIjoxNjc2MTU1Mzk3fQ.M1Z1wMhdokFaif4XwyCDyQie9MZQBagyRR85D6TfcGY');
+        
         try {
             const response = await axios.delete(`/userprofile/${petId}`);
-            // console.log(response);
-            // console.log('response', response);
-            // console.log('response.data', response.data);
-            return response.data;
+            return response.data.data._id;
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);
         }
@@ -46,12 +43,13 @@ export const deleteOneOwnPet = createAsyncThunk(
 export const addOwnPet = createAsyncThunk(
     "ownPets/addPet",
     async (newPet, thunkAPI) => {
+        setAuthHeader('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTZjN2Y3ZWMxMDA1ZGQxNTM3M2Y5OCIsInR5cGUiOiJhY2Nlc3NUb2tlbiIsImlhdCI6MTY3NjA2ODk5NywiZXhwIjoxNjc2MTU1Mzk3fQ.M1Z1wMhdokFaif4XwyCDyQie9MZQBagyRR85D6TfcGY');
+
         try {
             const response = await axios.post("/userprofile",  newPet );
-        // console.log('response', response);
-        // console.log('response.data', response.data);
-            return response.data;
+            return response;
         } catch (e) {
+            console.log('error');
             return thunkAPI.rejectWithValue(e.message);
         }
     }

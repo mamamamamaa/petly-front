@@ -1,28 +1,37 @@
-import { Formik } from "formik"
+import { Field, Form, Formik } from "formik"
 
-export const AddOwnPetStepTwo = ({data, next, prev}) => {
+export const AddOwnPetStepTwo = ({data, next, prev, onClose}) => {
 
-    const handleSubmit = (values, helpers) => {
-        // preventDefault();
-        console.log('values', values);
-        console.log('helpers', helpers);
-        next(values);
+    const handleSubmit = (values, actions) => { 
+        actions.validateForm();        
+        next(values, true);        
+        actions.resetForm();
+        onClose();
     }
 
+    // const handleUpload = (e) => {        
+    //     setFieldValue("file", e.target.files[0]);
+    // }
 
+    const handleBack = (values, actions) => {  
+        actions.setValues();
+        prev(values);
+    }
+    // enctype="multipart/form-data"
     return <Formik 
     initialValues={data}
     onSubmit={handleSubmit}>
-    <form>
+    <Form >
     <p>Add photo and some comments<span>*</span></p>
-    <input type="file" name="photo"/>
+    <input id="file" type="file" name="pictureURL"
+    //  onChange={handleUpload}
+     />
     <label>Comments<span>*</span>
-        <input type="text" name="comment"/>
-    </label>
-    <button type="submit">Next</button>
-    <button type="button" 
-    // onClick={prev}
+        <Field type="text" name="comments"/>
+    </label><button type="button" 
+    onClick={handleBack}
     >Back</button>
-</form>
+    <button type="submit">Done</button>    
+</Form>
 </Formik>
 }

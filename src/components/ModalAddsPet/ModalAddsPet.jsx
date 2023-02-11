@@ -1,31 +1,38 @@
 import { useState } from "react";
 import { AddOwnPetStepOne } from "../AddOwnPetStepOne/AddOwnPetStepOne";
 import { AddOwnPetStepTwo } from "../AddOwnPetStepTwo/AddOwnPetStepTwo";
+import { useDispatch } from "react-redux";
+import { addOwnPet } from "../../redux/user/operations";
 
-export const ModalAddsPet = () => {
-    
+
+export const ModalAddsPet = ({onClose}) => {
+    const dispatch = useDispatch();
     const [data, setData] = useState({
         name: "",
         dateOfBirth:"",
         breed:"",
-        photo: "",
-        comment:""
+        pictureURL: "",
+        comments:""
     });
 
-    const handleNextStep = (newData) => {
-        // preventDefault();
+    const handleNextStep = (newData, final=false) => {
         console.log('newData', newData);
-        setData(prevData => ({...prevData, ...newData}));
+        setData(prevData => ({...prevData, ...newData}));        
+        if(final){
+            console.log('newData', newData);
+            dispatch(addOwnPet(newData));     
+            return
+        }
         setCurrentStep(prevStep => prevStep + 1);
     }
 
     const handlePrevStep = (newData) => {
-        console.log('newData', newData);
+        // console.log('newData', newData);
         setData(prevData => ({...prevData, ...newData}));
         setCurrentStep(prevStep => prevStep - 1);
     }
 
-    const cancelData = () => {
+    const cancelData = (e) => {
         setData({
             name: "", 
             dateOfBirth:"", 
@@ -34,16 +41,17 @@ export const ModalAddsPet = () => {
             comment:""
         });
         setCurrentStep(0);
+        
     }
 
     const [currentStep, setCurrentStep] = useState(0);
 
     const steps = [
     <AddOwnPetStepOne next={handleNextStep} data={data} cancel={cancelData}/>, 
-    <AddOwnPetStepTwo next={handleNextStep} data={data} prev={handlePrevStep} />
+    <AddOwnPetStepTwo next={handleNextStep} data={data} prev={handlePrevStep} onClose={onClose}/>
 ];
 
-    
+    console.log('data', data);
 
     return <div>
         <h3>Add pet</h3>

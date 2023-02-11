@@ -32,9 +32,9 @@ export const PetsData = () => {
         <button type="button" onClick={handleModal}>+</button>
         {isLoading && <div>Loading...</div>}
         {error &&  <div>error</div> } 
-        { pets.length===0 && !error && !isLoading &&<div>you have no pets yet</div> }
-        { pets.length>0 && <PetsList pets={pets}/>} 
-        { showModal && <Modal onClose={handleModal}><ModalAddsPet/></Modal>}
+        { !error && !isLoading && pets.length===0 && <div>you have no pets yet</div> }
+        { !error && !isLoading && pets.length>0 && <PetsList pets={pets}/>} 
+        { showModal && <Modal onClose={handleModal}><ModalAddsPet onClose={handleModal}/></Modal>}
     </section>
     )
 };

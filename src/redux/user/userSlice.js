@@ -17,13 +17,9 @@ const userSlice = createSlice({
       state.pets = action.payload;
     })
     .addCase(deleteOneOwnPet.fulfilled, (state, action)=>{
-      // console.log('state.pets', state.pets);
-      // console.log('action.payload', action.payload);
-      state.pets = state.pets.filter(pet=>pet._id!==action.payload._id)
+      state.pets = state.pets.filter(pet=>pet._id!==action.payload);
     })
     .addCase(addOwnPet.fulfilled, (state, action)=>{
-      // console.log('state.pets', state.pets);
-      // console.log('action.payload', action.payload);
       state.pets = state.pets.push(action.payload);
     })
     .addMatcher(
@@ -43,6 +39,7 @@ const userSlice = createSlice({
     .addMatcher(
       isAnyOf(...extraActions.map(action => action.rejected)),
       (state, action) => {
+        console.log("error action", action);
         state.error = action.payload;
         state.isLoading = false
       }

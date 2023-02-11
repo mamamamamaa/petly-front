@@ -1,37 +1,38 @@
-import { Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 
 export const AddOwnPetStepOne = ({next, data, cancel}) => {
     // зробити запит на отримання всіх порід тварин
     const breeds = ["I don`t know", "Persian", "American Shorthair", "Chartreux", "Bombay", "Burmese", "Maine Coon", "Birman", "Himalayan", "Nebelung", "Norwegian Forest", "Siberian", "Scottish Fold","Bengal", "Ragdoll", "Siamese", "British Shorthair", "Exotic Shorthair", "Abyssinian", "Tonkinese", "Other"];
 
-    const handleSubmit = (values, helpers) => {
-        // preventDefault();
+    const handleSubmit = (values, actions) => {
         console.log('values', values);
-        console.log('helpers', helpers);
+        console.log('actions', actions);
+        actions.validateForm();
         next(values);
     }
 
     return <Formik 
     initialValues={data}
     onSubmit={handleSubmit}>
-    <form>
+    <Form>
     <label>Name pet<span>*</span>
-        <input type="text" name="name" required/>
+        <Field type="text" name="name" required/>
     </label>
     <label>Date of birth<span>*</span>
-        <input type="date" name="dateOfBirth" required
+        <Field type="date" name="dateOfBirth" required
         // max={Date.now()}
         />
     </label>
     <label>Breed<span>*</span>
-        <select name="breed" required>
+        <Field as="select" name="breed" required>
             {breeds.map(breed=> <option value={breed.toLocaleLowerCase()} key={breed}>{breed}</option>)}                    
-        </select>
+        </Field>
     </label>
-    <button type="submit">Next</button>
+    
     <button type="button" 
-    // onClick={cancel}
-    >Cancel</button>            
-</form>
+    onClick={()=>cancel()}
+    >Cancel</button>  
+    <button type="submit">Next</button>          
+</Form>
 </Formik>
 }
