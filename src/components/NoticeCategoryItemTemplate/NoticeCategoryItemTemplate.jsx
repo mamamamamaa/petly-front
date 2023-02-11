@@ -12,6 +12,8 @@ import {
   AddPetToNoticesBtn,
   AddPetToNoticesImg,
   AddPetToNoticesText,
+  AdvWrapper,
+  AdvTitle,
 } from './NoticeCategoryItemTemplate.styled';
 import heart from 'utils/svg/heart.svg';
 import cross from 'utils/svg/cross.svg';
@@ -27,6 +29,9 @@ export const NoticeCategoryItemTemplate = ({
     <>
       <PhotoPetWrapper>
         <PhotoPet src={photoUrl} alt="Pet" />
+        <AdvWrapper>
+          <AdvTitle>In good hands</AdvTitle>
+        </AdvWrapper>
         <AddToFavBtn to="" end>
           <AddToFavImg src={heart} alt="Add to favorites" />
         </AddToFavBtn>

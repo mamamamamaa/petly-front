@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-// import { NavLink } from 'react-router-dom';
+import adver from 'utils/svg/adv.svg';
 import { theme } from '../../utils/theme';
 
 export const PhotoPetWrapper = styled.div`
@@ -22,7 +22,28 @@ export const PhotoPet = styled.img`
   @media (min-width: 1280px) {
     width: 288px; 
 `;
-
+export const AdvWrapper = styled.div`
+  position: absolute;
+  background-size: 158px 28px;
+  background-image: url(${adver});
+  background-repeat: no-repeat;
+  width: 158px;
+  height: 28px;
+  top: 20px;
+  left: 0;
+`;
+export const AdvTitle = styled.span`
+  display: block;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: #111111;
+  margin-left: 20px;
+  margin-top: 6px;
+`;
 export const AddToFavBtn = styled.button`
   width: 44px;
   height: 44px;
