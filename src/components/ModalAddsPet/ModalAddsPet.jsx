@@ -20,6 +20,12 @@ export const ModalAddsPet = ({onClose}) => {
         setData(prevData => ({...prevData, ...newData}));        
         if(final){
             console.log('newData', newData);
+            const formData = new FormData();
+        formData.append('pictureURL', newData.pictureURL);
+        formData.append('comments', newData.comments);
+        formData.append('breed', newData.breed);
+        formData.append('dateOfBirth', newData.dateOfBirth);
+        formData.append('name', newData.name);
             dispatch(addOwnPet(newData));     
             return
         }
@@ -44,7 +50,7 @@ export const ModalAddsPet = ({onClose}) => {
         
     }
 
-    const [currentStep, setCurrentStep] = useState(0);
+    const [currentStep, setCurrentStep] = useState(1);
 
     const steps = [
     <AddOwnPetStepOne next={handleNextStep} data={data} cancel={cancelData}/>, 
@@ -58,3 +64,18 @@ export const ModalAddsPet = ({onClose}) => {
         {steps[currentStep]}
     </div>
 }
+
+
+// const handleCreate = (values, {resetForm}) => {
+//     const formData = new FormData();
+
+//     formData.append('name', values.name);
+//     formData.append('code', values.code);
+//     formData.append('image', values.image);
+
+//     axios.post('/api/user/create', formData)
+//          .then(console.log)
+//          catch(console.error);
+
+//     resetForm({});
+// };
