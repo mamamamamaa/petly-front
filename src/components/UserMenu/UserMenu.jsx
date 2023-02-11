@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
-//import { useUser } from '../../redux/hooks';
+import { useUser } from '../../redux/hooks';
 
 
 import { NavLink } from "react-router-dom";
 import {
-  Wrapper, DivPhoto, Shadow, UserPhoto, Card, Btn, Span, Wrap, Title,
+  Wrapper, DivPhoto, Shadow, UserPhoto, ImgAvatar, Card, Btn, Span, Wrap, Title,
   FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut } from './UserMenu.styled';
 
 import { Container } from "../../utils/reusable";
@@ -14,6 +14,7 @@ import { FiLogOut } from "react-icons/fi";
 import { updateUserData } from '../../redux/user/operations';
 
 import { Formik, useFormik } from 'formik';
+
 //import { useEffect } from 'react';
 
 //console.log(getUserData());
@@ -35,16 +36,16 @@ import { Formik, useFormik } from 'formik';
 
 
 const UserMenu = () => {
- 
-    //const selectUserData = state => state.user;    
+ //=========for avatar============
+   
   const dispatch = useDispatch();
-  //const {user} = useUser();
-    //const userPhoto = useSelector(selectUserAvatar)
+  const userPhoto = useUser();
     //const userData = useSelector(selectUserData);//достать данные после auth
   
     const onChangeHandler = e => {
     const formData = new FormData();
-    formData.append('avatar', e.target.files[0]);
+      formData.append('avatar', e.target.files[0]);
+      console.log(e.target.files)
     dispatch(updateUserData(formData));
     };
   
@@ -88,9 +89,9 @@ const UserMenu = () => {
                     <Wrapper>
                     <DivPhoto>
                         <Shadow>
-                    <UserPhoto/>  {/* {userPhoto ? (
+                      {userPhoto ? (
                             <UserPhoto src={userPhoto} alt="photo" />
-                        ) : (<img alt=""/>)} */}
+                        ) : (<ImgAvatar src={HiCamera} alt=""/>)}
                     </Shadow></DivPhoto>
                     <Btn>
                        <label htmlFor="photo_uploads">
@@ -100,8 +101,7 @@ const UserMenu = () => {
                     <Span>Edit photo</Span>
                     </Wrap>
                     </label> 
-                    
-                    
+                                        
                     <input
                         id="photo_uploads"
                         type="file"
