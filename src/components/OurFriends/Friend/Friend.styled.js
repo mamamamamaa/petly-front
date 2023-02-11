@@ -60,12 +60,14 @@ export const DescList = styled.ul`
 export const Item = styled.li`
   font-weight: ${theme.fontWeights.normal};
   font-size: 12px;
-
   color: ${theme.colors.titleText};
-
   margin-bottom: 12px;
   font-size: 12px;
   line-height: 1.3;
+  &:hover,
+  &:focus {
+    color: ${theme.colors.primary};
+  }
   @media screen and (min-width: 768px) {
     margin-bottom: 8px;
     font-size: 14px;
@@ -80,5 +82,14 @@ export const Item = styled.li`
   }
   &:last-child {
     margin-bottom: 0;
+  }
+`;
+
+export const AdressLink = styled.a`
+  text-decoration-line: underline;
+  color: #000000;
+  &:hover,
+  &:focus {
+    color: ${theme.colors.primary};
   }
 `;

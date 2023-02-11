@@ -7,7 +7,10 @@ import {
   DescList,
   Image,
   Item,
+  AdressLink,
 } from './Friend.styled';
+
+import defaultImage from '../images/defaultImage.jpg';
 
 const Friend = ({ friend }) => {
   const { address, addressUrl, email, phone, title, url, workDays, imageUrl } =
@@ -20,7 +23,7 @@ const Friend = ({ friend }) => {
       </Title>
 
       <Description>
-        <Image src={imageUrl} alt="company logo" />
+        <Image src={imageUrl ? imageUrl : defaultImage} alt="company logo" />
 
         <DescList>
           <Item>
@@ -29,40 +32,34 @@ const Friend = ({ friend }) => {
           </Item>
 
           <Item>
-            Adress:
-            <p>
-              {!addressUrl ? (
-                !address ? (
-                  '--------------------'
-                ) : (
-                  `${address}`
-                )
+            Adress: <br />
+            {!addressUrl ? (
+              !address ? (
+                '--------------------'
               ) : (
-                <a href={addressUrl}>{address}</a>
-              )}
-            </p>
+                `${address}`
+              )
+            ) : (
+              <AdressLink href={addressUrl}>{address}</AdressLink>
+            )}
           </Item>
 
           <Item>
-            Email:
-            <p>
-              {!email ? (
-                '--------------------'
-              ) : (
-                <a href={`mailto:${email}`}>{email}</a>
-              )}
-            </p>
+            Email: <br />
+            {!email ? (
+              '--------------------'
+            ) : (
+              <AdressLink href={`mailto:${email}`}>{email}</AdressLink>
+            )}
           </Item>
 
           <Item>
-            Phone:
-            <p>
-              {!phone ? (
-                '--------------------'
-              ) : (
-                <a href={`tel:${phone}`}>{phone}0</a>
-              )}
-            </p>
+            Phone: <br />
+            {!phone ? (
+              '--------------------'
+            ) : (
+              <AdressLink href={`tel:${phone}`}>{phone}0</AdressLink>
+            )}
           </Item>
         </DescList>
       </Description>
