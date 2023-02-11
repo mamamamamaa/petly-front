@@ -62,49 +62,7 @@ export const AddToFavBtn = styled.button`
 export const AddToFavImg = styled.img`
   position: absolute;
 `;
-export const AddPetToNoticesBtn = styled.button`
-  ${media.mobile} {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: #f59256;
-    box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-    border-radius: 50%;
-    top: 67px;
-    right: 0;
-    cursor: pointer;
-    border: 0;
-  }
-  ${media.tabletAndDesktop} {
-    display: none;
-  }
-`;
-export const AddPetToNoticesImg = styled.img`
-  ${media.mobile} {
-    position: absolute;
-    top: 21px;
-    right: 29px;
-  }
-  ${media.tabletAndDesktop} {
-    display: none;
-  }
-`;
-export const AddPetToNoticesText = styled.span`
-  ${media.mobile} {
-    position: absolute;
-    font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-    color: #ffffff;
-    top: 48px;
-    right: 18px;
-  }
-  ${media.tabletAndDesktop} {
-    display: none;
-  }
-`;
+
 export const Title = styled.h3`
   font-family: 'Manrope';
   font-style: normal;

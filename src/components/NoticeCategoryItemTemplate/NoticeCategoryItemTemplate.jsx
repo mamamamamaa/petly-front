@@ -9,9 +9,7 @@ import {
   PhotoPetWrapper,
   AddToFavImg,
   AddToFavBtn,
-  AddPetToNoticesBtn,
-  AddPetToNoticesImg,
-  AddPetToNoticesText,
+  
   AdvWrapper,
   AdvTitle,
   PetDeleteButton,
@@ -24,6 +22,9 @@ import cross from 'utils/svg/cross.svg';
 import recycleBin from 'utils/svg/recycleBin.svg';
 
 export const NoticeCategoryItemTemplate = ({
+  AddPetToNoticesBtn,
+  AddPetToNoticesImg,
+  AddPetToNoticesText,
   photoUrl,
   title,
   breed,
@@ -37,10 +38,10 @@ export const NoticeCategoryItemTemplate = ({
         <AdvWrapper>
           <AdvTitle>In good hands</AdvTitle>
         </AdvWrapper>
-        <AddToFavBtn to="" end>
+        <AddToFavBtn to="" >
           <AddToFavImg src={heart} alt="Add to favorites" />
         </AddToFavBtn>
-        <AddPetToNoticesBtn to="" end>
+        <AddPetToNoticesBtn to="" >
           <AddPetToNoticesImg src={cross} alt="Add pet to notices" />
           <AddPetToNoticesText>Add pet</AddPetToNoticesText>
         </AddPetToNoticesBtn>
@@ -65,7 +66,10 @@ export const NoticeCategoryItemTemplate = ({
         <PetDeleteButton>
           <PetDeleteButtonDiv>
             <PetDeleteButtonText>Delete</PetDeleteButtonText>
-            <PetDeleteButtonImg src={recycleBin} alt="Recycle bin"></PetDeleteButtonImg>
+            <PetDeleteButtonImg
+              src={recycleBin}
+              alt="Recycle bin"
+            ></PetDeleteButtonImg>
           </PetDeleteButtonDiv>
         </PetDeleteButton>
       </PetDetails>

@@ -6,6 +6,9 @@ import { search } from 'redux/notices/operations';
 import { useDispatch } from 'react-redux';
 import { NoticesContainer } from 'components/NoticesContainer/NoticesContainer';
 import {
+  AddPetToNoticesBtn,
+  AddPetToNoticesImg,
+  AddPetToNoticesText,
   NoticesSearch,
   SearchField,
   NoticesNavLink,
@@ -52,20 +55,37 @@ const NoticesPage = () => {
           </NoticesNavLink>
         </NoticesNavLi>
         <NoticesNavLi>
-          <NoticesNavLink to="lost"><NoticesNavText>lost/found</NoticesNavText></NoticesNavLink>
+          <NoticesNavLink to="lost">
+            <NoticesNavText>lost/found</NoticesNavText>
+          </NoticesNavLink>
         </NoticesNavLi>
         <NoticesNavLi>
-          <NoticesNavLink to="good-hands"><NoticesNavText>in good hands</NoticesNavText></NoticesNavLink>
+          <NoticesNavLink to="good-hands">
+            <NoticesNavText>in good hands</NoticesNavText>
+          </NoticesNavLink>
         </NoticesNavLi>
         <NoticesNavLi>
-          <NoticesNavLink to="favorite-ads"><NoticesNavText>favorite ads</NoticesNavText></NoticesNavLink>
+          <NoticesNavLink to="favorite-ads">
+            <NoticesNavText>favorite ads</NoticesNavText>
+          </NoticesNavLink>
         </NoticesNavLi>
         <NoticesNavLi>
-          <NoticesNavLink to="my-ads"><NoticesNavText>my ads</NoticesNavText></NoticesNavLink>
+          <NoticesNavLink to="my-ads">
+            <NoticesNavText>my ads</NoticesNavText>
+          </NoticesNavLink>
         </NoticesNavLi>
       </NoticesNavUl>
 
-      <NoticesContainer {...{ firstName, setFirstName, pets }} />
+      <NoticesContainer
+        {...{
+          firstName,
+          setFirstName,
+          pets,
+          AddPetToNoticesBtn,
+          AddPetToNoticesImg,
+          AddPetToNoticesText,
+        }}
+      />
       <Suspense>
         <Outlet />
       </Suspense>
