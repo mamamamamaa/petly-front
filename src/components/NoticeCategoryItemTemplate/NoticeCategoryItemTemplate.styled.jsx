@@ -167,10 +167,10 @@ export const PetDetailsButtonText = styled.p`
   color: #f59256;
 `;
 export const PetDeleteButton = styled.button`
-  color: #ff6101;
+  color: ${theme.colors.accentButton};
   background: ${theme.colors.accentText};
   width: 100%;
-  border: 2px solid #ff6101;
+  border: 2px solid ${theme.colors.accentButton};
   border-radius: 40px;
   display: flex;
   justify-content: center;
@@ -190,6 +190,6 @@ export const PetDeleteButtonDiv = styled.div`
 `;
 export const PetDeleteButtonText = styled.span`
   display: block;
-  color: #ff6101;
+  color: ${theme.colors.accentButton};
 `;
 export const PetDeleteButtonImg = styled.img``;
