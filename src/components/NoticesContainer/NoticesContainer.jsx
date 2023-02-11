@@ -6,12 +6,7 @@ import {
 import noPoster from 'noPoster.jpg';
 import { NoticeCategoryItemTemplate } from 'components/NoticeCategoryItemTemplate/NoticeCategoryItemTemplate';
 
-export const NoticesContainer = (
-  { pets = [] ,
-  AddPetToNoticesBtn,
-  AddPetToNoticesImg,
-  AddPetToNoticesText
-}) => {
+export const NoticesContainer = ({ pets = [] }) => {
   return (
     <>
       <NoticesCategoriesNav>
@@ -28,9 +23,6 @@ export const NoticesContainer = (
                       breed,
                       place,
                       age,
-                      AddPetToNoticesBtn,
-                      AddPetToNoticesImg,
-                      AddPetToNoticesText,
                     }}
                   />
                 </NoticeCategoryItem>

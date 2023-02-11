@@ -6,9 +6,6 @@ import { search } from 'redux/notices/operations';
 import { useDispatch } from 'react-redux';
 import { NoticesContainer } from 'components/NoticesContainer/NoticesContainer';
 import {
-  AddPetToNoticesBtn,
-  AddPetToNoticesImg,
-  AddPetToNoticesText,
   NoticesSearch,
   SearchField,
   NoticesNavLink,
@@ -81,9 +78,6 @@ const NoticesPage = () => {
           firstName,
           setFirstName,
           pets,
-          AddPetToNoticesBtn,
-          AddPetToNoticesImg,
-          AddPetToNoticesText,
         }}
       />
       <Suspense>
