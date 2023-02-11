@@ -7,7 +7,6 @@ import { Container } from '../../utils';
 export const Layout = () => {
   return (
     <Container>
-      Layout
       <header>
         <AppBar />
       </header>

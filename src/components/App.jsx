@@ -49,8 +49,7 @@ export const App = () => {
         </Route>
 
         <Route path="/friends" element={<OurFriendsPage />} />
-        <Route path="/user" element={<UserPage />} />
-
+        
         <Route
           path="/login"
           element={
@@ -65,14 +64,17 @@ export const App = () => {
           }
         />
 
-        {/* <Route
+        <Route
           path="/user"
           element={
             <PrivateRoute component={<UserPage />} redirectTo="/login" />
           }
-        /> */}
+
+        />
+        
+        <Route path="*" element={<Navigate to="/" replace={<HomePage />} />} />
+
       </Route>
-      <Route path="*" element={<Navigate to="/" replace={<HomePage />} />} />
     </Routes>
   );
 };

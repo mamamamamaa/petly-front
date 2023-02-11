@@ -9,7 +9,6 @@ export const theme = {
     primary: '#F59256',
     secondary: '#FDF7F2',
     accentButton: '#FF6101',
-    black: '#111111',
     newsText: '#111321',
     maleColor: '#23C2EF',
     femaleColor: '#FF8787',

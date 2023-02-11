@@ -4,7 +4,6 @@ import { theme } from '../utils/theme';
 
 export const Container = styled.div`
   font-family: ${theme.fonts.body};
-  background: ${theme.colors.mainBg};
   margin: 0 auto;
   @media (max-width: 767px) {
     padding: 0 20px;
@@ -66,19 +65,19 @@ export const Card = styled.div`
 `;
 
 export const FriendsCard = styled.div`
-  /* width: 280px; */
-  height: 192px;
+  width: 280px;
+  padding: 12px 4px;
   background: ${theme.colors.accentText};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
   cursor: pointer;
   @media (min-width: 768px) {
     border-radius: 40px;
-    /* width: 336px; */
+    width: 336px;
     height: 246px;
   }
   @media (min-width: 1280px) {
-    /* width: 395px; */
+    width: 395px;
     height: 287px;
   }
 `;
