@@ -26,7 +26,10 @@ export const useNews = () => {
 };
 
 export const useNotices = () => {
-  return;
+  const sellNotices = useSelector(state => state.notices.sellNotices);
+  const isLoading = useSelector(state => state.notices.isLoading);
+  const error = useSelector(state => state.notices.error);
+  return { sellNotices, isLoading, error };
 };
 
 export const useFriends = () => {

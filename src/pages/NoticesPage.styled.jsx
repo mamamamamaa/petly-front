@@ -75,6 +75,7 @@ export const NoticesNavLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
   background-color: #ffffff;
   border: 2px solid #f59256;
   border-radius: 40px;
