@@ -4,6 +4,7 @@ import { theme } from '../../utils/theme';
 
 export const Title = styled.h2`
   color: ${theme.colors.textTitleColor};
+  margin-bottom: 18px;
   text-decoration: none;
   font-weight: 500;
   font-size: 20px;
@@ -48,6 +49,7 @@ box-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
 `
 
 export const UserPhoto = styled.img`
+  position: relative;
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
   width: 233px;
   height: 233px;
@@ -76,7 +78,7 @@ export const Btn = styled.button`
   }
 `
 export const InputAvatar = styled.input`
-  z-index: 100 ;
+  // z-index: 100 ;
 `
 export const Span = styled.span`
   margin-left: 4px;
@@ -99,13 +101,8 @@ padding: 0;
 
 `
 export const Form1 = styled(Form)`
- position: relative;
-  width: px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
+   display: grid;
+   
   margin: 0 auto;
 
 
@@ -114,15 +111,14 @@ export const DivInput = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px
+  margin-bottom: 8px;
+  
 `
 export const Label = styled.label`
-  width: 56px;
+  
   font-weight: 400;  
   color: #111111;
-  margin-right: 10px;
-  font-size: 24px;
-  line-height: 1.36;
+  
   `
 
 
@@ -131,28 +127,43 @@ export const Input = styled(Field)`
 
   width: 160px;
   height: 24px;
-  margin-right: 14px;
-  padding-left: 0 px;
+  margin-right: 14px;  
   border: 1px solid transparent;
+  border-radius: 40px;
   font-weight: 400;
   letter-spacing: 0.04em;
   font-size: 14px;
-  
+  background: transparent;
   color: #111111;
-  background-color: #FFFFFF;
-  outline: none;
-  //margin: 0 auto;
+  
+  //outline: none;
+  &:hover{
+    background: #FDF7F2;
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    border-radius: 40px;
+  }
 `
 
 export const BtnInput = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${theme.colors.mainBg};
+  background: '#FDF7F2';
   border-radius: 50%;
   border: none;
   width: 30px;
-  height: 30px;
+  height: 30px;  
+  
+  cursor: pointer;
+  &.active{
+    color:#F59256;
+  }
+   &.focus{
+      color:#F59256 50 %;
+      outline: "none",
+      transform: "scale(1.15)"
+    },
+  
 `
 
 export const BtnLogOut = styled.button`

@@ -12,8 +12,7 @@ const initialState = {
     city: null,
     phone: null,
     birthday: ' ',
-    avatar: null,
-    favorites: [],    
+    avatarUrl: null,
   },
   isLoading: false,
   error: null,
@@ -29,20 +28,13 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(getUserData.fulfilled, (state, action) => {
-        state.user = action.payload;
-        // state.isLoading = false;
-        // state.error = null;
-        state.user.name = action.payload.name;
-        state.user.email = action.payload.email;
-        state.user.phone = action.payload.phone;
-        state.user.city = action.payload.city;
-        state.user.avatar = action.payload.avatar;
-        state.user.birthday = action.payload.birthday;
-        state.isLoggedIn = true;
+        state.user = action.payload;             
+        state.isLoading = false;
+        
       })
       .addCase(getUserData.rejected, (state, action) => {
-        state.error = action.payload;
-        
+        //state.error = action.payload;
+        state.isLoading = false;
       })      
       .addCase(updateUserData.pending, (state, action) => {
         state.error = null;

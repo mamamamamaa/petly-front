@@ -3,7 +3,7 @@
 import UserCard from '../components/UserCard/UserCard';
 
 const UserPage = () => {
-  return <>User page
+  return <>
     <UserCard/>
   </>;
 };

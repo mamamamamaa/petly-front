@@ -1,19 +1,21 @@
 
 import { useDispatch } from 'react-redux';
 import { useUser } from '../../redux/hooks';
-
-
+import { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import {
-  Wrapper, DivPhoto, Shadow, UserPhoto, ImgAvatar, InputAvatar, Card, Btn, Span, Wrap, FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut } from './UserCard.styled';
+  Title, Wrapper, DivPhoto, Shadow, UserPhoto, Label, ImgAvatar, InputAvatar, Card, Btn, Span, Wrap, FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut } from './UserCard.styled';
 
 import { Container } from "../../utils/reusable";
+
 import { HiCamera } from "react-icons/hi2";
 import { HiPencil } from "react-icons/hi";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut, FiCheck } from "react-icons/fi";
+
 import { updateUserData, getUserData } from '../../redux/user/operations';
 
 import { Formik, useFormik } from 'formik';
+import avatar from "../../images/avatart.jpg";
 
 import { useEffect } from 'react';
 
@@ -37,11 +39,19 @@ console.log(getUserData());
 
 const UserCard = () => {
     //=========for avatar============
-   
+  const [changeBtn, setChangeBtn] = useState(false);
+
+  const handleClick = () => {
+      setChangeBtn(!changeBtn)
+  }
+  
     const dispatch = useDispatch();
     const userPhoto = useUser();
-    console.log(userPhoto)
-    //const userData = useUser();//достать данные после auth
+    const {user}= useUser();
+
+    
+    //const {user} = useUser();//достать данные после auth
+  console.log(getUserData)
   
     const onChangeHandler = e => {
         console.log("1111")
@@ -54,23 +64,23 @@ const UserCard = () => {
   
 //////формик 
     const onSubmit = values => {
-    const { name, email, birthday, mobilePhone, city } = values;
+    const { name, email, birthday, phone, city } = values;
         dispatch(
         ///// проверить на birthday updateUserData
       updateUserData({
         name,
         email,
         birthday,
-        mobilePhone,
+        phone,
         city,
       }),
      
     );
-  };
-     
+    };
+   console.log(user)
     const formik = useFormik({
     initialValues: {
-      name: '',
+      name: user.name,      
       email: '',      
       Birthday: '',
       mobilePhone: '',
@@ -80,22 +90,31 @@ const UserCard = () => {
   
   useEffect(() => {
       dispatch(getUserData())
-      console.log("uuu")
+      console.log("getUserData")
  },[dispatch])
 
     return (
 
         <NavLink to="/user">
            
-            <Container>
-                <Card>
+        <Container>
+         <Title>My information:</Title> 
+          <Card>
+            
             <Wrapper>
                <Shadow>
                     <DivPhoto>
                        
                       {userPhoto ? (
-                            <UserPhoto src={userPhoto} alt="photo" />
-                        ) : (<ImgAvatar src={HiCamera} alt=""/>)}
+                    <UserPhoto src={userPhoto}
+                                        width="233"
+                                        height="233"
+                                        alt="photo" />
+                        ) : (<ImgAvatar src={avatar}
+                                        alt="User avatar"
+                                        // loading="lazy"
+                                          width="233"
+                                          height="233"/>)}
                     </DivPhoto></Shadow>
                     <Btn>
                        <label htmlFor="photo_uploads">
@@ -115,74 +134,110 @@ const UserCard = () => {
                        
                     />
                     </Btn></Wrapper>
-                    
+               
             <FormWrap>      
-            <Formik onSubmit={formik.handleSubmit}>           
+              <Formik onSubmit={formik.handleSubmit}>  
+
+            
          
             <Form1>
-            <DivInput>
-            <label   align-content="flex-start">
+                  <DivInput>
+            <Label>
                                     
               Name:
               <Input 
                     name="name"
                     type="name"
-                    placeholder="Name:"
-                    onChange={formik.handleChange}
+                    placeholder="name"
+                        onChange={formik.handleChange}
+                        onClick ={handleClick}
                     value={formik.values.name} />
             
-            </label>
-            <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>
+            </Label>
+                    <BtnInput
+                      type="button" onClick ={handleClick} >
+                      {(changeBtn === true) ? <FiCheck color="#F59256"
+                                               width="30" heigh="30"/> :
+                                              <HiPencil color="rgba(17, 17, 17, 0.6);"
+                                               width="30" heigh="30"/>}
+
+                    </BtnInput>
             </DivInput>
             
             <DivInput>               
-            <label>
+            <Label>
               Email:
             <Input
+                    id="name"
                     name="email"
                     type="email"
-                    placeholder="xxxx00@gmail.com"
-                    onChange={formik.handleChange}
+                    placeholder="email"
+                        onChange={formik.handleChange}
+                        onClick ={handleClick}
                     value={formik.values.email} />
-            </label>
-            <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>
+            </Label>
+                    
+            <BtnInput
+                      type="button" onClick ={handleClick} >
+                      {(changeBtn === true) ? <FiCheck color="#F59256"
+                                               width="30" heigh="30"/> :
+                                              <HiPencil color="rgba(17, 17, 17, 0.6);"
+                                               width="30" heigh="30"/>}
+
+            </BtnInput>
             </DivInput> 
                             
             <DivInput>
-            <label>
+            <Label>
               Birthday: 
             <Input name="Birthday:"
-                    
-                   placeholder="00.00.0000"
+                       type="text"
+                        placeholder="00.00.0000"
                />
-            </label>
+            </Label>
             <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>        
             </DivInput>                
                             
-            <DivInput>
-            <label>
+            <DivInput autoComplete="off">
+            <Label>
               Phone:
             <Input name="mobilePhone"
                     type="text"
                     placeholder="+38000000000"
-                    onChange={formik.handleChange}
+                        onChange={formik.handleChange}
+                        onClick ={handleClick}
                     value={formik.values.mobilePhone}/>                              
                                        
-            </label>
-            <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>
+            </Label>
+            <BtnInput
+                      type="button" onClick ={handleClick} >
+                      {(changeBtn === true) ? <FiCheck color="#F59256"
+                                               width="30" heigh="30"/> :
+                                              <HiPencil color="rgba(17, 17, 17, 0.6);"
+                                               width="30" heigh="30"/>}
+
+            </BtnInput>
             </DivInput>                
                             
             <DivInput>
-            <label>
+            <Label>
               City:
             <Input  name="city"
                     type="text"
                     placeholder="City, region"
-                    onChange={formik.handleChange}
+                        onChange={formik.handleChange}
+                        onClick ={handleClick}
                     value={formik.values.city}/>
                                                 
-            </label>
-            <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>                   
+            </Label>
+            <BtnInput
+                      type="button" onClick ={handleClick} >
+                      {(changeBtn === true) ? <FiCheck color="#F59256"
+                                               width="30" heigh="30"/> :
+                                              <HiPencil color="rgba(17, 17, 17, 0.6);"
+                                               width="30" heigh="30"/>}
+
+            </BtnInput>                   
             </DivInput>                
 
             
@@ -192,13 +247,20 @@ const UserCard = () => {
                  
             </FormWrap>
             
-            <BtnInput><HiPencil color="rgba(17, 17, 17, 0.6)" /></BtnInput>
+            <BtnInput
+                      type="button" onClick ={handleClick} >
+                      {(changeBtn === true) ? <FiCheck color="#F59256"
+                                               width="30" heigh="30"/> :
+                                              <HiPencil color="rgba(17, 17, 17, 0.6);"
+                                               width="30" heigh="30"/>}
+
+            </BtnInput>                   
             
             {/* <BtnInput type="submit" color="#F59256"><HiPencil/></BtnInput> */}
             
             
             <BtnLogOut>
-              <FiLogOut color="#F59256" />Log Out
+              {<FiLogOut color="#F59256" />}Log Out
             </BtnLogOut>
         </Card>
 
