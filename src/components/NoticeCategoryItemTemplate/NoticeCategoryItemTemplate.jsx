@@ -55,7 +55,7 @@ export const NoticeCategoryItemTemplate = ({
 
   return (
     <>
-      <Modal>
+      {/* <Modal>
         <ListModalCardNotice
           date={{
             _id,
@@ -72,7 +72,7 @@ export const NoticeCategoryItemTemplate = ({
             price,
           }}
         />
-      </Modal>
+      </Modal> */}
       <PhotoPetWrapper>
         <PhotoPet src={photoUrl} alt="Pet" />
         <AdvWrapper>
