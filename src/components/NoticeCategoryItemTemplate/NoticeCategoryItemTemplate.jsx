@@ -33,7 +33,6 @@ import { ListModalCardNotice } from '../ListModalCardNotice/ListModalCardNotice.
 
 export const NoticeCategoryItemTemplate = ({
   _id,
-  name,
   photoUrl,
   title,
   breed,
@@ -43,13 +42,9 @@ export const NoticeCategoryItemTemplate = ({
   owner,
   sex,
   email,
-  phone,
+  mobilePhone,
   price,
-  comments,
 }) => {
-  // состояние модального окна
-  const [modal, setModal] = useState(false);
-
   const dispatch = useDispatch();
   const { user } = useAuth();
 
@@ -58,33 +53,26 @@ export const NoticeCategoryItemTemplate = ({
 
   const [fav, setFav] = useState(isFavorite);
 
-  // открытие и закрытие модального окна
-  const modalHandler = () => setModal(prevState => !prevState);
-
   return (
     <>
-      {modal && (
-        <Modal onClose={modalHandler}>
-          <ListModalCardNotice
-            date={{
-              _id,
-              name,
-              photoUrl,
-              title,
-              breed,
-              type,
-              place,
-              dateOfBirth,
-              owner,
-              sex,
-              email,
-              phone,
-              price,
-              comments,
-            }}
-          />
-        </Modal>
-      )}
+      {/* <Modal>
+        <ListModalCardNotice
+          date={{
+            _id,
+            photoUrl,
+            title,
+            breed,
+            type,
+            place,
+            dateOfBirth,
+            owner,
+            sex,
+            email,
+            mobilePhone,
+            price,
+          }}
+        />
+      </Modal> */}
       <PhotoPetWrapper>
         <PhotoPet src={photoUrl} alt="Pet" />
         <AdvWrapper>
@@ -123,7 +111,7 @@ export const NoticeCategoryItemTemplate = ({
             <CardNewDate date={dateOfBirth} />
           </PetSpan>
         </PetSpanWrapper>
-        <PetDetailsButton onClick={modalHandler}>
+        <PetDetailsButton>
           <PetDetailsButtonText>Learn More</PetDetailsButtonText>
         </PetDetailsButton>
         {isOwn && (

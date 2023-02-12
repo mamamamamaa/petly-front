@@ -16,25 +16,18 @@ export const NoticesContainer = ({ pets = [] }) => {
             {pets.map(
               ({
                 _id,
-                name = 'unknown',
                 photoUrl = noPoster,
                 title,
-                breed = 'unknown',
-                type = 'unknown',
-                place = 'unknown',
-                dateOfBirth = 'unknown',
-                owner = 'unknown',
-                sex = 'unknown',
-                email = 'unknown',
-                phone = 'unknown',
-                price,
-                comments = 'unknown',
+                type,
+                breed,
+                place,
+                dateOfBirth,
+                owner,
               }) => (
                 <NoticeCategoryItem key={_id}>
                   <NoticeCategoryItemTemplate
                     {...{
                       _id,
-                      name,
                       photoUrl,
                       title,
                       breed,
@@ -42,11 +35,6 @@ export const NoticesContainer = ({ pets = [] }) => {
                       place,
                       dateOfBirth,
                       owner,
-                      sex,
-                      email,
-                      phone,
-                      price,
-                      comments,
                     }}
                   />
                 </NoticeCategoryItem>
