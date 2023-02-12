@@ -16,6 +16,7 @@ export const ModalAddsPet = ({onClose}) => {
         comments:""
     });
 
+
     const handleNextStep = (newData, final=false) => {  
         console.log('newData in 1 step', newData);
         if(final){
@@ -36,6 +37,7 @@ export const ModalAddsPet = ({onClose}) => {
             formData.append('name', newData.name);
 console.log('formData', formData);
 console.log('newData after formData.append', newData);
+
             dispatch(addOwnPet(newData));     
             return
         }
@@ -44,7 +46,6 @@ console.log('newData after formData.append', newData);
     }
 
     const handlePrevStep = (newData) => {
-        // console.log('newData', newData);
         setData(prevData => ({...prevData, ...newData}));
         setCurrentStep(prevStep => prevStep - 1);
     }
@@ -64,7 +65,7 @@ console.log('newData after formData.append', newData);
     <AddOwnPetStepOne next={handleNextStep} data={data} cancel={cancelData}/>, 
     <AddOwnPetStepTwo next={handleNextStep} data={data} prev={handlePrevStep} onClose={onClose}/>
 ];
-    // console.log('data', data);
+    
     return <div>
         <h3>Add pet</h3>
         {steps[currentStep]}
