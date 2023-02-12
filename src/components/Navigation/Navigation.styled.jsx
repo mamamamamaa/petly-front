@@ -71,6 +71,5 @@ export const NavigLink = styled(NavLink)`
     &.active {
         color: ${props => props.theme.colors.primary};
         text-decoration: underline;
-        font-weight: ${props => props.theme.fontWeights.bold};
     };
 `;
