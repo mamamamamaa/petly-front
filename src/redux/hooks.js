@@ -27,6 +27,7 @@ export const useNews = () => {
 
 export const useNotices = () => {
   const sellNotices = useSelector(state => state.notices.sellNotices);
+  console.log(sellNotices);
   const lostFoundNotices = useSelector(state => state.notices.lostFoundNotices);
   const goodHandsNotices = useSelector(state => state.notices.goodHandsNotices);
   const isLoading = useSelector(state => state.notices.isLoading);

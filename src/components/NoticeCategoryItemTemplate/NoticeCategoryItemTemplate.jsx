@@ -28,6 +28,8 @@ import { useDispatch } from 'react-redux';
 import { deleteNotice } from '../../redux/notices/operations';
 import { useState } from 'react';
 import CardNewDate from '../../utils/CardNewDate/cardNewDate';
+import { Modal } from '../Modal/Modal';
+import { ListModalCardNotice } from '../ListModalCardNotice/ListModalCardNotice.jsx';
 
 export const NoticeCategoryItemTemplate = ({
   _id,
@@ -38,6 +40,10 @@ export const NoticeCategoryItemTemplate = ({
   place,
   dateOfBirth,
   owner,
+  sex,
+  email,
+  mobilePhone,
+  price,
 }) => {
   const dispatch = useDispatch();
   const { user } = useAuth();
@@ -49,6 +55,24 @@ export const NoticeCategoryItemTemplate = ({
 
   return (
     <>
+      <Modal>
+        <ListModalCardNotice
+          date={{
+            _id,
+            photoUrl,
+            title,
+            breed,
+            type,
+            place,
+            dateOfBirth,
+            owner,
+            sex,
+            email,
+            mobilePhone,
+            price,
+          }}
+        />
+      </Modal>
       <PhotoPetWrapper>
         <PhotoPet src={photoUrl} alt="Pet" />
         <AdvWrapper>
