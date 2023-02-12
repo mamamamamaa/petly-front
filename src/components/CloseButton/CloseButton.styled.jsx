@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { theme } from '../../helpers';
+import { theme } from '../../utils';
 
 export const Close = styled.button`
   cursor: pointer;

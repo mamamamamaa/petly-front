@@ -25,7 +25,7 @@ export const PetsData = () => {
     const handleModal =()=>{
         setShowModal(prevShowModal=>!prevShowModal);
     }
-
+    
     return (
     <Section>
         <h2>My pets:</h2>
