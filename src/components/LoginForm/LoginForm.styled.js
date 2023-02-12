@@ -3,9 +3,9 @@ import { NavLink} from "react-router-dom";
 import { media } from "../Layout/Layout.styled";
 import { theme } from "../../utils/theme.jsx";
 import { Field, Form } from "formik";
-import mobileBackground from '../../images/mobile/wave.svg';
-import tabletBackground from '../../images/tablet/wave.svg';
-import desktopBackground from '../../images/desktop/huge-part-of-wave.svg';
+import mobileBackground from '../../images/mobile/log-registr-mobile.png';
+import tabletBackground from '../../images/tablet/log-registr-tablet.png';
+import desktopBackground from '../../images/desktop/log-registr-desktop.png';
 
 export const Container = styled.div`
   padding-top: 42px;

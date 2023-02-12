@@ -4,9 +4,9 @@ import { theme } from '../../utils';
 import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 // import MaskedInput from 'react-text-mask';
-import mobileBackground from '../../images/mobile/wave.svg';
-import tabletBackground from '../../images/tablet/wave.svg';
-import desktopBackground from '../../images/desktop/huge-part-of-wave.svg';
+import mobileBackground from '../../images/mobile/log-registr-mobile.png';
+import tabletBackground from '../../images/tablet/log-registr-tablet.png';
+import desktopBackground from '../../images/desktop/log-registr-desktop.png';
 
 export const FormContainer = styled.div`
   width: 100%;
