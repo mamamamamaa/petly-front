@@ -3,20 +3,25 @@ import { NavLink} from "react-router-dom";
 import { media } from "../Layout/Layout.styled";
 import { theme } from "../../utils/theme.jsx";
 import { Field, Form } from "formik";
+import mobileBackground from '../../images/mobile/log-registr-mobile.png';
+import tabletBackground from '../../images/tablet/log-registr-tablet.png';
+import desktopBackground from '../../images/desktop/log-registr-desktop.png';
 
 export const Container = styled.div`
   padding-top: 42px;
+  background-image: url(${mobileBackground});
   background-position: center bottom;
   background-size: contain;
   background-repeat: no-repeat;
-  height: calc(100vh - 74px);
+  height: calc(100vh - 68px);
   ${media.tablet} {
     padding-top: 204px;
-    height: calc(100vh - 96px);
+    background-image: url(${tabletBackground});
+    height: calc(100vh - 71px);
   }
   ${media.desktop} {
     padding-top: 80px;
-    height: calc(100vh - 88px);
+    background-image: url(${desktopBackground});
   }
 `;
 
@@ -230,4 +235,29 @@ export const ErrorText = styled.div`
   line-height: 1.4;
   letter-spacing: 0.03em;
   color: #e53e3e;
+`;
+
+export const FieldWrap = styled.div`
+  position: relative;
+`;
+
+export const ShowPassword = styled.span`
+  display: inline-block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: grey;
+  cursor: pointer;
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+  ${media.tabletAndDesktop} {
+    width: 22px;
+    height: 22px;
+    right: 32px;
+  }
 `;
