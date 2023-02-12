@@ -74,11 +74,11 @@ export const FriendsCard = styled.div`
   @media (min-width: 768px) {
     border-radius: 40px;
     width: 336px;
-    height: 246px;
+    /* height: 246px; */
   }
   @media (min-width: 1280px) {
     width: 395px;
-    height: 287px;
+    height: 305px;
   }
 `;
 

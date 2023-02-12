@@ -13,6 +13,7 @@ import {
   FormContainer,
   Input,
   Button,
+  Text,
   Title,
   ErrBox,
   BackButton,
@@ -240,10 +241,10 @@ const RegisterForm = () => {
                 Back
               </BackButton>
             )}
-            <div>
+            <Text>
               <span>Already have an account?</span>{' '}
               <StyledLink to="/login">Login</StyledLink>
-            </div>
+            </Text>
           </Form1>
         </Formik>
       </FormContainer>

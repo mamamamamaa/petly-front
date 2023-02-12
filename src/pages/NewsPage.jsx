@@ -2,28 +2,16 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
-import moment from 'moment';
 // =======
 import SearchBar from '../utils/searchBar/searchBar';
-import {
-  Container,
-  MainHeader,
-  Ul,
-  Li,
-  Box,
-  ColorBox,
-  Header,
-  Paragraph,
-  Wraper,
-  DateBox,
-  BoxHref,
-} from './NewsPage.styled';
+import ListNews from '../components/ListNews/ListNews';
+import { Container, MainHeader } from './NewsPage.styled';
 // =======
 
 // ================= запрос
 export async function fetchSearchNews(query) {
   if (query === '') {
-    query = 'animals';
+    query = 'dog';
   }
   const { data } = await axios.get(
     `http://localhost:3001/api/news?query=${query}`
@@ -34,7 +22,7 @@ export async function fetchSearchNews(query) {
 // ================= логика
 export default function NewsPage() {
   const [searchNews, setSearchNews] = useState([]);
-  const [query, setQuery] = useState('animals');
+  const [query, setQuery] = useState('dog');
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [ setSearchParams] = useSearchParams();
@@ -83,39 +71,5 @@ export default function NewsPage() {
       <ListNews news={searchNews} />
       <Toaster />
     </Container>
-  );
-}
-
-// функция преобразования даты в правильный формат
-function NewDate({ date }) {
-  return moment(date).format('L');
-}
-
-// ================= функция разметки
-function ListNews({ news }) {
-  return (
-    <Ul>
-      {news.map(item => (
-        <Li key={item.id}>
-          <Box>
-            <ColorBox></ColorBox>
-            <Header>{item.title}</Header>
-            <Paragraph>{item.body}</Paragraph>
-            <Wraper>
-              <DateBox>
-                <NewDate date={item.datePublished} />
-              </DateBox>
-              <BoxHref
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Read more
-              </BoxHref>
-            </Wraper>
-          </Box>
-        </Li>
-      ))}
-    </Ul>
   );
 }

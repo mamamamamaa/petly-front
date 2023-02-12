@@ -1,15 +1,35 @@
 import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { media } from "../Layout/Layout.styled";
 import { theme } from "../../utils/theme.jsx";
-import { Field } from "formik";
+import { Field, Form } from "formik";
+import mobileBackground from '../../images/mobile/log-registr-mobile.png';
+import tabletBackground from '../../images/tablet/log-registr-tablet.png';
+import desktopBackground from '../../images/desktop/log-registr-desktop.png';
 
 export const Container = styled.div`
+  padding-top: 42px;
+  background-image: url(${mobileBackground});
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: calc(100vh - 68px);
+  ${media.tablet} {
+    padding-top: 204px;
+    background-image: url(${tabletBackground});
+    height: calc(100vh - 71px);
+  }
+  ${media.desktop} {
+    padding-top: 80px;
+    background-image: url(${desktopBackground});
+  }
+`;
+
+export const FormLogin = styled(Form)`
   width: 280px;
   padding-inline: 0px;
-  padding-top: 42px;
   padding-bottom: 0px;
-  background-color: ${theme.colors.secondary};
+  background-color: transparent;
   margin-inline: auto;
   box-sizing: border-box;
   ${media.tablet} {
@@ -59,7 +79,7 @@ export const Input = styled(Field)`
   font-family: 'Manrope';
   font-weight: ${theme.fontWeights.news};
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.3;
   align-items: center;
   letter-spacing: 0.04em;
   color: ${theme.colors.black};
@@ -134,11 +154,44 @@ export const Button = styled.button`
   align-items: center;
   text-align: center;
   letter-spacing: 0.04em;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
-    color: ${theme.colors.black};
+    /* color: ${theme.colors.black};
     border: 2px solid ${theme.colors.primary};
-    background-color: ${theme.colors.accentText};
+    background-color: ${theme.colors.accentText}; */
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
+  }
+  :disabled {
+    opacity: 0.5;
+    cursor: auto;
+    transform: none;
+    transition: none;
+  }
+  :disabled:before {
+    transform: none;
+    transition: none;
   }
   ${media.tablet} {
     width: 458px;
@@ -163,9 +216,14 @@ export const Text = styled.div`
   color: ${theme.colors.gray};
 `;
 
-export const Link = styled(NavLink)`
+export const StyledLink = styled(NavLink)`
   color: ${theme.colors.blue};
   text-decoration: none;
+  transition: color ${theme.colors.background};
+  :hover,
+  :focus {
+    color: ${theme.colors.primary};
+  }
 `;
 
 export const ErrorText = styled.div`
@@ -177,4 +235,29 @@ export const ErrorText = styled.div`
   line-height: 1.4;
   letter-spacing: 0.03em;
   color: #e53e3e;
+`;
+
+export const FieldWrap = styled.div`
+  position: relative;
+`;
+
+export const ShowPassword = styled.span`
+  display: inline-block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: grey;
+  cursor: pointer;
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+  ${media.tabletAndDesktop} {
+    width: 22px;
+    height: 22px;
+    right: 32px;
+  }
 `;
