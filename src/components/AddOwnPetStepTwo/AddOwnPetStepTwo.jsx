@@ -1,25 +1,27 @@
-// import { Field, Form, Formik } from "formik"
-// import { useState } from "react";
 import { useFormik } from 'formik';
 
 export const AddOwnPetStepTwo = ({data, next, prev, onClose}) => {
 
-    const handleBack= 
-    // (values, actions)=>{
-        (event) => {
-        // console.log('values', values);
-        // console.log('actions', actions);
-        console.log('event', event);
+    const handleBack= ()=>{        
+        const newValue = {
+            ...data,
+            ...formik.values,
+        }
+        prev(newValue);
     }
 
     const formik = useFormik({
-        initialValues: {
-            pictureURL: '',
-            comments: '',
-        },
+        initialValues: data,
         onSubmit: (values, actions)=>{
-            console.log('values', values);
-            console.log('actions', actions);
+            actions.validateForm();   
+        const newValue = {
+            ...data,
+            ...values,
+        }
+
+        next(newValue, true);        
+        actions.resetForm();
+        onClose();
         }, 
         
       });
@@ -32,7 +34,7 @@ export const AddOwnPetStepTwo = ({data, next, prev, onClose}) => {
                 name='pictureURL'
                 accept='image/*'
                 onChange={(e) =>
-                    formik.setFieldValue('pictureURL', e.currentTarget.files[0])
+                    formik.setFieldValue('pictureURL', e.currentTarget.files[0], e.currentTarget.files[0].name)
                 }
                 />
             </div>
@@ -54,7 +56,7 @@ export const AddOwnPetStepTwo = ({data, next, prev, onClose}) => {
     </form>
         );
     };
-//     const [file, setFile]=useState();
+//     
 
 //     const handleSubmit = (values, actions) => { 
 //         actions.validateForm();   
@@ -76,8 +78,8 @@ export const AddOwnPetStepTwo = ({data, next, prev, onClose}) => {
 //     }
 
 //     const handleBack = (values, actions) => {  
-//         actions.setValues();
-//         prev(values);
+        // actions.setValues();
+        // prev(values);
 //     }
 //     // enctype="multipart/form-data"
 //     return <Formik 
