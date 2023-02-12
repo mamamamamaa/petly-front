@@ -1,21 +1,56 @@
-import { createSlice
-  // , isAnyOf 
-} from '@reduxjs/toolkit';
+
+import { createSlice, isAnyOf} from '@reduxjs/toolkit';
+import { updateUserData, getUserData } from './operations';
 import {fetchUserPets, addOwnPet, deleteOneOwnPet} from './operations';
 
-// const extraActions = [fetchUserPets, addOwnPet, deleteOneOwnPet];
+const extraActions = [fetchUserPets, addOwnPet, deleteOneOwnPet, updateUserData, getUserData];
 
-const initialState = {
+const initialState = {  
+  user: {
+    email: null,
+    name: null,
+    _id: null,
+    city: null,
+    phone: null,
+    birthday: ' ',
+    avatarUrl: null,
+  },
   isLoading: false,
   error: null,
   pets:[],
+
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  extraReducers: builder => builder
-    .addCase(fetchUserPets.fulfilled, (state, action)=>{
+  
+  extraReducers(builder) {
+    builder
+      .addCase(getUserData.pending, (state, action) => {
+        state.error = null;
+      })
+      .addCase(getUserData.fulfilled, (state, action) => {
+        state.user = action.payload;             
+        state.isLoading = false;
+        
+      })
+      .addCase(getUserData.rejected, (state, action) => {
+        //state.error = action.payload;
+        state.isLoading = false;
+      })      
+      .addCase(updateUserData.pending, (state, action) => {
+        state.error = null;
+      })
+      .addCase(updateUserData.fulfilled, (state, action) => {
+        state.status = "succeeded"
+        state.data = { ...state.data, ...action.payload };
+      })
+      .addCase(updateUserData.rejected, (state, action) => {
+        state.status = "failed"
+        state.error = action.error.message
+      })
+       .addCase(fetchUserPets.fulfilled, (state, action)=>{
       console.log('state', state);
       console.log('action', action);
       state.pets = action.payload;
@@ -54,7 +89,12 @@ const userSlice = createSlice({
     //     state.isLoading = false
     //   }
     // )
-    ,
+     
+    
+    
+  } 
+      
+
 });
 
 export const userReducer = userSlice.reducer;
