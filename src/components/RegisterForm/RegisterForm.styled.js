@@ -27,6 +27,7 @@ export const FormContainer = styled.div`
     padding-bottom: 147px;
   }
 `;
+
 export const Title = styled.h2`
   font-size: 24px;
   font-weight: ${theme.fontWeights.bold};
@@ -37,6 +38,7 @@ export const Title = styled.h2`
     font-weight: ${theme.fontWeights.normal};
   }
 `;
+
 export const Form1 = styled(Form)`
   position: relative;
   width: 280px;
@@ -51,7 +53,7 @@ export const Form1 = styled(Form)`
     width: 608px;
     margin: 0 auto;
     padding: 60px 0 40px 0;
-    background-color: ${theme.colors.white};
+    background-color: ${theme.colors.accentText};
     border-radius: 40px;
     -webkit-box-shadow: 7px 4px 14px 0 rgba(0, 0, 0, 0.11);
     -moz-box-shadow: 7px 4px 14px 0 rgba(0, 0, 0, 0.11);
@@ -68,6 +70,7 @@ export const Form1 = styled(Form)`
     font-size: 12px;
   }
 `;
+
 export const ShowPassword = styled.span`
   display: inline-block;
   position: absolute;
@@ -82,18 +85,22 @@ export const ShowPassword = styled.span`
     height: inherit;
   }
 `;
+
 export const Input = styled(Field)`
   width: 280px;
   font-size: 14px;
   line-height: 1.3;
   padding: 11px 0 12px 14px;
+  font-weight: ${theme.fontWeights.news};
+  color: ${theme.colors.black};
   background: ${theme.colors.background};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin-bottom: 16px;
   &:focus,
   &:hover {
-    outline: none;
+    border: 2px solid ${theme.colors.primary};
+    outline: 0;
   }
   ${media.tabletAndDesktop} {
     width: 448px;
@@ -104,6 +111,7 @@ export const Input = styled(Field)`
     width: 458px;
   }
 `;
+
 export const PhoneInput = styled(Field)`
   width: 280px;
   padding: 11px 0 12px 14px;
@@ -113,7 +121,8 @@ export const PhoneInput = styled(Field)`
   margin-bottom: 16px;
   &:focus,
   &:hover {
-    outline: none;
+    border: 2px solid ${theme.colors.primary};
+    outline: 0;
   }
   ${media.tabletAndDesktop} {
     width: 448px;
@@ -124,11 +133,12 @@ export const PhoneInput = styled(Field)`
     width: 458px;
   }
 `;
+
 export const Button = styled.button`
   width: 100%;
   padding: 11px 0 12px 14px;
   text-align: center;
-  color: ${theme.colors.white};
+  color: ${theme.colors.accentText};
   background: ${theme.colors.primary};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
@@ -177,12 +187,13 @@ export const Button = styled.button`
     font-size: 20px;
   }
 `;
+
 export const BackButton = styled.button`
   width: 100%;
   padding: 11px 0 12px 14px;
   text-align: center;
   color: #000;
-  background: ${theme.colors.white};
+  background: ${theme.colors.accentText};
   border: 1px solid ${theme.colors.primary};
   border-radius: 40px;
   margin: -26px 0 40px 0;
@@ -219,6 +230,7 @@ export const BackButton = styled.button`
     font-size: 20px;
   }
 `;
+
 export const ErrBox = styled.div`
   position: absolute;
   white-space: nowrap;
@@ -231,6 +243,7 @@ export const ErrBox = styled.div`
     left: 33px;
   }
 `;
+
 export const StyledLink = styled(Link)`
   color: ${theme.colors.blue};
   transition: color ${theme.colors.background};
@@ -238,4 +251,18 @@ export const StyledLink = styled(Link)`
   :focus {
     color: ${theme.colors.primary};
   }
+`;
+
+export const Text = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: ${theme.fontWeights.news};
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  color: ${theme.colors.gray};
 `;

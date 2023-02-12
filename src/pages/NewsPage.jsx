@@ -3,26 +3,15 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
 // =======
-import SearchBar from '../utils/searchBar/searchBar';
-import {
-  Container,
-  MainHeader,
-  Ul,
-  Li,
-  Box,
-  ColorBox,
-  Header,
-  Paragraph,
-  Wraper,
-  DateBox,
-  BoxHref,
-} from './NewsPage.styled';
+import SearchBar from '../utils/SearchBar/searchBar';
+import ListNews from '../components/ListNews/ListNews';
+import { Container, MainHeader } from './NewsPage.styled';
 // =======
 
 // ================= запрос
 export async function fetchSearchNews(query) {
   if (query === '') {
-    query = 'animals';
+    query = 'dog';
   }
   const { data } = await axios.get(
     `http://localhost:3001/api/news?query=${query}`
@@ -33,7 +22,7 @@ export async function fetchSearchNews(query) {
 // ================= логика
 export default function NewsPage() {
   const [searchNews, setSearchNews] = useState([]);
-  const [query, setQuery] = useState('animals');
+  const [query, setQuery] = useState('dog');
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -78,36 +67,9 @@ export default function NewsPage() {
     <Container>
       <MainHeader>News</MainHeader>
       <SearchBar onSubmit={handlerFormSubmit} />
-      {isLoading && <h2>... Загрузка</h2>}
+      {isLoading && <h2>... is loading</h2>}
       <ListNews news={searchNews} />
       <Toaster />
     </Container>
-  );
-}
-
-// ================= функция разметки
-function ListNews({ news }) {
-  return (
-    <Ul>
-      {news.map(item => (
-        <Li key={item.id}>
-          <Box>
-            <ColorBox></ColorBox>
-            <Header>{item.title}</Header>
-            <Paragraph>{item.body}</Paragraph>
-            <Wraper>
-              <DateBox>{item.datePublished}</DateBox>
-              <BoxHref
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Read more
-              </BoxHref>
-            </Wraper>
-          </Box>
-        </Li>
-      ))}
-    </Ul>
   );
 }

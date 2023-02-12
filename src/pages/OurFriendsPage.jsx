@@ -1,5 +1,13 @@
+import React from 'react';
+import FriendsContainer from '../components/OurFriends/FriendsContainer/FriendsContainer';
+import FriendsList from '../components/OurFriends/FriendsList/FriendsList';
+
 const OurFriendsPage = () => {
-  return <>Our friends page</>;
+  return (
+    <FriendsContainer>
+      <FriendsList />
+    </FriendsContainer>
+  );
 };
 
 export default OurFriendsPage;
