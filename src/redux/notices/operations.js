@@ -33,9 +33,12 @@ export const sell = createAsyncThunk('notices/sell', async (page = 1, thunkAPI) 
 
 export const goodHands = createAsyncThunk(
   'notices/good-hands',
-  async (_, thunkAPI) => {
+  async (page = 1, thunkAPI) => {
+    const limit = 20;
     try {
-      const res = await axios.get(`/api/notices/paginateNotice?type=good-hands`);
+      const res = await axios.get(
+        `/api/notices/paginateNotice?type=good-hands&page=${page}&limit=${limit}`
+      );
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

@@ -6,24 +6,24 @@ import { sell } from '../../redux/notices/operations';
 import { useNotices } from '../../redux/hooks';
 
 export const SellList = () => {
-  const dispatch = useDispatch();
-  const { sellNotices } = useNotices();
-  useEffect(() => {
-    dispatch(sell());
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // const { sellNotices } = useNotices();
+  // useEffect(() => {
+  //   dispatch(sell());
+  // }, [dispatch]);
 
-  return (
-    <>
-      <NoticesContainer
-        pets={sellNotices}
-        {
-          ...{
-            // firstName,
-            // setFirstName,
-            // pets,
-          }
-        }
-      />
-    </>
-  );
+  // return (
+  //   <>
+  //     <NoticesContainer
+  //       pets={sellNotices}
+  //       {
+  //         ...{
+  //           // firstName,
+  //           // setFirstName,
+  //           // pets,
+  //         }
+  //       }
+  //     />
+  //   </>
+  // );
 };
