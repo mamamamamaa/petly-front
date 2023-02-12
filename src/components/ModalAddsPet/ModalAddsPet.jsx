@@ -3,7 +3,6 @@ import { AddOwnPetStepOne } from "../AddOwnPetStepOne/AddOwnPetStepOne";
 import { AddOwnPetStepTwo } from "../AddOwnPetStepTwo/AddOwnPetStepTwo";
 import { useDispatch } from "react-redux";
 import { addOwnPet } from "../../redux/user/operations";
-// import NewsNewDate from "utils/NewsNewDate/NewsNewDate";
 import moment from "moment";
 
 
@@ -21,11 +20,9 @@ export const ModalAddsPet = ({onClose}) => {
     const handleNextStep = (newData, final=false) => {  
         console.log('newData in 1 step', newData);
         console.log('newData.dateOfBirth', newData.dateOfBirth);
-        // moment(value).format('DD-MM-YYYY')
         const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format("DD-MM-YYYY") ;
         console.log('normalizedDateOfBirth', normalizedDateOfBirth);
-        // toString()
-         
+
         if(final){
             console.log('newData in 2 step', newData);
             
