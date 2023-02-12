@@ -3,7 +3,7 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
 // =======
-import SearchBar from '../utils/SearchBar/searchBar';
+import SearchBar from '../utils/searchBar/searchBar';
 import ListNews from '../components/ListNews/ListNews';
 import { Container, MainHeader } from './NewsPage.styled';
 // =======
