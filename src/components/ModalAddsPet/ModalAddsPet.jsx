@@ -20,7 +20,7 @@ export const ModalAddsPet = ({onClose}) => {
     const handleNextStep = (newData, final=false) => {  
         console.log('newData in 1 step', newData);
         console.log('newData.dateOfBirth', newData.dateOfBirth);
-        const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format("DD-MM-YYYY") ;
+        const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format("DD.MM.YYYY") ;
         console.log('normalizedDateOfBirth', normalizedDateOfBirth);
 
         if(final){
