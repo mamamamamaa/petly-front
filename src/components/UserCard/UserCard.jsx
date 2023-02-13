@@ -2,11 +2,8 @@
 import { useDispatch } from 'react-redux';
 import { useUser } from '../../redux/hooks';
 import { useState } from 'react';
-import { NavLink } from "react-router-dom";
 import {
-
-  Title, Wrapper, DivPhoto, Shadow, UserPhoto, ImgAvatar, Card, Btn, Span, Wrap, FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut, NoAvatarContainer, FormLabel, InputAvatar } from './UserCard.styled.';
-
+  Title, Wrapper, DivPhoto, Shadow, UserPhoto, ImgAvatar, Card, Btn, Span, Wrap, FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut, NoAvatarContainer, FormLabel, InputAvatar, FormAndPhotoWrapper, LogOutSpan } from './UserCard.styled';
 import { Container } from "../../utils/reusable";
 
 import { HiCamera } from "react-icons/hi2";
@@ -103,22 +100,23 @@ const UserCard = () => {
     return (
 
         // <NavLink to="/user">
-        <Container>
+        // <Container>
+  <div>
          <Title>My information:</Title> 
           <Card>
-            
+            <FormAndPhotoWrapper>
             <Wrapper>
                {/* <Shadow> */}
                     <DivPhoto>
                        
-                      {userPhoto ? (
+                      {/* {userPhoto ? (
                             <UserPhoto src={userPhoto} 
                              width="233"
                              height="233"
                              alt="photo" />
-                        ) : 
-                        // (<ImgAvatar src={HiCamera} alt=""/>)}
-                        (<NoAvatarContainer><NoPhotoIcon/></NoAvatarContainer>)}
+                        ) :  */}
+                        {/* // (<ImgAvatar src={HiCamera} alt=""/>)} */}
+                        <NoAvatarContainer><NoPhotoIcon/></NoAvatarContainer>
                     {/* </Shadow> */}
                     </DivPhoto>
                     <Btn>
@@ -139,7 +137,7 @@ const UserCard = () => {
                     />
                     </Btn>
                     </Wrapper>
-            <FormWrap>      
+            {/* <FormWrap>       */}
               <Formik onSubmit={formik.handleSubmit}>  
 
             <Form1>
@@ -246,23 +244,18 @@ const UserCard = () => {
         
         </Formik>
                  
-            </FormWrap>
+            {/* </FormWrap> */}
+            </FormAndPhotoWrapper>
             
             {/* <BtnInput><HiPencil color="rgba(17, 17, 17, 0.6)" /></BtnInput> */}
             
             {/* <BtnInput type="submit" color="#F59256"><HiPencil/></BtnInput> */}
-            
-            
             <BtnLogOut 
             onClick={() => handleLogout()}>
-              {<FiLogOut color="#F59256" />}Log Out
+              {<FiLogOut color="#F59256" />}<LogOutSpan>Log Out</LogOutSpan>
             </BtnLogOut>
         </Card>
-
-            </Container>
-        // </NavLink>
-
-       
+</div>   
     )
 };
 
