@@ -33,21 +33,21 @@ export const HomePageBg = styled.div`
     top: 24vw;
   }
   ${media.desktop} {
+    position: relative;
     background-image: url(${desktopBackgroundLeft});
     justify-content: space-between;
     padding-right: 16px;
     padding-left: 16px;
-    margin-top: 60px;
     justify-content: flex-end;
     align-items: flex-start;
     background-position: top 0vw left -2vw;
-    height: 60vh;
-    margin-top: 30vh;
+    height: 85vh; //rainbow visibility Y
+    margin-top: 30vh; //woman togather with rainbow move Y
   }
 `;
 export const HomePageWomanWrapper = styled.div`
   ${media.desktop} {
-    position: relative;
+    position: absolute;
     right: 0;
     bottom: 0;
   }
@@ -79,7 +79,11 @@ export const HomePageWomanImg = styled.img`
   }
   ${media.desktop} {
     content: url(${ladyWithPetDesktop1x});
-    margin-top: -7vh;
+    position: relative;
+    top: 0vw; //woman Y
+    margin-top: 0vh; //heart
+    margin-left: 0vh; // woman dimensions grow/shrink
+    // margin-bottom: 35vh; // woman replacement Y
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -91,8 +95,8 @@ export const HomePageWomanImg = styled.img`
 export const HomePageUnionHeartSvg = styled.img`
   content: url(${unionHeart});
   position: absolute;
-  top: 42px;
-  left: 38px;
+  top: 3vw; //heart
+  left: 2vw; //heart
   ${media.mobileAndTablet} {
     display: none;
   }
