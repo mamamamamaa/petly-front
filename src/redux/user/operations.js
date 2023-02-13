@@ -41,7 +41,6 @@ export const fetchUserPets = createAsyncThunk(
     "ownPets/getAll",
     async (_, thunkAPI) => {
         try {
-            console.log('fetch for all');
             const response = await axios.get("/api/userprofile");
             return response.data.data.pets;
         } catch (e) {
@@ -55,7 +54,6 @@ export const deleteOneOwnPet = createAsyncThunk(
     "ownPets/deleteOneOwnPet",
     async (petId, thunkAPI) => {
         try {
-            console.log('petId', petId);
             const response = await axios.delete(`/api/userprofile/${petId}`);
             return response.data.data._id;
         } catch (e) {
