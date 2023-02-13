@@ -31,12 +31,13 @@ export const HomePageBg = styled.div`
   margin-left: -20px;
   margin-right: -20px;
   ${media.tablet} {
+    background-position: top 0 left 0;
     display: block;
     background-image: url(${tabletBackground});
     position: absolute;
-    right: 0;
-    left: 0;
-    // top: 0;
+    right: -64px;
+    left: -64px;
+    top: 108px; // ?
   }
   ${media.desktop} {
     background-image: url(${desktopBackground});
@@ -50,7 +51,7 @@ export const HomePageWomanImg = styled.img`
     content: url(${ladyWithPetTablet1x});
     display: block;
     max-width: 645px;
-    margin-top: 118px;
+    margin-top: 436px; //?
     margin-right: auto;
     margin-left: auto;
   }

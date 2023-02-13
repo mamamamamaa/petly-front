@@ -8,12 +8,12 @@ import {
 
 const HomePage = () => {
   return (
-    <HomePageWrapper>
+    <>
       <HomePageTitle>Take good care of your small pets</HomePageTitle>
       <HomePageBg>
         <HomePageWomanImg  alt="Lady with pet" />
       </HomePageBg>
-    </HomePageWrapper>
+    </>
   );
 };
 
