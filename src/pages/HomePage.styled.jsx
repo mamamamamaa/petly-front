@@ -26,7 +26,7 @@ export const HomePageBgMobileAndTablet = styled.div`
     position: absolute;
     right: -6vw;
     left: 0;
-    top: 24vw; 
+    top: 24vw;
   }
   ${media.desktop} {
     background-image: url(${desktopBackground});
@@ -34,12 +34,12 @@ export const HomePageBgMobileAndTablet = styled.div`
     padding-right: 16px;
     padding-left: 16px;
     margin-top: 60px;
+    justify-content: flex-end;
   }
 `;
 export const HomePageWomanWrapper = styled.div`
   ${media.desktop} {
     position: relative;
-    top: 0;
     right: 0;
     bottom: 0;
   }
@@ -73,6 +73,7 @@ export const HomePageUnionHeartSvg = styled.img`
   }
 `;
 export const HomePageTitleMobileAndTablet = styled.h2`
+${media.mobile} {
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
@@ -83,6 +84,8 @@ export const HomePageTitleMobileAndTablet = styled.h2`
   margin-right: auto;
   margin-top: 60px;
   max-width: 280px;
+}  
+
   ${media.tablet} {
     margin-left: 0;
     max-width: 588px;
@@ -91,30 +94,14 @@ export const HomePageTitleMobileAndTablet = styled.h2`
     line-height: 100px;
   }
   ${media.desktop} {
-    display: none;
-  }
-`;
-export const HomePageTitleDesktopWrapper = styled.div`
-  ${media.desktop} {
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 700;
     font-size: 68px;
     line-height: 100px;
     color: #000000;
-    display: flex;
-    align-self: flex-start;
-    justify-self: flex-start;
-    margin-top: 32px;
-    ${media.mobileAndTablet} {
-      display: none;
-    }
+    width: 588px;
+    position: absolute;
+    top: 160px;
   }
 `;
-  export const HomePageTitleDesktop = styled.h2`
-    width: 588px;
-    height: 200px;
-    ${media.mobileAndTablet} {
-      display: none;
-    }
-  `;
