@@ -135,10 +135,14 @@ export const Btn = styled.button`
     margin-left: auto;
     margin-bottom: 32px;
     padding-right: 24px;
+    padding-left: 0;
   };
   ${media.tablet} {
-    margin-left: auto;
-    margin-top: 8px;
+    position: absolute;
+    bottom: -25px;
+    right: 0;
+    /* margin-left: auto; */
+    /* margin-top: 8px; */
   };
   ${media.desktop} {
     position: absolute;
@@ -215,17 +219,8 @@ export const DivInput = styled.div`
   ${media.desktop} {
       margin-bottom: 15px;
   };
-  /* margin-left: auto; */
 `;
 
-// export const Label = styled.label`
-  
-//   font-weight: 400;  
-//   color: #111111;
-//   /* margin-right: 10px; */
-//   font-size: 24px;
-//   line-height: 1.36;
-// `;
 
 export const FormLabel = styled.label`
   display: flex;
@@ -281,6 +276,7 @@ export const BtnInput = styled.button`
   ${media.mobile} {
   width: 30px;
   height: 30px; 
+  /* margin-left: 9px; */
   };
   ${media.tabletAndDesktop} {
     margin-left: 24px;
@@ -290,7 +286,7 @@ export const BtnInput = styled.button`
 `;
 
 export const BtnLogOut = styled.button`
-  
+  display: flex;
   align-items: center;
   font-family: ${theme.fonts.body};
   font-weight: ${theme.fontWeights.normal};
@@ -302,12 +298,10 @@ export const BtnLogOut = styled.button`
   font-size: 16px;
   line-height: 22px;
   ${media.mobile} {
-    align-items: center;
-    display: flex;
     margin-left: auto;
   };
    ${media.tablet} {
-      display: block;
+      /* display: block; */
    }
 `;
 
