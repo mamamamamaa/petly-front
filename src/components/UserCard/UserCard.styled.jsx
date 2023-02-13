@@ -46,7 +46,14 @@ export const Card = styled.div`
 `;
 
 export const Wrapper = styled.div`
-// position: relative;  
+ position: relative;  
+ @media (min-width: 768px) {
+    display: flex;
+    justify-content: flex-end;
+    padding: 24px 40px 24px 34px;
+    margin: 0;
+   
+  }
 
 `
 export const DivPhoto = styled.div`
@@ -122,6 +129,7 @@ export const Form1 = styled(Form)`
     grid-column-gap: 24px;
     grid-row-gap: 8px;
     margin-bottom: 30px;
+    
 }
 `
 export const DivInput = styled.div`

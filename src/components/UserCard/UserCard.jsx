@@ -4,7 +4,7 @@ import { useUser } from '../../redux/hooks';
 import { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import {
-  Title, Wrapper, DivPhoto, Shadow, UserPhoto, Label, ImgAvatar, InputAvatar, Card, Btn, Span, Wrap, FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut } from './UserCard.styled';
+  Title, Wrapper, DivPhoto, Shadow, Label, ImgAvatar, InputAvatar, Card, Btn, Span, Wrap, FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut } from './UserCard.styled';
 
 import { Container } from "../../utils/reusable";
 
@@ -22,20 +22,7 @@ import { useEffect } from 'react';
 console.log(getUserData());
 
 
- //import {logout} from "../../redux/auth/authSlice"
-// ===============================================
-// logOutBtn
-     
-  //   const dispatch = useDispatch()
-    
-  //   const onLogOutHandler = () = {
-      
-  //     dispatch(logout())  
-  //   }
-
-  //  onClick={onLogOutHandler}
-  // ===============================================
-
+ 
 
 const UserCard = () => {
     //=========for avatar============
@@ -46,20 +33,20 @@ const UserCard = () => {
   }
   
     const dispatch = useDispatch();
-    const userPhoto = useUser();
+    //const userPhoto = useUser();
     const {user}= useUser();
 
     
     //const {user} = useUser();//достать данные после auth
   console.log(getUserData)
   
-    const onChangeHandler = e => {
-        console.log("1111")
-    const formData = new FormData();
-      formData.append('avatar', e.target.files[0]);
-      console.log(e.target.files)
-    dispatch(updateUserData(formData));
-    };
+    // const onChangeHandler = e => {
+    //     console.log("1111")
+    // const formData = new FormData();
+    //   formData.append('avatar', e.target.files[0]);
+    //   console.log(e.target.files)
+    // dispatch(updateUserData(formData));
+    // };
   
   
 //////формик 
@@ -104,38 +91,35 @@ const UserCard = () => {
             <Wrapper>
               <Shadow>
                     <DivPhoto>
-                       
-                      {userPhoto ? (
-                    <UserPhoto src={userPhoto}
-                                        width="233"
-                                        height="233"
-                                        alt="photo" />
-                        ) : (<ImgAvatar src={avatar}
+                       <ImgAvatar src={avatar}
                                         alt="User avatar"
-                                        // loading="lazy"
+                                        loading="lazy"
                                           width="233"
-                                          height="233"/>)}
+                                          height="233"/>
+                  <label htmlFor="photo-uploads" cursor="pointer" position="absolute"> 
+                  <InputAvatar
+                        // onClick={onChangeHandler}        
+                        id="photo-uploads"
+                        type="file"
+                    name="photo_uploads"
+                      accept='image/*'
+                      multiple
+                        style={{  width: 0, height: 0 }}/>
+                  
+                    <Wrap >                                          
+                    <HiCamera color="#F59256" width="30" height="30" />
+                    </Wrap>
+                    <Span name="image">Edit photo</Span>
+                  </label> 
                 </DivPhoto>
               </Shadow>
               <Btn>
-                <label htmlFor="photo_uploads">
-                    <Wrap >
-                        {' '}
+                
                     
-                    <HiCamera color="#F59256" width="30" height="30" />
-                      <Span>Edit photo</Span>
-                    </Wrap>
                   
                                         
-                    <InputAvatar
-                        onClick={onChangeHandler}        
-                        id="photo_uploads"
-                        type="file"
-                        name="photo_uploads"
-                        style={{  width: 0, height: 0 }} 
-                       
-                    />
-                </label> 
+                    
+                 
               </Btn>
             </Wrapper>
                
