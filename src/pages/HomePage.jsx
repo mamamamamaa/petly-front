@@ -1,8 +1,8 @@
 import {
-  HomePageBg,
-  HomePageTitle,
+  HomePageBgMobileAndTablet,
+  HomePageTitleMobileAndTablet,
   HomePageWomanImg,
-  HomePageWrapper,
+  HomePageWomanWrapper,
   HomePageUnionHeartSvg,
   HomePageTitleDesktop,
   HomePageTitleDesktopWrapper,
@@ -11,18 +11,20 @@ import {
 const HomePage = () => {
   return (
     <>
-      <HomePageTitle>Take good care of your small pets</HomePageTitle>
-      <HomePageBg>
+      <HomePageTitleMobileAndTablet>
+        Take good care of your small pets
+      </HomePageTitleMobileAndTablet>
+      <HomePageBgMobileAndTablet>
         <HomePageTitleDesktopWrapper>
           <HomePageTitleDesktop>
             Take good care of your small pets
           </HomePageTitleDesktop>
         </HomePageTitleDesktopWrapper>
-        <HomePageWrapper>
+        <HomePageWomanWrapper>
           <HomePageWomanImg alt="Lady with pet" />
           <HomePageUnionHeartSvg alt="Rainbow heart"></HomePageUnionHeartSvg>
-        </HomePageWrapper>
-      </HomePageBg>
+        </HomePageWomanWrapper>
+      </HomePageBgMobileAndTablet>
     </>
   );
 };

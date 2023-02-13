@@ -9,7 +9,7 @@ import ladyWithPetTablet1x from 'images/tablet/lady-with-pet-1x.png';
 import ladyWithPetDesktop1x from 'images/desktop/lady-with-pet-1x.png';
 import unionHeart from 'images/desktop/heart.svg';
 
-export const HomePageBg = styled.div`
+export const HomePageBgMobileAndTablet = styled.div`
   background-image: url(${mobileBackground});
   background-repeat: no-repeat;
   background-size: cover;
@@ -36,7 +36,7 @@ export const HomePageBg = styled.div`
     margin-top: 60px;
   }
 `;
-export const HomePageWrapper = styled.div`
+export const HomePageWomanWrapper = styled.div`
   ${media.desktop} {
     position: relative;
     top: 0;
@@ -67,8 +67,11 @@ export const HomePageUnionHeartSvg = styled.img`
   position: absolute;
   top: 42px;
   left: 38px;
+  ${media.mobileAndTablet} {
+    display: none;
+  }
 `;
-export const HomePageTitle = styled.h2`
+export const HomePageTitleMobileAndTablet = styled.h2`
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
@@ -102,9 +105,15 @@ export const HomePageTitleDesktopWrapper = styled.div`
     align-self: flex-start;
     justify-self: flex-start;
     margin-top: 32px;
+    ${media.mobileAndTablet} {
+      display: none;
+    }
   }
-  `;
-  export const HomePageTitleDesktop = styled.h2`
-  width: 588px;
-  height: 200px;
 `;
+  export const HomePageTitleDesktop = styled.h2`
+    width: 588px;
+    height: 200px;
+    ${media.mobileAndTablet} {
+      display: none;
+    }
+  `;
