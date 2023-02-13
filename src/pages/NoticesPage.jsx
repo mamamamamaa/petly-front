@@ -84,7 +84,7 @@ const NoticesPage = () => {
           </NoticesNavLi>
           {isLoggedIn && (
             <NoticesNavLi>
-              <NoticesNavLink to="favorite-ads">
+              <NoticesNavLink to="favorite">
                 <NoticesNavText>favorite ads</NoticesNavText>
               </NoticesNavLink>
             </NoticesNavLi>
