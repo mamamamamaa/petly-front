@@ -18,14 +18,8 @@ export const ModalAddsPet = ({onClose}) => {
 
 
     const handleNextStep = (newData, final=false) => {  
-        console.log('newData in 1 step', newData);
-        console.log('newData.dateOfBirth', newData.dateOfBirth);
         const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format("DD.MM.YYYY") ;
-        console.log('normalizedDateOfBirth', normalizedDateOfBirth);
-
         if(final){
-            console.log('newData in 2 step', newData);
-            
         setData({             
             ...newData, 
             dateOfBirth :normalizedDateOfBirth
@@ -40,7 +34,6 @@ export const ModalAddsPet = ({onClose}) => {
             formData.append('breed', newData.breed);
             formData.append('dateOfBirth', newData.dateOfBirth);
             formData.append('name', newData.name);
-console.log('newData after formData.append', newData);
 
             dispatch(addOwnPet(newData));     
             return

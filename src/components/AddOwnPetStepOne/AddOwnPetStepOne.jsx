@@ -13,8 +13,6 @@ export const AddOwnPetStepOne = ({next, data, cancel}) => {
     }
 
     const handleDate = (e) =>{
-        console.log(e.target.value);
-        console.log('e.target.valueAsNumber', e.target.valueAsNumber);
     setSelectedDate(e.target.value);
     setDateToSubmit(e.target.valueAsNumber);
     }

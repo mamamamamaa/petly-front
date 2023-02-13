@@ -111,12 +111,6 @@ const userSlice = createSlice({
       //     state.error = null;
       //   }
       // ),
-     
-      
-    
-   
-      
-
 });
 
 export const userReducer = userSlice.reducer;
