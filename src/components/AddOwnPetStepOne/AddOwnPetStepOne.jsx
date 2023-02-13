@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from "formik";
-// import moment from "moment";
+
 import { useState } from "react";
 export const AddOwnPetStepOne = ({next, data, cancel}) => {
     
@@ -7,21 +7,14 @@ export const AddOwnPetStepOne = ({next, data, cancel}) => {
     const [dateToSubmit, setDateToSubmit] = useState();
     const breeds = ["I don`t know", "Persian", "American Shorthair", "Chartreux", "Bombay", "Burmese", "Maine Coon", "Birman", "Himalayan", "Nebelung", "Norwegian Forest", "Siberian", "Scottish Fold","Bengal", "Ragdoll", "Siamese", "British Shorthair", "Exotic Shorthair", "Abyssinian", "Tonkinese", "Other"];
     const handleSubmit = (values, actions) => {
-        // console.log('values', values);
-        // console.log('actions', actions);
-        // actions.validateForm();
         next({...values, 
             dateOfBirth:dateToSubmit
         });
-        // next(values);
     }
 
     const handleDate = (e) =>{
         console.log(e.target.value);
         console.log('e.target.valueAsNumber', e.target.valueAsNumber);
-    //     // moment("12-25-1995", "MM-DD-YYYY");
-    //     // const normalData = moment(`${e.target.value}`, "YYYY-MM-DD").format("DD-MM-YYYY");
-    //     // console.log(normalData);
     setSelectedDate(e.target.value);
     setDateToSubmit(e.target.valueAsNumber);
     }
@@ -35,8 +28,6 @@ export const AddOwnPetStepOne = ({next, data, cancel}) => {
     </label>
     <label>Date of birth   
         <Field type="date" name="dateOfBirth" required
-        // placeholder="DD-MM-YYYY"
-        // max={Date.now()}
         onChange={handleDate}
         value={selectedDate}
         />
