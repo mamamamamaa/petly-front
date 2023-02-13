@@ -16,6 +16,9 @@ export const UserLink = styled(NavLink)`
     :focus {
         text-decoration: underline;
     }
+    &.active {
+        text-decoration: none;
+    }
     ${media.mobile} {
         min-height: 35px;
         padding-right: 37px;
