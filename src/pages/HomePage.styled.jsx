@@ -13,20 +13,20 @@ export const HomePageBgMobileAndTablet = styled.div`
   background-image: url(${mobileBackground});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top -11vw left 0;
+  background-position: top -11vw left 0vw;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   margin-left: -20px;
   margin-right: -20px;
   ${media.tablet} {
-    background-position: top 0 left 0;
+    background-position: top -6vw left 0;
     display: block;
     background-image: url(${tabletBackground});
     position: absolute;
-    right: 0;
+    right: -6vw;
     left: 0;
-    top: 13vw; // ?
+    top: 24vw; 
   }
   ${media.desktop} {
     background-image: url(${desktopBackground});
