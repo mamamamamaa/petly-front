@@ -81,7 +81,7 @@ export const DivPhoto = styled.div`
     justify-content: center;
     width: 233px;
     height: 233px;
-    /* filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11)); */
+    filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
   ${media.mobile} {
     margin-left: auto;
     margin-right: auto;
@@ -120,12 +120,12 @@ export const NoAvatarContainer = styled.div`
   justify-content: center;
 `;
 
-export const ImgAvatar = styled.svg`
+// export const ImgAvatar = styled.svg`
   /* filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
   width: 233px;
   height: 233px;
   border-radius: 50%; */
-`;
+// `;
 
 export const Btn = styled.button`
     border: none;
@@ -152,8 +152,9 @@ export const Btn = styled.button`
 `;
 
 export const InputAvatar = styled.input`
-  // z-index: 100 ;
+
 `;
+
 export const Span = styled.span`
   margin-left: 5px;
   font-size: 12px;
@@ -213,11 +214,8 @@ export const DivInput = styled.div`
   ${media.mobile} {
     margin-bottom: 8px;
   };
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     margin-bottom: 15px;
-  };
-  ${media.desktop} {
-      margin-bottom: 15px;
   };
 `;
 
@@ -235,14 +233,10 @@ export const FormLabel = styled.label`
     font-size: 12px;
     line-height: 16px;
   };
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     font-size: 18px;
     line-height: 25px;
   };
-  ${media.desktop} {
-    font-size: 18px;
-    line-height: 25px; 
-  }
 `;
 
 export const Input = styled(Field)`
@@ -288,9 +282,6 @@ export const BtnInput = styled.button`
 export const BtnLogOut = styled.button`
   display: flex;
   align-items: center;
-  font-family: ${theme.fonts.body};
-  font-weight: ${theme.fontWeights.normal};
-  letter-spacing: 0.04em;
   border: none;
   color: ${theme.colors.gray};
   background: none;
@@ -300,11 +291,11 @@ export const BtnLogOut = styled.button`
   ${media.mobile} {
     margin-left: auto;
   };
-   ${media.tablet} {
-      /* display: block; */
-   }
 `;
 
 export const LogOutSpan = styled.span`
   margin-left: 8px;
+  font-family: ${theme.fonts.body};
+  font-weight: ${theme.fontWeights.normal};
+  letter-spacing: 0.04em;
 `

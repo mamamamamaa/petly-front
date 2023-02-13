@@ -109,15 +109,15 @@ const UserCard = () => {
                {/* <Shadow> */}
                     <DivPhoto>
                        
-                      {/* {userPhoto ? (
+                      {userPhoto ? (
                             <UserPhoto src={userPhoto} 
                              width="233"
                              height="233"
                              alt="photo" />
-                        ) :  */}
-                        {/* // (<ImgAvatar src={HiCamera} alt=""/>)} */}
-                        <NoAvatarContainer><NoPhotoIcon/></NoAvatarContainer>
-                    {/* </Shadow> */}
+                        ) : 
+    
+                        (<NoAvatarContainer><NoPhotoIcon/></NoAvatarContainer>)}
+                     {/* </Shadow>  */}
                     </DivPhoto>
                     <Btn>
                        <label htmlFor="photo_uploads">
@@ -142,9 +142,7 @@ const UserCard = () => {
 
             <Form1>
             <DivInput>
-            <FormLabel 
-            // display="block" textDecoration="none" align-content="flex-start"
-            >                 
+            <FormLabel>                 
               Name:
               <Input 
                     name="name"
