@@ -23,10 +23,10 @@ import heart from 'utils/svg/heart.svg';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
 import cross from 'utils/svg/cross.svg';
 import recycleBin from 'utils/svg/recycleBin.svg';
-import { useAuth } from '../../redux/hooks';
+import { useAuth, useNotices } from '../../redux/hooks';
 import { useDispatch } from 'react-redux';
-import { deleteNotice } from '../../redux/notices/operations';
-import { useState } from 'react';
+import { deleteNotice, getNoticeById } from '../../redux/notices/operations';
+import { useState, useEffect } from 'react';
 import CardNewDate from '../../utils/CardNewDate/cardNewDate';
 import { Modal } from '../Modal/Modal';
 import { ListModalCardNotice } from '../ListModalCardNotice/ListModalCardNotice.jsx';
@@ -40,12 +40,13 @@ export const NoticeCategoryItemTemplate = ({
   place,
   dateOfBirth,
   owner,
-  sex,
-  email,
-  mobilePhone,
-  price,
 }) => {
+  // состояние модального окна
+  const [modal, setModal] = useState(false);
+
   const dispatch = useDispatch();
+  const { currentNotice } = useNotices();
+
   const { user } = useAuth();
 
   const isFavorite = user.favorite.includes(_id);
@@ -53,26 +54,23 @@ export const NoticeCategoryItemTemplate = ({
 
   const [fav, setFav] = useState(isFavorite);
 
+  // открытие и закрытие модального окна =======
+  const modalHandler = () => setModal(prevState => !prevState);
+  useEffect(() => {
+    if (!modal) {
+      return;
+    }
+    dispatch(getNoticeById(_id));
+  }, [modal]);
+  // ===========================================
+
   return (
     <>
-      {/* <Modal>
-        <ListModalCardNotice
-          date={{
-            _id,
-            photoUrl,
-            title,
-            breed,
-            type,
-            place,
-            dateOfBirth,
-            owner,
-            sex,
-            email,
-            mobilePhone,
-            price,
-          }}
-        />
-      </Modal> */}
+      {modal && currentNotice && (
+        <Modal onClose={modalHandler}>
+          <ListModalCardNotice date={currentNotice} />
+        </Modal>
+      )}
       <PhotoPetWrapper>
         <PhotoPet src={photoUrl} alt="Pet" />
         <AdvWrapper>
@@ -90,10 +88,10 @@ export const NoticeCategoryItemTemplate = ({
             <AddToFavImg src={heart} alt="Add to favorites" />
           )}
         </AddToFavBtn>
-        <AddPetToNotBtnMob to="">
+        {/* <AddPetToNotBtnMob to="">
           <AddPetToNotImgMob src={cross} alt="Add pet to notices" />
           <AddPetToNotTextMob>Add pet</AddPetToNotTextMob>
-        </AddPetToNotBtnMob>
+        </AddPetToNotBtnMob> */}
       </PhotoPetWrapper>
       <PetDetails>
         <Title>{title}</Title>
@@ -111,7 +109,7 @@ export const NoticeCategoryItemTemplate = ({
             <CardNewDate date={dateOfBirth} />
           </PetSpan>
         </PetSpanWrapper>
-        <PetDetailsButton>
+        <PetDetailsButton onClick={modalHandler}>
           <PetDetailsButtonText>Learn More</PetDetailsButtonText>
         </PetDetailsButton>
         {isOwn && (

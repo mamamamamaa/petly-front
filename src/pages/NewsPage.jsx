@@ -25,7 +25,7 @@ export default function NewsPage() {
   const [query, setQuery] = useState('dog');
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [ setSearchParams] = useSearchParams();
   // console.log(searchParams);
   useEffect(() => {
     async function fetchNews(query) {

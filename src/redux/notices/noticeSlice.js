@@ -1,5 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteNotice, favorite, goodHands, lostFound, myAds, sell } from './operations';
+import {
+  deleteNotice,
+  goodHands,
+  lostFound,
+  sell,
+  getNoticeById,
+  favorite,
+  myAds,
+} from './operations';
 
 const initialState = {
   isLoading: false,
@@ -10,6 +18,7 @@ const initialState = {
   favoriteNotices: [],
   myAdsNotices: [],
   searchNotices: [],
+  currentNotice: null,
 };
 
 const noticeSlice = createSlice({
@@ -17,6 +26,17 @@ const noticeSlice = createSlice({
   initialState,
   extraReducers: builder =>
     builder
+      .addCase(getNoticeById.pending, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getNoticeById.fulfilled, (state, action) => {
+        state.currentNotice = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getNoticeById.rejected, (state, action) => {
+        state.isLoading = false;
+      })
       .addCase(sell.pending, (state, action) => {
         state.isLoading = false;
         state.error = null;

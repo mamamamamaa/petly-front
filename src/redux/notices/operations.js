@@ -104,3 +104,16 @@ export const myAds = createAsyncThunk(
     }
   }
 );
+      
+export const getNoticeById = createAsyncThunk(
+  'notices/getById',
+  async (id, thunkAPI) => {
+    try {
+      const res = await axios.get(`/api/notices/${id}`);
+
+      return res.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

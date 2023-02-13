@@ -1,5 +1,6 @@
 export const theme = {
   colors: {
+    black: '#000000',
     titleText: '#111111',
     accentText: '#FFFFFF',
     navText: '#181C27',

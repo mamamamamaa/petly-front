@@ -52,13 +52,15 @@ export const ListModalCardNotice = ({ date }) => {
                 <Li>
                   <TitleProperty>Phone:</TitleProperty>
                 </Li>
-                <Li>
-                  <TitleProperty>Price:</TitleProperty>
-                </Li>
+                {date.price !== undefined && (
+                  <Li>
+                    <TitleProperty>Price:</TitleProperty>
+                  </Li>
+                )}
               </Ul>
               <Ul>
                 <Li>
-                  <Text>1{date.name}</Text>
+                  <Text>sweety {date.name}</Text>
                 </Li>
                 <Li>
                   <Text>
@@ -72,26 +74,25 @@ export const ListModalCardNotice = ({ date }) => {
                   <Text>{date.place}</Text>
                 </Li>
                 <Li>
-                  <Text>1{date.sex}</Text>
+                  <Text>{date.sex}</Text>
                 </Li>
                 <Li>
-                  <Text>1{date.email}</Text>
+                  <Text>{date.email}</Text>
                 </Li>
                 <Li>
-                  <Text>1{date.mobilePhone}</Text>
+                  <Text>{date.phone}</Text>
                 </Li>
-                <Li>
-                  <Text>1{date.price}</Text>
-                </Li>
+                {date.price !== undefined && (
+                  <Li>
+                    <Text>{date.price}$</Text>
+                  </Li>
+                )}
               </Ul>
             </BoxList>
           </BoxSecond>
         </Wraper>
         <Box>
-          <Text>
-            Comments: Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor
-            sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem
-          </Text>
+          <Text>Comments: {date.comments}</Text>
         </Box>
       </WraperMain>
 
