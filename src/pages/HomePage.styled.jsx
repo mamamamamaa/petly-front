@@ -35,25 +35,26 @@ export const HomePageBg = styled.div`
     display: block;
     background-image: url(${tabletBackground});
     position: absolute;
-    right: -64px;
-    left: -64px;
-    top: 108px; // ?
+    right: 0;
+    left: 0;
+    top: 13vw; // ?
+    // width: 100%;
   }
   ${media.desktop} {
     background-image: url(${desktopBackground});
   }
 `;
 export const HomePageWomanImg = styled.img`
-  margin-top: 58px;
-  width: 100%;
+  margin-top: 118px;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
   content: url(${ladyWithPetMobile1x});
   ${media.tablet} {
     content: url(${ladyWithPetTablet1x});
     display: block;
-    max-width: 645px;
-    margin-top: 436px; //?
-    margin-right: auto;
-    margin-left: auto;
+    max-width: 100%;
+    margin-top: 50vw; //?
   }
   ${media.desktop} {
     content: url(${ladyWithPetDesktop1x});
