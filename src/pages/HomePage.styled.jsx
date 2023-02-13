@@ -13,7 +13,7 @@ export const HomePageBgMobileAndTablet = styled.div`
   background-image: url(${mobileBackground});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top 0 left 0;
+  background-position: top -11vw left 0;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -49,6 +49,7 @@ export const HomePageWomanImg = styled.img`
   max-width: 100%;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 26vw;
   content: url(${ladyWithPetMobile1x});
   ${media.tablet} {
     content: url(${ladyWithPetTablet1x});
