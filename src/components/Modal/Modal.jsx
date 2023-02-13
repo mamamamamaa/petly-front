@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Button } from 'utils';
+// import { Button } from 'utils';
 import { CloseButton } from '../CloseButton/CloseButton';
 import { Backdrop, Window } from './Modal.styled';
 
-export const Modal = ({ children, onClose, date }) => {
+export const Modal = ({ children, onClose }) => {
   const modalRoot = document.querySelector('#modal-root');
-  console.log(date);
+  // console.log(date);
   const onBackdropClose = event => {
     if (event.currentTarget === event.target) {
       onClose();

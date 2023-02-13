@@ -26,13 +26,21 @@ export const useNews = () => {
 };
 
 export const useNotices = () => {
+  const currentNotice = useSelector(state => state.notices.currentNotice);
   const sellNotices = useSelector(state => state.notices.sellNotices);
-  console.log(sellNotices);
+  // console.log(sellNotices);
   const lostFoundNotices = useSelector(state => state.notices.lostFoundNotices);
   const goodHandsNotices = useSelector(state => state.notices.goodHandsNotices);
   const isLoading = useSelector(state => state.notices.isLoading);
   const error = useSelector(state => state.notices.error);
-  return { sellNotices, lostFoundNotices, goodHandsNotices, isLoading, error };
+  return {
+    sellNotices,
+    lostFoundNotices,
+    goodHandsNotices,
+    isLoading,
+    error,
+    currentNotice,
+  };
 };
 
 export const useFriends = () => {

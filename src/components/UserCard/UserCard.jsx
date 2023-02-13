@@ -2,18 +2,17 @@
 import { useDispatch } from 'react-redux';
 import { useUser } from '../../redux/hooks';
 import { useState } from 'react';
-import { NavLink } from "react-router-dom";
 import {
-  Title, Wrapper, DivPhoto, Shadow, UserPhoto, Label, ImgAvatar, InputAvatar, Card, Btn, Span, Wrap, FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut } from './UserCard.styled';
-
+  Title, Wrapper, DivPhoto, Shadow, UserPhoto, ImgAvatar, Card, Btn, Span, Wrap, FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut, NoAvatarContainer, FormLabel, InputAvatar, FormAndPhotoWrapper, LogOutSpan } from './UserCard.styled';
 import { Container } from "../../utils/reusable";
 
 import { HiCamera } from "react-icons/hi2";
 import { HiPencil } from "react-icons/hi";
 import { FiLogOut, FiCheck } from "react-icons/fi";
+import { NoPhotoIcon } from 'utils/svg/noPhotoCross';
+import { logout } from '../../redux/auth/operations';
 
 import { updateUserData, getUserData } from '../../redux/user/operations';
-
 import { Formik, useFormik } from 'formik';
 import avatar from "../../images/avatart.jpg";
 
@@ -88,34 +87,38 @@ const UserCard = () => {
     },onSubmit,
     });
   
+
   useEffect(() => {
       dispatch(getUserData())
       console.log("getUserData")
  },[dispatch])
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
     return (
 
-        <NavLink to="/user">
-           
-        <Container>
+        // <NavLink to="/user">
+        // <Container>
+  <div>
          <Title>My information:</Title> 
           <Card>
-            
+            <FormAndPhotoWrapper>
             <Wrapper>
-               <Shadow>
+               {/* <Shadow> */}
                     <DivPhoto>
                        
                       {userPhoto ? (
-                    <UserPhoto src={userPhoto}
-                                        width="233"
-                                        height="233"
-                                        alt="photo" />
-                        ) : (<ImgAvatar src={avatar}
-                                        alt="User avatar"
-                                        // loading="lazy"
-                                          width="233"
-                                          height="233"/>)}
-                    </DivPhoto></Shadow>
+                            <UserPhoto src={userPhoto} 
+                             width="233"
+                             height="233"
+                             alt="photo" />
+                        ) : 
+    
+                        (<NoAvatarContainer><NoPhotoIcon/></NoAvatarContainer>)}
+                     {/* </Shadow>  */}
+                    </DivPhoto>
                     <Btn>
                        <label htmlFor="photo_uploads">
                     <Wrap >
@@ -130,20 +133,16 @@ const UserCard = () => {
                         id="photo_uploads"
                         type="file"
                         name="photo_uploads"
-                        style={{  width: 0, height: 0 }} 
-                       
+                        style={{  width: 0, height: 0 }}
                     />
-                    </Btn></Wrapper>
-               
-            <FormWrap>      
+                    </Btn>
+                    </Wrapper>
+            {/* <FormWrap>       */}
               <Formik onSubmit={formik.handleSubmit}>  
 
-            
-         
             <Form1>
-                  <DivInput>
-            <Label>
-                                    
+            <DivInput>
+            <FormLabel>                 
               Name:
               <Input 
                     name="name"
@@ -153,8 +152,8 @@ const UserCard = () => {
                         onClick ={handleClick}
                     value={formik.values.name} />
             
-            </Label>
-                    <BtnInput
+            </FormLabel>
+            <BtnInput
                       type="button" onClick ={handleClick} >
                       {(changeBtn === true) ? <FiCheck color="#F59256"
                                                width="30" heigh="30"/> :
@@ -165,7 +164,7 @@ const UserCard = () => {
             </DivInput>
             
             <DivInput>               
-            <Label>
+            <FormLabel>
               Email:
             <Input
                     id="name"
@@ -175,8 +174,7 @@ const UserCard = () => {
                         onChange={formik.handleChange}
                         onClick ={handleClick}
                     value={formik.values.email} />
-            </Label>
-                    
+            </FormLabel>
             <BtnInput
                       type="button" onClick ={handleClick} >
                       {(changeBtn === true) ? <FiCheck color="#F59256"
@@ -188,18 +186,18 @@ const UserCard = () => {
             </DivInput> 
                             
             <DivInput>
-            <Label>
+            <FormLabel>
               Birthday: 
             <Input name="Birthday:"
                        type="text"
                         placeholder="00.00.0000"
                />
-            </Label>
+            </FormLabel>
             <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>        
             </DivInput>                
                             
-            <DivInput autoComplete="off">
-            <Label>
+            <DivInput>
+            <FormLabel>
               Phone:
             <Input name="mobilePhone"
                     type="text"
@@ -207,8 +205,7 @@ const UserCard = () => {
                         onChange={formik.handleChange}
                         onClick ={handleClick}
                     value={formik.values.mobilePhone}/>                              
-                                       
-            </Label>
+            </FormLabel>
             <BtnInput
                       type="button" onClick ={handleClick} >
                       {(changeBtn === true) ? <FiCheck color="#F59256"
@@ -220,7 +217,7 @@ const UserCard = () => {
             </DivInput>                
                             
             <DivInput>
-            <Label>
+            <FormLabel>
               City:
             <Input  name="city"
                     type="text"
@@ -228,8 +225,8 @@ const UserCard = () => {
                         onChange={formik.handleChange}
                         onClick ={handleClick}
                     value={formik.values.city}/>
-                                                
-            </Label>
+                                              
+            </FormLabel>
             <BtnInput
                       type="button" onClick ={handleClick} >
                       {(changeBtn === true) ? <FiCheck color="#F59256"
@@ -237,7 +234,7 @@ const UserCard = () => {
                                               <HiPencil color="rgba(17, 17, 17, 0.6);"
                                                width="30" heigh="30"/>}
 
-            </BtnInput>                   
+            </BtnInput> 
             </DivInput>                
 
             
@@ -245,29 +242,18 @@ const UserCard = () => {
         
         </Formik>
                  
-            </FormWrap>
+            {/* </FormWrap> */}
+            </FormAndPhotoWrapper>
             
-            <BtnInput
-                      type="button" onClick ={handleClick} >
-                      {(changeBtn === true) ? <FiCheck color="#F59256"
-                                               width="30" heigh="30"/> :
-                                              <HiPencil color="rgba(17, 17, 17, 0.6);"
-                                               width="30" heigh="30"/>}
-
-            </BtnInput>                   
+            {/* <BtnInput><HiPencil color="rgba(17, 17, 17, 0.6)" /></BtnInput> */}
             
             {/* <BtnInput type="submit" color="#F59256"><HiPencil/></BtnInput> */}
-            
-            
-            <BtnLogOut>
-              {<FiLogOut color="#F59256" />}Log Out
+            <BtnLogOut 
+            onClick={() => handleLogout()}>
+              {<FiLogOut color="#F59256" />}<LogOutSpan>Log Out</LogOutSpan>
             </BtnLogOut>
         </Card>
-
-            </Container>
-        </NavLink>
-
-       
+</div>   
     )
 };
 
