@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-// import { theme } from '../utils/theme';
+import { theme } from 'utils/theme';
 import { media } from 'components/Layout/Layout.styled';
 import mobileBackground from 'images/mobile/wave-mobile.svg';
 import tabletBackground from 'images/tablet/wave-tablet.svg';
@@ -104,7 +104,7 @@ export const HomePageTitleMobileAndTablet = styled.h2`
     font-weight: 700;
     font-size: 32px;
     line-height: 44px;
-    color: #000000;
+    color: ${theme.colors.black};
     margin-left: auto;
     margin-right: auto;
     margin-top: 60px;
@@ -124,7 +124,7 @@ export const HomePageTitleMobileAndTablet = styled.h2`
     font-weight: 700;
     font-size: 68px;
     line-height: 100px;
-    color: #000000;
+    color: ${theme.colors.black};
     width: 588px;
     position: absolute;
     top: 160px;
