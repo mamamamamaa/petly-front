@@ -13,7 +13,7 @@ import ladyWithPetDesktop1x from 'images/desktop/lady-with-pet-1x.png';
 import ladyWithPetDesktop2x from 'images/desktop/lady-with-pet-2x.png';
 import unionHeart from 'images/desktop/heart.svg';
 
-export const HomePageBgMobileAndTablet = styled.div`
+export const HomePageBg = styled.div`
   background-image: url(${mobileBackground});
   background-repeat: no-repeat;
   background-size: cover;
@@ -97,7 +97,7 @@ export const HomePageUnionHeartSvg = styled.img`
     display: none;
   }
 `;
-export const HomePageTitleMobileAndTablet = styled.h2`
+export const HomePageTitle = styled.h2`
   ${media.mobile} {
     font-family: 'Manrope';
     font-style: normal;

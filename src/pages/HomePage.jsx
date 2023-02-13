@@ -1,6 +1,6 @@
 import {
-  HomePageBgMobileAndTablet,
-  HomePageTitleMobileAndTablet,
+  HomePageBg,
+  HomePageTitle,
   HomePageWomanImg,
   HomePageWomanWrapper,
   HomePageUnionHeartSvg,
@@ -9,15 +9,15 @@ import {
 const HomePage = () => {
   return (
     <>
-      <HomePageTitleMobileAndTablet>
+      <HomePageTitle>
         Take good care of your small pets
-      </HomePageTitleMobileAndTablet>
-      <HomePageBgMobileAndTablet>
+      </HomePageTitle>
+      <HomePageBg>
         <HomePageWomanWrapper>
           <HomePageWomanImg alt="Lady with pet" />
           <HomePageUnionHeartSvg alt="Rainbow heart"></HomePageUnionHeartSvg>
         </HomePageWomanWrapper>
-      </HomePageBgMobileAndTablet>
+      </HomePageBg>
     </>
   );
 };
