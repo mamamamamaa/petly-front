@@ -32,6 +32,7 @@ export const login = createAsyncThunk(
     try {
       const res = await axios.post('/api/auth/login', userData);
       setAuthHeader(res.data.token);
+      console.log(axios.defaults.headers.common.Authorization);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -77,6 +78,7 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     const res = await axios.post('/api/auth/token', {
       refreshToken: savedRefreshToken,
     });
+    setAuthHeader(res.data.accessToken);
     return res.data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);

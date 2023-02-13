@@ -58,7 +58,8 @@ export const fetchUserPets = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             console.log('fetch for all');
-            const response = await axios.get("/api/userprofile"); 
+            const response = await axios.get("/api/userprofile");
+            // setAuthHeader(response.data.token);
             console.log('response.data.data.pets', response.data.data.pets);
             return response.data.data.pets;
         } catch (e) {
@@ -74,6 +75,7 @@ export const deleteOneOwnPet = createAsyncThunk(
         try {
             console.log('petId', petId);
             const response = await axios.delete(`/api/userprofile/${petId}`);
+            // setAuthHeader(response.data.token);
             console.log('response.data.data._id', response.data.data._id);
             return response.data.data._id;
         } catch (e) {
@@ -91,7 +93,9 @@ export const addOwnPet = createAsyncThunk(
                     "Content-Type": "multipart/form-data",
                 },
             } );
+            // setAuthHeader(response.data.token);
             console.log('response', response);
+            // axios.defaults.headers.post['Content-Type'] = 'application/json';
             return response;
         } catch (e) {
             console.log('error');
