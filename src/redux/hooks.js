@@ -39,7 +39,7 @@ export const useNotices = () => {
     lostFoundNotices,
     goodHandsNotices,
     favoriteNotices,
-    myAdsNotices
+    myAdsNotices,
     isLoading,
     error,
     currentNotice,
@@ -55,5 +55,5 @@ export const useUser = () => {
   const getUserData = useSelector(state => state.user.getUserData);
   //console.log(user)
   const userAvatar = useSelector(state => state.auth.user.avatar)
-  return {user, userAvatar, getUserData}  
+  return { user, userAvatar, getUserData }
 };
