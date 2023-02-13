@@ -17,13 +17,14 @@ export const HomePageWrapper = styled.div`
   //   top: 0;
   //   bottom: 0;
   // }
+  // overflow: visible;
 `;
 
 export const HomePageBg = styled.div`
   background-image: url(${mobileBackground});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: bottom 0 left 0;
+  background-position: top 0 left 0;
   display: flex;
   justify-content: center;
   align-items: flex-end;
