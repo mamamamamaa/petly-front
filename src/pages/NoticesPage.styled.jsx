@@ -141,7 +141,7 @@ export const AddPetToNoticesBtn = styled.button`
 export const AddPetToNoticesImg = styled.img`
   ${media.mobile} {
     position: absolute;
-    top: 27px;
+    top: 20px;
     right: 28px;
   }
   display: block;
@@ -149,7 +149,7 @@ export const AddPetToNoticesImg = styled.img`
 
 export const AddPetToNoticesText = styled.span`
   ${media.mobile} {
-    margin-top: 4px;
+    /* margin-top: 4px; */
     position: absolute;
     font-family: 'Manrope';
     font-style: normal;
