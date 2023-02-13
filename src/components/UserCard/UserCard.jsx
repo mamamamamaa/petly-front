@@ -95,14 +95,14 @@ const UserCard = () => {
 
     return (
 
-        <NavLink to="/user">
+    <NavLink to="/user">
            
-        <Container>
+      <Container>
          <Title>My information:</Title> 
-          <Card>
+        <Card>
             
             <Wrapper>
-               <Shadow>
+              <Shadow>
                     <DivPhoto>
                        
                       {userPhoto ? (
@@ -115,15 +115,17 @@ const UserCard = () => {
                                         // loading="lazy"
                                           width="233"
                                           height="233"/>)}
-                    </DivPhoto></Shadow>
-                    <Btn>
-                       <label htmlFor="photo_uploads">
+                </DivPhoto>
+              </Shadow>
+              <Btn>
+                <label htmlFor="photo_uploads">
                     <Wrap >
                         {' '}
-                    <HiCamera color="#F59256" width="20" height="20" />
-                    <Span>Edit photo</Span>
+                    
+                    <HiCamera color="#F59256" width="30" height="30" />
+                      <Span>Edit photo</Span>
                     </Wrap>
-                    </label> 
+                  
                                         
                     <InputAvatar
                         onClick={onChangeHandler}        
@@ -133,19 +135,21 @@ const UserCard = () => {
                         style={{  width: 0, height: 0 }} 
                        
                     />
-                    </Btn></Wrapper>
+                </label> 
+              </Btn>
+            </Wrapper>
                
-            <FormWrap>      
+          <FormWrap>      
               <Formik onSubmit={formik.handleSubmit}>  
 
             
          
-            <Form1>
-                  <DivInput>
-            <Label>
+              <Form1 autoComplete="off">
+                <DivInput>
+                  <Label>
                                     
-              Name:
-              <Input 
+                    Name:
+                    <Input 
                     name="name"
                     type="name"
                     placeholder="name"
@@ -153,108 +157,109 @@ const UserCard = () => {
                         onClick ={handleClick}
                     value={formik.values.name} />
             
-            </Label>
+                  </Label>
                     <BtnInput
                       type="button" onClick ={handleClick} >
-                      {(changeBtn === true) ? <FiCheck color="#F59256"
-                                               width="30" heigh="30"/> :
-                                              <HiPencil color="rgba(17, 17, 17, 0.6);"
-                                               width="30" heigh="30"/>}
+                      {(changeBtn === true) ? <FiCheck color="#F59256" width="30" heigh="30"/> :
+                                              <HiPencil color="rgba(17, 17, 17, 0.6);" width="30" heigh="30"/>}
 
                     </BtnInput>
-            </DivInput>
+                </DivInput>
             
-            <DivInput>               
-            <Label>
-              Email:
-            <Input
-                    id="name"
-                    name="email"
-                    type="email"
-                    placeholder="email"
-                        onChange={formik.handleChange}
-                        onClick ={handleClick}
-                    value={formik.values.email} />
-            </Label>
+                <DivInput>               
+                  <Label>
+                    Email:
+                    <Input
+                          id="name"
+                          name="email"
+                          type="email"
+                          placeholder="email"
+                              onChange={formik.handleChange}
+                              onClick ={handleClick}
+                          value={formik.values.email} />
+                  </Label>
                     
-            <BtnInput
+                    <BtnInput
                       type="button" onClick ={handleClick} >
-                      {(changeBtn === true) ? <FiCheck color="#F59256"
-                                               width="30" heigh="30"/> :
-                                              <HiPencil color="rgba(17, 17, 17, 0.6);"
-                                               width="30" heigh="30"/>}
+                      {(changeBtn === true) ? <FiCheck color="#F59256" width="30" heigh="30" /> :
+                                              <HiPencil color="rgba(17, 17, 17, 0.6);"width="30" heigh="30"/>}
 
-            </BtnInput>
-            </DivInput> 
+                    </BtnInput>
+                </DivInput> 
                             
-            <DivInput>
-            <Label>
-              Birthday: 
-            <Input name="Birthday:"
-                       type="text"
-                        placeholder="00.00.0000"
-               />
-            </Label>
-            <BtnInput ><HiPencil color="rgba(17, 17, 17, 0.6)"/></BtnInput>        
-            </DivInput>                
+                <DivInput>
+                  <Label>
+                    Birthday: 
+                    <Input name="Birthday:"
+                          type="text"
+                          placeholder="00.00.0000"
+                              onChange={formik.handleChange}
+                              onClick={handleClick}
+                          value={formik.values.birthday}/>
+                  </Label>
+                    <BtnInput
+                      type="button" onClick ={handleClick} >
+                      {(changeBtn === true) ? <FiCheck color="#F59256" width="30" heigh="30" /> :
+                                              <HiPencil color="rgba(17, 17, 17, 0.6);"width="30" heigh="30"/>}
+
+                    </BtnInput>        
+                </DivInput>                
                             
-            <DivInput autoComplete="off">
-            <Label>
-              Phone:
-            <Input name="mobilePhone"
-                    type="text"
-                    placeholder="+38000000000"
-                        onChange={formik.handleChange}
-                        onClick ={handleClick}
-                    value={formik.values.mobilePhone}/>                              
+                <DivInput>
+                  <Label>
+                    Phone:
+                    <Input  name="mobilePhone"
+                            type="text"
+                            placeholder="+38000000000"
+                                onChange={formik.handleChange}
+                                onClick ={handleClick}
+                            value={formik.values.mobilePhone}/>                              
                                        
-            </Label>
-            <BtnInput
-                      type="button" onClick ={handleClick} >
-                      {(changeBtn === true) ? <FiCheck color="#F59256"
-                                               width="30" heigh="30"/> :
-                                              <HiPencil color="rgba(17, 17, 17, 0.6);"
-                                               width="30" heigh="30"/>}
+                  </Label>
+                    <BtnInput
+                              type="button" onClick ={handleClick} >
+                              {(changeBtn === true) ? <FiCheck color="#F59256"
+                                                      width="30" heigh="30"/> :
+                                                      <HiPencil color="rgba(17, 17, 17, 0.6);"
+                                                      width="30" heigh="30"/>}
 
-            </BtnInput>
-            </DivInput>                
+                    </BtnInput>
+                </DivInput>                
                             
-            <DivInput>
-            <Label>
-              City:
-            <Input  name="city"
-                    type="text"
-                    placeholder="City, region"
-                        onChange={formik.handleChange}
-                        onClick ={handleClick}
-                    value={formik.values.city}/>
+                <DivInput>
+                  <Label>
+                    City:
+                    <Input  name="city"
+                            type="text"
+                            placeholder="City, region"
+                                onChange={formik.handleChange}
+                                
+                            value={formik.values.city}/>
                                                 
-            </Label>
-            <BtnInput
-                      type="button" onClick ={handleClick} >
-                      {(changeBtn === true) ? <FiCheck color="#F59256"
-                                               width="30" heigh="30"/> :
-                                              <HiPencil color="rgba(17, 17, 17, 0.6);"
-                                               width="30" heigh="30"/>}
+                  </Label>
+                    <BtnInput
+                              type="button" onClick ={handleClick} >
+                              {(changeBtn === true) ? <FiCheck color="#F59256"
+                                                      width="30" heigh="30"/> :
+                                                      <HiPencil color="rgba(17, 17, 17, 0.6);"
+                                                      width="30" heigh="30"/>}
 
-            </BtnInput>                   
-            </DivInput>                
+                    </BtnInput>                   
+                </DivInput>                
 
             
           </Form1>
         
         </Formik>
                  
-            </FormWrap>
+        </FormWrap>
             
-            <BtnInput
+            {/* <BtnInput
                       type="button" onClick ={handleClick} >
-                      {(changeBtn === true) ? <FiCheck color="#F59256"
-                                               width="30" heigh="30"/> :
-                                              <HiPencil color="rgba(17, 17, 17, 0.6);"
+                      {(changeBtn === true) ? <FiCheck color="#F59256" width="30" heigh="30"/> : <HiPencil color="rgba(17, 17, 17, 0.6)"
                                                width="30" heigh="30"/>}
 
-            </BtnInput>                   
+            </BtnInput>                    */}
             
             {/* <BtnInput type="submit" color="#F59256"><HiPencil/></BtnInput> */}
             
@@ -264,8 +269,8 @@ const UserCard = () => {
             </BtnLogOut>
         </Card>
 
-            </Container>
-        </NavLink>
+      </Container>
+    </NavLink>
 
        
     )

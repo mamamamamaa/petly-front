@@ -9,6 +9,15 @@ export const Title = styled.h2`
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
+  @media (min-width: 768px) {
+    font-size: 28px;
+    margin-top: 88px;
+     margin-bottom: 40px;
+  }
+  @media (min-width: 1280px) {
+     margin-top: 58px;
+     margin-bottom: 24px;
+  }
 `
 export const Card = styled.div`
   
@@ -16,22 +25,28 @@ export const Card = styled.div`
   height: 537px;
   padding: 20px 12px 20px 12px;
   background: ${theme.colors.accentText};
+  margin-bottom: 48px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius:  20px;
   cursor: pointer;
   @media (min-width: 768px) {
+    display: flex;
+    justify-content: flex-start;
+    padding: 24px 40px 24px 34px;
+    margin: 0;
+    margin-bottom:20px;
     border-radius: 0px 0px 40px 40px;
     height: 246px;
-    /* width: 336px; */
+     width: 736px; 
   }
   @media (min-width: 1280px) {
-    /* width: 288px; */
+     width: 411px; 
     height: 606px;
   }
 `;
 
 export const Wrapper = styled.div`
-position: relative;  
+// position: relative;  
 
 `
 export const DivPhoto = styled.div`
@@ -71,7 +86,7 @@ export const Btn = styled.button`
   border: none;
   background: none;
   position: absolute;
-  fill: #F59256 ;
+  
   @media (max-width: 479px) {
     top: 266px;
     right: 25px;
@@ -101,11 +116,13 @@ padding: 0;
 
 `
 export const Form1 = styled(Form)`
-   display: grid;
-   
+   display: grid;   
   margin: 0 auto;
-
-
+  @media (min-width: 768px){
+    grid-column-gap: 24px;
+    grid-row-gap: 8px;
+    margin-bottom: 30px;
+}
 `
 export const DivInput = styled.div`
   display: flex;
@@ -133,14 +150,17 @@ export const Input = styled(Field)`
   font-weight: 400;
   letter-spacing: 0.04em;
   font-size: 14px;
-  background: transparent;
+  background-color: transparent;
   color: #111111;
   
-  //outline: none;
+  outline: none;
   &:hover{
     background: #FDF7F2;
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
+  &:focus{
+    background-color: transparent;
+  } 
   }
 `
 
