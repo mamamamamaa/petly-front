@@ -40,7 +40,8 @@ export const Card = styled.div`
      width: 736px; 
   }
   @media (min-width: 1280px) {
-     width: 411px; 
+    display: block;
+    width: 411px; 
     height: 606px;
   }
 `;
@@ -52,21 +53,32 @@ export const Wrapper = styled.div`
     justify-content: flex-end;
     padding: 24px 40px 24px 34px;
     margin: 0;
-   
+   @media (min-width: 1280px) {
+    margin: 0 auto;
+    padding: 0; 
+    
+  }
   }
 
 `
 export const DivPhoto = styled.div`
   display: flex;
+ 
   margin: 0 auto;
   margin-bottom: 66px;
   align-items: center;
   justify-content: center;
   width: 233px;
   height: 233px;
+  @media (min-width: 1280px) {
+   
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
   
   `
 export const Shadow = styled.div`
+margin: 0 auto;
 box-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
 `
 
@@ -123,8 +135,9 @@ padding: 0;
 
 `
 export const Form1 = styled(Form)`
-   display: grid;   
-  margin: 0 auto;
+   display: grid; 
+     
+  // margin: 0 auto;
   @media (min-width: 768px){
     grid-column-gap: 24px;
     grid-row-gap: 8px;
@@ -137,19 +150,25 @@ export const DivInput = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 8px;
+  @media (min-width: 1280px) {   
+  
+  }
   
 `
 export const Label = styled.label`
   
   font-weight: 400;  
   color: #111111;
+  @media (min-width: 1280px) {   
+    
+  }
   
   `
 
 
 export const Input = styled(Field)`
   // margin-left: 25px;
-
+  
   width: 160px;
   height: 24px;
   margin-right: 14px;  
@@ -162,13 +181,15 @@ export const Input = styled(Field)`
   color: #111111;
   
   outline: none;
+  
   &:hover{
     background: #FDF7F2;
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
   &:focus{
-    background-color: transparent;
+    background-color: #FFFFFF;
   } 
+   
   }
 `
 
