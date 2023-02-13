@@ -3,9 +3,9 @@ import { AccountIcon } from "../../utils/svg/account";
 
 
 
-const UserMenu = () => {
+const UserMenu = ({close}) => {
     return (
-        <UserLink to="/user">
+        <UserLink to="/user"  onClick={close}>
             <AccountIcon/> 
             <Text>Account</Text>
         </UserLink>
