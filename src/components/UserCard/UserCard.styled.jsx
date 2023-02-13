@@ -100,11 +100,10 @@ export const ImgAvatar = styled.svg`
 `;
 
 export const Btn = styled.button`
-  ${media.mobile} {
     border: none;
     background: none;
     display: flex;
-    padding: 0;
+  ${media.mobile} {
     margin-left: auto;
     margin-bottom: 32px;
     padding-right: 24px;
