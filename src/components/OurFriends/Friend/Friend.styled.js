@@ -55,6 +55,10 @@ export const Image = styled.img`
 
 export const DescList = styled.ul`
   justify-content: center;
+  /* &:hover,
+  &:focus {
+    color: ${theme.colors.primary};
+  } */
 `;
 
 export const Item = styled.li`

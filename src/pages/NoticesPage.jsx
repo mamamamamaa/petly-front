@@ -112,7 +112,6 @@ const NoticesPage = () => {
             </AddPetToNoticesBtn>
           </AddPetToNoticesBtnWrapper>
         )}
-       
       </NoticesNavWrapper>
       <Suspense>
         <Outlet />
