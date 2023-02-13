@@ -1,6 +1,6 @@
 export const theme = {
   colors: {
-    textTitleColor: '#000000',
+    black: '#000000',
     titleText: '#111111',
     accentText: '#FFFFFF',
     navText: '#181C27',

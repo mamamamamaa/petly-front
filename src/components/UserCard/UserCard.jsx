@@ -13,7 +13,7 @@ import { HiPencil } from "react-icons/hi";
 import { FiLogOut, FiCheck } from "react-icons/fi";
 
 import { updateUserData, getUserData } from '../../redux/user/operations';
-
+import { logout } from 'redux/auth/operations';
 import { Formik, useFormik } from 'formik';
 import avatar from "../../images/avatart.jpg";
 
@@ -88,15 +88,20 @@ const UserCard = () => {
     },onSubmit,
     });
   
+
   useEffect(() => {
       dispatch(getUserData())
       console.log("getUserData")
  },[dispatch])
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+
     return (
 
-        <NavLink to="/user">
-           
+        // <NavLink to="/user">
         <Container>
          <Title>My information:</Title> 
           <Card>
@@ -259,13 +264,14 @@ const UserCard = () => {
             {/* <BtnInput type="submit" color="#F59256"><HiPencil/></BtnInput> */}
             
             
-            <BtnLogOut>
+            <BtnLogOut 
+            onClick={() => handleLogout()}>
               {<FiLogOut color="#F59256" />}Log Out
             </BtnLogOut>
         </Card>
 
             </Container>
-        </NavLink>
+        // </NavLink>
 
        
     )

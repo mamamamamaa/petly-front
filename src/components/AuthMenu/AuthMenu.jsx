@@ -1,16 +1,16 @@
 import { Button, Sp, User, NavigLink } from "./AuthMenu.styled";
 
 
-const AuthMenu = () => {
+const AuthMenu = ({close}) => {
     return (
         <User>
             <Button>
-                <NavigLink to="/login">
+                <NavigLink to="/login"  onClick={close}>
                 <Sp>Login</Sp>
                 </NavigLink>
             </Button>
             <Button>
-                <NavigLink to="/register">
+                <NavigLink to="/register"  onClick={close}>
                 <Sp>Registration</Sp>
                 </NavigLink>
             </Button>

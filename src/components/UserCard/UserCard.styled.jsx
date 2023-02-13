@@ -1,30 +1,45 @@
 import styled from '@emotion/styled';
 import { Field, Form } from 'formik';
 import { theme } from '../../utils/theme';
+import { media } from '../Layout/Layout.styled'
 
 export const Title = styled.h2`
-  color: ${theme.colors.textTitleColor};
-  margin-bottom: 18px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 27px;
-`
+  font-family: ${theme.fonts.body};
+  font-style: normal;
+  font-weight: ${theme.fontWeights.normal};
+  color: ${theme.colors.black};
+  ${media.mobile} {
+    font-size: 20px;
+    line-height: 27px;
+    letter-spacing: 0.04em;
+    margin-bottom: 18px;
+  };
+  ${media.tablet} {
+
+  }
+  ${media.desktop} {
+
+  }
+`;
+
 export const Card = styled.div`
-  
-  width: 280px;
-  height: 537px;
-  padding: 20px 12px 20px 12px;
   background: ${theme.colors.accentText};
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius:  20px;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   cursor: pointer;
-  @media (min-width: 768px) {
-    border-radius: 0px 0px 40px 40px;
+  ${media.mobile} {
+    min-width: 280px;
+    min-height: 537px;
+    /* top, right, bottom, left */
+    padding: 20px 24px 20px 23px;
+  };
+  /* padding: 20px 12px 20px 12px; */
+  ${media.tablet} {
+    /* border-radius: 0px 0px 40px 40px; */
     height: 246px;
     /* width: 336px; */
   }
-  @media (min-width: 1280px) {
+  ${media.desktop} {
     /* width: 288px; */
     height: 606px;
   }
@@ -35,18 +50,28 @@ position: relative;
 
 `
 export const DivPhoto = styled.div`
-  display: flex;
-  margin: 0 auto;
-  margin-bottom: 66px;
-  align-items: center;
-  justify-content: center;
-  width: 233px;
-  height: 233px;
-  
-  `
-export const Shadow = styled.div`
-box-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
-`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11)); */
+  ${media.mobile} {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 70px;
+    width: 233px;
+    height: 233px;
+  };
+  ${media.tablet} {
+
+  };
+  ${media.tablet} {
+
+  };
+`;
+
+// export const Shadow = styled.div`
+// box-shadow: (0px 4px 14px rgba(0, 0, 0, 0.11));
+// `
 
 export const UserPhoto = styled.img`
   position: relative;
@@ -62,7 +87,6 @@ export const ImgAvatar = styled.img`
   width: 233px;
   height: 233px;
   border-radius: 50%;
- 
 `;
 
 export const Btn = styled.button`
@@ -158,11 +182,11 @@ export const BtnInput = styled.button`
   &.active{
     color:#F59256;
   }
-   &.focus{
+   /* &.focus{
       color:#F59256 50 %;
       outline: "none",
       transform: "scale(1.15)"
-    },
+    }, */
   
 `
 

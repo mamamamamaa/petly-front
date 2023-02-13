@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import { media } from "../Layout/Layout.styled";
+import { theme } from '../../utils/theme';
 
 
 export const BarContainer = styled.div`
-    font-family: ${props => props.theme.fonts.body};
+    font-family: ${theme.fonts.body};
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -22,10 +23,10 @@ export const BarContainer = styled.div`
 `;
 
 export const LogoBlack = styled.span`
-    color: ${props => props.theme.colors.titleText};
-    font-family: ${props => props.theme.fonts.heading};
+    color: ${theme.colors.titleText};
+    font-family: ${theme.fonts.heading};
     font-style: normal;
-    font-weight: ${props => props.theme.fontWeights.bold};
+    font-weight: ${theme.fontWeights.bold};
     letter-spacing: 0.07em;
     z-index: 21;
     ${media.mobile} {
@@ -39,7 +40,7 @@ export const LogoBlack = styled.span`
 `;
 
 export const LogoAccent = styled.span`
-    color: ${props => props.theme.colors.primary};
+    color: ${theme.colors.primary};
 `;
 
 export const TabletWrapper = styled.div`
@@ -65,7 +66,7 @@ export const MenuWrpr = styled.div`
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: ${props => props.theme.colors.secondary};
+    background-color: ${theme.colors.secondary};
     opacity: ${({ isClosed }) => isClosed ? 0 : 1};
     visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
     pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
@@ -114,7 +115,7 @@ export const Nav = styled.nav`
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: ${props => props.theme.colors.secondary};
+        background-color: ${theme.colors.secondary};
         /* outline: 1px solid green; */
         ${media.desktop} {
             opacity: 1;
