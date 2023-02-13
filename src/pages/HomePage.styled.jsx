@@ -1,13 +1,16 @@
 import styled from '@emotion/styled';
-import { theme } from '../utils/theme';
+// import { theme } from '../utils/theme';
 import { media } from 'components/Layout/Layout.styled';
 import mobileBackground from 'images/mobile/wave-mobile.svg';
 import tabletBackground from 'images/tablet/wave-tablet.svg';
 import desktopBackgroundLeft from 'images/desktop/wave-group-left-desktop.svg';
-import desktopBackgroundRight from 'images/desktop/wave-group-right-desktop.svg';
+// import desktopBackgroundRight from 'images/desktop/wave-group-right-desktop.svg';
 import ladyWithPetMobile1x from 'images/mobile/lady-with-pet-1x.png';
+import ladyWithPetMobile2x from 'images/mobile/lady-with-pet-2x.png';
 import ladyWithPetTablet1x from 'images/tablet/lady-with-pet-1x.png';
+import ladyWithPetTablet2x from 'images/tablet/lady-with-pet-2x.png';
 import ladyWithPetDesktop1x from 'images/desktop/lady-with-pet-1x.png';
+import ladyWithPetDesktop2x from 'images/desktop/lady-with-pet-2x.png';
 import unionHeart from 'images/desktop/heart.svg';
 
 export const HomePageBgMobileAndTablet = styled.div`
@@ -56,15 +59,33 @@ export const HomePageWomanImg = styled.img`
   margin-left: auto;
   margin-top: 26vw;
   content: url(${ladyWithPetMobile1x});
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    content: url(${ladyWithPetMobile2x});
+  }
   ${media.tablet} {
     content: url(${ladyWithPetTablet1x});
     display: block;
     max-width: 100%;
-    margin-top: 50vw;  
+    margin-top: 50vw;
+    @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      content: url(${ladyWithPetTablet2x});
+    }
   }
   ${media.desktop} {
     content: url(${ladyWithPetDesktop1x});
     margin-top: -7vh;
+    @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      content: url(${ladyWithPetDesktop2x});
+    }
   }
 `;
 export const HomePageUnionHeartSvg = styled.img`
@@ -77,18 +98,18 @@ export const HomePageUnionHeartSvg = styled.img`
   }
 `;
 export const HomePageTitleMobileAndTablet = styled.h2`
-${media.mobile} {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 44px;
-  color: #000000;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 60px;
-  max-width: 280px;
-}  
+  ${media.mobile} {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+    color: #000000;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    max-width: 280px;
+  }
 
   ${media.tablet} {
     margin-left: 0;
