@@ -33,12 +33,13 @@ export const ModalAddsPet = ({onClose}) => {
 
             const formData = new FormData();
 
-            formData.append('pictureURL', newData.pictureURL.name);
+            formData.append('pictureURL', newData.pictureURL
+            , newData.pictureURL.name
+            );
             formData.append('comments', newData.comments);
             formData.append('breed', newData.breed);
             formData.append('dateOfBirth', newData.dateOfBirth);
             formData.append('name', newData.name);
-console.log('formData', formData);
 console.log('newData after formData.append', newData);
 
             dispatch(addOwnPet(newData));     
