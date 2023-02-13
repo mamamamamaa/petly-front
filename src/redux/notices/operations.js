@@ -74,3 +74,33 @@ export const deleteNotice = createAsyncThunk(
     }
   }
 );
+
+export const favorite = createAsyncThunk(
+  'notices/favorite',
+  async (page = 1, thunkAPI) => {
+    const limit = 20;
+    try {
+      const res = await axios.get(
+        `/api/notices/favorite&page=${page}&limit=${limit}`
+      );
+      return res.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const myAds = createAsyncThunk(
+  'notices/myAds',
+  async (page = 1, thunkAPI) => {
+    const limit = 20;
+    try {
+      const res = await axios.get(
+        `/api/notices&page=${page}&limit=${limit}`
+      );
+      return res.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

@@ -8,6 +8,8 @@ import { useAuth } from '../redux/hooks';
 import { SellList } from 'components/SellList/SellList';
 import { InGoodHandsList } from 'components/InGoodHandsList/InGoodHandsList';
 import { LostFoundList } from 'components/LostFoundList/LostFoundList';
+import { FavoriteList } from './FavoriteList/FavoriteList';
+import { MyAdsList } from './MyAdsList/MyAdsList';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const NewsPage = lazy(() => import('../pages/NewsPage'));
@@ -48,6 +50,8 @@ export const App = () => {
           <Route path="sell" element={<SellList />} />
           <Route path="good-hands" element={<InGoodHandsList />} />
           <Route path="lost" element={<LostFoundList />} />
+          <Route path="favorite" element={<FavoriteList />} />
+          <Route path="my-ads" element={<MyAdsList />} />
         </Route>
 
         <Route path="/friends" element={<OurFriendsPage />} />
