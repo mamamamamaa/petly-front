@@ -1,13 +1,19 @@
-import { HomePageBg, HomePageTitle, HomePageWomanImg } from './HomePage.styled';
-import ladyWithPet1x from 'images/mobile/lady-with-pet-1x.png';
+import {
+  HomePageBg,
+  HomePageTitle,
+  HomePageWomanImg,
+  HomePageWrapper,
+} from './HomePage.styled';
+
+
 const HomePage = () => {
   return (
-    <>
+    <HomePageWrapper>
       <HomePageTitle>Take good care of your small pets</HomePageTitle>
       <HomePageBg>
-        <HomePageWomanImg src={ladyWithPet1x} alt="Lady with pet" />
+        <HomePageWomanImg  alt="Lady with pet" />
       </HomePageBg>
-    </>
+    </HomePageWrapper>
   );
 };
 

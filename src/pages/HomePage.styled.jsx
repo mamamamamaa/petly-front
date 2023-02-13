@@ -1,12 +1,23 @@
 import styled from '@emotion/styled';
-import { theme } from '../utils/theme'
+import { theme } from '../utils/theme';
 import { media } from 'components/Layout/Layout.styled';
-import mobileBackground from 'images/mobile/wave-covered.svg';
-import mobileBackground2x from 'images/mobile/lady-with-pet-2x.png';
-import tabletBackground from 'images/tablet/lady-with-pet-1x.png';
-import tabletBackground2x from 'images/tablet/lady-with-pet-2x.png';
-import desktopBackground from 'images/desktop/lady-with-pet-1x.png';
-import desktopBackground2x from 'images/desktop/lady-with-pet-2x.png';
+import mobileBackground from 'images/mobile/wave-mobile.svg';
+import tabletBackground from 'images/tablet/wave-tablet.svg';
+import desktopBackground from 'images/desktop/wave-desktop.svg';
+import ladyWithPetMobile1x from 'images/mobile/lady-with-pet-1x.png';
+import ladyWithPetTablet1x from 'images/tablet/lady-with-pet-1x.png';
+import ladyWithPetDesktop1x from 'images/desktop/lady-with-pet-1x.png';
+
+
+export const HomePageWrapper = styled.div`
+  // ${media.tablet} {
+  //   position: relative;
+  //   right: 0;
+  //   left: 0;
+  //   top: 0;
+  //   bottom: 0;
+  // }
+`;
 
 export const HomePageBg = styled.div`
   background-image: url(${mobileBackground});
@@ -19,20 +30,31 @@ export const HomePageBg = styled.div`
   margin-left: -20px;
   margin-right: -20px;
   ${media.tablet} {
+    display: block;
     background-image: url(${tabletBackground});
-    padding-top: 184px;
-    padding-bottom: 268px;
-    min-height: calc(100vh - 64px);
+    position: absolute;
+    right: 0;
+    left: 0;
+    // top: 0;
   }
   ${media.desktop} {
     background-image: url(${desktopBackground});
-    padding-top: 50px;
-    padding-bottom: 147px;
   }
 `;
 export const HomePageWomanImg = styled.img`
   margin-top: 58px;
   width: 100%;
+  content: url(${ladyWithPetMobile1x});
+  ${media.tablet} {
+    content: url(${ladyWithPetTablet1x});
+    display: block;
+    max-width: 645px;
+    margin-top: 118px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  ${media.desktop} {
+    content: url(${ladyWithPetDesktop1x});
   }
 `;
 
@@ -47,7 +69,11 @@ export const HomePageTitle = styled.h2`
   margin-right: auto;
   margin-top: 60px;
   ${media.tablet} {
+    margin-left: 0;
     max-width: 588px;
+    margin-top: 88px;
+    font-size: 68px;
+    line-height: 100px;
   }
   ${media.mobile} {
     max-width: 280px;
