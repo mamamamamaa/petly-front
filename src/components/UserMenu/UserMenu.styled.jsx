@@ -1,19 +1,23 @@
 import styled from '@emotion/styled';
 import { media } from "../Layout/Layout.styled";
+import { theme } from '../../utils';
 import { NavLink } from "react-router-dom";
 
 export const UserLink = styled(NavLink)`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid ${props => props.theme.colors.primary};
+    border: 2px solid ${theme.colors.primary};
     border-radius: 40px;
-    background-color: ${props => props.theme.colors.primary};
-    color: ${props => props.theme.colors.accentText};
+    background-color: ${theme.colors.primary};
+    color: ${theme.colors.accentText};
     text-decoration: none;
     :hover,
     :focus {
         text-decoration: underline;
+    }
+    &.active {
+        text-decoration: none;
     }
     ${media.mobile} {
         min-height: 35px;
@@ -35,9 +39,9 @@ export const UserLink = styled(NavLink)`
 
 export const Text = styled.span`
     margin-left: 14px;
-    font-family: ${props => props.theme.fonts.body};
+    font-family: ${theme.fonts.body};
     font-style: normal;
-    font-weight: ${props => props.theme.fontWeights.normal};
+    font-weight: ${theme.fontWeights.normal};
     font-size: 16px;
     line-height: 22px;
     letter-spacing: 0.04em;
