@@ -23,13 +23,13 @@ export const HomePageBg = styled.div`
   margin-left: -20px;
   margin-right: -20px;
   ${media.tablet} {
-    background-position: top -6vw left 0;
-    display: block;
     background-image: url(${tabletBackground});
-    position: absolute;
-    right: -6vw;
-    left: 0;
-    top: 24vw;
+    max-width: 768px;
+    background-position: 50% bottom;
+    background-size: contain;
+    height: auto;
+    justify-content: flex-end;
+    transform: scale(1.5);
   }
   ${media.desktop} {
     position: relative;
@@ -69,8 +69,8 @@ export const HomePageWomanImg = styled.img`
   ${media.tablet} {
     content: url(${ladyWithPetTablet1x});
     display: block;
-    max-width: 10vwax;
-    margin-top: 50vw;
+    margin-top: auto;
+    transform: scale(70%) translate(0, 180px);
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -118,14 +118,14 @@ export const HomePageTitle = styled.h2`
 
   ${media.tablet} {
     margin-left: 0;
-    max-width: 70vmax;
-    margin-top: 20vmax;
+    width: 588px;
+    margin-top: 160px;
     font-family: 'Manrope';
     font-style: normal;
-    font-weight: 700;
-    font-size: 7vmax;
-    line-height: 100px;
     color: #000000;
+    font-weight: 700;
+    font-size: 68px;
+    line-height: 100px;
   }
   ${media.desktop} {
     font-family: 'Manrope';
