@@ -68,7 +68,7 @@ export const HomePageWomanImg = styled.img`
   ${media.tablet} {
     content: url(${ladyWithPetTablet1x});
     display: block;
-    max-width: 100%;
+    max-width: 10vwax;
     margin-top: 50vw;
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
@@ -83,7 +83,7 @@ export const HomePageWomanImg = styled.img`
     top: 0vw; //woman Y
     margin-top: 0vh; //heart
     margin-left: 0vh; // woman dimensions grow/shrink
-    // margin-bottom: 35vh; // woman replacement Y
+    margin-bottom: 0vh; // woman replacement Y
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -117,10 +117,14 @@ export const HomePageTitle = styled.h2`
 
   ${media.tablet} {
     margin-left: 0;
-    max-width: 588px;
-    margin-top: 88px;
-    font-size: 68px;
+    max-width: 127vmax;
+    margin-top: 20vmax;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 7vmax;
     line-height: 100px;
+    color: #000000;
   }
   ${media.desktop} {
     font-family: 'Manrope';
