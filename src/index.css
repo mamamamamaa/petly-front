@@ -1,6 +1,5 @@
 @import-normalize;
 
-
 body {
   margin: 0;
   background-color: #fdf7f2;
@@ -13,7 +12,7 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;    
+    monospace;
 }
 
 a {
@@ -34,4 +33,3 @@ ul {
   list-style: none;
   padding: 0;
 }
-

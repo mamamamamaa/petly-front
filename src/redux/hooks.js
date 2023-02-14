@@ -47,13 +47,22 @@ export const useNotices = () => {
 };
 
 export const useFriends = () => {
-  return;
+  const selectFriends = useSelector(state => state.friends.friends);
+
+  const selectIsLoading = useSelector(state => state.friends.isLoading);
+
+  const selectError = useSelector(state => state.friends.error);
+  return {
+    selectFriends,
+    selectIsLoading,
+    selectError,
+  };
 };
 
 export const useUser = () => {
   const user = useSelector(state => state.user);
   const getUserData = useSelector(state => state.user.getUserData);
   //console.log(user)
-  const userAvatar = useSelector(state => state.auth.user.avatar)
-  return { user, userAvatar, getUserData }
+  const userAvatar = useSelector(state => state.auth.user.avatar);
+  return { user, userAvatar, getUserData };
 };
