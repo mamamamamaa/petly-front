@@ -7,7 +7,7 @@ import {
   AddPetToNoticesText,
   AddPetToNoticesBtnWrapper,
 } from '../AddNoticeButton/AddNoticeButton.styled';
-import { ModalAddsPet } from '../../components/ModalAddsPet/ModalAddsPet';
+import { ModalAddNotice } from '../../components/ModalAddNotice/ModalAddNotice';
 import cross from 'utils/svg/cross.svg';
 import { Modal } from 'components/Modal/Modal';
 
@@ -37,7 +37,7 @@ const AddNoticeButton = () => {
       </AddPetToNoticesBtnWrapper>
       {showModal && (
         <Modal onClose={handleModal}>
-          <ModalAddsPet onClose={handleModal} />
+          <ModalAddNotice onClose={handleModal} />
         </Modal>
       )}
 
