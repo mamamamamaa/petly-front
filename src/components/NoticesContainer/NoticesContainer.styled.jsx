@@ -7,7 +7,6 @@ export const NoticesCategoriesNav = styled.div`
 `;
 export const NoticesNavLink = styled(NavLink)``;
 
-
 export const NoticesCategoriesList = styled.ul`
   list-style-type: none;
   @media (min-width: 768px) {
@@ -22,9 +21,7 @@ export const NoticesCategoriesList = styled.ul`
 `;
 
 export const NoticeCategoryItem = styled.li`
-  :not(:last-child) {
-    margin-bottom: 32px;
-  }
+  margin-bottom: 32px;
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 20px 20px;
