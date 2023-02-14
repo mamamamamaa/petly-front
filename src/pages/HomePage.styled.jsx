@@ -3,8 +3,7 @@ import { theme } from 'utils/theme';
 import { media } from 'components/Layout/Layout.styled';
 import mobileBackground from 'images/mobile/wave-mobile.svg';
 import tabletBackground from 'images/tablet/wave-tablet.svg';
-import desktopBackgroundLeft from 'images/desktop/wave-group-left-desktop.svg';
-// import desktopBackgroundRight from 'images/desktop/wave-group-right-desktop.svg';
+import desktopBackground from 'images/desktop/wave-group-desktop.svg';
 import ladyWithPetMobile1x from 'images/mobile/lady-with-pet-1x.png';
 import ladyWithPetMobile2x from 'images/mobile/lady-with-pet-2x.png';
 import ladyWithPetTablet1x from 'images/tablet/lady-with-pet-1x.png';
@@ -34,7 +33,7 @@ export const HomePageBg = styled.div`
   }
   ${media.desktop} {
     position: relative;
-    background-image: url(${desktopBackgroundLeft});
+    background-image: url(${desktopBackground});
     justify-content: space-between;
     padding-right: 16px;
     padding-left: 16px;
@@ -53,7 +52,6 @@ export const HomePageWomanWrapper = styled.div`
   }
 `;
 export const HomePageWomanImg = styled.img`
-  margin-top: 118px;
   max-width: 100%;
   margin-right: auto;
   margin-left: auto;
@@ -117,7 +115,7 @@ export const HomePageTitle = styled.h2`
 
   ${media.tablet} {
     margin-left: 0;
-    max-width: 127vmax;
+    max-width: 70vmax;
     margin-top: 20vmax;
     font-family: 'Manrope';
     font-style: normal;
