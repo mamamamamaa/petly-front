@@ -5,19 +5,6 @@ import { useDispatch } from 'react-redux';
 import { addOwnPet } from '../../redux/user/operations';
 import moment from 'moment';
 
-export const ModalAddsPet = ({ onClose }) => {
-  const dispatch = useDispatch();
-  const [data, setData] = useState({
-    name: '',
-    dateOfBirth: '',
-    breed: '',
-    pictureURL: '',
-    comments: '',
-  });
-
-
-
-
 export const ModalAddsPet = ({onClose}) => {
     const dispatch = useDispatch();
     const [data, setData] = useState({
@@ -91,5 +78,5 @@ export const ModalAddsPet = ({onClose}) => {
 
   
     </div>
-  );
+  
 };
