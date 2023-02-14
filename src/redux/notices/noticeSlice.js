@@ -5,6 +5,8 @@ import {
   lostFound,
   sell,
   getNoticeById,
+  favorite,
+  myAds,
 } from './operations';
 
 const initialState = {
@@ -13,8 +15,8 @@ const initialState = {
   sellNotices: [],
   goodHandsNotices: [],
   lostFoundNotices: [],
-  favoriteNotice: [],
-  myAds: [],
+  favoriteNotices: [],
+  myAdsNotices: [],
   searchNotices: [],
   currentNotice: null,
 };
@@ -92,7 +94,30 @@ const noticeSlice = createSlice({
       })
       .addCase(deleteNotice.rejected, (state, action) => {
         state.isLoading = false;
-      }),
+      })
+      .addCase(favorite.pending, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(favorite.fulfilled, (state, action) => {
+        state.favoriteNotices = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(favorite.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(myAds.pending, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(myAds.fulfilled, (state, action) => {
+        state.myAdsNotices = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(myAds.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+
 });
 
 export const noticeReducer = noticeSlice.reducer;
