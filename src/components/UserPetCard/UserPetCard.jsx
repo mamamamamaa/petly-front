@@ -2,9 +2,7 @@ import { useDispatch } from 'react-redux';
 import { deleteOneOwnPet } from '../../redux/user/operations';
 import {
   PetDeleteButton,
-  PetUl,
   PetImg,
-  PetLi,
   PetComments,
   PetBreed,
   PetDateOfBirth,
@@ -22,25 +20,21 @@ export const UserPetCard = ({
   const dispatch = useDispatch();
   return (
     <article>
-      <PetUl>
-        <PetLi>
-          <PetImg alt={alt} src={pictureURL} />
-          <PetNameTitle>Name:</PetNameTitle>
-          <PetDeleteButton
-            type="button"
-            onClick={() => dispatch(deleteOneOwnPet(pet._id))}
-          >
-            delete
-          </PetDeleteButton>
-          <PetName>{pet.name}</PetName>
-          <PetDateOfBirthTitle>Date of birth:</PetDateOfBirthTitle>
-          <PetDateOfBirth>{pet.dateOfBirth}</PetDateOfBirth>
-          <PetBreedTitle>Breed:</PetBreedTitle>
-          <PetBreed>{pet.breed}</PetBreed>
-          <PetCommentsTitle>Comments:</PetCommentsTitle>
-          <PetComments>{pet.comments}</PetComments>
-        </PetLi>
-      </PetUl>
+      <PetImg alt={alt} src={pictureURL} />
+      <PetNameTitle>Name:</PetNameTitle>
+      <PetDeleteButton
+        type="button"
+        onClick={() => dispatch(deleteOneOwnPet(pet._id))}
+      >
+        delete
+      </PetDeleteButton>
+      <PetName>{pet.name}</PetName>
+      <PetDateOfBirthTitle>Date of birth:</PetDateOfBirthTitle>
+      <PetDateOfBirth>{pet.dateOfBirth}</PetDateOfBirth>
+      <PetBreedTitle>Breed:</PetBreedTitle>
+      <PetBreed>{pet.breed}</PetBreed>
+      <PetCommentsTitle>Comments:</PetCommentsTitle>
+      <PetComments>{pet.comments}</PetComments>
     </article>
   );
 };
