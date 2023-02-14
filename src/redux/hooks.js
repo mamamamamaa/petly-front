@@ -22,7 +22,14 @@ export const useAuth = () => {
 };
 
 export const useNews = () => {
-  return;
+  const currentNews = useSelector(state => state.news.news);
+  const isLoading = useSelector(state => state.news.isLoading);
+  const error = useSelector(state => state.news.error);
+  return {
+    currentNews,
+    isLoading,
+    error,
+  };
 };
 
 export const useNotices = () => {
@@ -54,6 +61,6 @@ export const useUser = () => {
   const user = useSelector(state => state.user);
   const getUserData = useSelector(state => state.user.getUserData);
   //console.log(user)
-  const userAvatar = useSelector(state => state.auth.user.avatar)
-  return { user, userAvatar, getUserData }
+  const userAvatar = useSelector(state => state.auth.user.avatar);
+  return { user, userAvatar, getUserData };
 };
