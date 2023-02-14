@@ -55,5 +55,6 @@ export const useUser = () => {
   const getUserData = useSelector(state => state.user.getUserData);
   //console.log(user)
   const userAvatar = useSelector(state => state.auth.user.avatar)
-  return { user, userAvatar, getUserData }
+  const pictureURL = useSelector(state => state.user.pets.pictureURL);
+  return { user, userAvatar, getUserData, pictureURL };
 };
