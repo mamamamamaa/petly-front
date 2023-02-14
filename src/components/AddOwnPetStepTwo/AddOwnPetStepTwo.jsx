@@ -1,4 +1,14 @@
 import { useFormik } from 'formik';
+// import { object, string, mixed } from 'yup';
+
+// const addOwnPetSchema = object().shape({
+//     pictureURL: mixed().required('Required'),
+//     comments: string()
+//     .min(8, 'Must be 8 or more letter')
+//     .max(120, 'Must be 120 or less letter').trim()
+//     .matches(/^[A-Za-zА`\s]+$/, 'Only letters')
+//     .required('Required'),     
+//   });
 
 export const AddOwnPetStepTwo = ({data, next, prev, onClose}) => {
 
@@ -11,7 +21,11 @@ export const AddOwnPetStepTwo = ({data, next, prev, onClose}) => {
     }
 
     const formik = useFormik({
-        initialValues: data,
+        initialValues: {
+            pictureURL: data.pictureURL,
+            comments:data.comments
+        },
+        // validationSchema: addOwnPetSchema,      
         onSubmit: (values, actions)=>{
             actions.validateForm();   
         const newValue = {

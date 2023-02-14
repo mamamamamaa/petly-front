@@ -6,6 +6,8 @@ import { addOwnPet } from "../../redux/user/operations";
 import moment from "moment";
 
 
+
+
 export const ModalAddsPet = ({onClose}) => {
     const dispatch = useDispatch();
     const [data, setData] = useState({
@@ -16,13 +18,16 @@ export const ModalAddsPet = ({onClose}) => {
         comments:""
     });
 
+    
 
     const handleNextStep = (newData, final=false) => {  
-        const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format("DD.MM.YYYY") ;
+        const normalizedDateOfBirth =  moment(new Date(newData.dateOfBirth)).format("DD.MM.YYYY") ;
+        console.log('newData', newData);
+        console.log('final', final);
         if(final){
         setData({             
             ...newData, 
-            dateOfBirth :normalizedDateOfBirth
+            dateOfBirth : normalizedDateOfBirth,
         });
 
             const formData = new FormData();
@@ -65,7 +70,7 @@ export const ModalAddsPet = ({onClose}) => {
     <AddOwnPetStepOne next={handleNextStep} data={data} cancel={cancelData}/>, 
     <AddOwnPetStepTwo next={handleNextStep} data={data} prev={handlePrevStep} onClose={onClose}/>
 ];
-    
+    console.log(data);
     return <div>
         <h3>Add pet</h3>
         {steps[currentStep]}
