@@ -1,6 +1,42 @@
 import styled from '@emotion/styled';
 import { Field, Form } from 'formik';
 import { theme } from '../../utils/theme';
+import { media } from '../Layout/Layout.styled'
+
+
+//===========пробная загрузка==========================================
+
+export const Inputav = styled.input`
+
+ opacity: 0;
+  position: absolute;
+  z-index: -1;
+` 
+export const Labelav = styled.label`
+  
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+` 
+export const Formav = styled.form`
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 50;
+` 
+export const Imgav = styled.img`
+  border: 1px dashed gray;
+  width: 233px;
+  height: 233px;
+  border-radius: 50%;
+`
+// ======================== for avatar
+
 
 export const Title = styled.h2`
   color: ${theme.colors.textTitleColor};
@@ -155,32 +191,47 @@ export const DivInput = styled.div`
   }
   
 `
-export const Label = styled.label`
-  
-  font-weight: 400;  
-  color: #111111;
-  @media (min-width: 1280px) {   
-    
-  }
-  
+export const FormLabel = styled.label`
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  font-family: ${theme.fonts.body};
+  font-style: normal;
+  font-weight: ${theme.fontWeights.normal};
+  letter-spacing: 0.04em;
+  color: ${theme.colors.black};
+  ${media.mobile} {
+    font-size: 12px;
+    line-height: 16px;
+  };
+  ${media.tabletAndDesktop} {
+    font-size: 18px;
+    line-height: 25px;
+  };
   `
 
 
 export const Input = styled(Field)`
-  // margin-left: 25px;
-  
-  width: 160px;
-  height: 24px;
-  margin-right: 14px;  
+   margin-left: auto;
   border: 1px solid transparent;
   border-radius: 40px;
-  font-weight: 400;
+  font-family: ${theme.fonts.body};
+  font-weight: ${theme.fontWeights.news};
   letter-spacing: 0.04em;
-  font-size: 14px;
-  background-color: transparent;
-  color: #111111;
-  
+  color: ${theme.colors.black};
+  background-color: ${theme.colors.accentText};
   outline: none;
+  cursor: pointer;
+  ${media.mobile} {
+    height: 24px;
+    font-size: 14px;
+    line-height: 16px;
+  };
+  ${media.tabletAndDesktop} {
+    height: 32px;
+    font-size: 18px;
+    line-height: 25px;
+  };
   
   &:hover{
     background: #FDF7F2;
@@ -188,21 +239,34 @@ export const Input = styled(Field)`
     border-radius: 40px;
   &:focus{
     background-color: #FFFFFF;
-  } 
-   
+    color:#F59256 50% ;
+    
+    outline: "none",
+    transform: "scale(1.15)"
+  &:active{
+    color:#F59256;
+    
+  }
   }
 `
 
 export const BtnInput = styled.button`
-  display: flex;
+   display: flex;
   align-items: center;
   justify-content: center;
-  background: '#FDF7F2';
+  /* background: '#FDF7F2'; */
   border-radius: 50%;
   border: none;
+  ${media.mobile} {
   width: 30px;
-  height: 30px;  
-  
+  height: 30px; 
+  /* margin-left: 9px; */
+  };
+  ${media.tabletAndDesktop} {
+    margin-left: 24px;
+    width: 32px;
+    height: 32px;
+  }
   cursor: pointer;
   &.active{
     color:#F59256;

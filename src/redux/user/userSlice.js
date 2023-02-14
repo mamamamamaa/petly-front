@@ -2,8 +2,8 @@
 import { createSlice
   // , isAnyOf
 } from '@reduxjs/toolkit';
-import { updateUserData, getUserData } from './operations';
-import {fetchUserPets, addOwnPet, deleteOneOwnPet} from './operations';
+import { updateUserData, getUserData, updateUserAvatar } from './operations';
+//import {fetchUserPets, addOwnPet, deleteOneOwnPet} from './operations';
 
 // const extraActions = [updateUserData, getUserData, fetchUserPets, addOwnPet, deleteOneOwnPet];
 
@@ -33,7 +33,7 @@ const userSlice = createSlice({
       })
       .addCase(getUserData.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isLoading = false;
+        // state.isLoading = false;
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.user.phone = action.payload.phone;
@@ -41,7 +41,7 @@ const userSlice = createSlice({
         state.user.avatar = action.payload.avatar;
         state.user.birthday = action.payload.birthday;
         state.isLoggedIn = true;
-        
+        console.log(state.user.avatar)
       })
       .addCase(getUserData.rejected, (state, action) => {
         //state.error = action.payload;
@@ -53,65 +53,77 @@ const userSlice = createSlice({
       .addCase(updateUserData.fulfilled, (state, action) => {
         state.status = "succeeded"
         state.data = { ...state.data, ...action.payload };
+        console.log(state.data)
       })
       .addCase(updateUserData.rejected, (state, action) => {
         state.status = "failed"
         state.error = action.error.message
       })
-      .addCase(fetchUserPets.pending, (state, action) => {
-        console.log('state', state);
-        console.log('action', action);
+      .addCase(updateUserAvatar.pending, (state, action) => {
         state.error = null;
-        state.isLoading = true;
       })
-      .addCase(fetchUserPets.fulfilled, (state, action) => {
-        console.log('state', state);
-        console.log('action', action);
-        state.pets = action.payload;
-        state.isLoading = false;        
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.status = "succeeded"
+        state.data = { ...state.data, ...action.payload };
       })
-      .addCase(fetchUserPets.rejected, (state, action) => {
-        console.log('state', state);
-        console.log('action', action);
-        state.isLoading = false; 
-        state.error = action.payload;        
+      .addCase(updateUserAvatar.rejected, (state, action) => {
+        state.status = "failed"
+        state.error = action.error.message
       })
-      .addCase(deleteOneOwnPet.pending, (state, action) => {        
-        console.log('state.pets', state.pets);
-        console.log('action', action);
-        state.error = null;
-        state.isLoading = true;
-      })
-      .addCase(deleteOneOwnPet.fulfilled, (state, action) => {
-        console.log('state.pets', state.pets);
-        console.log('action.payload', action.payload);        
-        state.pets = state.pets.filter(pet => pet._id !== action.payload);
-        state.isLoading = false;
-      })
-      .addCase(deleteOneOwnPet.rejected, (state, action) => {
-        console.log('state', state);
-        console.log('action', action);
-        state.isLoading = false; 
-        state.error = action.payload;        
-      })
-      .addCase(addOwnPet.pending, (state, action) => {        
-        console.log('state.pets', state.pets);
-        console.log('action', action);
-        state.error = null;
-        state.isLoading = true;
-      })
-      .addCase(addOwnPet.fulfilled, (state, action) => {
-        console.log('state.pets', state.pets);
-        console.log('action.payload', action.payload);
-        state.pets = [action.payload, ...state.pets]
-        console.log('state.pets', state.pets);
-      })
-      .addCase(addOwnPet.rejected, (state, action) => {
-        console.log('state', state);
-        console.log('action', action);
-        state.isLoading = false; 
-        state.error = action.payload;        
-      })
+      // .addCase(fetchUserPets.pending, (state, action) => {
+      //   console.log('state', state);
+      //   console.log('action', action);
+      //   state.error = null;
+      //   state.isLoading = true;
+      // })
+      // .addCase(fetchUserPets.fulfilled, (state, action) => {
+      //   console.log('state', state);
+      //   console.log('action', action);
+      //   state.pets = action.payload;
+      //   state.isLoading = false;        
+      // })
+      // .addCase(fetchUserPets.rejected, (state, action) => {
+      //   console.log('state', state);
+      //   console.log('action', action);
+      //   state.isLoading = false; 
+      //   state.error = action.payload;        
+      // })
+      // .addCase(deleteOneOwnPet.pending, (state, action) => {        
+      //   console.log('state.pets', state.pets);
+      //   console.log('action', action);
+      //   state.error = null;
+      //   state.isLoading = true;
+      // })
+      // .addCase(deleteOneOwnPet.fulfilled, (state, action) => {
+      //   console.log('state.pets', state.pets);
+      //   console.log('action.payload', action.payload);        
+      //   state.pets = state.pets.filter(pet => pet._id !== action.payload);
+      //   state.isLoading = false;
+      // })
+      // .addCase(deleteOneOwnPet.rejected, (state, action) => {
+      //   console.log('state', state);
+      //   console.log('action', action);
+      //   state.isLoading = false; 
+      //   state.error = action.payload;        
+      // })
+      // .addCase(addOwnPet.pending, (state, action) => {        
+      //   console.log('state.pets', state.pets);
+      //   console.log('action', action);
+      //   state.error = null;
+      //   state.isLoading = true;
+      // })
+      // .addCase(addOwnPet.fulfilled, (state, action) => {
+      //   console.log('state.pets', state.pets);
+      //   console.log('action.payload', action.payload);
+      //   state.pets = [action.payload, ...state.pets]
+      //   console.log('state.pets', state.pets);
+      // })
+      // .addCase(addOwnPet.rejected, (state, action) => {
+      //   console.log('state', state);
+      //   console.log('action', action);
+      //   state.isLoading = false; 
+      //   state.error = action.payload;        
+      // })
       // .addMatcher(
       //   isAnyOf(...extraActions.map(action => action.pending)),
       //   state => {
