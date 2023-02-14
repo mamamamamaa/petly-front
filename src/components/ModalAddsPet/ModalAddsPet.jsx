@@ -15,8 +15,6 @@ export const ModalAddsPet = ({onClose}) => {
         comments:""
     });
 
-    
-
     const handleNextStep = (newData, final=false) => {  
         const normalizedDateOfBirth =  moment(new Date(newData.dateOfBirth)).format("DD.MM.YYYY") ;
         console.log('newData', newData);

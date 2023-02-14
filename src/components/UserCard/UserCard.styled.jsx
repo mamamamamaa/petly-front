@@ -87,9 +87,6 @@ export const DivPhoto = styled.div`
     margin-right: auto;
     margin-bottom: 12px;
   };
-  ${media.tablet} {
-
-  };
   ${media.desktop} {
     margin-left: auto;
     margin-right: auto;
@@ -298,4 +295,4 @@ export const LogOutSpan = styled.span`
   font-family: ${theme.fonts.body};
   font-weight: ${theme.fontWeights.normal};
   letter-spacing: 0.04em;
-`
+`;

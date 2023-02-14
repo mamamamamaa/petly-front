@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { media } from "../Layout/Layout.styled";
+import { theme } from '../../utils';
 
 
 export const NavList = styled.ul`
@@ -25,16 +26,16 @@ export const NavList = styled.ul`
 `;
 
 export const NavListItem = styled.li`
-    font-family: ${props => props.theme.fonts.body};
+    font-family: ${theme.fonts.body};
     font-style: normal;
-    font-weight: ${props => props.theme.fontWeights.normal};
+    font-weight: ${theme.fontWeights.normal};
     display: flex;
     align-items: center;
     letter-spacing: 0.04em;
-    color: ${props => props.theme.colors.navText};
+    color: ${theme.colors.navText};
     :hover,
     :focus{
-        color: ${props => props.theme.colors.primary};
+        color: ${theme.colors.primary};
         text-decoration: underline;
         font-weight: 700;
     };
@@ -69,7 +70,8 @@ export const NavigLink = styled(NavLink)`
     color: inherit;
     text-decoration: none;
     &.active {
-        color: ${props => props.theme.colors.primary};
+        color: ${theme.colors.primary};
         text-decoration: underline;
+        font-weight: ${theme.fontWeights.bold}
     };
 `;

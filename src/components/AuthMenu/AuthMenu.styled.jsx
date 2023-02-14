@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { NavLink } from "react-router-dom";
 import { media } from "../Layout/Layout.styled";
+import { theme } from '../../utils';
 
 
 export const User = styled.ul`
@@ -14,17 +15,17 @@ export const Button = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid ${props => props.theme.colors.primary};
+  border: 2px solid ${theme.colors.primary};
   border-radius: 40px;
-  background: ${props => props.theme.colors.accentText};
-  color: ${props => props.theme.colors.titleText};
+  background: ${theme.colors.accentText};
+  color: ${theme.colors.titleText};
   :last-child {
     margin-left: 20px;
   }
   :hover,
   :focus {
-    background-color: ${props => props.theme.colors.primary};
-    color: ${props => props.theme.colors.accentText};
+    background-color: ${theme.colors.primary};
+    color: ${theme.colors.accentText};
   }
   ${media.mobile} {
     height: 35px;
@@ -51,9 +52,9 @@ export const Sp = styled.span`
   display: flex;
   align-items: center;
   color: inherit;
-  font-family: ${props => props.theme.fonts.body};
+  font-family: ${theme.fonts.body};
   font-style: normal;
-  font-weight: ${props => props.theme.fontWeights.normal};
+  font-weight: ${theme.fontWeights.normal};
   letter-spacing: 0.04em;
   ${media.nobile} {
     font-size: 14px;

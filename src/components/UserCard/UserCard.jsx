@@ -21,21 +21,6 @@ import { useEffect } from 'react';
 console.log(getUserData());
 
 
- //import {logout} from "../../redux/auth/authSlice"
-// ===============================================
-// logOutBtn
-     
-  //   const dispatch = useDispatch()
-    
-  //   const onLogOutHandler = () = {
-      
-  //     dispatch(logout())  
-  //   }
-
-  //  onClick={onLogOutHandler}
-  // ===============================================
-
-
 const UserCard = () => {
     //=========for avatar============
   const [changeBtn, setChangeBtn] = useState(false);
