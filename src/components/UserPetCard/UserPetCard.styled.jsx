@@ -11,7 +11,6 @@ export const PetNameTitle = styled.p`
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
-
   color: #000000;
 `;
 export const PetName = styled.p``;
@@ -24,8 +23,8 @@ export const PetComments = styled.p``;
 export const PetDeleteButton = styled.button`
   ${media.mobile} {
   }
-  width: 170px;
-  height: 180px;
+  width: 17px;
+  height: 18px;
   background-image: url(${PetDeleteIcon});
   background-repeat: no-repeat;
   background-size: cover;
@@ -40,20 +39,25 @@ export const PetDeleteButton = styled.button`
   }
 `;
 export const PetImg = styled.img`
-  width: 240px;
-  height: 240px;
+  ${media.mobile} {}
+   width: 100%;
   display: block;
   border-radius: 20px;
+  
+  
 `;
 export const PetUl = styled.ul`
   ${media.mobile} {
   }
   background: #fdf7f2;
-`;
-export const PetLi = styled.li`
-  width: 280px;
+  background: red;
+  margin-left: 20px;
+  margin-right: 20px;
   padding-left: 20px;
   padding-right: 20px;
+`;
+export const PetLi = styled.li`
+  width: 100%;
   padding-top: 16px;
   background-color: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
