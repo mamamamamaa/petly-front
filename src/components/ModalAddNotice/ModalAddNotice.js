@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AddOwnPetStepOne } from '../AddOwnPetStepOne/AddOwnPetStepOne';
 import { AddOwnPetStepTwo } from '../AddOwnPetStepTwo/AddOwnPetStepTwo';
 import { useDispatch } from 'react-redux';
-import { addOwnPet } from '../../redux/user/operations';
+import { addNotice } from '../../redux/notices/operations';
 import moment from 'moment';
 
 export const ModalAddNotice = ({ onClose }) => {
@@ -16,7 +16,7 @@ export const ModalAddNotice = ({ onClose }) => {
     sex: '',
     place: '',
     price: '',
-    pictureURL: '',
+    photoUrl: '',
     comments: '',
   });
 
@@ -49,7 +49,7 @@ export const ModalAddNotice = ({ onClose }) => {
       formData.append('place', newData.place);
       formData.append('price', newData.price);
 
-      dispatch(addOwnPet(newData));
+      dispatch(addNotice(newData));
       return;
     }
     setData({
@@ -74,7 +74,7 @@ export const ModalAddNotice = ({ onClose }) => {
       sex: '',
       place: '',
       price: '',
-      pictureURL: '',
+      photoUrl: '',
       comments: '',
     });
     setCurrentStep(0);

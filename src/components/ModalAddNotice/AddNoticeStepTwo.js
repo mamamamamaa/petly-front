@@ -1,16 +1,31 @@
 import { useFormik } from 'formik';
-import { object, string, mixed } from 'yup';
+// import { useState } from 'react';
 
-const addOwnPetSchema = object().shape({
-  pictureURL: mixed().required('Required'),
+import { object, string, mixed, number } from 'yup';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+
+const addNoticeSchema = object().shape({
+  sex: string().required('Sex is required'),
+  place: string()
+    .min(4, 'Too Short!')
+    .max(60, 'Too Long!')
+    .required('Location is required'),
+  price: number().required('The price is required'),
+  photoUrl: mixed().required('Image is required'),
   comments: string()
     .min(8, 'Must be 8 or more letter')
     .max(120, 'Must be 120 or less letter')
     .trim()
-    .required('Required'),
+    .required('The comments are required'),
 });
 
 export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
+  // const [selectedSex, setSelectedSex] = useState('');
+  // const sexChange = event => {
+  //   const { value } = event.target;
+  //   setSelectedSex(value);
+  // };
+
   const handleBack = () => {
     const newValue = {
       ...data,
@@ -21,10 +36,12 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
 
   const formik = useFormik({
     initialValues: {
+      place: data.place,
+      price: data.price,
       pictureURL: data.pictureURL,
       comments: data.comments,
     },
-    validationSchema: addOwnPetSchema,
+    validationSchema: addNoticeSchema,
     onSubmit: (values, actions) => {
       actions.validateForm();
       const newValue = {
@@ -38,10 +55,19 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
-      <div>
+    <Formik onSubmit={formik.handleSubmit} encType="multipart/form-data">
+      <Form>
         <label>
-          {' '}
+          Location
+          <Field type="text" name="location" required />
+          <ErrorMessage name="location" component="div" />
+        </label>
+        <label>
+          Price
+          <Field type="text" name="Price" required />
+          <ErrorMessage name="Price" component="div" />
+        </label>
+        <label>
           Upload File
           <input
             type="file"
@@ -57,10 +83,9 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
           />
           <div>{formik.errors.pictureURL}</div>
         </label>
-      </div>
+      </Form>
       <div>
         <label>
-          {' '}
           Comments
           <input
             type="text"
@@ -77,6 +102,6 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
         Back
       </button>
       <button type="submit">Done</button>
-    </form>
+    </Formik>
   );
 };

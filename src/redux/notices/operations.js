@@ -63,6 +63,22 @@ export const lostFound = createAsyncThunk(
   }
 );
 
+export const addNotice = createAsyncThunk(
+  'notices/addNotice',
+  async (newNotice, thunkAPI) => {
+    try {
+      const response = await axios.post('/api/notices', newNotice, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 export const deleteNotice = createAsyncThunk(
   'notices/delete',
   async ({ id, type }, thunkAPI) => {

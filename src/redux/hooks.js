@@ -41,6 +41,7 @@ export const useNotices = () => {
   const goodHandsNotices = useSelector(state => state.notices.goodHandsNotices);
   const isLoading = useSelector(state => state.notices.isLoading);
   const error = useSelector(state => state.notices.error);
+  const notices = useSelector(state => state.notices.notices);
   return {
     sellNotices,
     lostFoundNotices,
@@ -50,6 +51,7 @@ export const useNotices = () => {
     isLoading,
     error,
     currentNotice,
+    notices,
   };
 };
 
