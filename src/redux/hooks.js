@@ -22,7 +22,14 @@ export const useAuth = () => {
 };
 
 export const useNews = () => {
-  return;
+  const currentNews = useSelector(state => state.news.news);
+  const isLoading = useSelector(state => state.news.isLoading);
+  const error = useSelector(state => state.news.error);
+  return {
+    currentNews,
+    isLoading,
+    error,
+  };
 };
 
 export const useNotices = () => {

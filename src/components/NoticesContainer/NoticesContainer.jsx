@@ -7,7 +7,7 @@ import noPoster from 'noPoster.jpg';
 import { NoticeCategoryItemTemplate } from 'components/NoticeCategoryItemTemplate/NoticeCategoryItemTemplate';
 
 export const NoticesContainer = ({ pets = [] }) => {
-  console.log(pets);
+  // console.log(pets);
   return (
     <>
       <NoticesCategoriesNav>
