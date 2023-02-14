@@ -79,8 +79,9 @@ export const HomePageWomanImg = styled.img`
     content: url(${ladyWithPetDesktop1x});
     position: relative;
     top: 0vw; //woman Y
+    left: 29vmax; // woman X
     margin-top: 0vh; //heart
-    margin-left: 0vh; // woman dimensions grow/shrink
+    margin-left: -30vmax; // woman dimensions grow/shrink
     margin-bottom: 0vh; // woman replacement Y
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
