@@ -88,10 +88,10 @@ export const NoticeCategoryItemTemplate = ({
             <AddToFavImg src={heart} alt="Add to favorites" />
           )}
         </AddToFavBtn>
-        <AddPetToNotBtnMob to="">
+        {/* <AddPetToNotBtnMob to="">
           <AddPetToNotImgMob src={cross} alt="Add pet to notices" />
           <AddPetToNotTextMob>Add pet</AddPetToNotTextMob>
-        </AddPetToNotBtnMob>
+        </AddPetToNotBtnMob> */}
       </PhotoPetWrapper>
       <PetDetails>
         <Title>{title}</Title>

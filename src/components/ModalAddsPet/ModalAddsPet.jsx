@@ -1,9 +1,19 @@
-import { useState } from "react";
-import { AddOwnPetStepOne } from "../AddOwnPetStepOne/AddOwnPetStepOne";
-import { AddOwnPetStepTwo } from "../AddOwnPetStepTwo/AddOwnPetStepTwo";
-import { useDispatch } from "react-redux";
-import { addOwnPet } from "../../redux/user/operations";
-import moment from "moment";
+import { useState } from 'react';
+import { AddOwnPetStepOne } from '../AddOwnPetStepOne/AddOwnPetStepOne';
+import { AddOwnPetStepTwo } from '../AddOwnPetStepTwo/AddOwnPetStepTwo';
+import { useDispatch } from 'react-redux';
+import { addOwnPet } from '../../redux/user/operations';
+import moment from 'moment';
+
+export const ModalAddsPet = ({ onClose }) => {
+  const dispatch = useDispatch();
+  const [data, setData] = useState({
+    name: '',
+    dateOfBirth: '',
+    breed: '',
+    pictureURL: '',
+    comments: '',
+  });
 
 
 
@@ -30,7 +40,9 @@ export const ModalAddsPet = ({onClose}) => {
             dateOfBirth : normalizedDateOfBirth,
         });
 
-            const formData = new FormData();
+
+      const formData = new FormData();
+
 
             formData.append('pictureURL', newData.pictureURL
             , newData.pictureURL.name
@@ -40,20 +52,22 @@ export const ModalAddsPet = ({onClose}) => {
             formData.append('dateOfBirth', newData.dateOfBirth);
             formData.append('name', newData.name);
 
-            dispatch(addOwnPet(newData));     
-            return
-        }
-        setData({             
-            ...newData, 
-            dateOfBirth : normalizedDateOfBirth
-        });
-        setCurrentStep(prevStep => prevStep + 1);
-    }
 
-    const handlePrevStep = (newData) => {
-        setData(prevData => ({...prevData, ...newData}));
-        setCurrentStep(prevStep => prevStep - 1);
+      dispatch(addOwnPet(newData));
+      return;
     }
+    setData({
+      ...newData,
+      dateOfBirth: normalizedDateOfBirth,
+    });
+    setCurrentStep(prevStep => prevStep + 1);
+  };
+
+  const handlePrevStep = newData => {
+    setData(prevData => ({ ...prevData, ...newData }));
+    setCurrentStep(prevStep => prevStep - 1);
+  };
+
 
     const cancelData = (e) => {
         setData({
@@ -74,5 +88,8 @@ export const ModalAddsPet = ({onClose}) => {
     return <div>
         <h3>Add pet</h3>
         {steps[currentStep]}
+
+  
     </div>
-}
+  );
+};
