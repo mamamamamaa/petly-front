@@ -25,7 +25,7 @@ export default function NewsPage() {
   const [query, setQuery] = useState('dog');
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [ setSearchParams] = useSearchParams();
+  const [setSearchParams] = useSearchParams();
   // console.log(searchParams);
   useEffect(() => {
     async function fetchNews(query) {
@@ -35,9 +35,6 @@ export default function NewsPage() {
         const news = response.data.result.value;
         const total = response.data.result.totalCount;
         if (total === 0) {
-          toast.error(
-            'Sorry, there are no news matching your query. Please try again.'
-          );
           return;
         }
         setSearchNews(news);

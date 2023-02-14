@@ -81,7 +81,7 @@ export const favorite = createAsyncThunk(
     const limit = 20;
     try {
       const res = await axios.get(
-        `/api/notices/favorite&page=${page}&limit=${limit}`
+        `/api/notices/favorite?page=${page}&limit=${limit}`
       );
       return res.data;
     } catch (e) {
@@ -95,16 +95,14 @@ export const myAds = createAsyncThunk(
   async (page = 1, thunkAPI) => {
     const limit = 20;
     try {
-      const res = await axios.get(
-        `/api/notices&page=${page}&limit=${limit}`
-      );
+      const res = await axios.get(`/api/notices?page=${page}&limit=${limit}`);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
-      
+
 export const getNoticeById = createAsyncThunk(
   'notices/getById',
   async (id, thunkAPI) => {
@@ -112,6 +110,32 @@ export const getNoticeById = createAsyncThunk(
       const res = await axios.get(`/api/notices/${id}`);
 
       return res.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const addNoticeToFav = createAsyncThunk(
+  'notices/addNoticeToFav',
+  async (id, thunkAPI) => {
+    try {
+      const res = await axios.patch(`/api/notices/addfavorite/${id}`);
+
+      return res.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const deleteNoticeFromFav = createAsyncThunk(
+  'notices/deleteNoticeFromFav',
+  async (id, thunkAPI) => {
+    try {
+      await axios.patch(`/api/notices/delfavorite/${id}`);
+
+      return id;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

@@ -25,7 +25,12 @@ import cross from 'utils/svg/cross.svg';
 import recycleBin from 'utils/svg/recycleBin.svg';
 import { useAuth, useNotices } from '../../redux/hooks';
 import { useDispatch } from 'react-redux';
-import { deleteNotice, getNoticeById } from '../../redux/notices/operations';
+import {
+  addNoticeToFav,
+  deleteNotice,
+  deleteNoticeFromFav,
+  getNoticeById,
+} from '../../redux/notices/operations';
 import { useState, useEffect } from 'react';
 import CardNewDate from '../../utils/CardNewDate/cardNewDate';
 import { Modal } from '../Modal/Modal';
@@ -61,7 +66,7 @@ export const NoticeCategoryItemTemplate = ({
       return;
     }
     dispatch(getNoticeById(_id));
-  }, [modal]);
+  }, [_id, dispatch, modal]);
   // ===========================================
 
   return (
@@ -79,6 +84,7 @@ export const NoticeCategoryItemTemplate = ({
         <AddToFavBtn
           to=""
           onClick={() => {
+            dispatch(fav ? deleteNoticeFromFav(_id) : addNoticeToFav(_id));
             setFav(prevState => !prevState);
           }}
         >
