@@ -8,6 +8,7 @@ export const PhotoPetWrapper = styled.div`
   top: 0;
   left: 0;
 `;
+
 export const PhotoPet = styled.img`
   position: relative;
   top: 0;
@@ -24,6 +25,7 @@ export const PhotoPet = styled.img`
     width: 288px;
   }
 `;
+
 export const AdvWrapper = styled.div`
   position: absolute;
   background-size: 158px 28px;
@@ -64,6 +66,7 @@ export const AddPetToNotBtnMob = styled.button`
     display: none;
   }
 `;
+
 export const AddPetToNotImgMob = styled.img`
   ${media.mobile} {
     position: absolute;
@@ -74,6 +77,7 @@ export const AddPetToNotImgMob = styled.img`
     display: none;
   }
 `;
+
 export const AddPetToNotTextMob = styled.span`
   ${media.mobile} {
     position: absolute;
@@ -118,31 +122,35 @@ export const Title = styled.h3`
   line-height: 38px;
   letter-spacing: -0.01em;
   color: ${theme.colors.titleText};
-  margin-bottom: 20px;
   max-width: 240px;
   overflow: hidden;
   white-space: nowrap;
 `;
-export const PetSpanWrapper = styled.div`
-  margin-bottom: 8px;
-  :last-of-type {
-    margin-bottom: 50px;
-  }
-`;
-export const PetSpan = styled.span`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  color: ${theme.colors.titleText};
-  :last-child {
-    margin-left: 40px;
-  }
-`;
-export const PetDetails = styled.div`
+
+export const BoxPetDetails = styled.div`
   padding: 20px;
 `;
+
+export const WraperPetDetails = styled.div`
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+export const Ul = styled.ul`
+  margin-right: 40px;
+  :last-child {
+    margin-right: 0px;
+  }
+`;
+
+export const Li = styled.li`
+  margin-top: 8px;
+  :first-child {
+    margin-top: 0;
+  }
+`;
+
 export const PetDetailsButton = styled.button`
   width: 100%;
   display: flex;

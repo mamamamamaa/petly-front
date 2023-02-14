@@ -1,9 +1,11 @@
 import {
   PhotoPet,
   Title,
-  PetSpanWrapper,
   PetSpan,
-  PetDetails,
+  BoxPetDetails,
+  WraperPetDetails,
+  Ul,
+  Li,
   PetDetailsButton,
   PetDetailsButtonText,
   PhotoPetWrapper,
@@ -15,9 +17,9 @@ import {
   PetDeleteButtonDiv,
   PetDeleteButtonImg,
   PetDeleteButtonText,
-  AddPetToNotTextMob,
-  AddPetToNotImgMob,
-  AddPetToNotBtnMob,
+  // AddPetToNotTextMob,
+  // AddPetToNotImgMob,
+  // AddPetToNotBtnMob,
 } from './NoticeCategoryItemTemplate.styled';
 import heart from 'utils/svg/heart.svg';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
@@ -30,16 +32,18 @@ import { useState, useEffect } from 'react';
 import CardNewDate from '../../utils/CardNewDate/cardNewDate';
 import { Modal } from '../Modal/Modal';
 import { ListModalCardNotice } from '../ListModalCardNotice/ListModalCardNotice.jsx';
+import noPoster from 'noPoster.jpg';
 
 export const NoticeCategoryItemTemplate = ({
   _id,
-  photoUrl,
+  photoUrl = noPoster,
   title,
-  breed,
-  type,
-  place,
-  dateOfBirth,
-  owner,
+  breed = 'unknown',
+  type = 'unknown',
+  place = 'unknown',
+  dateOfBirth = 'unknown',
+  owner = 'unknown',
+  price,
 }) => {
   // состояние модального окна
   const [modal, setModal] = useState(false);
@@ -93,22 +97,24 @@ export const NoticeCategoryItemTemplate = ({
           <AddPetToNotTextMob>Add pet</AddPetToNotTextMob>
         </AddPetToNotBtnMob> */}
       </PhotoPetWrapper>
-      <PetDetails>
+      <BoxPetDetails>
         <Title>{title}</Title>
-        <PetSpanWrapper>
-          <PetSpan>Breed:</PetSpan>
-          <PetSpan>{breed}</PetSpan>
-        </PetSpanWrapper>
-        <PetSpanWrapper>
-          <PetSpan>Place:</PetSpan>
-          <PetSpan>{place}</PetSpan>
-        </PetSpanWrapper>
-        <PetSpanWrapper>
-          <PetSpan>Age:</PetSpan>
-          <PetSpan>
-            <CardNewDate date={dateOfBirth} />
-          </PetSpan>
-        </PetSpanWrapper>
+        <WraperPetDetails>
+          <Ul>
+            <Li>Breed:</Li>
+            <Li>Place:</Li>
+            <Li>Age:</Li>
+            {price !== undefined && <Li>Price:</Li>}
+          </Ul>
+          <Ul>
+            <Li>{breed}</Li>
+            <Li>{place}</Li>
+            <Li>
+              <CardNewDate date={dateOfBirth} />
+            </Li>
+            {price !== undefined && <Li>{price}$</Li>}
+          </Ul>
+        </WraperPetDetails>
         <PetDetailsButton onClick={modalHandler}>
           <PetDetailsButtonText>Learn More</PetDetailsButtonText>
         </PetDetailsButton>
@@ -127,7 +133,7 @@ export const NoticeCategoryItemTemplate = ({
             </PetDeleteButtonDiv>
           </PetDeleteButton>
         )}
-      </PetDetails>
+      </BoxPetDetails>
     </>
   );
 };

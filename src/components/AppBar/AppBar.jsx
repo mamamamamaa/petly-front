@@ -13,7 +13,8 @@ import {BarContainer,
         UserMenuWrpr,
         BurgerBtn,
         Nav,
-        TabletWrapper
+        TabletWrapper,
+        HomePageLink
 } from "./AppBar.styled";
 
 
@@ -27,7 +28,7 @@ const AppBar = () => {
     const { isLoggedIn } = useAuth();
     return (
         <BarContainer>
-            <LogoBlack>pe<LogoAccent>t</LogoAccent>ly</LogoBlack>
+            <LogoBlack><HomePageLink to="/">pe<LogoAccent>t</LogoAccent>ly</HomePageLink></LogoBlack>
                 <TabletWrapper>
                 <BurgerBtn onClick={toggleClickHandler}>
                     {!isMenuOpen ? <BurgerIcon/> : <CloseIcon/>}
