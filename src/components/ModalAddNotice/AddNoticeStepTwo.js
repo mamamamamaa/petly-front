@@ -5,12 +5,12 @@ import { object, string, mixed, number } from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 
 const addNoticeSchema = object().shape({
-  //   sex: string().required('Sex is required'),
-  //   place: string()
-  //     .min(4, 'Too Short!')
-  //     .max(60, 'Too Long!')
-  //     .required('Location is required'),
-  //   price: number().required('The price is required'),
+  sex: string().required('Sex is required'),
+  place: string()
+    .min(4, 'Too Short!')
+    .max(60, 'Too Long!')
+    .required('Location is required'),
+  price: number().required('The price is required'),
   photoUrl: mixed().required('Image is required'),
   comments: string()
     .min(8, 'Must be 8 or more letter')
@@ -36,8 +36,8 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
 
   const formik = useFormik({
     initialValues: {
-      //   place: data.place,
-      //   price: data.price,
+      place: data.place,
+      price: data.price,
       pictureURL: data.pictureURL,
       comments: data.comments,
     },
@@ -57,7 +57,7 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
   return (
     <Formik onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <Form>
-        {/* <label>
+        <label>
           Location
           <Field type="text" name="location" required />
           <ErrorMessage name="location" component="div" />
@@ -66,7 +66,7 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
           Price
           <Field type="text" name="Price" required />
           <ErrorMessage name="Price" component="div" />
-        </label> */}
+        </label>
         <label>
           Upload File
           <input
