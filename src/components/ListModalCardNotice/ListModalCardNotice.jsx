@@ -17,18 +17,34 @@ import {
   ButtonModal,
 } from './ListModalCardNotice.styled';
 import NewsNewDate from '../../utils/NewsNewDate/NewsNewDate';
+import noPoster from 'noPoster.jpg';
 
 export const ListModalCardNotice = ({ date }) => {
+  const {
+    photoUrl = noPoster,
+    type = 'unknown',
+    title,
+    price,
+    name = 'unknown',
+    dateOfBirth = 'unknown',
+    breed = 'unknown',
+    place = 'unknown',
+    sex = 'unknown',
+    email = 'unknown',
+    phone = 'unknown',
+    comments = 'unknown',
+  } = date;
+
   return (
     <Container>
       <WraperMain>
         <Wraper>
-          <Img src={date.photoUrl} alt="Pet" />
+          <Img src={photoUrl} alt="Pet" />
           <AdvWrapper>
-            <AdvTitle>{date.type}</AdvTitle>
+            <AdvTitle>{type}</AdvTitle>
           </AdvWrapper>
           <BoxSecond>
-            <Title>{date.title}</Title>
+            <Title>{title}</Title>
             <BoxList>
               <Ul>
                 <Li>
@@ -52,7 +68,7 @@ export const ListModalCardNotice = ({ date }) => {
                 <Li>
                   <TitleProperty>Phone:</TitleProperty>
                 </Li>
-                {date.price !== undefined && (
+                {price !== undefined && (
                   <Li>
                     <TitleProperty>Price:</TitleProperty>
                   </Li>
@@ -60,31 +76,31 @@ export const ListModalCardNotice = ({ date }) => {
               </Ul>
               <Ul>
                 <Li>
-                  <Text>sweety {date.name}</Text>
+                  <Text>{name}</Text>
                 </Li>
                 <Li>
                   <Text>
-                    <NewsNewDate date={date.dateOfBirth} />
+                    <NewsNewDate date={dateOfBirth} />
                   </Text>
                 </Li>
                 <Li>
-                  <Text>{date.breed}</Text>
+                  <Text>{breed}</Text>
                 </Li>
                 <Li>
-                  <Text>{date.place}</Text>
+                  <Text>{place}</Text>
                 </Li>
                 <Li>
-                  <Text>{date.sex}</Text>
+                  <Text>{sex}</Text>
                 </Li>
                 <Li>
-                  <Text>{date.email}</Text>
+                  <Text>{email}</Text>
                 </Li>
                 <Li>
-                  <Text>{date.phone}</Text>
+                  <Text>{phone}</Text>
                 </Li>
-                {date.price !== undefined && (
+                {price !== undefined && (
                   <Li>
-                    <Text>{date.price}$</Text>
+                    <Text>{price}$</Text>
                   </Li>
                 )}
               </Ul>
@@ -92,7 +108,7 @@ export const ListModalCardNotice = ({ date }) => {
           </BoxSecond>
         </Wraper>
         <Box>
-          <Text>Comments: {date.comments}</Text>
+          <Text>Comments: {comments}</Text>
         </Box>
       </WraperMain>
 
