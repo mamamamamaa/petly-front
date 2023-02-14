@@ -39,20 +39,26 @@ export const HomePageBg = styled.div`
     padding-left: 16px;
     justify-content: flex-end;
     align-items: flex-start;
-    background-position: top 0vw left -2vw;
-    height: 85vh; //rainbow visibility Y
-    margin-top: 30vh; //woman togather with rainbow move Y
+    background-position: top 0vmax right 35vw; // rainbow move Y and X
+    height: 35vmax; //woman togather with rainbow move Y 35
+    margin-left: 0vmax; //woman togather with rainbow move X 35
+    width: 95vmax; //woman togather with rainbow cut X
+    margin-top: 0vmax; //woman togather with rainbow move Y
+    max-width: 1280px;
+    background-position: 50% bottom;
+    background-size: contain;
+    max-height: 768px;
   }
 `;
 export const HomePageWomanWrapper = styled.div`
   ${media.desktop} {
-    position: absolute;
+    // position: absolute;
     right: 0;
     bottom: 0;
   }
 `;
 export const HomePageWomanImg = styled.img`
-  max-width: 100%;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
   margin-top: 26vw;
@@ -77,12 +83,14 @@ export const HomePageWomanImg = styled.img`
   }
   ${media.desktop} {
     content: url(${ladyWithPetDesktop1x});
-    position: relative;
-    top: 0vw; //woman Y
-    left: 29vmax; // woman X
     margin-top: 0vh; //heart
-    margin-left: -30vmax; // woman dimensions grow/shrink
+    padding-right: 0vw; // woman dimensions grow/shrink
     margin-bottom: 0vh; // woman replacement Y
+    max-height: 650px;
+    width: auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
