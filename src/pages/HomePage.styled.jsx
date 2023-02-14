@@ -23,36 +23,39 @@ export const HomePageBg = styled.div`
   margin-left: -20px;
   margin-right: -20px;
   ${media.tablet} {
-    background-position: top -6vw left 0;
-    display: block;
     background-image: url(${tabletBackground});
-    position: absolute;
-    right: -6vw;
-    left: 0;
-    top: 24vw;
+    max-width: 768px;
+    background-position: 50% bottom;
+    background-size: contain;
+    height: auto;
+    justify-content: flex-end;
+    transform: scale(1.5);
   }
   ${media.desktop} {
     position: relative;
     background-image: url(${desktopBackground});
-    justify-content: space-between;
-    padding-right: 16px;
-    padding-left: 16px;
+    height: 35vmax; //woman togather with rainbow move Y 35
+    margin-left: 0vmax; //woman togather with rainbow move X 35
+    width: 95vmax; //woman togather with rainbow cut X
+    margin-top: 0vmax; //woman togather with rainbow move Y
+    max-width: 1280px;
+    background-position: 50% bottom;
+    background-size: contain;
+    max-height: 768px;
     justify-content: flex-end;
-    align-items: flex-start;
-    background-position: top 0vw left -2vw;
-    height: 85vh; //rainbow visibility Y
-    margin-top: 30vh; //woman togather with rainbow move Y
   }
 `;
 export const HomePageWomanWrapper = styled.div`
   ${media.desktop} {
-    position: absolute;
+    position: relative;
     right: 0;
     bottom: 0;
+    width: 590px;
+    height: 640px;
   }
 `;
 export const HomePageWomanImg = styled.img`
-  max-width: 100%;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
   margin-top: 26vw;
@@ -66,8 +69,8 @@ export const HomePageWomanImg = styled.img`
   ${media.tablet} {
     content: url(${ladyWithPetTablet1x});
     display: block;
-    max-width: 10vwax;
-    margin-top: 50vw;
+    margin-top: auto;
+    transform: scale(70%) translate(0, 180px);
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -77,11 +80,10 @@ export const HomePageWomanImg = styled.img`
   }
   ${media.desktop} {
     content: url(${ladyWithPetDesktop1x});
+    max-height: 650px;
+    width: auto;
     position: relative;
-    top: 0vw; //woman Y
-    margin-top: 0vh; //heart
-    margin-left: 0vh; // woman dimensions grow/shrink
-    margin-bottom: 0vh; // woman replacement Y
+    margin-top: 0vw;
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -93,8 +95,9 @@ export const HomePageWomanImg = styled.img`
 export const HomePageUnionHeartSvg = styled.img`
   content: url(${unionHeart});
   position: absolute;
-  top: 3vw; //heart
-  left: 2vw; //heart
+  top: 0; //heart
+  left: 0; //heart
+
   ${media.mobileAndTablet} {
     display: none;
   }
@@ -115,14 +118,14 @@ export const HomePageTitle = styled.h2`
 
   ${media.tablet} {
     margin-left: 0;
-    max-width: 70vmax;
-    margin-top: 20vmax;
+    width: 588px;
+    margin-top: 160px;
     font-family: 'Manrope';
     font-style: normal;
-    font-weight: 700;
-    font-size: 7vmax;
-    line-height: 100px;
     color: #000000;
+    font-weight: 700;
+    font-size: 68px;
+    line-height: 100px;
   }
   ${media.desktop} {
     font-family: 'Manrope';

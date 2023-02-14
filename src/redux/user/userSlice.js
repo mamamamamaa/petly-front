@@ -331,57 +331,38 @@ const userSlice = createSlice({
         state.status = "failed"
         state.error = action.error.message
       })
-      .addCase(fetchUserPets.pending, (state, action) => {
-        console.log('state', state);
-        console.log('action', action);
+      .addCase(fetchUserPets.pending, (state) => {
         state.error = null;
         state.isLoading = true;
       })
       .addCase(fetchUserPets.fulfilled, (state, action) => {
-        console.log('state', state);
-        console.log('action', action);
         state.pets = action.payload;
         state.isLoading = false;        
       })
       .addCase(fetchUserPets.rejected, (state, action) => {
-        console.log('state', state);
-        console.log('action', action);
         state.isLoading = false; 
         state.error = action.payload;        
       })
-      .addCase(deleteOneOwnPet.pending, (state, action) => {        
-        console.log('state.pets', state.pets);
-        console.log('action', action);
+      .addCase(deleteOneOwnPet.pending, (state) => {   
         state.error = null;
         state.isLoading = true;
       })
       .addCase(deleteOneOwnPet.fulfilled, (state, action) => {
-        console.log('state.pets', state.pets);
-        console.log('action.payload', action.payload);        
         state.pets = state.pets.filter(pet => pet._id !== action.payload);
         state.isLoading = false;
       })
       .addCase(deleteOneOwnPet.rejected, (state, action) => {
-        console.log('state', state);
-        console.log('action', action);
         state.isLoading = false; 
         state.error = action.payload;        
       })
-      .addCase(addOwnPet.pending, (state, action) => {        
-        console.log('state.pets', state.pets);
-        console.log('action', action);
+      .addCase(addOwnPet.pending, (state) => {        
         state.error = null;
         state.isLoading = true;
       })
       .addCase(addOwnPet.fulfilled, (state, action) => {
-        console.log('state.pets', state.pets);
-        console.log('action.payload', action.payload);
-        state.pets = [action.payload, ...state.pets]
-        console.log('state.pets', state.pets);
+        state.pets = [action.payload, ...state.pets];
       })
       .addCase(addOwnPet.rejected, (state, action) => {
-        console.log('state', state);
-        console.log('action', action);
         state.isLoading = false; 
         state.error = action.payload;        
       })
@@ -403,12 +384,6 @@ const userSlice = createSlice({
       //     state.error = null;
       //   }
       // ),
-     
-      
-    
-   
-      
-
 });
 
 export const userReducer = userSlice.reducer;
