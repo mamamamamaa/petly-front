@@ -32,10 +32,12 @@ const registerSchema = object().shape({
     .oneOf([ref('password')], 'Passwords does not match'),
   email: string()
     .matches(
+      // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+    // /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      // /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
       'Invalid email'
     )
-    .email('Invalid email')
     .required('Email is required'),
   name: string()
     .min(2, 'min 2 symbols')
@@ -77,6 +79,7 @@ const RegisterForm = () => {
       }),
       hideForm()
     );
+    console.log(values);
   };
 
   const formik = useFormik({
@@ -96,7 +99,9 @@ const RegisterForm = () => {
     (formik.errors.password && formik.touched.password) ||
     (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
     formik.values.email === '' ||
-    formik.values.confirmPassword === '';
+    formik.values.confirmPassword === ''
+    ? true
+    : false;
 
   const showPassword = () => {
     setShowPass(!showPass);
@@ -113,7 +118,7 @@ const RegisterForm = () => {
       ) : ( */}
       <FormContainer>
         <Formik validationSchema={registerSchema}>
-          <Form1 onSubmit={formik.handleSubmit}>
+          <Form1 onSubmit={formik.handleSubmit}  autoComplete="off">
             <Title>Registration</Title>
             {isShown && (
               <>
