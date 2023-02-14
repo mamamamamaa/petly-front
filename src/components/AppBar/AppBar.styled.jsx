@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { media } from "../Layout/Layout.styled";
 import { theme } from '../../utils/theme';
-
+import { NavLink } from 'react-router-dom';
 
 export const BarContainer = styled.div`
     font-family: ${theme.fonts.body};
@@ -160,6 +160,9 @@ export const BurgerBtn = styled.button`
     }
 `;
 
-
+export const HomePageLink = styled(NavLink)`
+  color: inherit;
+  text-decoration: none;
+`;
 
 
