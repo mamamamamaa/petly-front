@@ -95,21 +95,20 @@ export const myAds = createAsyncThunk(
   async (page = 1, thunkAPI) => {
     const limit = 20;
     try {
-      const res = await axios.get(
-        `/api/notices&page=${page}&limit=${limit}`
-      );
+      const res = await axios.get(`/api/notices&page=${page}&limit=${limit}`);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
-      
+
 export const getNoticeById = createAsyncThunk(
   'notices/getById',
   async (id, thunkAPI) => {
     try {
-      const res = await axios.get(`/api/notices/${id}`);
+      const res = await axios.get(`/api/notices/ads/${id}`);
+      // const res = await axios.get(`/api/notices/${id}`);
 
       return res.data;
     } catch (e) {
