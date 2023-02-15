@@ -24,9 +24,26 @@ export const Window = styled.div`
   background-color: white;
   height: auto;
   width: auto;
-  margin: 80px;
-  padding: 40px;
+
   border-radius: 40px;
+  @media screen and (max-width: 767px) {
+    width: 280px;
+    padding: 20px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 448px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 448px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
 `;
 
 export const Container = styled.div`
