@@ -160,7 +160,7 @@ export const Button = styled.div`
   }
 `;
 
-export const ButtonNext = styled.div`
+export const ButtonNext = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
