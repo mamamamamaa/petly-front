@@ -33,7 +33,7 @@ export const HomepageSection = styled.section`
       };
   };
   ${media.tablet} {
-    min-width: 768px;
+    /* width: 768px; */
     padding-top: 88px;
     min-height: 1000px;
     background-image: url(${ladyWithPetTablet1x}),

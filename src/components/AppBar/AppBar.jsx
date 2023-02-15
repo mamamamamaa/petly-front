@@ -29,6 +29,7 @@ const AppBar = () => {
         setIsMenuOpen(false);
     }
 
+
     const { isLoggedIn } = useAuth();
     return (
         <Container>
@@ -41,7 +42,7 @@ const AppBar = () => {
                 
                 <MenuWrpr isClosed={!isMenuOpen}>
                     <Nav isClosed={!isMenuOpen}>
-                        <Navigation close={closeMenu}/>
+                        <Navigation close={closeMenu} />
                     </Nav>
                     <UserMenuWrpr>{isLoggedIn ?
                          <UserMenu close={closeMenu} /> 
