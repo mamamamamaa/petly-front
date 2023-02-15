@@ -17,6 +17,7 @@ import {
 } from './NoticesPage.styled';
 import { useAuth } from '../redux/hooks';
 import AddNoticeButton from '../components/AddNoticeButton/AddNoticeButton';
+import { Toaster } from 'react-hot-toast';
 
 const NoticesPage = () => {
   const { isLoggedIn } = useAuth();
@@ -44,51 +45,51 @@ const NoticesPage = () => {
   return (
     <>
       <Container>
-      <NoticesSearch>
-        <SearchField
-          placeholder="Search"
-          value={firstName}
-          onChange={e => setFirstName(e.target.value)}
-        />
-      </NoticesSearch>
-      <NoticesNavWrapper>
-        <NoticesNavUl>
-          <NoticesNavLi>
-            <NoticesNavLink to="sell">
-              <NoticesNavText>sell</NoticesNavText>
-            </NoticesNavLink>
-          </NoticesNavLi>
-          <NoticesNavLi>
-            <NoticesNavLink to="lost">
-              <NoticesNavText>lost/found</NoticesNavText>
-            </NoticesNavLink>
-          </NoticesNavLi>
-          <NoticesNavLi>
-            <NoticesNavLink to="good-hands">
-              <NoticesNavText>in good hands</NoticesNavText>
-            </NoticesNavLink>
-          </NoticesNavLi>
-          {isLoggedIn && (
+        <NoticesSearch>
+          <SearchField
+            placeholder="Search"
+            value={firstName}
+            onChange={e => setFirstName(e.target.value)}
+          />
+        </NoticesSearch>
+        <NoticesNavWrapper>
+          <NoticesNavUl>
             <NoticesNavLi>
-              <NoticesNavLink to="favorite">
-                <NoticesNavText>favorite ads</NoticesNavText>
+              <NoticesNavLink to="sell">
+                <NoticesNavText>sell</NoticesNavText>
               </NoticesNavLink>
             </NoticesNavLi>
-          )}
-          {isLoggedIn && (
             <NoticesNavLi>
-              <NoticesNavLink to="my-ads">
-                <NoticesNavText>my ads</NoticesNavText>
+              <NoticesNavLink to="lost">
+                <NoticesNavText>lost/found</NoticesNavText>
               </NoticesNavLink>
             </NoticesNavLi>
-          )}
-        </NoticesNavUl>
-        <AddNoticeButton />
-      </NoticesNavWrapper>
-      <Suspense>
-        <Outlet />
-      </Suspense>
-      <Toaster />
+            <NoticesNavLi>
+              <NoticesNavLink to="good-hands">
+                <NoticesNavText>in good hands</NoticesNavText>
+              </NoticesNavLink>
+            </NoticesNavLi>
+            {isLoggedIn && (
+              <NoticesNavLi>
+                <NoticesNavLink to="favorite">
+                  <NoticesNavText>favorite ads</NoticesNavText>
+                </NoticesNavLink>
+              </NoticesNavLi>
+            )}
+            {isLoggedIn && (
+              <NoticesNavLi>
+                <NoticesNavLink to="my-ads">
+                  <NoticesNavText>my ads</NoticesNavText>
+                </NoticesNavLink>
+              </NoticesNavLi>
+            )}
+          </NoticesNavUl>
+          <AddNoticeButton />
+        </NoticesNavWrapper>
+        <Suspense>
+          <Outlet />
+        </Suspense>
+        <Toaster />
       </Container>
     </>
   );
