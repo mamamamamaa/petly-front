@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { theme } from '../utils/theme';
+import { media } from 'components/Layout/Layout.styled';
 // import { ReactComponent as AddIcon } from '../../../src/utils/svg/add.svg';
 
 export const Container = styled.div`
@@ -11,10 +12,6 @@ export const Container = styled.div`
   @media (min-width: 768px) {
     width: 768px;
     padding: 0 32px;
-  }
-
-  @media (min-width: 768px) {
-    width: 768px;
   }
   @media (min-width: 1280px) {
     width: 1280px;
