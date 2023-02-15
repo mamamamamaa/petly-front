@@ -1,16 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { deleteOneOwnPet } from '../../redux/user/operations';
 import {
+  PetArticle,
   PetDeleteButton,
   PetImg,
+  PetSpanWrapperFlex,
+  PetSpanWrapper,
+  PetSpan,
   PetComments,
-  PetBreed,
-  PetDateOfBirth,
-  PetName,
-  PetCommentsTitle,
-  PetBreedTitle,
-  PetDateOfBirthTitle,
-  PetNameTitle,
 } from './UserPetCard.styled';
 export const UserPetCard = ({
   pet = {},
@@ -19,22 +16,30 @@ export const UserPetCard = ({
 }) => {
   const dispatch = useDispatch();
   return (
-    <article>
+    <PetArticle>
       <PetImg alt={alt} src={pictureURL} />
-      <PetNameTitle>Name:</PetNameTitle>
-      <PetDeleteButton
-        type="button"
-        onClick={() => dispatch(deleteOneOwnPet(pet._id))}
-      >
-        delete
-      </PetDeleteButton>
-      <PetName>{pet.name}</PetName>
-      <PetDateOfBirthTitle>Date of birth:</PetDateOfBirthTitle>
-      <PetDateOfBirth>{pet.dateOfBirth}</PetDateOfBirth>
-      <PetBreedTitle>Breed:</PetBreedTitle>
-      <PetBreed>{pet.breed}</PetBreed>
-      <PetCommentsTitle>Comments:</PetCommentsTitle>
-      <PetComments>{pet.comments}</PetComments>
-    </article>
+      <PetSpanWrapperFlex>
+        <PetSpanWrapper>
+          <PetSpan>Name:</PetSpan>
+          <PetSpan>{pet.name}</PetSpan>
+        </PetSpanWrapper>
+        <PetDeleteButton
+          type="button"
+          onClick={() => dispatch(deleteOneOwnPet(pet._id))}
+        />
+      </PetSpanWrapperFlex>
+      <PetSpanWrapper>
+        <PetSpan>Date of birth:</PetSpan>
+        <PetSpan>{pet.dateOfBirth}</PetSpan>
+      </PetSpanWrapper>
+      <PetSpanWrapper>
+        <PetSpan>Breed:</PetSpan>
+        <PetSpan>{pet.breed}</PetSpan>
+      </PetSpanWrapper>
+      <PetSpanWrapper>
+        <PetComments>Comments:</PetComments>
+        <PetComments>{pet.comments}</PetComments>
+      </PetSpanWrapper>
+    </PetArticle>
   );
 };
