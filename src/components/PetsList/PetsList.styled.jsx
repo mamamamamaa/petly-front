@@ -20,9 +20,7 @@ export const PetLi = styled.li`
   &:not(:last-child) {
     margin-bottom: 20px;
   }
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     position: relative;
-  }
-  ${media.desktop} {
   }
 `;
