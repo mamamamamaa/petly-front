@@ -2,19 +2,21 @@ import { useState } from 'react';
 import { AddOwnPetStepOne } from '../AddOwnPetStepOne/AddOwnPetStepOne';
 import { AddOwnPetStepTwo } from '../AddOwnPetStepTwo/AddOwnPetStepTwo';
 import { useDispatch } from 'react-redux';
-import { addOwnPet } from '../../redux/user/operations';
+import { addNotice } from '../../redux/notices/operations';
 import moment from 'moment';
-// ============= mark
-import { Container, Title } from './ModalAddsPet.styled';
-// =============
 
-export const ModalAddsPet = ({ onClose }) => {
+export const ModalAddNotice = ({ onClose }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState({
+    type: '',
+    title: '',
     name: '',
     dateOfBirth: '',
     breed: '',
-    pictureURL: '',
+    sex: '',
+    place: '',
+    price: '',
+    photoUrl: '',
     comments: '',
   });
 
@@ -41,8 +43,13 @@ export const ModalAddsPet = ({ onClose }) => {
       formData.append('breed', newData.breed);
       formData.append('dateOfBirth', newData.dateOfBirth);
       formData.append('name', newData.name);
+      formData.append('type', newData.type);
+      formData.append('title', newData.title);
+      formData.append('sex', newData.sex);
+      formData.append('place', newData.place);
+      formData.append('price', newData.price);
 
-      dispatch(addOwnPet(newData));
+      dispatch(addNotice(newData));
       return;
     }
     setData({
@@ -59,10 +66,15 @@ export const ModalAddsPet = ({ onClose }) => {
 
   const cancelData = e => {
     setData({
+      type: '',
+      title: '',
       name: '',
       dateOfBirth: '',
       breed: '',
-      pictureURL: '',
+      sex: '',
+      place: '',
+      price: '',
+      photoUrl: '',
       comments: '',
     });
     setCurrentStep(0);
@@ -77,11 +89,12 @@ export const ModalAddsPet = ({ onClose }) => {
       onClose={onClose}
     />,
   ];
-  // console.log(data);
+  console.log(data);
   return (
-    <Container>
-      <Title>Add pet</Title>
+    <div>
+      <h3>Add pet</h3>
+      <p>some text</p>
       {steps[currentStep]}
-    </Container>
+    </div>
   );
 };
