@@ -20,14 +20,16 @@ const schema = yup.object().shape({
 });
 
 export const AddOwnPetStepOne = ({next, data, cancel}) => {
+    console.log('data.selectedDate', data.selectedDate);
     
-    const [selectedDate, setSelectedDate] = useState('');
+    const [selectedDate, setSelectedDate] = useState(data.selectedDate);
     const [dateToSubmit, setDateToSubmit] = useState();
     
     const handleSubmit = (values, actions) => {
         console.log('values', values)
         next({...values, 
-            dateOfBirth:dateToSubmit
+            dateOfBirth:dateToSubmit,
+            selectedDate
         });
         console.log('data in 1 step', data);
     }    
@@ -47,7 +49,7 @@ export const AddOwnPetStepOne = ({next, data, cancel}) => {
         <ErrorMessage name="name" component="div" />
     </label>
     <label>Date of birth   
-        <Field type="date" name="dateOfBirth" required
+        <Field type="date" placeholder="Date" name="dateOfBirth" required
         onChange={handleDate}
         max={moment(moment.now()).format("YYYY-MM-DD")}
         value={selectedDate}

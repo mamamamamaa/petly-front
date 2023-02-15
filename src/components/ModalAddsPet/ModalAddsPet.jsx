@@ -12,7 +12,8 @@ export const ModalAddsPet = ({onClose}) => {
         dateOfBirth:"",
         breed:"",
         pictureURL: "",
-        comments:""
+        comments:"",
+        selectedDate:"",
     });
 
     const handleNextStep = (newData, final=false) => {  
