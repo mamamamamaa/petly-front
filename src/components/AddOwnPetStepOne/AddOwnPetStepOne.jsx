@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { useState } from 'react';
 import { breeds } from '../../utils/getBreed';
 import moment from 'moment';
-// ============= mark
+
 import {
   Container,
   FormEl,
@@ -14,7 +14,7 @@ import {
   ButtonNext,
   BoxButton,
 } from './AddOwnPetStepOne.styled';
-// =============
+
 
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
@@ -31,22 +31,28 @@ const schema = yup.object().shape({
   breed: yup.string().required('Required'),
 });
 
-export const AddOwnPetStepOne = ({ next, data, cancel }) => {
-  const [selectedDate, setSelectedDate] = useState('');
-  const [dateToSubmit, setDateToSubmit] = useState();
 
-  const handleSubmit = (values, actions) => {
-    console.log('values', values);
-    next({ ...values, dateOfBirth: dateToSubmit });
-    console.log('data in 1 step', data);
-  };
+export const AddOwnPetStepOne = ({next, data, cancel}) => {
+    console.log('data.selectedDate', data.selectedDate);
+    
+    const [selectedDate, setSelectedDate] = useState(data.selectedDate);
+    const [dateToSubmit, setDateToSubmit] = useState();
+    
+    const handleSubmit = (values, actions) => {
+        console.log('values', values)
+        next({...values, 
+            dateOfBirth:dateToSubmit,
+            selectedDate
+        });
+        console.log('data in 1 step', data);
+    }    
+   
+    const handleDate = (e) =>{     
+        setSelectedDate(e.target.value);
+        setDateToSubmit(e.target.valueAsNumber);
+    }
 
-  const handleDate = e => {
-    setSelectedDate(e.target.value);
-    setDateToSubmit(e.target.valueAsNumber);
-  };
-
-  return (
+   return (
     <Container>
       <Formik
         initialValues={data}
