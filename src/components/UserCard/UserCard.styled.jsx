@@ -3,6 +3,40 @@ import { Field, Form } from 'formik';
 import { theme } from '../../utils/theme';
 import { media } from '../Layout/Layout.styled'
 
+//===========пробная загрузка==========================================
+
+export const Inputav = styled.input`
+
+ opacity: 0;
+  position: absolute;
+  z-index: -1;
+` 
+export const Labelav = styled.label`
+  
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+` 
+export const Formav = styled.form`
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 50;
+` 
+export const Imgav = styled.img`
+  border: 1px dashed gray;
+  width: 233px;
+  height: 233px;
+  border-radius: 50%;
+`
+// ======================== for avatar
+
+
 export const Title = styled.h2`
   font-family: ${theme.fonts.body};
   font-style: normal;
@@ -53,6 +87,7 @@ export const Card = styled.div`
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
     border-radius: 0px 40px 40px 0px;
     padding: 20px 16px 18px 16px;
+
   }
 `;
 
@@ -74,7 +109,6 @@ export const FormAndPhotoWrapper = styled.div`
     width: 100%;
   }
 `;
-
 export const DivPhoto = styled.div`
     display: flex;
     align-items: center;
@@ -93,9 +127,6 @@ export const DivPhoto = styled.div`
   };
 `;
 
-// export const Shadow = styled.div`
-// box-shadow: (0px 4px 14px rgba(0, 0, 0, 0.11));
-// `
 
 export const UserPhoto = styled.img`
   position: relative;
@@ -169,24 +200,10 @@ export const Wrap = styled.span`
   cursor: pointer;
 `;
 
-// export const FormWrap = styled.div`
-//   /* display: flex;
-//   justify-content: center;
-//   align-items: center; */
-//   ${media.mobile} {
 
-//   };
-//   ${media.tablet} {
-//     order: -1;
-//   };
-//   ${media.desktop} {
-
-//   };
-/* width: 100%;
-padding: 0; */
-// `
 
 export const Form1 = styled(Form)`
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -203,11 +220,13 @@ export const Form1 = styled(Form)`
   }
 `;
 
+
 export const DivInput = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: space-between;
+
   ${media.mobile} {
     margin-bottom: 8px;
   };
@@ -245,6 +264,9 @@ export const Input = styled(Field)`
   color: ${theme.colors.black};
   background-color: ${theme.colors.accentText};
   outline: none;
+
+  cursor: pointer;
+
   ${media.mobile} {
     height: 24px;
     font-size: 14px;
@@ -255,10 +277,27 @@ export const Input = styled(Field)`
     font-size: 18px;
     line-height: 25px;
   };
-`;
+
+  
+  &:hover{
+    background: #FDF7F2;
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    border-radius: 40px;
+  &:focus{
+    background-color: #FFFFFF;
+    color:#F59256 50% ;
+    
+    outline: "none",
+    transform: "scale(1.15)"
+  &:active{
+    color:#F59256;
+    
+  }
+  }
+`
 
 export const BtnInput = styled.button`
-  display: flex;
+   display: flex;
   align-items: center;
   justify-content: center;
   /* background: '#FDF7F2'; */
@@ -273,6 +312,12 @@ export const BtnInput = styled.button`
     margin-left: 24px;
     width: 32px;
     height: 32px;
+
+  }
+  cursor: pointer;
+  &.active{
+    color:#F59256;
+
   }
 `;
 

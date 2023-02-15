@@ -16,6 +16,16 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    addFav(state, action) {
+      state.user.favorite.push(action.payload);
+    },
+    delFav(state, action) {
+      state.user.favorite = state.user.favorite.filter(
+        fav => fav !== action.payload
+      );
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(login.fulfilled, (state, action) => {
@@ -82,3 +92,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+export const { addFav, delFav } = authSlice.actions;
