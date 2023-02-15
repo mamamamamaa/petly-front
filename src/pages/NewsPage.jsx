@@ -24,8 +24,9 @@ export default function NewsPage() {
   const { currentNews } = useNews();
   useEffect(() => {
     dispatch(getNews(query));
-  }, [dispatch, query]);
-  console.log(currentNews);
+    // setSearchNews(currentNews.value);
+  }, [dispatch]);
+  // console.log(currentNews);
   // =================
 
   // useEffect(() => {

@@ -8,7 +8,7 @@ export const getNews = createAsyncThunk(
   'news',
   async (query = 'cat', thunkAPI) => {
     try {
-      const { data } = await axios.get(`/api/news?query=dog`);
+      const { data } = await axios.get(`/api/news?query=${query}`);
       console.log(query);
       return data.data.result;
     } catch (error) {
