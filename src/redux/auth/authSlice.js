@@ -8,8 +8,8 @@ const initialState = {
   accessToken: null,
   refreshToken: null,
   expiresIn: null,
-  isLoggedIn: true,
-  isRefreshing: true,
+  isLoggedIn: false,
+  isRefreshing: false,
   error: null,
 };
 
