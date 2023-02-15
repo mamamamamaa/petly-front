@@ -9,36 +9,43 @@ axios.defaults.baseURL = HOST;
 // don`t touch`=================================
 
 
+
 export const getUserData = createAsyncThunk(
     'user/getUser',
   async (_, thunkAPI) => {
       try {       
           const response = await axios.get('/api/userprofile');
        console.log(response.data.data.user)
-          return response.data.data.user;
+          return response.data.data.user;     
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
 
-
 export const updateUserData = createAsyncThunk(
     "user/updateUser",    
     async (userData, thunkAPI) => {
         try {
             console.log(userData)
+
             const {data} = await axios.put("/api/auth/update", userData);
                   
            console.log('data', data)
             //const {data} = await.axios.patch(`/userprofile/userProfile)
             return data;
+        //     const response = await axios.put("/api/auth/update", userData);
+        //    console.log(response.data)
+        //     return response.data;
+
         }
         catch (e) { 
              return thunkAPI.rejectWithValue(e.message);
         }
   
-}); // add token 
+});
+
+
 
 export const updateUserAvatar = createAsyncThunk(
     "avatar/updateAvatar",    
@@ -65,12 +72,7 @@ export const fetchUserPets = createAsyncThunk(
     "ownPets/getAll",
     async (_, thunkAPI) => {
         try {
-            console.log('fetch for all');
             const response = await axios.get("/api/userprofile");
-            // setAuthHeader(response.data.auth.accessToken); 
-            // setAuthHeader(response.data.accessToken);
-            // setAuthHeader(response.data.token);
-            console.log('response.data.data.pets', response.data.data.pets);
             return response.data.data.pets;
         } catch (e) {
             console.log("event in operations", e);
@@ -83,18 +85,13 @@ export const deleteOneOwnPet = createAsyncThunk(
     "ownPets/deleteOneOwnPet",
     async (petId, thunkAPI) => {
         try {
-            console.log('petId', petId);
             const response = await axios.delete(`/api/userprofile/${petId}`);
-            // setAuthHeader(response.data.token);
-            // setAuthHeader(response.data.auth.accessToken); 
-            console.log('response.data.data._id', response.data.data._id);
             return response.data.data._id;
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);
         }
     }
 );
-// https://petly-server.onrender.com/
 export const addOwnPet = createAsyncThunk(
     "ownPets/addPet",
     async (newPet, thunkAPI) => {
@@ -104,14 +101,8 @@ export const addOwnPet = createAsyncThunk(
                     "Content-Type": "multipart/form-data",
                 },
             } );
-            // setAuthHeader(response.data.token);
-            // setAuthHeader(response.data.auth.accessToken); 
-            console.log('response', response);
-            // axios.defaults.headers.post['Content-Type'] = 'application/json';
-            return response;
+            return response.data;
         } catch (e) {
-            console.log('error', e);
-            console.log(thunkAPI.rejectWithValue(e));
             return thunkAPI.rejectWithValue(e.message);
         }
     }

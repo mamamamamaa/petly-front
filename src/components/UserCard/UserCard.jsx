@@ -1,26 +1,54 @@
 
+
 import { useDispatch } from 'react-redux';
 import { useUser } from '../../redux/hooks';
 import { useState } from 'react';
 import {
-  Title, Wrapper, DivPhoto, Shadow, FormLabel, InputAvatar, Card, Btn, Span, Wrap, FormWrap, Form1, DivInput, Input, BtnInput, BtnLogOut } from './UserCard.styled';
-
+  Title, Wrapper, DivPhoto,  Card, Btn, Span, Wrap, Form1, DivInput, Input, BtnInput, BtnLogOut, FormLabel, InputAvatar,  LogOutSpan, FormAndPhotoWrapper } from './UserCard.styled';
+//import { Container } from "../../utils/reusable";
 
 import { HiCamera } from "react-icons/hi2";
 import { HiPencil } from "react-icons/hi";
 import { FiLogOut, FiCheck } from "react-icons/fi";
+//import { NoPhotoIcon } from 'utils/svg/noPhotoCross';
+import { logout } from '../../redux/auth/operations';
 
 import { FileUploader } from '../UseAvatar/UserAvatar';
-import { getUserData,updateUserData } from '../../redux/user/operations';
-
+import { updateUserData, getUserData } from '../../redux/user/operations';
 import { Formik, useFormik } from 'formik';
 //import avatar from "../../images/avatart.jpg";
 import { useEffect } from 'react';
 
+//========================================
+// const formSchema = object().shape({
+//   name: string()
+//     .min(2, 'min 2 symbols')
+//     .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters')
+//     .required('Name is required'),
+  
+//   email: string()
+//     .matches(
+//       // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+//       /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+//     // /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+//       // /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+//       'Invalid email'
+//     )
+//     .required('Email is required'),
+  
+//   mobilePhone: string()
+//     .matches(/^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/, 'Bad phone number')
+//     .required('Phone is required'),
+  
+//   city: string()
+//     .matches(
+//       /^(([a-zA-Zа-яА-Я]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/,
+//       'Error. Example: Brovary, Kyiv'
+//     )
+//     .required('City is required'),
+// });
+//==========================================
 
-
-
- 
 
 const UserCard = () => {
   const [active, setActive] = useState('');
@@ -33,12 +61,10 @@ const UserCard = () => {
     setActive(!active)
   }
   
-    const dispatch = useDispatch();    
-    const user= useUser();
-   
-   console.log(user);
-  
-    
+  const dispatch = useDispatch();
+  console.log(dispatch);
+    const {user}= useUser();
+  console.log(user);
     
     const onChangeHandler = e => {
         console.log("1111")
@@ -47,7 +73,7 @@ const UserCard = () => {
       console.log(e.target.files)
     dispatch(updateUserData(formData));
     };
- /////////////////////////////////
+ ///////////////////////////////
     
 //////формик 
     const onSubmit = value => {
@@ -64,25 +90,31 @@ const UserCard = () => {
     );
     };
   
-  
-
-  
-
     let formik = useFormik({
       initialValues: {
-        name: user.user.user.name,      
-      email: `${user.user.user.email}`,      
-      birthday: user.user.user.birthday || " ",
-      mobilePhone: user.user.user.mobilePhone ,
-      city: `${user.user.user.city}`,
-    },onSubmit, enableReinitialize:true
+       name: user.user.name,      
+      email: user.user.email,      
+      birthday: user.user.birthday || " ",
+      mobilePhone: user.user.mobilePhone ,
+      city: user.user.city,
+      },      
+      onSubmit, enableReinitialize: true
     });
   console.log(formik)
-  useEffect(() =>{
-    dispatch(getUserData())
-    
-     
+
+ useEffect(() => {
+      dispatch(getUserData())
+      console.log("getUserData")
  },[dispatch])
+
+    
+  
+  //============================================
+  // code Yulya
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+   
   
     return (
      
@@ -92,9 +124,10 @@ const UserCard = () => {
           <Title>My information:</Title> 
           
         <Card>
+          <FormAndPhotoWrapper> 
             
             <Wrapper>
-              <Shadow>
+              {/* <Shadow> */}
               <DivPhoto>
                 <FileUploader/> 
                        {/* <ImgAvatar src={avatar}
@@ -102,42 +135,37 @@ const UserCard = () => {
                                         loading="lazy"
                                           width="233"
                                           height="233"/> */}
-                  <label htmlFor="photo-uploads" cursor="pointer" position="absolute"> 
-                  <InputAvatar
-                         onClick={onChangeHandler}        
+                 
+                </DivPhoto>
+              {/* </Shadow> */}
+              <Btn>
+                       <label htmlFor="photo_uploads">
+                    <Wrap >
+                        {' '}
+                    <HiCamera color="#F59256" width="20" height="20" />
+                    <Span>Edit photo</Span>
+                    </Wrap>
+                    </label> 
+                                        
+                    <InputAvatar
+                        onClick={onChangeHandler}        
                         id="photo-uploads"
                         type="file"
                     name="photo_uploads"
                       accept='image/*'
                       multiple
-                        style={{  width: 0, height: 0 }}/>
-                  
-                    <Wrap >                                          
-                    <HiCamera color="#F59256" width="30" height="30" />
-                    </Wrap>
-                    <Span name="image">Edit photo</Span>
-                  </label> 
-                </DivPhoto>
-              </Shadow>
-              <Btn>           
-            
-                             
-                    
-                 
-              </Btn>
+                        style={{  width: 0, height: 0 }}
+                    />
+                    </Btn>
             </Wrapper>
-                          
-          <FormWrap>      
-        <Formik onSubmit={formik.handleSubmit}>  
-
-              {/* {user.map(user => ( key={user.id} */}
-        
+            
+                       
+        {/* <FormWrap>       */}
+        <Formik      
+            >
          
-                <Form1 autoComplete="off"
-                 
-                
-                >
-                  <DivInput>
+                <Form1 onSubmit={formik.handleSubmit}>
+                <DivInput>
                     <FormLabel>
                                     
                       Name:
@@ -147,22 +175,20 @@ const UserCard = () => {
                         type="name"
                         placeholder="name"
                         onChange={formik.handleChange}
-                        onClick={formik.handleClick}
+                        onSubmit={formik.handleClick}
                         value={formik.values.name}
-                        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                        required />
+                        />
             
                     </FormLabel>
                     <BtnInput name="name"
-                      type="button" onClick={handleClick.this} >
+                      type="button" onClick={handleClick} >
                       {(changeBtn === true) ? <FiCheck color="#F59256" width="30" heigh="30" /> :
                         <HiPencil color="rgba(17, 17, 17, 0.6)" width="30" heigh="30" />}
 
                     </BtnInput>
-                  </DivInput>
+                </DivInput>
             
-                  <DivInput>
+                <DivInput>
                     <FormLabel>
                       Email:
                       <Input
@@ -172,7 +198,7 @@ const UserCard = () => {
                         type="email"
                         placeholder="email"
                         onChange={formik.handleChange}
-                        onClick={formik.handleClick}
+                        onSubmit={formik.handleClick}
                       value={formik.values.email}
                     onBlur={formik.handleBlur}/>
                     
@@ -184,9 +210,9 @@ const UserCard = () => {
                         <FiCheck color="#F59256" width="30" heigh="30" />}
 
                     </BtnInput>
-                  </DivInput>
+                </DivInput>
                             
-                  <DivInput>
+                <DivInput>
                     <FormLabel>
                       Birthday:
                       <Input
@@ -206,9 +232,9 @@ const UserCard = () => {
                         <FiCheck color="#F59256" width="30" heigh="30" />}
 
                     </BtnInput>
-                  </DivInput>
+                </DivInput>
                             
-                  <DivInput>
+                <DivInput>
                     <FormLabel>
                       Phone:
                       <Input
@@ -229,9 +255,9 @@ const UserCard = () => {
                         <FiCheck color="#F59256" width="30" heigh="30" />}
                                         
                     </BtnInput>
-                  </DivInput>
+                </DivInput>
                             
-                  <DivInput>
+                <DivInput>
                     <FormLabel >
                       City:
                       <Input
@@ -253,35 +279,98 @@ const UserCard = () => {
                         <FiCheck color="#F59256" width="30" heigh="30" />}
 
                     </BtnInput>
-                  </DivInput>
-
+                </DivInput>
+ 
             
-                </Form1>
-       
-        </Formik>
-                 
-        </FormWrap>
-            
-            <BtnInput
-                      type="submit" onClick={onSubmit} >
+ <BtnInput
+                      type="submit" onSubmit={onSubmit} >
             {( Input === active || changeBtn === true ) ? <FiCheck color="#F59256" width="30" heigh="30"/> : <HiPencil color="rgba(17, 17, 17, 0.6)"
                                                width="30" heigh="30"/>}
 
-            </BtnInput>                   
+            </BtnInput>  
+ {/* <button type="submit">Submit</button> */}
+            
+      </Form1>
+       
+    </Formik>
+                 
+            
+  </FormAndPhotoWrapper>            
+                            
             
             {/* <BtnInput type="submit" color="#F59256"><HiPencil/></BtnInput> */}
             
             {/* onClick={() => handleLogout()} */}
-            <BtnLogOut >
-              {<FiLogOut color="#F59256" />}Log Out
+            <BtnLogOut 
+            onClick={() => handleLogout()}>
+              {<FiLogOut color="#F59256" />}<LogOutSpan>Log Out</LogOutSpan>
             </BtnLogOut>
-        </Card>
+      </Card>
+      
 
       
- </>   
-
-       
+ </>    
+            
+           
+            
+ 
     )
 };
 
+
+
 export default UserCard;
+
+
+//=======================1==================
+// return (
+
+//         // <NavLink to="/user">
+//         // <Container>
+//   <div>
+//          <Title>My information:</Title> 
+//           <Card>
+//             <FormAndPhotoWrapper>
+//             <Wrapper>
+//                {/* <Shadow> */}
+//                     <DivPhoto>
+                       
+//                       {userPhoto ? (
+//                             <UserPhoto src={userPhoto} 
+//                              width="233"
+//                              height="233"
+//                              alt="photo" />
+//                         ) : 
+    
+//                         (<NoAvatarContainer><NoPhotoIcon/></NoAvatarContainer>)}
+//                      {/* </Shadow>  */}
+//                     </DivPhoto>
+//                     <Btn>
+//                        <label htmlFor="photo_uploads">
+//                     <Wrap >
+//                         {' '}
+//                     <HiCamera color="#F59256" width="20" height="20" />
+//                     <Span>Edit photo</Span>
+//                     </Wrap>
+//                     </label> 
+                                        
+//                     <InputAvatar
+//                         onClick={onChangeHandler}        
+//                         id="photo_uploads"
+//                         type="file"
+//                         name="photo_uploads"
+//                         style={{  width: 0, height: 0 }}
+//                     />
+//                     </Btn>
+//                     </Wrapper>
+//             {/* <FormWrap>       */}
+//               <Formik onSubmit={formik.handleSubmit}>  
+
+//             <Form1>
+//             <DivInput>
+//             <FormLabel>                 
+//               Name:
+//               <Input 
+//                     name="name"
+//                     type="name"
+//                     placeholder="name"

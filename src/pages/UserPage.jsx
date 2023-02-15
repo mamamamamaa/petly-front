@@ -4,10 +4,12 @@ import { PetsData } from "../components/PetsData/PetsData";
 
 
 const UserPage = () => {
+
+  return <>
   
-  return <>    
-    <UserCard />    
-    <PetsData/>
+  <UserCard/>
+  <PetsData/>
+
   </>;
 };
 

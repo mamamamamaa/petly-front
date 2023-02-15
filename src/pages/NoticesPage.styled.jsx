@@ -55,9 +55,9 @@ export const NoticesNavWrapper = styled.div`
   align-items: baseline;
 `;
 export const NoticesNavUl = styled.ul`
-  ${media.mobile} {
+  /* ${media.mobile} {
     position: relative;
-  }
+  } */
   list-style: none;
   display: flex;
   flex-wrap: wrap;
@@ -95,54 +95,4 @@ export const NoticesNavText = styled.p`
   line-height: 27px;
   letter-spacing: 0.04em;
   color: ${theme.colors.titleText};
-`;
-export const AddPetToNoticesBtnWrapper = styled.div`
-  ${media.mobile} {
-    position: absolute;
-    left: 220px;
-    top: 455px;
-  }
-  /* width: 176px; */
-  min-width: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  cursor: pointer;
-
-  ${media.tablet} {
-    min-width: 129px;
-  }
-`;
-export const AddPetToNoticesBtn = styled.button`
-  width: 44px;
-  height: 44px;
-  background: #f59256;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-export const AddPetToNoticesImg = styled.img`
-  display: block;
-`;
-
-export const AddPetToNoticesText = styled.span`
-  ${media.mobile} {
-    display: none;
-  }
-  ${media.tabletAndDesktop} {
-    margin-right: 22px;
-    display: block;
-    font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.35;
-    color: ${theme.colors.titleText};
-  }
-  ${media.desktop} {
-    margin-right: 20px;
-  }
 `;

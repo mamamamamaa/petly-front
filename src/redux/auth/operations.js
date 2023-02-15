@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 
 const { REACT_APP_SERVER_HOST: HOST } = process.env;
 
@@ -18,9 +19,12 @@ export const register = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const res = await axios.post('/api/auth/signup', userData);
-      setAuthHeader(res.data.token);
+      toast.success('Verify your email!');
       return res.data;
     } catch (e) {
+      toast.error(
+        'Sorry, there are no news matching your query. Please try again.'
+      );
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -42,7 +46,7 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/api/auth/logout');
+    await axios.get('/api/auth/logout');
     clearAuthHeader();
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
