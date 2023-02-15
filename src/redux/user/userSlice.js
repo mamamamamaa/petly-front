@@ -8,7 +8,7 @@ import {fetchUserPets, addOwnPet, deleteOneOwnPet} from './operations';
 
 // const extraActions = [updateUserData, getUserData, fetchUserPets, addOwnPet, deleteOneOwnPet];
 
-const initialState = {  
+const initialState = {
   user: {
     email: null,
     name: null,
@@ -20,8 +20,7 @@ const initialState = {
   },
   isLoading: false,
   error: null,
-  pets:[],
-
+  pets: [],
 };
 
 const userSlice = createSlice({

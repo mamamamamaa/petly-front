@@ -118,7 +118,7 @@ const UserCard = () => {
     return (
      
       
-      <>
+      <div>
       
           <Title>My information:</Title> 
           
@@ -308,7 +308,7 @@ const UserCard = () => {
       
 
       
- </>    
+ </div>    
             
            
             

@@ -9,14 +9,15 @@ export const NoticesNavLink = styled(NavLink)``;
 
 export const NoticesCategoriesList = styled.ul`
   list-style-type: none;
+  padding-bottom: 100px;
   @media (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
     flex-basis: calc(100% / 2-32px);
-    margin-left: -32px;
   }
   ${media.desktop} {
     flex-basis: calc(100% / 4-16px);
+    padding-bottom: 200px;
   }
 `;
 
