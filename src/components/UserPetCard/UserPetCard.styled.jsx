@@ -13,6 +13,10 @@ export const PetArticle = styled.article`
     padding: 20px;
   }
   ${media.desktop} {
+    padding-left: 20px;
+    padding-right: 28px;
+    padding-top: 20px;
+    padding-bottom: 26px;
   }
 `;
 export const PetImg = styled.img`
