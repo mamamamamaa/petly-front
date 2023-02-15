@@ -5,7 +5,7 @@ import AuthMenu from "../AuthMenu/AuthMenu";
 import UserMenu from "../UserMenu/UserMenu";
 import { BurgerIcon } from "../../utils/svg/burgerBtn";
 import { CloseIcon } from "../../utils/svg/close";
-
+import { Container } from "utils";
 import {BarContainer,
         LogoBlack,
         LogoAccent,
@@ -27,6 +27,7 @@ const AppBar = () => {
 
     const { isLoggedIn } = useAuth();
     return (
+        <Container>
         <BarContainer>
             <LogoBlack><HomePageLink to="/">pe<LogoAccent>t</LogoAccent>ly</HomePageLink></LogoBlack>
                 <TabletWrapper>
@@ -46,6 +47,7 @@ const AppBar = () => {
                 </TabletWrapper>
                 
         </BarContainer>
+        </Container>
     )
 };
 

@@ -27,11 +27,18 @@ import cross from 'utils/svg/cross.svg';
 import recycleBin from 'utils/svg/recycleBin.svg';
 import { useAuth, useNotices } from '../../redux/hooks';
 import { useDispatch } from 'react-redux';
-import { deleteNotice, getNoticeById } from '../../redux/notices/operations';
+import {
+  addNoticeToFav,
+  deleteNotice,
+  deleteNoticeFromFav,
+  getNoticeById,
+} from '../../redux/notices/operations';
 import { useState, useEffect } from 'react';
 import CardNewDate from '../../utils/CardNewDate/cardNewDate';
 import { Modal } from '../Modal/Modal';
 import { ListModalCardNotice } from '../ListModalCardNotice/ListModalCardNotice.jsx';
+import toast from 'react-hot-toast';
+import { addFav, delFav } from '../../redux/auth/authSlice';
 import noPoster from 'noPoster.jpg';
 
 export const NoticeCategoryItemTemplate = ({
@@ -51,7 +58,7 @@ export const NoticeCategoryItemTemplate = ({
   const dispatch = useDispatch();
   const { currentNotice } = useNotices();
 
-  const { user } = useAuth();
+  const { user, isLoggedIn } = useAuth();
 
   const isFavorite = user.favorite.includes(_id);
   const isOwn = owner === user.id;
@@ -65,8 +72,23 @@ export const NoticeCategoryItemTemplate = ({
       return;
     }
     dispatch(getNoticeById(_id));
-  }, [modal]);
+  }, [_id, dispatch, modal]);
   // ===========================================
+
+  const favoriteHandler = () => {
+    if (!isLoggedIn) {
+      return toast.error('You should log in/sign up your account!');
+    }
+
+    if (fav) {
+      dispatch(deleteNoticeFromFav(_id));
+      dispatch(delFav(_id));
+    } else {
+      dispatch(addNoticeToFav(_id));
+      dispatch(addFav(_id));
+    }
+    setFav(prevState => !prevState);
+  };
 
   return (
     <>
@@ -80,12 +102,7 @@ export const NoticeCategoryItemTemplate = ({
         <AdvWrapper>
           <AdvTitle>{type}</AdvTitle>
         </AdvWrapper>
-        <AddToFavBtn
-          to=""
-          onClick={() => {
-            setFav(prevState => !prevState);
-          }}
-        >
+        <AddToFavBtn to="" onClick={favoriteHandler}>
           {fav ? (
             <AddToFavImg src={strokeHeart} alt="Remove from favorites" />
           ) : (

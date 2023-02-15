@@ -22,7 +22,14 @@ export const useAuth = () => {
 };
 
 export const useNews = () => {
-  return;
+  const currentNews = useSelector(state => state.news.news);
+  const isLoading = useSelector(state => state.news.isLoading);
+  const error = useSelector(state => state.news.error);
+  return {
+    currentNews,
+    isLoading,
+    error,
+  };
 };
 
 export const useNotices = () => {
@@ -34,6 +41,7 @@ export const useNotices = () => {
   const goodHandsNotices = useSelector(state => state.notices.goodHandsNotices);
   const isLoading = useSelector(state => state.notices.isLoading);
   const error = useSelector(state => state.notices.error);
+  const notices = useSelector(state => state.notices.notices);
   return {
     sellNotices,
     lostFoundNotices,
@@ -43,18 +51,35 @@ export const useNotices = () => {
     isLoading,
     error,
     currentNotice,
+    notices,
   };
 };
 
 export const useFriends = () => {
-  return;
+  const selectFriends = useSelector(state => state.friends.friends);
+
+  const selectIsLoading = useSelector(state => state.friends.isLoading);
+
+  const selectError = useSelector(state => state.friends.error);
+  return {
+    selectFriends,
+    selectIsLoading,
+    selectError,
+  };
 };
 
-export const useUser = () => {
+export const useUser = () => { 
+
   const user = useSelector(state => state.user);
-  const getUserData = useSelector(state => state.user.getUserData);
-  //console.log(user)
-  const userAvatar = useSelector(state => state.auth.user.avatar)
-  const pictureURL = useSelector(state => state.user.pets.pictureURL);
-  return { user, userAvatar, getUserData, pictureURL };
+  const getUserData = useSelector(state => state.user.getUserData);  
+  
+  return {
+    user, getUserData
+  };
 };
+
+export const useUserAvatar = () => {
+  const userAvatar = useSelector(state => state.auth.user.avatar);
+
+  return {userAvatar}
+}

@@ -24,15 +24,11 @@ export const Window = styled.div`
   background-color: white;
   height: auto;
   width: auto;
-  margin: 80px;
-  padding: 40px;
+
   border-radius: 40px;
 `;
 
-export const Container = styled.div`
-  height: 540px;
-  width: 704px;
-`;
+export const Container = styled.div``;
 
 export const Wraper = styled.div`
   display: flex;

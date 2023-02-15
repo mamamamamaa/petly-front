@@ -1,8 +1,9 @@
 
+
 import { createSlice
   // , isAnyOf
 } from '@reduxjs/toolkit';
-import { updateUserData, getUserData } from './operations';
+import { updateUserData, getUserData, updateUserAvatar } from './operations';
 import {fetchUserPets, addOwnPet, deleteOneOwnPet} from './operations';
 
 // const extraActions = [updateUserData, getUserData, fetchUserPets, addOwnPet, deleteOneOwnPet];
@@ -306,7 +307,7 @@ const userSlice = createSlice({
       })
       .addCase(getUserData.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isLoading = false;
+        // state.isLoading = false;
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.user.phone = action.payload.phone;
@@ -314,7 +315,7 @@ const userSlice = createSlice({
         state.user.avatar = action.payload.avatar;
         state.user.birthday = action.payload.birthday;
         state.isLoggedIn = true;
-        
+        console.log(state.user.avatar)
       })
       .addCase(getUserData.rejected, (state, action) => {
         //state.error = action.payload;
@@ -326,12 +327,24 @@ const userSlice = createSlice({
       .addCase(updateUserData.fulfilled, (state, action) => {
         state.status = "succeeded"
         state.data = { ...state.data, ...action.payload };
+        console.log(state.data)
       })
       .addCase(updateUserData.rejected, (state, action) => {
         state.status = "failed"
         state.error = action.error.message
       })
-      .addCase(fetchUserPets.pending, (state) => {
+      .addCase(updateUserAvatar.pending, (state, action) => {
+        state.error = null;
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.status = "succeeded"
+        state.data = { ...state.data, ...action.payload };
+      })
+      .addCase(updateUserAvatar.rejected, (state, action) => {
+        state.status = "failed"
+        state.error = action.error.message
+      })   
+        .addCase(fetchUserPets.pending, (state) => {
         state.error = null;
         state.isLoading = true;
       })
@@ -387,3 +400,6 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+
+
+

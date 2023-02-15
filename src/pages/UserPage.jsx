@@ -1,4 +1,5 @@
-//import { Container } from "../utils/reusable";
+
+import { Container } from "../utils/reusable";
 import UserCard from '../components/UserCard/UserCard';
 import { PetsData } from '../components/PetsData/PetsData';
 import { UserPageContainer, PetsDataWrapper } from './UserPage.styled';
