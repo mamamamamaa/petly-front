@@ -33,13 +33,14 @@ export const HomepageSection = styled.section`
       };
   };
   ${media.tablet} {
+    min-width: 768px;
     padding-top: 88px;
     min-height: 1000px;
     background-image: url(${ladyWithPetTablet1x}),
     url(${tabletBackground});
     background-repeat: no-repeat;
     background-size: 645px 715px, cover;
-    background-position: bottom 0 left 50%, top 0 left 0;
+    background-position: bottom 0 left 50%, top 0 right 0;
       @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2), 
       (min-resolution: 192dpi),
