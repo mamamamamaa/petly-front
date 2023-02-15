@@ -35,6 +35,8 @@ import { useState, useEffect } from 'react';
 import CardNewDate from '../../utils/CardNewDate/cardNewDate';
 import { Modal } from '../Modal/Modal';
 import { ListModalCardNotice } from '../ListModalCardNotice/ListModalCardNotice.jsx';
+import toast from 'react-hot-toast';
+import { addFav, delFav } from '../../redux/auth/authSlice';
 
 export const NoticeCategoryItemTemplate = ({
   _id,
@@ -52,7 +54,7 @@ export const NoticeCategoryItemTemplate = ({
   const dispatch = useDispatch();
   const { currentNotice } = useNotices();
 
-  const { user } = useAuth();
+  const { user, isLoggedIn } = useAuth();
 
   const isFavorite = user.favorite.includes(_id);
   const isOwn = owner === user.id;
@@ -69,6 +71,21 @@ export const NoticeCategoryItemTemplate = ({
   }, [_id, dispatch, modal]);
   // ===========================================
 
+  const favoriteHandler = () => {
+    if (!isLoggedIn) {
+      return toast.error('You should log in/sign up your account!');
+    }
+
+    if (fav) {
+      dispatch(deleteNoticeFromFav(_id));
+      dispatch(delFav(_id));
+    } else {
+      dispatch(addNoticeToFav(_id));
+      dispatch(addFav(_id));
+    }
+    setFav(prevState => !prevState);
+  };
+
   return (
     <>
       {modal && currentNotice && (
@@ -81,13 +98,7 @@ export const NoticeCategoryItemTemplate = ({
         <AdvWrapper>
           <AdvTitle>{type}</AdvTitle>
         </AdvWrapper>
-        <AddToFavBtn
-          to=""
-          onClick={() => {
-            dispatch(fav ? deleteNoticeFromFav(_id) : addNoticeToFav(_id));
-            setFav(prevState => !prevState);
-          }}
-        >
+        <AddToFavBtn to="" onClick={favoriteHandler}>
           {fav ? (
             <AddToFavImg src={strokeHeart} alt="Remove from favorites" />
           ) : (
