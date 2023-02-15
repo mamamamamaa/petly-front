@@ -20,17 +20,17 @@ export const ModalAddsPet = ({onClose}) => {
         selectedDate:"",
     });
 
-    const handleNextStep = (newData, final=false) => {  
-        const normalizedDateOfBirth =  moment(new Date(newData.dateOfBirth)).format("DD.MM.YYYY") ;
-        console.log('newData', newData);
-        console.log('final', final);
-        if(final){
-        setData({             
-            ...newData, 
-            dateOfBirth : normalizedDateOfBirth,
-        });
-
-
+  // const handleNextStep = (newData, final = false) => {
+  //   const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format("DD.MM.YYYY");
+  //   console.log('newData', newData);
+  //   console.log('final', final);
+  //   if (final) {
+  //     setData({
+  //       ...newData,
+  //       dateOfBirth: normalizedDateOfBirth,
+  //     });
+  //   }
+  // }
   const handleNextStep = (newData, final = false) => {
     const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
       'DD.MM.YYYY'
