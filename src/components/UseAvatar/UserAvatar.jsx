@@ -1,18 +1,17 @@
-
 // ========================add, but not send
-
-
 import React, { useState } from "react";
 // import { useDispatch } from 'react-redux';
 // import { updateUserAvatar } from "redux/user/operations";
 import {
     Inputav, 
-  Labelav,
-    
+    Labelav,
     Formav,
     Imgav,
+    Btn,
 } from '../UserCard/UserCard.styled'
 import { HiCamera } from "react-icons/hi2";
+import { NoAvatarContainer, Span, Wrap, DivPhoto } from "../UserCard/UserCard.styled";
+import { NoPhotoIcon } from "utils/svg/noPhotoCross";
 
 // export const FileUploader = () => {
 //   const [image, setImage] = useState();
@@ -104,28 +103,34 @@ export const FileUploader = () => {
   };
 
   return (
-    <Formav>
-      <Labelav
-        htmlFor="file-loader-button"
-       
-      >
-        <HiCamera color="#F59256"/>edit 
-      </Labelav>
-      <Inputav
-        id="file-loader-button"
-        type="file"
-        
-        onChange={handleOnChange}
-      />
-      <Imgav
-        src={imageURL ? imageURL : "no_photo.jpg"}
-        
+    <>
+    <DivPhoto>
+    {imageURL ? (
+    <Imgav
+        src={imageURL}
         alt="preview"
         onDrop={handleDrop}
         onDragEnter={handleDragEmpty}
         onDragOver={handleDragEmpty}
+      />) : 
+    (<NoAvatarContainer><NoPhotoIcon/></NoAvatarContainer>)}
+    </DivPhoto>
+      <Btn>
+      <Formav>
+      <Labelav htmlFor="file-loader-button">
+        <Wrap >
+          <HiCamera color="#F59256"/>
+          <Span>Edit photo</Span> 
+        </Wrap>
+      </Labelav>
+      <Inputav
+        id="file-loader-button"
+        type="file"
+        onChange={handleOnChange}
       />
-      <div >{image ? "" : ""}</div>
+      {/* <div >{image ? "" : ""}</div> */}
     </Formav>
+    </Btn>
+   </>
   );
 };

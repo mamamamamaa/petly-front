@@ -1,16 +1,12 @@
-
-
 import { useDispatch } from 'react-redux';
 import { useUser } from '../../redux/hooks';
 import { useState } from 'react';
 import {
-  Title, Wrapper, DivPhoto,  Card, Btn, Span, Wrap, Form1, DivInput, Input, BtnInput, BtnLogOut, FormLabel, InputAvatar,  LogOutSpan, FormAndPhotoWrapper } from './UserCard.styled';
-//import { Container } from "../../utils/reusable";
-
+  Title, Wrapper, Card, Form1, DivInput, Input, BtnInput, BtnLogOut, FormLabel, LogOutSpan, FormAndPhotoWrapper } from './UserCard.styled';
+import { Container } from "../../utils/reusable";
 import { HiCamera } from "react-icons/hi2";
 import { HiPencil } from "react-icons/hi";
 import { FiLogOut, FiCheck } from "react-icons/fi";
-//import { NoPhotoIcon } from 'utils/svg/noPhotoCross';
 import { logout } from '../../redux/auth/operations';
 import { FileUploader } from '../UseAvatar/UserAvatar';
 import { updateUserData, getUserData } from '../../redux/user/operations';
@@ -49,7 +45,7 @@ import { useEffect } from 'react';
 //==========================================
 
 
-const UserCard = () => {
+const UserCard = ({handleDragEmpty, handleDrop}) => {
   const [active, setActive] = useState('');
 
     //=========for avatar============
@@ -106,7 +102,6 @@ const UserCard = () => {
       console.log("getUserData")
  },[dispatch])
 
-    
   
   //============================================
   // code Yulya
@@ -115,61 +110,21 @@ const UserCard = () => {
   };
    
   
-    return (
-     
-      
-      <div>
-      
+    return ( 
+      <Container>
           <Title>My information:</Title> 
           
         <Card>
           <FormAndPhotoWrapper> 
-            
             <Wrapper>
-              {/* <Shadow> */}
-              <DivPhoto>
                 <FileUploader/> 
-                       {/* <ImgAvatar src={avatar}
-                                        alt="User avatar"
-                                        loading="lazy"
-                                          width="233"
-                                          height="233"/> */}
-                 
-                </DivPhoto>
-              {/* </Shadow> */}
-              <Btn>
-                       <label htmlFor="photo_uploads">
-                    <Wrap >
-                        {' '}
-                    <HiCamera color="#F59256" width="20" height="20" />
-                    <Span>Edit photo</Span>
-                    </Wrap>
-                    </label> 
-                                        
-                    <InputAvatar
-                        onClick={onChangeHandler}        
-                        id="photo-uploads"
-                        type="file"
-                    name="photo_uploads"
-                      accept='image/*'
-                      multiple
-                        style={{  width: 0, height: 0 }}
-                    />
-                    </Btn>
             </Wrapper>
-            
-                       
-        {/* <FormWrap>       */}
-        <Formik      
-            >
-         
-                <Form1 onSubmit={formik.handleSubmit}>
+          <Formik>
+              <Form1 onSubmit={formik.handleSubmit}>
                 <DivInput>
-                    <FormLabel>
-                                    
+                    <FormLabel>                
                       Name:
                       <Input
-                      
                         name="name"
                         type="name"
                         placeholder="name"
@@ -177,199 +132,117 @@ const UserCard = () => {
                         onSubmit={formik.handleClick}
                         value={formik.values.name}
                         />
-            
                     </FormLabel>
+
                     <BtnInput name="name"
                       type="button" onClick={handleClick} >
                       {(changeBtn === true) ? <FiCheck color="#F59256" width="30" heigh="30" /> :
                         <HiPencil color="rgba(17, 17, 17, 0.6)" width="30" heigh="30" />}
-
                     </BtnInput>
                 </DivInput>
             
                 <DivInput>
                     <FormLabel>
                       Email:
-                      <Input
-                          
+                      <Input 
                         name="email"
                         id="email"
                         type="email"
                         placeholder="email"
                         onChange={formik.handleChange}
                         onSubmit={formik.handleClick}
-                      value={formik.values.email}
-                    onBlur={formik.handleBlur}/>
-                    
+                        value={formik.values.email}
+                        onBlur={formik.handleBlur}/>
                     </FormLabel>
                     
                     <BtnInput
                       type="button" onClick={handleClick} >
                       {(changeBtn === true || Input.name === active) ? <HiPencil color="rgba(17, 17, 17, 0.6)" width="30" heigh="30" /> :
                         <FiCheck color="#F59256" width="30" heigh="30" />}
-
                     </BtnInput>
                 </DivInput>
                             
                 <DivInput>
                     <FormLabel>
                       Birthday:
-                      <Input
-                          
+                      <Input    
                         name="birthday"
                         id="birthday"
                         type="text"
                         placeholder="00.00.0000"
                         onChange={formik.handleChange}
                         onClick={handleClick}
-                      value={formik.values.birthday}
-                     onBlur={formik.handleBlur}/>
+                        value={formik.values.birthday}
+                        onBlur={formik.handleBlur}/>
                     </FormLabel>
+
                     <BtnInput
                       type="button" onClick={handleClick} >
                       {(changeBtn === true) ? <HiPencil color="rgba(17, 17, 17, 0.6)" width="30" heigh="30" /> :
                         <FiCheck color="#F59256" width="30" heigh="30" />}
-
                     </BtnInput>
                 </DivInput>
                             
                 <DivInput>
                     <FormLabel>
                       Phone:
-                      <Input
-                            
+                      <Input      
                         name="mobilePhone"
                         id="mobilePhone"
                         type="text"
                         placeholder="+38000000000"
                         onChange={formik.handleChange}
-                         onClick ={handleClick}
-                      value={formik.values.mobilePhone}
-                     onBlur={formik.handleBlur}/>
-                                       
+                        onClick ={handleClick}
+                        value={formik.values.mobilePhone}
+                        onBlur={formik.handleBlur}/>                 
                     </FormLabel>
+
                     <BtnInput
                       type="button" onClick={handleClick} >
                       {(Input.name === active || changeBtn === true) ? <HiPencil color="rgba(17, 17, 17, 0.6)" width="30" heigh="30" /> :
-                        <FiCheck color="#F59256" width="30" heigh="30" />}
-                                        
+                        <FiCheck color="#F59256" width="30" heigh="30" />}                 
                     </BtnInput>
                 </DivInput>
                             
                 <DivInput>
-                    <FormLabel >
+                    <FormLabel>
                       City:
-                      <Input
-                            
+                      <Input     
                         name="city"
                         id="city"
                         type="text"
                         placeholder="City, region"
-                        onChange={formik.handleChange}
-                                
-                      value={formik.values.city}
-                       onBlur={formik.handleBlur}
-                      />
-                                                
+                        onChange={formik.handleChange}    
+                        value={formik.values.city}
+                        onBlur={formik.handleBlur}
+                      />                       
                     </FormLabel>
+
                     <BtnInput 
                       type="button" onClick={handleClick} >
                       {(Input.name === active || changeBtn === true) ? <HiPencil color="rgba(17, 17, 17, 0.6)" width="30" heigh="30" /> :
                         <FiCheck color="#F59256" width="30" heigh="30" />}
-
                     </BtnInput>
                 </DivInput>
  
-            
- <BtnInput
+            <BtnInput
                       type="submit" onSubmit={onSubmit} >
             {( Input === active || changeBtn === true ) ? <FiCheck color="#F59256" width="30" heigh="30"/> : <HiPencil color="rgba(17, 17, 17, 0.6)"
                                                width="30" heigh="30"/>}
-
-            </BtnInput>  
- {/* <button type="submit">Submit</button> */}
-            
+            </BtnInput> 
       </Form1>
-       
-    </Formik>
-                 
+    </Formik>     
+  </FormAndPhotoWrapper>             
             
-  </FormAndPhotoWrapper>            
-                            
-            
-            {/* <BtnInput type="submit" color="#F59256"><HiPencil/></BtnInput> */}
-            
-            {/* onClick={() => handleLogout()} */}
             <BtnLogOut 
-            onClick={() => handleLogout()}>
+              onClick={() => handleLogout()}>
               {<FiLogOut color="#F59256" />}<LogOutSpan>Log Out</LogOutSpan>
             </BtnLogOut>
       </Card>
-      
-
-      
- </div>    
-            
-           
-            
- 
-    )
+ </Container>  
+  )
 };
 
 
 
 export default UserCard;
-
-
-//=======================1==================
-// return (
-
-//         // <NavLink to="/user">
-//         // <Container>
-//   <div>
-//          <Title>My information:</Title> 
-//           <Card>
-//             <FormAndPhotoWrapper>
-//             <Wrapper>
-//                {/* <Shadow> */}
-//                     <DivPhoto>
-                       
-//                       {userPhoto ? (
-//                             <UserPhoto src={userPhoto} 
-//                              width="233"
-//                              height="233"
-//                              alt="photo" />
-//                         ) : 
-    
-//                         (<NoAvatarContainer><NoPhotoIcon/></NoAvatarContainer>)}
-//                      {/* </Shadow>  */}
-//                     </DivPhoto>
-//                     <Btn>
-//                        <label htmlFor="photo_uploads">
-//                     <Wrap >
-//                         {' '}
-//                     <HiCamera color="#F59256" width="20" height="20" />
-//                     <Span>Edit photo</Span>
-//                     </Wrap>
-//                     </label> 
-                                        
-//                     <InputAvatar
-//                         onClick={onChangeHandler}        
-//                         id="photo_uploads"
-//                         type="file"
-//                         name="photo_uploads"
-//                         style={{  width: 0, height: 0 }}
-//                     />
-//                     </Btn>
-//                     </Wrapper>
-//             {/* <FormWrap>       */}
-//               <Formik onSubmit={formik.handleSubmit}>  
-
-//             <Form1>
-//             <DivInput>
-//             <FormLabel>                 
-//               Name:
-//               <Input 
-//                     name="name"
-//                     type="name"
-//                     placeholder="name"
