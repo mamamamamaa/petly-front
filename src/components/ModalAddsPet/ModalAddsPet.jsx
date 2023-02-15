@@ -8,28 +8,15 @@ import moment from 'moment';
 import { Container, Title } from './ModalAddsPet.styled';
 // =============
 
-
-export const ModalAddsPet = ({onClose}) => {
-    const dispatch = useDispatch();
-    const [data, setData] = useState({
-        name: "",
-        dateOfBirth:"",
-        breed:"",
-        pictureURL: "",
-        comments:"",
-        selectedDate:"",
-    });
-
-    const handleNextStep = (newData, final=false) => {  
-        const normalizedDateOfBirth =  moment(new Date(newData.dateOfBirth)).format("DD.MM.YYYY") ;
-        console.log('newData', newData);
-        console.log('final', final);
-        if(final){
-        setData({             
-            ...newData, 
-            dateOfBirth : normalizedDateOfBirth,
-        });
-
+export const ModalAddsPet = ({ onClose }) => {
+  const dispatch = useDispatch();
+  const [data, setData] = useState({
+    name: '',
+    dateOfBirth: '',
+    breed: '',
+    pictureURL: '',
+    comments: '',
+  });
 
   const handleNextStep = (newData, final = false) => {
     const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
