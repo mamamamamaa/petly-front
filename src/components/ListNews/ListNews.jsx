@@ -12,9 +12,11 @@ import {
 import NewsNewDate from '../../utils/NewsNewDate/NewsNewDate';
 
 function ListNews({ news }) {
+  console.log(news);
+
   return (
     <Ul>
-      {news.map(item => (
+      {news.value.map(item => (
         <Li key={item.id}>
           <Box>
             <ColorBox></ColorBox>

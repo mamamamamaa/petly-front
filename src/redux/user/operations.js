@@ -1,6 +1,13 @@
 
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+// ======================================================
+const { REACT_APP_SERVER_HOST: HOST } = process.env;
+
+axios.defaults.baseURL = HOST;
+
+// don`t touch`=================================
+
 
 
 export const getUserData = createAsyncThunk(
@@ -8,30 +15,54 @@ export const getUserData = createAsyncThunk(
   async (_, thunkAPI) => {
       try {       
           const response = await axios.get('/api/userprofile');
-      return response.data;
+       console.log(response.data.data.user)
+          return response.data.data.user;     
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
 
-
 export const updateUserData = createAsyncThunk(
     "user/updateUser",    
     async (userData, thunkAPI) => {
         try {
             console.log(userData)
-            const response = await axios.put("/api/auth/update", userData);
-           console.log(response.data)
-            return response.data;
+
+            const {data} = await axios.put("/api/auth/update", userData);
+                  
+           console.log('data', data)
+            //const {data} = await.axios.patch(`/userprofile/userProfile)
+            return data;
+        //     const response = await axios.put("/api/auth/update", userData);
+        //    console.log(response.data)
+        //     return response.data;
+
         }
         catch (e) { 
              return thunkAPI.rejectWithValue(e.message);
         }
   
-}); // add token 
+});
 
 
+
+export const updateUserAvatar = createAsyncThunk(
+    "avatar/updateAvatar",    
+    async (_id, thunkAPI) => {
+        try {
+            console.log(_id)
+                              
+           
+            const res = await axios.patch(`/api/auth/avatar/${_id}`, _id )
+            console.log('response', res)
+            return res;
+        }
+        catch (e) { 
+             return thunkAPI.rejectWithValue(e.message);
+        }
+  
+}); 
 
 
 

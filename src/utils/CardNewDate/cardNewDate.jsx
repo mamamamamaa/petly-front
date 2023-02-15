@@ -36,8 +36,14 @@ function CardNewDate({ date }) {
   } else if (dataYear === '2013') {
     const birthdayMessage = 'ten year';
     return birthdayMessage;
+  } else if (dataYear === '2012') {
+    const birthdayMessage = 'eleven year';
+    return birthdayMessage;
+  } else if (dataYear === '2011') {
+    const birthdayMessage = 'twelve year';
+    return birthdayMessage;
   } else {
-    const birthdayMessage = 'over 10 y.o.';
+    const birthdayMessage = 'over 12 y.o.';
     return birthdayMessage;
   }
 }

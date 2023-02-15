@@ -4,13 +4,15 @@ import AppBar from '../AppBar/AppBar';
 import { Container } from '../../utils';
 export const Layout = () => {
   return (
-    <Container>
+    <>
+    {/* // <Container> */}
       <header>
         <AppBar />
       </header>
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-    </Container>
+    {/* // </Container> */}
+    </>
   );
 };

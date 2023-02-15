@@ -170,7 +170,7 @@ export const Button = styled.button`
       rgba(255, 255, 255, 0.6),
       transparent
     );
-    transition: all 650ms;
+    transition: all 450ms;
   }
   :disabled {
     opacity: 0.5;

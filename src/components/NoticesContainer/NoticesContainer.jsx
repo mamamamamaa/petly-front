@@ -23,6 +23,7 @@ export const NoticesContainer = ({ pets = [] }) => {
                 place,
                 dateOfBirth,
                 owner,
+                price,
               }) => (
                 <NoticeCategoryItem key={_id}>
                   <NoticeCategoryItemTemplate
@@ -35,6 +36,7 @@ export const NoticesContainer = ({ pets = [] }) => {
                       place,
                       dateOfBirth,
                       owner,
+                      price,
                     }}
                   />
                 </NoticeCategoryItem>

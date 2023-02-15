@@ -1,23 +1,36 @@
-
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Formik } from 'formik';
 import * as yup from 'yup';
-import { useState } from "react";
-import { breeds } from "../../utils/getBreed";
-import moment from "moment";
+import { useState } from 'react';
+import { breeds } from '../../utils/getBreed';
+import moment from 'moment';
 
-const filterByLengthBreeds = breeds.filter(breed=>breed.split('').length<16);
+import {
+  Container,
+  FormEl,
+  Input,
+  InputSelect,
+  BoxLabel,
+  Button,
+  ButtonNext,
+  BoxButton,
+} from './AddOwnPetStepOne.styled';
 
+
+const filterByLengthBreeds = breeds.filter(
+  breed => breed.split('').length < 16
+);
 
 const schema = yup.object().shape({
-    name: yup.string()
-        .min(2, 'Must be 2 or more letter')
-        .max(16, 'Must be 16 or less letter')
-        .trim()
-        .required('Required'),
-    dateOfBirth: yup.date(),
-    breed: yup.string()
-        .required('Required'),   
+  name: yup
+    .string()
+    .min(2, 'Must be 2 or more letter')
+    .max(16, 'Must be 16 or less letter')
+    .trim()
+    .required('Required'),
+  dateOfBirth: yup.date(),
+  breed: yup.string().required('Required'),
 });
+
 
 export const AddOwnPetStepOne = ({next, data, cancel}) => {
     console.log('data.selectedDate', data.selectedDate);
@@ -39,35 +52,51 @@ export const AddOwnPetStepOne = ({next, data, cancel}) => {
         setDateToSubmit(e.target.valueAsNumber);
     }
 
-    return <Formik 
-    initialValues={data}
-    validationSchema={schema}
-    onSubmit={handleSubmit}>
-    <Form>
-    <label>Name pet
-        <Field type="text" name="name" required/>
-        <ErrorMessage name="name" component="div" />
-    </label>
-    <label>Date of birth   
-        <Field type="date" placeholder="Date" name="dateOfBirth" required
-        onChange={handleDate}
-        max={moment(moment.now()).format("YYYY-MM-DD")}
-        value={selectedDate}
-        />
-        <ErrorMessage name="dateOfBirth" component="div" />
-    </label>
-    <label>Breed
-        <Field as="select" name="breed" required>
-            {filterByLengthBreeds.map(breed=> <option value={breed} key={breed}>{breed}</option>)}                    
-        </Field>
-        <ErrorMessage name="breed" component="div" />
-    </label>    
-    <button type="button" 
-    onClick={()=>cancel()}
-    >Cancel</button>  
-    <button type="submit">Next</button>          
-</Form>
-</Formik>
-}
+   return (
+    <Container>
+      <Formik
+        initialValues={data}
+        validationSchema={schema}
+        onSubmit={handleSubmit}
+      >
+        <FormEl>
+          <BoxLabel>
+            <label>Name pet</label>
+            <Input type="text" name="name" required />
+            <ErrorMessage name="name" component="div" />
+          </BoxLabel>
+          <BoxLabel>
+            <label>Date of birth</label>
+            <Input
+              type="date"
+              name="dateOfBirth"
+              required
+              onChange={handleDate}
+              max={moment(moment.now()).format('YYYY-MM-DD')}
+              value={selectedDate}
+            />
+            <ErrorMessage name="dateOfBirth" component="div" />
+          </BoxLabel>
+          <BoxLabel>
+            <label>Breed</label>
+            <InputSelect as="select" name="breed" required>
+              {filterByLengthBreeds.map(breed => (
+                <option value={breed} key={breed}>
+                  {breed}
+                </option>
+              ))}
+            </InputSelect>
+            <ErrorMessage name="breed" component="div" />
+          </BoxLabel>
 
-
+          <BoxButton>
+            <Button type="button" onClick={() => cancel()}>
+              Cancel
+            </Button>
+            <ButtonNext type="submit">Next</ButtonNext>
+          </BoxButton>
+        </FormEl>
+      </Formik>
+    </Container>
+  );
+};
