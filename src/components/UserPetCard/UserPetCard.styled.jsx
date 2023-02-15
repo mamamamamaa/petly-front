@@ -1,16 +1,33 @@
 import styled from '@emotion/styled';
 import PetDeleteIcon from 'utils/svg/petDeleteIcon.svg';
 import { media } from 'components/Layout/Layout.styled';
+export const PetTextWrapper = styled.div``;
 export const PetArticle = styled.article`
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 16px;
+  padding-bottom: 40px;
+  ${media.tablet} {
+    display: flex;
+    margin-right: 32px;
+    padding: 20px;
+  }
+  ${media.desktop} {
+  }
 `;
 export const PetImg = styled.img`
   width: 100%;
+  object-fit: fill;
   display: block;
   border-radius: 20px;
   margin-bottom: 20px;
+  ${media.tablet} {
+    width: 161px;
+    height: 161px;
+    margin-right: 32px;
+  }
+  ${media.desktop} {
+  }
 `;
 export const PetSpanWrapper = styled.div``;
 export const PetSpanWrapperFlex = styled.div`

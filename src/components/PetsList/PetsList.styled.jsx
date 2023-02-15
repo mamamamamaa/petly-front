@@ -3,6 +3,13 @@ import { media } from 'components/Layout/Layout.styled';
 
 export const PetUl = styled.ul`
   background: #fdf7f2;
+  padding-bottom: 80px;
+  ${media.tablet} {
+    padding-bottom: 100px;
+  }
+  ${media.desktop} {
+    padding-bottom: 40px;
+  }
 `;
 export const PetLi = styled.li`
   width: 100%;
