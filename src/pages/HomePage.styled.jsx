@@ -53,7 +53,7 @@ export const HomepageSection = styled.section`
     /* position: relative;
     height: 35vmax; //woman togather with rainbow move Y 35
     margin-left: 0vmax; //woman togather with rainbow move X 35
-    width: 95vmax; //woman togather with rainbow cut X
+    // width: 95vmax; //woman togather with rainbow cut X
     margin-top: 0vmax; //woman togather with rainbow move Y
     max-width: 1280px;
     background-position: 50% bottom;
