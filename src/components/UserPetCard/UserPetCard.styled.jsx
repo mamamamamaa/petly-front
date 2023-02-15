@@ -51,6 +51,21 @@ export const PetComments = styled.span`
   color: #000000;
   margin-right: 7px;
 `;
+export const PetDeleteButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #fdf7f2;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  ${media.mobile} {
+    display: none;
+  }
+`;
 export const PetDeleteButton = styled.button`
   width: 17px;
   height: 18px;
@@ -61,9 +76,9 @@ export const PetDeleteButton = styled.button`
   margin-left: auto;
   border: none;
   ${media.tablet} {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+    width: 20px;
+    height: 21px;
+    margin-left: 0;
   }
   ${media.desktop} {
   }

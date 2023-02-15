@@ -9,6 +9,7 @@ import {
   PetSpan,
   PetComments,
   PetTextWrapper,
+  PetDeleteButtonWrapper,
 } from './UserPetCard.styled';
 export const UserPetCard = ({
   pet = {},
@@ -25,10 +26,12 @@ export const UserPetCard = ({
             <PetSpan>Name:</PetSpan>
             <PetSpan>{pet.name}</PetSpan>
           </PetSpanWrapper>
-          <PetDeleteButton
-            type="button"
-            onClick={() => dispatch(deleteOneOwnPet(pet._id))}
-          />
+          <PetDeleteButtonWrapper>
+            <PetDeleteButton
+              type="button"
+              onClick={() => dispatch(deleteOneOwnPet(pet._id))}
+            />
+          </PetDeleteButtonWrapper>
         </PetSpanWrapperFlex>
         <PetSpanWrapper>
           <PetSpan>Date of birth:</PetSpan>
