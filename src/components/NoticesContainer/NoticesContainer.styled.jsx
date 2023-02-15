@@ -13,7 +13,6 @@ export const NoticesCategoriesList = styled.ul`
     display: flex;
     flex-wrap: wrap;
     flex-basis: calc(100% / 2-32px);
-    margin-left: -32px;
   }
   ${media.desktop} {
     flex-basis: calc(100% / 4-16px);
