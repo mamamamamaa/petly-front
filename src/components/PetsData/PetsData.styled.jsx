@@ -1,11 +1,17 @@
 import styled from '@emotion/styled';
 import cross from 'utils/svg/cross.svg';
+import { media } from 'components/Layout/Layout.styled';
 export const PetsDataTitle = styled.h2`
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
   letter-spacing: 0.04em;
   color: #000000;
+  ${media.tabletAndDesktop} {
+    font-size: 28px;
+    line-height: 38px;
+    color: #111111;
+  }
 `;
 export const PetsDataAddBtnContainer = styled.div`
   display: flex;
@@ -22,6 +28,9 @@ export const PetsDataAddText = styled.p`
   line-height: 27px;
   color: #111111;
   margin-right: 15px;
+  ${media.desktop} {
+    margin-right: 12px;
+  }
 `;
 export const PetsDataButton = styled.button`
   border-radius: 50%;
