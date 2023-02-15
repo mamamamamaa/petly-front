@@ -1,11 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserPets } from '../../redux/user/operations';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {fetchUserPets } from "../../redux/user/operations";
 
-import { Modal } from '../Modal/Modal';
-import { ModalAddsPet } from '../ModalAddsPet/ModalAddsPet';
-import { PetsList } from '../PetsList/PetsList';
-import { Section } from './PetsData.styled';
+import { Modal } from "../Modal/Modal";
+import { ModalAddsPet } from "../ModalAddsPet/ModalAddsPet";
+import { PetsList } from "../PetsList/PetsList";
+import {
+  PetsDataTitle,
+  PetsDataAddText,
+  PetsDataButton,
+  PetsDataSection,
+  PetsDataAddBtnWrapper,
+  PetsDataAddBtnContainer,
+} from './PetsData.styled';
 const selectPets = state => state.user.pets;
 const selectIsLoading = state => state.isLoading;
 const selectError = state => state.error;
@@ -27,12 +34,14 @@ export const PetsData = () => {
   };
 
   return (
-    <Section>
-      <h2>My pets:</h2>
-      <p>Add pet</p>
-      <button type="button" onClick={handleModal}>
-        +
-      </button>
+    <PetsDataSection>
+      <PetsDataAddBtnContainer>
+        <PetsDataTitle>My pets:</PetsDataTitle>
+        <PetsDataAddBtnWrapper>
+          <PetsDataAddText>Add pet</PetsDataAddText>
+          <PetsDataButton type="button" onClick={handleModal}></PetsDataButton>
+        </PetsDataAddBtnWrapper>
+      </PetsDataAddBtnContainer>
       {isLoading && <div>Loading...</div>}
       {error && <div>error</div>}
       {!error && !isLoading && pets.length === 0 && (
@@ -44,6 +53,6 @@ export const PetsData = () => {
           <ModalAddsPet onClose={handleModal} />
         </Modal>
       )}
-    </Section>
+    </PetsDataSection>
   );
 };

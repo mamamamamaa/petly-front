@@ -26,30 +26,9 @@ export const Window = styled.div`
   width: auto;
 
   border-radius: 40px;
-  @media screen and (max-width: 767px) {
-    width: 280px;
-    padding: 20px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    width: 448px;
-    padding-left: 80px;
-    padding-right: 80px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 448px;
-    padding-left: 80px;
-    padding-right: 80px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
 `;
 
-export const Container = styled.div`
-  height: 540px;
-  width: 704px;
-`;
+export const Container = styled.div``;
 
 export const Wraper = styled.div`
   display: flex;
