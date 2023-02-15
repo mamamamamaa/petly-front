@@ -1,3 +1,4 @@
+import { Container } from 'utils';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -42,6 +43,7 @@ const NoticesPage = () => {
 
   return (
     <>
+      <Container>
       <NoticesSearch>
         <SearchField
           placeholder="Search"
@@ -86,6 +88,8 @@ const NoticesPage = () => {
       <Suspense>
         <Outlet />
       </Suspense>
+      <Toaster />
+      </Container>
     </>
   );
 };

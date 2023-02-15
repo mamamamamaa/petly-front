@@ -40,9 +40,13 @@ export const NavigLink = styled(NavLink)`
   align-items: center;
   justify-content: center;
   color: inherit;
-  
   padding: 10px 28px;
   text-decoration: none;
+  &.active {
+    background-color: ${theme.colors.primary};
+    color: ${theme.colors.accentText};
+    border-radius: 40px;
+  }
   ${media.mobile} {
     padding: 8px 28px;
   }
@@ -56,7 +60,7 @@ export const Sp = styled.span`
   font-style: normal;
   font-weight: ${theme.fontWeights.normal};
   letter-spacing: 0.04em;
-  ${media.nobile} {
+  ${media.mobile} {
     font-size: 14px;
     line-height: 19px;
   }
