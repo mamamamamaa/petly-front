@@ -11,7 +11,6 @@ import { HiPencil } from "react-icons/hi";
 import { FiLogOut, FiCheck } from "react-icons/fi";
 import { NoPhotoIcon } from 'utils/svg/noPhotoCross';
 import { logout } from '../../redux/auth/operations';
-
 import { updateUserData, getUserData } from '../../redux/user/operations';
 import { Formik, useFormik } from 'formik';
 import avatar from "../../images/avatart.jpg";
