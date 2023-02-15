@@ -6,8 +6,6 @@ import moment from 'moment';
 // ============= mark
 import {
   Container,
-  Wraper,
-  BoxWarning,
   FormEl,
   Input,
   InputSelect,
@@ -57,18 +55,12 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
       >
         <FormEl>
           <BoxLabel>
-            <Wraper>
-              <label>Name pet</label>
-            </Wraper>
+            <label>Name pet</label>
             <Input type="text" name="name" required />
-            <BoxWarning>
-              <ErrorMessage name="name" component="div" />
-            </BoxWarning>
+            <ErrorMessage name="name" component="div" />
           </BoxLabel>
           <BoxLabel>
-            <Wraper>
-              <label>Date of birth</label>
-            </Wraper>
+            <label>Date of birth</label>
             <Input
               type="date"
               name="dateOfBirth"
@@ -77,14 +69,10 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
               max={moment(moment.now()).format('YYYY-MM-DD')}
               value={selectedDate}
             />
-            <BoxWarning>
-              <ErrorMessage name="dateOfBirth" component="div" />
-            </BoxWarning>
+            <ErrorMessage name="dateOfBirth" component="div" />
           </BoxLabel>
           <BoxLabel>
-            <Wraper>
-              <label>Breed</label>
-            </Wraper>
+            <label>Breed</label>
             <InputSelect as="select" name="breed" required>
               {filterByLengthBreeds.map(breed => (
                 <option value={breed} key={breed}>
@@ -92,9 +80,7 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
                 </option>
               ))}
             </InputSelect>
-            <BoxWarning>
-              <ErrorMessage name="breed" component="div" />
-            </BoxWarning>
+            <ErrorMessage name="breed" component="div" />
           </BoxLabel>
 
           <BoxButton>
