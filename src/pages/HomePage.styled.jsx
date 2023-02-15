@@ -34,9 +34,9 @@ export const HomePageBg = styled.div`
   ${media.desktop} {
     position: relative;
     background-image: url(${desktopBackground});
-    height: 35vmax; //woman togather with rainbow move Y 35
+    // height: 35vmax; //woman togather with rainbow move Y 35
     margin-left: 0vmax; //woman togather with rainbow move X 35
-    width: 95vmax; //woman togather with rainbow cut X
+    // width: 95vmax; //woman togather with rainbow cut X
     margin-top: 0vmax; //woman togather with rainbow move Y
     max-width: 1280px;
     background-position: 50% bottom;
@@ -48,10 +48,10 @@ export const HomePageBg = styled.div`
 export const HomePageWomanWrapper = styled.div`
   ${media.desktop} {
     position: relative;
-    right: 0;
+    left: 56px;
     bottom: 0;
     width: 590px;
-    height: 640px;
+    max-height: 640px;
   }
 `;
 export const HomePageWomanImg = styled.img`
@@ -80,7 +80,7 @@ export const HomePageWomanImg = styled.img`
   }
   ${media.desktop} {
     content: url(${ladyWithPetDesktop1x});
-    max-height: 650px;
+    max-height: 550px;
     width: auto;
     position: relative;
     margin-top: 0vw;
@@ -136,6 +136,6 @@ export const HomePageTitle = styled.h2`
     color: ${theme.colors.black};
     width: 588px;
     position: absolute;
-    top: 160px;
+    top: 110px;
   }
 `;
