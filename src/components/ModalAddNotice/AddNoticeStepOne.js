@@ -3,7 +3,6 @@ import * as yup from 'yup';
 import { useState } from 'react';
 import { breeds } from '../../utils/getBreed';
 import moment from 'moment';
-// import { useNotices } from '../../redux/hooks';
 
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
@@ -69,6 +68,11 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
     >
       <div></div>
       <Form>
+        <div>
+          <Field type="radio" name="type" required />
+          <ErrorMessage name="title" component="div" />
+        </div>
+
         <label>
           Tittle of ad
           <Field type="text" name="title" required />

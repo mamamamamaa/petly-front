@@ -36,6 +36,7 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
 
   const formik = useFormik({
     initialValues: {
+      sex: data.sex,
       place: data.place,
       price: data.price,
       pictureURL: data.pictureURL,
@@ -57,6 +58,11 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
   return (
     <Formik onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <Form>
+        <label>
+          The sex
+          <Field type="radio" name="sex" required />
+          <ErrorMessage name="sex" component="div" />
+        </label>
         <label>
           Location
           <Field type="text" name="location" required />
