@@ -25,6 +25,11 @@ const AppBar = () => {
       setIsMenuOpen(!isMenuOpen);
     }
 
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    }
+
+
     const { isLoggedIn } = useAuth();
     return (
         <Container>
@@ -37,11 +42,11 @@ const AppBar = () => {
                 
                 <MenuWrpr isClosed={!isMenuOpen}>
                     <Nav isClosed={!isMenuOpen}>
-                        <Navigation close={toggleClickHandler}/>
+                        <Navigation close={closeMenu} />
                     </Nav>
                     <UserMenuWrpr>{isLoggedIn ?
-                         <UserMenu close={toggleClickHandler} /> 
-                        : <AuthMenu close={toggleClickHandler} />}
+                         <UserMenu close={closeMenu} /> 
+                        : <AuthMenu close={closeMenu} />}
                     </UserMenuWrpr>
                 </MenuWrpr>
                 </TabletWrapper>

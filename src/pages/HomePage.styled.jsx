@@ -11,36 +11,44 @@ import ladyWithPetTablet2x from 'images/tablet/lady-with-pet-2x.png';
 import ladyWithPetDesktop1x from 'images/desktop/lady-with-pet-1x.png';
 import ladyWithPetDesktop2x from 'images/desktop/lady-with-pet-2x.png';
 import HeartBackgroundImg from 'images/desktop/HeartBackgroundImg.png';
-import unionHeart from 'images/desktop/heart.svg';
+import HeartBackgroundImg2x from 'images/desktop/HeartBackgroundImg2x.png';
+// import unionHeart from 'images/desktop/heart.svg';
 
 
 export const HomepageSection = styled.section`
-  /* background-repeat: no-repeat;
-  /* background-size: cover;  */
-  /* background-position: top -11vw left 0vw;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin-left: -20px;
-  margin-right: -20px; */
   ${media.mobile} {
-    min-height: 480px;
+    min-height: 500px;
     padding-top: 60px;
     background-image: url(${ladyWithPetMobile1x}),
     url(${mobileBackground});
     background-size: 320px 337px, cover;
-    background-position: bottom 0 left 50%, bottom 0 left 50%;
+    background-position: bottom 0 left 50%, top 50px right 0;
     background-repeat: no-repeat;
+      @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2), 
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+        background-image: url(${ladyWithPetMobile2x}),
+    url(${mobileBackground});
+      };
   };
   ${media.tablet} {
+    /* width: 768px; */
     padding-top: 88px;
     min-height: 1000px;
     background-image: url(${ladyWithPetTablet1x}),
     url(${tabletBackground});
     background-repeat: no-repeat;
     background-size: 645px 715px, cover;
-    background-position: bottom 0 left 50%, bottom 0 left 50%;
-  }
+    background-position: bottom 0 left 50%, top 0 right 0;
+      @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2), 
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+        background-image: url(${ladyWithPetTablet2x}),
+        url(${tabletBackground});
+      };
+  };
   ${media.desktop} {
     padding-top: 92px;
     min-height: 640px;
@@ -50,6 +58,14 @@ export const HomepageSection = styled.section`
     background-repeat: no-repeat;
     background-size: 590px 640px, contain, 92px 89px;
     background-position: bottom 0 right 16px, bottom -90px left 20px, top 20% right 35%;
+      @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2), 
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+          background-image: url(${ladyWithPetDesktop2x}),
+          url(${desktopBackground}),
+          url(${HeartBackgroundImg2x});
+      };
     /* position: relative;
     height: 35vmax; //woman togather with rainbow move Y 35
     margin-left: 0vmax; //woman togather with rainbow move X 35
@@ -60,7 +76,53 @@ export const HomepageSection = styled.section`
     background-size: contain;
     max-height: 768px;
     justify-content: flex-end; */
+    /* background-repeat: no-repeat;
+    /* background-size: cover;  */
+    /* background-position: top -11vw left 0vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-left: -20px;
+    margin-right: -20px; */
   }
+`;
+
+
+export const HomePageTitle = styled.h2`
+${media.mobile} {
+font-family: ${theme.fonts.body};
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 44px;
+color: ${theme.colors.black};
+margin-left: auto;
+margin-right: auto;
+/* text-align: center; */
+/* margin-top: 60px; */
+/* max-width: 280px; */
+};
+${media.tablet} {
+margin-left: 0;
+width: 588px;
+font-family: ${theme.fonts.body};
+font-style: normal;
+color: #000000;
+font-weight: 700;
+font-size: 68px;
+line-height: 100px;
+};
+${media.desktop} {
+font-family: ${theme.fonts.body};
+font-style: normal;
+font-weight: 700;
+font-size: 68px;
+line-height: 100px;
+color: ${theme.colors.black};
+width: 588px;
+position: absolute;
+top: 160px;
+};
 `;
 
 // export const HomePageBg = styled.div`
@@ -197,40 +259,3 @@ export const HomepageSection = styled.section`
 //   }
 // `;
 
-export const HomePageTitle = styled.h2`
-${media.mobile} {
-font-family: ${theme.fonts.body};
-font-style: normal;
-font-weight: 700;
-font-size: 32px;
-line-height: 44px;
-color: ${theme.colors.black};
-margin-left: auto;
-margin-right: auto;
-/* text-align: center; */
-/* margin-top: 60px; */
-/* max-width: 280px; */
-};
-
-${media.tablet} {
-margin-left: 0;
-width: 588px;
-font-family: ${theme.fonts.body};
-font-style: normal;
-color: #000000;
-font-weight: 700;
-font-size: 68px;
-line-height: 100px;
-};
-${media.desktop} {
-font-family: ${theme.fonts.body};
-font-style: normal;
-font-weight: 700;
-font-size: 68px;
-line-height: 100px;
-color: ${theme.colors.black};
-width: 588px;
-position: absolute;
-top: 160px;
-};
-`;

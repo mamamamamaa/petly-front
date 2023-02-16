@@ -25,7 +25,7 @@ export const Formav = styled.form`
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    z-index: 50;
+    z-index: 20;
 ` 
 export const Imgav = styled.img`
   /* border: 1px dashed gray; */
