@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { useState } from 'react';
 import { breeds } from '../../utils/getBreed';
 import moment from 'moment';
-// ============= mark
+
 import {
   Container,
   Wraper,
@@ -16,7 +16,6 @@ import {
   ButtonNext,
   BoxButton,
 } from './AddOwnPetStepOne.styled';
-// =============
 
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
@@ -38,10 +37,10 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
   const [dateToSubmit, setDateToSubmit] = useState();
 
   const handleSubmit = (values, actions) => {
-    console.log('values', values);
+    console.log('values on submit in 1 step', values);
     next({ ...values, dateOfBirth: dateToSubmit });
     console.log('data in 1 step', data);
-  };
+  }; 
 
   const handleDate = e => {
     setSelectedDate(e.target.value);
