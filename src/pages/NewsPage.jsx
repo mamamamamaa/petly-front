@@ -14,7 +14,7 @@ import { Container, MainHeader } from './NewsPage.styled';
 // ================= логика
 export default function NewsPage() {
   const [searchNews, setSearchNews] = useState([]);
-  const [query, setQuery] = useState('cat');
+  const [query, setQuery] = useState('pets');
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [setSearchParams] = useSearchParams();
@@ -24,35 +24,20 @@ export default function NewsPage() {
   const { currentNews } = useNews();
   useEffect(() => {
     dispatch(getNews(query));
-    // setSearchNews(currentNews.value);
-  }, [dispatch]);
-  // console.log(currentNews);
-  // =================
 
-  // useEffect(() => {
-  //   async function fetchNews() {
-  //     try {
-  //       setIsLoading(true);
-  //       // const response = await selectNews(query);
-  //       const response = currentNews;
-  //       console.log(response);
-  //       // const news = response.data.result.value;
-  //       const total = response.data.result.totalCount;
-  //       if (total === 0) {
-  //         toast.error(
-  //           'Sorry, there are no news matching your query. Please try again.'
-  //         );
-  //         return;
-  //       }
-  //       setSearchNews(response);
-  //     } catch {
-  //       setError('Can`t load news!');
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   }
-  //   fetchNews(query);
-  // }, [query]);
+    const count = currentNews.data.result.totalCount;
+    console.log(count);
+    if (count === 0) {
+      toast.error(
+        'Sorry, there are no news matching your query. Please try again.'
+      );
+      return;
+    }
+    const newNews = currentNews.data.result.value;
+    console.log(newNews);
+    setSearchNews(newNews);
+  }, [dispatch, query, currentNews]);
+  // =================
 
   useEffect(() => {
     if (error !== false) {
@@ -75,7 +60,7 @@ export default function NewsPage() {
       <MainHeader>News</MainHeader>
       <SearchBar onSubmit={handlerFormSubmit} />
       {isLoading && <h2>... is loading</h2>}
-      <ListNews news={currentNews} />
+      <ListNews news={searchNews} />
       <Toaster />
     </Container>
   );
