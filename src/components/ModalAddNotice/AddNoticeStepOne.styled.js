@@ -13,7 +13,7 @@ export const AddNoticeStepOneButton = styled.button`
   background-color: #ffffff;
   margin-right: 8px;
   margin-bottom: 12px;
-  &:nth-child(3) {
+  &:nth-of-type(3) {
     margin-right: 0;
     margin-bottom: 32px;
   }
