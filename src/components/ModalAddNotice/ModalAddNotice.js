@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { AddOwnPetStepOne } from './AddNoticeStepOne';
-// import { AddOwnPetStepOne } from '../AddOwnPetStepOne/AddOwnPetStepOne';
 import { AddOwnPetStepTwo } from './AddNoticeStepTwo';
-// import { AddOwnPetStepTwo } from '../AddOwnPetStepTwo/AddOwnPetStepTwo';
 import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/operations';
+import {
+  ModalAddNoticeTitle,
+  ModalAddNoticeWrapper,
+  ModalAddNoticeText,
+} from './ModalAddNotice.styled';
 import moment from 'moment';
 
 export const ModalAddNotice = ({ onClose }) => {
@@ -93,10 +96,13 @@ export const ModalAddNotice = ({ onClose }) => {
   ];
   console.log(data);
   return (
-    <div>
-      <h3>Add pet</h3>
-      <p>some text</p>
+    <ModalAddNoticeWrapper>
+      <ModalAddNoticeTitle>Add pet</ModalAddNoticeTitle>
+      <ModalAddNoticeText>
+        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+        consectetur
+      </ModalAddNoticeText>
       {steps[currentStep]}
-    </div>
+    </ModalAddNoticeWrapper>
   );
 };

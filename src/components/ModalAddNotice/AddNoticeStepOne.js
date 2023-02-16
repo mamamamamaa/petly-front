@@ -11,20 +11,18 @@ const filterByLengthBreeds = breeds.filter(
 const schema = yup.object().shape({
   // type: yup.string().required(),
   type: yup.string(),
-  title: yup
-    .string(),
-    // .min(2, 'Title should be from 2 to 48 symbols')
-    // .max(48, 'Title should be from 2 to 48 symbols')
-    // .matches(
-    //   /^[a-zA-zа-яіїєА-ЯІЇЄ,.! ]+$/,
-    //   'title should be from 2 to 48 symbols'
-    // )
+  title: yup.string(),
+  // .min(2, 'Title should be from 2 to 48 symbols')
+  // .max(48, 'Title should be from 2 to 48 symbols')
+  // .matches(
+  //   /^[a-zA-zа-яіїєА-ЯІЇЄ,.! ]+$/,
+  //   'title should be from 2 to 48 symbols'
+  // )
   // .required('The title is required'),
-  name: yup
-    .string(),
-    // .min(2, 'Must be 2 or more letter')
-    // .max(16, 'Must be 16 or less letter')
-    // .trim()
+  name: yup.string(),
+  // .min(2, 'Must be 2 or more letter')
+  // .max(16, 'Must be 16 or less letter')
+  // .trim()
   // .required('The name is required'),
   dateOfBirth: yup.date(),
   // breed: yup.string().required('The breed is required'),
@@ -65,55 +63,57 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
   };
 
   return (
-    <Formik
-      initialValues={data}
-      validationSchema={schema}
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <div>
-          <Field type="radio" name="type" required />
-          <ErrorMessage name="title" component="div" />
-        </div>
+    <>
+      <Formik
+        initialValues={data}
+        validationSchema={schema}
+        onSubmit={handleSubmit}
+      >
+        <Form>
+          <div>
+            <Field type="radio" name="type" required />
+            <ErrorMessage name="title" component="div" />
+          </div>
 
-        <label>
-          Tittle of ad
-          <Field type="text" name="title" required />
-          <ErrorMessage name="title" component="div" />
-        </label>
-        <label>
-          Name pet
-          <Field type="text" name="name" required />
-          <ErrorMessage name="name" component="div" />
-        </label>
-        <label>
-          Date of birth
-          <Field
-            type="date"
-            name="dateOfBirth"
-            // required
-            onChange={handleDate}
-            max={moment(moment.now()).format('YYYY-MM-DD')}
-            value={selectedDate}
-          />
-          <ErrorMessage name="dateOfBirth" component="div" />
-        </label>
-        <label>
-          Breed
-          <Field as="select" name="breed" required>
-            {filterByLengthBreeds.map(breed => (
-              <option value={breed} key={breed}>
-                {breed}
-              </option>
-            ))}
-          </Field>
-          <ErrorMessage name="breed" component="div" />
-        </label>
-        <button type="button" onClick={() => cancel()}>
-          Cancel
-        </button>
-        <button type="submit">Next</button>
-      </Form>
-    </Formik>
+          <label>
+            Tittle of ad
+            <Field type="text" name="title" required />
+            <ErrorMessage name="title" component="div" />
+          </label>
+          <label>
+            Name pet
+            <Field type="text" name="name" required />
+            <ErrorMessage name="name" component="div" />
+          </label>
+          <label>
+            Date of birth
+            <Field
+              type="date"
+              name="dateOfBirth"
+              // required
+              onChange={handleDate}
+              max={moment(moment.now()).format('YYYY-MM-DD')}
+              value={selectedDate}
+            />
+            <ErrorMessage name="dateOfBirth" component="div" />
+          </label>
+          <label>
+            Breed
+            <Field as="select" name="breed" required>
+              {filterByLengthBreeds.map(breed => (
+                <option value={breed} key={breed}>
+                  {breed}
+                </option>
+              ))}
+            </Field>
+            <ErrorMessage name="breed" component="div" />
+          </label>
+          <button type="button" onClick={() => cancel()}>
+            Cancel
+          </button>
+          <button type="submit">Next</button>
+        </Form>
+      </Formik>
+    </>
   );
 };
