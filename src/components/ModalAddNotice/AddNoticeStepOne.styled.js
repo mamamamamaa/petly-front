@@ -54,20 +54,13 @@ export const AddNoticeStepOneButtonNext = styled.button`
   border: 2px solid #f59256;
   border-radius: 40px;
   margin-bottom: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    background-color: #f59256;
-  }
-`;
-export const AddNoticeStepOneButtonNextSpan = styled.span`
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
   color: #111111;
   &:hover {
+    background-color: #f59256;
     color: #ffffff;
   }
 `;
@@ -77,20 +70,13 @@ export const AddNoticeStepOneButtonCancel = styled.button`
   background-color: #ffffff;
   border: 2px solid #f59256;
   border-radius: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    background-color: #f59256;
-  }
-`;
-export const AddNoticeStepOneButtonCancelSpan = styled.span`
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
   color: #111111;
   &:hover {
+    background-color: #f59256;
     color: #ffffff;
   }
 `;

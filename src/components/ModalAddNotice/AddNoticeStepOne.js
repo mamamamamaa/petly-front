@@ -9,8 +9,6 @@ import {
   AddNoticeStepOneInput,
   AddNoticeStepOneButtonNext,
   AddNoticeStepOneButtonCancel,
-  AddNoticeStepOneButtonNextSpan,
-  AddNoticeStepOneButtonCancelSpan,
 } from './AddNoticeStepOne.styled';
 import moment from 'moment';
 
@@ -126,14 +124,10 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           </Field>
 
           <AddNoticeStepOneButtonNext type="submit">
-            <AddNoticeStepOneButtonNextSpan>
-              Next
-            </AddNoticeStepOneButtonNextSpan>
+            Next
           </AddNoticeStepOneButtonNext>
           <AddNoticeStepOneButtonCancel type="button" onClick={() => cancel()}>
-            <AddNoticeStepOneButtonCancelSpan>
-              Cancel
-            </AddNoticeStepOneButtonCancelSpan>
+            Cancel
           </AddNoticeStepOneButtonCancel>
         </Form>
       </Formik>
