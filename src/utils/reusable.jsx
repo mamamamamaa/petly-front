@@ -5,16 +5,16 @@ import { theme } from '../utils/theme';
 export const Container = styled.div`
   font-family: ${theme.fonts.body};
   margin: 0 auto;
-  @media (max-width: 767px) {
+  @media screen and (max-width: 767px) {
     padding: 0 20px;
   }
-  @media (min-width: 768px) {
-    width: 768px;
+  @media screen and (min-width: 768px) {
+    /* width: 768px; */
     padding: 0 32px;
   }
 
-  @media (min-width: 1280px) {
-    width: 1280px;
+  @media screen and (min-width: 1280px) {
+    /* width: 1280px; */
     padding: 0 16px;
   }
 `;
@@ -61,7 +61,7 @@ export const Card = styled.div`
   }
 `;
 
-export const FriendsCard = styled.div`
+export const FriendsCard = styled.li`
   width: 280px;
   padding: 12px 4px;
   background: ${theme.colors.accentText};

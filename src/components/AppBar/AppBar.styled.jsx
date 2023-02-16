@@ -76,6 +76,8 @@ export const MenuWrpr = styled.div`
     }
     ${media.tablet} {
         margin-right: 25px;
+        /* width: auto; */
+        /* width: 100%; */
     }
     ${media.tabletAndDesktop} {
         opacity: 1;
@@ -114,8 +116,9 @@ export const Nav = styled.nav`
         position: fixed;
         left: 0;
         top: 0;
-        width: 100%;
+        /* width: 100%; */
         height: 100%;
+        width: 100%;
         background-color: ${theme.colors.secondary};
         /* outline: 1px solid green; */
         ${media.desktop} {
