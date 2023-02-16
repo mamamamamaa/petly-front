@@ -34,7 +34,7 @@ const AppBar = () => {
     return (
         <Container>
         <BarContainer>
-            <LogoBlack><HomePageLink to="/">pe<LogoAccent>t</LogoAccent>ly</HomePageLink></LogoBlack>
+            <LogoBlack><HomePageLink to="/" onClick={closeMenu}>pe<LogoAccent>t</LogoAccent>ly</HomePageLink></LogoBlack>
                 <TabletWrapper>
                 <BurgerBtn onClick={toggleClickHandler}>
                     {!isMenuOpen ? <BurgerIcon/> : <CloseIcon/>}
