@@ -8,7 +8,7 @@ import {
   AddNoticeStepOneInput,
   AddNoticeStepOneButtonNext,
   AddNoticeStepOneButtonCancel,
-  AddNoticeStepOneSelectWrapper,
+  AddNoticeStepOneSelect,
 } from './AddNoticeStepOne.styled';
 import moment from 'moment';
 
@@ -110,16 +110,14 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
             component={AddNoticeStepOneInput}
           />
           <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
-          <AddNoticeStepOneSelectWrapper>
-            <Field as="select" name="breed" id="breed">
-              {filterByLengthBreeds.map(breed => (
-                <option value={breed} key={breed}>
-                  {breed}
-                </option>
-              ))}
-            </Field>
-          </AddNoticeStepOneSelectWrapper>
-
+          <Field component={AddNoticeStepOneSelect} name="breed" id="breed">
+            {filterByLengthBreeds.map(breed => (
+              <option value={breed} key={breed}>
+                {breed}
+              </option>
+            ))}
+            
+          </Field>
           <AddNoticeStepOneButtonNext type="submit">
             Next
           </AddNoticeStepOneButtonNext>

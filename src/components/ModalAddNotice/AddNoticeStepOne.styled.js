@@ -41,8 +41,9 @@ export const AddNoticeStepOneInput = styled.input`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin-bottom: 16px;
+  padding: 0 15px;
 `;
-export const AddNoticeStepOneSelectWrapper = styled.div`
+export const AddNoticeStepOneSelect = styled.select`
   width: 100%;
   height: 40px;
   box-sizing: border-box;
