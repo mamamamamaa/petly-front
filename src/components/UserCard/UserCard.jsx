@@ -110,8 +110,9 @@ const UserCard = ({handleDragEmpty, handleDrop}) => {
   };
    
   
-    return ( 
-      <Container>
+  return (
+        // do NOT remove this div, reusable Container moved upper to UserPage
+    <div> 
           <Title>My information:</Title> 
           
         <Card>
@@ -239,7 +240,7 @@ const UserCard = ({handleDragEmpty, handleDrop}) => {
               {<FiLogOut color="#F59256" />}<LogOutSpan>Log Out</LogOutSpan>
             </BtnLogOut>
       </Card>
- </Container>  
+ </div>  
   )
 };
 

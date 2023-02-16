@@ -20,5 +20,6 @@ export const PetsDataWrapper = styled.div`
   }
   ${media.desktop} {
     margin-top: 0;
+    width: 862px;
   }
 `;
