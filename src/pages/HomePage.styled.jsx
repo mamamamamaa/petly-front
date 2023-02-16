@@ -16,6 +16,7 @@ import HeartBackgroundImg2x from 'images/desktop/HeartBackgroundImg2x.png';
 
 
 export const HomepageSection = styled.section`
+margin: 0, auto;
   ${media.mobile} {
     min-height: 500px;
     padding-top: 60px;
@@ -51,13 +52,13 @@ export const HomepageSection = styled.section`
   };
   ${media.desktop} {
     padding-top: 92px;
-    min-height: 640px;
+    min-height: 700px;
     background-image: url(${ladyWithPetDesktop1x}),
     url(${desktopBackground}),
     url(${HeartBackgroundImg});
     background-repeat: no-repeat;
     background-size: 590px 640px, contain, 92px 89px;
-    background-position: bottom 0 right 16px, bottom -90px left 20px, top 20% right 35%;
+    background-position: bottom 0 right 16px, bottom -20px left 0, top 20% right 40%;
       @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2), 
       (min-resolution: 192dpi),
@@ -66,6 +67,12 @@ export const HomepageSection = styled.section`
           url(${desktopBackground}),
           url(${HeartBackgroundImg2x});
       };
+@media screen and (min-width: 1920px) {
+    width: 1600px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
     /* position: relative;
     height: 35vmax; //woman togather with rainbow move Y 35
     margin-left: 0vmax; //woman togather with rainbow move X 35
