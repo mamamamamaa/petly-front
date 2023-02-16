@@ -2,6 +2,11 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { useState } from 'react';
 import { breeds } from '../../utils/getBreed';
+import {
+  AddNoticeStepOneButton,
+  AddNoticeStepOneSpan,
+  AddNoticeStepOneLabel,
+} from './AddNoticeStepOne.styled';
 import moment from 'moment';
 
 const filterByLengthBreeds = breeds.filter(
@@ -40,7 +45,7 @@ const schema = yup.object().shape({
   photoUrl: yup.string(),
 });
 
-export const AddOwnPetStepOne = ({ next, data, cancel }) => {
+export const AddNoticeStepOne = ({ next, data, cancel }) => {
   //   const [selectedType, setSelectedType] = useState('');
 
   const [selectedDate, setSelectedDate] = useState('');
@@ -70,34 +75,37 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
         onSubmit={handleSubmit}
       >
         <Form>
-          <div>
-            <Field type="radio" name="type" required />
-            <ErrorMessage name="title" component="div" />
-          </div>
+          <Field name="lostFound" component={AddNoticeStepOneButton}>
+            <AddNoticeStepOneSpan>lost/found</AddNoticeStepOneSpan>
+          </Field>
+          <Field name="inGoodHands" component={AddNoticeStepOneButton}>
+            <AddNoticeStepOneSpan>in good hands</AddNoticeStepOneSpan>
+          </Field>
+          <Field name="sell" component={AddNoticeStepOneButton}>
+            <AddNoticeStepOneSpan>sell</AddNoticeStepOneSpan>
+          </Field>
 
-          <label>
+          <AddNoticeStepOneLabel htmlFor="title">
             Tittle of ad
-            <Field type="text" name="title" required />
-            <ErrorMessage name="title" component="div" />
-          </label>
-          <label>
-            Name pet
-            <Field type="text" name="name" required />
-            <ErrorMessage name="name" component="div" />
-          </label>
-          <label>
+          </AddNoticeStepOneLabel>
+          <Field type="text" name="title" id="title" />
+
+          <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
+          <Field type="text" name="name" id="name" />
+          
+          <AddNoticeStepOneLabel htmlFor="dateOfBirth">
             Date of birth
-            <Field
-              type="date"
-              name="dateOfBirth"
-              // required
-              onChange={handleDate}
-              max={moment(moment.now()).format('YYYY-MM-DD')}
-              value={selectedDate}
-            />
-            <ErrorMessage name="dateOfBirth" component="div" />
-          </label>
-          <label>
+          </AddNoticeStepOneLabel>
+          <Field
+            type="date"
+            name="dateOfBirth"
+            id="dateOfBirth"
+            // required
+            onChange={handleDate}
+            max={moment(moment.now()).format('YYYY-MM-DD')}
+            value={selectedDate}
+          />
+          <AddNoticeStepOneLabel>
             Breed
             <Field as="select" name="breed" required>
               {filterByLengthBreeds.map(breed => (
@@ -107,7 +115,7 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
               ))}
             </Field>
             <ErrorMessage name="breed" component="div" />
-          </label>
+          </AddNoticeStepOneLabel>
           <button type="button" onClick={() => cancel()}>
             Cancel
           </button>
