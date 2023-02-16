@@ -6,7 +6,7 @@ axios.defaults.baseURL = HOST;
 
 export const getNews = createAsyncThunk(
   'news',
-  async (query = 'pets', thunkAPI) => {
+  async (query = 'animals', thunkAPI) => {
     try {
       const { data } = await axios.get(`/api/news?query=${query}`);
       console.log(query);

@@ -14,7 +14,7 @@ import { Container, MainHeader } from './NewsPage.styled';
 // ================= логика
 export default function NewsPage() {
   const [searchNews, setSearchNews] = useState([]);
-  const [query, setQuery] = useState('pets');
+  const [query, setQuery] = useState('animals');
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [setSearchParams] = useSearchParams();
