@@ -41,9 +41,18 @@ export const AddNoticeStepOneInput = styled.input`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin-bottom: 16px;
-  &:nth-of-type(4) {
-    margin-bottom: 40px;
-  }
+`;
+export const AddNoticeStepOneSelectWrapper = styled.div`
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const AddNoticeStepOneButtonNext = styled.button`
   width: 100%;
@@ -57,7 +66,7 @@ export const AddNoticeStepOneButtonNext = styled.button`
   line-height: 22px;
   letter-spacing: 0.04em;
   color: #111111;
-  &:hover {
+  &:active {
     background-color: #f59256;
     color: #ffffff;
   }
@@ -73,7 +82,7 @@ export const AddNoticeStepOneButtonCancel = styled.button`
   line-height: 22px;
   letter-spacing: 0.04em;
   color: #111111;
-  &:hover {
+  &:active {
     background-color: #f59256;
     color: #ffffff;
   }
