@@ -51,6 +51,28 @@ export const login = createAsyncThunk(
   }
 );
 
+export const reverify = createAsyncThunk(
+  'auth/reverify',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const email = state.auth.user.email;
+
+    if (!email) {
+      toast.error('We have some problems with your email...');
+      return thunkAPI.rejectWithValue(
+        'We have some problems with your email...'
+      );
+    }
+
+    try {
+      const res = await axios.post('/api/auth/verify', { email });
+      toast.success(res.data);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.get('/api/auth/logout');

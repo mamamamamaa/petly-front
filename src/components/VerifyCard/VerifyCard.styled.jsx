@@ -56,4 +56,38 @@ export const Heading = styled.h1`
   margin: 20px auto 20px 0;
 `;
 
-export const Paragraph = styled.p``;
+export const Paragraph = styled.p`
+  margin: 15px 0;
+  font-weight: 500;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const VerifyButton = styled.button`
+  padding: 8px 28px;
+  height: 38px;
+  font-weight: ${theme.fontWeights.normal};
+  font-size: 16px;
+  line-height: ${theme.lineHeights.body};
+  letter-spacing: 0.04em;
+  color: ${theme.colors.primary};
+  background: ${theme.colors.accentText};
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  ${({ disabled }) =>
+    !disabled &&
+    `cursor: pointer;
+     :hover {
+        border: 2px solid #ff6101;
+        color: #ff6101;
+  }`}
+`;
+
+export const Timer = styled.span`
+  font-weight: bold;
+  font-size: 20px;
+`;

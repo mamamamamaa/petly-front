@@ -1,7 +1,14 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { login, logout, register, current, refresh } from './operations';
+import {
+  login,
+  logout,
+  register,
+  current,
+  refresh,
+  reverify,
+} from './operations';
 
-const extraActions = [login, logout, register, current, refresh];
+const extraActions = [login, logout, register, current, refresh, reverify];
 
 const initialState = {
   user: { name: null, email: null, favorite: [], id: null },
