@@ -10,7 +10,6 @@ const addOwnPetSchema = object().shape({
   });
 
 export const AddOwnPetStepTwo = ({data, next, prev, onClose}) => {
-// console.log('data.pictureURL', data.pictureURL)
     const handleBack= ()=>{        
         const newValue = {
             ...data,
@@ -25,8 +24,8 @@ export const AddOwnPetStepTwo = ({data, next, prev, onClose}) => {
             comments:data.comments
         },
         validationSchema: addOwnPetSchema,      
-        onSubmit: (values, actions)=>{
-            // formik.setFieldValue('pictureURL', data.pictureURL, data.pictureURL.name);
+        onSubmit: (values, actions)=>{     
+            actions.setFieldValue('pictureURL', values.pictureURL, values.pictureURL.name);
             actions.validateForm();   
         const newValue = {
             ...data,

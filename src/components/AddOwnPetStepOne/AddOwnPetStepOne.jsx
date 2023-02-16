@@ -39,20 +39,15 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
   const handleSubmit = (values, actions) => {
     actions.setFieldValue('dateOfBirth', selectedDate);
 
-    console.log('values on submit in 1 step', values);
-    console.log('actions on submit in 1 step', actions);
     next({ 
       ...values, 
       dateOfBirth: selectedDate,
       selectedDateInNumber
     });
-    console.log('data in 1 step', data);
   }; 
 
   const handleDate = e => {
-    console.log('e in choosing date', e);
-    console.log('e.target.value', e.target.value);
-
+    
     setSelectedDate(e.target.value);
     setSelectedDateINNumber(e.target.valueAsNumber)
   };
