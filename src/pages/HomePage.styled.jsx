@@ -67,7 +67,7 @@ margin: 0, auto;
           url(${desktopBackground}),
           url(${HeartBackgroundImg2x});
       };
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1600px) {
     width: 1600px;
     height: auto;
     margin-left: auto;
