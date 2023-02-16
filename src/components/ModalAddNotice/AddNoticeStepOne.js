@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { breeds } from '../../utils/getBreed';
 import {
   AddNoticeStepOneButton,
-  AddNoticeStepOneSpan,
   AddNoticeStepOneLabel,
   AddNoticeStepOneInput,
   AddNoticeStepOneButtonNext,
@@ -79,13 +78,13 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
       >
         <Form>
           <Field name="lostFound" component={AddNoticeStepOneButton}>
-            <AddNoticeStepOneSpan>lost/found</AddNoticeStepOneSpan>
+            lost/found
           </Field>
           <Field name="inGoodHands" component={AddNoticeStepOneButton}>
-            <AddNoticeStepOneSpan>in good hands</AddNoticeStepOneSpan>
+            in good hands
           </Field>
           <Field name="sell" component={AddNoticeStepOneButton}>
-            <AddNoticeStepOneSpan>sell</AddNoticeStepOneSpan>
+            sell
           </Field>
 
           <AddNoticeStepOneLabel htmlFor="title">

@@ -7,9 +7,11 @@ export const AddNoticeStepOneButton = styled.button`
   border: 2px solid #f59256;
   border-radius: 40px;
   padding: 8px 28px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.04em;
+  color: #000000;
   background-color: #ffffff;
   margin-right: 8px;
   margin-bottom: 12px;
@@ -17,14 +19,10 @@ export const AddNoticeStepOneButton = styled.button`
     margin-right: 0;
     margin-bottom: 32px;
   }
-`;
-export const AddNoticeStepOneSpan = styled.span`
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-
-  letter-spacing: 0.04em;
-  color: #000000;
+  &:active {
+    background-color: #f59256;
+    color: #ffffff;
+  }
 `;
 export const AddNoticeStepOneLabel = styled.label`
   display: block;
