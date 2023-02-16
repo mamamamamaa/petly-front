@@ -19,7 +19,7 @@ const addNoticeSchema = object().shape({
     .required('The comments are required'),
 });
 
-export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
+export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
   // const [selectedSex, setSelectedSex] = useState('');
   // const sexChange = event => {
   //   const { value } = event.target;

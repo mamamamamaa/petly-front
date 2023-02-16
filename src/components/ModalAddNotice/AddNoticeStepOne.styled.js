@@ -51,9 +51,7 @@ export const AddNoticeStepOneSelect = styled.select`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin-bottom: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0 15px;
 `;
 export const AddNoticeStepOneButtonNext = styled.button`
   width: 100%;

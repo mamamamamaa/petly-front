@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AddNoticeStepOne } from './AddNoticeStepOne';
-import { AddOwnPetStepTwo } from './AddNoticeStepTwo';
+import { AddNoticeStepTwo } from './AddNoticeStepTwo';
 import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/operations';
 import {
@@ -87,7 +87,7 @@ export const ModalAddNotice = ({ onClose }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const steps = [
     <AddNoticeStepOne next={handleNextStep} data={data} cancel={cancelData} />,
-    <AddOwnPetStepTwo
+    <AddNoticeStepTwo
       next={handleNextStep}
       data={data}
       prev={handlePrevStep}

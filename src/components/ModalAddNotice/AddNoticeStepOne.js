@@ -71,7 +71,6 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
   };
 
   return (
-    <>
       <Formik
         initialValues={data}
         validationSchema={schema}
@@ -126,6 +125,5 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           </AddNoticeStepOneButtonCancel>
         </Form>
       </Formik>
-    </>
   );
 };
