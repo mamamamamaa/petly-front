@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { AddOwnPetStepOne } from '../AddOwnPetStepOne/AddOwnPetStepOne';
-import { AddOwnPetStepTwo } from '../AddOwnPetStepTwo/AddOwnPetStepTwo';
+import { AddOwnPetStepOne } from './AddNoticeStepOne';
+// import { AddOwnPetStepOne } from '../AddOwnPetStepOne/AddOwnPetStepOne';
+import { AddOwnPetStepTwo } from './AddNoticeStepTwo';
+// import { AddOwnPetStepTwo } from '../AddOwnPetStepTwo/AddOwnPetStepTwo';
 import { useDispatch } from 'react-redux';
-import { addNotice } from '../../redux/notices/operations';
+import { addNotice } from 'redux/notices/operations';
 import moment from 'moment';
 
 export const ModalAddNotice = ({ onClose }) => {
