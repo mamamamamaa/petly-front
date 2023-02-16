@@ -6,6 +6,11 @@ import {
   AddNoticeStepOneButton,
   AddNoticeStepOneSpan,
   AddNoticeStepOneLabel,
+  AddNoticeStepOneInput,
+  AddNoticeStepOneButtonNext,
+  AddNoticeStepOneButtonCancel,
+  AddNoticeStepOneButtonNextSpan,
+  AddNoticeStepOneButtonCancelSpan,
 } from './AddNoticeStepOne.styled';
 import moment from 'moment';
 
@@ -88,11 +93,11 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           <AddNoticeStepOneLabel htmlFor="title">
             Tittle of ad
           </AddNoticeStepOneLabel>
-          <Field type="text" name="title" id="title" />
+          <Field name="title" id="title" component={AddNoticeStepOneInput} />
 
           <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
-          <Field type="text" name="name" id="name" />
-          
+          <Field name="name" id="name" component={AddNoticeStepOneInput} />
+
           <AddNoticeStepOneLabel htmlFor="dateOfBirth">
             Date of birth
           </AddNoticeStepOneLabel>
@@ -104,22 +109,32 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
             onChange={handleDate}
             max={moment(moment.now()).format('YYYY-MM-DD')}
             value={selectedDate}
+            component={AddNoticeStepOneInput}
           />
-          <AddNoticeStepOneLabel>
-            Breed
-            <Field as="select" name="breed" required>
-              {filterByLengthBreeds.map(breed => (
-                <option value={breed} key={breed}>
-                  {breed}
-                </option>
-              ))}
-            </Field>
-            <ErrorMessage name="breed" component="div" />
-          </AddNoticeStepOneLabel>
-          <button type="button" onClick={() => cancel()}>
-            Cancel
-          </button>
-          <button type="submit">Next</button>
+          <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
+          <Field
+            as="select"
+            name="breed"
+            id="breed"
+            // component={AddNoticeStepOneInput}
+          >
+            {filterByLengthBreeds.map(breed => (
+              <option value={breed} key={breed}>
+                {breed}
+              </option>
+            ))}
+          </Field>
+
+          <AddNoticeStepOneButtonNext type="submit">
+            <AddNoticeStepOneButtonNextSpan>
+              Next
+            </AddNoticeStepOneButtonNextSpan>
+          </AddNoticeStepOneButtonNext>
+          <AddNoticeStepOneButtonCancel type="button" onClick={() => cancel()}>
+            <AddNoticeStepOneButtonCancelSpan>
+              Cancel
+            </AddNoticeStepOneButtonCancelSpan>
+          </AddNoticeStepOneButtonCancel>
         </Form>
       </Formik>
     </>
