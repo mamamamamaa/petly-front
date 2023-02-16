@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 export const useAuth = () => {
   const accessToken = useSelector(state => state.auth.accessToken);
@@ -82,4 +83,8 @@ export const useUserAvatar = () => {
   const userAvatar = useSelector(state => state.auth.user.avatar);
 
   return {userAvatar}
+};
+
+export const useNoticeSearch = () => {
+  const searchNotices = useSelector(state => state.filter)
 }

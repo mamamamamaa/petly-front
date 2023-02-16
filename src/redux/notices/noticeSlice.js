@@ -9,6 +9,7 @@ import {
   favorite,
   myAds,
   deleteNoticeFromFav,
+  // search
 } from './operations';
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   searchNotices: [],
   notices: [],
   currentNotice: null,
+  // filter: ""
 };
 
 const noticeSlice = createSlice({

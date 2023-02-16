@@ -9,7 +9,7 @@ import {
 const Navigation = ({close}) => {
 
     const { pathname } = useLocation();
-    console.log(pathname);
+    // console.log(pathname);
 
     return (
             <NavList>
