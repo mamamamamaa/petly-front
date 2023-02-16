@@ -17,11 +17,11 @@ export const ModalAddsPet = ({onClose}) => {
     });
 
 
-  const handleNextStep = (newData, final = false) => {
-    const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format('DD.MM.YYYY');
+  const handleNextStep = (newData, final = false) => {   
     console.log('newData in next step', newData);
     console.log('final', final);
     if (final) {
+      const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format('DD.MM.YYYY');
       setData({
         ...newData,
         dateOfBirth: normalizedDateOfBirth,
@@ -42,10 +42,7 @@ export const ModalAddsPet = ({onClose}) => {
       dispatch(addOwnPet(newData));
       return;
     }
-    setData({
-      ...newData,
-      dateOfBirth: normalizedDateOfBirth,
-    });
+    setData(newData);
     setCurrentStep(prevStep => prevStep + 1);
   };
 
