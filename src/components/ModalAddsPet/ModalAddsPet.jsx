@@ -14,7 +14,6 @@ export const ModalAddsPet = ({onClose}) => {
         breed:"",
         pictureURL: "",
         comments:"",
-        selectedDate:"",
     });
 
 
@@ -63,7 +62,6 @@ export const ModalAddsPet = ({onClose}) => {
         breed:"",
         pictureURL: "",
         comments:"",
-        selectedDate:"",
     });
     setCurrentStep(0);
     onClose();
