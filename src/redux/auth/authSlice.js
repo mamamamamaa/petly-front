@@ -10,6 +10,7 @@ const initialState = {
   expiresIn: null,
   isLoggedIn: false,
   isRefreshing: false,
+  verifyPart: false,
   error: null,
 };
 
@@ -28,6 +29,10 @@ const authSlice = createSlice({
   },
   extraReducers: builder =>
     builder
+      .addCase(register.fulfilled, (state, action) => {
+        state.verifyPart = true;
+        state.user.email = action.payload.email;
+      })
       .addCase(login.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;

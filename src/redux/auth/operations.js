@@ -19,8 +19,15 @@ export const register = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const res = await axios.post('/api/auth/signup', userData);
-      toast.success('Verify your email!');
-      return res.data;
+      if (res.status === 201) {
+        toast.success('Verify your email!');
+        return res.data;
+      } else {
+        toast.error('Sorry, something going wrong... Please try again.');
+        return thunkAPI.rejectWithValue(
+          'Sorry, something going wrong... Please try again.'
+        );
+      }
     } catch (e) {
       toast.error(
         'Sorry, there are no news matching your query. Please try again.'
