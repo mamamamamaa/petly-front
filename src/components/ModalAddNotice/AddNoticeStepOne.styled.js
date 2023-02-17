@@ -19,13 +19,16 @@ export const AddNoticeStepOneButton = styled.button`
   height: 35px;
   border: 2px solid #f59256;
   border-radius: 40px;
-  padding: 8px 28px;
+  padding-right: 28px;
+  padding-left: 28px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
-  color: #000000;
-  background-color: #ffffff;
+  color: ${props => (props.defaultChecked ? '#ffffff' : '#000000')};
+  background-color: ${props => (props.defaultChecked ? '#f59256' : '#ffffff')};
   margin-right: 8px;
   margin-bottom: 12px;
   &:active {
@@ -33,7 +36,8 @@ export const AddNoticeStepOneButton = styled.button`
     color: #ffffff;
   }
   ${media.tabletAndDesktop} {
-    padding: 10px 28px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-right: 12px;
     margin-bottom: 16px;
     font-size: 20px;

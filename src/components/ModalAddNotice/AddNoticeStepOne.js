@@ -70,7 +70,7 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
     setSelectedDate(e.target.value);
     setDateToSubmit(e.target.valueAsNumber);
   };
-
+const [checked, setChecked] = useState(true);
   return (
     <Formik
       initialValues={data}
@@ -78,7 +78,6 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
       onSubmit={handleSubmit}
     >
       <AddNoticeStepOneForm>
-
         <AddNoticeStepOneTopBtnsWrapper>
           <Field name="lostFound" component={AddNoticeStepOneButton}>
             lost/found
@@ -86,7 +85,11 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           <Field name="inGoodHands" component={AddNoticeStepOneButton}>
             in good hands
           </Field>
-          <Field name="sell" component={AddNoticeStepOneButton}>
+          <Field
+            name="sell"
+            component={AddNoticeStepOneButton}
+            defaultChecked={checked}
+          >
             sell
           </Field>
         </AddNoticeStepOneTopBtnsWrapper>
@@ -136,7 +139,7 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           </AddNoticeStepOneButtonNext>
           <AddNoticeStepOneButtonCancel type="button" onClick={() => cancel()}>
             Cancel
-          </AddNoticeStepOneButtonCancel>{' '}
+          </AddNoticeStepOneButtonCancel>
         </AddNoticeStepOneButtonNextCancelWrapper>
       </AddNoticeStepOneForm>
     </Formik>
