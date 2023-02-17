@@ -43,7 +43,6 @@ export const login = createAsyncThunk(
     try {
       const res = await axios.post('/api/auth/login', userData);
       setAuthHeader(res.data.accessToken);
-      console.log(axios.defaults.headers.common.Authorization);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -58,15 +57,14 @@ export const reverify = createAsyncThunk(
     const email = state.auth.user.email;
 
     if (!email) {
-      toast.error('We have some problems with your email...');
       return thunkAPI.rejectWithValue(
         'We have some problems with your email...'
       );
     }
 
     try {
-      const res = await axios.post('/api/auth/verify', { email });
-      toast.success(res.data);
+      await axios.post('/api/auth/verify', { email });
+      toast.success('We re-sent the verification email to your email');
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

@@ -8,9 +8,9 @@ const RegisterPage = () => {
   return (
     <>
       <Toaster />
-      {/*{!verifyPart && <RegisterForm />}*/}
-      {/*{verifyPart && <VerifyCard />}*/}
-      <VerifyCard />
+      {!verifyPart && <RegisterForm />}
+      {verifyPart && <VerifyCard />}
+      {/*<VerifyCard />*/}
     </>
   );
 };

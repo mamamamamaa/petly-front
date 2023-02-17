@@ -65,6 +65,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 50px;
 `;
 
 export const VerifyButton = styled.button`
@@ -79,15 +80,12 @@ export const VerifyButton = styled.button`
   border: 2px solid #f59256;
   border-radius: 40px;
   ${({ disabled }) =>
-    !disabled &&
-    `cursor: pointer;
+    !disabled
+      ? `cursor: pointer;
      :hover {
         border: 2px solid #ff6101;
         color: #ff6101;
-  }`}
-`;
-
-export const Timer = styled.span`
-  font-weight: bold;
-  font-size: 20px;
+  }`
+      : `color: #757575;
+       border: 2px solid #757575;`}
 `;

@@ -2,7 +2,6 @@ import {
   ButtonContainer,
   Heading,
   Paragraph,
-  Timer,
   VerifyButton,
   VerifyCardContainer,
   VerifyContainer,
@@ -10,13 +9,22 @@ import {
 import { useAuth } from '../../redux/hooks';
 import { useDispatch } from 'react-redux';
 import { reverify } from '../../redux/auth/operations';
+import { useState } from 'react';
+import { Timer } from '../../utils/Timer/Timer';
 
 export const VerifyCard = () => {
-  // const { user } = useAuth();
+  const { user } = useAuth();
   const dispatch = useDispatch();
-  const user = { email: 'maks.denishchuk@gmail.com' };
 
-  const reverifyHandler = () => dispatch(reverify());
+  const [start, setStart] = useState(true);
+
+  const handleEnableVerify = () => setStart(false);
+
+  const reverifyHandler = () => {
+    dispatch(reverify());
+    setStart(true);
+  };
+
   return (
     <VerifyContainer>
       <VerifyCardContainer>
@@ -30,10 +38,10 @@ export const VerifyCard = () => {
           "re-verification" button and we will resend the message!
         </Paragraph>
         <ButtonContainer>
-          <VerifyButton onClick={reverifyHandler} disabled={false}>
+          <VerifyButton onClick={reverifyHandler} disabled={start}>
             re-verification
           </VerifyButton>
-          <Timer>30</Timer>
+          {start && <Timer handleEnableVerify={handleEnableVerify} />}
         </ButtonContainer>
       </VerifyCardContainer>
     </VerifyContainer>
