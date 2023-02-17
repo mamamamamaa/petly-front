@@ -139,7 +139,7 @@ export const BoxButton = styled.div`
   }
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

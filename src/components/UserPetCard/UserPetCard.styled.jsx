@@ -43,7 +43,6 @@ export const PetSpanWrapper = styled.div``;
 export const PetSpanWrapperFlex = styled.div`
   display: flex;
   justify-content: space-between;
-}
 `;
 export const PetSpan = styled.span`
   font-weight: 500;

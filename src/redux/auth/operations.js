@@ -19,8 +19,15 @@ export const register = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const res = await axios.post('/api/auth/signup', userData);
-      toast.success('Verify your email!');
-      return res.data;
+      if (res.status === 201) {
+        toast.success('Verify your email!');
+        return res.data;
+      } else {
+        toast.error('Sorry, something going wrong... Please try again.');
+        return thunkAPI.rejectWithValue(
+          'Sorry, something going wrong... Please try again.'
+        );
+      }
     } catch (e) {
       toast.error(
         'Sorry, there are no news matching your query. Please try again.'
@@ -36,8 +43,28 @@ export const login = createAsyncThunk(
     try {
       const res = await axios.post('/api/auth/login', userData);
       setAuthHeader(res.data.accessToken);
-      console.log(axios.defaults.headers.common.Authorization);
       return res.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const reverify = createAsyncThunk(
+  'auth/reverify',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const email = state.auth.user.email;
+
+    if (!email) {
+      return thunkAPI.rejectWithValue(
+        'We have some problems with your email...'
+      );
+    }
+
+    try {
+      await axios.post('/api/auth/verify', { email });
+      toast.success('We re-sent the verification email to your email');
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

@@ -1,4 +1,3 @@
-import { Container } from 'utils';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -13,16 +12,37 @@ import {
   NoticesNavText,
   NoticesNavLi,
   NoticesNavUl,
+  // AddPetToNoticesBtn,
+  // AddPetToNoticesImg,
+  // AddPetToNoticesText,
   NoticesNavWrapper,
+  // AddPetToNoticesBtnWrapper,
 } from './NoticesPage.styled';
+import { AddPetToNoticesBtn,
+          AddPetToNoticesImg,
+          AddPetToNoticesText, 
+          AddPetToNoticesBtnWrapper
+         } from 'components/AddNoticeButton/AddNoticeButton.styled';
+import cross from 'utils/svg/cross.svg';
 import { useAuth } from '../redux/hooks';
-import AddNoticeButton from '../components/AddNoticeButton/AddNoticeButton';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import { ModalAddsPet } from '../components/ModalAddsPet/ModalAddsPet';
+import { Container } from 'utils';
 
 const NoticesPage = () => {
   const { isLoggedIn } = useAuth();
   const [firstName, setFirstName] = useState('');
   const [pets, setPets] = useState([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const onButtonClick = () => {
+    !isLoggedIn
+      ? toast.error(
+          'Dear friend, please sign up or log in to add your pet to notice'
+        )
+      : setIsModalOpen(true);
+  };
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -43,55 +63,67 @@ const NoticesPage = () => {
   }, [firstName, dispatch]);
 
   return (
-    <>
-      <Container>
-        <NoticesSearch>
-          <SearchField
-            placeholder="Search"
-            value={firstName}
-            onChange={e => setFirstName(e.target.value)}
-          />
-        </NoticesSearch>
-        <NoticesNavWrapper>
-          <NoticesNavUl>
+    <Container>
+      <NoticesSearch>
+        <SearchField
+          placeholder="Search"
+          value={firstName}
+          onChange={e => setFirstName(e.target.value)}
+        />
+      </NoticesSearch>
+      <NoticesNavWrapper>
+        <NoticesNavUl>
+          <NoticesNavLi>
+            <NoticesNavLink to="sell">
+              <NoticesNavText>sell</NoticesNavText>
+            </NoticesNavLink>
+          </NoticesNavLi>
+          <NoticesNavLi>
+            <NoticesNavLink to="lost">
+              <NoticesNavText>lost/found</NoticesNavText>
+            </NoticesNavLink>
+          </NoticesNavLi>
+          <NoticesNavLi>
+            <NoticesNavLink to="good-hands">
+              <NoticesNavText>in good hands</NoticesNavText>
+            </NoticesNavLink>
+          </NoticesNavLi>
+          {isLoggedIn && (
             <NoticesNavLi>
-              <NoticesNavLink to="sell">
-                <NoticesNavText>sell</NoticesNavText>
+              <NoticesNavLink to="favorite">
+                <NoticesNavText>favorite ads</NoticesNavText>
               </NoticesNavLink>
             </NoticesNavLi>
+          )}
+          {isLoggedIn && (
             <NoticesNavLi>
-              <NoticesNavLink to="lost">
-                <NoticesNavText>lost/found</NoticesNavText>
+              <NoticesNavLink to="my-ads">
+                <NoticesNavText>my ads</NoticesNavText>
               </NoticesNavLink>
             </NoticesNavLi>
-            <NoticesNavLi>
-              <NoticesNavLink to="good-hands">
-                <NoticesNavText>in good hands</NoticesNavText>
-              </NoticesNavLink>
-            </NoticesNavLi>
-            {isLoggedIn && (
-              <NoticesNavLi>
-                <NoticesNavLink to="favorite">
-                  <NoticesNavText>favorite ads</NoticesNavText>
-                </NoticesNavLink>
-              </NoticesNavLi>
-            )}
-            {isLoggedIn && (
-              <NoticesNavLi>
-                <NoticesNavLink to="my-ads">
-                  <NoticesNavText>my ads</NoticesNavText>
-                </NoticesNavLink>
-              </NoticesNavLi>
-            )}
-          </NoticesNavUl>
-          <AddNoticeButton />
-        </NoticesNavWrapper>
-        <Suspense>
-          <Outlet />
-        </Suspense>
-        <Toaster />
-      </Container>
-    </>
+          )}
+        </NoticesNavUl>
+        {isModalOpen ? (
+          <>
+            <ModalAddsPet
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+            />
+          </>
+        ) : (
+          <AddPetToNoticesBtnWrapper type="button" onClick={onButtonClick}>
+            <AddPetToNoticesText>Add pet</AddPetToNoticesText>
+            <AddPetToNoticesBtn>
+              <AddPetToNoticesImg src={cross} alt="Add pet to notices" />
+            </AddPetToNoticesBtn>
+          </AddPetToNoticesBtnWrapper>
+        )}
+      </NoticesNavWrapper>
+      <Suspense>
+        <Outlet />
+      </Suspense>
+      <Toaster />
+    </Container>
   );
 };
 

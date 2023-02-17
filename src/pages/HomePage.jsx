@@ -1,12 +1,5 @@
 import { Container } from 'utils';
-import {
-  HomePageBg,
-  HomePageTitle,
-  HomePageWomanImg,
-  HomePageWomanWrapper,
-  HomePageUnionHeartSvg,
-  HomepageSection
-} from './HomePage.styled';
+import {HomePageTitle, HomepageSection} from './HomePage.styled';
 
 const HomePage = () => {
   return (

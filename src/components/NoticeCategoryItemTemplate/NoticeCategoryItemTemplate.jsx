@@ -121,7 +121,7 @@ export const NoticeCategoryItemTemplate = ({
             <Li>Breed:</Li>
             <Li>Place:</Li>
             <Li>Age:</Li>
-            {price !== undefined && <Li>Price:</Li>}
+            {price !== undefined && type === 'sell' && <Li>Price:</Li>}
           </Ul>
           <Ul>
             <Li>{breed}</Li>
@@ -129,7 +129,7 @@ export const NoticeCategoryItemTemplate = ({
             <Li>
               <CardNewDate date={dateOfBirth} />
             </Li>
-            {price !== undefined && <Li>{price}$</Li>}
+            {price !== undefined && type === 'sell' && <Li>{price}$</Li>}
           </Ul>
         </WraperPetDetails>
         <PetDetailsButton onClick={modalHandler}>

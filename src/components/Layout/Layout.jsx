@@ -9,9 +9,11 @@ export const Layout = () => {
       <header>
         <AppBar />
       </header>
+      <main>
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
+      </main>
     {/* // </Container> */}
     </>
   );

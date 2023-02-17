@@ -25,11 +25,16 @@ const AppBar = () => {
       setIsMenuOpen(!isMenuOpen);
     }
 
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    }
+
+
     const { isLoggedIn } = useAuth();
     return (
         <Container>
         <BarContainer>
-            <LogoBlack><HomePageLink to="/">pe<LogoAccent>t</LogoAccent>ly</HomePageLink></LogoBlack>
+            <LogoBlack><HomePageLink to="/" onClick={closeMenu}>pe<LogoAccent>t</LogoAccent>ly</HomePageLink></LogoBlack>
                 <TabletWrapper>
                 <BurgerBtn onClick={toggleClickHandler}>
                     {!isMenuOpen ? <BurgerIcon/> : <CloseIcon/>}
@@ -37,11 +42,11 @@ const AppBar = () => {
                 
                 <MenuWrpr isClosed={!isMenuOpen}>
                     <Nav isClosed={!isMenuOpen}>
-                        <Navigation close={toggleClickHandler}/>
+                        <Navigation close={closeMenu} />
                     </Nav>
                     <UserMenuWrpr>{isLoggedIn ?
-                         <UserMenu close={toggleClickHandler} /> 
-                        : <AuthMenu close={toggleClickHandler} />}
+                         <UserMenu close={closeMenu} /> 
+                        : <AuthMenu close={closeMenu} />}
                     </UserMenuWrpr>
                 </MenuWrpr>
                 </TabletWrapper>

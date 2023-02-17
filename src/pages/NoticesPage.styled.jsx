@@ -17,7 +17,7 @@ export const NoticesSearch = styled.label`
 export const SearchField = styled.input`
   height: 40px;
   border: 0;
-  width: 100%;
+  /* width: 100%; */
   display: block;
   margin-top: 28px;
   background: ${theme.colors.accentText};
@@ -38,10 +38,18 @@ export const SearchField = styled.input`
     letter-spacing: 0.04em;
     color: #535353;
   }
+  ${media.mobile} {
+    /* width: 100%; */
+    min-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   ${media.tablet} {
-    width: 608px;
-    margin-right: 48px;
-    margin-left: 48px;
+    min-width: 608px;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-right: 48px;
+    margin-left: 48px; */
   }
   ${media.desktop} {
     width: 608px;
@@ -69,7 +77,7 @@ export const NoticesNavUl = styled.ul`
   }
 `;
 export const NoticesNavLi = styled.li`
-  height: 47px;
+  min-height: 47px;
   :not(:last-child) {
     margin-right: 12px;
     margin-bottom: 12px;

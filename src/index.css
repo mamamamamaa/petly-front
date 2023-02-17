@@ -1,5 +1,11 @@
 @import-normalize;
 
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background-color: #fdf7f2;
@@ -32,4 +38,14 @@ p {
 ul {
   list-style: none;
   padding: 0;
+}
+
+body::-webkit-scrollbar{
+  background-color: transparent;
+  width: 4px;
+}
+
+body::-webkit-scrollbar-thumb{
+  background-color: #F59256;
+  border-radius: 50px;
 }
