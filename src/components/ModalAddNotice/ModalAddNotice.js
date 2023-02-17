@@ -1,8 +1,13 @@
 import { useState } from 'react';
-import { AddOwnPetStepOne } from '../AddOwnPetStepOne/AddOwnPetStepOne';
-import { AddOwnPetStepTwo } from '../AddOwnPetStepTwo/AddOwnPetStepTwo';
+import { AddNoticeStepOne } from './AddNoticeStepOne';
+import { AddNoticeStepTwo } from './AddNoticeStepTwo';
 import { useDispatch } from 'react-redux';
-import { addNotice } from '../../redux/notices/operations';
+import { addNotice } from 'redux/notices/operations';
+import {
+  ModalAddNoticeTitle,
+  ModalAddNoticeWrapper,
+  ModalAddNoticeText,
+} from './ModalAddNotice.styled';
 import moment from 'moment';
 
 export const ModalAddNotice = ({ onClose }) => {
@@ -24,8 +29,6 @@ export const ModalAddNotice = ({ onClose }) => {
     const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
       'DD.MM.YYYY'
     );
-    console.log('newData', newData);
-    console.log('final', final);
     if (final) {
       setData({
         ...newData,
@@ -81,20 +84,22 @@ export const ModalAddNotice = ({ onClose }) => {
   };
   const [currentStep, setCurrentStep] = useState(0);
   const steps = [
-    <AddOwnPetStepOne next={handleNextStep} data={data} cancel={cancelData} />,
-    <AddOwnPetStepTwo
+    <AddNoticeStepOne next={handleNextStep} data={data} cancel={cancelData} />,
+    <AddNoticeStepTwo
       next={handleNextStep}
       data={data}
       prev={handlePrevStep}
       onClose={onClose}
     />,
   ];
-  console.log(data);
   return (
-    <div>
-      <h3>Add pet</h3>
-      <p>some text</p>
+    <ModalAddNoticeWrapper>
+      <ModalAddNoticeTitle>Add pet</ModalAddNoticeTitle>
+      <ModalAddNoticeText>
+        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+        consectetur
+      </ModalAddNoticeText>
       {steps[currentStep]}
-    </div>
+    </ModalAddNoticeWrapper>
   );
 };

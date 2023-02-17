@@ -6,8 +6,8 @@ export const Backdrop = styled.div`
   top: 0px;
   left: 0px;
   z-index: 30;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

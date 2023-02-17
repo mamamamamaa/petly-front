@@ -26,7 +26,7 @@ import { AddPetToNoticesBtn,
 import cross from 'utils/svg/cross.svg';
 import { useAuth } from '../redux/hooks';
 import toast, { Toaster } from 'react-hot-toast';
-import { ModalAddsPet } from '../components/ModalAddsPet/ModalAddsPet';
+import AddNoticeButton from '../components/AddNoticeButton/AddNoticeButton';
 import { Container } from 'utils';
 
 const NoticesPage = () => {
@@ -105,7 +105,7 @@ const NoticesPage = () => {
         </NoticesNavUl>
         {isModalOpen ? (
           <>
-            <ModalAddsPet
+            <AddNoticeButton
               isModalOpen={isModalOpen}
               setIsModalOpen={setIsModalOpen}
             />
