@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Formik } from 'formik';
 import * as yup from 'yup';
 import { useState } from 'react';
 import { breeds } from '../../utils/getBreed';
@@ -10,6 +10,8 @@ import {
   AddNoticeStepOneButtonCancel,
   AddNoticeStepOneSelect,
   AddNoticeStepOneButtonNextCancelWrapper,
+  AddNoticeStepOneForm,
+  AddNoticeStepOneTopBtnsWrapper,
 } from './AddNoticeStepOne.styled';
 import moment from 'moment';
 
@@ -75,16 +77,19 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      <Form>
-        <Field name="lostFound" component={AddNoticeStepOneButton}>
-          lost/found
-        </Field>
-        <Field name="inGoodHands" component={AddNoticeStepOneButton}>
-          in good hands
-        </Field>
-        <Field name="sell" component={AddNoticeStepOneButton}>
-          sell
-        </Field>
+      <AddNoticeStepOneForm>
+
+        <AddNoticeStepOneTopBtnsWrapper>
+          <Field name="lostFound" component={AddNoticeStepOneButton}>
+            lost/found
+          </Field>
+          <Field name="inGoodHands" component={AddNoticeStepOneButton}>
+            in good hands
+          </Field>
+          <Field name="sell" component={AddNoticeStepOneButton}>
+            sell
+          </Field>
+        </AddNoticeStepOneTopBtnsWrapper>
 
         <AddNoticeStepOneLabel htmlFor="title">
           Tittle of ad
@@ -133,7 +138,7 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
             Cancel
           </AddNoticeStepOneButtonCancel>{' '}
         </AddNoticeStepOneButtonNextCancelWrapper>
-      </Form>
+      </AddNoticeStepOneForm>
     </Formik>
   );
 };

@@ -1,6 +1,20 @@
 import styled from '@emotion/styled';
 import { media } from 'components/Layout/Layout.styled';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Form } from 'formik';
+export const AddNoticeStepOneTopBtnsWrapper = styled.div`
+  margin-bottom: 32px;
+  ${media.tablet} {
+    width: 383px;
+    margin-bottom: 28px;
+  }
+`;
+
+export const AddNoticeStepOneForm = styled(Form)`
+  width: 280px;
+  ${media.tablet} {
+    width: 608px;
+  }
+`;
 export const AddNoticeStepOneButton = styled.button`
   height: 35px;
   border: 2px solid #f59256;
@@ -14,10 +28,10 @@ export const AddNoticeStepOneButton = styled.button`
   background-color: #ffffff;
   margin-right: 8px;
   margin-bottom: 12px;
-  &:nth-of-type(3) {
-    margin-right: 0;
-    margin-bottom: 32px;
-  }
+  // &:nth-of-type(1) {
+  //   margin-right: 0;
+  //   margin-bottom: 12px;
+  // }
   &:active {
     background-color: #f59256;
     color: #ffffff;
@@ -28,10 +42,10 @@ export const AddNoticeStepOneButton = styled.button`
     margin-bottom: 16px;
     font-size: 20px;
     line-height: 27px;
-    &:nth-of-type(3) {
-      margin-right: 0;
-      margin-bottom: 28px;
-    }
+    // &:nth-of-type(3) {
+    //   margin-right: 0;
+    //   margin-bottom: 28px;
+    // }
   }
 `;
 export const AddNoticeStepOneLabel = styled.label`
