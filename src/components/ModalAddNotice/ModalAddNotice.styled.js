@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Form, Field } from 'formik';
 import { media } from 'components/Layout/Layout.styled';
 
 export const ModalAddNoticeWrapper = styled.div`
@@ -9,6 +8,10 @@ export const ModalAddNoticeWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  ${media.tablet} {
+    width: 608px;
+    padding: 40px 80px;
+  }
 `;
 
 export const ModalAddNoticeTitle = styled.h3`
@@ -17,6 +20,12 @@ export const ModalAddNoticeTitle = styled.h3`
   line-height: 33px;
   color: #111111;
   margin-bottom: 20px;
+  ${media.tablet} {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 49px;
+    color: #000000;
+  }
 `;
 export const ModalAddNoticeText = styled.p`
   font-weight: 500;
@@ -26,4 +35,10 @@ export const ModalAddNoticeText = styled.p`
   letter-spacing: -0.01em;
   color: #111111;
   margin-bottom: 20px;
+  ${media.tablet} {
+    font-size: 20px;
+    line-height: 27px;
+    color: #000000;
+    margin-bottom: 28px;
+  }
 `;

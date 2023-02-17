@@ -9,6 +9,7 @@ import {
   AddNoticeStepOneButtonNext,
   AddNoticeStepOneButtonCancel,
   AddNoticeStepOneSelect,
+  AddNoticeStepOneButtonNextCancelWrapper,
 } from './AddNoticeStepOne.styled';
 import moment from 'moment';
 
@@ -124,12 +125,14 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
             </option>
           ))}
         </Field>
-        <AddNoticeStepOneButtonNext type="submit">
-          Next
-        </AddNoticeStepOneButtonNext>
-        <AddNoticeStepOneButtonCancel type="button" onClick={() => cancel()}>
-          Cancel
-        </AddNoticeStepOneButtonCancel>
+        <AddNoticeStepOneButtonNextCancelWrapper>
+          <AddNoticeStepOneButtonNext type="submit">
+            Next
+          </AddNoticeStepOneButtonNext>
+          <AddNoticeStepOneButtonCancel type="button" onClick={() => cancel()}>
+            Cancel
+          </AddNoticeStepOneButtonCancel>{' '}
+        </AddNoticeStepOneButtonNextCancelWrapper>
       </Form>
     </Formik>
   );
