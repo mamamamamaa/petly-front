@@ -9,107 +9,102 @@ import { HiPencil } from "react-icons/hi";
 import { FiLogOut, FiCheck } from "react-icons/fi";
 import { logout } from '../../redux/auth/operations';
 import { FileUploader } from '../UseAvatar/UserAvatar';
-import { updateUserData, getUserData } from '../../redux/user/operations';
-import { Formik, useFormik } from 'formik';
+import { updateUser, getUserData, updateAvatar } from '../../redux/user/operations';
+import { Formik, useFormik, ErrorMessage } from 'formik';
 //import avatar from "../../images/avatart.jpg";
 import { useEffect } from 'react';
+import * as Yup from 'yup';
 
-//========================================
-// const formSchema = object().shape({
-//   name: string()
-//     .min(2, 'min 2 symbols')
-//     .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters')
-//     .required('Name is required'),
-  
-//   email: string()
-//     .matches(
-//       // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-//       /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
-//     // /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-//       // /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-//       'Invalid email'
-//     )
-//     .required('Email is required'),
-  
-//   mobilePhone: string()
-//     .matches(/^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/, 'Bad phone number')
-//     .required('Phone is required'),
-  
-//   city: string()
-//     .matches(
-//       /^(([a-zA-Zа-яА-Я]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/,
-//       'Error. Example: Brovary, Kyiv'
-//     )
-//     .required('City is required'),
-// });
+
+
+
+const UserCard = ({ handleDragEmpty, handleDrop }) => {
+
+
+  //========================================
+  const phoneRegExp = /^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/
+  const userSchema =Yup.object().shape({
+  name: Yup.string().min(3, 'Too Short!').max(30, 'Too Long!').required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  birthday: Yup.date().required('Required'),
+  mobilePhone: Yup.string().matches(phoneRegExp, "Phone number is not valid").notRequired(),
+  city: Yup.string().matches(/^(([a-zA-Zа-яА-Я]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/,
+      'Error. Example: Brovary, Kyiv'
+    )
+    .required('City is required')
+ });
 //==========================================
 
 
-const UserCard = ({handleDragEmpty, handleDrop}) => {
   const [active, setActive] = useState('');
 
     //=========for avatar============
   const [changeBtn, setChangeBtn] = useState(false);
 
   const handleClick = () => {
+    // e.preventDefault();
     setChangeBtn(!changeBtn)
     setActive(!active)
   }
   
   const dispatch = useDispatch();
-  console.log(dispatch);
-    const {user}= useUser();
-  console.log(user);
+  
+  const { user } = useUser();
+  
+  console.log(user.user);
+  
     
     const onChangeHandler = e => {
         console.log("1111")
     const formData = new FormData();
       formData.append('avatar', e.target.files[0]);
       console.log(e.target.files)
-    dispatch(updateUserData(formData));
+    dispatch(updateAvatar(formData));
     };
  ///////////////////////////////
     
 //////формик 
-    const onSubmit = value => {
-    const { name, email, birthday, phone, city } = value;
-     console.log(value)
-      dispatch(        
-      updateUserData({
-        name,
-        email,
-        birthday,
-        phone,
-        city,
-      }),     
-    );
-    };
-  
+  // const onSubmit = (value) => {
+      
     let formik = useFormik({
       initialValues: {
-       name: user.user.name,      
-      email: user.user.email,      
-      birthday: user.user.birthday || " ",
-      mobilePhone: user.user.mobilePhone ,
-      city: user.user.city,
-      },      
-      onSubmit, enableReinitialize: true
+       name: user.user.name || "",      
+      email: user.user.email || "",      
+      birthday: user.user.birthday,
+      mobilePhone: user.user.mobilePhone || "",
+      city: user.user.city || "",
+      }, 
+      validationSchema: userSchema,
+      onSubmit: values => {
+        const { name, email, birthday, mobilePhone, city } = values
+        console.log(values)
+        dispatch(
+          updateUser({
+            name,
+            email,
+            birthday: birthday.trim(),
+            mobilePhone,
+            city ,
+          })
+     ) } ,
+      enableReinitialize: true,
+      
     });
   console.log(formik)
+  
 
  useEffect(() => {
       dispatch(getUserData())
       console.log("getUserData")
  },[dispatch])
 
-  
+ 
   //============================================
   // code Yulya
   const handleLogout = () => {
     dispatch(logout());
   };
-   
-  
+   //validationSchema={userSchema}
     return ( 
       <Container>
           <Title>My information:</Title> 
@@ -119,8 +114,10 @@ const UserCard = ({handleDragEmpty, handleDrop}) => {
             <Wrapper>
                 <FileUploader/> 
             </Wrapper>
-          <Formik>
-              <Form1 onSubmit={formik.handleSubmit}>
+            <Formik >
+              
+              <Form1  onSubmit={formik.handleSubmit}  >
+                
                 <DivInput>
                     <FormLabel>                
                       Name:
@@ -131,7 +128,8 @@ const UserCard = ({handleDragEmpty, handleDrop}) => {
                         onChange={formik.handleChange}
                         onSubmit={formik.handleClick}
                         value={formik.values.name}
-                        />
+                    />
+                    <ErrorMessage name="name" component="span"/>                    
                     </FormLabel>
 
                     <BtnInput name="name"
@@ -152,7 +150,9 @@ const UserCard = ({handleDragEmpty, handleDrop}) => {
                         onChange={formik.handleChange}
                         onSubmit={formik.handleClick}
                         value={formik.values.email}
-                        onBlur={formik.handleBlur}/>
+                      onBlur={formik.handleBlur} />
+                    
+                     <ErrorMessage name="email" component="span"/>                    
                     </FormLabel>
                     
                     <BtnInput
@@ -173,7 +173,9 @@ const UserCard = ({handleDragEmpty, handleDrop}) => {
                         onChange={formik.handleChange}
                         onClick={handleClick}
                         value={formik.values.birthday}
-                        onBlur={formik.handleBlur}/>
+                        onBlur={formik.handleBlur} />
+                      
+                      <ErrorMessage name="birthday" component="span" />
                     </FormLabel>
 
                     <BtnInput
@@ -194,7 +196,9 @@ const UserCard = ({handleDragEmpty, handleDrop}) => {
                         onChange={formik.handleChange}
                         onClick ={handleClick}
                         value={formik.values.mobilePhone}
-                        onBlur={formik.handleBlur}/>                 
+                        onBlur={formik.handleBlur} />  
+                      
+                      <ErrorMessage name="mobilePhone" component="span"/> 
                     </FormLabel>
 
                     <BtnInput
@@ -215,7 +219,9 @@ const UserCard = ({handleDragEmpty, handleDrop}) => {
                         onChange={formik.handleChange}    
                         value={formik.values.city}
                         onBlur={formik.handleBlur}
-                      />                       
+                      />   
+                      
+                     <ErrorMessage name="city" component="span"/>  
                     </FormLabel>
 
                     <BtnInput 
@@ -226,11 +232,13 @@ const UserCard = ({handleDragEmpty, handleDrop}) => {
                 </DivInput>
  
             <BtnInput
-                      type="submit" onSubmit={onSubmit} >
+                  type="submit">
+                  
             {( Input === active || changeBtn === true ) ? <FiCheck color="#F59256" width="30" heigh="30"/> : <HiPencil color="rgba(17, 17, 17, 0.6)"
                                                width="30" heigh="30"/>}
             </BtnInput> 
-      </Form1>
+              </Form1>
+             
     </Formik>     
   </FormAndPhotoWrapper>             
             
