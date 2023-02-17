@@ -3,7 +3,7 @@ import { media } from 'components/Layout/Layout.styled';
 import { Form } from 'formik';
 export const AddNoticeStepOneTopBtnsWrapper = styled.div`
   margin-bottom: 32px;
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     width: 383px;
     margin-bottom: 28px;
   }
@@ -11,7 +11,7 @@ export const AddNoticeStepOneTopBtnsWrapper = styled.div`
 
 export const AddNoticeStepOneForm = styled(Form)`
   width: 280px;
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     width: 608px;
   }
 `;
@@ -28,24 +28,16 @@ export const AddNoticeStepOneButton = styled.button`
   background-color: #ffffff;
   margin-right: 8px;
   margin-bottom: 12px;
-  // &:nth-of-type(1) {
-  //   margin-right: 0;
-  //   margin-bottom: 12px;
-  // }
   &:active {
     background-color: #f59256;
     color: #ffffff;
   }
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     padding: 10px 28px;
     margin-right: 12px;
     margin-bottom: 16px;
     font-size: 20px;
     line-height: 27px;
-    // &:nth-of-type(3) {
-    //   margin-right: 0;
-    //   margin-bottom: 28px;
-    // }
   }
 `;
 export const AddNoticeStepOneLabel = styled.label`
@@ -55,7 +47,7 @@ export const AddNoticeStepOneLabel = styled.label`
   line-height: 26px;
   color: #111111;
   margin-bottom: 8px;
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;
     margin-bottom: 12px;
@@ -78,7 +70,7 @@ export const AddNoticeStepOneInput = styled.input`
     line-height: 19px;
     color: rgba(27, 27, 27, 0.6);
   }
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     height: 48px;
     padding-left: 16px;
     padding-top: 11px;
@@ -101,15 +93,14 @@ export const AddNoticeStepOneSelect = styled.select`
   margin-bottom: 40px;
   padding-left: 14px;
   padding-right: 20px;
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     height: 48px;
     padding-left: 16px;
     padding-top: 11px;
     padding-bottom: 10px;
-    margin-bottom: 40px;
 `;
 export const AddNoticeStepOneButtonNextCancelWrapper = styled.div`
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
@@ -131,7 +122,7 @@ export const AddNoticeStepOneButtonNext = styled.button`
     background-color: #f59256;
     color: #ffffff;
   }
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     margin-bottom: 0;
     width: 180px;
     height: 44px;
@@ -152,7 +143,7 @@ export const AddNoticeStepOneButtonCancel = styled.button`
     background-color: #f59256;
     color: #ffffff;
   }
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     margin-right: 20px;
     width: 180px;
     height: 44px;

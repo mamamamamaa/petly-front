@@ -8,7 +8,7 @@ export const ModalAddNoticeWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     width: 608px;
     padding: 40px 80px;
   }
@@ -20,7 +20,7 @@ export const ModalAddNoticeTitle = styled.h3`
   line-height: 33px;
   color: #111111;
   margin-bottom: 20px;
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     font-weight: 600;
     font-size: 36px;
     line-height: 49px;
@@ -35,7 +35,7 @@ export const ModalAddNoticeText = styled.p`
   letter-spacing: -0.01em;
   color: #111111;
   margin-bottom: 20px;
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     font-size: 20px;
     line-height: 27px;
     color: #000000;
