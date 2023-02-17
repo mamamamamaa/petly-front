@@ -2,18 +2,32 @@ import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
 // import adver from 'utils/svg/adv.svg';
 import { theme } from 'utils/theme';
-// import { media } from 'components/Layout/Layout.styled';
 
 export const Container = styled.div`
   @media screen and (max-width: 767px) {
-    width: 280px;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    width: 448px;
   }
   @media screen and (min-width: 1280px) {
-    width: 448px;
   }
+`;
+
+export const Wraper = styled.div`
+  @media screen and (max-width: 767px) {
+    margin-top: 16px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-top: 28px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-top: 28px;
+  }
+`;
+
+export const BoxWarning = styled.span`
+  color: red;
+  font-weight: 400;
+  font-size: 12px;
 `;
 
 export const FormEl = styled(Form)``;
@@ -37,6 +51,7 @@ export const BoxLabel = styled.div`
 `;
 
 export const Input = styled(Field)`
+  margin: 0;
   height: 26px;
   font-family: Manrope;
   font-weight: 400;
@@ -48,7 +63,6 @@ export const Input = styled(Field)`
   border-radius: 40px;
   @media screen and (max-width: 767px) {
     margin-top: 8px;
-    margin-bottom: 16px;
     padding-top: 12px;
     padding-bottom: 12px;
     padding-left: 14px;
@@ -56,7 +70,6 @@ export const Input = styled(Field)`
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     margin-top: 12px;
-    margin-bottom: 28px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 16px;
@@ -64,7 +77,6 @@ export const Input = styled(Field)`
   }
   @media screen and (min-width: 1280px) {
     margin-top: 12px;
-    margin-bottom: 28px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 16px;
@@ -83,7 +95,7 @@ export const InputSelect = styled(Field)`
   border-radius: 40px;
   @media screen and (max-width: 767px) {
     height: 48px;
-    margin-bottom: 16px;
+    margin-top: 8px;
     padding-top: 12px;
     padding-bottom: 12px;
     padding-left: 14px;
@@ -127,7 +139,7 @@ export const BoxButton = styled.div`
   }
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -160,7 +172,7 @@ export const Button = styled.div`
   }
 `;
 
-export const ButtonNext = styled.div`
+export const ButtonNext = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

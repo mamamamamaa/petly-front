@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Suspense } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
@@ -50,6 +50,6 @@ export default function SearchBar({ onSubmit }) {
     </Search>
   );
 }
-SearchBar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+// SearchBar.propTypes = {
+//   onSubmit: PropTypes.func.isRequired,
+// };

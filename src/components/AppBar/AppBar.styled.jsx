@@ -3,6 +3,7 @@ import { media } from "../Layout/Layout.styled";
 import { theme } from '../../utils/theme';
 import { NavLink } from 'react-router-dom';
 
+
 export const BarContainer = styled.div`
     font-family: ${theme.fonts.body};
     display: flex;
@@ -18,7 +19,6 @@ export const BarContainer = styled.div`
     ${media.desktop} {
         padding-top: 20px;
     };
-    
     /* outline: 1px solid red; */
 `;
 
@@ -64,7 +64,7 @@ export const MenuWrpr = styled.div`
     position: fixed;
     left: 0;
     top: 0;
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
     background-color: ${theme.colors.secondary};
     opacity: ${({ isClosed }) => isClosed ? 0 : 1};
@@ -72,9 +72,12 @@ export const MenuWrpr = styled.div`
     pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
     ${media.mobile} {
         padding-top: 104px;
+        width: 100vw;
     }
     ${media.tablet} {
         margin-right: 25px;
+        /* width: auto; */
+        /* width: 100%; */
     }
     ${media.tabletAndDesktop} {
         opacity: 1;
@@ -113,8 +116,9 @@ export const Nav = styled.nav`
         position: fixed;
         left: 0;
         top: 0;
-        width: 100%;
+        /* width: 100%; */
         height: 100%;
+        width: 100%;
         background-color: ${theme.colors.secondary};
         /* outline: 1px solid green; */
         ${media.desktop} {
@@ -161,8 +165,9 @@ export const BurgerBtn = styled.button`
 `;
 
 export const HomePageLink = styled(NavLink)`
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
 `;
+
+
 
 

@@ -12,27 +12,27 @@ export const Inputav = styled.input`
   z-index: -1;
 ` 
 export const Labelav = styled.label`
-  
-  border: 1px solid black;
+  /* border: 1px solid black;
   border-radius: 12px;
   padding: 20px;
 
   display: flex;
   align-items: center;
-  cursor: pointer;
+  cursor: pointer; */
 ` 
 export const Formav = styled.form`
-  display: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    z-index: 50;
+    /* z-index: 20; */
 ` 
 export const Imgav = styled.img`
-  border: 1px dashed gray;
+  /* border: 1px dashed gray; */
   width: 233px;
   height: 233px;
   border-radius: 50%;
+  filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
 `
 // ======================== for avatar
 
@@ -268,31 +268,35 @@ export const Input = styled(Field)`
   cursor: pointer;
 
   ${media.mobile} {
+    margin-right: 9px;
     height: 24px;
     font-size: 14px;
     line-height: 16px;
+    padding-left: 18px;
   };
   ${media.tabletAndDesktop} {
+    margin-right: 24px;
     height: 32px;
     font-size: 18px;
     line-height: 25px;
+    padding-left: 12px;
   };
 
   
-  &:hover{
+  :hover{
     background: #FDF7F2;
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
-  &:focus{
+  }
+  :focus{
     background-color: #FFFFFF;
     color:#F59256 50% ;
     
-    outline: "none",
-    transform: "scale(1.15)"
-  &:active{
-    color:#F59256;
-    
+    outline: none;
+    /* transform: scale(1.15); */
   }
+  &.active{
+    color:#F59256;
   }
 `
 
@@ -309,7 +313,7 @@ export const BtnInput = styled.button`
   /* margin-left: 9px; */
   };
   ${media.tabletAndDesktop} {
-    margin-left: 24px;
+    /* margin-left: 24px; */
     width: 32px;
     height: 32px;
 

@@ -3,9 +3,11 @@ import * as yup from 'yup';
 import { useState } from 'react';
 import { breeds } from '../../utils/getBreed';
 import moment from 'moment';
-// ============= mark
+
 import {
   Container,
+  Wraper,
+  BoxWarning,
   FormEl,
   Input,
   InputSelect,
@@ -14,7 +16,6 @@ import {
   ButtonNext,
   BoxButton,
 } from './AddOwnPetStepOne.styled';
-// =============
 
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
@@ -32,18 +33,23 @@ const schema = yup.object().shape({
 });
 
 export const AddOwnPetStepOne = ({ next, data, cancel }) => {
-  const [selectedDate, setSelectedDate] = useState('');
-  const [dateToSubmit, setDateToSubmit] = useState();
+  const [selectedDate, setSelectedDate] = useState(data.dateOfBirth);
+  const [selectedDateInNumber, setSelectedDateINNumber] = useState(data.dateOfBirth);
 
   const handleSubmit = (values, actions) => {
-    console.log('values', values);
-    next({ ...values, dateOfBirth: dateToSubmit });
-    console.log('data in 1 step', data);
-  };
+    actions.setFieldValue('dateOfBirth', selectedDate);
+
+    next({ 
+      ...values, 
+      dateOfBirth: selectedDate,
+      selectedDateInNumber
+    });
+  }; 
 
   const handleDate = e => {
+    
     setSelectedDate(e.target.value);
-    setDateToSubmit(e.target.valueAsNumber);
+    setSelectedDateINNumber(e.target.valueAsNumber)
   };
 
   return (
@@ -55,12 +61,18 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
       >
         <FormEl>
           <BoxLabel>
-            <label>Name pet</label>
+            <Wraper>
+              <label>Name pet</label>
+            </Wraper>
             <Input type="text" name="name" required />
-            <ErrorMessage name="name" component="div" />
+            <BoxWarning>
+              <ErrorMessage name="name" component="div" />
+            </BoxWarning>
           </BoxLabel>
           <BoxLabel>
-            <label>Date of birth</label>
+            <Wraper>
+              <label>Date of birth</label>
+            </Wraper>
             <Input
               type="date"
               name="dateOfBirth"
@@ -69,10 +81,14 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
               max={moment(moment.now()).format('YYYY-MM-DD')}
               value={selectedDate}
             />
-            <ErrorMessage name="dateOfBirth" component="div" />
+            <BoxWarning>
+              <ErrorMessage name="dateOfBirth" component="div" />
+            </BoxWarning>
           </BoxLabel>
           <BoxLabel>
-            <label>Breed</label>
+            <Wraper>
+              <label>Breed</label>
+            </Wraper>
             <InputSelect as="select" name="breed" required>
               {filterByLengthBreeds.map(breed => (
                 <option value={breed} key={breed}>
@@ -80,7 +96,9 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
                 </option>
               ))}
             </InputSelect>
-            <ErrorMessage name="breed" component="div" />
+            <BoxWarning>
+              <ErrorMessage name="breed" component="div" />
+            </BoxWarning>
           </BoxLabel>
 
           <BoxButton>

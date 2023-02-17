@@ -146,7 +146,7 @@ export const Ul = styled.ul`
 
 export const Li = styled.li`
   margin-top: 8px;
-  :first-child {
+  :first-of-type {
     margin-top: 0;
   }
 `;

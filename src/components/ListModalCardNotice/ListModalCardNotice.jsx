@@ -68,7 +68,7 @@ export const ListModalCardNotice = ({ date }) => {
                 <Li>
                   <TitleProperty>Phone:</TitleProperty>
                 </Li>
-                {price !== undefined && (
+                {price !== undefined && type === 'sell' && (
                   <Li>
                     <TitleProperty>Price:</TitleProperty>
                   </Li>
@@ -98,7 +98,7 @@ export const ListModalCardNotice = ({ date }) => {
                 <Li>
                   <Text>{phone}</Text>
                 </Li>
-                {price !== undefined && (
+                {price !== undefined && type === 'sell' && (
                   <Li>
                     <Text>{price}$</Text>
                   </Li>
