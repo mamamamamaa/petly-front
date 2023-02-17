@@ -5,6 +5,7 @@ import { search } from 'redux/notices/operations';
 // import { sell } from 'redux/notices/operations';
 import { useDispatch } from 'react-redux';
 import { NoticesContainer } from 'components/NoticesContainer/NoticesContainer';
+import { SearchNoticeList } from 'components/SearchNoticeList/SearchNoticeList';
 import {
   NoticesSearch,
   SearchField,
@@ -54,30 +55,30 @@ const NoticesPage = () => {
 
   
   useEffect(() => {
-    // const getTrendingHttp = async () => {
-    //   try {
-    //     const response = await dispatch(search(firstName)).then(
-    //       responseHttp => {
-    //         return responseHttp;
-    //       }
-    //     );
-    //     console.log(response);
-    //     setPets([...response.payload]);
-    //     console.log(pets);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-    // getTrendingHttp();
+    const getTrendingHttp = async () => {
+      try {
+        const response = await dispatch(search(firstName)).then(
+          responseHttp => {
+            return responseHttp;
+          }
+        );
+        // console.log(response);
+        setPets([...response.payload]);
+        console.log(pets);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getTrendingHttp();
   }, [firstName, dispatch]);
 
   return (
-         <Container>
-      <NoticesSearch>
+      <Container>
+        <NoticesSearch>
         <SearchField
           placeholder="Search"
           value={firstName}
-          onChange={e => setFirstName(e.target.value)}
+          onChange={handleFilterChange}
         />
       </NoticesSearch>
       <NoticesNavWrapper>
@@ -128,9 +129,12 @@ const NoticesPage = () => {
           </AddPetToNoticesBtnWrapper>
         )}
       </NoticesNavWrapper>
-      <Suspense>
-        <Outlet />
-      </Suspense>
+        {SearchNoticeList !== [] ? (<SearchNoticeList pets={pets}/>) 
+        : 
+        (<Suspense>
+          <Outlet />
+        </Suspense>)}
+      
       <Toaster />
     </Container>
   );
