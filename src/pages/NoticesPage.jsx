@@ -2,11 +2,15 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { search } from 'redux/notices/operations';
+import { useNavigate } from 'react-router-dom';
 // import { sell } from 'redux/notices/operations';
 import { useDispatch } from 'react-redux';
 import { NoticesContainer } from 'components/NoticesContainer/NoticesContainer';
 import { SearchNoticeList } from 'components/SearchNoticeList/SearchNoticeList';
+import { useFilter } from '../redux/hooks';
+import { filterNotices } from 'redux/notices/noticeSlice';
 import {
+  Form,
   NoticesSearch,
   SearchField,
   NoticesNavLink,
@@ -45,39 +49,55 @@ const NoticesPage = () => {
       : setIsModalOpen(true);
   };
 
+  // const navigate = useNavigate();
+  // const goToSearch = () => navigate('/search-ads');
+  const [filter, setFilter] = useState("");
+
   const dispatch = useDispatch();
 
-  const handleFilterChange = e => {
-    console.log(e);
-    dispatch(setFirstName(e.target.value));
-    console.log(firstName);
+  const handleFilterChange = (event) => {
+      setFilter(event.currentTarget.value);
+      console.log(filter);
   };
+ 
+  // const {filterValue} = useFilter;
+  // console.log(filterValue);
 
-  
   useEffect(() => {
-    const getTrendingHttp = async () => {
-      try {
-        const response = await dispatch(search(firstName)).then(
-          responseHttp => {
-            return responseHttp;
-          }
-        );
-        // console.log(response);
-        setPets([...response.payload]);
-        console.log(pets);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getTrendingHttp();
-  }, [firstName, dispatch]);
+    dispatch(filterNotices(filter));
+  });
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   goToSearch();
+  //   // dispatch(firstName);
+  //   console.log('submit');
+  // }
+  
+  // useEffect(() => {
+    // const getTrendingHttp = async () => {
+    //   try {
+    //     const response = await dispatch(search(firstName)).then(
+    //       responseHttp => {
+    //         return responseHttp;
+    //       }
+    //     );
+    //     // console.log(response);
+    //     setPets([...response.payload]);
+    //     console.log(pets);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
+    // getTrendingHttp();
+  // }, [firstName, dispatch]);
 
   return (
       <Container>
         <NoticesSearch>
         <SearchField
           placeholder="Search"
-          value={firstName}
+          value={filter}
           onChange={handleFilterChange}
         />
       </NoticesSearch>
@@ -129,11 +149,13 @@ const NoticesPage = () => {
           </AddPetToNoticesBtnWrapper>
         )}
       </NoticesNavWrapper>
-        {SearchNoticeList !== [] ? (<SearchNoticeList pets={pets}/>) 
-        : 
-        (<Suspense>
+        {filter !== '' ? (<SearchNoticeList/>) 
+        :  
+        (
+        <Suspense>
           <Outlet />
-        </Suspense>)}
+        </Suspense>
+        )} 
       
       <Toaster />
     </Container>

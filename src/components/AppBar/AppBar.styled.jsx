@@ -96,7 +96,7 @@ export const MenuWrpr = styled.div`
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        min-width: 1105px;
+        min-width: 1074px;
     }
 `;
 
@@ -127,7 +127,7 @@ export const Nav = styled.nav`
             pointer-events: auto;
             position: static;
             background-color: inherit;
-            outline: 1px solid orange;
+            /* outline: 1px solid orange; */
             width: auto;
             height: auto;
         }

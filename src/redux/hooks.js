@@ -85,6 +85,11 @@ export const useUserAvatar = () => {
   return {userAvatar}
 };
 
-export const useNoticeSearch = () => {
-  const searchNotices = useSelector(state => state.filter)
+export const useFilter = () => {
+  const getFilteredNotice = useSelector(state => state.notices.filter);
+  return {getFilteredNotice};
+  console.log(getFilteredNotice);
 }
+
+
+// export const getFilterValue = state => state.filter;

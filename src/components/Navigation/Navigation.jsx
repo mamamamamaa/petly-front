@@ -17,7 +17,7 @@ const Navigation = ({ close }) => {
           // Specify the route?
           to="/notice/sell"
           onClick={close}
-          isActive={() =>
+          isactive={() =>
             [
               '/notice',
               '/good-hands',
