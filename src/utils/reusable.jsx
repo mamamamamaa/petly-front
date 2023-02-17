@@ -74,8 +74,8 @@ export const FriendsCard = styled.li`
     /* height: 246px; */
   }
   @media (min-width: 1280px) {
-    width: 395px;
-    height: 305px;
+    width: 394px;
+    height: 325px;
   }
 `;
 
