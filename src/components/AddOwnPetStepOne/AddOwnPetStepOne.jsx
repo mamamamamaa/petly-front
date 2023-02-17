@@ -33,18 +33,23 @@ const schema = yup.object().shape({
 });
 
 export const AddOwnPetStepOne = ({ next, data, cancel }) => {
-  const [selectedDate, setSelectedDate] = useState('');
-  const [dateToSubmit, setDateToSubmit] = useState();
+  const [selectedDate, setSelectedDate] = useState(data.dateOfBirth);
+  const [selectedDateInNumber, setSelectedDateINNumber] = useState(data.dateOfBirth);
 
   const handleSubmit = (values, actions) => {
-    console.log('values on submit in 1 step', values);
-    next({ ...values, dateOfBirth: dateToSubmit });
-    console.log('data in 1 step', data);
+    actions.setFieldValue('dateOfBirth', selectedDate);
+
+    next({ 
+      ...values, 
+      dateOfBirth: selectedDate,
+      selectedDateInNumber
+    });
   }; 
 
   const handleDate = e => {
+    
     setSelectedDate(e.target.value);
-    setDateToSubmit(e.target.valueAsNumber);
+    setSelectedDateINNumber(e.target.valueAsNumber)
   };
 
   return (
