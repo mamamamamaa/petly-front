@@ -12,32 +12,72 @@ import { Container, MainHeader } from './NewsPage.styled';
 // =======
 
 // ================= логика
+// export default function NewsPage() {
+//   const [searchNews, setSearchNews] = useState([]);
+//   const [query, setQuery] = useState('animals');
+//   const [error, setError] = useState(false);
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [setSearchParams] = useSearchParams();
+
+//   const dispatch = useDispatch();
+//   const { currentNews } = useNews();
+//   useEffect(() => {
+//     dispatch(getNews(query));
+
+//     const count = currentNews.data.result.totalCount;
+//     console.log(count);
+//     if (count === 0) {
+//       toast.error(
+//         'Sorry, there are no news matching your query. Please try again.'
+//       );
+//       return;
+//     }
+//     const newNews = currentNews.data.result.value;
+//     console.log(newNews);
+//     setSearchNews(newNews);
+//   }, [dispatch, query, currentNews]);
+
+//   useEffect(() => {
+//     if (error !== false) {
+//       toast.error(error);
+//     }
+//   }, [error]);
+
+//   const handlerFormSubmit = values => {
+//     if (query !== values.query.trim()) {
+//       setSearchNews([]);
+//       setQuery(values.query.trim());
+//       setError(false);
+//       setIsLoading(false);
+//       setSearchParams({ query: values.query });
+//     }
+//   };
+
+//   return (
+//     <Container>
+//       <MainHeader>News</MainHeader>
+//       <SearchBar onSubmit={handlerFormSubmit} />
+//       {isLoading && <h2>... is loading</h2>}
+//       <ListNews news={searchNews} />
+//       <Toaster />
+//     </Container>
+//   );
+// }
+
+// ======== second way for news ========= down
 export default function NewsPage() {
-  const [searchNews, setSearchNews] = useState([]);
-  const [query, setQuery] = useState('animals');
+  const [query, setQuery] = useState('pets');
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [setSearchParams] = useSearchParams();
 
-  // =================
   const dispatch = useDispatch();
   const { currentNews } = useNews();
+  const { articles } = currentNews;
+
   useEffect(() => {
     dispatch(getNews(query));
-
-    const count = currentNews.data.result.totalCount;
-    console.log(count);
-    if (count === 0) {
-      toast.error(
-        'Sorry, there are no news matching your query. Please try again.'
-      );
-      return;
-    }
-    const newNews = currentNews.data.result.value;
-    console.log(newNews);
-    setSearchNews(newNews);
-  }, [dispatch, query, currentNews]);
-  // =================
+  }, [dispatch, query]);
 
   useEffect(() => {
     if (error !== false) {
@@ -47,7 +87,6 @@ export default function NewsPage() {
 
   const handlerFormSubmit = values => {
     if (query !== values.query.trim()) {
-      setSearchNews([]);
       setQuery(values.query.trim());
       setError(false);
       setIsLoading(false);
@@ -60,12 +99,14 @@ export default function NewsPage() {
       <MainHeader>News</MainHeader>
       <SearchBar onSubmit={handlerFormSubmit} />
       {isLoading && <h2>... is loading</h2>}
-      <ListNews news={searchNews} />
+      {currentNews && articles && <ListNews news={articles} />}
       <Toaster />
     </Container>
   );
 }
+// ======== second way for news ========= up
 
+// ======= old ========
 // ================= запрос
 // export async function fetchSearchNews(query) {
 //   if (query === '') {
