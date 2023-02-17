@@ -71,15 +71,18 @@ export const useFriends = () => {
 export const useUser = () => { 
 
   const user = useSelector(state => state.user);
-  const getUserData = useSelector(state => state.user.getUserData);  
+  const getUserData = useSelector(state => state.user.getUserData); 
+  const updateUser = useSelector(state=> state.user.updateUser)
   
   return {
-    user, getUserData
+    user,
+    getUserData,
+    updateUser,
   };
 };
 
 export const useUserAvatar = () => {
-  const userAvatar = useSelector(state => state.auth.user.avatar);
+  const updateAvatar = useSelector(state => state.auth.user.avatar);
 
-  return {userAvatar}
+  return {updateAvatar}
 }
