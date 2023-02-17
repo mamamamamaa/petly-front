@@ -15,14 +15,14 @@ export const AddNoticeStepOneForm = styled(Form)`
     width: 608px;
   }
 `;
-export const AddNoticeStepOneButton = styled.button`
+export const AddNoticeLostFound = styled.button`
+  width: 131px;
   height: 35px;
   border: 2px solid #f59256;
   border-radius: 40px;
-  padding-right: 28px;
-  padding-left: 28px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
@@ -36,14 +36,73 @@ export const AddNoticeStepOneButton = styled.button`
     color: #ffffff;
   }
   ${media.tabletAndDesktop} {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    width: 162px;
+    height: 47px;
     margin-right: 12px;
     margin-bottom: 16px;
     font-size: 20px;
     line-height: 27px;
   }
 `;
+export const AddNoticeInGoodHands = styled.button`
+  width: 155px;
+  height: 35px;
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.04em;
+  color: ${props => (props.defaultChecked ? '#ffffff' : '#000000')};
+  background-color: ${props => (props.defaultChecked ? '#f59256' : '#ffffff')};
+  margin-right: 8px;
+  margin-bottom: 12px;
+  &:active {
+    background-color: #f59256;
+    color: #ffffff;
+  }
+  ${media.tabletAndDesktop} {
+    width: 197px;
+    height: 47px;
+    margin-right: 12px;
+    margin-bottom: 16px;
+    font-size: 20px;
+    line-height: 27px;
+  }
+`;
+export const AddNoticeSell = styled.button`
+  width: 81px;
+  height: 35px;
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.04em;
+  color: ${props => (props.defaultChecked ? '#ffffff' : '#000000')};
+  background-color: ${props => (props.defaultChecked ? '#f59256' : '#ffffff')};
+  margin-right: 8px;
+  margin-bottom: 12px;
+  &:active {
+    background-color: #f59256;
+    color: #ffffff;
+  }
+  ${media.tabletAndDesktop} {
+    width: 91px;
+    height: 47px;
+    margin-right: 12px;
+    margin-bottom: 16px;
+    font-size: 20px;
+    line-height: 27px;
+  }
+`;
+export const AddNoticeStepOneButtonSpan = styled.span``;
 export const AddNoticeStepOneLabel = styled.label`
   display: block;
   font-weight: 500;

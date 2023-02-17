@@ -3,7 +3,6 @@ import * as yup from 'yup';
 import { useState } from 'react';
 import { breeds } from '../../utils/getBreed';
 import {
-  AddNoticeStepOneButton,
   AddNoticeStepOneLabel,
   AddNoticeStepOneInput,
   AddNoticeStepOneButtonNext,
@@ -12,6 +11,10 @@ import {
   AddNoticeStepOneButtonNextCancelWrapper,
   AddNoticeStepOneForm,
   AddNoticeStepOneTopBtnsWrapper,
+  AddNoticeStepOneButtonSpan,
+  AddNoticeLostFound,
+  AddNoticeInGoodHands,
+  AddNoticeSell,
 } from './AddNoticeStepOne.styled';
 import moment from 'moment';
 
@@ -70,7 +73,7 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
     setSelectedDate(e.target.value);
     setDateToSubmit(e.target.valueAsNumber);
   };
-const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(true);
   return (
     <Formik
       initialValues={data}
@@ -79,18 +82,20 @@ const [checked, setChecked] = useState(true);
     >
       <AddNoticeStepOneForm>
         <AddNoticeStepOneTopBtnsWrapper>
-          <Field name="lostFound" component={AddNoticeStepOneButton}>
-            lost/found
+          <Field name="lostFound" component={AddNoticeLostFound}>
+            <AddNoticeStepOneButtonSpan>lost/found</AddNoticeStepOneButtonSpan>
           </Field>
-          <Field name="inGoodHands" component={AddNoticeStepOneButton}>
-            in good hands
+          <Field name="inGoodHands" component={AddNoticeInGoodHands}>
+            <AddNoticeStepOneButtonSpan>
+              in good hands
+            </AddNoticeStepOneButtonSpan>
           </Field>
           <Field
             name="sell"
-            component={AddNoticeStepOneButton}
+            component={AddNoticeSell}
             defaultChecked={checked}
           >
-            sell
+            <AddNoticeStepOneButtonSpan>sell</AddNoticeStepOneButtonSpan>
           </Field>
         </AddNoticeStepOneTopBtnsWrapper>
 
