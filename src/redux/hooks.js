@@ -7,7 +7,7 @@ export const useAuth = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const user = useSelector(state => state.auth.user);
   const isRefreshing = useSelector(state => state.auth.isRefreshing);
-  // const isLoading = useSelector(state => state.auth.isLoading);
+  const verifyPart = useSelector(state => state.auth.verifyPart);
   const error = useSelector(state => state.auth.error);
 
   return {
@@ -17,6 +17,7 @@ export const useAuth = () => {
     user,
     isRefreshing,
     expiresIn,
+    verifyPart,
     error,
   };
 };
@@ -68,16 +69,18 @@ export const useFriends = () => {
   };
 };
 
-export const useUser = () => { 
-
+export const useUser = () => {
   const user = useSelector(state => state.user);
+
   const getUserData = useSelector(state => state.user.getUserData); 
   const updateUser = useSelector(state=> state.user.updateUser)
   
   return {
     user,
     getUserData,
-    updateUser,
+    updateUser,  
+   
+
   };
 };
 
@@ -85,4 +88,5 @@ export const useUserAvatar = () => {
   const updateAvatar = useSelector(state => state.auth.user.avatar);
 
   return {updateAvatar}
-}
+};
+

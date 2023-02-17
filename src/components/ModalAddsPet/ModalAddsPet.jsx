@@ -14,18 +14,20 @@ export const ModalAddsPet = ({onClose}) => {
         breed:"",
         pictureURL: "",
         comments:"",
+        selectedDateInNumber:""
     });
 
 
-  const handleNextStep = (newData, final = false) => {
-    const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format('DD.MM.YYYY');
-    console.log('newData in next step', newData);
-    console.log('final', final);
+  const handleNextStep = (newData, final = false) => {   
     if (final) {
-      setData({
-        ...newData,
+      const normalizedDateOfBirth = moment(new Date(newData.selectedDateInNumber)).format("DD.MM.YYYY");
+      const datatoSubmit = {
+        name: newData.name,        
+        breed:newData.breed,
+        pictureURL: newData.pictureURL,
+        comments:newData.comments,       
         dateOfBirth: normalizedDateOfBirth,
-      });
+      };
 
       const formData = new FormData();
 
@@ -38,19 +40,15 @@ export const ModalAddsPet = ({onClose}) => {
       formData.append('breed', newData.breed);
       formData.append('dateOfBirth', newData.dateOfBirth);
       formData.append('name', newData.name);
-
-      dispatch(addOwnPet(newData));
+      
+      dispatch(addOwnPet(datatoSubmit));
       return;
     }
-    setData({
-      ...newData,
-      dateOfBirth: normalizedDateOfBirth,
-    });
+    setData(newData);
     setCurrentStep(prevStep => prevStep + 1);
   };
 
   const handlePrevStep = newData => {
-    console.log('newData in prevState', newData)
     setData(prevData => ({ ...prevData, ...newData }));
     setCurrentStep(prevStep => prevStep - 1);
   };
@@ -62,6 +60,7 @@ export const ModalAddsPet = ({onClose}) => {
         breed:"",
         pictureURL: "",
         comments:"",
+        selectedDateInNumber:""
     });
     setCurrentStep(0);
     onClose();

@@ -10,7 +10,6 @@ const addOwnPetSchema = object().shape({
   });
 
 export const AddOwnPetStepTwo = ({data, next, prev, onClose}) => {
-
     const handleBack= ()=>{        
         const newValue = {
             ...data,
@@ -25,7 +24,8 @@ export const AddOwnPetStepTwo = ({data, next, prev, onClose}) => {
             comments:data.comments
         },
         validationSchema: addOwnPetSchema,      
-        onSubmit: (values, actions)=>{
+        onSubmit: (values, actions)=>{     
+            actions.setFieldValue('pictureURL', values.pictureURL, values.pictureURL.name);
             actions.validateForm();   
         const newValue = {
             ...data,
