@@ -59,10 +59,8 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
   //     setSelectedType(value);
   //   };
 
-  const handleSubmit = (values, actions) => {
-    console.log('values', values);
+  const handleSubmit = values => {
     next({ ...values, dateOfBirth: dateToSubmit });
-    console.log('data in 1 step', data);
   };
 
   const handleDate = e => {
@@ -71,59 +69,68 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
   };
 
   return (
-      <Formik
-        initialValues={data}
-        validationSchema={schema}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <Field name="lostFound" component={AddNoticeStepOneButton}>
-            lost/found
-          </Field>
-          <Field name="inGoodHands" component={AddNoticeStepOneButton}>
-            in good hands
-          </Field>
-          <Field name="sell" component={AddNoticeStepOneButton}>
-            sell
-          </Field>
+    <Formik
+      initialValues={data}
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+    >
+      <Form>
+        <Field name="lostFound" component={AddNoticeStepOneButton}>
+          lost/found
+        </Field>
+        <Field name="inGoodHands" component={AddNoticeStepOneButton}>
+          in good hands
+        </Field>
+        <Field name="sell" component={AddNoticeStepOneButton}>
+          sell
+        </Field>
 
-          <AddNoticeStepOneLabel htmlFor="title">
-            Tittle of ad
-          </AddNoticeStepOneLabel>
-          <Field name="title" id="title" component={AddNoticeStepOneInput} />
+        <AddNoticeStepOneLabel htmlFor="title">
+          Tittle of ad
+        </AddNoticeStepOneLabel>
+        <Field
+          name="title"
+          id="title"
+          component={AddNoticeStepOneInput}
+          placeholder="Type name pet"
+        />
 
-          <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
-          <Field name="name" id="name" component={AddNoticeStepOneInput} />
+        <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
+        <Field
+          name="name"
+          id="name"
+          component={AddNoticeStepOneInput}
+          placeholder="Type name pet"
+        />
 
-          <AddNoticeStepOneLabel htmlFor="dateOfBirth">
-            Date of birth
-          </AddNoticeStepOneLabel>
-          <Field
-            type="date"
-            name="dateOfBirth"
-            id="dateOfBirth"
-            // required
-            onChange={handleDate}
-            max={moment(moment.now()).format('YYYY-MM-DD')}
-            value={selectedDate}
-            component={AddNoticeStepOneInput}
-          />
-          <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
-          <Field component={AddNoticeStepOneSelect} name="breed" id="breed">
-            {filterByLengthBreeds.map(breed => (
-              <option value={breed} key={breed}>
-                {breed}
-              </option>
-            ))}
-            
-          </Field>
-          <AddNoticeStepOneButtonNext type="submit">
-            Next
-          </AddNoticeStepOneButtonNext>
-          <AddNoticeStepOneButtonCancel type="button" onClick={() => cancel()}>
-            Cancel
-          </AddNoticeStepOneButtonCancel>
-        </Form>
-      </Formik>
+        <AddNoticeStepOneLabel htmlFor="dateOfBirth">
+          Date of birth
+        </AddNoticeStepOneLabel>
+        <Field
+          type="date"
+          name="dateOfBirth"
+          id="dateOfBirth"
+          // required
+          onChange={handleDate}
+          max={moment(moment.now()).format('YYYY-MM-DD')}
+          value={selectedDate}
+          component={AddNoticeStepOneInput}
+        />
+        <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
+        <Field component={AddNoticeStepOneSelect} name="breed" id="breed">
+          {filterByLengthBreeds.map(breed => (
+            <option value={breed} key={breed}>
+              {breed}
+            </option>
+          ))}
+        </Field>
+        <AddNoticeStepOneButtonNext type="submit">
+          Next
+        </AddNoticeStepOneButtonNext>
+        <AddNoticeStepOneButtonCancel type="button" onClick={() => cancel()}>
+          Cancel
+        </AddNoticeStepOneButtonCancel>
+      </Form>
+    </Formik>
   );
 };

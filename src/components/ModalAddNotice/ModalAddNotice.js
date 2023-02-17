@@ -29,8 +29,6 @@ export const ModalAddNotice = ({ onClose }) => {
     const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
       'DD.MM.YYYY'
     );
-    console.log('newData', newData);
-    console.log('final', final);
     if (final) {
       setData({
         ...newData,
@@ -94,7 +92,6 @@ export const ModalAddNotice = ({ onClose }) => {
       onClose={onClose}
     />,
   ];
-  console.log(data);
   return (
     <ModalAddNoticeWrapper>
       <ModalAddNoticeTitle>Add pet</ModalAddNoticeTitle>

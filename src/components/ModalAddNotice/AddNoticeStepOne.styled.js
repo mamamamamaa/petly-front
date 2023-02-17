@@ -41,7 +41,14 @@ export const AddNoticeStepOneInput = styled.input`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin-bottom: 16px;
-  padding: 0 15px;
+  padding-left: 14px;
+  padding-right: 20px;
+  &::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: rgba(27, 27, 27, 0.6);
+  }
 `;
 export const AddNoticeStepOneSelect = styled.select`
   width: 100%;
@@ -51,7 +58,8 @@ export const AddNoticeStepOneSelect = styled.select`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin-bottom: 40px;
-  padding: 0 15px;
+  padding-left: 14px;
+  padding-right: 20px;
 `;
 export const AddNoticeStepOneButtonNext = styled.button`
   width: 100%;
