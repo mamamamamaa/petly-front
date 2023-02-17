@@ -49,7 +49,6 @@ export const Image = styled.img`
     height: 112px;
     margin-top: 16px;
     margin-right: 16px;
-    margin-bottom: 1116px;
   }
 `;
 
