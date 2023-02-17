@@ -56,23 +56,8 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
     },
   });
   return (
-    <Formik onSubmit={formik.handleSubmit} encType="multipart/form-data">
-      <Form>
-        <label>
-          The sex
-          <Field type="radio" name="sex" required />
-          <ErrorMessage name="sex" component="div" />
-        </label>
-        <label>
-          Location
-          <Field type="text" name="location" required />
-          <ErrorMessage name="location" component="div" />
-        </label>
-        <label>
-          Price
-          <Field type="text" name="Price" required />
-          <ErrorMessage name="Price" component="div" />
-        </label>
+    <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
+      <div>
         <label>
           Upload File
           <input
@@ -89,7 +74,7 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
           />
           <div>{formik.errors.pictureURL}</div>
         </label>
-      </Form>
+      </div>
       <div>
         <label>
           Comments
@@ -108,6 +93,6 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
         Back
       </button>
       <button type="submit">Done</button>
-    </Formik>
+    </form>
   );
 };
