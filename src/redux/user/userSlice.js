@@ -3,20 +3,20 @@
 import { createSlice
   // , isAnyOf
 } from '@reduxjs/toolkit';
-import { updateUserData, getUserData, updateUserAvatar } from './operations';
+import { updateUser, getUserData, updateAvatar } from './operations';
 import {fetchUserPets, addOwnPet, deleteOneOwnPet} from './operations';
 
 // const extraActions = [updateUserData, getUserData, fetchUserPets, addOwnPet, deleteOneOwnPet];
 
 const initialState = {
   user: {
-    email: null,
-    name: null,
-    _id: null,
-    city: null,
-    phone: null,
+    email: ' ',
+    name: ' ',
+    _id: ' ',
+    city: ' ',
+    phone: ' ',
     birthday: ' ',
-    avatarUrl: null,
+    avatarUrl: ' ',
   },
   isLoading: false,
   error: null,
@@ -47,26 +47,26 @@ const userSlice = createSlice({
         //state.error = action.payload;
         state.isLoading = false;
       })
-      .addCase(updateUserData.pending, (state, action) => {
+      .addCase(updateUser.pending, (state, action) => {
         state.error = null;
       })
-      .addCase(updateUserData.fulfilled, (state, action) => {
+      .addCase(updateUser.fulfilled, (state, action) => {
         state.status = "succeeded"
         state.data = { ...state.data, ...action.payload };
         console.log(state.data)
       })
-      .addCase(updateUserData.rejected, (state, action) => {
+      .addCase(updateUser.rejected, (state, action) => {
         state.status = "failed"
         state.error = action.error.message
       })
-      .addCase(updateUserAvatar.pending, (state, action) => {
+      .addCase(updateAvatar.pending, (state, action) => {
         state.error = null;
       })
-      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+      .addCase(updateAvatar.fulfilled, (state, action) => {
         state.status = "succeeded"
         state.data = { ...state.data, ...action.payload };
       })
-      .addCase(updateUserAvatar.rejected, (state, action) => {
+      .addCase(updateAvatar.rejected, (state, action) => {
         state.status = "failed"
         state.error = action.error.message
       })   

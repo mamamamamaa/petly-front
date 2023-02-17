@@ -23,38 +23,31 @@ export const getUserData = createAsyncThunk(
   }
 );
 
-export const updateUserData = createAsyncThunk(
+
+export const updateUser  = createAsyncThunk(
     "user/updateUser",    
-    async (userData, thunkAPI) => {
+    async (user,  thunkAPI) => {
+        console.log(user)
         try {
-            console.log(userData)
-
-            const {data} = await axios.put("/api/auth/update", userData);
-                  
-           console.log('data', data)
-            //const {data} = await.axios.patch(`/userprofile/userProfile)
-            return data;
-        //     const response = await axios.put("/api/auth/update", userData);
-        //    console.log(response.data)
-        //     return response.data;
-
+            const response = await axios.put(`/api/auth/update`, user );           
+                 return response;
         }
         catch (e) { 
-             return thunkAPI.rejectWithValue(e.message);
+             return thunkAPI.rejectWithValue(e.message("Sorry, can't update user, server Error!") );
         }
   
 });
 
 
 
-export const updateUserAvatar = createAsyncThunk(
+export const updateAvatar = createAsyncThunk(
     "avatar/updateAvatar",    
     async (_id, thunkAPI) => {
         try {
             console.log(_id)
                               
            
-            const res = await axios.patch(`/api/auth/avatar/${_id}`, _id )
+            const res = await axios.patch(`/api/auth/avatar` )
             console.log('response', res)
             return res;
         }
