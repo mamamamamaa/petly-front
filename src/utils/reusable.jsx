@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { theme } from '../utils/theme';
+import { theme } from './theme';
 // import { ReactComponent as AddIcon } from '../../../src/utils/svg/add.svg';
 
 export const Container = styled.div`
