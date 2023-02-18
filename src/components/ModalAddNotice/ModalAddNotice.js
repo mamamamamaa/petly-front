@@ -21,22 +21,32 @@ export const ModalAddNotice = ({ onClose }) => {
     comments: '',
   });
 
-  const handleNextStep = (newData, final = false) => {
+  // const handleNextStep = (newData, final = false) => {
+  //   if (final) {
+  //     const normalizedDateOfBirth = moment(
+  //       new Date(newData.selectedDateInNumber)
+  //     ).format('DD.MM.YYYY');
+  //     const datatoSubmit = {
+  //       name: newData.name,
+  //       breed: newData.breed,
+  //       comments: newData.comments,
+  //       dateOfBirth: normalizedDateOfBirth,
+  //       type: newData.type,
+  //       title: newData.title,
+  //       sex: newData.sex,
+  //       place: newData.place,
+  //       photoUrl: newData.photoUrl,
+  //     };
+
+  const handleNextStep = (newData = {}, final = false) => {
+    const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
+      'DD.MM.YYYY'
+    );
     if (final) {
-      const normalizedDateOfBirth = moment(
-        new Date(newData.selectedDateInNumber)
-      ).format('DD.MM.YYYY');
-      const datatoSubmit = {
-        name: newData.name,
-        breed: newData.breed,
-        comments: newData.comments,
+      setData({
+        ...newData,
         dateOfBirth: normalizedDateOfBirth,
-        type: newData.type,
-        title: newData.title,
-        sex: newData.sex,
-        place: newData.place,
-        photoUrl: newData.photoUrl,
-      };
+      });
 
       const formData = new FormData();
 
@@ -51,10 +61,14 @@ export const ModalAddNotice = ({ onClose }) => {
       formData.append('place', newData.place);
       formData.append('price', newData.price);
 
-      dispatch(addNotice(datatoSubmit));
+      dispatch(addNotice(newData));
       return;
     }
-    setData(newData);
+    // setData(newData);
+    setData({
+      ...newData,
+      dateOfBirth: normalizedDateOfBirth,
+    });
 
     setCurrentStep(prevStep => prevStep + 1);
   };
@@ -76,7 +90,7 @@ export const ModalAddNotice = ({ onClose }) => {
       price: '',
       photoUrl: '',
       comments: '',
-      selectedDateInNumber: '',
+      // selectedDateInNumber: '',
     });
     setCurrentStep(0);
     onClose();

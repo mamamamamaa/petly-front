@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { media } from 'components/Layout/Layout.styled';
 import { Form } from 'formik';
 
-
 export const AddNoticeStepOneForm = styled(Form)`
   width: 280px;
   ${media.tabletAndDesktop} {
@@ -11,6 +10,7 @@ export const AddNoticeStepOneForm = styled(Form)`
 `;
 
 export const AddNoticeStepOneTitle = styled.h3`
+  text-align: center;
   font-weight: 500;
   font-size: 24px;
   line-height: 33px;
@@ -193,7 +193,9 @@ export const AddNoticeStepOneSelect = styled.select`
     padding-left: 16px;
     padding-top: 11px;
     padding-bottom: 10px;
+  }
 `;
+
 export const AddNoticeStepOneButtonNextCancelWrapper = styled.div`
   ${media.tabletAndDesktop} {
     display: flex;
