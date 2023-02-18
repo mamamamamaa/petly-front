@@ -66,7 +66,7 @@ export const fetchUserPets = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await axios.get("/api/userprofile");
-            return response.data.data.pets;
+            return response.data.data.pets.reverse();
         } catch (e) {
             console.log("event in operations", e);
             return thunkAPI.rejectWithValue(e.message);
