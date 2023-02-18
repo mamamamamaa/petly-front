@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { media } from 'components/Layout/Layout.styled';
 import { Form } from 'formik';
+import { theme } from 'utils';
 
 export const AddNoticeStepOneForm = styled(Form)`
   width: 280px;
@@ -142,6 +143,12 @@ export const AddNoticeStepOneLabel = styled.label`
   line-height: 26px;
   color: #111111;
   margin-bottom: 8px;
+  :after {
+    content: '*';
+    color: ${theme.colors.primary};
+    position: absolute;
+    margin-left: 4px;
+  }
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;

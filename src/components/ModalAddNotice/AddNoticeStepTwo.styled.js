@@ -3,6 +3,7 @@ import { media } from 'components/Layout/Layout.styled';
 import male from 'utils/svg/male.svg';
 import female from 'utils/svg/female.svg';
 import loadCross from 'utils/svg/loadCross.svg';
+import { theme } from 'utils';
 
 export const AddNoticeStepTwoForm = styled.form`
   width: 280px;
@@ -38,6 +39,12 @@ export const AddNoticeStepTwoLabelSex = styled.label`
   line-height: 26px;
   color: #000000;
   margin-bottom: 18px;
+  :after {
+    content: '*';
+    color: ${theme.colors.primary};
+    position: absolute;
+    margin-left: 4px;
+  }
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;
@@ -110,6 +117,12 @@ export const AddNoticeStepTwoLabel = styled.label`
   line-height: 26px;
   color: #111111;
   margin-bottom: 8px;
+  :after {
+    content: '*';
+    color: ${theme.colors.primary};
+    position: absolute;
+    margin-left: 4px;
+  }
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;

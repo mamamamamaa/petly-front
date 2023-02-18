@@ -60,44 +60,29 @@ const schema = yup.object().shape({
 });
 
 export const AddNoticeStepOne = ({ next, data, cancel }) => {
-  //   const [selectedType, setSelectedType] = useState('');
+  // const [selectedDate, setSelectedDate] = useState('');
+  // const [dateToSubmit, setDateToSubmit] = useState();
 
-  const [selectedDate, setSelectedDate] = useState('');
-  const [dateToSubmit, setDateToSubmit] = useState();
+  const [selectedDate, setSelectedDate] = useState(data.dateOfBirth);
+  const [selectedDateInNumber, setSelectedDateINNumber] = useState(
+    data.dateOfBirth
+  );
 
-  // const [selectedDate, setSelectedDate] = useState(data.dateOfBirth);
-  // const [selectedDateInNumber, setSelectedDateINNumber] = useState(
-  //   data.dateOfBirth
-  // );
+  const handleSubmit = (values, actions) => {
+    actions.setFieldValue('dateOfBirth', selectedDate);
 
-  //   const typeChange = event => {
-  //     const { value } = event.target;
-  //     setSelectedType(value);
-  //   };
-
-  const handleSubmit = values => {
-    next({ ...values, dateOfBirth: dateToSubmit });
+    next({
+      ...values,
+      dateOfBirth: selectedDate,
+      selectedDateInNumber,
+    });
   };
-
-  // const handleSubmit = (values, actions) => {
-  //   actions.setFieldValue('dateOfBirth', selectedDate);
-
-  //   next({
-  //     ...values,
-  //     dateOfBirth: selectedDate,
-  //     selectedDateInNumber,
-  //   });
-  // };
 
   const handleDate = e => {
     setSelectedDate(e.target.value);
-    setDateToSubmit(e.target.valueAsNumber);
+    setSelectedDateINNumber(e.target.valueAsNumber);
   };
 
-  // const handleDate = e => {
-  //   setSelectedDate(e.target.value);
-  //   setSelectedDateINNumber(e.target.valueAsNumber);
-  // };
   const [checked, setChecked] = useState(true);
   return (
     <Formik
@@ -112,15 +97,24 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           consectetur
         </AddNoticeStepOneText>
         <AddNoticeStepOneTopBtnsWrapper>
-          <Field name="lostFound" component={AddNoticeLostFound}>
+          <Field name="lostFound" type="radio" component={AddNoticeLostFound}>
             <AddNoticeStepOneButtonSpan>lost/found</AddNoticeStepOneButtonSpan>
           </Field>
-          <Field name="inGoodHands" component={AddNoticeInGoodHands}>
+          <Field
+            name="inGoodHands"
+            type="radio"
+            component={AddNoticeInGoodHands}
+          >
             <AddNoticeStepOneButtonSpan>
               in good hands
             </AddNoticeStepOneButtonSpan>
           </Field>
-          <Field name="sell" component={AddNoticeSell} defaultChecked={checked}>
+          <Field
+            name="sell"
+            type="radio"
+            component={AddNoticeSell}
+            defaultChecked={checked}
+          >
             <AddNoticeStepOneButtonSpan>sell</AddNoticeStepOneButtonSpan>
           </Field>
         </AddNoticeStepOneTopBtnsWrapper>
