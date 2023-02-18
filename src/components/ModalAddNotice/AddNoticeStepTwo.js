@@ -18,6 +18,7 @@ import {
   AddNoticeStepTwoFemaleSpan,
   AddNoticeStepTwoFemaleWrapper,
   AddNoticeStepTwoMaleWrapper,
+  AddNoticeStepTwoLabelSex,
 } from './AddNoticeStepTwo.styled';
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
@@ -76,7 +77,7 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       onSubmit={formik.handleSubmit}
       encType="multipart/form-data"
     >
-      <AddNoticeStepTwoLabel htmlFor="title">The sex:</AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoLabelSex htmlFor="title">The sex:</AddNoticeStepTwoLabelSex>
       <AddNoticeStepTwoInputSexCheckboxWrapper checked={isChecked}>
         <AddNoticeStepTwoMaleWrapper>
           <AddNoticeStepTwoMale checked={isChecked} />
@@ -101,7 +102,6 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
           onChange={() => setIsChecked(prev => !prev)}
         />
       </AddNoticeStepTwoInputSexCheckboxWrapper>
-      <p>{isChecked ? 'Male' : 'Female'}</p>
       <AddNoticeStepTwoLabel htmlFor="name">Location:</AddNoticeStepTwoLabel>
       <AddNoticeStepTwoInput
         name="name"

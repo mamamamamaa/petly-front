@@ -16,6 +16,74 @@ export const AddNoticeStepTwoForm = styled.form`
   }
 `;
 
+export const AddNoticeStepTwoLabelSex = styled.label`
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #000000;
+  margin-bottom: 18px;
+  ${media.tabletAndDesktop} {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 12px;
+  }
+`;
+export const AddNoticeStepTwoInputSexCheckboxWrapper = styled.div`
+  // background-image: ${props =>
+    props.checked ? `url("${male}")` : `url("${female}")`};
+  width: 100%;
+  height: 80px;
+  position: relative;
+  margin-bottom: 32px;
+`;
+export const AddNoticeStepTwoMaleWrapper = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+`;
+export const AddNoticeStepTwoMale = styled.img`
+  display: block;
+  content: url(${male});
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  margin-right: 40px;
+  margin-bottom: 12px;
+  box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
+    inset 0px -3px 4px rgba(0, 0, 0, 0.25);
+  outline: 1px solid ${props => (props.checked ? '#f59256' : '#ffffff')};
+`;
+export const AddNoticeStepTwoMaleSpan = styled.span`
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: ${props => (props.checked ? '#f59256' : '#ffffff')};
+`;
+export const AddNoticeStepTwoFemaleWrapper = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+`;
+export const AddNoticeStepTwoFemale = styled.img`
+  display: block;
+  content: url(${female});
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+  box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
+    inset 0px -3px 4px rgba(0, 0, 0, 0.25);
+  outline: 1px solid ${props => (props.checked ? '#ffffff' : '#f59256')};
+`;
+export const AddNoticeStepTwoFemaleSpan = styled.span`
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: ${props => (props.checked ? '#ffffff' : '#f59256')};
+`;
 export const AddNoticeStepTwoLabel = styled.label`
   display: block;
   font-weight: 500;
@@ -29,75 +97,15 @@ export const AddNoticeStepTwoLabel = styled.label`
     margin-bottom: 12px;
   }
 `;
-export const AddNoticeStepTwoInputSexCheckboxWrapper = styled.div`
-  // background-color: ${props => (props.checked ? '#f59256' : '#ffffff')};
-  // background-image: ${props =>
-    props.checked ? `url("${male}")` : `url("${female}")`};
-  width: 100%;
-  height: 240px;
-  // background-position: center;
-  // background-size: 60px 60px;
-  // background-repeat: no-repeat;
-`;
-export const AddNoticeStepTwoMaleWrapper = styled.div`
-  display: inline-block;
-`;
-export const AddNoticeStepTwoMale = styled.img`
-  display: inline-block;
-  content: url(${male});
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 36px;
-  height: 36px;
-  margin-right: 50px;
-  outline: 1px solid ${props => (props.checked ? '#f59256' : '#ffffff')};
-`;
-export const AddNoticeStepTwoMaleSpan = styled.span`
-  display: block;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 26px;
-  color: ${props => (props.checked ? '#f59256' : '#ffffff')};
-`;
-export const AddNoticeStepTwoFemaleWrapper = styled.div`
-  display: inline-block;
-`;
-export const AddNoticeStepTwoFemale = styled.img`
-  display: inline-block;
-  content: url(${female});
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 36px;
-  height: 36px;
-  outline: 1px solid ${props => (props.checked ? '#ffffff' : '#f59256')};
-`;
-export const AddNoticeStepTwoFemaleSpan = styled.span`
-  display: block;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 26px;
-  color: ${props => (props.checked ? '#ffffff' : '#f59256')};
-`;
 export const AddNoticeStepTwoInputSex = styled.input`
-  display: block;
-  width: 50px;
+  width: 160px;
   height: 100%;
-  &:checked {
-    width: 70px;
-    height: 100%;
-    position: relative;
-  }
-  &:checked::before {
-    background-color: red;
-    content: 'Male';
-    font-size: 1.5em;
-    color: green;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    bottom: 0;
-    right: 0;
-  }
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0;
+  right: 0;
+  opacity: 50%;
 `;
 export const AddNoticeStepTwoInput = styled.input`
   display: block;
