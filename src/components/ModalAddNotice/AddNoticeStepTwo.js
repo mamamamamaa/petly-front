@@ -58,7 +58,7 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       sex: data.sex,
       place: data.place,
       price: data.price,
-      pictureURL: data.pictureURL,
+      photoUrl: data.photoUrl,
       comments: data.comments,
     },
     validationSchema: addNoticeSchema,
@@ -76,11 +76,11 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
   });
   const [isChecked, setIsChecked] = useState(false);
   return (
-          
     <AddNoticeStepTwoForm
       onSubmit={formik.handleSubmit}
       encType="multipart/form-data"
-    ><AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
+    >
+      <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
       <AddNoticeStepTwoLabelSex htmlFor="title">
         The sex:
       </AddNoticeStepTwoLabelSex>
@@ -120,18 +120,18 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       <AddNoticeStepTwoLoadImageInputWrapper>
         <AddNoticeStepTwoLoadImageInput
           type="file"
-          name="pictureURL"
+          name="photoUrl"
           accept="image/*"
           onChange={e =>
             formik.setFieldValue(
-              'pictureURL',
+              'photoUrl',
               e.currentTarget.files[0],
               e.currentTarget.files[0].name
             )
           }
         />
       </AddNoticeStepTwoLoadImageInputWrapper>
-      <div>{formik.errors.pictureURL}</div>
+      <div>{formik.errors.photoUrl}</div>
       <AddNoticeStepTwoLabel>Comments</AddNoticeStepTwoLabel>
       <AddNoticeStepTwoInput
         type="text"
