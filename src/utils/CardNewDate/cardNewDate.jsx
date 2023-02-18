@@ -3,6 +3,11 @@ import moment from 'moment';
 function CardNewDate({ date }) {
   const dataYear = moment(date).format('YYYY');
 
+  if (date === 'unknown') {
+    const birthdayMessage = 'unknown';
+    return birthdayMessage;
+  }
+
   if (dataYear === '2023') {
     const birthdayMessage = 'newborn';
     return birthdayMessage;
