@@ -21,15 +21,22 @@ export const ModalAddNotice = ({ onClose }) => {
     comments: '',
   });
 
-  const handleNextStep = (newData = {}, final = false) => {
-    const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
-      'DD.MM.YYYY'
-    );
+  const handleNextStep = (newData, final = false) => {
     if (final) {
-      setData({
-        ...newData,
+      const normalizedDateOfBirth = moment(
+        new Date(newData.selectedDateInNumber)
+      ).format('DD.MM.YYYY');
+      const datatoSubmit = {
+        name: newData.name,
+        breed: newData.breed,
+        comments: newData.comments,
         dateOfBirth: normalizedDateOfBirth,
-      });
+        type: newData.type,
+        title: newData.title,
+        sex: newData.sex,
+        place: newData.place,
+        photoUrl: newData.photoUrl,
+      };
 
       const formData = new FormData();
 
@@ -44,17 +51,15 @@ export const ModalAddNotice = ({ onClose }) => {
       formData.append('place', newData.place);
       formData.append('price', newData.price);
 
-      dispatch(addNotice(newData));
+      dispatch(addNotice(datatoSubmit));
       return;
     }
-    setData({
-      ...newData,
-      dateOfBirth: normalizedDateOfBirth,
-    });
+    setData(newData);
+
     setCurrentStep(prevStep => prevStep + 1);
   };
 
-  const handlePrevStep = (newData = {}) => {
+  const handlePrevStep = newData => {
     setData(prevData => ({ ...prevData, ...newData }));
     setCurrentStep(prevStep => prevStep - 1);
   };
@@ -71,8 +76,10 @@ export const ModalAddNotice = ({ onClose }) => {
       price: '',
       photoUrl: '',
       comments: '',
+      selectedDateInNumber: '',
     });
     setCurrentStep(0);
+    onClose();
   };
   const [currentStep, setCurrentStep] = useState(0);
   const steps = [
