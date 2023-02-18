@@ -41,29 +41,38 @@ export const AddNoticeStepTwoInputSexCheckboxWrapper = styled.div`
   background-repeat: no-repeat;
   // display: inline-block;
 `;
+export const AddNoticeStepTwoMaleImg = styled.img`
+  content: url(${male});
+  width: 36px;
+  height: 36px;
+  margin-right: 50px;
+  outline: 1px solid ${props => (props.checked ? '#f59256' : '#ffffff')};
+`;
+export const AddNoticeStepTwoFemaleImg = styled.img`
+  content: url(${female});
+  width: 36px;
+  height: 36px;
+  outline: 1px solid ${props => (props.checked ? '#ffffff' : '#f59256')};
+`;
 export const AddNoticeStepTwoInputSex = styled.input`
   display: block;
-  width: 100%;
-  height: 40px;
-  box-sizing: border-box;
-  // background-color: #fdf7f2;
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  margin-bottom: 16px;
-  padding-left: 14px;
-  padding-right: 20px;
+  width: 50px;
+  height: 100%;
   &:checked {
-    background-color: green;
+    width: 70px;
+    height: 100%;
     position: relative;
   }
   &:checked::before {
     background-color: red;
-    content: '2714';
+    content: 'Male';
     font-size: 1.5em;
-    color: #fff;
+    color: green;
     position: absolute;
-    right: 1px;
-    top: -5px;
+    left: 0px;
+    top: 0px;
+    bottom: 0;
+    right: 0;
   }
 `;
 export const AddNoticeStepTwoInput = styled.input`

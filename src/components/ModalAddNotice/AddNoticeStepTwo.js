@@ -12,6 +12,8 @@ import {
   AddNoticeStepTwoLabel,
   AddNoticeStepTwoInputSex,
   AddNoticeStepTwoInputSexCheckboxWrapper,
+  AddNoticeStepTwoMaleImg,
+  AddNoticeStepTwoFemaleImg,
 } from './AddNoticeStepTwo.styled';
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
@@ -72,6 +74,10 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
     >
       <AddNoticeStepTwoLabel htmlFor="title">The sex:</AddNoticeStepTwoLabel>
       <AddNoticeStepTwoInputSexCheckboxWrapper checked={isChecked}>
+        <AddNoticeStepTwoMaleImg checked={isChecked}></AddNoticeStepTwoMaleImg>
+        <AddNoticeStepTwoFemaleImg
+          checked={isChecked}
+        ></AddNoticeStepTwoFemaleImg>
         <AddNoticeStepTwoInputSex
           name="title"
           id="title"
