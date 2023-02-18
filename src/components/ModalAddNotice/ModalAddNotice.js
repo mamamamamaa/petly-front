@@ -33,11 +33,7 @@ export const ModalAddNotice = ({ onClose }) => {
 
       const formData = new FormData();
 
-      formData.append(
-        'pictureURL',
-        newData.pictureURL,
-        newData.pictureURL.name
-      );
+      formData.append('photoUrl', newData.photoUrl, newData.photoUrl.name);
       formData.append('comments', newData.comments);
       formData.append('breed', newData.breed);
       formData.append('dateOfBirth', newData.dateOfBirth);

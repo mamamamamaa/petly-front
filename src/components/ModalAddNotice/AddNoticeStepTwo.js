@@ -132,14 +132,16 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
         />
       </AddNoticeStepTwoLoadImageInputWrapper>
       <div>{formik.errors.photoUrl}</div>
-      <AddNoticeStepTwoLabel>Comments</AddNoticeStepTwoLabel>
-      <AddNoticeStepTwoInput
-        type="text"
-        name="comments"
-        placeholder="Type comments"
-        onChange={formik.handleChange}
-        value={formik.values.comments}
-      />
+      <div>
+        <AddNoticeStepTwoLabel>Comments</AddNoticeStepTwoLabel>
+        <AddNoticeStepTwoInput
+          type="text"
+          name="comments"
+          placeholder="Type comments"
+          onChange={formik.handleChange}
+          value={formik.values.comments}
+        />
+      </div>
       <AddNoticeStepTwoButtonBackDoneWrapper>
         <AddNoticeStepOneButtonDone type="submit">
           Done

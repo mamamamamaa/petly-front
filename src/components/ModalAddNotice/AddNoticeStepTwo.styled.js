@@ -125,7 +125,7 @@ export const AddNoticeStepTwoInputSex = styled.input`
   top: 0px;
   bottom: 0;
   right: 0;
-  opacity: 50%;
+  opacity: 0;
 `;
 export const AddNoticeStepTwoInput = styled.input`
   display: block;
@@ -179,7 +179,7 @@ export const AddNoticeStepTwoLoadImageInput = styled.input`
   position: relative;
   width: 116px;
   height: 116px;
-  opacity: 20%;
+  opacity: 0;
 `;
 export const AddNoticeStepTwoButtonBackDoneWrapper = styled.div`
   ${media.tabletAndDesktop} {
