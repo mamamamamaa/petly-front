@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-// import { useState } from 'react';
+import { useState } from 'react';
 
 import { object, string, mixed, number } from 'yup';
 // import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -10,6 +10,8 @@ import {
   AddNoticeStepTwoButtonBackDoneWrapper,
   AddNoticeStepTwoInput,
   AddNoticeStepTwoLabel,
+  AddNoticeStepTwoInputSex,
+  AddNoticeStepTwoInputSexCheckboxWrapper,
 } from './AddNoticeStepTwo.styled';
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
@@ -62,20 +64,24 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       onClose();
     },
   });
+  const [isChecked, setIsChecked] = useState(false);
   return (
     <AddNoticeStepTwoForm
       onSubmit={formik.handleSubmit}
       encType="multipart/form-data"
     >
-      <AddNoticeStepTwoLabel htmlFor="title">
-        The sex:
-      </AddNoticeStepTwoLabel>
-      <AddNoticeStepTwoInput
-        name="title"
-        id="title"
-        placeholder="Type sex"
-      />
-
+      <AddNoticeStepTwoLabel htmlFor="title">The sex:</AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoInputSexCheckboxWrapper checked={isChecked}>
+        <AddNoticeStepTwoInputSex
+          name="title"
+          id="title"
+          type="checkbox"
+          placeholder="Type sex"
+          checked={isChecked}
+          onChange={() => setIsChecked(prev => !prev)}
+        />
+      </AddNoticeStepTwoInputSexCheckboxWrapper>
+      <p>{isChecked ? 'Male' : 'Female'}</p>
       <AddNoticeStepTwoLabel htmlFor="name">Location:</AddNoticeStepTwoLabel>
       <AddNoticeStepTwoInput
         name="name"
@@ -83,11 +89,7 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
         placeholder="Type location"
       />
       <AddNoticeStepTwoLabel htmlFor="name">Price:</AddNoticeStepTwoLabel>
-      <AddNoticeStepTwoInput
-        name="name"
-        id="name"
-        placeholder="Type price"
-      />
+      <AddNoticeStepTwoInput name="name" id="name" placeholder="Type price" />
       <AddNoticeStepTwoLabel>Upload File</AddNoticeStepTwoLabel>
       <input
         type="file"
