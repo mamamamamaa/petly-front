@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { media } from 'components/Layout/Layout.styled';
 import male from 'utils/svg/male.svg';
 import female from 'utils/svg/female.svg';
+import loadCross from 'utils/svg/loadCross.svg';
 
 export const AddNoticeStepTwoForm = styled.form`
   width: 280px;
@@ -44,8 +45,6 @@ export const AddNoticeStepTwoMaleWrapper = styled.div`
 export const AddNoticeStepTwoMale = styled.img`
   display: block;
   content: url(${male});
-  background-size: contain;
-  background-repeat: no-repeat;
   width: 40px;
   height: 40px;
   margin-right: 40px;
@@ -68,8 +67,6 @@ export const AddNoticeStepTwoFemaleWrapper = styled.div`
 export const AddNoticeStepTwoFemale = styled.img`
   display: block;
   content: url(${female});
-  background-size: contain;
-  background-repeat: no-repeat;
   width: 40px;
   height: 40px;
   margin-bottom: 12px;
@@ -95,6 +92,9 @@ export const AddNoticeStepTwoLabel = styled.label`
     font-size: 24px;
     color: #000000;
     margin-bottom: 12px;
+  }
+  &:nth-of-type(4) {
+    margin-bottom: 152px;
   }
 `;
 export const AddNoticeStepTwoInputSex = styled.input`
@@ -137,22 +137,24 @@ export const AddNoticeStepTwoInput = styled.input`
     }
   }
 `;
-export const AddNoticeStepOneSelect = styled.select`
-  width: 100%;
-  height: 40px;
-  box-sizing: border-box;
+export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
+  width: 116px;
+  height: 116px;
   background-color: #fdf7f2;
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  margin-bottom: 40px;
-  padding-left: 14px;
-  padding-right: 20px;
-  ${media.tabletAndDesktop} {
-    height: 48px;
-    padding-left: 16px;
-    padding-top: 11px;
-    padding-bottom: 10px;
-`;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(${loadCross});
+  position: absolute;
+  left: 20px;
+  top: 464px;
+  `;
+  export const AddNoticeStepTwoLoadImageInput = styled.input`
+    position: relative;
+    width: 116px;
+    height: 116px;
+    opacity: 20%;
+  `;
 export const AddNoticeStepTwoButtonBackDoneWrapper = styled.div`
   ${media.tabletAndDesktop} {
     display: flex;

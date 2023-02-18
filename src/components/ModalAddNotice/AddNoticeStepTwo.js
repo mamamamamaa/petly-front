@@ -19,6 +19,8 @@ import {
   AddNoticeStepTwoFemaleWrapper,
   AddNoticeStepTwoMaleWrapper,
   AddNoticeStepTwoLabelSex,
+  AddNoticeStepTwoLoadImageInput,
+  AddNoticeStepTwoLoadImageInputWrapper,
 } from './AddNoticeStepTwo.styled';
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
@@ -77,7 +79,9 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       onSubmit={formik.handleSubmit}
       encType="multipart/form-data"
     >
-      <AddNoticeStepTwoLabelSex htmlFor="title">The sex:</AddNoticeStepTwoLabelSex>
+      <AddNoticeStepTwoLabelSex htmlFor="title">
+        The sex:
+      </AddNoticeStepTwoLabelSex>
       <AddNoticeStepTwoInputSexCheckboxWrapper checked={isChecked}>
         <AddNoticeStepTwoMaleWrapper>
           <AddNoticeStepTwoMale checked={isChecked} />
@@ -110,19 +114,21 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       />
       <AddNoticeStepTwoLabel htmlFor="name">Price:</AddNoticeStepTwoLabel>
       <AddNoticeStepTwoInput name="name" id="name" placeholder="Type price" />
-      <AddNoticeStepTwoLabel>Upload File</AddNoticeStepTwoLabel>
-      <input
-        type="file"
-        name="pictureURL"
-        accept="image/*"
-        onChange={e =>
-          formik.setFieldValue(
-            'pictureURL',
-            e.currentTarget.files[0],
-            e.currentTarget.files[0].name
-          )
-        }
-      />
+      <AddNoticeStepTwoLabel>Load the pet’s image</AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoLoadImageInputWrapper>
+        <AddNoticeStepTwoLoadImageInput
+          type="file"
+          name="pictureURL"
+          accept="image/*"
+          onChange={e =>
+            formik.setFieldValue(
+              'pictureURL',
+              e.currentTarget.files[0],
+              e.currentTarget.files[0].name
+            )
+          }
+        />
+      </AddNoticeStepTwoLoadImageInputWrapper>
       <div>{formik.errors.pictureURL}</div>
       <AddNoticeStepTwoLabel>Comments</AddNoticeStepTwoLabel>
       <AddNoticeStepTwoInput
