@@ -3,7 +3,6 @@ import { NavList, NavListItem, NavigLink } from './Navigation.styled';
 
 const Navigation = ({ close }) => {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <NavList>

@@ -1,10 +1,7 @@
 import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { search } from 'redux/notices/operations';
-// import { sell } from 'redux/notices/operations';
 import { useDispatch } from 'react-redux';
-import { NoticesContainer } from 'components/NoticesContainer/NoticesContainer';
 import {
   NoticesSearch,
   SearchField,
@@ -18,11 +15,12 @@ import {
   NoticesNavWrapper,
   // AddPetToNoticesBtnWrapper,
 } from './NoticesPage.styled';
-import { AddPetToNoticesBtn,
-          AddPetToNoticesImg,
-          AddPetToNoticesText, 
-          AddPetToNoticesBtnWrapper
-         } from 'components/AddNoticeButton/AddNoticeButton.styled';
+import {
+  AddPetToNoticesBtn,
+  AddPetToNoticesImg,
+  AddPetToNoticesText,
+  AddPetToNoticesBtnWrapper,
+} from 'components/AddNoticeButton/AddNoticeButton.styled';
 import cross from 'utils/svg/cross.svg';
 import { useAuth } from '../redux/hooks';
 import toast, { Toaster } from 'react-hot-toast';
@@ -45,6 +43,7 @@ const NoticesPage = () => {
   };
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     // const getTrendingHttp = async () => {
     //   try {

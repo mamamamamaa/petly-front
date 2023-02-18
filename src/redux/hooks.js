@@ -43,7 +43,11 @@ export const useNotices = () => {
   const isLoading = useSelector(state => state.notices.isLoading);
   const error = useSelector(state => state.notices.error);
   const notices = useSelector(state => state.notices.notices);
+  const totalCounts = useSelector(state => state.notices.totalCounts);
+  const pages = useSelector(state => state.notices.pages);
+
   return {
+    totalCounts,
     sellNotices,
     lostFoundNotices,
     goodHandsNotices,
@@ -53,6 +57,7 @@ export const useNotices = () => {
     error,
     currentNotice,
     notices,
+    pages,
   };
 };
 
@@ -72,21 +77,18 @@ export const useFriends = () => {
 export const useUser = () => {
   const user = useSelector(state => state.user);
 
-  const getUserData = useSelector(state => state.user.getUserData); 
-  const updateUser = useSelector(state=> state.user.updateUser)
-  
+  const getUserData = useSelector(state => state.user.getUserData);
+  const updateUser = useSelector(state => state.user.updateUser);
+
   return {
     user,
     getUserData,
-    updateUser,  
-   
-
+    updateUser,
   };
 };
 
 export const useUserAvatar = () => {
   const updateAvatar = useSelector(state => state.auth.user.avatar);
 
-  return {updateAvatar}
+  return { updateAvatar };
 };
-
