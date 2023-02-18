@@ -15,6 +15,7 @@ import {
   Box,
   BoxButton,
   ButtonModal,
+  CallModal,
 } from './ListModalCardNotice.styled';
 import NewsNewDate from '../../utils/NewsNewDate/NewsNewDate';
 import noPoster from 'noPoster.jpg';
@@ -34,6 +35,12 @@ export const ListModalCardNotice = ({ date }) => {
     phone = 'unknown',
     comments = 'unknown',
   } = date;
+
+  const call = phone => {
+    const fullNumber = 'tel:' + phone;
+    return fullNumber;
+  };
+  const getCall = call(phone);
 
   return (
     <Container>
@@ -114,7 +121,7 @@ export const ListModalCardNotice = ({ date }) => {
 
       <BoxButton>
         <ButtonModal>Add to</ButtonModal>
-        <ButtonModal>Contact</ButtonModal>
+        <CallModal href={getCall}>Contact</CallModal>
       </BoxButton>
     </Container>
   );
