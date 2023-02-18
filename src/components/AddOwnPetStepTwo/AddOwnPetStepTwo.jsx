@@ -1,6 +1,8 @@
 import { useFormik } from 'formik';
 import { object, string, mixed } from 'yup';
+import { useState } from 'react';
 import { GrAdd } from 'react-icons/gr';
+import { FiCheck } from 'react-icons/fi';
 
 import {
   Container,
@@ -26,6 +28,7 @@ const addOwnPetSchema = object().shape({
 });
 
 export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
+  const [isFileUpload, setIsFileUpload] = useState(data.pictureURL? true : false);
   const handleBack = () => {
     const newValue = {
       ...data,
@@ -64,20 +67,23 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
         <Box>
           <label>
             <BoxImg>
-              <GrAdd className={css.iconForm} />
+              { isFileUpload && <FiCheck color="#F59256" width="150" heigh="150"/>}
+              { !isFileUpload && <GrAdd className={css.iconForm} />}
             </BoxImg>
             <input
               className={css.inputFormImg}
               type="file"
               name="pictureURL"
               accept="image/*"
-              onChange={e =>
+              onChange={e =>{
                 formik.setFieldValue(
                   'pictureURL',
                   e.currentTarget.files[0],
                   e.currentTarget.files[0].name
-                )
+                );
+                setIsFileUpload(true);
               }
+            }
             />
             <BoxWarning>{formik.errors.pictureURL}</BoxWarning>
           </label>
