@@ -76,13 +76,24 @@ export const ListModalCardNotice = ({ date }) => {
   };
   const getCall = call(phone);
 
+  const changeTitle = type => {
+    if (type === 'good-hands') {
+      const newType = 'In good hands';
+      return newType;
+    } else {
+      const newType = type;
+      return newType;
+    }
+  };
+  const getNewType = changeTitle(type);
+
   return (
     <Container>
       <WraperMain>
         <Wraper>
           <Img src={photoUrl} alt="Pet" />
           <AdvWrapper>
-            <AdvTitle>{type}</AdvTitle>
+            <AdvTitle>{getNewType}</AdvTitle>
           </AdvWrapper>
           <BoxSecond>
             <Title>{title}</Title>
