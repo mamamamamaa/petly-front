@@ -85,8 +85,8 @@ export const useUser = () => {
 };
 
 export const useUserAvatar = () => {
-  const updateAvatar = useSelector(state => state.auth.user.avatar);
+  const avatar = useSelector(state => state.auth.user.avatar);
 
-  return {updateAvatar}
+  return {avatar}
 };
 

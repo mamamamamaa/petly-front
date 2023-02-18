@@ -38,10 +38,10 @@ const userSlice = createSlice({
         state.user.email = action.payload.email;
         state.user.phone = action.payload.phone;
         state.user.city = action.payload.city;
-        state.user.avatar = action.payload.avatar;
+        state.user.avatarUrl = action.payload.avatarUrl;
         state.user.birthday = action.payload.birthday;
         state.isLoggedIn = true;
-        console.log(state.user.avatar)
+        console.log(state.user)
       })
       .addCase(getUserData.rejected, (state, action) => {
         //state.error = action.payload;
