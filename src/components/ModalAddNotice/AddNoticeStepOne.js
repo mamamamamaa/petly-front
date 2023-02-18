@@ -25,8 +25,8 @@ const filterByLengthBreeds = breeds.filter(
 );
 
 const schema = yup.object().shape({
-  // type: yup.string().required(),
-  type: yup.string(),
+  type: yup.string().required(),
+  // type: yup.string(),
   title: yup
     .string()
     .min(2, 'Title should be from 2 to 48 symbols')
@@ -54,7 +54,7 @@ const schema = yup.object().shape({
   comments: yup.string().min(8, 'Too Short!').max(120, 'Too Long!'),
   // comments: yup.string(),
   // .required('The comments are required'),
-  photoUrl: yup.required('Image is required (jpg, jpeg, png)'),
+  photoUrl: yup.mixed().required('Image is required (jpg, jpeg, png)'),
   // photoUrl: yup.string(),
 });
 
