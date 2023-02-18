@@ -30,29 +30,53 @@ export const AddNoticeStepTwoLabel = styled.label`
   }
 `;
 export const AddNoticeStepTwoInputSexCheckboxWrapper = styled.div`
-  color: ${props => (props.checked ? '#ffffff' : '#000000')};
   // background-color: ${props => (props.checked ? '#f59256' : '#ffffff')};
-  background-image: ${props =>
+  // background-image: ${props =>
     props.checked ? `url("${male}")` : `url("${female}")`};
   width: 100%;
   height: 240px;
-  background-position: center;
-  background-size: 60px 60px;
-  background-repeat: no-repeat;
-  // display: inline-block;
+  // background-position: center;
+  // background-size: 60px 60px;
+  // background-repeat: no-repeat;
 `;
-export const AddNoticeStepTwoMaleImg = styled.img`
+export const AddNoticeStepTwoMaleWrapper = styled.div`
+  display: inline-block;
+`;
+export const AddNoticeStepTwoMale = styled.img`
+  display: inline-block;
   content: url(${male});
+  background-size: contain;
+  background-repeat: no-repeat;
   width: 36px;
   height: 36px;
   margin-right: 50px;
   outline: 1px solid ${props => (props.checked ? '#f59256' : '#ffffff')};
 `;
-export const AddNoticeStepTwoFemaleImg = styled.img`
+export const AddNoticeStepTwoMaleSpan = styled.span`
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: ${props => (props.checked ? '#f59256' : '#ffffff')};
+`;
+export const AddNoticeStepTwoFemaleWrapper = styled.div`
+  display: inline-block;
+`;
+export const AddNoticeStepTwoFemale = styled.img`
+  display: inline-block;
   content: url(${female});
+  background-size: contain;
+  background-repeat: no-repeat;
   width: 36px;
   height: 36px;
   outline: 1px solid ${props => (props.checked ? '#ffffff' : '#f59256')};
+`;
+export const AddNoticeStepTwoFemaleSpan = styled.span`
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: ${props => (props.checked ? '#ffffff' : '#f59256')};
 `;
 export const AddNoticeStepTwoInputSex = styled.input`
   display: block;
