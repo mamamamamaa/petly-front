@@ -3,14 +3,14 @@ import { media } from 'components/Layout/Layout.styled';
 
 export const AddNoticeStepTwoForm = styled.form`
   width: 280px;
-  margin: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  margin: 0 20px 40px 20px;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: flex-start;
   ${media.tabletAndDesktop} {
     width: 608px;
-    margin: 40px 80px;
+    margin: 0 80px 40px 80px;
   }
 `;
 

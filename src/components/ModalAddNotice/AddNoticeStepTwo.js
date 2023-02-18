@@ -67,28 +67,49 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       onSubmit={formik.handleSubmit}
       encType="multipart/form-data"
     >
-        <AddNoticeStepTwoLabel>Upload File</AddNoticeStepTwoLabel>
-        <input
-          type="file"
-          name="pictureURL"
-          accept="image/*"
-          onChange={e =>
-            formik.setFieldValue(
-              'pictureURL',
-              e.currentTarget.files[0],
-              e.currentTarget.files[0].name
-            )
-          }
-        />
-        <div>{formik.errors.pictureURL}</div>
-        <AddNoticeStepTwoLabel>Comments</AddNoticeStepTwoLabel>
-        <AddNoticeStepTwoInput
-          type="text"
-          name="comments"
-          placeholder="Type comments"
-          onChange={formik.handleChange}
-          value={formik.values.comments}
-        />
+      <AddNoticeStepTwoLabel htmlFor="title">
+        The sex:
+      </AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoInput
+        name="title"
+        id="title"
+        placeholder="Type sex"
+      />
+
+      <AddNoticeStepTwoLabel htmlFor="name">Location:</AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoInput
+        name="name"
+        id="name"
+        placeholder="Type location"
+      />
+      <AddNoticeStepTwoLabel htmlFor="name">Price:</AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoInput
+        name="name"
+        id="name"
+        placeholder="Type price"
+      />
+      <AddNoticeStepTwoLabel>Upload File</AddNoticeStepTwoLabel>
+      <input
+        type="file"
+        name="pictureURL"
+        accept="image/*"
+        onChange={e =>
+          formik.setFieldValue(
+            'pictureURL',
+            e.currentTarget.files[0],
+            e.currentTarget.files[0].name
+          )
+        }
+      />
+      <div>{formik.errors.pictureURL}</div>
+      <AddNoticeStepTwoLabel>Comments</AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoInput
+        type="text"
+        name="comments"
+        placeholder="Type comments"
+        onChange={formik.handleChange}
+        value={formik.values.comments}
+      />
       <AddNoticeStepTwoButtonBackDoneWrapper>
         <AddNoticeStepOneButtonDone type="submit">
           Done
