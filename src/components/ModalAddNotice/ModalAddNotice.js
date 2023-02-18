@@ -95,10 +95,19 @@ export const ModalAddNotice = ({ onClose }) => {
   return (
     <ModalAddNoticeWrapper>
       <ModalAddNoticeTitle>Add pet</ModalAddNoticeTitle>
-      <ModalAddNoticeText>
-        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-        consectetur
-      </ModalAddNoticeText>
+      {data.type === 'sell' && (
+        <ModalAddNoticeText>
+          Lets find a new home for you pet
+        </ModalAddNoticeText>
+      )}
+      {data.type === 'good-hands' && (
+        <ModalAddNoticeText>
+          You give your pet to a good people
+        </ModalAddNoticeText>
+      )}
+      {data.type === 'lost/found' && (
+        <ModalAddNoticeText>Your pet will find his home</ModalAddNoticeText>
+      )}
       {steps[currentStep]}
     </ModalAddNoticeWrapper>
   );
