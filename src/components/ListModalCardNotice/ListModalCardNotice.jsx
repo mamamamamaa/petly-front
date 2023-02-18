@@ -15,10 +15,12 @@ import {
   Box,
   BoxButton,
   ButtonModal,
+  AddToFavImg,
   CallModal,
 } from './ListModalCardNotice.styled';
 import NewsNewDate from '../../utils/NewsNewDate/NewsNewDate';
 import noPoster from 'noPoster.jpg';
+import strokeHeart from 'utils/svg/strokeHeart.svg';
 
 export const ListModalCardNotice = ({ date }) => {
   const {
@@ -120,7 +122,9 @@ export const ListModalCardNotice = ({ date }) => {
       </WraperMain>
 
       <BoxButton>
-        <ButtonModal>Add to</ButtonModal>
+        <ButtonModal>
+          Add to <AddToFavImg src={strokeHeart} alt="Add to favorites" />
+        </ButtonModal>
         <CallModal href={getCall}>Contact</CallModal>
       </BoxButton>
     </Container>

@@ -200,10 +200,11 @@ export const BoxButton = styled.div`
 `;
 
 export const ButtonModal = styled.button`
+  position: relative;
   width: 160px;
   height: 40px;
   display: inline;
-  padding: 8px 28px;
+  padding: 8px 30px 8px 20px;
   font-weight: ${theme.fontWeights.normal};
   font-size: 16px;
   line-height: ${theme.lineHeights.body};
@@ -212,6 +213,7 @@ export const ButtonModal = styled.button`
   background: ${theme.colors.accentText};
   border: 2px solid #f59256;
   border-radius: 40px;
+  height: 40px;
   cursor: pointer;
   :hover {
     border: 2px solid #ff6101;
@@ -219,7 +221,6 @@ export const ButtonModal = styled.button`
   }
 
   @media screen and (max-width: 767px) {
-    height: 40px;
     width: 240px;
     margin-bottom: 12px;
     &:last-child {
@@ -227,10 +228,8 @@ export const ButtonModal = styled.button`
     }
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    height: 38px;
   }
   @media screen and (min-width: 1280px) {
-    height: 38px;
   }
 `;
 
@@ -254,4 +253,11 @@ export const CallModal = styled.a`
     border: 2px solid #ff6101;
     color: #ff6101;
   }
+`;
+
+export const AddToFavImg = styled.img`
+  position: absolute;
+  top: 35%;
+  right: 20%;
+  height: 14px;
 `;
