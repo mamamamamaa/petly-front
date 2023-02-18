@@ -1,3 +1,10 @@
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useAuth } from '../../redux/hooks';
+import { addFav } from '../../redux/auth/authSlice';
+import { addNoticeToFav } from '../../redux/notices/operations';
+// ===================
 import {
   Container,
   WraperMain,
@@ -21,9 +28,11 @@ import {
 import NewsNewDate from '../../utils/NewsNewDate/NewsNewDate';
 import noPoster from 'noPoster.jpg';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
+// ===================
 
 export const ListModalCardNotice = ({ date }) => {
   const {
+    _id,
     photoUrl = noPoster,
     type = 'unknown',
     title,
@@ -38,6 +47,29 @@ export const ListModalCardNotice = ({ date }) => {
     comments = 'unknown',
   } = date;
 
+  // добавить в избранное помошники
+  const dispatch = useDispatch();
+  const { user, isLoggedIn } = useAuth();
+  const isFavorite = user.favorite.includes(_id);
+  const [fav, setFav] = useState(isFavorite);
+
+  // добавить в избранное логика
+  const favoriteHandler = () => {
+    if (!isLoggedIn) {
+      return toast.error('Your pet was successfully added to favorites!');
+    }
+
+    if (fav) {
+      toast.error('Your pet is already in favorites!');
+    } else {
+      dispatch(addNoticeToFav(_id));
+      dispatch(addFav(_id));
+      toast.success('Successfully toasted!');
+    }
+    setFav(prevState => !prevState);
+  };
+
+  // сделать звонок
   const call = phone => {
     const fullNumber = 'tel:' + phone;
     return fullNumber;
@@ -122,8 +154,9 @@ export const ListModalCardNotice = ({ date }) => {
       </WraperMain>
 
       <BoxButton>
-        <ButtonModal>
-          Add to <AddToFavImg src={strokeHeart} alt="Add to favorites" />
+        <ButtonModal onClick={favoriteHandler}>
+          Add to
+          <AddToFavImg src={strokeHeart} alt="Add to favorites" />
         </ButtonModal>
         <CallModal href={getCall}>Contact</CallModal>
       </BoxButton>
