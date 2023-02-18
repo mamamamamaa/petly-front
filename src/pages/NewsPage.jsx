@@ -36,6 +36,12 @@ export default function NewsPage() {
   }, [error]);
 
   const handlerFormSubmit = values => {
+    if (values.query.trim() === '') {
+      setQuery('pets');
+      setError(false);
+      setIsLoading(false);
+      setSearchParams({ query: 'pets' });
+    }
     if (query !== values.query.trim()) {
       setQuery(values.query.trim());
       setError(false);
