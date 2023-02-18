@@ -200,6 +200,8 @@ export const BoxButton = styled.div`
 `;
 
 export const ButtonModal = styled.button`
+  width: 160px;
+  height: 40px;
   display: inline;
   padding: 8px 28px;
   font-weight: ${theme.fontWeights.normal};
@@ -229,5 +231,27 @@ export const ButtonModal = styled.button`
   }
   @media screen and (min-width: 1280px) {
     height: 38px;
+  }
+`;
+
+export const CallModal = styled.a`
+  width: 160px;
+  height: 40px;
+  background-color: #f59256;
+  color: #ffffff;
+  fill: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.3;
+  border-radius: 40px;
+  padding-left: 47px;
+  padding-right: 47px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+
+  cursor: pointer;
+  :hover {
+    border: 2px solid #ff6101;
+    color: #ff6101;
   }
 `;
