@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const { REACT_APP_SERVER_HOST: HOST } = process.env;
+const { REACT_APP_NEWS_SERVER_HOST } = process.env;
 // const { API_KEY } = process.env;
-axios.defaults.baseURL = HOST;
 
 // ======== second way for news ========= down
 export const getNews = createAsyncThunk(
@@ -11,7 +10,7 @@ export const getNews = createAsyncThunk(
   async (query = 'pets', thunkAPI) => {
     try {
       const { data } = await axios.get(
-        `/v2/everything?q=${query}&pageSize=6&apiKey=542cd052e17c46769d10d50b01159abd`
+        `${REACT_APP_NEWS_SERVER_HOST}/v2/everything?q=${query}&pageSize=6&apiKey=542cd052e17c46769d10d50b01159abd`
       );
       // console.log(query);
       // console.log(data);
