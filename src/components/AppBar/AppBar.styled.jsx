@@ -12,7 +12,6 @@ export const BarContainer = styled.div`
     margin: 0 auto;
     ${media.mobile} {
         padding-top: 16px;
-        
     };
     ${media.tablet} {
         padding-top: 24px;

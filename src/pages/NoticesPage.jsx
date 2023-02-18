@@ -56,16 +56,21 @@ const NoticesPage = () => {
   const dispatch = useDispatch();
 
   const handleFilterChange = (event) => {
-      setFilter(event.currentTarget.value);
-      console.log(filter);
-  };
+    setFilter(event.currentTarget.value);
+    console.log(filter);
+};
+
+
+  useEffect(() => {
+    dispatch(filterNotices(filter));
+  },[filter, dispatch]);
+
+  
+  
  
   // const {filterValue} = useFilter;
   // console.log(filterValue);
 
-  useEffect(() => {
-    dispatch(filterNotices(filter));
-  });
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();

@@ -86,10 +86,9 @@ export const useUserAvatar = () => {
 };
 
 export const useFilter = () => {
-  const getFilteredNotice = useSelector(state => state.notices.filter);
-  return {getFilteredNotice};
-  console.log(getFilteredNotice);
+  const getFilterValue = useSelector(state => state.notices.filter);
+  return {getFilterValue};
 }
 
 
-// export const getFilterValue = state => state.filter;
+// export const getFilterValue = state => state.notices.filter;

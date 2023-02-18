@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useFilter } from "redux/hooks";
+// import { getFilterValue } from "../../redux/hooks";
 import {useNotices} from '../../redux/hooks';
 import {NoticesContainer} from '../NoticesContainer/NoticesContainer';
 
@@ -11,13 +12,20 @@ import {NoticesContainer} from '../NoticesContainer/NoticesContainer';
 
 export const SearchNoticeList = () => {
 
+  // const dispatch = useDispatch();
+ 
   const { pathname } = useLocation();
 
-  const filter = useSelector(useFilter);
-  console.log(filter.getFilteredNotice);
-  const filterValue = filter.getFilteredNotice;
+  const filter = useSelector(useFilter).getFilterValue;
+  // console.log(filter);
+  console.log(filter);
+
   const allNotices = useSelector(useNotices);
-  // console.log(allNotices.sellNotices);
+
+  // useEffect(() => {
+  //   console.log(filter);
+  // }, [filter])
+  
 
   let  notices;
 
@@ -46,27 +54,26 @@ export const SearchNoticeList = () => {
         break;
     };
 
-  console.log(notices);
+  // console.log(notices);
 
   
   const filteredNotices = (notices) => {
-    if (filterValue === "") {
-      return notices;
-    } else {
-      const normalizedFilter = filterValue.toLowerCase();
+    // if (filterValue === "") {
+    //   return notices;
+    // } else {
+      const normalizedFilter = filter.toLowerCase();
 
       return notices.filter((notice) =>
         notice.title.toLowerCase().includes(normalizedFilter)
       );
-    }
+    // }
   };
 
   const pets = filteredNotices(notices);
-  // console.log(pets);
+  console.log(pets);
 
   return (
     <>
-
       <NoticesContainer pets={pets} />
     </>
   );

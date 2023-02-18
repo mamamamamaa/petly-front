@@ -20,7 +20,6 @@ export const NavList = styled.ul`
         visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
         pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
         padding-top: 160px;
-        padding-bottom: ;
     }
     ${media.desktop} {
         flex-direction: row;
