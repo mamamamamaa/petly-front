@@ -79,7 +79,7 @@ export const NoticeCategoryItemTemplate = ({
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
     } else {
-      dispatch(addNoticeToFav(_id));
+      dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
     }
     setFav(prevState => !prevState);
