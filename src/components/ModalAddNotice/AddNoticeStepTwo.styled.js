@@ -45,8 +45,8 @@ export const AddNoticeStepTwoLabelSex = styled.label`
   }
 `;
 export const AddNoticeStepTwoInputSexCheckboxWrapper = styled.div`
-  // background-image: ${props =>
-    props.checked ? `url("${male}")` : `url("${female}")`};
+  /* background-image: ${props =>
+    props.checked ? `url("${male}")` : `url("${female}")`}; */
   width: 100%;
   height: 80px;
   position: relative;
