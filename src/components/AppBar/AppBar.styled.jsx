@@ -12,14 +12,17 @@ export const BarContainer = styled.div`
     margin: 0 auto;
     ${media.mobile} {
         padding-top: 16px;
+        
     };
     ${media.tablet} {
         padding-top: 24px;
+        /* max-height: 72px; */
     };
     ${media.desktop} {
         padding-top: 20px;
+        /* max-height: 68px; */
     };
-    /* outline: 1px solid red; */
+    outline: 1px solid red;
 `;
 
 export const LogoBlack = styled.span`
@@ -52,6 +55,7 @@ export const TabletWrapper = styled.div`
         ${media.desktop} {
             justify-self: flex-end;
             display: flex;
+            
         }  
 `;
 
@@ -59,64 +63,69 @@ export const TabletWrapper = styled.div`
 export const MenuWrpr = styled.div`
     display: flex;
     flex-direction: column-reverse;
-    justify-content: flex-end;
-    z-index: 20;
-    position: fixed;
-    left: 0;
-    top: 0;
     /* width: 100%; */
-    height: 100%;
     background-color: ${theme.colors.secondary};
     opacity: ${({ isClosed }) => isClosed ? 0 : 1};
     visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
     pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
+    /* outline: 1px solid blue; */
     ${media.mobile} {
         padding-top: 104px;
         width: 100vw;
+        z-index: 20;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        justify-content: flex-end;
     }
     ${media.tablet} {
         margin-right: 25px;
-        /* width: auto; */
         /* width: 100%; */
     }
     ${media.tabletAndDesktop} {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
-        position: static;
+        /* position: static; */
         background-color: inherit;
         /* outline: 1px solid blue; */
         width: auto;
         height: auto;
         padding-top: 0;
+        position: static;
     }
     ${media.desktop} {
         margin-left: 80px;
-        justify-self: flex-end;
+        z-index: auto;
+        /* justify-self: flex-end; */
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        min-width: 1074px;
+        min-width: 1073px;
     }
 `;
 
 export const Nav = styled.nav`
     ${media.mobile} {
         margin-top: 60px;
+        /* padding-bottom: 147px; */
+        /* padding-bottom: 147px; */
     }
     ${media.tablet} {
         display: flex;
-        align-items: center;
+        /* align-items: center; */
+        align-items: flex-start;
         justify-content: center;
         opacity: ${({ isClosed }) => isClosed ? 0 : 1};
         visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
         pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
         margin: 0, auto;
-        z-index: 100;
-        position: fixed;
+        z-index: 20;
+        position: absolute;
         left: 0;
         top: 0;
-        /* width: 100%; */
+        /* padding-bottom: 715px; */
         height: 100%;
         width: 100%;
         background-color: ${theme.colors.secondary};
@@ -127,7 +136,7 @@ export const Nav = styled.nav`
             pointer-events: auto;
             position: static;
             background-color: inherit;
-            /* outline: 1px solid orange; */
+            outline: 1px solid orange;
             width: auto;
             height: auto;
         }

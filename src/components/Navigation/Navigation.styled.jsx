@@ -12,11 +12,15 @@ export const NavList = styled.ul`
     align-items: center;
     justify-content: center;
     flex-direction: column; 
+    ${media.mobile} {
+        /* padding-bottom: 147px; */
+    }
     ${media.tablet} {
         opacity: ${({ isClosed }) => isClosed ? 0 : 1};
         visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
         pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
         padding-top: 160px;
+        padding-bottom: ;
     }
     ${media.desktop} {
         flex-direction: row;

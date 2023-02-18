@@ -52,7 +52,7 @@ margin: 0, auto;
   };
   ${media.desktop} {
     padding-top: 92px;
-    min-height: 700px;
+    min-height: 720px;
     background-image: url(${ladyWithPetDesktop1x}),
     url(${desktopBackground}),
     url(${HeartBackgroundImg});
@@ -67,11 +67,12 @@ margin: 0, auto;
           url(${desktopBackground}),
           url(${HeartBackgroundImg2x});
       };
-@media screen and (min-width: 1600px) {
-    width: 1600px;
+@media screen and (min-width: 1400px) {
+    width: 1400px;
     height: auto;
     margin-left: auto;
     margin-right: auto;
+    background-position: bottom 0 right 16px, bottom 0px left 0, top 20% right 40%;
 }
     /* position: relative;
     height: 35vmax; //woman togather with rainbow move Y 35
