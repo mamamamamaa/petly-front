@@ -25,7 +25,7 @@ import {
   AddToFavImg,
   CallModal,
 } from './ListModalCardNotice.styled';
-import NewsNewDate from '../../utils/NewsNewDate/NewsNewDate';
+import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import noPoster from 'noPoster.jpg';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
 // ===================
@@ -132,7 +132,7 @@ export const ListModalCardNotice = ({ date }) => {
                 </Li>
                 <Li>
                   <Text>
-                    <NewsNewDate date={dateOfBirth} />
+                    <ModalNewDate date={dateOfBirth} />
                   </Text>
                 </Li>
                 <Li>

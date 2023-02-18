@@ -9,7 +9,7 @@ import {
   DateBox,
   BoxHref,
 } from './ListNews.styled';
-import NewsNewDate from '../../utils/NewsNewDate/NewsNewDate';
+import NewsNewDateSecond from '../../utils/NewsNewDate/NewsNewDate';
 
 // ======== second way for news ========= down
 function ListNews({ news }) {
@@ -24,7 +24,7 @@ function ListNews({ news }) {
             <Paragraph>{item.description}</Paragraph>
             <Wraper>
               <DateBox>
-                <NewsNewDate date={item.publishedAt} />
+                <NewsNewDateSecond date={item.publishedAt} />
                 {/* <NewsNewDate date={dateOfBirth} /> */}
               </DateBox>
               <BoxHref
