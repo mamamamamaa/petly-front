@@ -25,7 +25,7 @@ export const ModalAddNotice = ({ onClose }) => {
     comments: '',
   });
 
-  const handleNextStep = (newData, final = false) => {
+  const handleNextStep = (newData={}, final = false) => {
     const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
       'DD.MM.YYYY'
     );
@@ -62,7 +62,7 @@ export const ModalAddNotice = ({ onClose }) => {
     setCurrentStep(prevStep => prevStep + 1);
   };
 
-  const handlePrevStep = newData => {
+  const handlePrevStep = (newData={}) => {
     setData(prevData => ({ ...prevData, ...newData }));
     setCurrentStep(prevStep => prevStep - 1);
   };
@@ -95,10 +95,6 @@ export const ModalAddNotice = ({ onClose }) => {
   return (
     <ModalAddNoticeWrapper>
       <ModalAddNoticeTitle>Add pet</ModalAddNoticeTitle>
-      <ModalAddNoticeText>
-        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-        consectetur
-      </ModalAddNoticeText>
       {steps[currentStep]}
     </ModalAddNoticeWrapper>
   );

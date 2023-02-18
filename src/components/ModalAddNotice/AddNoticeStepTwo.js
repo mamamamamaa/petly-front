@@ -2,8 +2,15 @@ import { useFormik } from 'formik';
 // import { useState } from 'react';
 
 import { object, string, mixed, number } from 'yup';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-
+// import { ErrorMessage, Field, Form, Formik } from 'formik';
+import {
+  AddNoticeStepTwoForm,
+  AddNoticeStepOneButtonBack,
+  AddNoticeStepOneButtonDone,
+  AddNoticeStepTwoButtonBackDoneWrapper,
+  AddNoticeStepTwoInput,
+  AddNoticeStepTwoLabel,
+} from './AddNoticeStepTwo.styled';
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
   place: string()
@@ -56,43 +63,40 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
-      <div>
-        <label>
-          Upload File
-          <input
-            type="file"
-            name="pictureURL"
-            accept="image/*"
-            onChange={e =>
-              formik.setFieldValue(
-                'pictureURL',
-                e.currentTarget.files[0],
-                e.currentTarget.files[0].name
-              )
-            }
-          />
-          <div>{formik.errors.pictureURL}</div>
-        </label>
-      </div>
-      <div>
-        <label>
-          Comments
-          <input
-            type="text"
-            name="comments"
-            placeholder="Type comments"
-            onChange={formik.handleChange}
-            value={formik.values.comments}
-          />
-          <div>{formik.errors.pictureURL}</div>
-        </label>
-      </div>
-
-      <button type="button" onClick={handleBack}>
-        Back
-      </button>
-      <button type="submit">Done</button>
-    </form>
+    <AddNoticeStepTwoForm
+      onSubmit={formik.handleSubmit}
+      encType="multipart/form-data"
+    >
+        <AddNoticeStepTwoLabel>Upload File</AddNoticeStepTwoLabel>
+        <input
+          type="file"
+          name="pictureURL"
+          accept="image/*"
+          onChange={e =>
+            formik.setFieldValue(
+              'pictureURL',
+              e.currentTarget.files[0],
+              e.currentTarget.files[0].name
+            )
+          }
+        />
+        <div>{formik.errors.pictureURL}</div>
+        <AddNoticeStepTwoLabel>Comments</AddNoticeStepTwoLabel>
+        <AddNoticeStepTwoInput
+          type="text"
+          name="comments"
+          placeholder="Type comments"
+          onChange={formik.handleChange}
+          value={formik.values.comments}
+        />
+      <AddNoticeStepTwoButtonBackDoneWrapper>
+        <AddNoticeStepOneButtonDone type="submit">
+          Done
+        </AddNoticeStepOneButtonDone>
+        <AddNoticeStepOneButtonBack type="button" onClick={handleBack}>
+          Back
+        </AddNoticeStepOneButtonBack>
+      </AddNoticeStepTwoButtonBackDoneWrapper>
+    </AddNoticeStepTwoForm>
   );
 };

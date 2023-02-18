@@ -15,8 +15,8 @@ const initialState = {
   accessToken: null,
   refreshToken: null,
   expiresIn: null,
-  isLoggedIn: false,
-  isRefreshing: false,
+  isLoggedIn: true,
+  isRefreshing: true,
   verifyPart: false,
   error: null,
 };

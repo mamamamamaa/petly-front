@@ -1,6 +1,29 @@
 import styled from '@emotion/styled';
 import { media } from 'components/Layout/Layout.styled';
 import { Form } from 'formik';
+
+export const AddNoticeStepOneForm = styled(Form)`
+  width: 280px;
+  ${media.tabletAndDesktop} {
+    width: 608px;
+  }
+`;
+export const AddNoticeStepOneText = styled.p`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: #111111;
+  margin-bottom: 20px;
+  ${media.tabletAndDesktop} {
+    font-size: 20px;
+    line-height: 27px;
+    color: #000000;
+    margin-bottom: 28px;
+  }
+`;
+
 export const AddNoticeStepOneTopBtnsWrapper = styled.div`
   margin-bottom: 32px;
   ${media.tabletAndDesktop} {
@@ -9,12 +32,6 @@ export const AddNoticeStepOneTopBtnsWrapper = styled.div`
   }
 `;
 
-export const AddNoticeStepOneForm = styled(Form)`
-  width: 280px;
-  ${media.tabletAndDesktop} {
-    width: 608px;
-  }
-`;
 export const AddNoticeLostFound = styled.button`
   width: 131px;
   height: 35px;

@@ -15,6 +15,7 @@ import {
   AddNoticeLostFound,
   AddNoticeInGoodHands,
   AddNoticeSell,
+  AddNoticeStepOneText,
 } from './AddNoticeStepOne.styled';
 import moment from 'moment';
 
@@ -81,6 +82,10 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
       onSubmit={handleSubmit}
     >
       <AddNoticeStepOneForm>
+        <AddNoticeStepOneText>
+          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+          consectetur
+        </AddNoticeStepOneText>
         <AddNoticeStepOneTopBtnsWrapper>
           <Field name="lostFound" component={AddNoticeLostFound}>
             <AddNoticeStepOneButtonSpan>lost/found</AddNoticeStepOneButtonSpan>
@@ -90,11 +95,7 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
               in good hands
             </AddNoticeStepOneButtonSpan>
           </Field>
-          <Field
-            name="sell"
-            component={AddNoticeSell}
-            defaultChecked={checked}
-          >
+          <Field name="sell" component={AddNoticeSell} defaultChecked={checked}>
             <AddNoticeStepOneButtonSpan>sell</AddNoticeStepOneButtonSpan>
           </Field>
         </AddNoticeStepOneTopBtnsWrapper>
