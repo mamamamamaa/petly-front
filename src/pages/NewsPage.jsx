@@ -11,60 +11,6 @@ import ListNews from '../components/ListNews/ListNews';
 import { Container, MainHeader } from './NewsPage.styled';
 // =======
 
-// ================= логика
-// export default function NewsPage() {
-//   const [searchNews, setSearchNews] = useState([]);
-//   const [query, setQuery] = useState('animals');
-//   const [error, setError] = useState(false);
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [setSearchParams] = useSearchParams();
-
-//   const dispatch = useDispatch();
-//   const { currentNews } = useNews();
-//   useEffect(() => {
-//     dispatch(getNews(query));
-
-//     const count = currentNews.data.result.totalCount;
-//     console.log(count);
-//     if (count === 0) {
-//       toast.error(
-//         'Sorry, there are no news matching your query. Please try again.'
-//       );
-//       return;
-//     }
-//     const newNews = currentNews.data.result.value;
-//     console.log(newNews);
-//     setSearchNews(newNews);
-//   }, [dispatch, query, currentNews]);
-
-//   useEffect(() => {
-//     if (error !== false) {
-//       toast.error(error);
-//     }
-//   }, [error]);
-
-//   const handlerFormSubmit = values => {
-//     if (query !== values.query.trim()) {
-//       setSearchNews([]);
-//       setQuery(values.query.trim());
-//       setError(false);
-//       setIsLoading(false);
-//       setSearchParams({ query: values.query });
-//     }
-//   };
-
-//   return (
-//     <Container>
-//       <MainHeader>News</MainHeader>
-//       <SearchBar onSubmit={handlerFormSubmit} />
-//       {isLoading && <h2>... is loading</h2>}
-//       <ListNews news={searchNews} />
-//       <Toaster />
-//     </Container>
-//   );
-// }
-
-// ======== second way for news ========= down
 export default function NewsPage() {
   const [query, setQuery] = useState('pets');
   const [error, setError] = useState(false);
@@ -74,6 +20,10 @@ export default function NewsPage() {
   const dispatch = useDispatch();
   const { currentNews } = useNews();
   const { articles } = currentNews;
+
+  // const { data } = currentNews;
+  // const { result } = data;
+  // const { value } = result;
 
   useEffect(() => {
     dispatch(getNews(query));
@@ -100,6 +50,7 @@ export default function NewsPage() {
       <SearchBar onSubmit={handlerFormSubmit} />
       {isLoading && <h2>... is loading</h2>}
       {currentNews && articles && <ListNews news={articles} />}
+      {/* {currentNews && articles && <ListNews news={articles} />} */}
       <Toaster />
     </Container>
   );
