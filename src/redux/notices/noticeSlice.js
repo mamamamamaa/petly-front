@@ -9,6 +9,7 @@ import {
   favorite,
   myAds,
   deleteNoticeFromFav,
+  addNoticeToFav,
 } from './operations';
 
 const initialState = {
@@ -40,6 +41,17 @@ const initialState = {
   currentNotice: null,
 };
 
+const findNotice = (state, id, type) => {
+  switch (type) {
+    case 'sell':
+      return state.sellNotices.find(notice => notice._id === id);
+    case 'good-hands':
+      return state.goodHandsNotices.find(notice => notice._id === id);
+    case 'lost/found':
+      return state.lostFoundNotices.find(notice => notice._id === id);
+  }
+};
+
 const noticeSlice = createSlice({
   name: 'notice',
   initialState,
@@ -54,6 +66,22 @@ const noticeSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getNoticeById.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(addNoticeToFav.pending, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addNoticeToFav.fulfilled, (state, action) => {
+        const { id, type } = action.payload;
+
+        const notice = findNotice(state, id, type);
+
+        if (notice) {
+          state.favoriteNotices.push(notice);
+        }
+      })
+      .addCase(addNoticeToFav.rejected, (state, action) => {
         state.isLoading = false;
       })
       .addCase(deleteNoticeFromFav.pending, (state, action) => {

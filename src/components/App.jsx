@@ -53,7 +53,7 @@ export const App = () => {
             path="favorite"
             element={
               <PrivateRoute
-                component={<NoticesContainer type="lost-found" />}
+                component={<NoticesContainer type="favorite" />}
                 redirectTo="/login"
               />
             }

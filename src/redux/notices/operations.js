@@ -133,10 +133,10 @@ export const getNoticeById = createAsyncThunk(
 
 export const addNoticeToFav = createAsyncThunk(
   'notices/addNoticeToFav',
-  async (id, thunkAPI) => {
+  async ({ id, type }, thunkAPI) => {
     try {
-      const res = await axios.patch(`/api/notices/addfavorite/${id}`);
-      return res.data;
+      await axios.patch(`/api/notices/addfavorite/${id}`);
+      return { id, type };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
