@@ -23,6 +23,7 @@ import {
   AddNoticeStepTwoLoadImageInputWrapper,
   AddNoticeStepTwoTitle,
 } from './AddNoticeStepTwo.styled';
+
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
   place: string()
@@ -63,6 +64,7 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
     },
     validationSchema: addNoticeSchema,
     onSubmit: (values, actions) => {
+      actions.setFieldValue('photoUrl', values.photoUrl, values.photoUrl.name);
       actions.validateForm();
       const newValue = {
         ...data,

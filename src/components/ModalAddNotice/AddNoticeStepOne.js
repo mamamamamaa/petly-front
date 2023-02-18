@@ -25,8 +25,8 @@ const filterByLengthBreeds = breeds.filter(
 );
 
 const schema = yup.object().shape({
-  type: yup.string().required(),
-  // type: yup.string(),
+  // type: yup.string().required(),
+  type: yup.string(),
   title: yup
     .string()
     .min(2, 'Title should be from 2 to 48 symbols')
@@ -120,6 +120,7 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           id="title"
           component={AddNoticeStepOneInput}
           placeholder="Type name pet"
+          required
         />
 
         <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
@@ -128,6 +129,7 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           id="name"
           component={AddNoticeStepOneInput}
           placeholder="Type name pet"
+          required
         />
 
         <AddNoticeStepOneLabel htmlFor="dateOfBirth">
@@ -137,14 +139,20 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           type="date"
           name="dateOfBirth"
           id="dateOfBirth"
-          // required
+          required
           onChange={handleDate}
           max={moment(moment.now()).format('YYYY-MM-DD')}
           value={selectedDate}
           component={AddNoticeStepOneInput}
         />
         <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
-        <Field component={AddNoticeStepOneSelect} name="breed" id="breed">
+        <Field
+          as="select"
+          component={AddNoticeStepOneSelect}
+          name="breed"
+          id="breed"
+          required
+        >
           {filterByLengthBreeds.map(breed => (
             <option value={breed} key={breed}>
               {breed}
