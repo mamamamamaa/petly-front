@@ -66,12 +66,12 @@ export const AddNoticeStepTwoMale = styled.img`
   height: 40px;
   margin-right: 40px;
   margin-bottom: 12px;
-  box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
+  /* box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
     inset 0px -3px 4px rgba(0, 0, 0, 0.25);
   outline: 1px solid ${props => (props.checked ? '#f59256' : '#ffffff')};
   ${media.tabletAndDesktop} {
     margin-bottom: 23px;
-  }
+  } */
 `;
 export const AddNoticeStepTwoMaleSpan = styled.span`
   display: block;
@@ -90,9 +90,9 @@ export const AddNoticeStepTwoFemale = styled.img`
   width: 40px;
   height: 40px;
   margin-bottom: 12px;
-  box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
+  /* box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
     inset 0px -3px 4px rgba(0, 0, 0, 0.25);
-  outline: 1px solid ${props => (props.checked ? '#ffffff' : '#f59256')};
+  outline: 1px solid ${props => (props.checked ? '#ffffff' : '#f59256')}; */
 `;
 export const AddNoticeStepTwoFemaleSpan = styled.span`
   display: block;
