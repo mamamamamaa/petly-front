@@ -21,6 +21,7 @@ import {
   AddNoticeStepTwoLabelSex,
   AddNoticeStepTwoLoadImageInput,
   AddNoticeStepTwoLoadImageInputWrapper,
+  AddNoticeStepTwoTitle,
 } from './AddNoticeStepTwo.styled';
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
@@ -75,10 +76,11 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
   });
   const [isChecked, setIsChecked] = useState(false);
   return (
+          
     <AddNoticeStepTwoForm
       onSubmit={formik.handleSubmit}
       encType="multipart/form-data"
-    >
+    ><AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
       <AddNoticeStepTwoLabelSex htmlFor="title">
         The sex:
       </AddNoticeStepTwoLabelSex>

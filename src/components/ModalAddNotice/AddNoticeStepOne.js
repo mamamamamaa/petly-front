@@ -16,6 +16,7 @@ import {
   AddNoticeInGoodHands,
   AddNoticeSell,
   AddNoticeStepOneText,
+  AddNoticeStepOneTitle,
 } from './AddNoticeStepOne.styled';
 import moment from 'moment';
 
@@ -82,6 +83,7 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
       onSubmit={handleSubmit}
     >
       <AddNoticeStepOneForm>
+        <AddNoticeStepOneTitle>Add pet</AddNoticeStepOneTitle>
         <AddNoticeStepOneText>
           Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
           consectetur

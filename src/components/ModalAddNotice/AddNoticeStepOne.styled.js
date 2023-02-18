@@ -2,10 +2,25 @@ import styled from '@emotion/styled';
 import { media } from 'components/Layout/Layout.styled';
 import { Form } from 'formik';
 
+
 export const AddNoticeStepOneForm = styled(Form)`
   width: 280px;
   ${media.tabletAndDesktop} {
     width: 608px;
+  }
+`;
+
+export const AddNoticeStepOneTitle = styled.h3`
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 33px;
+  color: #111111;
+  margin-bottom: 20px;
+  ${media.tabletAndDesktop} {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 49px;
+    color: #000000;
   }
 `;
 export const AddNoticeStepOneText = styled.p`

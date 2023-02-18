@@ -3,11 +3,7 @@ import { AddNoticeStepOne } from './AddNoticeStepOne';
 import { AddNoticeStepTwo } from './AddNoticeStepTwo';
 import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/operations';
-import {
-  ModalAddNoticeTitle,
-  ModalAddNoticeWrapper,
-  ModalAddNoticeText,
-} from './ModalAddNotice.styled';
+import { ModalAddNoticeWrapper } from './ModalAddNotice.styled';
 import moment from 'moment';
 
 export const ModalAddNotice = ({ onClose }) => {
@@ -25,7 +21,7 @@ export const ModalAddNotice = ({ onClose }) => {
     comments: '',
   });
 
-  const handleNextStep = (newData={}, final = false) => {
+  const handleNextStep = (newData = {}, final = false) => {
     const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
       'DD.MM.YYYY'
     );
@@ -62,7 +58,7 @@ export const ModalAddNotice = ({ onClose }) => {
     setCurrentStep(prevStep => prevStep + 1);
   };
 
-  const handlePrevStep = (newData={}) => {
+  const handlePrevStep = (newData = {}) => {
     setData(prevData => ({ ...prevData, ...newData }));
     setCurrentStep(prevStep => prevStep - 1);
   };
@@ -92,10 +88,5 @@ export const ModalAddNotice = ({ onClose }) => {
       onClose={onClose}
     />,
   ];
-  return (
-    <ModalAddNoticeWrapper>
-      <ModalAddNoticeTitle>Add pet</ModalAddNoticeTitle>
-      {steps[currentStep]}
-    </ModalAddNoticeWrapper>
-  );
+  return <ModalAddNoticeWrapper>{steps[currentStep]}</ModalAddNoticeWrapper>;
 };
