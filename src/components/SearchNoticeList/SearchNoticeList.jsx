@@ -3,7 +3,7 @@ import {search} from '../../redux/notices/operations';
 import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useFilter } from "redux/hooks";
+// import { useFilter } from "redux/hooks";
 // import { getFilterValue } from "../../redux/hooks";
 import {useNotices} from '../../redux/hooks';
 import {NoticesContainer} from '../NoticesContainer/NoticesContainer';
@@ -16,7 +16,7 @@ export const SearchNoticeList = () => {
  
   const { pathname } = useLocation();
 
-  const filter = useSelector(useFilter).getFilterValue;
+  const filter = useSelector(useNotices).getFilterValue;
   // console.log(filter);
   console.log(filter);
 

@@ -63,6 +63,7 @@ const NoticesPage = () => {
 
   useEffect(() => {
     dispatch(filterNotices(filter));
+    // console.log(filterNotices(filter));
   },[filter, dispatch]);
 
   
@@ -154,14 +155,15 @@ const NoticesPage = () => {
           </AddPetToNoticesBtnWrapper>
         )}
       </NoticesNavWrapper>
-        {filter !== '' ? (<SearchNoticeList/>) 
-        :  
-        (
-        <Suspense>
-          <Outlet />
-        </Suspense>
-        )} 
       
+        {filter !== '' ? (
+         <SearchNoticeList/>
+          )
+          :
+          (<Suspense>
+           <Outlet />
+         </Suspense>
+         )}
       <Toaster />
     </Container>
   );

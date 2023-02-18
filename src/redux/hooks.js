@@ -43,6 +43,7 @@ export const useNotices = () => {
   const isLoading = useSelector(state => state.notices.isLoading);
   const error = useSelector(state => state.notices.error);
   const notices = useSelector(state => state.notices.notices);
+  const getFilterValue = useSelector(state => state.notices.filter);
   return {
     sellNotices,
     lostFoundNotices,
@@ -53,6 +54,7 @@ export const useNotices = () => {
     error,
     currentNotice,
     notices,
+    getFilterValue
   };
 };
 
@@ -85,10 +87,10 @@ export const useUserAvatar = () => {
   return {userAvatar}
 };
 
-export const useFilter = () => {
-  const getFilterValue = useSelector(state => state.notices.filter);
-  return {getFilterValue};
-}
+// export const useFilter = () => {
+//   const getFilterValue = useSelector(state => state.notices.filter);
+//   return {getFilterValue};
+// }
 
 
 // export const getFilterValue = state => state.notices.filter;
