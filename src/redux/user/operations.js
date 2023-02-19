@@ -41,7 +41,7 @@ export const updateUser  = createAsyncThunk(
 
 
 export const updateAvatar = createAsyncThunk(
-    "avatarUrl/updateAvatar",    
+    "avatarURL/updateAvatar",    
     async ( avatarURL, thunkAPI) => {
         
         //console.log()

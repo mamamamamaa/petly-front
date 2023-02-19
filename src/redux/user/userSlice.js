@@ -16,7 +16,7 @@ const initialState = {
     city: ' ',
     phone: ' ',
     birthday: ' ',
-    avatarUrl: ' ',
+    avatarURL: ' ',
   },
   isLoading: false,
   error: null,

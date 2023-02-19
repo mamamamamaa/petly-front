@@ -16,27 +16,37 @@ import { useUserAvatar } from "redux/hooks";
 
 export const FileUploader = () => {
   const [image, setImage] = useState();
-  const [imageURL, setImageURL] = useState();
+  const [avatarURL, setAvatarURL] = useState();
   const dispatch = useDispatch(); 
-  const avatar = useUserAvatar()
+  
 
   const fileReader = new FileReader();
   fileReader.onloadend = () => {
-    setImageURL(fileReader.result);
+    setAvatarURL(fileReader.result);
   };
-  // console.log(fileReader)
   
-  let formData = new FormData();
+  const saveFile = (file) => {
+  // save file to server here
+  console.log("Saving file:", file.name);
+};
+
+  
+      let formData = new FormData();
       const onChangeHandler = e => {
         console.log(e.target.files[0])
+
+        const file = e.target.files[0];
+        if (file && file.size > 0) {
+        saveFile(file);
+      }
         setImage(e.target.files[0]);          
         fileReader.readAsDataURL(e.target.files[0]);
         
-        if (e.target && e.target.files[0]) {
-          formData.append('avatarUrl', e.target.files[0]);
+        if (e.currentTarget && e.target.files[0]) {
+          formData.append('avatarURL', e.target.files[0].name);
         }
               
-        dispatch(updateAvatar(e.target.files[0]));
+        dispatch(updateAvatar(file.name));
       };
   
   
@@ -44,7 +54,7 @@ export const FileUploader = () => {
   
   
   return (
-    <Formav>
+    <Formav encType="multipart/form-data">
       <Labelav
         htmlFor="file-loader-button"
        
@@ -58,7 +68,7 @@ export const FileUploader = () => {
         onChange={onChangeHandler}
       />
       <Imgav
-        src={imageURL ? imageURL : "no_photo.jpg"}
+        src={avatarURL ? avatarURL : "no_photo.jpg"}
         
         alt="preview"
          accept='image/*'
