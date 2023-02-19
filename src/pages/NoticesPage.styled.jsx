@@ -4,6 +4,10 @@ import { NavLink } from 'react-router-dom';
 import zoom from 'utils/svg/zoom.svg';
 import { media } from 'components/Layout/Layout.styled';
 
+export const Form = styled.form`
+  
+`;
+
 export const NoticesSearch = styled.label`
   font-family: 'Manrope';
   font-style: normal;

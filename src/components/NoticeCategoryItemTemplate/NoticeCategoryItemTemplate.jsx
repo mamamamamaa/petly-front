@@ -1,7 +1,6 @@
 import {
   PhotoPet,
   Title,
-  PetSpan,
   BoxPetDetails,
   WraperPetDetails,
   Ul,
@@ -17,13 +16,9 @@ import {
   PetDeleteButtonDiv,
   PetDeleteButtonImg,
   PetDeleteButtonText,
-  // AddPetToNotTextMob,
-  // AddPetToNotImgMob,
-  // AddPetToNotBtnMob,
 } from './NoticeCategoryItemTemplate.styled';
 import heart from 'utils/svg/heart.svg';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
-import cross from 'utils/svg/cross.svg';
 import recycleBin from 'utils/svg/recycleBin.svg';
 import { useAuth, useNotices } from '../../redux/hooks';
 import { useDispatch } from 'react-redux';
@@ -84,11 +79,22 @@ export const NoticeCategoryItemTemplate = ({
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
     } else {
-      dispatch(addNoticeToFav(_id));
+      dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
     }
     setFav(prevState => !prevState);
   };
+
+  const changeTitle = type => {
+    if (type === 'good-hands') {
+      const newType = 'In good hands';
+      return newType;
+    } else {
+      const newType = type;
+      return newType;
+    }
+  };
+  const getNewType = changeTitle(type);
 
   return (
     <>
@@ -100,7 +106,7 @@ export const NoticeCategoryItemTemplate = ({
       <PhotoPetWrapper>
         <PhotoPet src={photoUrl} alt="Pet" />
         <AdvWrapper>
-          <AdvTitle>{type}</AdvTitle>
+          <AdvTitle>{getNewType}</AdvTitle>
         </AdvWrapper>
         <AddToFavBtn to="" onClick={favoriteHandler}>
           {fav ? (
@@ -109,10 +115,6 @@ export const NoticeCategoryItemTemplate = ({
             <AddToFavImg src={heart} alt="Add to favorites" />
           )}
         </AddToFavBtn>
-        {/* <AddPetToNotBtnMob to="">
-          <AddPetToNotImgMob src={cross} alt="Add pet to notices" />
-          <AddPetToNotTextMob>Add pet</AddPetToNotTextMob>
-        </AddPetToNotBtnMob> */}
       </PhotoPetWrapper>
       <BoxPetDetails>
         <Title>{title}</Title>

@@ -1,11 +1,16 @@
 import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { search } from 'redux/notices/operations';
+import { useNavigate } from 'react-router-dom';
 // import { sell } from 'redux/notices/operations';
 import { useDispatch } from 'react-redux';
 import { NoticesContainer } from 'components/NoticesContainer/NoticesContainer';
+import { SearchNoticeList } from 'components/SearchNoticeList/SearchNoticeList';
+import { useFilter } from '../redux/hooks';
+import { filterNotices } from 'redux/notices/noticeSlice';
 import {
+  Form,
   NoticesSearch,
   SearchField,
   NoticesNavLink,
@@ -18,11 +23,12 @@ import {
   NoticesNavWrapper,
   // AddPetToNoticesBtnWrapper,
 } from './NoticesPage.styled';
-import { AddPetToNoticesBtn,
-          AddPetToNoticesImg,
-          AddPetToNoticesText, 
-          AddPetToNoticesBtnWrapper
-         } from 'components/AddNoticeButton/AddNoticeButton.styled';
+import {
+  AddPetToNoticesBtn,
+  AddPetToNoticesImg,
+  AddPetToNoticesText,
+  AddPetToNoticesBtnWrapper,
+} from 'components/AddNoticeButton/AddNoticeButton.styled';
 import cross from 'utils/svg/cross.svg';
 import { useAuth } from '../redux/hooks';
 import toast, { Toaster } from 'react-hot-toast';
@@ -44,8 +50,37 @@ const NoticesPage = () => {
       : setIsModalOpen(true);
   };
 
+  // const navigate = useNavigate();
+  // const goToSearch = () => navigate('/search-ads');
+  const [filter, setFilter] = useState("");
+
   const dispatch = useDispatch();
+
+  const handleFilterChange = (event) => {
+    setFilter(event.currentTarget.value);
+    console.log(filter);
+};
+
   useEffect(() => {
+    dispatch(filterNotices(filter));
+    // console.log(filterNotices(filter));
+  },[filter, dispatch]);
+
+  
+  
+ 
+  // const {filterValue} = useFilter;
+  // console.log(filterValue);
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   goToSearch();
+  //   // dispatch(firstName);
+  //   console.log('submit');
+  // }
+  
+  // useEffect(() => {
     // const getTrendingHttp = async () => {
     //   try {
     //     const response = await dispatch(search(firstName)).then(
@@ -53,22 +88,23 @@ const NoticesPage = () => {
     //         return responseHttp;
     //       }
     //     );
-    //     console.log(response);
+    //     // console.log(response);
     //     setPets([...response.payload]);
+    //     console.log(pets);
     //   } catch (error) {
     //     console.error(error);
     //   }
     // };
     // getTrendingHttp();
-  }, [firstName, dispatch]);
+  // }, [firstName, dispatch]);
 
   return (
-    <Container>
-      <NoticesSearch>
+      <Container>
+        <NoticesSearch>
         <SearchField
           placeholder="Search"
-          value={firstName}
-          onChange={e => setFirstName(e.target.value)}
+          value={filter}
+          onChange={handleFilterChange}
         />
       </NoticesSearch>
       <NoticesNavWrapper>
@@ -119,9 +155,15 @@ const NoticesPage = () => {
           </AddPetToNoticesBtnWrapper>
         )}
       </NoticesNavWrapper>
-      <Suspense>
-        <Outlet />
-      </Suspense>
+      
+        {/* {filter !== '' ? (
+         <SearchNoticeList/>
+          )
+          : ( */}
+          <Suspense>
+           <Outlet />
+         </Suspense>
+         {/* )} */}
       <Toaster />
     </Container>
   );
