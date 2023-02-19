@@ -41,7 +41,6 @@ export const SearchField = styled.input`
   border: 0;
   /* width: 100%; */
   display: block;
-  margin-top: 28px;
   background: ${theme.colors.accentText};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
@@ -65,18 +64,19 @@ export const SearchField = styled.input`
     min-width: 280px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 28px;
   }
   ${media.tablet} {
     min-width: 608px;
     margin-right: 48px; 
     margin-left: 48px; 
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 40px;
   }
   ${media.desktop} {
     width: 608px;
     margin-right: 320px;
     margin-left: 320px;
+    margin-top: 40px;
   }
 `;
 export const NoticesNavWrapper = styled.div`
