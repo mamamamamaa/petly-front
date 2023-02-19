@@ -4,8 +4,26 @@ import { NavLink } from 'react-router-dom';
 import zoom from 'utils/svg/zoom.svg';
 import { media } from 'components/Layout/Layout.styled';
 
-export const Form = styled.form`
-  
+export const NoticesTitle = styled.h2`
+    text-align: center;
+    font-style: normal;
+    font-weight: ${theme.fontWeights.bold};
+    color: ${theme.colors.black};
+    ${media.mobile} {
+      padding-top: 42px;
+      font-size: 24px;
+      line-height: 33px;
+    };
+    ${media.tablet} {
+      padding-top: 88px;
+      font-size: 48px;
+      line-height: 66px;
+    };
+    ${media.desktop} {
+        padding-top: 59px;
+        font-size: 48px;
+        line-height: 66px;
+    }
 `;
 
 export const NoticesSearch = styled.label`
@@ -43,17 +61,17 @@ export const SearchField = styled.input`
     color: #535353;
   }
   ${media.mobile} {
-    /* width: 100%; */
+    width: 100%;
     min-width: 280px;
     margin-left: auto;
     margin-right: auto;
   }
   ${media.tablet} {
     min-width: 608px;
+    margin-right: 48px; 
+    margin-left: 48px; 
     margin-left: auto;
     margin-right: auto;
-    /* margin-right: 48px;
-    margin-left: 48px; */
   }
   ${media.desktop} {
     width: 608px;
