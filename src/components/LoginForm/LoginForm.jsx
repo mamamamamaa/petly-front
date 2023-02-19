@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Formik,  useFormik } from "formik"
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
-
+import toast, { Toaster } from 'react-hot-toast';
 import {login}  from "../../redux/auth/operations";
 
 // import Spinner from '../Spinner';
@@ -19,7 +19,8 @@ import {
     Button,
     Text,
     StyledLink,
-    ErrorText
+    ErrorText,
+    Section
     } from "./LoginForm.styled";
 
 const securityEmail =
@@ -63,8 +64,13 @@ const LoginForm = () => {
         if (!error) {
         resetForm() 
         }
+
+        if (error) {
+            return toast.error('Please check if email and password are correct or sign up');
+        }
                         
      }
+
     
      const formik = useFormik({
         initialValues: { email: '', password: '' },
@@ -81,6 +87,7 @@ const LoginForm = () => {
         {/* {isLoading ? (
           <Spinner />
         ) : ( */}
+       <Section>
         <Container>
             <Formik
                 initialValues={formik.initialValues}
@@ -136,7 +143,9 @@ const LoginForm = () => {
                     </Text>
                 </FormLogin>
             </Formik>
+            <Toaster />
         </Container>
+        </Section>
         </>
     )
  }

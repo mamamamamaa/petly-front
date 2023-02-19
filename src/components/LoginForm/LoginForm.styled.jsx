@@ -7,6 +7,24 @@ import mobileBackground from '../../images/mobile/log-registr-mobile.png';
 import tabletBackground from '../../images/tablet/log-registr-tablet.png';
 import desktopBackground from '../../images/desktop/log-registr-desktop.png';
 
+export const Section = styled.section`
+  /* background-image: url(${mobileBackground});
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
+  ${media.tablet} {
+    background-image: url(${tabletBackground});
+    background-size: contain;
+    background-position: bottom 0 left 50%;
+  };
+  ${media.desktop} {
+    background-image: url(${desktopBackground});
+    background-size: contain;
+    min-height: 100vh;
+  } */
+`;
+
 export const Container = styled.div`
   padding-top: 42px;
   background-image: url(${mobileBackground});
@@ -16,6 +34,7 @@ export const Container = styled.div`
   height: calc(100vh - 68px);
   ${media.tablet} {
     padding-top: 204px;
+    padding-bottom: 266px; 
     background-image: url(${tabletBackground});
     height: calc(100vh - 71px);
   }
