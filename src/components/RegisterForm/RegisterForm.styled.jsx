@@ -10,21 +10,11 @@ import desktopBackground from '../../images/desktop/log-registr-desktop.png';
 
 export const FormContainer = styled.div`
   width: 100%;
-  min-height: calc(100vh - 58px);
-  background-image: url(${mobileBackground});
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: contain;
   ${media.tabletAndDesktop} {
-    background-image: url(${tabletBackground});
-    padding-top: 184px;
-    padding-bottom: 268px;
-    min-height: calc(100vh - 64px);
+    padding-top: 170px;
   }
   ${media.desktop} {
-    background-image: url(${desktopBackground});
     padding-top: 50px;
-    padding-bottom: 147px;
   }
 `;
 
@@ -77,7 +67,8 @@ export const ShowPassword = styled.span`
   width: 25px;
   height: 25px;
   right: 15px;
-  top: 13px;
+  top: 50%;
+  transform: translateY(-80%);
   color: grey;
   cursor: pointer;
   svg {
@@ -100,7 +91,7 @@ export const Input = styled(Field)`
   &:focus,
   &:hover {
     border: 2px solid ${theme.colors.primary};
-    outline: 0;
+    outline: none;
   }
   ${media.tabletAndDesktop} {
     width: 448px;
@@ -122,7 +113,7 @@ export const PhoneInput = styled(Field)`
   &:focus,
   &:hover {
     border: 2px solid ${theme.colors.primary};
-    outline: 0;
+    outline: none;
   }
   ${media.tabletAndDesktop} {
     width: 448px;
@@ -223,7 +214,7 @@ export const BackButton = styled.button`
       rgba(245, 146, 86, 0.9),
       transparent
     );
-    transition: all 650ms;
+    transition: all 450ms;
   }
   ${media.tabletAndDesktop} {
     width: 458px;
@@ -236,17 +227,21 @@ export const ErrBox = styled.div`
   white-space: nowrap;
   bottom: 0;
   left: 15px;
-  color: red;
-  font-size: 14px;
-  font-style: italic;
+  color: #e53e3e;
+  font-family: 'Manrope';
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
   ${media.tabletAndDesktop} {
-    left: 33px;
+    left: 32px;
   }
 `;
 
 export const StyledLink = styled(Link)`
   color: ${theme.colors.blue};
   transition: color ${theme.colors.background};
+  margin-left: 4px;
   :hover,
   :focus {
     color: ${theme.colors.primary};
@@ -265,4 +260,24 @@ export const Text = styled.div`
   line-height: 1.33;
   letter-spacing: 0.04em;
   color: ${theme.colors.gray};
+`;
+
+export const Background = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -100;
+  background-image: url(${mobileBackground});
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100vh;
+  ${media.tablet} {
+    background-image: url(${tabletBackground});
+  }
+  ${media.desktop} {
+    background-image: url(${desktopBackground});
+  }
 `;

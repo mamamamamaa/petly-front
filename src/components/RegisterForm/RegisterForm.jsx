@@ -19,6 +19,7 @@ import {
   PhoneInput,
   ShowPassword,
   StyledLink,
+  Background,
 } from './RegisterForm.styled';
 
 const registerSchema = object().shape({
@@ -254,6 +255,7 @@ const RegisterForm = () => {
             </Text>
           </Form1>
         </Formik>
+        <Background></Background>
       </FormContainer>
       {/* )} */}
     </>
