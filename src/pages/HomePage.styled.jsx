@@ -18,7 +18,6 @@ export const HomepageSection = styled.section`
 margin: 0, auto;
   ${media.mobile} {
     height: 100vh;
-    padding-top: 60px;
     background-image: url(${ladyWithPetMobile1x}),
     url(${mobileBackground});
     background-size: 320px 337px, cover;
@@ -33,7 +32,7 @@ margin: 0, auto;
       };
   };
   ${media.tablet} {
-    padding-top: 88px;
+    /* padding-top: 88px; */
     /* height: 100vh; */
     /* min-height: 1000px; */
     background-image: url(${ladyWithPetTablet1x}),
@@ -51,14 +50,14 @@ margin: 0, auto;
   };
   ${media.desktop} {
     /* padding-top: 92px; */
-    /* height: 100vh; */
-    /* min-height: 720px; */
+    min-height: 100vh;
+    /* min-height: 700px; */
     background-image: url(${ladyWithPetDesktop1x}),
     url(${desktopBackground}),
     url(${HeartBackgroundImg});
     background-repeat: no-repeat;
     background-size: 590px 640px, contain, 92px 89px;
-    background-position: bottom 0 right 16px, bottom -20px left 0, top 20% right 40%;
+    background-position: bottom 0 right 16px, bottom 0 left 0, top 20% right 40%;
       @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2), 
       (min-resolution: 192dpi),
@@ -107,6 +106,7 @@ color: ${theme.colors.black};
 margin-left: auto;
 margin-right: auto;
 padding-bottom: 395px;
+padding-top: 60px;
 /* text-align: center; */
 /* margin-top: 60px; */
 /* max-width: 280px; */
@@ -121,6 +121,7 @@ font-size: 68px;
 line-height: 100px;
 margin-left: 0;
 padding-bottom: 833px;
+padding-top: 88px;
 };
 ${media.desktop} {
 font-family: ${theme.fonts.body};
