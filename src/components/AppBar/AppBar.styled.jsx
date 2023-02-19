@@ -21,7 +21,7 @@ export const BarContainer = styled.div`
         padding-top: 20px;
         /* max-height: 68px; */
     };
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
 `;
 
 export const LogoBlack = styled.span`
@@ -70,12 +70,13 @@ export const MenuWrpr = styled.div`
     /* outline: 1px solid blue; */
     ${media.mobile} {
         padding-top: 104px;
+        padding-bottom: 40px;
         width: 100vw;
+        min-height: 100vh;
         z-index: 20;
         position: absolute;
         left: 0;
         top: 0;
-        height: 100vh;
         justify-content: flex-end;
     }
     ${media.tablet} {
@@ -117,15 +118,17 @@ export const Nav = styled.nav`
         align-items: flex-start;
         justify-content: center;
         opacity: ${({ isClosed }) => isClosed ? 0 : 1};
-        visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
+        display: ${({ isClosed }) => isClosed ? 'none' : 'auto'};
         pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
         margin: 0, auto;
         z-index: 20;
         position: absolute;
         left: 0;
         top: 0;
-        /* padding-bottom: 715px; */
-        height: 100%;
+        padding-bottom: 60px;
+        /* height: 100%; */
+        min-height: 100vh;
+        padding-top: 160px;
         width: 100%;
         background-color: ${theme.colors.secondary};
         /* outline: 1px solid green; */

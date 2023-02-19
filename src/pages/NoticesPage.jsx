@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
+  NoticesTitle,
   NoticesSearch,
   SearchField,
   NoticesNavLink,
@@ -41,8 +42,11 @@ const NoticesPage = () => {
   const handleChangeQuery = e => dispatch(setQuery(e.target.value));
 
   return (
-    <Container>
-      <NoticesSearch>
+      <Container>
+        <NoticesTitle>
+            Find your favorite pet
+        </NoticesTitle>
+        <NoticesSearch>
         <SearchField
           placeholder="Search"
           onChange={debounce(handleChangeQuery, 300)}

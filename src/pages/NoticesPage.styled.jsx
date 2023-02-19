@@ -6,6 +6,28 @@ import { media } from 'components/Layout/Layout.styled';
 
 export const Form = styled.form``;
 
+export const NoticesTitle = styled.h2`
+    text-align: center;
+    font-style: normal;
+    font-weight: ${theme.fontWeights.bold};
+    color: ${theme.colors.black};
+    ${media.mobile} {
+      padding-top: 42px;
+      font-size: 24px;
+      line-height: 33px;
+    };
+    ${media.tablet} {
+      padding-top: 88px;
+      font-size: 48px;
+      line-height: 66px;
+    };
+    ${media.desktop} {
+        padding-top: 59px;
+        font-size: 48px;
+        line-height: 66px;
+    }
+`;
+
 export const NoticesSearch = styled.label`
   font-family: 'Manrope';
   font-style: normal;
@@ -21,7 +43,6 @@ export const SearchField = styled.input`
   border: 0;
   /* width: 100%; */
   display: block;
-  margin-top: 28px;
   background: ${theme.colors.accentText};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
@@ -41,22 +62,23 @@ export const SearchField = styled.input`
     color: #535353;
   }
   ${media.mobile} {
-    /* width: 100%; */
+    width: 100%;
     min-width: 280px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 28px;
   }
   ${media.tablet} {
     min-width: 608px;
-    margin-left: auto;
-    margin-right: auto;
-    /* margin-right: 48px;
-    margin-left: 48px; */
+    margin-right: 48px; 
+    margin-left: 48px; 
+    margin-top: 40px;
   }
   ${media.desktop} {
     width: 608px;
     margin-right: 320px;
     margin-left: 320px;
+    margin-top: 40px;
   }
 `;
 export const NoticesNavWrapper = styled.div`
