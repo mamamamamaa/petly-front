@@ -14,7 +14,9 @@ import { NoAvatarContainer, Span, Wrap, DivPhoto } from "../UserCard/UserCard.st
 import { NoPhotoIcon } from "utils/svg/noPhotoCross";
 import { useUserAvatar } from "redux/hooks";
 
+
 export const FileUploader = () => {
+  const[file, setFile] = useState(null)
   const [image, setImage] = useState();
   const [avatarURL, setAvatarURL] = useState();
   const dispatch = useDispatch(); 
@@ -27,26 +29,35 @@ export const FileUploader = () => {
   
   const saveFile = (file) => {
   // save file to server here
-  console.log("Saving file:", file.name);
+    
+    
+    console.log("Saving file:", file.name);
+    // console.log("file object:", file);
+     console.log("file path:",File.path);
 };
 
+
   
-      let formData = new FormData();
+      
       const onChangeHandler = e => {
         console.log(e.target.files[0])
 
         const file = e.target.files[0];
+
+        
         if (file && file.size > 0) {
         saveFile(file);
-      }
+        }
+        const newFile = new File([file], file.name);
+        setFile(newFile);
+        console.log(newFile)
         setImage(e.target.files[0]);          
         fileReader.readAsDataURL(e.target.files[0]);
         
-        if (e.currentTarget && e.target.files[0]) {
-          formData.append('avatarURL', e.target.files[0].name);
-        }
-              
-        dispatch(updateAvatar(file.name));
+        let formData = new FormData();
+        
+        formData.append('avatarURL', newFile);     
+        dispatch(updateAvatar(formData));
       };
   
   
@@ -64,7 +75,7 @@ export const FileUploader = () => {
       <Inputav
         id="file-loader-button"
         type="file"
-        
+        name="saveFile"
         onChange={onChangeHandler}
       />
       <Imgav
