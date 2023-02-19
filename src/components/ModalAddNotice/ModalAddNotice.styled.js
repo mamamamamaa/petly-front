@@ -12,7 +12,7 @@ export const Container = styled.div`
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  position: absolute;
+  /* position: absolute; */
 
   top: 0;
   margin-top: 20px;
@@ -519,5 +519,58 @@ export const AddImg = styled(TfiPlus)`
   @media screen and (min-width: 768px) {
     width: 47px;
     height: 47px;
+  }
+`;
+
+export const InputSelect = styled(Field)`
+  font-family: Manrope;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3;
+  background-color: #fdf7f2;
+  outline: none;
+  border: 1px solid #f59256;
+  border-radius: 40px;
+  @media screen and (max-width: 767px) {
+    height: 48px;
+    margin-top: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    height: 48px;
+    margin-top: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 48px;
+    margin-top: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+`;
+
+export const BoxLabel = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-family: Manrope;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.3;
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    font-size: 24px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 24px;
   }
 `;

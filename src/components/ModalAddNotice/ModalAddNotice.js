@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AddNoticeStepOne } from './AddNoticeStepOne';
 import { AddNoticeStepTwo } from './AddNoticeStepTwo';
+// import { SubTitle } from './ModalAddNotice.styled';
 
 export const ModalAddNotice = props => {
   const [page, setPage] = useState(0);
@@ -40,5 +41,22 @@ export const ModalAddNotice = props => {
     );
   }
 
-  return <>{Child}</>;
+  return (
+    <>
+      {/* <SubTitle>
+        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+        consectetur
+      </SubTitle>
+      {data.type === 'sell' && (
+        <SubTitle>Lets find a new home for you pet</SubTitle>
+      )}
+      {data.type === 'good-hands' && (
+        <SubTitle>You give your pet to a good people</SubTitle>
+      )}
+      {data.type === 'lost/found' && (
+        <SubTitle>Your pet will find his home</SubTitle>
+      )} */}
+      {Child}
+    </>
+  );
 };
