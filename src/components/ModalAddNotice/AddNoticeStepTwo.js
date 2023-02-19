@@ -92,7 +92,7 @@ export const AddNoticeStepTwo = props => {
             formData.append('comments', comments);
             dispatch(addNotice(formData));
 
-            props.closeModal();
+            // props.closeModal();
           }}
         >
           {({
