@@ -17,7 +17,8 @@ import HeartBackgroundImg2x from 'images/desktop/HeartBackgroundImg2x.png';
 export const HomepageSection = styled.section`
 margin: 0, auto;
   ${media.mobile} {
-    height: 100vh;
+    /* height: 100vh; */
+    min-height: calc(100vh - 58px);
     background-image: url(${ladyWithPetMobile1x}),
     url(${mobileBackground});
     background-size: 320px 337px, cover;
@@ -32,9 +33,7 @@ margin: 0, auto;
       };
   };
   ${media.tablet} {
-    /* padding-top: 88px; */
-    /* height: 100vh; */
-    /* min-height: 1000px; */
+    min-height: calc(100vh - 58px);
     background-image: url(${ladyWithPetTablet1x}),
     url(${tabletBackground});
     background-repeat: no-repeat;
@@ -50,7 +49,8 @@ margin: 0, auto;
   };
   ${media.desktop} {
     /* padding-top: 92px; */
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    min-height: calc(100vh - 68px);
     /* min-height: 700px; */
     background-image: url(${ladyWithPetDesktop1x}),
     url(${desktopBackground}),
