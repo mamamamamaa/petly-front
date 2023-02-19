@@ -10,10 +10,12 @@ export const NoticesNavLink = styled(NavLink)``;
 export const NoticesCategoriesList = styled.ul`
   list-style-type: none;
   padding-bottom: 100px;
-  ${media.mobile} {
+  /* ${media.mobile} {
     display: grid;
     grid-gap: 32px;
-  }
+    max-width: calc(100vw - 32px);
+    grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+  } */
   ${media.tablet} {
     display: grid;
     grid-gap: 32px;
@@ -42,7 +44,8 @@ export const NoticeCategoryItem = styled.li`
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 20px 20px;
-  ${media.tablet} {
+  ${media.mobile} {
+    margin-bottom: 32px;
     /* :nth-of-type(2n) {
       margin-left: 32px;
     }  */
