@@ -55,6 +55,16 @@ export const AddNoticeStepTwoInputSexCheckboxWrapper = styled.div`
     margin-bottom: 40px;
   }
 `;
+export const AddNoticeStepTwoInputSex = styled.input`
+  width: 160px;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0;
+  right: 0;
+  opacity: 50%;
+`;
 export const AddNoticeStepTwoMaleWrapper = styled.div`
   display: inline-flex;
   flex-direction: column;
@@ -101,7 +111,8 @@ export const AddNoticeStepTwoFemaleSpan = styled.span`
   line-height: 26px;
   color: ${props => (props.checked ? '#ffffff' : '#f59256')};
 `;
-export const AddNoticeStepTwoLabel = styled.label`
+
+export const AddNoticeStepTwoLabelLocation = styled.label`
   display: block;
   font-weight: 500;
   font-size: 18px;
@@ -113,19 +124,67 @@ export const AddNoticeStepTwoLabel = styled.label`
     color: #000000;
     margin-bottom: 12px;
   }
-  &:nth-of-type(4) {
-    margin-bottom: 180px;
+`;
+export const AddNoticeStepTwoLabelPrice = styled.label`
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #111111;
+  margin-bottom: 8px;
+  ${media.tabletAndDesktop} {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 12px;
   }
 `;
-export const AddNoticeStepTwoInputSex = styled.input`
-  width: 160px;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  bottom: 0;
-  right: 0;
-  opacity: 50%;
+export const AddNoticeStepTwoLabelPictureURL = styled.label`
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #111111;
+  margin-bottom: 8px;
+  ${media.tabletAndDesktop} {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 12px;
+  }
+`;
+export const AddNoticeStepTwoLabelComments = styled.label`
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #111111;
+  margin-bottom: 8px;
+  ${media.tabletAndDesktop} {
+    // font-size: 24px;
+    // color: #000000;
+    // margin-bottom: 12px;
+    display: none;
+  }
+  // &:nth-of-type(4) {
+  //   margin-bottom: 180px;
+  // }
+`;
+
+export const AddNoticeStepTwoLabelCommentArea = styled.label`
+  ${media.mobile} {
+    display: none;
+  }
+`;
+export const AddNoticeStepTwoCommentArea = styled.textarea`
+  ${media.mobile} {
+    display: none;
+  }
+  width: 448px;
+  height: 113px;
+  left: 80px;
+  top: 807px;
+  background-color: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 20px;
 `;
 export const AddNoticeStepTwoInput = styled.input`
   display: block;
@@ -144,16 +203,9 @@ export const AddNoticeStepTwoInput = styled.input`
     line-height: 19px;
     color: rgba(27, 27, 27, 0.6);
   }
-  ${media.tabletAndDesktop} {
-    height: 48px;
-    padding-left: 16px;
-    padding-top: 11px;
-    padding-bottom: 10px;
-    margin-bottom: 28px;
-    &::placeholder {
-      font-size: 16px;
-      line-height: 26px;
-      color: rgba(17, 17, 17, 0.6);
+  &:nth-of-type(3) {
+    ${media.tabletAndDesktop} {
+      display: none;
     }
   }
 `;
@@ -171,7 +223,7 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
   ${media.tabletAndDesktop} {
     width: 140px;
     height: 140px;
-    top: 572px;
+    top: 440px;
     left: 80px;
   }
 `;

@@ -9,7 +9,7 @@ import {
   AddNoticeStepOneButtonDone,
   AddNoticeStepTwoButtonBackDoneWrapper,
   AddNoticeStepTwoInput,
-  AddNoticeStepTwoLabel,
+  AddNoticeStepTwoLabelComments,
   AddNoticeStepTwoInputSex,
   AddNoticeStepTwoInputSexCheckboxWrapper,
   AddNoticeStepTwoMale,
@@ -22,6 +22,11 @@ import {
   AddNoticeStepTwoLoadImageInput,
   AddNoticeStepTwoLoadImageInputWrapper,
   AddNoticeStepTwoTitle,
+  AddNoticeStepTwoCommentArea,
+  AddNoticeStepTwoLabelCommentArea,
+  AddNoticeStepTwoLabelLocation,
+  AddNoticeStepTwoLabelPrice,
+  AddNoticeStepTwoLabelPictureURL,
 } from './AddNoticeStepTwo.styled';
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
@@ -76,15 +81,15 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
   });
   const [isChecked, setIsChecked] = useState(false);
   return (
-          
     <AddNoticeStepTwoForm
       onSubmit={formik.handleSubmit}
       encType="multipart/form-data"
-    ><AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
+    >
+      <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
       <AddNoticeStepTwoLabelSex htmlFor="title">
         The sex:
       </AddNoticeStepTwoLabelSex>
-      <AddNoticeStepTwoInputSexCheckboxWrapper checked={isChecked}>
+      <AddNoticeStepTwoInputSexCheckboxWrapper >
         <AddNoticeStepTwoMaleWrapper>
           <AddNoticeStepTwoMale checked={isChecked} />
           <AddNoticeStepTwoMaleSpan checked={isChecked}>
@@ -108,18 +113,23 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
           onChange={() => setIsChecked(prev => !prev)}
         />
       </AddNoticeStepTwoInputSexCheckboxWrapper>
-      <AddNoticeStepTwoLabel htmlFor="name">Location:</AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoLabelLocation htmlFor="location">
+        Location:
+      </AddNoticeStepTwoLabelLocation>
       <AddNoticeStepTwoInput
-        name="name"
-        id="name"
+        name="location"
+        id="location"
         placeholder="Type location"
       />
-      <AddNoticeStepTwoLabel htmlFor="name">Price:</AddNoticeStepTwoLabel>
-      <AddNoticeStepTwoInput name="name" id="name" placeholder="Type price" />
-      <AddNoticeStepTwoLabel>Load the pet’s image</AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoLabelPrice htmlFor="price">Price:</AddNoticeStepTwoLabelPrice>
+      <AddNoticeStepTwoInput name="price" id="price" placeholder="Type price" />
+      <AddNoticeStepTwoLabelPictureURL htmlFor="pictureURL">
+        Load the pet’s image
+      </AddNoticeStepTwoLabelPictureURL>
       <AddNoticeStepTwoLoadImageInputWrapper>
         <AddNoticeStepTwoLoadImageInput
           type="file"
+          id="pictureURL"
           name="pictureURL"
           accept="image/*"
           onChange={e =>
@@ -132,9 +142,16 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
         />
       </AddNoticeStepTwoLoadImageInputWrapper>
       <div>{formik.errors.pictureURL}</div>
-      <AddNoticeStepTwoLabel>Comments</AddNoticeStepTwoLabel>
+
+      <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
+        Comments
+      </AddNoticeStepTwoLabelCommentArea>
+      <AddNoticeStepTwoCommentArea id="commentsArea" name="commentsArea" />
+
+      <AddNoticeStepTwoLabelComments htmlFor="comments">Comments</AddNoticeStepTwoLabelComments>
       <AddNoticeStepTwoInput
         type="text"
+        id="comments"
         name="comments"
         placeholder="Type comments"
         onChange={formik.handleChange}
