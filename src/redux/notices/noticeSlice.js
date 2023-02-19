@@ -39,6 +39,7 @@ const initialState = {
   searchNotices: [],
   notices: [],
   currentNotice: null,
+  filter: ""
 };
 
 const findNotice = (state, id, type) => {
@@ -55,6 +56,11 @@ const findNotice = (state, id, type) => {
 const noticeSlice = createSlice({
   name: 'notice',
   initialState,
+  reducers: {
+    filterNotices: (state, action) => {
+      state.filter = action.payload;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(getNoticeById.pending, (state, action) => {
@@ -216,3 +222,5 @@ const noticeSlice = createSlice({
 });
 
 export const noticeReducer = noticeSlice.reducer;
+
+export const { filterNotices } = noticeSlice.actions;

@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 export const useAuth = () => {
   const accessToken = useSelector(state => state.auth.accessToken);
@@ -45,7 +46,7 @@ export const useNotices = () => {
   const notices = useSelector(state => state.notices.notices);
   const totalCounts = useSelector(state => state.notices.totalCounts);
   const pages = useSelector(state => state.notices.pages);
-
+  const getFilterValue = useSelector(state => state.notices.filter);
   return {
     totalCounts,
     sellNotices,
@@ -58,6 +59,7 @@ export const useNotices = () => {
     currentNotice,
     notices,
     pages,
+    getFilterValue
   };
 };
 
@@ -92,3 +94,12 @@ export const useUserAvatar = () => {
 
   return { updateAvatar };
 };
+
+// export const useFilter = () => {
+//   const getFilterValue = useSelector(state => state.notices.filter);
+//   return {getFilterValue};
+// }
+
+
+// export const getFilterValue = state => state.notices.filter;
+
