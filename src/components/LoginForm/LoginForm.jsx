@@ -87,7 +87,6 @@ const LoginForm = () => {
         {/* {isLoading ? (
           <Spinner />
         ) : ( */}
-       <Section>
         <Container>
             <Formik
                 initialValues={formik.initialValues}
@@ -145,7 +144,6 @@ const LoginForm = () => {
             </Formik>
             <Toaster />
         </Container>
-        </Section>
         </>
     )
  }
