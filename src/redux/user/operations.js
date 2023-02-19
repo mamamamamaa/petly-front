@@ -42,7 +42,7 @@ export const updateUser  = createAsyncThunk(
 
 export const updateAvatar = createAsyncThunk(
     "avatarURL/updateAvatar",    
-    async ( avatarURL, formData,  thunkAPI) => {
+    async ( avatarURL,   thunkAPI) => {
         
         //console.log()
         try {                           
@@ -53,8 +53,8 @@ export const updateAvatar = createAsyncThunk(
             },
             })          
             
-            console.log('response', res.data)
-            return res.data;
+            console.log('response', res.data.user.avatarURL)
+            return res.data.user.avatarURL;
         }
         catch (e) { 
              return thunkAPI.rejectWithValue(e.message);

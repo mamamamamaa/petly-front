@@ -12,7 +12,7 @@ import {
 import { HiCamera } from "react-icons/hi2";
 import { NoAvatarContainer, Span, Wrap, DivPhoto } from "../UserCard/UserCard.styled";
 import { NoPhotoIcon } from "utils/svg/noPhotoCross";
-import { useUserAvatar } from "redux/hooks";
+import { useUser } from "redux/hooks";
 
 
 export const FileUploader = () => {
@@ -20,8 +20,8 @@ export const FileUploader = () => {
   const [image, setImage] = useState();
   const [avatarURL, setAvatarURL] = useState();
   const dispatch = useDispatch(); 
-  
-
+  const { user } = useUser();
+  console.log(user.user.avatarURL);
   const fileReader = new FileReader();
   fileReader.onloadend = () => {
     setAvatarURL(fileReader.result);
@@ -79,7 +79,7 @@ export const FileUploader = () => {
         onChange={onChangeHandler}
       />
       <Imgav
-        src={avatarURL ? avatarURL : "no_photo.jpg"}
+        src={user.user.avatarURL ? user.user.avatarURL : "no_photo.jpg"}
         
         alt="preview"
          accept='image/*'
