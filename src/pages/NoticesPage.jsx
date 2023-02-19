@@ -156,14 +156,14 @@ const NoticesPage = () => {
         )}
       </NoticesNavWrapper>
       
-        {filter !== '' ? (
+        {/* {filter !== '' ? (
          <SearchNoticeList/>
           )
-          :
-          (<Suspense>
+          : ( */}
+          <Suspense>
            <Outlet />
          </Suspense>
-         )}
+         {/* )} */}
       <Toaster />
     </Container>
   );

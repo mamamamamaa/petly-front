@@ -72,10 +72,13 @@ export const NavListItem = styled.li`
 export const NavigLink = styled(NavLink)`
     color: inherit;
     text-decoration: none;
-    /* color: ${({ isActive }) => isActive ? 'red' : 'black'}; */
     &.active {
         color: ${theme.colors.primary};
         text-decoration: underline;
         font-weight: ${theme.fontWeights.bold}
     };
+    &.inActive {
+        color: inherit;
+        text-decoration: none;
+    }
 `;

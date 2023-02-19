@@ -58,6 +58,7 @@ export const useNotices = () => {
     error,
     currentNotice,
     notices,
+    pages,
     getFilterValue
   };
 };

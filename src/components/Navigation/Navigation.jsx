@@ -17,16 +17,7 @@ const Navigation = ({ close }) => {
           // Specify the route?
           to="/notice/sell"
           onClick={close}
-          // isactive={() =>
-          //   [
-          //     '/notice',
-          //     '/good-hands',
-          //     '/sell',
-          //     '/lost',
-          //     '/favorite',
-          //     '/my-ads',
-          //   ].includes(pathname)
-          // }
+          className={pathname.includes('/notice') ? 'active' : 'inActive'}
         >
           Find pet
         </NavigLink>
