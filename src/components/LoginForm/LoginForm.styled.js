@@ -9,19 +9,19 @@ import desktopBackground from '../../images/desktop/log-registr-desktop.png';
 
 export const Container = styled.div`
   padding-top: 42px;
-  background-image: url(${mobileBackground});
+  /* background-image: url(${mobileBackground});
   background-position: center bottom;
   background-size: contain;
   background-repeat: no-repeat;
-  height: calc(100vh - 68px);
+  height: calc(100vh - 68px); */
   ${media.tablet} {
     padding-top: 204px;
-    background-image: url(${tabletBackground});
-    height: calc(100vh - 71px);
+    /* background-image: url(${tabletBackground});
+    height: calc(100vh - 71px); */
   }
   ${media.desktop} {
     padding-top: 80px;
-    background-image: url(${desktopBackground});
+    /* background-image: url(${desktopBackground}); */
   }
 `;
 
@@ -66,20 +66,23 @@ export const Title = styled.h1`
 
 export const FieldLogin = styled.div`
   margin-bottom: 16px;
+  position: relative;
 `;
+
 export const FieldPass = styled.div`
   margin-bottom: 40px;
+  position: relative;
 `;
 
 export const Input = styled(Field)`
   box-sizing: border-box;
   width: 100%;
   height: 40px;
-  padding-left: 14px;
+  padding: 11px 14px;
   font-family: 'Manrope';
   font-weight: ${theme.fontWeights.news};
   font-size: 14px;
-  line-height: 1.3;
+  line-height: 1.4;
   align-items: center;
   letter-spacing: 0.04em;
   color: ${theme.colors.black};
@@ -99,24 +102,9 @@ export const Input = styled(Field)`
     border: 2px solid ${theme.colors.primary};
     outline: 0;
   }
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     height: 52px;
-    padding-left: 32px;
-    font-size: 18px;
-    line-height: 1.38;
-    background: ${theme.colors.secondary};
-    &::placeholder {
-      font-style: normal;
-      font-weight: ${theme.fontWeights.news};
-      font-size: 18px;
-      line-height: 1.38;
-      letter-spacing: 0.04em;
-      color: ${theme.colors.gray};
-    }
-  }
-  ${media.desktop} {
-    height: 52px;
-    padding-left: 32px;
+    padding: 14px 32px;
     font-size: 18px;
     line-height: 1.38;
     background: ${theme.colors.secondary};
@@ -154,6 +142,7 @@ export const Button = styled.button`
   align-items: center;
   text-align: center;
   letter-spacing: 0.04em;
+
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -193,11 +182,10 @@ export const Button = styled.button`
     transform: none;
     transition: none;
   }
-  ${media.tablet} {
+  ${media.tabletAndDesktop}  {
     width: 458px;
   }
   ${media.desktop} {
-    width: 458px;
     height: 48px;
   }
 `;
@@ -220,6 +208,7 @@ export const StyledLink = styled(NavLink)`
   color: ${theme.colors.blue};
   text-decoration: none;
   transition: color ${theme.colors.background};
+  margin-left: 4px;
   :hover,
   :focus {
     color: ${theme.colors.primary};
@@ -227,14 +216,22 @@ export const StyledLink = styled(NavLink)`
 `;
 
 export const ErrorText = styled.div`
+position: absolute;
   display: flex;
   align-items: center;
   margin-top: 8px;
   font-family: 'Manrope';
   font-size: 12px;
+  font-style: normal;
   line-height: 1.4;
   letter-spacing: 0.03em;
   color: #e53e3e;
+  white-space: nowrap;
+  bottom: -16px;
+  left: 12px;
+  ${media.tabletAndDesktop} {
+    left: 32px;
+  }
 `;
 
 export const FieldWrap = styled.div`
@@ -259,5 +256,25 @@ export const ShowPassword = styled.span`
     width: 22px;
     height: 22px;
     right: 32px;
+  }
+`;
+
+export const Background = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -100;
+  background-image: url(${mobileBackground});
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100vh;
+  ${media.tablet} {
+    background-image: url(${tabletBackground});
+  }
+  ${media.desktop} {
+    background-image: url(${desktopBackground});
   }
 `;
