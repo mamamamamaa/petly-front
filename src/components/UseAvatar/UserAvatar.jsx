@@ -21,26 +21,23 @@ export const FileUploader = () => {
   const [avatarURL, setAvatarURL] = useState();
   const dispatch = useDispatch(); 
   const { user } = useUser();
-  console.log(user.user.avatarURL);
+ 
   const fileReader = new FileReader();
   fileReader.onloadend = () => {
     setAvatarURL(fileReader.result);
   };
   
   const saveFile = (file) => {
-  // save file to server here
-    
+  // save file to server here   
     
     console.log("Saving file:", file.name);
     // console.log("file object:", file);
-     console.log("file path:",File.path);
+    // console.log("file path:",File.path);
 };
-
-
-  
+ 
       
       const onChangeHandler = e => {
-        console.log(e.target.files[0])
+        // console.log(e.target.files[0])
 
         const file = e.target.files[0];
 
@@ -50,7 +47,7 @@ export const FileUploader = () => {
         }
         const newFile = new File([file], file.name);
         setFile(newFile);
-        console.log(newFile)
+        
         setImage(e.target.files[0]);          
         fileReader.readAsDataURL(e.target.files[0]);
         
@@ -61,16 +58,29 @@ export const FileUploader = () => {
       };
   
   
-
-  
   
   return (
+     <>
+    <DivPhoto>
+     {user.user.avatarURL ? (
+    <Imgav
+        src={user.user.avatarURL}
+        alt="preview"
+         accept='image/*'
+                      multiple
+      />) : 
+    (<NoAvatarContainer><NoPhotoIcon/></NoAvatarContainer>)}
+    </DivPhoto>
+    <Btn>
     <Formav encType="multipart/form-data">
       <Labelav
         htmlFor="file-loader-button"
        
       >
-        <HiCamera color="#F59256"/>edit 
+        <Wrap >
+          <HiCamera color="#F59256"/>
+           <Span>Edit photo</Span> 
+         </Wrap>
       </Labelav>
       <Inputav
         id="file-loader-button"
@@ -78,86 +88,12 @@ export const FileUploader = () => {
         name="saveFile"
         onChange={onChangeHandler}
       />
-      <Imgav
-        src={user.user.avatarURL ? user.user.avatarURL : "no_photo.jpg"}
-        
-        alt="preview"
-         accept='image/*'
-                      multiple
-        
-      />
-      <div  className="file-uploader__file-name">{image ? image.name : ""}</div>
+      
     </ Formav>
+      </Btn>
+    </>
   );
 };
 
 
 // ===================================================
-// add & read & 
-// import React, { useState } from "react";
-// import "./file-uploader.css";
-// import { HiCamera } from "react-icons/hi2";
-
-
-// export const FileUploader = () => {
-//   const [image, setImage] = useState();
-//   const [imageURL, setImageURL] = useState();
-//   const fileReader = new FileReader();
-//   fileReader.onloadend = () => {
-//     setImageURL(fileReader.result);
-//   };
-//   const handleOnChange = (event) => {
-//     event.preventDefault();
-//     if (event.target.files && event.target.files.length) {
-//       const file = event.target.files[0];
-//       setImage(file);
-//       fileReader.readAsDataURL(file);
-//     }
-//   };
-
-//   const handleDrop = (event) => {
-//     event.preventDefault();
-//     event.stopPropagation();
-//     if (event.dataTransfer.files && event.dataTransfer.files.length) {
-//       setImage(event.dataTransfer.files[0]);
-//       fileReader.readAsDataURL(event.dataTransfer.files[0]);
-//     }
-//   };
-
-//   const handleDragEmpty = (event) => {
-//     event.preventDefault();
-//     event.stopPropagation();
-//   };
-
-//   return (
-//     <>
-//     <DivPhoto>
-//     {imageURL ? (
-//     <Imgav
-//         src={imageURL}
-//         alt="preview"
-//         onDrop={handleDrop}
-//         onDragEnter={handleDragEmpty}
-//         onDragOver={handleDragEmpty}
-//       />) : 
-//     (<NoAvatarContainer><NoPhotoIcon/></NoAvatarContainer>)}
-//     </DivPhoto>
-//       <Btn>
-//       <Formav>
-//       <Labelav htmlFor="file-loader-button">
-//         <Wrap >
-//           <HiCamera color="#F59256"/>
-//           <Span>Edit photo</Span> 
-//         </Wrap>
-//       </Labelav>
-//       <Inputav
-//         id="file-loader-button"
-//         type="file"
-//         onChange={handleOnChange}
-//       />
-//       {/* <div >{image ? "" : ""}</div> */}
-//     </Formav>
-//     </Btn>
-//    </>
-//   );
-// };
