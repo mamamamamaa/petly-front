@@ -12,14 +12,13 @@ import ladyWithPetDesktop1x from 'images/desktop/lady-with-pet-1x.png';
 import ladyWithPetDesktop2x from 'images/desktop/lady-with-pet-2x.png';
 import HeartBackgroundImg from 'images/desktop/HeartBackgroundImg.png';
 import HeartBackgroundImg2x from 'images/desktop/HeartBackgroundImg2x.png';
-// import unionHeart from 'images/desktop/heart.svg';
 
 
 export const HomepageSection = styled.section`
 margin: 0, auto;
   ${media.mobile} {
-    min-height: 500px;
-    padding-top: 60px;
+    /* height: 100vh; */
+    min-height: calc(100vh - 58px);
     background-image: url(${ladyWithPetMobile1x}),
     url(${mobileBackground});
     background-size: 320px 337px, cover;
@@ -34,9 +33,7 @@ margin: 0, auto;
       };
   };
   ${media.tablet} {
-    /* width: 768px; */
-    padding-top: 88px;
-    min-height: 1000px;
+    min-height: calc(100vh - 58px);
     background-image: url(${ladyWithPetTablet1x}),
     url(${tabletBackground});
     background-repeat: no-repeat;
@@ -51,14 +48,16 @@ margin: 0, auto;
       };
   };
   ${media.desktop} {
-    padding-top: 92px;
-    min-height: 720px;
+    /* padding-top: 92px; */
+    /* min-height: 100vh; */
+    min-height: calc(100vh - 68px);
+    /* min-height: 700px; */
     background-image: url(${ladyWithPetDesktop1x}),
     url(${desktopBackground}),
     url(${HeartBackgroundImg});
     background-repeat: no-repeat;
     background-size: 590px 640px, contain, 92px 89px;
-    background-position: bottom 0 right 16px, bottom -20px left 0, top 20% right 40%;
+    background-position: bottom 0 right 16px, bottom 0 left 0, top 20% right 40%;
       @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2), 
       (min-resolution: 192dpi),
@@ -106,19 +105,23 @@ line-height: 44px;
 color: ${theme.colors.black};
 margin-left: auto;
 margin-right: auto;
+padding-bottom: 395px;
+padding-top: 60px;
 /* text-align: center; */
 /* margin-top: 60px; */
 /* max-width: 280px; */
 };
 ${media.tablet} {
-margin-left: 0;
-width: 588px;
+/* max-width: 588px; */
 font-family: ${theme.fonts.body};
 font-style: normal;
 color: #000000;
 font-weight: 700;
 font-size: 68px;
 line-height: 100px;
+margin-left: 0;
+padding-bottom: 833px;
+padding-top: 88px;
 };
 ${media.desktop} {
 font-family: ${theme.fonts.body};
@@ -127,9 +130,11 @@ font-weight: 700;
 font-size: 68px;
 line-height: 100px;
 color: ${theme.colors.black};
+padding-bottom: 408px;
+padding-top: 92px;
 width: 588px;
-position: absolute;
-top: 160px;
+/* position: absolute; */
+/* top: 160px; */
 };
 `;
 

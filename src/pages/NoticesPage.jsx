@@ -10,7 +10,7 @@ import { SearchNoticeList } from 'components/SearchNoticeList/SearchNoticeList';
 import { useFilter } from '../redux/hooks';
 import { filterNotices } from 'redux/notices/noticeSlice';
 import {
-  Form,
+  NoticesTitle,
   NoticesSearch,
   SearchField,
   NoticesNavLink,
@@ -100,6 +100,9 @@ const NoticesPage = () => {
 
   return (
       <Container>
+        <NoticesTitle>
+            Find your favorite pet
+        </NoticesTitle>
         <NoticesSearch>
         <SearchField
           placeholder="Search"
