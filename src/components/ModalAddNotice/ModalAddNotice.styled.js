@@ -40,8 +40,8 @@ export const ButtonClose = styled.button`
   outline: none;
   &:hover,
   &:focus {
-    background-color: ${theme.colors.accent};
-    color: ${theme.colors.white};
+    background-color: ${theme.colors.primary};
+    color: ${theme.colors.accentText};
   }
   @media screen and (min-width: 767px) {
     width: 44px;
@@ -123,7 +123,7 @@ export const ButtonFill = styled.button`
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   outline: 0px;
-  border: 2px solid ${theme.colors.accent};
+  border: 2px solid ${theme.colors.accentButton};
   margin-bottom: 12px;
   cursor: pointer;
   text-decoration: none;
@@ -137,9 +137,9 @@ export const ButtonFill = styled.button`
   padding: 10px 28px;
   border-radius: 40px;
   width: 100%;
-  color: ${theme.colors.white};
-  border-color: ${theme.colors.accent};
-  background-color: ${theme.colors.accent};
+  color: ${theme.colors.accentText};
+  border-color: ${theme.colors.primary};
+  background-color: ${theme.colors.primary};
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -147,7 +147,7 @@ export const ButtonFill = styled.button`
   &:hover,
   &:focus {
     background-color: rgb(245, 97, 1);
-    color: ${theme.colors.white};
+    color: ${theme.colors.accentText};
     border-color: #ff6101;
     background-color: #ff6101;
   }
@@ -162,7 +162,7 @@ export const ButtonEmpty = styled.button`
   max-width: 240px;
   height: 40px;
   border-radius: 40px;
-  border: 2px solid ${theme.colors.accent};
+  border: 2px solid ${theme.colors.primary};
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
@@ -170,9 +170,9 @@ export const ButtonEmpty = styled.button`
   line-height: 1.4rem;
   cursor: pointer;
   outline: none;
-  color: ${theme.colors.dark};
-  border-color: ${theme.colors.accent};
-  background-color: ${theme.colors.white};
+  color: ${theme.colors.black};
+  border-color: ${theme.colors.primary};
+  background-color: ${theme.colors.accentText};
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -242,19 +242,19 @@ export const Input = styled(Field)`
   width: 240px;
   height: 40px;
 
-  background-color: ${theme.colors.mainBackground};
-  border: 1px solid ${theme.colors.accent};
+  background-color: ${theme.colors.background};
+  border: 1px solid ${theme.colors.primary};
   border-radius: 40px;
   padding-left: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    border: 1px solid ${theme.colors.brightAccent};
+    border: 1px solid ${theme.colors.accentButton};
   }
   &::placeholder {
     font-size: 14px;
-    color: ${theme.colors.gray};
+    color: ${theme.colors.secondary};
   }
   @media screen and (min-width: 767px) {
     font-size: 0.9rem;
@@ -268,19 +268,19 @@ export const Input = styled(Field)`
 export const InputLast = styled(Field)`
   width: 240px;
   height: 40px;
-  background-color: ${theme.colors.mainBackground};
-  border: 1px solid ${theme.colors.accent};
+  background-color: ${theme.colors.background};
+  border: 1px solid ${theme.colors.primary};
   border-radius: 40px;
   padding-left: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    border: 1px solid ${theme.colors.brightAccent};
+    border: 1px solid ${theme.colors.accentButton};
   }
   &::placeholder {
     font-size: 14px;
-    color: ${theme.colors.gray};
+    color: ${theme.colors.secondary};
   }
   @media screen and (min-width: 767px) {
     width: 448px;
@@ -340,15 +340,15 @@ export const ButtonAddPhoto = styled.button`
   align-items: center;
   width: 116px;
   height: 116px;
-  background: ${theme.colors.mainBackground};
+  background: ${theme.colors.background};
   border-radius: 20px;
   margin-bottom: 28px;
   margin-top: 12px;
-  border: 2px solid ${theme.colors.mainBackground};
+  border: 2px solid ${theme.colors.background};
   overflow: hidden;
   &:hover,
   &:focus {
-    border: 2px solid ${theme.colors.accent};
+    border: 2px solid ${theme.colors.primary};
   }
   @media screen and (min-width: 768px) {
     width: 140px;
@@ -385,15 +385,15 @@ export const Textarea = styled(Field)`
   padding: 12px;
   width: 100%;
   height: 100px;
-  background: ${theme.colors.mainBackground};
-  border: 1px solid ${theme.colors.accent};
+  background: ${theme.colors.background};
+  border: 1px solid ${theme.colors.primary};
   border-radius: 20px;
   margin-top: 8px;
   outline: none;
   resize: none;
   &:hover,
   &:focus {
-    border: 1px solid ${theme.colors.brightAccent};
+    border: 1px solid ${theme.colors.accentButton};
   }
   @media screen and (min-width: 768px) {
     height: 116px;
@@ -426,8 +426,8 @@ export const LabelRadioBtn = styled.label`
   font-size: 14px;
   padding: 10px 28px;
   text-decoration: none;
-  background: ${theme.colors.white};
-  border: 2px solid ${theme.colors.accent};
+  background: ${theme.colors.accentText};
+  border: 2px solid ${theme.colors.primary};
   border-radius: 40px;
   align-items: center;
   cursor: pointer;
@@ -448,8 +448,8 @@ export const LabelRadioBtn = styled.label`
   &.active,
   :hover,
   :focus {
-    background-color: ${theme.colors.brightAccent};
-    border-color: ${theme.colors.brightAccent};
+    background-color: ${theme.colors.accentButton};
+    border-color: ${theme.colors.accentButton};
     color: ${theme.colors.white};
   }
 
@@ -463,8 +463,8 @@ export const RadioBtn = styled(Field)`
   display: none;
 
   :checked + label {
-    background: ${theme.colors.accent};
-    color: ${theme.colors.white};
+    background: ${theme.colors.primary};
+    color: ${theme.colors.accentText};
   }
 `;
 
@@ -491,7 +491,7 @@ export const LabelRadioSexBtn = styled.label`
   &.active,
   :hover,
   :focus {
-    color: ${theme.colors.accent};
+    color: ${theme.colors.primary};
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -504,12 +504,12 @@ export const RadioSexBtn = styled(Field)`
   display: none;
 
   :checked + label {
-    color: ${theme.colors.accent};
+    color: ${theme.colors.primary};
   }
 `;
 
 export const SpanStar = styled.span`
-  color: ${theme.colors.accent};
+  color: ${theme.colors.primary};
 `;
 
 export const AddImg = styled(TfiPlus)`
