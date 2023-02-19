@@ -7,10 +7,10 @@ axios.defaults.baseURL = HOST;
 
 export const search = createAsyncThunk(
   'notices/search',
-  async (firstName, thunkAPI) => {
+  async ({ query, type }, thunkAPI) => {
     try {
       const res = await axios.get(
-        `/api/notices/searchManyTitles?title=${firstName}`
+        `/api/notices/searchManyTitles?title=${query}&type=${type}`
       );
       return res.data;
     } catch (e) {

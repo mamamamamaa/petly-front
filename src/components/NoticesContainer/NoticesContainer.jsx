@@ -9,16 +9,20 @@ import { useEffect, useRef, useState } from 'react';
 import { usePaginate } from '../../hooks/usePaginate';
 import { useNotices } from '../../redux/hooks';
 import { useDispatch } from 'react-redux';
+import { setQuery } from '../../redux/notices/noticeSlice';
+import { search } from '../../redux/notices/operations';
 
 const LIMIT = 20;
 
 export const NoticesContainer = ({ type }) => {
   const dispatch = useDispatch();
-  const { totalCount, items, update, page } = usePaginate(type);
-  const { isLoading } = useNotices();
+  const { totalCount, items: itemsByType, update, page } = usePaginate(type);
+  const { isLoading, query, searchNotices } = useNotices();
   const [next, setNext] = useState(true);
   const [lastElement, setLastElement] = useState(null);
   const TOTAL_PAGES = Math.ceil(totalCount / LIMIT);
+
+  const items = searchNotices.length > 0 ? searchNotices : itemsByType;
 
   const observer = useRef(
     new IntersectionObserver(entries => {
@@ -30,6 +34,7 @@ export const NoticesContainer = ({ type }) => {
   );
 
   useEffect(() => {
+    dispatch(setQuery(''));
     setNext(true);
   }, [type]);
 
@@ -39,6 +44,12 @@ export const NoticesContainer = ({ type }) => {
     }
     setNext(false);
   }, [next]);
+
+  useEffect(() => {
+    if (query) {
+      dispatch(search({ query, type }));
+    }
+  }, [query]);
 
   useEffect(() => {
     const currentElement = lastElement;

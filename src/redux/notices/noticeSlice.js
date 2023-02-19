@@ -10,6 +10,7 @@ import {
   myAds,
   deleteNoticeFromFav,
   addNoticeToFav,
+  search,
 } from './operations';
 
 const initialState = {
@@ -39,7 +40,7 @@ const initialState = {
   searchNotices: [],
   notices: [],
   currentNotice: null,
-  filter: ""
+  query: '',
 };
 
 const findNotice = (state, id, type) => {
@@ -57,8 +58,11 @@ const noticeSlice = createSlice({
   name: 'notice',
   initialState,
   reducers: {
-    filterNotices: (state, action) => {
-      state.filter = action.payload;
+    setQuery: (state, action) => {
+      state.query = action.payload;
+      if (action.payload === '') {
+        state.searchNotices = [];
+      }
     },
   },
   extraReducers: builder =>
@@ -72,6 +76,17 @@ const noticeSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getNoticeById.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(search.pending, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(search.fulfilled, (state, action) => {
+        state.searchNotices = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(search.rejected, (state, action) => {
         state.isLoading = false;
       })
       .addCase(addNoticeToFav.pending, (state, action) => {
@@ -223,4 +238,4 @@ const noticeSlice = createSlice({
 
 export const noticeReducer = noticeSlice.reducer;
 
-export const { filterNotices } = noticeSlice.actions;
+export const { setQuery } = noticeSlice.actions;
