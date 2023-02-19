@@ -92,10 +92,25 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
     >
       <AddNoticeStepOneForm>
         <AddNoticeStepOneTitle>Add pet</AddNoticeStepOneTitle>
-        <AddNoticeStepOneText>
+        {/* <AddNoticeStepOneText>
           Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
           consectetur
-        </AddNoticeStepOneText>
+        </AddNoticeStepOneText> */}
+        {data.type === 'sell' && (
+          <AddNoticeStepOneText>
+            Lets find a new home for you pet
+          </AddNoticeStepOneText>
+        )}
+        {data.type === 'good-hands' && (
+          <AddNoticeStepOneText>
+            You give your pet to a good people
+          </AddNoticeStepOneText>
+        )}
+        {data.type === 'lost/found' && (
+          <AddNoticeStepOneText>
+            Your pet will find his home
+          </AddNoticeStepOneText>
+        )}
         <AddNoticeStepOneTopBtnsWrapper>
           <Field name="lostFound" type="radio" component={AddNoticeLostFound}>
             <AddNoticeStepOneButtonSpan>lost/found</AddNoticeStepOneButtonSpan>

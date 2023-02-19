@@ -9,7 +9,7 @@ import moment from 'moment';
 export const ModalAddNotice = ({ onClose }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState({
-    type: '',
+    type: 'sell',
     title: '',
     name: '',
     dateOfBirth: '',
