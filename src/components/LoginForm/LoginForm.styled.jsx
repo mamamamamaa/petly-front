@@ -7,6 +7,7 @@ import mobileBackground from '../../images/mobile/log-registr-mobile.png';
 import tabletBackground from '../../images/tablet/log-registr-tablet.png';
 import desktopBackground from '../../images/desktop/log-registr-desktop.png';
 
+
 export const Container = styled.div`
   padding-top: 42px;
   /* background-image: url(${mobileBackground});

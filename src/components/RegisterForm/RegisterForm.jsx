@@ -4,7 +4,6 @@ import { useFormik, Formik } from 'formik';
 import { object, string, ref } from 'yup';
 // import Spinner from "../Spinner";
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-
 // import { useAuth } from "../../redux/hooks";
 import { register } from '../../redux/auth/operations';
 
@@ -59,6 +58,7 @@ const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const [error, setError] = useState(false);
   const dispatch = useDispatch();
 
   const showForm = () => {
@@ -70,6 +70,7 @@ const RegisterForm = () => {
 
   const onSubmit = values => {
     const { name, email, password, mobilePhone, city } = values;
+      
     dispatch(
       register({
         name,
@@ -80,8 +81,11 @@ const RegisterForm = () => {
       }),
       hideForm()
     );
+  
+    
     console.log(values);
   };
+
 
   const formik = useFormik({
     initialValues: {
