@@ -118,7 +118,7 @@ export const Nav = styled.nav`
         align-items: flex-start;
         justify-content: center;
         opacity: ${({ isClosed }) => isClosed ? 0 : 1};
-        visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
+        display: ${({ isClosed }) => isClosed ? 'none' : 'auto'};
         pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
         margin: 0, auto;
         z-index: 20;
