@@ -19,11 +19,13 @@ import {
     Button,
     Text,
     StyledLink,
-    ErrorText
+    ErrorText,
+    Background,
     } from "./LoginForm.styled";
 
 const securityEmail =
   /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+//   /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 const securityPassword = /^\S*$/;
 
 const loginSchema = yup.object().shape({
@@ -136,6 +138,7 @@ const LoginForm = () => {
                     </Text>
                 </FormLogin>
             </Formik>
+            <Background></Background>
         </Container>
         </>
     )
