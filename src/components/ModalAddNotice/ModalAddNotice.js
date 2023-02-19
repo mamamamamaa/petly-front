@@ -23,7 +23,7 @@ export const ModalAddNotice = props => {
     Child = (
       <AddNoticeStepOne
         setData={setData}
-        closeModal={props.onCloseModal}
+        closeModal={props.onClose}
         setPage={setPage}
         data={data}
         title="First Page"
@@ -33,7 +33,7 @@ export const ModalAddNotice = props => {
     Child = (
       <AddNoticeStepTwo
         setData={setData}
-        closeModal={props.onCloseModal}
+        closeModal={props.onClose}
         setPage={setPage}
         data={data}
         title="Second Page"

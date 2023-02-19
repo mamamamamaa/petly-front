@@ -81,7 +81,7 @@ export const AddNoticeStepOne = props => {
   };
 
   const handleOnClick = () => {
-    // props.closeModal();
+    props.closeModal();
   };
 
   return (
