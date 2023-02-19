@@ -1,48 +1,4 @@
 import styled from '@emotion/styled';
-// import { media } from 'components/Layout/Layout.styled';
-
-// export const ModalAddNoticeWrapper = styled.div`
-//   width: 280px;
-//   margin: 40px 20px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   ${media.tabletAndDesktop} {
-//     width: 608px;
-//     margin: 40px 80px;
-//   }
-// `;
-
-// export const ModalAddNoticeTitle = styled.h3`
-//   font-weight: 500;
-//   font-size: 24px;
-//   line-height: 33px;
-//   color: #111111;
-//   margin-bottom: 20px;
-//   ${media.tabletAndDesktop} {
-//     font-weight: 600;
-//     font-size: 36px;
-//     line-height: 49px;
-//     color: #000000;
-//   }
-// `;
-// export const ModalAddNoticeText = styled.p`
-//   font-weight: 500;
-//   font-size: 16px;
-//   line-height: 22px;
-//   text-align: center;
-//   letter-spacing: -0.01em;
-//   color: #111111;
-//   margin-bottom: 20px;
-//   ${media.tabletAndDesktop} {
-//     font-size: 20px;
-//     line-height: 27px;
-//     color: #000000;
-//     margin-bottom: 28px;
-//   }
-// `;
-// ===================
 import { Field, ErrorMessage, Form } from 'formik';
 import { theme } from '../../utils/theme';
 import { MdMale } from 'react-icons/md';
@@ -50,7 +6,7 @@ import { MdFemale } from 'react-icons/md';
 import { TfiPlus } from 'react-icons/tfi';
 
 export const Container = styled.div`
-  background-color: ${theme.colors.white};
+  background-color: ${theme.colors.accentText};
   padding: 18px;
   width: 280px;
   border-radius: 20px;
@@ -77,8 +33,8 @@ export const ButtonClose = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background: ${theme.colors.mainBackground}; */
-  border: 2px solid ${theme.colors.white};
+  background: ${theme.colors.background};
+  border: 2px solid ${theme.colors.accentText};
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
