@@ -3,17 +3,13 @@ import { AddNoticeStepOne } from './AddNoticeStepOne';
 import { AddNoticeStepTwo } from './AddNoticeStepTwo';
 import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/operations';
-import {
-  ModalAddNoticeTitle,
-  ModalAddNoticeWrapper,
-  ModalAddNoticeText,
-} from './ModalAddNotice.styled';
+import { ModalAddNoticeWrapper } from './ModalAddNotice.styled';
 import moment from 'moment';
 
 export const ModalAddNotice = ({ onClose }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState({
-    type: '',
+    type: 'sell',
     title: '',
     name: '',
     dateOfBirth: '',
@@ -26,22 +22,35 @@ export const ModalAddNotice = ({ onClose }) => {
   });
 
   const handleNextStep = (newData, final = false) => {
-    const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
-      'DD.MM.YYYY'
-    );
     if (final) {
-      setData({
-        ...newData,
+      const normalizedDateOfBirth = moment(
+        new Date(newData.selectedDateInNumber)
+      ).format('DD.MM.YYYY');
+      const datatoSubmit = {
+        name: newData.name,
+        breed: newData.breed,
+        comments: newData.comments,
         dateOfBirth: normalizedDateOfBirth,
-      });
+        type: newData.type,
+        title: newData.title,
+        sex: newData.sex,
+        place: newData.place,
+        photoUrl: newData.photoUrl,
+      };
+
+      // const handleNextStep = (newData = {}, final = false) => {
+      //   const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
+      //     'DD.MM.YYYY'
+      //   );
+      //   if (final) {
+      //     setData({
+      //       ...newData,
+      //       dateOfBirth: normalizedDateOfBirth,
+      //     });
 
       const formData = new FormData();
 
-      formData.append(
-        'pictureURL',
-        newData.pictureURL,
-        newData.pictureURL.name
-      );
+      formData.append('photoUrl', newData.photoUrl, newData.photoUrl.name);
       formData.append('comments', newData.comments);
       formData.append('breed', newData.breed);
       formData.append('dateOfBirth', newData.dateOfBirth);
@@ -52,13 +61,15 @@ export const ModalAddNotice = ({ onClose }) => {
       formData.append('place', newData.place);
       formData.append('price', newData.price);
 
-      dispatch(addNotice(newData));
+      dispatch(addNotice(datatoSubmit));
       return;
     }
-    setData({
-      ...newData,
-      dateOfBirth: normalizedDateOfBirth,
-    });
+    setData(newData);
+    // setData({
+    //   ...newData,
+    //   dateOfBirth: normalizedDateOfBirth,
+    // });
+
     setCurrentStep(prevStep => prevStep + 1);
   };
 
@@ -79,8 +90,10 @@ export const ModalAddNotice = ({ onClose }) => {
       price: '',
       photoUrl: '',
       comments: '',
+      selectedDateInNumber: '',
     });
     setCurrentStep(0);
+    onClose();
   };
   const [currentStep, setCurrentStep] = useState(0);
   const steps = [
@@ -92,23 +105,5 @@ export const ModalAddNotice = ({ onClose }) => {
       onClose={onClose}
     />,
   ];
-  return (
-    <ModalAddNoticeWrapper>
-      <ModalAddNoticeTitle>Add pet</ModalAddNoticeTitle>
-      {data.type === 'sell' && (
-        <ModalAddNoticeText>
-          Lets find a new home for you pet
-        </ModalAddNoticeText>
-      )}
-      {data.type === 'good-hands' && (
-        <ModalAddNoticeText>
-          You give your pet to a good people
-        </ModalAddNoticeText>
-      )}
-      {data.type === 'lost/found' && (
-        <ModalAddNoticeText>Your pet will find his home</ModalAddNoticeText>
-      )}
-      {steps[currentStep]}
-    </ModalAddNoticeWrapper>
-  );
+  return <ModalAddNoticeWrapper>{steps[currentStep]}</ModalAddNoticeWrapper>;
 };
