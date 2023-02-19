@@ -90,9 +90,11 @@ export const useUser = () => {
 };
 
 export const useUserAvatar = () => {
-  const updateAvatar = useSelector(state => state.auth.user.avatar);
+  const userAvatar = useSelector(state => state.auth.user.avatarURL);
 
-  return { updateAvatar };
+  return {
+  userAvatar};
+
 };
 
 // export const useFilter = () => {
