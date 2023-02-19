@@ -14,6 +14,9 @@ export const Ul = styled.ul`
     margin-top: 60px;
     flex-wrap: wrap;
   }
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
+  }
 `;
 
 export const Li = styled.li`

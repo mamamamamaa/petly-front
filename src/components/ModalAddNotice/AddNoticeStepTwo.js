@@ -1,8 +1,28 @@
 import { useFormik } from 'formik';
-// import { useState } from 'react';
+import { useState } from 'react';
 
 import { object, string, mixed, number } from 'yup';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+// import { ErrorMessage, Field, Form, Formik } from 'formik';
+import {
+  AddNoticeStepTwoForm,
+  AddNoticeStepOneButtonBack,
+  AddNoticeStepOneButtonDone,
+  AddNoticeStepTwoButtonBackDoneWrapper,
+  AddNoticeStepTwoInput,
+  AddNoticeStepTwoLabel,
+  AddNoticeStepTwoInputSex,
+  AddNoticeStepTwoInputSexCheckboxWrapper,
+  AddNoticeStepTwoMale,
+  AddNoticeStepTwoFemale,
+  AddNoticeStepTwoMaleSpan,
+  AddNoticeStepTwoFemaleSpan,
+  AddNoticeStepTwoFemaleWrapper,
+  AddNoticeStepTwoMaleWrapper,
+  AddNoticeStepTwoLabelSex,
+  AddNoticeStepTwoLoadImageInput,
+  AddNoticeStepTwoLoadImageInputWrapper,
+  AddNoticeStepTwoTitle,
+} from './AddNoticeStepTwo.styled';
 
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
@@ -39,11 +59,12 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       sex: data.sex,
       place: data.place,
       price: data.price,
-      pictureURL: data.pictureURL,
+      photoUrl: data.photoUrl,
       comments: data.comments,
     },
     validationSchema: addNoticeSchema,
     onSubmit: (values, actions) => {
+      actions.setFieldValue('photoUrl', values.photoUrl, values.photoUrl.name);
       actions.validateForm();
       const newValue = {
         ...data,
@@ -55,44 +76,82 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       onClose();
     },
   });
+  const [isChecked, setIsChecked] = useState(false);
   return (
-    <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
-      <div>
-        <label>
-          Upload File
-          <input
-            type="file"
-            name="pictureURL"
-            accept="image/*"
-            onChange={e =>
-              formik.setFieldValue(
-                'pictureURL',
-                e.currentTarget.files[0],
-                e.currentTarget.files[0].name
-              )
-            }
-          />
-          <div>{formik.errors.pictureURL}</div>
-        </label>
-      </div>
-      <div>
-        <label>
-          Comments
-          <input
-            type="text"
-            name="comments"
-            placeholder="Type comments"
-            onChange={formik.handleChange}
-            value={formik.values.comments}
-          />
-          <div>{formik.errors.pictureURL}</div>
-        </label>
-      </div>
+    <AddNoticeStepTwoForm
+      onSubmit={formik.handleSubmit}
+      encType="multipart/form-data"
+    >
+      <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
+      <AddNoticeStepTwoLabelSex htmlFor="title">
+        The sex:
+      </AddNoticeStepTwoLabelSex>
+      <AddNoticeStepTwoInputSexCheckboxWrapper checked={isChecked}>
+        <AddNoticeStepTwoMaleWrapper>
+          <AddNoticeStepTwoMale checked={isChecked} />
+          <AddNoticeStepTwoMaleSpan checked={isChecked}>
+            Male
+          </AddNoticeStepTwoMaleSpan>
+        </AddNoticeStepTwoMaleWrapper>
 
-      <button type="button" onClick={handleBack}>
-        Back
-      </button>
-      <button type="submit">Done</button>
-    </form>
+        <AddNoticeStepTwoFemaleWrapper>
+          <AddNoticeStepTwoFemale checked={isChecked} />
+          <AddNoticeStepTwoFemaleSpan checked={isChecked}>
+            Female
+          </AddNoticeStepTwoFemaleSpan>
+        </AddNoticeStepTwoFemaleWrapper>
+
+        <AddNoticeStepTwoInputSex
+          name="title"
+          id="title"
+          type="checkbox"
+          placeholder="Type sex"
+          checked={isChecked}
+          onChange={() => setIsChecked(prev => !prev)}
+        />
+      </AddNoticeStepTwoInputSexCheckboxWrapper>
+      <AddNoticeStepTwoLabel htmlFor="name">Location:</AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoInput
+        name="name"
+        id="name"
+        placeholder="Type location"
+      />
+      <AddNoticeStepTwoLabel htmlFor="name">Price:</AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoInput name="name" id="name" placeholder="Type price" />
+      <AddNoticeStepTwoLabel>Load the pet’s image</AddNoticeStepTwoLabel>
+      <AddNoticeStepTwoLoadImageInputWrapper>
+        <AddNoticeStepTwoLoadImageInput
+          type="file"
+          name="photoUrl"
+          accept="image/*"
+          onChange={e =>
+            formik.setFieldValue(
+              'photoUrl',
+              e.currentTarget.files[0],
+              e.currentTarget.files[0].name
+            )
+          }
+        />
+      </AddNoticeStepTwoLoadImageInputWrapper>
+      <div>{formik.errors.photoUrl}</div>
+      <div>
+        <AddNoticeStepTwoLabel>Comments</AddNoticeStepTwoLabel>
+        <AddNoticeStepTwoInput
+          type="text"
+          name="comments"
+          placeholder="Type comments"
+          onChange={formik.handleChange}
+          value={formik.values.comments}
+        />
+      </div>
+      <AddNoticeStepTwoButtonBackDoneWrapper>
+        <AddNoticeStepOneButtonDone type="submit">
+          Done
+        </AddNoticeStepOneButtonDone>
+        <AddNoticeStepOneButtonBack type="button" onClick={handleBack}>
+          Back
+        </AddNoticeStepOneButtonBack>
+      </AddNoticeStepTwoButtonBackDoneWrapper>
+    </AddNoticeStepTwoForm>
   );
 };

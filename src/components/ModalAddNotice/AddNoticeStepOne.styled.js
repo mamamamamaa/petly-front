@@ -1,6 +1,45 @@
 import styled from '@emotion/styled';
 import { media } from 'components/Layout/Layout.styled';
 import { Form } from 'formik';
+import { theme } from 'utils';
+
+export const AddNoticeStepOneForm = styled(Form)`
+  width: 280px;
+  ${media.tabletAndDesktop} {
+    width: 608px;
+  }
+`;
+
+export const AddNoticeStepOneTitle = styled.h3`
+  text-align: center;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 33px;
+  color: #111111;
+  margin-bottom: 20px;
+  ${media.tabletAndDesktop} {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 49px;
+    color: #000000;
+  }
+`;
+export const AddNoticeStepOneText = styled.p`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: #111111;
+  margin-bottom: 20px;
+  ${media.tabletAndDesktop} {
+    font-size: 20px;
+    line-height: 27px;
+    color: #000000;
+    margin-bottom: 28px;
+  }
+`;
+
 export const AddNoticeStepOneTopBtnsWrapper = styled.div`
   margin-bottom: 32px;
   ${media.tabletAndDesktop} {
@@ -9,12 +48,6 @@ export const AddNoticeStepOneTopBtnsWrapper = styled.div`
   }
 `;
 
-export const AddNoticeStepOneForm = styled(Form)`
-  width: 280px;
-  ${media.tabletAndDesktop} {
-    width: 608px;
-  }
-`;
 export const AddNoticeLostFound = styled.button`
   width: 131px;
   height: 35px;
@@ -110,6 +143,12 @@ export const AddNoticeStepOneLabel = styled.label`
   line-height: 26px;
   color: #111111;
   margin-bottom: 8px;
+  :after {
+    content: '*';
+    color: ${theme.colors.primary};
+    position: absolute;
+    margin-left: 4px;
+  }
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;
@@ -161,7 +200,9 @@ export const AddNoticeStepOneSelect = styled.select`
     padding-left: 16px;
     padding-top: 11px;
     padding-bottom: 10px;
+  }
 `;
+
 export const AddNoticeStepOneButtonNextCancelWrapper = styled.div`
   ${media.tabletAndDesktop} {
     display: flex;

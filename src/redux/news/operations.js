@@ -1,8 +1,26 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// const { REACT_APP_SERVER_HOST: HOST } = process.env;
-// axios.defaults.baseURL = HOST;
+const { REACT_APP_NEWS_SERVER_HOST } = process.env;
+// const { API_KEY } = process.env;
+
+// ======== second way for news ========= down
+export const getNews = createAsyncThunk(
+  'news',
+  async (query = 'pets', thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `${REACT_APP_NEWS_SERVER_HOST}/v2/everything?q=${query}&pageSize=6&apiKey=542cd052e17c46769d10d50b01159abd`
+      );
+      // console.log(query);
+      // console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+// ======== second way for news ========= up
 
 // export const getNews = createAsyncThunk(
 //   'news',
@@ -17,30 +35,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 //   }
 // );
 
-// ======== second way for news ========= down
-
-export const getNews = createAsyncThunk(
-  'news',
-  async (query = 'pets', thunkAPI) => {
-    try {
-      const { data } = await axios.get(
-        `https://newsapi.org/v2/everything?q=${query}&pageSize=6&apiKey=542cd052e17c46769d10d50b01159abd`
-      );
-      console.log(query);
-      console.log(data);
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-// ======== second way for news ========= up
-
 // =====================
 // const { REACT_APP_SERVER_HOST: HOST } = process.env;
-
 // axios.defaults.baseURL = HOST;
-
 // export const getNews = createAsyncThunk(
 //   'news',
 //   async (page = 1, query = 'dog', thunkAPI) => {

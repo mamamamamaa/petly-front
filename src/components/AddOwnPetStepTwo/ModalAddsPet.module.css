@@ -1,0 +1,64 @@
+@media screen and (max-width: 767px) {
+  .textForm {
+    color: rgba(17, 17, 17, 0.6);
+    border-radius: 20px;
+    background-color: #fdf7f2;
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    padding: 12px;
+    height: 100px;
+  }
+  .inputForm {
+    width: 240px;
+    height: 100px;
+  }
+  .inputFormImg {
+    background-color: #fdf7f2;
+    height: 208px;
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .textForm {
+    color: rgba(17, 17, 17, 0.6);
+    border-radius: 20px;
+    background-color: #fdf7f2;
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    padding: 16px;
+    height: 116px;
+  }
+  .inputForm {
+    height: 116px;
+  }
+  .inputFormImg {
+    background-color: #fdf7f2;
+    height: 208px;
+    position: absolute;
+    visibility: hidden;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .textForm {
+    color: rgba(17, 17, 17, 0.6);
+    border-radius: 20px;
+    background-color: #fdf7f2;
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    padding: 16px;
+    height: 116px;
+  }
+  .inputForm {
+    height: 116px;
+  }
+  .inputFormImg {
+    background-color: #fdf7f2;
+    height: 208px;
+    position: absolute;
+    visibility: hidden;
+  }
+  .iconForm {
+    color: rgba(17, 17, 17, 0.6);
+    fill: rgba(17, 17, 17, 0.6);
+    font-size: 48px;
+  }
+}
