@@ -4,9 +4,7 @@ import { NavLink } from 'react-router-dom';
 import zoom from 'utils/svg/zoom.svg';
 import { media } from 'components/Layout/Layout.styled';
 
-export const Form = styled.form`
-  
-`;
+export const Form = styled.form``;
 
 export const NoticesSearch = styled.label`
   font-family: 'Manrope';
@@ -96,8 +94,10 @@ export const NoticesNavLink = styled(NavLink)`
   border: 2px solid #f59256;
   border-radius: 40px;
   padding: 10px 28px;
+  color: ${theme.colors.titleText};
   &.active {
     background-color: #f59256;
+    color: ${theme.colors.accentText};
   }
 `;
 export const NoticesNavText = styled.p`
@@ -106,5 +106,4 @@ export const NoticesNavText = styled.p`
   font-size: 20px;
   line-height: 27px;
   letter-spacing: 0.04em;
-  color: ${theme.colors.titleText};
 `;

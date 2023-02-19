@@ -37,6 +37,7 @@ export const useNews = () => {
 export const useNotices = () => {
   const currentNotice = useSelector(state => state.notices.currentNotice);
   const sellNotices = useSelector(state => state.notices.sellNotices);
+  const searchNotices = useSelector(state => state.notices.searchNotices);
   const favoriteNotices = useSelector(state => state.notices.favoriteNotices);
   const myAdsNotices = useSelector(state => state.notices.myAdsNotices);
   const lostFoundNotices = useSelector(state => state.notices.lostFoundNotices);
@@ -46,8 +47,9 @@ export const useNotices = () => {
   const notices = useSelector(state => state.notices.notices);
   const totalCounts = useSelector(state => state.notices.totalCounts);
   const pages = useSelector(state => state.notices.pages);
-  const getFilterValue = useSelector(state => state.notices.filter);
+  const query = useSelector(state => state.notices.query);
   return {
+    searchNotices,
     totalCounts,
     sellNotices,
     lostFoundNotices,
@@ -59,7 +61,7 @@ export const useNotices = () => {
     currentNotice,
     notices,
     pages,
-    getFilterValue
+    query,
   };
 };
 
@@ -93,8 +95,8 @@ export const useUserAvatar = () => {
   const userAvatar = useSelector(state => state.auth.user.avatarURL);
 
   return {
-  userAvatar};
-
+    userAvatar,
+  };
 };
 
 // export const useFilter = () => {
@@ -102,6 +104,4 @@ export const useUserAvatar = () => {
 //   return {getFilterValue};
 // }
 
-
 // export const getFilterValue = state => state.notices.filter;
-
