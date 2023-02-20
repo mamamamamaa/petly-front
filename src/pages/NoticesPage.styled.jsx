@@ -4,8 +4,6 @@ import { NavLink } from 'react-router-dom';
 import zoom from 'utils/svg/zoom.svg';
 import { media } from 'components/Layout/Layout.styled';
 
-export const Form = styled.form``;
-
 export const NoticesTitle = styled.h2`
     text-align: center;
     font-style: normal;
@@ -66,47 +64,66 @@ export const SearchField = styled.input`
     min-width: 280px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 28px;
+    /* margin-top: 28px; */
   }
   ${media.tablet} {
     min-width: 608px;
     margin-right: 48px; 
     margin-left: 48px; 
-    margin-top: 40px;
+    /* margin-top: 40px; */
   }
   ${media.desktop} {
     width: 608px;
     margin-right: 320px;
     margin-left: 320px;
-    margin-top: 40px;
+    /* margin-top: 40px; */
   }
 `;
 export const NoticesNavWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-`;
-export const NoticesNavUl = styled.ul`
-  /* ${media.mobile} {
-    position: relative;
-  } */
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
   padding-top: 28px;
-  padding-bottom: 30px;
+  padding-bottom: 28px;
   ${media.tabletAndDesktop} {
     padding-top: 40px;
     padding-bottom: 60px;
   }
 `;
+export const NoticesNavUl = styled.ul`
+  /* ${media.mobile} {
+    position: relative;
+  } */
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+`;
 export const NoticesNavLi = styled.li`
   min-height: 47px;
-  :not(:last-child) {
+  ${media.mobile} {
+    :not(:last-child) {
     margin-right: 12px;
     margin-bottom: 12px;
   }
+  };
+  ${media.tablet} {
+    margin-top: 12px;
+  :not(:last-child) {
+    margin-right: 12px;
+    /* margin-bottom: 12px; */
+  }
+  :nth-child(-n+3) {
+    margin-top: 0px;
+  }
+  };
+  ${media.desktop} {
+    :not(:last-child) {
+    margin-right: 12px;
+  }
+}
 `;
+
 export const NoticesNavLink = styled(NavLink)`
   display: flex;
   justify-content: center;
