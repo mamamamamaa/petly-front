@@ -26,12 +26,13 @@ const registerSchema = object().shape({
   password: string()
     .min(7, 'Password must be at least 7 characters')
     .max(32, 'Password must be at most 32 characters')
+    .matches(/^\S*$/, 'Must not contain spaces')
     .required('Password is required'),
   confirmPassword: string()
     .required('Please confirm your password')
     .oneOf([ref('password')], 'Passwords does not match'),
   email: string()
-  .email('Invalid email adress')
+  .email('Invalid email address')
     .matches(
       // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
@@ -45,7 +46,7 @@ const registerSchema = object().shape({
     .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters')
     .required('Name is required'),
   mobilePhone: string()
-    .matches(/^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/, 'Bad phone number')
+    .matches(/^\+380\d{2}\d{3}\d{2}\d{2}$/, 'Bad phone number')
     .required('Phone is required'),
   city: string()
     .matches(

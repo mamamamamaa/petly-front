@@ -8,6 +8,7 @@ export const useAuth = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const user = useSelector(state => state.auth.user);
   const isRefreshing = useSelector(state => state.auth.isRefreshing);
+  const isLoading = useSelector(state => state.auth.isLoading);
   const verifyPart = useSelector(state => state.auth.verifyPart);
   const error = useSelector(state => state.auth.error);
 
@@ -17,6 +18,7 @@ export const useAuth = () => {
     isLoggedIn,
     user,
     isRefreshing,
+    isLoading,
     expiresIn,
     verifyPart,
     error,
