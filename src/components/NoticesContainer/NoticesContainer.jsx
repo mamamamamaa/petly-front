@@ -11,6 +11,7 @@ import { useNotices } from '../../redux/hooks';
 import { useDispatch } from 'react-redux';
 import { setQuery } from '../../redux/notices/noticeSlice';
 import { search } from '../../redux/notices/operations';
+import debounce from 'lodash.debounce';
 
 const LIMIT = 20;
 
@@ -47,7 +48,8 @@ export const NoticesContainer = ({ type }) => {
 
   useEffect(() => {
     if (query) {
-      dispatch(search({ query, type }));
+      const myType = type === 'lost-found' ? 'lost/found' : type;
+      dispatch(search({ query, type: myType }));
     }
   }, [query]);
 
