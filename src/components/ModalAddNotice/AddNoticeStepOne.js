@@ -23,6 +23,7 @@ import {
   LabelRadioBtn,
   RadioBtn,
   SpanStar,
+  AddNoticeStepOneSelect,
 } from './ModalAddNotice.styled';
 
 const formOneValidationSchema = Yup.object({
@@ -45,6 +46,10 @@ const formOneValidationSchema = Yup.object({
     .label('breed')
     .required('Breed is required'),
 });
+
+const filterByLengthBreeds = breeds.filter(
+  breed => breed.split('').length < 16
+);
 
 export const AddNoticeStepOne = props => {
   const handleSubmit = values => {
