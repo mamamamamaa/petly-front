@@ -47,3 +47,20 @@ export const PetsDataButton = styled.button`
 export const PetsDataSection = styled.div`
   background-color: #fdf7f2;
 `;
+
+export const Notification = styled.div`
+  width: 200px;
+  height: 50px;  
+  margin-right: auto;
+  margin-top: 100px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.04em;
+  color: #000000;  
+  ${media.tablet} {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 22px;    
+  }
+`

@@ -13,6 +13,7 @@ import {
   PetsDataSection,
   PetsDataAddBtnWrapper,
   PetsDataAddBtnContainer,
+  Notification
 } from './PetsData.styled';
 const selectPets = state => state.user.pets;
 const selectIsLoading = state => state.isLoading;
@@ -44,10 +45,10 @@ export const PetsData = () => {
         </PetsDataAddBtnWrapper>  
       </PetsDataAddBtnContainer>
       <PetsDataAddBtnContainer>
-      {isLoading && <div>Loading...</div>}
-        {error && <div>error</div>}
+      {isLoading && <Notification>Loading...</Notification>}
+        {error && <Notification>Sorry, something went wrong, try again later</Notification>}
         {!error && !isLoading && pets.length === 0 && (
-          <div>you have no pets yet</div>
+          <Notification>You have no pets yet</Notification>
         )}
         {!error && !isLoading && pets.length > 0 && <PetsList pets={pets} />}
         {showModal && (
