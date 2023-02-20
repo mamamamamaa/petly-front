@@ -46,7 +46,7 @@ export const AddNoticeStepTwoLabelSex = styled.label`
 `;
 export const AddNoticeStepTwoInputSexCheckboxWrapper = styled.div`
   width: 100%;
-  height: 80px;
+  height: 77px;
   position: relative;
   margin-bottom: 32px;
   ${media.tabletAndDesktop} {
@@ -194,10 +194,26 @@ export const AddNoticeStepTwoInput = styled.input`
     height: 48px;
     margin-bottom: 28px;
   }
-  &:nth-of-type(3) {
-    ${media.tabletAndDesktop} {
-      display: none;
-    }
+`;
+export const AddNoticeStepTwoInputComments = styled.input`
+  display: block;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  margin-bottom: 40px;
+  padding-left: 14px;
+  padding-right: 20px;
+  &::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: rgba(27, 27, 27, 0.6);
+  }
+  ${media.tabletAndDesktop} {
+    display: none;
   }
 `;
 export const AddNoticeStepTwoLabelPictureURL = styled.label`
@@ -206,7 +222,7 @@ export const AddNoticeStepTwoLabelPictureURL = styled.label`
   font-size: 18px;
   line-height: 26px;
   color: #111111;
-  margin-bottom: 8px;
+  margin-bottom: 144px;
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;

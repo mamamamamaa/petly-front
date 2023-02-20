@@ -27,6 +27,7 @@ import {
   AddNoticeStepTwoLabelLocation,
   AddNoticeStepTwoLabelPrice,
   AddNoticeStepTwoLabelPictureURL,
+  AddNoticeStepTwoInputComments,
 } from './AddNoticeStepTwo.styled';
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
@@ -161,7 +162,7 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       <AddNoticeStepTwoLabelComments htmlFor="comments">
         Comments
       </AddNoticeStepTwoLabelComments>
-      <AddNoticeStepTwoInput
+      <AddNoticeStepTwoInputComments
         type="text"
         id="comments"
         name="comments"
