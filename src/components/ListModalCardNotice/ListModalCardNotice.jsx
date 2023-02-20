@@ -2,8 +2,11 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../redux/hooks';
-import { addFav } from '../../redux/auth/authSlice';
-import { addNoticeToFav } from '../../redux/notices/operations';
+import { addFav, delFav } from '../../redux/auth/authSlice';
+import {
+  addNoticeToFav,
+  deleteNoticeFromFav,
+} from '../../redux/notices/operations';
 // ===================
 import {
   Container,
@@ -25,7 +28,7 @@ import {
   AddToFavImg,
   CallModal,
 } from './ListModalCardNotice.styled';
-import NewsNewDate from '../../utils/NewsNewDate/NewsNewDate';
+import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import noPoster from 'noPoster.jpg';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
 // ===================
@@ -60,9 +63,10 @@ export const ListModalCardNotice = ({ date }) => {
     }
 
     if (fav) {
-      toast.error('Your pet is already in favorites!');
+      dispatch(deleteNoticeFromFav(_id));
+      dispatch(delFav(_id));
     } else {
-      dispatch(addNoticeToFav(_id));
+      dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
       toast.success('Successfully toasted!');
     }
@@ -132,7 +136,7 @@ export const ListModalCardNotice = ({ date }) => {
                 </Li>
                 <Li>
                   <Text>
-                    <NewsNewDate date={dateOfBirth} />
+                    <ModalNewDate date={dateOfBirth} />
                   </Text>
                 </Li>
                 <Li>

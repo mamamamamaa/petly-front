@@ -19,13 +19,46 @@ export const Button = styled.li`
   border-radius: 40px;
   background: ${theme.colors.accentText};
   color: ${theme.colors.titleText};
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :last-child {
     margin-left: 20px;
   }
   :hover,
   :focus {
-    background-color: ${theme.colors.primary};
-    color: ${theme.colors.accentText};
+    // background-color: ${theme.colors.primary};
+    // color: ${theme.colors.accentText};
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
+  }
+  :disabled {
+    opacity: 0.5;
+    cursor: auto;
+    transform: none;
+    transition: none;
+  }
+  :disabled:before {
+    transform: none;
+    transition: none;
   }
   ${media.mobile} {
     height: 35px;

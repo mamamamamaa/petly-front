@@ -1,39 +1,35 @@
+import debounce from 'lodash.debounce';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { search } from 'redux/notices/operations';
-// import { sell } from 'redux/notices/operations';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { NoticesContainer } from 'components/NoticesContainer/NoticesContainer';
 import {
+  NoticesTitle,
   NoticesSearch,
   SearchField,
   NoticesNavLink,
   NoticesNavText,
   NoticesNavLi,
   NoticesNavUl,
-  // AddPetToNoticesBtn,
-  // AddPetToNoticesImg,
-  // AddPetToNoticesText,
   NoticesNavWrapper,
-  // AddPetToNoticesBtnWrapper,
 } from './NoticesPage.styled';
-import { AddPetToNoticesBtn,
-          AddPetToNoticesImg,
-          AddPetToNoticesText, 
-          AddPetToNoticesBtnWrapper
-         } from 'components/AddNoticeButton/AddNoticeButton.styled';
+import {
+  AddPetToNoticesBtn,
+  AddPetToNoticesImg,
+  AddPetToNoticesText,
+  AddPetToNoticesBtnWrapper,
+} from 'components/AddNoticeButton/AddNoticeButton.styled';
 import cross from 'utils/svg/cross.svg';
-import { useAuth } from '../redux/hooks';
+import { useAuth, useNotices } from '../redux/hooks';
 import toast, { Toaster } from 'react-hot-toast';
 import AddNoticeButton from '../components/AddNoticeButton/AddNoticeButton';
 import { Container } from 'utils';
+import { setQuery } from '../redux/notices/noticeSlice';
 
 const NoticesPage = () => {
+  const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
-  const [firstName, setFirstName] = useState('');
-  const [pets, setPets] = useState([]);
-
+  const { query } = useNotices();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onButtonClick = () => {
@@ -44,31 +40,15 @@ const NoticesPage = () => {
       : setIsModalOpen(true);
   };
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    // const getTrendingHttp = async () => {
-    //   try {
-    //     const response = await dispatch(search(firstName)).then(
-    //       responseHttp => {
-    //         return responseHttp;
-    //       }
-    //     );
-    //     console.log(response);
-    //     setPets([...response.payload]);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-    // getTrendingHttp();
-  }, [firstName, dispatch]);
+  const handleChangeQuery = e => dispatch(setQuery(e.target.value));
 
   return (
     <Container>
+      <NoticesTitle>Find your favorite pet</NoticesTitle>
       <NoticesSearch>
         <SearchField
           placeholder="Search"
-          value={firstName}
-          onChange={e => setFirstName(e.target.value)}
+          onChange={debounce(handleChangeQuery, 300)}
         />
       </NoticesSearch>
       <NoticesNavWrapper>

@@ -41,15 +41,20 @@ export const updateUser  = createAsyncThunk(
 
 
 export const updateAvatar = createAsyncThunk(
-    "avatar/updateAvatar",    
-    async (_id, thunkAPI) => {
-        try {
-            console.log(_id)
-                              
+    "avatarURL/updateAvatar",    
+    async ( avatarURL,   thunkAPI) => {
+        
+        //console.log()
+        try {                           
            
-            const res = await axios.patch(`/api/auth/avatar` )
-            console.log('response', res)
-            return res;
+            const res = await axios.patch(`/api/auth/avatar`, avatarURL, {
+                headers: {
+                    "Content-Type": "multipart/form-data",                       
+            },
+            })          
+            
+            console.log('response', res.data.user.avatarURL)
+            return res.data.user.avatarURL;
         }
         catch (e) { 
              return thunkAPI.rejectWithValue(e.message);
@@ -66,7 +71,7 @@ export const fetchUserPets = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await axios.get("/api/userprofile");
-            return response.data.data.pets;
+            return response.data.data.pets.reverse();
         } catch (e) {
             console.log("event in operations", e);
             return thunkAPI.rejectWithValue(e.message);

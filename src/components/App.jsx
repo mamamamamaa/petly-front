@@ -5,11 +5,7 @@ import { RestrictedRoute, PrivateRoute } from '../helpers';
 import { useDispatch } from 'react-redux';
 import { current, refresh } from '../redux/auth/operations';
 import { useAuth } from '../redux/hooks';
-import { SellList } from 'components/SellList/SellList';
-import { InGoodHandsList } from 'components/InGoodHandsList/InGoodHandsList';
-import { LostFoundList } from 'components/LostFoundList/LostFoundList';
-import { FavoriteList } from './FavoriteList/FavoriteList';
-import { MyAdsList } from './MyAdsList/MyAdsList';
+import NoticesContainer from './NoticesContainer/NoticesContainer';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const NewsPage = lazy(() => import('../pages/NewsPage'));
@@ -47,15 +43,34 @@ export const App = () => {
         <Route path="/news" element={<NewsPage />} />
 
         <Route path="/notice" element={<NoticesPage />}>
-          <Route path="sell" element={<SellList />} />
-          <Route path="good-hands" element={<InGoodHandsList />} />
-          <Route path="lost" element={<LostFoundList />} />
-          <Route path="favorite" element={<FavoriteList />} />
-          <Route path="my-ads" element={<MyAdsList />} />
+          <Route path="sell" element={<NoticesContainer type="sell" />} />
+          <Route
+            path="good-hands"
+            element={<NoticesContainer type="good-hands" />}
+          />
+          <Route path="lost" element={<NoticesContainer type="lost-found" />} />
+          <Route
+            path="favorite"
+            element={
+              <PrivateRoute
+                component={<NoticesContainer type="favorite" />}
+                redirectTo="/login"
+              />
+            }
+          />
+          <Route
+            path="my-ads"
+            element={
+              <PrivateRoute
+                component={<NoticesContainer type="my-ads" />}
+                redirectTo="/login"
+              />
+            }
+          />
         </Route>
 
         <Route path="/friends" element={<OurFriendsPage />} />
-        
+
         <Route
           path="/login"
           element={
@@ -75,11 +90,9 @@ export const App = () => {
           element={
             <PrivateRoute component={<UserPage />} redirectTo="/login" />
           }
-
         />
-        
-        <Route path="*" element={<Navigate to="/" replace={<HomePage />} />} />
 
+        <Route path="*" element={<Navigate to="/" replace={<HomePage />} />} />
       </Route>
     </Routes>
   );

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { theme } from '../../../utils/theme';
+import { theme } from '../../../utils';
 
 export const Title = styled.h3`
   font-weight: ${theme.fontWeights.bold};

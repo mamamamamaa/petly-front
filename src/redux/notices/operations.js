@@ -7,10 +7,10 @@ axios.defaults.baseURL = HOST;
 
 export const search = createAsyncThunk(
   'notices/search',
-  async (firstName, thunkAPI) => {
+  async ({ query, type }, thunkAPI) => {
     try {
       const res = await axios.get(
-        `/api/notices/searchManyTitles?title=${firstName}`
+        `/api/notices/searchManyTitles?title=${query}&type=${type}`
       );
       return res.data;
     } catch (e) {
@@ -26,7 +26,7 @@ export const sell = createAsyncThunk(
       const res = await axios.get(
         `/api/notices/paginateNotice?type=sell&page=${page}&limit=${limit}`
       );
-      return res.data;
+      return { data: res.data, page };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -41,7 +41,7 @@ export const goodHands = createAsyncThunk(
       const res = await axios.get(
         `/api/notices/paginateNotice?type=good-hands&page=${page}&limit=${limit}`
       );
-      return res.data;
+      return { data: res.data, page };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -56,7 +56,7 @@ export const lostFound = createAsyncThunk(
       const res = await axios.get(
         `/api/notices/paginateNotice?type=lost/found&page=${page}&limit=${limit}`
       );
-      return res.data;
+      return { data: res.data, page };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -99,7 +99,7 @@ export const favorite = createAsyncThunk(
       const res = await axios.get(
         `/api/notices/favorite?page=${page}&limit=${limit}`
       );
-      return res.data;
+      return { data: res.data, page };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -112,7 +112,7 @@ export const myAds = createAsyncThunk(
     const limit = 20;
     try {
       const res = await axios.get(`/api/notices?page=${page}&limit=${limit}`);
-      return res.data;
+      return { data: res.data, page };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -124,8 +124,6 @@ export const getNoticeById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const res = await axios.get(`/api/notices/ads/${id}`);
-      // const res = await axios.get(`/api/notices/${id}`);
-
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -135,11 +133,10 @@ export const getNoticeById = createAsyncThunk(
 
 export const addNoticeToFav = createAsyncThunk(
   'notices/addNoticeToFav',
-  async (id, thunkAPI) => {
+  async ({ id, type }, thunkAPI) => {
     try {
-      const res = await axios.patch(`/api/notices/addfavorite/${id}`);
-
-      return res.data;
+      await axios.patch(`/api/notices/addfavorite/${id}`);
+      return { id, type };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

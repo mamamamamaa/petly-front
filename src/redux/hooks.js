@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 export const useAuth = () => {
   const accessToken = useSelector(state => state.auth.accessToken);
@@ -36,6 +37,7 @@ export const useNews = () => {
 export const useNotices = () => {
   const currentNotice = useSelector(state => state.notices.currentNotice);
   const sellNotices = useSelector(state => state.notices.sellNotices);
+  const searchNotices = useSelector(state => state.notices.searchNotices);
   const favoriteNotices = useSelector(state => state.notices.favoriteNotices);
   const myAdsNotices = useSelector(state => state.notices.myAdsNotices);
   const lostFoundNotices = useSelector(state => state.notices.lostFoundNotices);
@@ -43,7 +45,12 @@ export const useNotices = () => {
   const isLoading = useSelector(state => state.notices.isLoading);
   const error = useSelector(state => state.notices.error);
   const notices = useSelector(state => state.notices.notices);
+  const totalCounts = useSelector(state => state.notices.totalCounts);
+  const pages = useSelector(state => state.notices.pages);
+  const query = useSelector(state => state.notices.query);
   return {
+    searchNotices,
+    totalCounts,
     sellNotices,
     lostFoundNotices,
     goodHandsNotices,
@@ -53,6 +60,8 @@ export const useNotices = () => {
     error,
     currentNotice,
     notices,
+    pages,
+    query,
   };
 };
 
@@ -72,21 +81,27 @@ export const useFriends = () => {
 export const useUser = () => {
   const user = useSelector(state => state.user);
 
-  const getUserData = useSelector(state => state.user.getUserData); 
-  const updateUser = useSelector(state=> state.user.updateUser)
-  
+  const getUserData = useSelector(state => state.user.getUserData);
+  const updateUser = useSelector(state => state.user.updateUser);
+
   return {
     user,
     getUserData,
-    updateUser,  
-   
-
+    updateUser,
   };
 };
 
 export const useUserAvatar = () => {
-  const updateAvatar = useSelector(state => state.auth.user.avatar);
+  const userAvatar = useSelector(state => state.auth.user.avatarURL);
 
-  return {updateAvatar}
+  return {
+    userAvatar,
+  };
 };
 
+// export const useFilter = () => {
+//   const getFilterValue = useSelector(state => state.notices.filter);
+//   return {getFilterValue};
+// }
+
+// export const getFilterValue = state => state.notices.filter;

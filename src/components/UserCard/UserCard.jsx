@@ -66,9 +66,8 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
   const dispatch = useDispatch();
 
   const { user } = useUser();
-
-  console.log(user.user);
-
+ console.log(user)
+  
   const onChangeHandler = e => {
     console.log('1111');
     const formData = new FormData();
@@ -92,7 +91,7 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
     validationSchema: userSchema,
     onSubmit: values => {
       const { name, email, birthday, mobilePhone, city } = values;
-      console.log(values);
+     
       dispatch(
         updateUser({
           name,
@@ -105,7 +104,7 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
     },
     enableReinitialize: true,
   });
-  console.log(formik);
+  //console.log(formik);
 
   useEffect(() => {
     dispatch(getUserData());

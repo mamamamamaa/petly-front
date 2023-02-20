@@ -19,11 +19,8 @@ export default function NewsPage() {
 
   const dispatch = useDispatch();
   const { currentNews } = useNews();
-  const { articles } = currentNews;
-
-  // const { data } = currentNews;
-  // const { result } = data;
-  // const { value } = result;
+  // console.log(currentNews);
+  // const { value } = currentNews;
 
   useEffect(() => {
     dispatch(getNews(query));
@@ -36,6 +33,12 @@ export default function NewsPage() {
   }, [error]);
 
   const handlerFormSubmit = values => {
+    if (values.query.trim() === '') {
+      setQuery('pets');
+      setError(false);
+      setIsLoading(false);
+      setSearchParams({ query: 'pets' });
+    }
     if (query !== values.query.trim()) {
       setQuery(values.query.trim());
       setError(false);
@@ -49,13 +52,14 @@ export default function NewsPage() {
       <MainHeader>News</MainHeader>
       <SearchBar onSubmit={handlerFormSubmit} />
       {isLoading && <h2>... is loading</h2>}
-      {currentNews && articles && <ListNews news={articles} />}
-      {/* {currentNews && articles && <ListNews news={articles} />} */}
+      {currentNews && <ListNews news={currentNews} />}
       <Toaster />
     </Container>
   );
 }
 // ======== second way for news ========= up
+
+// currentNews && articles && <ListNews news={articles} />
 
 // ======= old ========
 // ================= запрос
