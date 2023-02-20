@@ -28,6 +28,7 @@ import {
   AddNoticeStepTwoLabelPrice,
   AddNoticeStepTwoLabelPictureURL,
   AddNoticeStepTwoInputComments,
+  AddNoticeStepTwoInputPrice,
 } from './AddNoticeStepTwo.styled';
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
@@ -122,14 +123,19 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
         id="location"
         placeholder="Type location"
       />
-      <AddNoticeStepTwoLabelPrice htmlFor="price">
+      <AddNoticeStepTwoLabelPrice htmlFor="price" isChecked>
         Price:
       </AddNoticeStepTwoLabelPrice>
-      <AddNoticeStepTwoInput name="price" id="price" placeholder="Type price" />
+      <AddNoticeStepTwoInputPrice
+        isChecked
+        name="price"
+        id="price"
+        placeholder="Type price"
+      />
       <AddNoticeStepTwoLabelPictureURL htmlFor="pictureURL">
         Load the pet’s image
       </AddNoticeStepTwoLabelPictureURL>
-      <AddNoticeStepTwoLoadImageInputWrapper>
+      <AddNoticeStepTwoLoadImageInputWrapper checked>
         <AddNoticeStepTwoLoadImageInput
           type="file"
           id="pictureURL"

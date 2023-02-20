@@ -124,19 +124,6 @@ export const AddNoticeStepTwoLabelLocation = styled.label`
     margin-bottom: 12px;
   }
 `;
-export const AddNoticeStepTwoLabelPrice = styled.label`
-  display: block;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 26px;
-  color: #111111;
-  margin-bottom: 8px;
-  ${media.tabletAndDesktop} {
-    font-size: 24px;
-    color: #000000;
-    margin-bottom: 12px;
-  }
-`;
 
 export const AddNoticeStepTwoLabelComments = styled.label`
   display: block;
@@ -172,13 +159,50 @@ export const AddNoticeStepTwoCommentArea = styled.textarea`
   background-color: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 20px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  color: #000000;
+  &::placeholder {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #000000;
+  }
 `;
 export const AddNoticeStepTwoInput = styled.input`
   display: block;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  margin-bottom: 16px;
+  padding-left: 14px;
+  padding-right: 20px;
+  &::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: rgba(27, 27, 27, 0.6);
+  }
+  ${media.tabletAndDesktop} {
+    height: 48px;
+    margin-bottom: 28px;
+  }
+`;
+export const AddNoticeStepTwoLabelPrice = styled.label`
+  display: ${props => (props.checked ? 'block' : 'none')};
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #111111;
+  margin-bottom: 8px;
+  ${media.tabletAndDesktop} {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 12px;
+  }
+`;
+export const AddNoticeStepTwoInputPrice = styled.input`
+  display: ${props => (props.checked ? 'block' : 'none')};
   width: 100%;
   height: 40px;
   box-sizing: border-box;
@@ -243,11 +267,11 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
   background-image: url(${loadCross});
   position: absolute;
   left: 20px;
-  top: 464px;
+  top: ${props => (props.checked ? '373px' : '464px')};
   ${media.tabletAndDesktop} {
     width: 140px;
     height: 140px;
-    top: 600px;
+    top: ${props => (props.checked ? '485px' : '600px')};
     left: 80px;
   }
 `;
