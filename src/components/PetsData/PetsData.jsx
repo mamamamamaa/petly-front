@@ -1,4 +1,4 @@
-import { Card } from "components/UserCard/UserCard.styled";
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {fetchUserPets } from "../../redux/user/operations";
@@ -37,14 +37,13 @@ export const PetsData = () => {
   return (
     <PetsDataSection>
       <PetsDataAddBtnContainer>
-        <PetsDataTitle>My pets:</PetsDataTitle>
-        
+        <PetsDataTitle>My pets:</PetsDataTitle>        
         <PetsDataAddBtnWrapper>
           <PetsDataAddText>Add pet</PetsDataAddText>
           <PetsDataButton type="button" onClick={handleModal}></PetsDataButton>
         </PetsDataAddBtnWrapper>  
       </PetsDataAddBtnContainer>
-      {/* <Card> */}
+      <PetsDataAddBtnContainer>
       {isLoading && <div>Loading...</div>}
         {error && <div>error</div>}
         {!error && !isLoading && pets.length === 0 && (
@@ -56,7 +55,8 @@ export const PetsData = () => {
             <ModalAddsPet onClose={handleModal} />
           </Modal>
         )}
-      {/* </Card> */}
+      </PetsDataAddBtnContainer>
     </PetsDataSection>
+    
   );
 };
