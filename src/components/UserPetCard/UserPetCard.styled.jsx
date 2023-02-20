@@ -76,13 +76,12 @@ export const PetDeleteButtonWrapper = styled.div`
   }
 `;
 export const PetDeleteButton = styled.button`
-  width: 17px;
-  height: 18px;
+  width: 20px;
+  height: 21px;
   background-image: url(${PetDeleteIcon});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 0vw left 0vw;
-  margin-left: auto;
   border: none;
   ${media.tablet} {
     width: 20px;

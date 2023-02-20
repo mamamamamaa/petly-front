@@ -8,63 +8,9 @@ import { useNews } from '../redux/hooks';
 import { getNews } from '../redux/news/operations';
 import SearchBar from '../utils/searchBar/searchBar';
 import ListNews from '../components/ListNews/ListNews';
-import { Container, MainHeader } from './NewsPage.styled';
+import { Container, MainHeader, NothingFound } from './NewsPage.styled';
 // =======
 
-// ================= логика
-// export default function NewsPage() {
-//   const [searchNews, setSearchNews] = useState([]);
-//   const [query, setQuery] = useState('animals');
-//   const [error, setError] = useState(false);
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [setSearchParams] = useSearchParams();
-
-//   const dispatch = useDispatch();
-//   const { currentNews } = useNews();
-//   useEffect(() => {
-//     dispatch(getNews(query));
-
-//     const count = currentNews.data.result.totalCount;
-//     console.log(count);
-//     if (count === 0) {
-//       toast.error(
-//         'Sorry, there are no news matching your query. Please try again.'
-//       );
-//       return;
-//     }
-//     const newNews = currentNews.data.result.value;
-//     console.log(newNews);
-//     setSearchNews(newNews);
-//   }, [dispatch, query, currentNews]);
-
-//   useEffect(() => {
-//     if (error !== false) {
-//       toast.error(error);
-//     }
-//   }, [error]);
-
-//   const handlerFormSubmit = values => {
-//     if (query !== values.query.trim()) {
-//       setSearchNews([]);
-//       setQuery(values.query.trim());
-//       setError(false);
-//       setIsLoading(false);
-//       setSearchParams({ query: values.query });
-//     }
-//   };
-
-//   return (
-//     <Container>
-//       <MainHeader>News</MainHeader>
-//       <SearchBar onSubmit={handlerFormSubmit} />
-//       {isLoading && <h2>... is loading</h2>}
-//       <ListNews news={searchNews} />
-//       <Toaster />
-//     </Container>
-//   );
-// }
-
-// ======== second way for news ========= down
 export default function NewsPage() {
   const [query, setQuery] = useState('pets');
   const [error, setError] = useState(false);
@@ -73,7 +19,8 @@ export default function NewsPage() {
 
   const dispatch = useDispatch();
   const { currentNews } = useNews();
-  const { articles } = currentNews;
+  // console.log(currentNews);
+  // const { value } = currentNews;
 
   useEffect(() => {
     dispatch(getNews(query));
@@ -86,6 +33,12 @@ export default function NewsPage() {
   }, [error]);
 
   const handlerFormSubmit = values => {
+    if (values.query.trim() === '') {
+      setQuery('pets');
+      setError(false);
+      setIsLoading(false);
+      setSearchParams({ query: 'pets' });
+    }
     if (query !== values.query.trim()) {
       setQuery(values.query.trim());
       setError(false);
@@ -99,12 +52,17 @@ export default function NewsPage() {
       <MainHeader>News</MainHeader>
       <SearchBar onSubmit={handlerFormSubmit} />
       {isLoading && <h2>... is loading</h2>}
-      {currentNews && articles && <ListNews news={articles} />}
+      {currentNews && currentNews.length > 0 && <ListNews news={currentNews} />}
+      {(!currentNews || currentNews.length === 0) && (
+        <NothingFound>Nothing found for this query</NothingFound>
+      )}
       <Toaster />
     </Container>
   );
 }
 // ======== second way for news ========= up
+
+// currentNews && articles && <ListNews news={articles} />
 
 // ======= old ========
 // ================= запрос
@@ -113,7 +71,7 @@ export default function NewsPage() {
 //     query = 'dog';
 //   }
 //   const { data } = await axios.get(
-//     `http://localhost:3001/api/news?query=${query}`
+//     http://localhost:3001/api/news?query=${query}
 //   );
 //   return data;
 // }

@@ -1,3 +1,13 @@
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useAuth } from '../../redux/hooks';
+import { addFav, delFav } from '../../redux/auth/authSlice';
+import {
+  addNoticeToFav,
+  deleteNoticeFromFav,
+} from '../../redux/notices/operations';
+// ===================
 import {
   Container,
   WraperMain,
@@ -15,12 +25,17 @@ import {
   Box,
   BoxButton,
   ButtonModal,
+  AddToFavImg,
+  CallModal,
 } from './ListModalCardNotice.styled';
-import NewsNewDate from '../../utils/NewsNewDate/NewsNewDate';
+import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import noPoster from 'noPoster.jpg';
+import strokeHeart from 'utils/svg/strokeHeart.svg';
+// ===================
 
 export const ListModalCardNotice = ({ date }) => {
   const {
+    _id,
     photoUrl = noPoster,
     type = 'unknown',
     title,
@@ -35,13 +50,54 @@ export const ListModalCardNotice = ({ date }) => {
     comments = 'unknown',
   } = date;
 
+  // добавить в избранное помошники
+  const dispatch = useDispatch();
+  const { user, isLoggedIn } = useAuth();
+  const isFavorite = user.favorite.includes(_id);
+  const [fav, setFav] = useState(isFavorite);
+
+  // добавить в избранное логика
+  const favoriteHandler = () => {
+    if (!isLoggedIn) {
+      return toast.error('Your pet was successfully added to favorites!');
+    }
+
+    if (fav) {
+      dispatch(deleteNoticeFromFav(_id));
+      dispatch(delFav(_id));
+    } else {
+      dispatch(addNoticeToFav({ id: _id, type }));
+      dispatch(addFav(_id));
+      toast.success('Successfully toasted!');
+    }
+    setFav(prevState => !prevState);
+  };
+
+  // сделать звонок
+  const call = phone => {
+    const fullNumber = 'tel:' + phone;
+    return fullNumber;
+  };
+  const getCall = call(phone);
+
+  const changeTitle = type => {
+    if (type === 'good-hands') {
+      const newType = 'In good hands';
+      return newType;
+    } else {
+      const newType = type;
+      return newType;
+    }
+  };
+  const getNewType = changeTitle(type);
+
   return (
     <Container>
       <WraperMain>
         <Wraper>
           <Img src={photoUrl} alt="Pet" />
           <AdvWrapper>
-            <AdvTitle>{type}</AdvTitle>
+            <AdvTitle>{getNewType}</AdvTitle>
           </AdvWrapper>
           <BoxSecond>
             <Title>{title}</Title>
@@ -80,7 +136,7 @@ export const ListModalCardNotice = ({ date }) => {
                 </Li>
                 <Li>
                   <Text>
-                    <NewsNewDate date={dateOfBirth} />
+                    <ModalNewDate date={dateOfBirth} />
                   </Text>
                 </Li>
                 <Li>
@@ -113,8 +169,11 @@ export const ListModalCardNotice = ({ date }) => {
       </WraperMain>
 
       <BoxButton>
-        <ButtonModal>Add to</ButtonModal>
-        <ButtonModal>Contact</ButtonModal>
+        <ButtonModal onClick={favoriteHandler}>
+          Add to
+          <AddToFavImg src={strokeHeart} alt="Add to favorites" />
+        </ButtonModal>
+        <CallModal href={getCall}>Contact</CallModal>
       </BoxButton>
     </Container>
   );

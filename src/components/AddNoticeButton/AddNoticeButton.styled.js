@@ -5,8 +5,8 @@ import { media } from 'components/Layout/Layout.styled';
 export const AddPetToNoticesBtnWrapper = styled.div`
   ${media.mobile} {
     position: fixed;
-    left: 220px;
-    top: 400px;
+    left: 68%;
+    top: 68%;
     z-index: 10;
   }
   min-width: 50px;

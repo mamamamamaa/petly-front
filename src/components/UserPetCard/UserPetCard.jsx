@@ -11,6 +11,7 @@ import {
   PetTextWrapper,
   PetDeleteButtonWrapper,
 } from './UserPetCard.styled';
+
 export const UserPetCard = ({
   pet = {},
   pictureURL = '',

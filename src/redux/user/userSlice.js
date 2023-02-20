@@ -16,7 +16,7 @@ const initialState = {
     city: ' ',
     phone: ' ',
     birthday: ' ',
-    avatarUrl: ' ',
+    avatarURL: ' ',
   },
   isLoading: false,
   error: null,
@@ -38,10 +38,10 @@ const userSlice = createSlice({
         state.user.email = action.payload.email;
         state.user.phone = action.payload.phone;
         state.user.city = action.payload.city;
-        state.user.avatar = action.payload.avatar;
+        state.user.avatarURL = action.payload.avatarURL;
         state.user.birthday = action.payload.birthday;
         state.isLoggedIn = true;
-        console.log(state.user.avatar)
+        console.log(state.user.avatarURL)
       })
       .addCase(getUserData.rejected, (state, action) => {
         //state.error = action.payload;
