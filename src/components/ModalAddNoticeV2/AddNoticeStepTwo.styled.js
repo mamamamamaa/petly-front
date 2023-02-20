@@ -265,10 +265,12 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
   width: 116px;
   height: 116px;
   background-color: #fdf7f2;
+  background-size: 116px 116px;
   border-radius: 20px;
   background-repeat: no-repeat;
   background-position: center;
   background-image: url(${loadCross});
+  background-image: ${({ preview }) => (preview ? `url(${preview})` : 'none')};
   position: absolute;
   left: 20px;
   top: ${props => (props.selectedOption === 'sell' ? '464px' : '373px')};

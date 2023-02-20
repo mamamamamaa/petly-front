@@ -94,12 +94,6 @@ export const AddNoticeStepTwo = ({
       setPreview(reader.result);
     };
     reader.readAsDataURL(url);
-    // if (url && url !== image) {
-    //   const img = new Image();
-    //   img.src = url;
-    //   console.log(img.src);
-    //   setImage(img.src);
-    // }
   }
     return (
       <AddNoticeStepTwoForm
@@ -157,7 +151,8 @@ export const AddNoticeStepTwo = ({
         <AddNoticeStepTwoLabelPictureURL htmlFor="pictureURL">
           Load the pet’s image
         </AddNoticeStepTwoLabelPictureURL>
-        <AddNoticeStepTwoLoadImageInputWrapper selectedOption={selectedOption}>
+        <AddNoticeStepTwoLoadImageInputWrapper selectedOption={selectedOption}
+          preview={preview }>
           <AddNoticeStepTwoLoadImageInput
             type="file"
             id="pictureURL"
@@ -166,10 +161,9 @@ export const AddNoticeStepTwo = ({
             onChange={handleImageLoad}
           />
         </AddNoticeStepTwoLoadImageInputWrapper>
-        {/* {image && <img src={image} alt="preview" width="100" height="100" />} */}
-        {preview && (
+        {/* {preview && (
           <img src={preview} alt="preview" width="100" height="100" />
-        )}
+        )} */}
         <div>{formik.errors.pictureURL}</div>
 
         <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
