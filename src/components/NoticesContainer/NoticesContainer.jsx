@@ -11,7 +11,7 @@ import { useNotices } from '../../redux/hooks';
 import { useDispatch } from 'react-redux';
 import { setQuery } from '../../redux/notices/noticeSlice';
 import { search } from '../../redux/notices/operations';
-import debounce from 'lodash.debounce';
+import { NothingFound } from '../../pages/NewsPage.styled';
 
 const LIMIT = 20;
 
@@ -68,10 +68,18 @@ export const NoticesContainer = ({ type }) => {
     };
   }, [lastElement]);
 
+  const nothingFound = query !== '' && searchNotices.length === 0 && !isLoading;
+
   return (
     <>
       <NoticesCategoriesNav>
-        {items.length > 0 && (
+        {nothingFound && (
+          <NothingFound>Nothing found for this query</NothingFound>
+        )}
+        {!query && items.length === 0 && !isLoading && (
+          <NothingFound>We have no notes for this category</NothingFound>
+        )}
+        {!nothingFound && items.length > 0 && (
           <NoticesCategoriesList>
             {items.map(
               (

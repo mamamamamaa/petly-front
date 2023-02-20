@@ -8,7 +8,7 @@ import { useNews } from '../redux/hooks';
 import { getNews } from '../redux/news/operations';
 import SearchBar from '../utils/searchBar/searchBar';
 import ListNews from '../components/ListNews/ListNews';
-import { Container, MainHeader } from './NewsPage.styled';
+import { Container, MainHeader, NothingFound } from './NewsPage.styled';
 // =======
 
 export default function NewsPage() {
@@ -52,7 +52,10 @@ export default function NewsPage() {
       <MainHeader>News</MainHeader>
       <SearchBar onSubmit={handlerFormSubmit} />
       {isLoading && <h2>... is loading</h2>}
-      {currentNews && <ListNews news={currentNews} />}
+      {currentNews && currentNews.length > 0 && <ListNews news={currentNews} />}
+      {(!currentNews || currentNews.length === 0) && (
+        <NothingFound>Nothing found for this query</NothingFound>
+      )}
       <Toaster />
     </Container>
   );
@@ -68,7 +71,7 @@ export default function NewsPage() {
 //     query = 'dog';
 //   }
 //   const { data } = await axios.get(
-//     `http://localhost:3001/api/news?query=${query}`
+//     http://localhost:3001/api/news?query=${query}
 //   );
 //   return data;
 // }
