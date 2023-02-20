@@ -117,13 +117,16 @@ export const AddNoticeStepTwo = props => {
                   type="radio"
                   name="sex"
                   value="female"
+                  required
                 />
                 <LabelRadioSexBtn htmlFor="female">
                   <IconFemale />
                   Female
                 </LabelRadioSexBtn>
               </RadioWrapp>
-              {props.isSubmitting && props.errors.sex ? toast('Error') : null}
+              {props.isSubmitting && props.errors.sex
+                ? toast('Sex is required')
+                : null}
               <Label htmlFor="place">
                 Location<SpanStar>*</SpanStar>:
               </Label>
@@ -136,8 +139,8 @@ export const AddNoticeStepTwo = props => {
                   placeholder="Type location"
                 />
               </InputWrapper>
-              {props.isSubmitting && props.errors.location
-                ? toast('Error')
+              {props.isSubmitting && props.errors.place
+                ? toast('Location is required')
                 : null}
 
               {resultOfCategory && (
@@ -157,7 +160,9 @@ export const AddNoticeStepTwo = props => {
                 </InputWrapper>
               )}
 
-              {props.isSubmitting && props.errors.price ? toast('Error') : null}
+              {props.isSubmitting && props.errors.price
+                ? toast('Price must be in numbers')
+                : null}
               <Label>Load the pet’s image</Label>
               <ButtonAddPhoto type="button">
                 {!img ? (
@@ -175,11 +180,10 @@ export const AddNoticeStepTwo = props => {
                     const fileUploaded = e.target.files[0];
                     setFieldValue('photoUrl', e.target.files[0]);
                     setImg(URL.createObjectURL(fileUploaded));
-                    //   // setValid(string().required().isValidSync(e.target.files[0]));
                   }}
                 />
                 {props.isSubmitting && props.errors.photoUrl
-                  ? toast.failure('Error')
+                  ? toast.failure('Pet image is required')
                   : null}
               </ButtonAddPhoto>
               <WraperTextarea>
@@ -193,7 +197,7 @@ export const AddNoticeStepTwo = props => {
                 />
               </WraperTextarea>
               {props.isSubmitting && props.errors.comments
-                ? toast.failure('Error')
+                ? toast.failure('Comment is required')
                 : null}
               <ButtonWrapper>
                 <ButtonFill type="submit" onSubmit={handleSubmit}>

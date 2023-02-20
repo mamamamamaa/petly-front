@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import React, { useState } from 'react';
+import React from 'react';
 import { VscClose } from 'react-icons/vsc';
 import toast, { Toaster } from 'react-hot-toast';
 import * as Yup from 'yup';
@@ -31,7 +31,7 @@ const formOneValidationSchema = Yup.object({
     .min(2, 'Title Too Short!')
     .max(16, 'Title Too Long!')
     .label('Name')
-    .required('Name is required')
+    .required('Title is required')
     .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z\s]+?$/iu, 'Only letters in "Title"'),
   name: Yup.string()
     .min(2, 'Name Too Short!')
@@ -56,12 +56,12 @@ const formOneValidationSchema = Yup.object({
         return true;
       }
     )
-    .label('Date of birth')
-    .required('Date of birth is required'),
+    .label('Date of birth'),
+  // .required('Date of birth is required'),
   breed: Yup.string()
     .min(2, 'Breed Too Short!')
     .max(16, 'Breed Too Long!')
-    .label('Date of birth')
+    .label('breed')
     .required('Breed is required'),
 });
 
@@ -133,21 +133,37 @@ export const AddNoticeStepOne = props => {
                 <RadioBtn id="sell" type="radio" name="type" value="sell" />
                 <LabelRadioBtn htmlFor="sell">sell</LabelRadioBtn>
               </RadioWrapp>
-              {props.isSubmitting && props.errors.type ? toast('Error') : null}
+              {props.isSubmitting && props.errors.type
+                ? toast('Type is required')
+                : null}
               <Label htmlFor="titleAd">
                 Title of ad<SpanStar>*</SpanStar>
               </Label>
               <InputWrapper>
-                <Input id="title" name="title" placeholder="Type title ad" />
+                <Input
+                  id="title"
+                  name="title"
+                  placeholder="Type title ad"
+                  // required
+                />
               </InputWrapper>
-              {props.isSubmitting && props.errors.title ? toast('Error') : null}
+              {props.isSubmitting && props.errors.title
+                ? toast('Title is required')
+                : null}
               <Label htmlFor="namePet">
                 Name pet<SpanStar>*</SpanStar>
               </Label>
               <InputWrapper>
-                <Input id="name" name="name" placeholder="Type name pet" />
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="Type name pet"
+                  // required
+                />
               </InputWrapper>
-              {props.isSubmitting && props.errors.name ? toast('Error') : null}
+              {props.isSubmitting && props.errors.name
+                ? toast('Name is required')
+                : null}
               <Label htmlFor="dateOfBirth">
                 Date of birth<SpanStar>*</SpanStar>
               </Label>
@@ -156,18 +172,26 @@ export const AddNoticeStepOne = props => {
                   id="dateOfBirth"
                   name="dateOfBirth"
                   placeholder="Type date of birth"
+                  // required
                 />
               </InputWrapper>
               {props.isSubmitting && props.errors.dateOfBirth
-                ? toast('Error')
+                ? toast('Date of birth is required. Correct format: dd.mm.yyyy')
                 : null}
               <Label htmlFor="breed">
                 Breed<SpanStar>*</SpanStar>
               </Label>
               <InputWrapperLast>
-                <InputLast id="breed" name="breed" placeholder="Type breed" />
+                <InputLast
+                  id="breed"
+                  name="breed"
+                  placeholder="Type breed"
+                  // required
+                />
               </InputWrapperLast>
-              {props.isSubmitting && props.errors.breed ? toast('Error') : null}
+              {props.isSubmitting && props.errors.breed
+                ? toast('Breed is required')
+                : null}
               <ButtonWrapper>
                 <ButtonFill type="submit">Next</ButtonFill>
                 <ButtonEmpty type="button" onClick={handleOnClick}>
