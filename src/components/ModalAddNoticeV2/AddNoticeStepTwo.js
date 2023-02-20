@@ -161,9 +161,6 @@ export const AddNoticeStepTwo = ({
             onChange={handleImageLoad}
           />
         </AddNoticeStepTwoLoadImageInputWrapper>
-        {/* {preview && (
-          <img src={preview} alt="preview" width="100" height="100" />
-        )} */}
         <div>{formik.errors.pictureURL}</div>
 
         <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">

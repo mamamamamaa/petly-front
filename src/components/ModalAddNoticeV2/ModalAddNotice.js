@@ -77,6 +77,7 @@ export const ModalAddNotice = ({ onClose }) => {
       comments: '',
     });
     setCurrentStep(0);
+    onClose();
   };
 
   const [selectedOption, setSelectedOption] = useState('sell');

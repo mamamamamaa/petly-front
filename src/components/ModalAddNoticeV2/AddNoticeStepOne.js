@@ -11,14 +11,11 @@ import {
   AddNoticeStepOneButtonNextCancelWrapper,
   AddNoticeStepOneForm,
   AddNoticeStepOneTopBtnsWrapper,
-  AddNoticeStepOneButtonSpan,
   AddNoticeLostFound,
   AddNoticeInGoodHands,
   AddNoticeSell,
   AddNoticeStepOneText,
   AddNoticeStepOneTitle,
-  RadioButtonContainer,
-  RadioButton,
 } from './AddNoticeStepOne.styled';
 import moment from 'moment';
 
@@ -67,15 +64,10 @@ export const AddNoticeStepOne = ({
   selectedOption,
   handleOptionChange,
 }) => {
-  //   const [selectedType, setSelectedType] = useState('');
 
   const [selectedDate, setSelectedDate] = useState('');
   const [dateToSubmit, setDateToSubmit] = useState();
 
-  //   const typeChange = event => {
-  //     const { value } = event.target;
-  //     setSelectedType(value);
-  //   };
 
   const handleSubmit = values => {
     next({ ...values, dateOfBirth: dateToSubmit });
@@ -153,7 +145,7 @@ export const AddNoticeStepOne = ({
           type="date"
           name="dateOfBirth"
           id="dateOfBirth"
-          // required
+          required
           onChange={handleDate}
           max={moment(moment.now()).format('YYYY-MM-DD')}
           value={selectedDate}
