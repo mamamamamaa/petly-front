@@ -42,7 +42,7 @@ const formTwoValidationSchema = Yup.object({
     .required('Comment is required'),
   place: Yup.string().required('Location is required'),
   photoUrl: Yup.mixed().label('Pet image').required('Pet image is required'),
-  // price: Yup.number(),
+  price: Yup.number(),
 });
 
 export const AddNoticeStepTwo = props => {
@@ -63,7 +63,7 @@ export const AddNoticeStepTwo = props => {
     props.setPage(prev => prev - 1);
   };
 
-  const resultOfCategory = props.data.type === 'sell';
+  const noticeType = props.data.type === 'sell';
 
   return (
     <Container>
@@ -90,7 +90,22 @@ export const AddNoticeStepTwo = props => {
             formData.append('price', price);
             formData.append('photoUrl', photoUrl);
             formData.append('comments', comments);
-            dispatch(addNotice(formData));
+            const newData = {
+              type,
+              title,
+              name,
+              dateOfBirth,
+              breed,
+              sex,
+              place,
+              photoUrl,
+              comments,
+            };
+            if (type === 'sell') {
+              dispatch(addNotice(formData));
+            } else {
+              dispatch(addNotice(newData));
+            }
 
             props.closeModal();
           }}
@@ -144,12 +159,12 @@ export const AddNoticeStepTwo = props => {
                 ? toast('Location is required')
                 : null}
 
-              {resultOfCategory && (
+              {noticeType && (
                 <Label htmlFor="price">
                   Price<SpanStar>*</SpanStar>:
                 </Label>
               )}
-              {/* {resultOfCategory && (
+              {noticeType && (
                 <InputWrapper>
                   <Input
                     id="price"
@@ -159,7 +174,7 @@ export const AddNoticeStepTwo = props => {
                     placeholder="Type price"
                   />
                 </InputWrapper>
-              )} */}
+              )}
 
               {props.isSubmitting && props.errors.price
                 ? toast('Price must be in numbers')
