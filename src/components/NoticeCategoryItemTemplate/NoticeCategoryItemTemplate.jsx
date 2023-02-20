@@ -100,7 +100,12 @@ export const NoticeCategoryItemTemplate = ({
     <>
       {modal && currentNotice && (
         <Modal onClose={modalHandler}>
-          <ListModalCardNotice date={currentNotice} />
+          <ListModalCardNotice
+            date={currentNotice}
+            setFav={setFav}
+            fav={fav}
+            isFavorite={isFavorite}
+          />
         </Modal>
       )}
       <PhotoPetWrapper>
