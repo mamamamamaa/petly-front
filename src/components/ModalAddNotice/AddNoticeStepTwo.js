@@ -1,157 +1,223 @@
-import { useFormik } from 'formik';
 import { useState } from 'react';
+import { Formik } from 'formik';
+import { VscClose } from 'react-icons/vsc';
+import toast, { Toaster } from 'react-hot-toast';
+import * as Yup from 'yup';
 
-import { object, string, mixed, number } from 'yup';
-// import { ErrorMessage, Field, Form, Formik } from 'formik';
 import {
-  AddNoticeStepTwoForm,
-  AddNoticeStepOneButtonBack,
-  AddNoticeStepOneButtonDone,
-  AddNoticeStepTwoButtonBackDoneWrapper,
-  AddNoticeStepTwoInput,
-  AddNoticeStepTwoLabel,
-  AddNoticeStepTwoInputSex,
-  AddNoticeStepTwoInputSexCheckboxWrapper,
-  AddNoticeStepTwoMale,
-  AddNoticeStepTwoFemale,
-  AddNoticeStepTwoMaleSpan,
-  AddNoticeStepTwoFemaleSpan,
-  AddNoticeStepTwoFemaleWrapper,
-  AddNoticeStepTwoMaleWrapper,
-  AddNoticeStepTwoLabelSex,
-  AddNoticeStepTwoLoadImageInput,
-  AddNoticeStepTwoLoadImageInputWrapper,
-  AddNoticeStepTwoTitle,
-} from './AddNoticeStepTwo.styled';
+  Container,
+  ButtonClose,
+  Title,
+  Label,
+  WraperTextarea,
+  Input,
+  FormWrapper,
+  ButtonWrapper,
+  InputWrapper,
+  ButtonFill,
+  ButtonEmpty,
+  InputPhoto,
+  FormSecond,
+  Textarea,
+  CrossBig,
+  ButtonAddPhoto,
+  AvatarImg,
+  RadioWrapp,
+  LabelRadioSexBtn,
+  RadioSexBtn,
+  IconMale,
+  IconFemale,
+  SpanStar,
+  AddImg,
+} from './ModalAddNotice.styled';
+import { useDispatch } from 'react-redux';
+import { addNotice } from 'redux/notices/operations';
 
-const addNoticeSchema = object().shape({
-  sex: string().required('Sex is required'),
-  place: string()
-    .min(4, 'Too Short!')
-    .max(60, 'Too Long!')
-    .required('Location is required'),
-  price: number().required('The price is required'),
-  photoUrl: mixed().required('Image is required'),
-  comments: string()
-    .min(8, 'Must be 8 or more letter')
-    .max(120, 'Must be 120 or less letter')
-    .trim()
-    .required('The comments are required'),
+const formTwoValidationSchema = Yup.object({
+  sex: Yup.string().required('Sex is required'),
+  comments: Yup.string()
+    .min(8, 'Comments Too Short!')
+    .max(120, 'Comments Too Long!')
+    .label('Comment')
+    .required('Comment is required'),
+  place: Yup.string().required('Location is required'),
+  photoUrl: Yup.mixed().label('Pet image').required('Pet image is required'),
+  price: Yup.number(),
 });
 
-export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
-  // const [selectedSex, setSelectedSex] = useState('');
-  // const sexChange = event => {
-  //   const { value } = event.target;
-  //   setSelectedSex(value);
-  // };
+export const AddNoticeStepTwo = props => {
+  const [img, setImg] = useState(null);
+  const dispatch = useDispatch();
 
-  const handleBack = () => {
-    const newValue = {
-      ...data,
-      ...formik.values,
-    };
-    prev(newValue);
+  const handleBackClick = values => {
+    props.setData(prev => {
+      return {
+        ...prev,
+        sex: values.sex,
+        place: values.place,
+        photoUrl: values.photoUrl,
+        price: values.price,
+        comments: values.comments,
+      };
+    });
+    props.setPage(prev => prev - 1);
   };
 
-  const formik = useFormik({
-    initialValues: {
-      sex: data.sex,
-      place: data.place,
-      price: data.price,
-      photoUrl: data.photoUrl,
-      comments: data.comments,
-    },
-    validationSchema: addNoticeSchema,
-    onSubmit: (values, actions) => {
-      actions.setFieldValue('photoUrl', values.photoUrl, values.photoUrl.name);
-      actions.validateForm();
-      const newValue = {
-        ...data,
-        ...values,
-      };
+  const resultOfCategory = props.data.type === 'sell';
 
-      next(newValue, true);
-      actions.resetForm();
-      onClose();
-    },
-  });
-  const [isChecked, setIsChecked] = useState(false);
   return (
-    <AddNoticeStepTwoForm
-      onSubmit={formik.handleSubmit}
-      encType="multipart/form-data"
-    >
-      <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
-      <AddNoticeStepTwoLabelSex htmlFor="title">
-        The sex:
-      </AddNoticeStepTwoLabelSex>
-      <AddNoticeStepTwoInputSexCheckboxWrapper checked={isChecked}>
-        <AddNoticeStepTwoMaleWrapper>
-          <AddNoticeStepTwoMale checked={isChecked} />
-          <AddNoticeStepTwoMaleSpan checked={isChecked}>
-            Male
-          </AddNoticeStepTwoMaleSpan>
-        </AddNoticeStepTwoMaleWrapper>
+    <Container>
+      <ButtonClose type="button" onClick={props.closeModal}>
+        <VscClose size={65} />
+      </ButtonClose>
+      <Title>Add pet</Title>
+      <FormWrapper>
+        <Formik
+          validationSchema={formTwoValidationSchema}
+          initialValues={props.data}
+          onSubmit={values => {
+            const { type, title, name, dateOfBirth, breed } = props.data;
+            const { sex, place, price, photoUrl, comments } = values;
 
-        <AddNoticeStepTwoFemaleWrapper>
-          <AddNoticeStepTwoFemale checked={isChecked} />
-          <AddNoticeStepTwoFemaleSpan checked={isChecked}>
-            Female
-          </AddNoticeStepTwoFemaleSpan>
-        </AddNoticeStepTwoFemaleWrapper>
+            const formData = new FormData();
+            formData.append('type', type);
+            formData.append('title', title);
+            formData.append('name', name);
+            formData.append('dateOfBirth', dateOfBirth);
+            formData.append('breed', breed);
+            formData.append('sex', sex);
+            formData.append('place', place);
+            formData.append('price', price);
+            formData.append('photoUrl', photoUrl);
+            formData.append('comments', comments);
+            dispatch(addNotice(formData));
 
-        <AddNoticeStepTwoInputSex
-          name="title"
-          id="title"
-          type="checkbox"
-          placeholder="Type sex"
-          checked={isChecked}
-          onChange={() => setIsChecked(prev => !prev)}
-        />
-      </AddNoticeStepTwoInputSexCheckboxWrapper>
-      <AddNoticeStepTwoLabel htmlFor="name">Location:</AddNoticeStepTwoLabel>
-      <AddNoticeStepTwoInput
-        name="name"
-        id="name"
-        placeholder="Type location"
-      />
-      <AddNoticeStepTwoLabel htmlFor="name">Price:</AddNoticeStepTwoLabel>
-      <AddNoticeStepTwoInput name="name" id="name" placeholder="Type price" />
-      <AddNoticeStepTwoLabel>Load the pet’s image</AddNoticeStepTwoLabel>
-      <AddNoticeStepTwoLoadImageInputWrapper>
-        <AddNoticeStepTwoLoadImageInput
-          type="file"
-          name="photoUrl"
-          accept="image/*"
-          onChange={e =>
-            formik.setFieldValue(
-              'photoUrl',
-              e.currentTarget.files[0],
-              e.currentTarget.files[0].name
-            )
-          }
-        />
-      </AddNoticeStepTwoLoadImageInputWrapper>
-      <div>{formik.errors.photoUrl}</div>
-      <div>
-        <AddNoticeStepTwoLabel>Comments</AddNoticeStepTwoLabel>
-        <AddNoticeStepTwoInput
-          type="text"
-          name="comments"
-          placeholder="Type comments"
-          onChange={formik.handleChange}
-          value={formik.values.comments}
-        />
-      </div>
-      <AddNoticeStepTwoButtonBackDoneWrapper>
-        <AddNoticeStepOneButtonDone type="submit">
-          Done
-        </AddNoticeStepOneButtonDone>
-        <AddNoticeStepOneButtonBack type="button" onClick={handleBack}>
-          Back
-        </AddNoticeStepOneButtonBack>
-      </AddNoticeStepTwoButtonBackDoneWrapper>
-    </AddNoticeStepTwoForm>
+            props.closeModal();
+          }}
+        >
+          {({
+            setFieldValue,
+            handleChange,
+            handleSubmit,
+            values,
+            ...props
+          }) => (
+            <FormSecond onSubmit={handleSubmit} encType="multipart/form-data">
+              <Label htmlFor="sex">
+                The sex<SpanStar>*</SpanStar>:
+              </Label>
+              <RadioWrapp role="group" aria-labelledby="sex-group">
+                <RadioSexBtn id="male" type="radio" name="sex" value="male" />
+                <LabelRadioSexBtn htmlFor="male">
+                  <IconMale />
+                  Male
+                </LabelRadioSexBtn>
+                <RadioSexBtn
+                  id="female"
+                  type="radio"
+                  name="sex"
+                  value="female"
+                  required
+                />
+                <LabelRadioSexBtn htmlFor="female">
+                  <IconFemale />
+                  Female
+                </LabelRadioSexBtn>
+              </RadioWrapp>
+              {props.isSubmitting && props.errors.sex
+                ? toast('Sex is required')
+                : null}
+              <Label htmlFor="place">
+                Location<SpanStar>*</SpanStar>:
+              </Label>
+              <InputWrapper>
+                <Input
+                  id="place"
+                  name="place"
+                  onChange={handleChange}
+                  value={values.place}
+                  placeholder="Type location"
+                  required
+                />
+              </InputWrapper>
+              {props.isSubmitting && props.errors.place
+                ? toast('Location is required')
+                : null}
+
+              {resultOfCategory && (
+                <Label htmlFor="price">
+                  Price<SpanStar>*</SpanStar>:
+                </Label>
+              )}
+              {resultOfCategory && (
+                <InputWrapper>
+                  <Input
+                    id="price"
+                    name="price"
+                    onChange={handleChange}
+                    value={values.price}
+                    placeholder="Type price"
+                  />
+                </InputWrapper>
+              )}
+
+              {props.isSubmitting && props.errors.price
+                ? toast('Price must be in numbers')
+                : null}
+              <Label>Load the pet’s image</Label>
+              <ButtonAddPhoto type="button">
+                {!img ? (
+                  <CrossBig>
+                    <AddImg />
+                  </CrossBig>
+                ) : (
+                  <AvatarImg src={img} alt="Pet Image" />
+                )}
+                <InputPhoto
+                  type="file"
+                  name="photoUrl"
+                  accept="image/png, image/jpeg"
+                  onChange={e => {
+                    const fileUploaded = e.target.files[0];
+                    setFieldValue('photoUrl', e.target.files[0]);
+                    setImg(URL.createObjectURL(fileUploaded));
+                  }}
+                  required
+                />
+                {props.isSubmitting && props.errors.photoUrl
+                  ? toast.failure('Pet image is required')
+                  : null}
+              </ButtonAddPhoto>
+              <WraperTextarea>
+                <Label>Comments</Label>
+                <Textarea
+                  onChange={handleChange}
+                  value={values.comments}
+                  name="comments"
+                  as="textarea"
+                  placeholder="Type comments"
+                  required
+                />
+              </WraperTextarea>
+              {props.isSubmitting && props.errors.comments
+                ? toast.failure('Comment is required')
+                : null}
+              <ButtonWrapper>
+                <ButtonFill type="submit" onSubmit={handleSubmit}>
+                  Done
+                </ButtonFill>
+                <ButtonEmpty
+                  type="button"
+                  onClick={() => handleBackClick(values)}
+                >
+                  Back
+                </ButtonEmpty>
+              </ButtonWrapper>
+            </FormSecond>
+          )}
+        </Formik>
+      </FormWrapper>
+      <Toaster />
+    </Container>
   );
 };

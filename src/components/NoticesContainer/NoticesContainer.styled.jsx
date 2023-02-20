@@ -8,6 +8,7 @@ export const NoticesCategoriesNav = styled.div`
 export const NoticesNavLink = styled(NavLink)``;
 
 export const NoticesCategoriesList = styled.ul`
+  margin: 0 auto;
   list-style-type: none;
   padding-bottom: 100px;
   ${media.tablet} {

@@ -56,32 +56,6 @@ export const DescList = styled.ul`
   justify-content: center;
 `;
 
-export const Item = styled.li`
-  font-weight: ${theme.fontWeights.normal};
-  font-size: 12px;
-  color: ${theme.colors.titleText};
-  margin-bottom: 12px;
-  font-size: 12px;
-  line-height: 1.3;
-  &:hover,
-  &:focus {
-    color: ${theme.colors.primary};
-  }
-  @media screen and (min-width: 768px) {
-    margin-bottom: 8px;
-    font-size: 14px;
-    line-height: 1.35;
-  }
-  @media screen and (min-width: 1280px) {
-    margin-bottom: 12px;
-    font-size: 16px;
-    line-height: 1.4;
-  }
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
 export const AdressLink = styled.a`
   text-decoration-line: underline;
   color: #000000;
@@ -122,6 +96,29 @@ export const DayOfWeek = styled.span`
   margin-right: 4px;
 `;
 
+export const Item = styled.li`
+  font-weight: ${theme.fontWeights.normal};
+  font-size: 12px;
+  color: ${({ clr }) => clr};
+  margin-bottom: 12px;
+  font-size: 12px;
+  line-height: 1.3;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
 export const HoursBtn = styled.button`
   position: relative;
   border: none;
@@ -131,6 +128,8 @@ export const HoursBtn = styled.button`
   font-weight: ${theme.fontWeights.normal};
   padding: 0;
   cursor: pointer;
+  color: ${({ clr }) => clr};
+
   &:hover {
     color: ${theme.colors.primary};
   }

@@ -152,6 +152,11 @@ export const Li = styled.li`
 `;
 
 export const PetDetailsButton = styled.button`
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
   width: 100%;
   display: flex;
   justify-content: center;

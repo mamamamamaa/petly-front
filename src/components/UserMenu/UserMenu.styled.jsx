@@ -12,13 +12,14 @@ export const UserLink = styled(NavLink)`
     background-color: ${theme.colors.primary};
     color: ${theme.colors.accentText};
     text-decoration: none;
-    :hover,
-    :focus {
-        text-decoration: underline;
-    }
     &.active {
         text-decoration: none;
     }
+    :hover,
+    :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
     ${media.mobile} {
         min-height: 35px;
         padding-right: 37px;

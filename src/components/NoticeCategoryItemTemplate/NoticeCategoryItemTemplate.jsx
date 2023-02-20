@@ -35,6 +35,7 @@ import { ListModalCardNotice } from '../ListModalCardNotice/ListModalCardNotice.
 import toast from 'react-hot-toast';
 import { addFav, delFav } from '../../redux/auth/authSlice';
 import noPoster from 'noPoster.jpg';
+import { clearCurrentNotice } from '../../redux/notices/noticeSlice';
 
 export const NoticeCategoryItemTemplate = ({
   _id,
@@ -64,6 +65,7 @@ export const NoticeCategoryItemTemplate = ({
   const modalHandler = () => setModal(prevState => !prevState);
   useEffect(() => {
     if (!modal) {
+      dispatch(clearCurrentNotice());
       return;
     }
     dispatch(getNoticeById(_id));
@@ -78,16 +80,18 @@ export const NoticeCategoryItemTemplate = ({
     if (fav) {
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
+      toast.success('Removed from favorite!')
     } else {
       dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
+      toast.success('Successfully added to favorite!')
     }
     setFav(prevState => !prevState);
   };
 
   const changeTitle = type => {
     if (type === 'good-hands') {
-      const newType = 'In good hands';
+      const newType = 'in good hands';
       return newType;
     } else {
       const newType = type;
@@ -100,7 +104,12 @@ export const NoticeCategoryItemTemplate = ({
     <>
       {modal && currentNotice && (
         <Modal onClose={modalHandler}>
-          <ListModalCardNotice date={currentNotice} />
+          <ListModalCardNotice
+            date={currentNotice}
+            setFav={setFav}
+            fav={fav}
+            isFavorite={isFavorite}
+          />
         </Modal>
       )}
       <PhotoPetWrapper>

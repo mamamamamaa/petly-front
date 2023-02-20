@@ -60,7 +60,6 @@ export const Img = styled.img`
   display: block;
   cursor: pointer;
   @media screen and (max-width: 767px) {
-    width: 280px;
     height: 280px;
     border-radius: 0px 0px 40px 40px;
   }
@@ -168,6 +167,21 @@ export const Text = styled.p`
   line-height: 1.3;
   /* word-break: break-all; */
   /* word-wrap: break-word; */
+`;
+
+export const ContactLink = styled.a`
+  color: inherit;
+  &.noHover {
+    cursor: text;
+    pointer-events: none;
+    color: inherit;
+  };
+  &.hover {
+    :hover,
+    :focus {
+    color: ${theme.colors.accentButton}
+  };
+}
 `;
 
 export const Box = styled.div`
