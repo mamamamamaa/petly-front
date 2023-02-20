@@ -50,9 +50,6 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
     setSelectedDate(e.target.value);
     setSelectedDateINNumber(e.target.valueAsNumber)
   };
-  
-  // const placeholderDateOfBirth = "aa.bb.mmmm"
-  // selectedDateInNumber? moment(new Date(selectedDateInNumber).format('DD.MM.YYYY')) : "dd.mm.yyyy"
 
   return (
     <Container>
@@ -78,7 +75,6 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
             <Input
               type="date"
               name="dateOfBirth"
-              // placeholder={placeholderDateOfBirth}
               required
               onChange={handleDate}
               max={moment(moment.now()).format('YYYY-MM-DD')}
