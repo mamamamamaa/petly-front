@@ -258,6 +258,7 @@ export const FormLabel = styled.label`
 export const Input = styled(Field)`
   margin-left: auto;
   border: 1px solid transparent;
+  border-radius: 40px;
   font-family: ${theme.fonts.body};
   font-weight: ${theme.fontWeights.news};
   letter-spacing: 0.04em;
@@ -297,6 +298,7 @@ export const Input = styled(Field)`
   }
   &.active{
     color:#F59256;
+    
   }
 `
 
