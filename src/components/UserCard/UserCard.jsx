@@ -1,151 +1,152 @@
+import * as Yup from 'yup';
+import moment from 'moment';
+import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { useUser } from '../../redux/hooks';
-import { useState } from 'react';
 import {
   Title,
   Wrapper,
   Card,
-  Form1,
   DivInput,
-  Input,
   BtnInput,
   BtnLogOut,
   FormLabel,
   LogOutSpan,
   FormAndPhotoWrapper,
+  MyInput,
+  BirthdayContainer,
+  DateInput,
+  CalendarIcon,
 } from './UserCard.styled';
-import { Container } from '../../utils/reusable';
-import { HiCamera } from 'react-icons/hi2';
 import { HiPencil } from 'react-icons/hi';
 import { FiLogOut, FiCheck } from 'react-icons/fi';
 import { logout } from '../../redux/auth/operations';
 import { FileUploader } from '../UseAvatar/UserAvatar';
-import {
-  updateUser,
-  getUserData,
-  updateAvatar,
-} from '../../redux/user/operations';
-import { Formik, useFormik, ErrorMessage } from 'formik';
-//import avatar from "../../images/avatart.jpg";
-import { useEffect } from 'react';
-import * as Yup from 'yup';
+import { getUserData, updateUser } from '../../redux/user/operations';
+import { useEffect, useState } from 'react';
+import { useUser } from '../../redux/hooks';
+import { BsCalendar } from 'react-icons/bs';
 
-const UserCard = ({ handleDragEmpty, handleDrop }) => {
-  //========================================
-  const phoneRegExp = /^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/;
-  const userSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(3, 'Too Short!')
-      .max(30, 'Too Long!')
-      .required('Required'),
-    email: Yup.string().email('Invalid email').required('Required'),
-    birthday: Yup.date().required('Required'),
-    mobilePhone: Yup.string()
-      .matches(phoneRegExp, 'Phone number is not valid')
-      .notRequired(),
-    city: Yup.string()
-      .matches(
-        /^(([a-zA-Zа-яА-Я]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/,
-        'Error. Example: Brovary, Kyiv'
-      )
-      .required('City is required'),
-  });
-  //==========================================
+const phoneRegExp = /^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/;
+const userSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, 'Too Short!')
+    .max(30, 'Too Long!')
+    .required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  birthday: Yup.date().required('Required'),
+  mobilePhone: Yup.string()
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .notRequired(),
+  city: Yup.string()
+    .matches(
+      /^(([a-zA-Zа-яА-Я]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/,
+      'Error. Example: Brovary, Kyiv'
+    )
+    .required('City is required'),
+});
 
-  const [active, setActive] = useState('');
-
-  //=========for avatar============
-  const [changeBtn, setChangeBtn] = useState(false);
-
-  const handleClick = () => {
-    // e.preventDefault();
-    setChangeBtn(!changeBtn);
-    setActive(!active);
-  };
-
+export const UserCard = () => {
   const dispatch = useDispatch();
+  const {
+    user: { user },
+  } = useUser();
 
-  const { user } = useUser();
-  //console.log(user)
-
-  const onChangeHandler = e => {
-    console.log('1111');
-    const formData = new FormData();
-    formData.append('avatar', e.target.files[0]);
-    console.log(e.target.files);
-    dispatch(updateAvatar(formData));
-  };
-  ///////////////////////////////
-
-  //////формик
-  // const onSubmit = (value) => {
-
-  let formik = useFormik({
-    initialValues: {
-      name: user.user.name || '',
-      email: user.user.email || '',
-      birthday: user.user.birthday || '',
-      mobilePhone: user.user.mobilePhone || '',
-      city: user.user.city || '',
-    },
-    validationSchema: userSchema,
-    onSubmit: values => {
-      const { name, email, birthday, mobilePhone, city } = values;
-
-      dispatch(
-        updateUser({
-          name,
-          email,
-          birthday: birthday.trim(),
-          mobilePhone,
-          city,
-        })
-      );
-    },
-    enableReinitialize: true,
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    birthday: '',
+    mobilePhone: '',
+    city: '',
   });
-  //console.log(formik);
 
-  useEffect(() => {
-    dispatch(getUserData());
-    console.log('getUserData');
-  }, [dispatch]);
+  const [current, setCurrent] = useState('');
 
-  //============================================
-  // code Yulya
   const handleLogout = () => {
     dispatch(logout());
   };
 
-  //validationSchema={userSchema}
+  const userStateHandler = (e, key) => {
+    const data = e.target.value;
+    setUserData(prevState => ({ ...prevState, [key]: data }));
+  };
+
+  const userStateBirthdayHandler = e => {
+    const data = e.target.value;
+    const birthdayToDispatch = moment(new Date(data)).format('DD.MM.YYYY');
+    setUserData(prevState => ({ ...prevState, birthday: birthdayToDispatch }));
+  };
+
+  const checkIsSame = () =>
+    JSON.stringify({
+      name: user.name,
+      email: user.email,
+      birthday: user.birthday,
+      mobilePhone: user.mobilePhone,
+      city: user.city,
+    }) === JSON.stringify(userData);
+
+  const validate = async (dataForValidation, callback) => {
+    let isValid;
+    try {
+      isValid = await userSchema.validate(dataForValidation);
+      if (isValid) {
+        callback(dataForValidation);
+      }
+    } catch {
+      toast.error(isValid);
+    }
+  };
+
+  const handleCurrent = type => {
+    if (current === type) {
+      setCurrent('');
+      if (checkIsSame()) {
+        return;
+      }
+
+      validate(userData, data => dispatch(updateUser(data)));
+    } else {
+      setCurrent(type);
+    }
+  };
+
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setUserData({
+      name: user.name,
+      email: user.email,
+      birthday: user.birthday,
+      mobilePhone: user.mobilePhone,
+      city: user.city,
+    });
+  }, [user]);
+
   return (
-    // do NOT remove this div, reusable Container moved upper to UserPage
     <div>
       <Title>My information:</Title>
-
+      <Toaster />
       <Card>
         <FormAndPhotoWrapper>
           <Wrapper>
             <FileUploader />
           </Wrapper>
-          <Formik>
-            <Form1 onSubmit={formik.handleSubmit}>
-              <DivInput>
-                <FormLabel>
-                  Name:
-                  <Input
-                    name="name"
-                    type="name"
-                    placeholder="name"
-                    onChange={formik.handleChange}
-                    onSubmit={handleClick}
-                    value={formik.values.name}
-                  />
-                  <ErrorMessage name="name" component="span" />
-                </FormLabel>
-
-                <BtnInput name="name" type="button" onClick={handleClick}>
-                  {changeBtn === true ? (
+          <div>
+            <DivInput>
+              <FormLabel>
+                Name:
+                <MyInput
+                  name="name"
+                  id="name"
+                  type="text"
+                  value={userData.name}
+                  onChange={e => userStateHandler(e, 'name')}
+                  disabled={current !== 'name'}
+                />
+                <BtnInput type="button" onClick={() => handleCurrent('name')}>
+                  {current === 'name' ? (
                     <FiCheck color="#F59256" width="30" heigh="30" />
                   ) : (
                     <HiPencil
@@ -155,140 +156,116 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
                     />
                   )}
                 </BtnInput>
-              </DivInput>
-
-              <DivInput>
-                <FormLabel>
-                  Email:
-                  <Input
-                    name="email"
-                    id="email"
-                    type="email"
-                    placeholder="email"
-                    onChange={formik.handleChange}
-                    onSubmit={handleClick}
-                    value={formik.values.email}
-                    onBlur={formik.handleBlur}
-                  />
-                  <ErrorMessage name="email" component="span" />
-                </FormLabel>
-
-                <BtnInput type="button" onClick={handleClick}>
-                  {changeBtn === true || Input.name === active ? (
+              </FormLabel>
+            </DivInput>
+            <DivInput>
+              <FormLabel>
+                Email:
+                <MyInput
+                  name="email"
+                  id="email"
+                  type="text"
+                  value={userData.email}
+                  disabled={current !== 'email'}
+                  onChange={e => userStateHandler(e, 'email')}
+                />
+                <BtnInput type="button" onClick={() => handleCurrent('email')}>
+                  {current === 'email' ? (
+                    <FiCheck color="#F59256" width="30" heigh="30" />
+                  ) : (
                     <HiPencil
                       color="rgba(17, 17, 17, 0.6)"
                       width="30"
                       heigh="30"
                     />
-                  ) : (
-                    <FiCheck color="#F59256" width="30" heigh="30" />
                   )}
                 </BtnInput>
-              </DivInput>
-
-              <DivInput>
-                <FormLabel>
-                  Birthday:
-                  <Input
+              </FormLabel>
+            </DivInput>
+            <DivInput>
+              <FormLabel>
+                Birthday:
+                <BirthdayContainer>
+                  {userData.birthday || 'add date'}
+                  <DateInput
                     name="birthday"
                     id="birthday"
-                    type="text"
-                    placeholder="00.00.0000"
-                    onChange={formik.handleChange}
-                    onClick={handleClick}
-                    value={formik.values.birthday}
-                    onBlur={formik.handleBlur}
+                    type="date"
+                    value={userData.birthday}
+                    placeholder={userData.birthday || ' '}
+                    disabled={current !== 'birthday'}
+                    onChange={userStateBirthdayHandler}
                   />
-                  <ErrorMessage name="birthday" component="span" />
-                </FormLabel>
-
-
-                <BtnInput type="button" onClick={handleClick}>
-                  {changeBtn === true ? (
+                  <CalendarIcon />
+                </BirthdayContainer>
+                <BtnInput
+                  type="button"
+                  onClick={() => handleCurrent('birthday')}
+                >
+                  {current === 'birthday' ? (
+                    <FiCheck color="#F59256" width="30" heigh="30" />
+                  ) : (
                     <HiPencil
                       color="rgba(17, 17, 17, 0.6)"
                       width="30"
                       heigh="30"
                     />
-                  ) : (
-                    <FiCheck color="#F59256" width="30" heigh="30" />
                   )}
                 </BtnInput>
-              </DivInput>
-
-              <DivInput>
-                <FormLabel>
-                  Phone:
-                  <Input
-                    name="mobilePhone"
-                    id="mobilePhone"
-                    type="text"
-                    placeholder="+38000000000"
-                    onChange={formik.handleChange}
-                    onSubmit={handleClick}
-                    value={formik.values.mobilePhone}
-                    onBlur={formik.handleBlur}
-                  />
-                  <ErrorMessage name="mobilePhone" component="span" />
-                </FormLabel>
-
-
-                <BtnInput type="button" onClick={handleClick}>
-                  {Input.name === active || changeBtn === true ? (
+              </FormLabel>
+            </DivInput>
+            <DivInput>
+              <FormLabel>
+                Phone:
+                <MyInput
+                  name="mobilePhone"
+                  id="mobilePhone"
+                  type="text"
+                  value={userData.mobilePhone}
+                  disabled={current !== 'mobilePhone'}
+                  onChange={e => userStateHandler(e, 'mobilePhone')}
+                />
+                <BtnInput
+                  type="button"
+                  onClick={() => handleCurrent('mobilePhone')}
+                >
+                  {current === 'mobilePhone' ? (
+                    <FiCheck color="#F59256" width="30" heigh="30" />
+                  ) : (
                     <HiPencil
                       color="rgba(17, 17, 17, 0.6)"
                       width="30"
                       heigh="30"
                     />
-                  ) : (
-                    <FiCheck color="#F59256" width="30" heigh="30" />
                   )}
                 </BtnInput>
-              </DivInput>
-
-              <DivInput>
-                <FormLabel>
-                  City:
-                  <Input
-                    name="city"
-                    id="city"
-                    type="text"
-                    placeholder="City, region"
-                    onChange={formik.handleChange}
-                    onSubmit={handleClick}
-                    value={formik.values.city}
-                    onBlur={formik.handleBlur}
-                  />
-                  <ErrorMessage name="city" component="span" />
-                </FormLabel>
-
-
-                <BtnInput type="button" onClick={handleClick}>
-                  {Input.name === active || changeBtn === true ? (
+              </FormLabel>
+            </DivInput>
+            <DivInput>
+              <FormLabel>
+                City:
+                <MyInput
+                  name="city"
+                  id="city"
+                  type="text"
+                  value={userData.city}
+                  disabled={current !== 'city'}
+                  onChange={e => userStateHandler(e, 'city')}
+                />
+                <BtnInput type="button" onClick={() => handleCurrent('city')}>
+                  {current === 'city' ? (
+                    <FiCheck color="#F59256" width="30" heigh="30" />
+                  ) : (
                     <HiPencil
                       color="rgba(17, 17, 17, 0.6)"
                       width="30"
                       heigh="30"
                     />
-                  ) : (
-                    <FiCheck color="#F59256" width="30" heigh="30" />
                   )}
                 </BtnInput>
-              </DivInput>
-
-              <BtnInput type="submit">
-                {Input === active || changeBtn === true ? (
-                  <FiCheck color="#F59256" width="30" heigh="30" />
-                ) : (
-                  <HiPencil
-                    color="rgba(17, 17, 17, 0.6)"
-                    width="30"
-                    heigh="30"
-                  />
-                )}
-              </BtnInput>
-            </Form1>
-          </Formik>
+              </FormLabel>
+            </DivInput>
+          </div>
         </FormAndPhotoWrapper>
 
         <BtnLogOut onClick={() => handleLogout()}>
@@ -299,5 +276,3 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
     </div>
   );
 };
-
-export default UserCard;
