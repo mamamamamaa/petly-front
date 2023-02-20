@@ -27,6 +27,7 @@ import {
   ButtonModal,
   AddToFavImg,
   CallModal,
+  ContactLink,
 } from './ListModalCardNotice.styled';
 import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import noPoster from 'noPoster.jpg';
@@ -57,16 +58,17 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
   // добавить в избранное логика
   const favoriteHandler = () => {
     if (!isLoggedIn) {
-      return toast.error('Your pet was successfully added to favorites!');
+      return toast.error('You should login/sign up your account!');
     }
 
     if (fav) {
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
+      toast.success('Removed from favorite!')
     } else {
       dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
-      toast.success('Successfully toasted!');
+      toast.success('Successfully added to favorite!')
     }
     setFav(prevState => !prevState);
   };
@@ -77,6 +79,14 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
     return fullNumber;
   };
   const getCall = call(phone);
+
+  // send email
+
+  const mail = email => {
+    const mailTo = 'mailto:' + email;
+    return mailTo;
+  };
+  const sendMail = mail(email);
 
   const changeTitle = type => {
     if (type === 'good-hands') {
@@ -147,10 +157,22 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
                   <Text>{sex}</Text>
                 </Li>
                 <Li>
-                  <Text>{email}</Text>
+                  <Text>
+                    <ContactLink 
+                      href={sendMail}
+                      className={email === 'unknown' ? 'noHover' : 'hover'}>
+                      {email}
+                    </ContactLink>
+                  </Text>
                 </Li>
                 <Li>
-                  <Text>{phone}</Text>
+                  <Text>
+                    <ContactLink 
+                      href={getCall}
+                      className={phone === 'unknown' ? 'noHover' : 'hover'}>
+                      {phone}
+                    </ContactLink>
+                  </Text>
                 </Li>
                 {price !== undefined && type === 'sell' && (
                   <Li>
@@ -168,7 +190,7 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
 
       <BoxButton>
         <ButtonModal onClick={favoriteHandler}>
-          Add to
+          {!fav ? 'Add to' : 'Remove'}
           <AddToFavImg src={strokeHeart} alt="Add to favorites" />
         </ButtonModal>
         <CallModal href={getCall}>Contact</CallModal>

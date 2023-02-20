@@ -169,6 +169,21 @@ export const Text = styled.p`
   /* word-wrap: break-word; */
 `;
 
+export const ContactLink = styled.a`
+  color: inherit;
+  &.noHover {
+    cursor: text;
+    pointer-events: none;
+    color: inherit;
+  };
+  &.hover {
+    :hover,
+    :focus {
+    color: ${theme.colors.accentButton}
+  };
+}
+`;
+
 export const Box = styled.div`
   margin-top: 28px;
   /* display: flex; */

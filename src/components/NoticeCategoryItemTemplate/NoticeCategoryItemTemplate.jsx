@@ -80,9 +80,11 @@ export const NoticeCategoryItemTemplate = ({
     if (fav) {
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
+      toast.success('Removed from favorite!')
     } else {
       dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
+      toast.success('Successfully added to favorite!')
     }
     setFav(prevState => !prevState);
   };
