@@ -20,7 +20,7 @@ import {
   AddPetToNoticesBtnWrapper,
 } from 'components/AddNoticeButton/AddNoticeButton.styled';
 import cross from 'utils/svg/cross.svg';
-import { useAuth } from '../redux/hooks';
+import { useAuth, useNotices } from '../redux/hooks';
 import toast, { Toaster } from 'react-hot-toast';
 import AddNoticeButton from '../components/AddNoticeButton/AddNoticeButton';
 import { Container } from 'utils';
@@ -29,6 +29,7 @@ import { setQuery } from '../redux/notices/noticeSlice';
 const NoticesPage = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
+  const { query } = useNotices();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onButtonClick = () => {
@@ -42,11 +43,9 @@ const NoticesPage = () => {
   const handleChangeQuery = e => dispatch(setQuery(e.target.value));
 
   return (
-      <Container>
-        <NoticesTitle>
-            Find your favorite pet
-        </NoticesTitle>
-        <NoticesSearch>
+    <Container>
+      <NoticesTitle>Find your favorite pet</NoticesTitle>
+      <NoticesSearch>
         <SearchField
           placeholder="Search"
           onChange={debounce(handleChangeQuery, 300)}
