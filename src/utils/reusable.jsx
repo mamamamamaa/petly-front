@@ -6,16 +6,16 @@ export const Container = styled.div`
   font-family: ${theme.fonts.body};
   margin: 0 auto;
   @media screen and (max-width: 767px) {
-    padding: 0 20px;
+    padding: 21px 20px;
   }
   @media screen and (min-width: 768px) {
     width: 768px;
-    padding: 0 32px;
+    padding: 45px 32px;
   }
 
   @media screen and (min-width: 1280px) {
     width: 1280px;
-    padding: 0 16px;
+    padding: 35px 16px;
   }
 `;
 
