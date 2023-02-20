@@ -340,8 +340,8 @@ export const BirthdayContainer = styled.span`
 export const CalendarIcon = styled(BsCalendar)`
   position: absolute;
   pointer-events: none;
-  top: 5px;
-  right: 10px;
+  top: 8px;
+  right: 5px;
   color: ${theme.colors.black};
 
   &:hover {
@@ -349,27 +349,25 @@ export const CalendarIcon = styled(BsCalendar)`
   }
 
   ${media.mobile} {
+    top: 5px;
     right: 25px;
   }
 `;
 export const DateInput = styled.input`
   margin-left: 10px;
-  width: 10px;
-  border: 1px solid transparent;
-  font-family: ${theme.fonts.body};
-  font-weight: ${theme.fontWeights.news};
-  letter-spacing: 0.04em;
-  color: ${theme.colors.black};
-  background-color: ${theme.colors.accentText};
+  width: 100%;
+  height: 32px;
+  border: none;
   outline: none;
+  opacity: 0;
 
-  cursor: pointer;
+  &:focus,
+  &.active {
+    cursor: pointer;
+  }
 
   ${media.mobile} {
-    padding-left: 18px;
-  }
-  ${media.tabletAndDesktop} {
-    padding-left: 12px;
+    height: 24px;
   }
 `;
 

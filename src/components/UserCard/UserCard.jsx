@@ -24,7 +24,6 @@ import { FileUploader } from '../UseAvatar/UserAvatar';
 import { getUserData, updateUser } from '../../redux/user/operations';
 import { useEffect, useState } from 'react';
 import { useUser } from '../../redux/hooks';
-import { BsCalendar } from 'react-icons/bs';
 
 const phoneRegExp = /^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/;
 const userSchema = Yup.object().shape({
@@ -73,6 +72,9 @@ export const UserCard = () => {
   const userStateBirthdayHandler = e => {
     const data = e.target.value;
     const birthdayToDispatch = moment(new Date(data)).format('DD.MM.YYYY');
+    if (birthdayToDispatch === userData.birthday) {
+      return;
+    }
     setUserData(prevState => ({ ...prevState, birthday: birthdayToDispatch }));
   };
 
@@ -192,7 +194,7 @@ export const UserCard = () => {
                     id="birthday"
                     type="date"
                     value={userData.birthday}
-                    placeholder={userData.birthday || ' '}
+                    placeholder={' '}
                     disabled={current !== 'birthday'}
                     onChange={userStateBirthdayHandler}
                   />
