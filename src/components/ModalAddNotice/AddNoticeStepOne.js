@@ -60,7 +60,13 @@ const schema = yup.object().shape({
   photoUrl: yup.string().required('Image is required (jpg, jpeg, png)'),
 });
 
-export const AddNoticeStepOne = ({ next, data, cancel }) => {
+export const AddNoticeStepOne = ({
+  next,
+  data,
+  cancel,
+  selectedOption,
+  handleOptionChange,
+}) => {
   //   const [selectedType, setSelectedType] = useState('');
 
   const [selectedDate, setSelectedDate] = useState('');
@@ -79,11 +85,7 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
     setSelectedDate(e.target.value);
     setDateToSubmit(e.target.valueAsNumber);
   };
-  const [selectedOption, setSelectedOption] = useState('sell');
 
-  const handleOptionChange = event => {
-    setSelectedOption(event.target.value);
-  };
   return (
     <Formik
       initialValues={data}
@@ -91,33 +93,6 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
       onSubmit={handleSubmit}
     >
       <AddNoticeStepOneForm>
-        {/* <RadioButtonContainer>
-          <RadioButton
-            type="radio"
-            id="option1"
-            value="option1"
-            checked={selectedOption === 'option1'}
-            onChange={handleOptionChange}
-          />
-          <label htmlFor="option1">Option 1</label>
-          <RadioButton
-            type="radio"
-            id="option2"
-            value="option2"
-            checked={selectedOption === 'option2'}
-            onChange={handleOptionChange}
-          />
-          <label htmlFor="option2">Option 2</label>
-          <RadioButton
-            type="radio"
-            id="option3"
-            value="option3"
-            checked={selectedOption === 'option3'}
-            onChange={handleOptionChange}
-          />
-          <label htmlFor="option3">Option 3</label>
-        </RadioButtonContainer> */}
-
         <AddNoticeStepOneTitle>Add pet</AddNoticeStepOneTitle>
         <AddNoticeStepOneText>
           Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,

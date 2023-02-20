@@ -189,7 +189,7 @@ export const AddNoticeStepTwoInput = styled.input`
   }
 `;
 export const AddNoticeStepTwoLabelPrice = styled.label`
-  display: ${props => (props.checked ? 'block' : 'none')};
+  display: ${props => (props.selectedOption === 'sell' ? 'block' : 'none')};
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
@@ -202,7 +202,7 @@ export const AddNoticeStepTwoLabelPrice = styled.label`
   }
 `;
 export const AddNoticeStepTwoInputPrice = styled.input`
-  display: ${props => (props.checked ? 'block' : 'none')};
+  display: ${props => (props.selectedOption === 'sell' ? 'block' : 'none')};
   width: 100%;
   height: 40px;
   box-sizing: border-box;
@@ -267,11 +267,11 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
   background-image: url(${loadCross});
   position: absolute;
   left: 20px;
-  top: ${props => (props.checked ? '373px' : '464px')};
+  top: ${props => (props.selectedOption === 'sell' ? '464px' : '373px')};
   ${media.tabletAndDesktop} {
     width: 140px;
     height: 140px;
-    top: ${props => (props.checked ? '485px' : '600px')};
+    top: ${props => (props.selectedOption === 'sell' ? '600px' : '485px')};
     left: 80px;
   }
 `;

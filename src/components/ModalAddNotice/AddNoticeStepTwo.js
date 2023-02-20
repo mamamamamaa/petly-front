@@ -45,7 +45,13 @@ const addNoticeSchema = object().shape({
     .required('The comments are required'),
 });
 
-export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
+export const AddNoticeStepTwo = ({
+  data,
+  next,
+  prev,
+  onClose,
+  selectedOption,
+}) => {
   // const [selectedSex, setSelectedSex] = useState('');
   // const sexChange = event => {
   //   const { value } = event.target;
@@ -80,6 +86,7 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       actions.resetForm();
       onClose();
     },
+    selectedOption,
   });
   const [isChecked, setIsChecked] = useState(false);
   return (
@@ -123,11 +130,14 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
         id="location"
         placeholder="Type location"
       />
-      <AddNoticeStepTwoLabelPrice htmlFor="price" isChecked>
+      <AddNoticeStepTwoLabelPrice
+        htmlFor="price"
+        selectedOption={selectedOption}
+      >
         Price:
       </AddNoticeStepTwoLabelPrice>
       <AddNoticeStepTwoInputPrice
-        isChecked
+        selectedOption={selectedOption}
         name="price"
         id="price"
         placeholder="Type price"
@@ -135,7 +145,7 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       <AddNoticeStepTwoLabelPictureURL htmlFor="pictureURL">
         Load the pet’s image
       </AddNoticeStepTwoLabelPictureURL>
-      <AddNoticeStepTwoLoadImageInputWrapper checked>
+      <AddNoticeStepTwoLoadImageInputWrapper selectedOption={selectedOption}>
         <AddNoticeStepTwoLoadImageInput
           type="file"
           id="pictureURL"

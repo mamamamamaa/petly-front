@@ -78,14 +78,27 @@ export const ModalAddNotice = ({ onClose }) => {
     });
     setCurrentStep(0);
   };
+
+  const [selectedOption, setSelectedOption] = useState('sell');
+
+  const handleOptionChange = event => {
+    setSelectedOption(event.target.value);
+  };
   const [currentStep, setCurrentStep] = useState(0);
   const steps = [
-    <AddNoticeStepOne next={handleNextStep} data={data} cancel={cancelData} />,
+    <AddNoticeStepOne
+      next={handleNextStep}
+      data={data}
+      cancel={cancelData}
+      selectedOption={selectedOption}
+      handleOptionChange={handleOptionChange}
+    />,
     <AddNoticeStepTwo
       next={handleNextStep}
       data={data}
       prev={handlePrevStep}
       onClose={onClose}
+      selectedOption={selectedOption}
     />,
   ];
   return <ModalAddNoticeWrapper>{steps[currentStep]}</ModalAddNoticeWrapper>;
