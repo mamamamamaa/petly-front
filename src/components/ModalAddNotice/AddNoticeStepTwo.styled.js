@@ -45,14 +45,13 @@ export const AddNoticeStepTwoLabelSex = styled.label`
   }
 `;
 export const AddNoticeStepTwoInputSexCheckboxWrapper = styled.div`
-  // background-image: ${props =>
-    props.checked ? `url("${male}")` : `url("${female}")`};
   width: 100%;
   height: 80px;
   position: relative;
   margin-bottom: 32px;
   ${media.tabletAndDesktop} {
     margin-bottom: 40px;
+    height: 107px;
   }
 `;
 export const AddNoticeStepTwoInputSex = styled.input`
@@ -138,19 +137,7 @@ export const AddNoticeStepTwoLabelPrice = styled.label`
     margin-bottom: 12px;
   }
 `;
-export const AddNoticeStepTwoLabelPictureURL = styled.label`
-  display: block;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 26px;
-  color: #111111;
-  margin-bottom: 8px;
-  ${media.tabletAndDesktop} {
-    font-size: 24px;
-    color: #000000;
-    margin-bottom: 12px;
-  }
-`;
+
 export const AddNoticeStepTwoLabelComments = styled.label`
   display: block;
   font-weight: 500;
@@ -203,10 +190,27 @@ export const AddNoticeStepTwoInput = styled.input`
     line-height: 19px;
     color: rgba(27, 27, 27, 0.6);
   }
+  ${media.tabletAndDesktop} {
+    height: 48px;
+    margin-bottom: 28px;
+  }
   &:nth-of-type(3) {
     ${media.tabletAndDesktop} {
       display: none;
     }
+  }
+`;
+export const AddNoticeStepTwoLabelPictureURL = styled.label`
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #111111;
+  margin-bottom: 8px;
+  ${media.tabletAndDesktop} {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 180px;
   }
 `;
 export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
@@ -223,7 +227,7 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
   ${media.tabletAndDesktop} {
     width: 140px;
     height: 140px;
-    top: 440px;
+    top: 600px;
     left: 80px;
   }
 `;

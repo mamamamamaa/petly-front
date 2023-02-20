@@ -89,7 +89,7 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       <AddNoticeStepTwoLabelSex htmlFor="title">
         The sex:
       </AddNoticeStepTwoLabelSex>
-      <AddNoticeStepTwoInputSexCheckboxWrapper >
+      <AddNoticeStepTwoInputSexCheckboxWrapper>
         <AddNoticeStepTwoMaleWrapper>
           <AddNoticeStepTwoMale checked={isChecked} />
           <AddNoticeStepTwoMaleSpan checked={isChecked}>
@@ -121,7 +121,9 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
         id="location"
         placeholder="Type location"
       />
-      <AddNoticeStepTwoLabelPrice htmlFor="price">Price:</AddNoticeStepTwoLabelPrice>
+      <AddNoticeStepTwoLabelPrice htmlFor="price">
+        Price:
+      </AddNoticeStepTwoLabelPrice>
       <AddNoticeStepTwoInput name="price" id="price" placeholder="Type price" />
       <AddNoticeStepTwoLabelPictureURL htmlFor="pictureURL">
         Load the pet’s image
@@ -146,9 +148,19 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
         Comments
       </AddNoticeStepTwoLabelCommentArea>
-      <AddNoticeStepTwoCommentArea id="commentsArea" name="commentsArea" />
+      <AddNoticeStepTwoCommentArea
+        rows="5"
+        cols="30"
+        id="commentsArea"
+        name="commentsArea"
+        placeholder="Type comments"
+        onChange={formik.handleChange}
+        value={formik.values.comments}
+      />
 
-      <AddNoticeStepTwoLabelComments htmlFor="comments">Comments</AddNoticeStepTwoLabelComments>
+      <AddNoticeStepTwoLabelComments htmlFor="comments">
+        Comments
+      </AddNoticeStepTwoLabelComments>
       <AddNoticeStepTwoInput
         type="text"
         id="comments"
