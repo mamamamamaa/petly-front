@@ -114,4 +114,8 @@ export const BoxHref = styled.a`
   font-size: 16px;
   text-decoration: none;
   color: #f59256;
+
+  &:hover {
+    color: #ff6101;
+  }
 `;
