@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import React, { useEffect } from 'react';
 import { AddNoticeStepOne } from './AddNoticeStepOne';
 import { AddNoticeStepTwo } from './AddNoticeStepTwo';
 import { useDispatch } from 'react-redux';
@@ -6,7 +7,7 @@ import { addNotice } from 'redux/notices/operations';
 import { ModalAddNoticeWrapper } from './ModalAddNotice.styled';
 import moment from 'moment';
 
-export const ModalAddNotice = ({ onClose }) => {
+export const ModalAddNotice = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState({
     type: '',
@@ -79,7 +80,24 @@ export const ModalAddNotice = ({ onClose }) => {
     setCurrentStep(0);
     onClose();
   };
+  const [maxHeight, setMaxHeight] = useState(0);
+  useEffect(() => {
+    if (isOpen) {
+      // Prevent scrolling when the modal is open
+      document.body.style.overflow = 'hidden';
+      const screenHeight = window.innerHeight;
+      const maxModalHeight = screenHeight * 0.8;
+      setMaxHeight(maxModalHeight);
+    } else {
+      // Allow scrolling when the modal is closed
+      document.body.style.overflow = 'auto';
+    }
 
+    // Remove the event listener when the component is unmounted
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
   const [selectedOption, setSelectedOption] = useState('sell');
 
   const handleOptionChange = event => {
@@ -102,5 +120,9 @@ export const ModalAddNotice = ({ onClose }) => {
       selectedOption={selectedOption}
     />,
   ];
-  return <ModalAddNoticeWrapper>{steps[currentStep]}</ModalAddNoticeWrapper>;
+  return (
+    <ModalAddNoticeWrapper {...{ maxHeight }}>
+      {steps[currentStep]}
+    </ModalAddNoticeWrapper>
+  );
 };

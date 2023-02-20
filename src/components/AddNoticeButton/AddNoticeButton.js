@@ -13,31 +13,37 @@ import { Modal } from 'components/Modal/Modal';
 
 const AddNoticeButton = () => {
   const { isLoggedIn } = useAuth();
-  const [showModal, setShowModal] = useState(false);
-
-  const handleModal = () => {
-    setShowModal(prevShowModal => !prevShowModal);
+  // const [showModal, setShowModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  // const handleModal = () => {
+  //   setShowModal(prevShowModal => !prevShowModal);
+  // };
+  const openModal = () => {
+    setIsOpen(true);
   };
 
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   const onButtonClick = () => {
     !isLoggedIn
       ? toast.error(
           'Dear friend, please sign up or log in to add your pet to notice'
         )
-      : setShowModal(true);
+      : openModal();
   };
 
   return (
     <>
-      <AddPetToNoticesBtnWrapper type="button" onClick={onButtonClick}>
+      <AddPetToNoticesBtnWrapper onClick={onButtonClick}>
         <AddPetToNoticesText>Add pet</AddPetToNoticesText>
-        <AddPetToNoticesBtn>
+        <AddPetToNoticesBtn type="button">
           <AddPetToNoticesImg src={cross} alt="Add pet to notices" />
         </AddPetToNoticesBtn>
       </AddPetToNoticesBtnWrapper>
-      {showModal && (
-        <Modal onClose={handleModal}>
-          <ModalAddNotice onClose={handleModal} />
+      {isOpen && (
+        <Modal onClose={closeModal}>
+          <ModalAddNotice isOpen={isOpen} onClose={closeModal} />
         </Modal>
       )}
 
