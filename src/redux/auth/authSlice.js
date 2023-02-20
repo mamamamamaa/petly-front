@@ -43,6 +43,10 @@ const authSlice = createSlice({
       .addCase(register.pending, (state, action) => {
         state.isRefreshing = true;
       })
+      .addCase(register.rejected, (state, action) => {
+        state.isRefreshing = false;
+        state.error = action.payload;
+      })
       .addCase(login.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
@@ -55,6 +59,10 @@ const authSlice = createSlice({
       })
       .addCase(login.pending, (state, action) => {
         state.isRefreshing = true;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isRefreshing = false;
+        state.error = action.payload;
       })
       .addCase(current.pending, state => {
         state.isRefreshing = true;
