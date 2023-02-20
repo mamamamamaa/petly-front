@@ -30,7 +30,7 @@ export const register = createAsyncThunk(
       }
     } catch (e) {
       toast.error(
-        'Sorry, something going wrong... Please try again.'
+        'Make sure your email isn`t registered yet. And try again.'
         // 'Sorry, there are no news matching your query. Please try again.'
       );
       return thunkAPI.rejectWithValue(e.message);

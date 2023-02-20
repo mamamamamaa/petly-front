@@ -65,10 +65,7 @@ const LoginForm = () => {
 
         if (!error) {
         resetForm() 
-        }
-           if (error) {
-            return toast.error('Please check if email and password are correct or sign up');
-           }            
+        }        
      }
 
     
