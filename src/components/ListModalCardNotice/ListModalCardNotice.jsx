@@ -33,7 +33,7 @@ import noPoster from 'noPoster.jpg';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
 // ===================
 
-export const ListModalCardNotice = ({ date }) => {
+export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
   const {
     _id,
     photoUrl = noPoster,
@@ -52,9 +52,7 @@ export const ListModalCardNotice = ({ date }) => {
 
   // добавить в избранное помошники
   const dispatch = useDispatch();
-  const { user, isLoggedIn } = useAuth();
-  const isFavorite = user.favorite.includes(_id);
-  const [fav, setFav] = useState(isFavorite);
+  const { isLoggedIn } = useAuth();
 
   // добавить в избранное логика
   const favoriteHandler = () => {
