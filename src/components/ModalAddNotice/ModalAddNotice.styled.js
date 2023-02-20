@@ -312,8 +312,8 @@ export const InputPhoto = styled.input`
 `;
 
 export const AvatarImg = styled.img`
-  min-width: 182px;
-  min-height: 182px;
+  min-width: 100%;
+  min-height: 100%;
   position: absolute;
   top: 0;
   left: 0;

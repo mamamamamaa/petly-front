@@ -168,22 +168,22 @@ export const AddNoticeStepOne = props => {
               <Label htmlFor="breed">
                 Breed<SpanStar>*</SpanStar>
               </Label>
-              <Field component={AddNoticeStepOneSelect} name="breed" id="breed">
+              {/* <Field component={AddNoticeStepOneSelect} name="breed" id="breed">
                 {filterByLengthBreeds.map(breed => (
                   <option value={breed} key={breed}>
                     {breed}
                   </option>
                 ))}
-              </Field>
+              </Field> */}
 
-              {/* <InputWrapperLast>
+              <InputWrapperLast>
                 <InputLast
                   id="breed"
                   name="breed"
                   placeholder="Type breed"
                   required
                 />
-              </InputWrapperLast> */}
+              </InputWrapperLast>
               {props.isSubmitting && props.errors.breed
                 ? toast('Breed is required')
                 : null}
