@@ -1,3 +1,4 @@
+import { Card } from "components/UserCard/UserCard.styled";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {fetchUserPets } from "../../redux/user/operations";
@@ -37,22 +38,25 @@ export const PetsData = () => {
     <PetsDataSection>
       <PetsDataAddBtnContainer>
         <PetsDataTitle>My pets:</PetsDataTitle>
+        
         <PetsDataAddBtnWrapper>
           <PetsDataAddText>Add pet</PetsDataAddText>
           <PetsDataButton type="button" onClick={handleModal}></PetsDataButton>
-        </PetsDataAddBtnWrapper>
+        </PetsDataAddBtnWrapper>  
       </PetsDataAddBtnContainer>
+      {/* <Card> */}
       {isLoading && <div>Loading...</div>}
-      {error && <div>error</div>}
-      {!error && !isLoading && pets.length === 0 && (
-        <div>you have no pets yet</div>
-      )}
-      {!error && !isLoading && pets.length > 0 && <PetsList pets={pets} />}
-      {showModal && (
-        <Modal onClose={handleModal}>
-          <ModalAddsPet onClose={handleModal} />
-        </Modal>
-      )}
+        {error && <div>error</div>}
+        {!error && !isLoading && pets.length === 0 && (
+          <div>you have no pets yet</div>
+        )}
+        {!error && !isLoading && pets.length > 0 && <PetsList pets={pets} />}
+        {showModal && (
+          <Modal onClose={handleModal}>
+            <ModalAddsPet onClose={handleModal} />
+          </Modal>
+        )}
+      {/* </Card> */}
     </PetsDataSection>
   );
 };
