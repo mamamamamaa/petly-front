@@ -66,7 +66,7 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
   const dispatch = useDispatch();
 
   const { user } = useUser();
- console.log(user)
+ //console.log(user)
   
   const onChangeHandler = e => {
     console.log('1111');
@@ -232,7 +232,7 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
                   <ErrorMessage name="mobilePhone" component="span" />
                 </FormLabel>
 
-                <form>
+                
                 <BtnInput type="button" onClick={handleClick}>
                   {Input.name === active || changeBtn === true ? (
                     <HiPencil
@@ -243,7 +243,7 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
                   ) : (
                     <FiCheck color="#F59256" width="30" heigh="30" />
                   )}
-                </BtnInput></form>
+                </BtnInput>
               </DivInput>
 
               <DivInput>

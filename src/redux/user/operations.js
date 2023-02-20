@@ -44,7 +44,7 @@ export const updateAvatar = createAsyncThunk(
     "avatarURL/updateAvatar",    
     async ( avatarURL,   thunkAPI) => {
         
-        //console.log()
+        console.log(avatarURL)
         try {                           
            
             const res = await axios.patch(`/api/auth/avatar`, avatarURL, {
