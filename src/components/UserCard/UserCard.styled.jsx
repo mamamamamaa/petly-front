@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { Field, Form } from 'formik';
-import { theme } from '../../utils/theme';
+import { theme } from '../../utils';
 import { media } from '../Layout/Layout.styled';
+import { BsCalendar } from 'react-icons/bs';
 
 //===========пробная загрузка==========================================
 
@@ -10,30 +11,19 @@ export const Inputav = styled.input`
   position: absolute;
   z-index: -1;
 `;
-export const Labelav = styled.label`
-  /* border: 1px solid black;
-  border-radius: 12px;
-  padding: 20px;
-
-  display: flex;
-  align-items: center;
-  cursor: pointer; */
-`;
+export const Labelav = styled.label``;
 export const Formav = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  /* z-index: 20; */
 `;
 export const Imgav = styled.img`
-  /* border: 1px dashed gray; */
   width: 233px;
   height: 233px;
   border-radius: 50%;
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
 `;
-// ======================== for avatar
 
 export const Title = styled.h2`
   font-family: ${theme.fonts.body};
@@ -174,8 +164,6 @@ export const Btn = styled.button`
   }
 `;
 
-export const InputAvatar = styled.input``;
-
 export const Span = styled.span`
   margin-left: 5px;
   font-size: 12px;
@@ -253,7 +241,7 @@ export const MyInput = styled.input`
   color: ${theme.colors.black};
   background-color: ${theme.colors.accentText};
   outline: none;
-
+  border-radius: 40px;
   cursor: pointer;
 
   ${media.mobile} {
@@ -272,19 +260,24 @@ export const MyInput = styled.input`
   }
 
   :hover {
-    background: #fdf7f2;
-    border: 1px solid rgba(245, 146, 86, 0.5);
+    background: ${({ disabled }) => (disabled ? 'none' : '#fdf7f2')};
+    border: ${({ disabled }) =>
+      disabled ? 'none' : '1px solid rgba(245, 146, 86, 0.5)'};
     border-radius: 40px;
   }
   :focus {
-    background-color: #ffffff;
-    color: #f59256 50%;
+    //background-color: #ffffff;
+    color: #f59256;
+    background: #fdf7f2;
+    border: 1px solid rgba(245, 146, 86, 0.5);
 
     outline: none;
     /* transform: scale(1.15); */
   }
   &.active {
     color: #f59256;
+    background: #fdf7f2;
+    border: 1px solid rgba(245, 146, 86, 0.5);
   }
 `;
 
@@ -322,7 +315,7 @@ export const Input = styled(Field)`
   }
   :focus {
     background-color: #ffffff;
-    color: #f59256 50%;
+    color: #f59256;
 
     outline: none;
     /* transform: scale(1.15); */
@@ -333,26 +326,51 @@ export const Input = styled(Field)`
 `;
 
 export const BirthdayContainer = styled.span`
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // /* background: '#FDF7F2'; */
-  // border-radius: 50%;
-  // border: none;
-  // ${media.mobile} {
-  //   width: 30px;
-  //   height: 30px;
-  //   /* margin-left: 9px; */
-  // }
-  // ${media.tabletAndDesktop} {
-  //   /* margin-left: 24px; */
-  //   width: 32px;
-  //   height: 32px;
-  // }
-  // cursor: pointer;
-  // &.active {
-  //   color: #f59256;
-  // }
+  position: relative;
+  width: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ${theme.fonts.body};
+  font-weight: ${theme.fontWeights.news};
+  letter-spacing: 0.04em;
+  color: ${theme.colors.black};
+`;
+
+export const CalendarIcon = styled(BsCalendar)`
+  position: absolute;
+  pointer-events: none;
+  top: 5px;
+  right: 10px;
+  color: ${theme.colors.black};
+
+  &:hover {
+    color: ${theme.colors.accentText};
+  }
+
+  ${media.mobile} {
+    right: 25px;
+  }
+`;
+export const DateInput = styled.input`
+  margin-left: 10px;
+  width: 10px;
+  border: 1px solid transparent;
+  font-family: ${theme.fonts.body};
+  font-weight: ${theme.fontWeights.news};
+  letter-spacing: 0.04em;
+  color: ${theme.colors.black};
+  background-color: ${theme.colors.accentText};
+  outline: none;
+
+  cursor: pointer;
+
+  ${media.mobile} {
+    padding-left: 18px;
+  }
+  ${media.tabletAndDesktop} {
+    padding-left: 12px;
+  }
 `;
 
 export const BtnInput = styled.button`

@@ -1,3 +1,6 @@
+import * as Yup from 'yup';
+import moment from 'moment';
+import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import {
   Title,
@@ -10,6 +13,9 @@ import {
   LogOutSpan,
   FormAndPhotoWrapper,
   MyInput,
+  BirthdayContainer,
+  DateInput,
+  CalendarIcon,
 } from './UserCard.styled';
 import { HiPencil } from 'react-icons/hi';
 import { FiLogOut, FiCheck } from 'react-icons/fi';
@@ -18,9 +24,7 @@ import { FileUploader } from '../UseAvatar/UserAvatar';
 import { getUserData, updateUser } from '../../redux/user/operations';
 import { useEffect, useState } from 'react';
 import { useUser } from '../../redux/hooks';
-import moment from 'moment';
-import * as Yup from 'yup';
-import toast, { Toaster } from 'react-hot-toast';
+import { BsCalendar } from 'react-icons/bs';
 
 const phoneRegExp = /^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/;
 const userSchema = Yup.object().shape({
@@ -181,15 +185,19 @@ export const UserCard = () => {
             <DivInput>
               <FormLabel>
                 Birthday:
-                <MyInput
-                  name="birthday"
-                  id="birthday"
-                  type="date"
-                  value={userData.birthday}
-                  placeholder={userData.birthday || ' '}
-                  disabled={current !== 'birthday'}
-                  onChange={userStateBirthdayHandler}
-                />
+                <BirthdayContainer>
+                  {userData.birthday || 'add date'}
+                  <DateInput
+                    name="birthday"
+                    id="birthday"
+                    type="date"
+                    value={userData.birthday}
+                    placeholder={userData.birthday || ' '}
+                    disabled={current !== 'birthday'}
+                    onChange={userStateBirthdayHandler}
+                  />
+                  <CalendarIcon />
+                </BirthdayContainer>
                 <BtnInput
                   type="button"
                   onClick={() => handleCurrent('birthday')}
