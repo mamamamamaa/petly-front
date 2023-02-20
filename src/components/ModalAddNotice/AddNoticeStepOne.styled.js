@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { media } from 'components/Layout/Layout.styled';
 import { Form } from 'formik';
 
-
 export const AddNoticeStepOneForm = styled(Form)`
   width: 280px;
   ${media.tabletAndDesktop} {
@@ -11,6 +10,7 @@ export const AddNoticeStepOneForm = styled(Form)`
 `;
 
 export const AddNoticeStepOneTitle = styled.h3`
+  text-align: center;
   font-weight: 500;
   font-size: 24px;
   line-height: 33px;
@@ -40,6 +40,11 @@ export const AddNoticeStepOneText = styled.p`
 `;
 
 export const AddNoticeStepOneTopBtnsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: center;
+  // align-items: center;
+  // display: inline-block;
   margin-bottom: 32px;
   ${media.tabletAndDesktop} {
     width: 383px;
@@ -47,91 +52,103 @@ export const AddNoticeStepOneTopBtnsWrapper = styled.div`
   }
 `;
 
-export const AddNoticeLostFound = styled.button`
-  width: 131px;
-  height: 35px;
-  border: 2px solid #f59256;
-  border-radius: 40px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  letter-spacing: 0.04em;
-  color: ${props => (props.defaultChecked ? '#ffffff' : '#000000')};
-  background-color: ${props => (props.defaultChecked ? '#f59256' : '#ffffff')};
-  margin-right: 8px;
-  margin-bottom: 12px;
-  &:active {
+export const AddNoticeLostFound = styled.input`
+  opacity: 0;
+  position: absolute;
+  &:checked + label {
     background-color: #f59256;
     color: #ffffff;
   }
-  ${media.tabletAndDesktop} {
-    width: 162px;
-    height: 47px;
-    margin-right: 12px;
-    margin-bottom: 16px;
-    font-size: 20px;
-    line-height: 27px;
+  & + label {
+    // width: 131px;
+    // height: 35px;
+    background-color: #ffffff;
+    color: #f59256;
+    margin-right: 8px;
+    margin-bottom: 12px;
+    padding: 8px 28px;
+    border: 2px solid #f59256;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0.04em;
+    ${media.tabletAndDesktop} {
+      // width: 162px;
+      // height: 47px;
+      margin-right: 12px;
+      margin-bottom: 16px;
+      font-size: 20px;
+      line-height: 27px;
+    }
   }
 `;
-export const AddNoticeInGoodHands = styled.button`
-  width: 155px;
-  height: 35px;
-  border: 2px solid #f59256;
-  border-radius: 40px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  letter-spacing: 0.04em;
-  color: ${props => (props.defaultChecked ? '#ffffff' : '#000000')};
-  background-color: ${props => (props.defaultChecked ? '#f59256' : '#ffffff')};
-  margin-right: 8px;
-  margin-bottom: 12px;
-  &:active {
+export const AddNoticeInGoodHands = styled.input`
+  opacity: 0;
+  position: absolute;
+  &:checked + label {
     background-color: #f59256;
     color: #ffffff;
   }
-  ${media.tabletAndDesktop} {
-    width: 197px;
-    height: 47px;
-    margin-right: 12px;
-    margin-bottom: 16px;
-    font-size: 20px;
-    line-height: 27px;
+  & + label {
+    // width: 155px;
+    // height: 35px;
+    background-color: #ffffff;
+    color: #f59256;
+    margin-right: 8px;
+    margin-bottom: 12px;
+    padding: 8px 28px;
+    border: 2px solid #f59256;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0.04em;
+    ${media.tabletAndDesktop} {
+      // width: 197px;
+      // height: 47px;
+      margin-right: 12px;
+      margin-bottom: 16px;
+      font-size: 20px;
+      line-height: 27px;
+    }
   }
 `;
-export const AddNoticeSell = styled.button`
-  width: 81px;
-  height: 35px;
-  border: 2px solid #f59256;
-  border-radius: 40px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  letter-spacing: 0.04em;
-  color: ${props => (props.defaultChecked ? '#ffffff' : '#000000')};
-  background-color: ${props => (props.defaultChecked ? '#f59256' : '#ffffff')};
-  margin-right: 8px;
-  margin-bottom: 12px;
-  &:active {
+export const AddNoticeSell = styled.input`
+  opacity: 0;
+  position: absolute;
+  &:checked + label {
     background-color: #f59256;
     color: #ffffff;
   }
-  ${media.tabletAndDesktop} {
-    width: 91px;
-    height: 47px;
-    margin-right: 12px;
-    margin-bottom: 16px;
-    font-size: 20px;
-    line-height: 27px;
+  & + label {
+    // width: 81px;
+    // height: 35px;
+    background-color: #ffffff;
+    color: #f59256;
+    margin-right: 8px;
+    margin-bottom: 12px;
+    padding: 8px 28px;
+    border: 2px solid #f59256;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0.04em;
+    ${media.tabletAndDesktop} {
+      // width: 91px;
+      // height: 47px;
+      margin-right: 12px;
+      margin-bottom: 16px;
+      font-size: 20px;
+      line-height: 27px;
+    }
   }
 `;
 export const AddNoticeStepOneButtonSpan = styled.span``;
