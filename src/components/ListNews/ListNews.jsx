@@ -22,10 +22,10 @@ function ListNews({ news }) {
           <Box>
             <ColorBox></ColorBox>
             <Header>{item.title}</Header>
-            <Paragraph>{item.body}</Paragraph>
+            <Paragraph>{item.body || item.content}</Paragraph>
             <Wraper>
               <DateBox>
-                <NewsNewDate date={item.datePublished} />
+                <NewsNewDate date={item.datePublished || item.publishedAt} />
               </DateBox>
               <BoxHref
                 href={item.url}
