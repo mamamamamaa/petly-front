@@ -185,7 +185,7 @@ export const AddNoticeStepTwo = props => {
                   required
                 />
                 {props.isSubmitting && props.errors.photoUrl
-                  ? toast.failure('Pet image is required')
+                  ? toast('Pet image is required')
                   : null}
               </ButtonAddPhoto>
               <WraperTextarea>
@@ -200,7 +200,7 @@ export const AddNoticeStepTwo = props => {
                 />
               </WraperTextarea>
               {props.isSubmitting && props.errors.comments
-                ? toast.failure('Comment is required')
+                ? toast('Comment is required')
                 : null}
               <ButtonWrapper>
                 <ButtonFill type="submit" onSubmit={handleSubmit}>

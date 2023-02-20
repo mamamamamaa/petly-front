@@ -72,7 +72,7 @@ export const AddNoticeStepOne = props => {
       </ButtonClose>
       <Title>Add pet</Title>
 
-      {props.setData.type === 'sell' && (
+      {/* {props.setData.type === 'sell' && (
         <SubTitle>Lets find a new home for you pet</SubTitle>
       )}
       {props.setData.type === 'good-hands' && (
@@ -80,7 +80,7 @@ export const AddNoticeStepOne = props => {
       )}
       {props.setData.type === 'lost/found' && (
         <SubTitle>Your pet will find his home</SubTitle>
-      )}
+      )} */}
 
       <SubTitle>
         Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,

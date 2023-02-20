@@ -26,7 +26,8 @@ export const sell = createAsyncThunk(
       const res = await axios.get(
         `/api/notices/paginateNotice?type=sell&page=${page}&limit=${limit}`
       );
-      return { data: res.data, page };
+      console.log(res);
+      return { data: res.data.items.reverse(), page };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -74,6 +75,7 @@ export const addNotice = createAsyncThunk(
       });
       return response.data;
     } catch (e) {
+      console.log(e);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
