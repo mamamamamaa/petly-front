@@ -87,7 +87,7 @@ export const NoticeCategoryItemTemplate = ({
 
   const changeTitle = type => {
     if (type === 'good-hands') {
-      const newType = 'In good hands';
+      const newType = 'in good hands';
       return newType;
     } else {
       const newType = type;
