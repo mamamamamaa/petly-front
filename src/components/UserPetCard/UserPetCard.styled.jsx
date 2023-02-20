@@ -4,9 +4,12 @@ import { media } from 'components/Layout/Layout.styled';
 
 
 export const PetTextWrapper = styled.div`
-  ${media.desktop} {
+  ${media.tablet} {
     display: block;
     width: 471px;    
+  }
+  ${media.desktop} {
+    width: 580px;    
   }
 `;
 export const PetArticle = styled.article`
@@ -47,10 +50,6 @@ export const PetImg = styled.img`
   height: 100%;
   object-fit: cover;
   display: block;
-     
-  ${media.desktop} {
-    /* display: inline-block; */
-  }
 `;
 export const PetSpanWrapper = styled.div`
 ${media.tablet} {
@@ -71,9 +70,12 @@ export const PetSpan = styled.span`
   line-height: 19px;
   letter-spacing: 0.04em;
   color: #000000;
-  margin-right: 7px;
+  margin-right: 5px;
   ${media.tablet} {
     display: inline-block;
+    font-size: 16px;
+    line-height: 22px;
+    margin-right: 6px;
   }
 `;
 export const PetComments = styled.span`
@@ -88,11 +90,12 @@ export const PetDeleteButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   position: relative;  
   width: 20px;
   height: 20px;  
   background-color: transparent;
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     position: absolute;
     border-radius: 50%;
     background-color: #fdf7f2;
@@ -111,16 +114,13 @@ export const PetDeleteButton = styled.button`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 0vw left 0vw;
+  cursor: pointer;
   border: none;
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     width: 24px;
     height: 24px;
-    margin-left: 0;
-    /* top: 20px;
-    right: 20px;  */
-  }
-  ${media.desktop} {
-  }
+    margin-left: 0;    
+  }  
 `;
 
 
@@ -139,8 +139,5 @@ export const Text = styled.p`
   ${media.tablet} {
     max-width: 471px;
   }
-
-  /* word-break: break-all; */
-  /* word-wrap: break-word; */
 `;
 
