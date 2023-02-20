@@ -42,7 +42,7 @@ const formTwoValidationSchema = Yup.object({
     .required('Comment is required'),
   place: Yup.string().required('Location is required'),
   photoUrl: Yup.mixed().label('Pet image').required('Pet image is required'),
-  price: Yup.number(),
+  // price: Yup.number(),
 });
 
 export const AddNoticeStepTwo = props => {
@@ -149,7 +149,7 @@ export const AddNoticeStepTwo = props => {
                   Price<SpanStar>*</SpanStar>:
                 </Label>
               )}
-              {resultOfCategory && (
+              {/* {resultOfCategory && (
                 <InputWrapper>
                   <Input
                     id="price"
@@ -159,7 +159,7 @@ export const AddNoticeStepTwo = props => {
                     placeholder="Type price"
                   />
                 </InputWrapper>
-              )}
+              )} */}
 
               {props.isSubmitting && props.errors.price
                 ? toast('Price must be in numbers')

@@ -74,27 +74,26 @@ export const AddNoticeStepOne = props => {
     props.closeModal();
   };
 
+  const textByTypeLost = props.data.type === 'lost/found';
+  const textByTypeHands = props.data.type === 'good-hands';
+  const textByTypeSell = props.data.type === 'sell';
   return (
     <Container>
       <ButtonClose type="button" onClick={props.closeModal}>
         <VscClose size={65} />
       </ButtonClose>
       <Title>Add pet</Title>
-
-      {/* {props.setData.type === 'sell' && (
-        <SubTitle>Lets find a new home for you pet</SubTitle>
-      )}
-      {props.setData.type === 'good-hands' && (
+      {textByTypeHands && (
         <SubTitle>You give your pet to a good people</SubTitle>
       )}
-      {props.setData.type === 'lost/found' && (
-        <SubTitle>Your pet will find his home</SubTitle>
-      )} */}
+      {textByTypeSell && <SubTitle>Lets find a new home for you pet</SubTitle>}
 
-      <SubTitle>
+      {textByTypeLost && <SubTitle>Your pet will find his home</SubTitle>}
+
+      {/* <SubTitle>
         Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
         consectetur
-      </SubTitle>
+      </SubTitle> */}
       <FormWrapper>
         <Formik
           validationSchema={formOneValidationSchema}
@@ -123,6 +122,7 @@ export const AddNoticeStepOne = props => {
                 <RadioBtn id="sell" type="radio" name="type" value="sell" />
                 <LabelRadioBtn htmlFor="sell">sell</LabelRadioBtn>
               </RadioWrapp>
+
               {props.isSubmitting && props.errors.type
                 ? toast('Type is required')
                 : null}
@@ -178,7 +178,6 @@ export const AddNoticeStepOne = props => {
                   </option>
                 ))}
               </Field> */}
-
               <InputWrapperLast>
                 <InputLast
                   id="breed"

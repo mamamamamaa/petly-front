@@ -27,7 +27,7 @@ export const sell = createAsyncThunk(
         `/api/notices/paginateNotice?type=sell&page=${page}&limit=${limit}`
       );
       console.log(res.data.items.reverse());
-      return { data: res.dataЁЁ, page };
+      return { data: res.data, page };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -75,7 +75,6 @@ export const addNotice = createAsyncThunk(
       });
       return response.data;
     } catch (e) {
-      console.log(e);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
