@@ -38,7 +38,7 @@ const userSlice = createSlice({
         state.user.email = action.payload.email;
         state.user.phone = action.payload.phone;
         state.user.city = action.payload.city;
-        state.user.avatarURL = action.payload.avatarURL;
+        //state.user.avatarURL = action.payload.avatarURL;
         state.user.birthday = action.payload.birthday;
         state.isLoggedIn = true;
         console.log(state.user.avatarURL)
@@ -67,6 +67,7 @@ const userSlice = createSlice({
         state.data = { ...state.data, ...action.payload };
       })
       .addCase(updateAvatar.rejected, (state, action) => {
+        console.log("action", action)
         state.status = "failed"
         state.error = action.error.message
       })   
