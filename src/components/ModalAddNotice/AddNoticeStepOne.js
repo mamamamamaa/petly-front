@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 import React from 'react';
 import { VscClose } from 'react-icons/vsc';
 import toast, { Toaster } from 'react-hot-toast';
@@ -162,14 +162,22 @@ export const AddNoticeStepOne = props => {
               <Label htmlFor="breed">
                 Breed<SpanStar>*</SpanStar>
               </Label>
-              <InputWrapperLast>
+              <Field component={AddNoticeStepOneSelect} name="breed" id="breed">
+                {filterByLengthBreeds.map(breed => (
+                  <option value={breed} key={breed}>
+                    {breed}
+                  </option>
+                ))}
+              </Field>
+
+              {/* <InputWrapperLast>
                 <InputLast
                   id="breed"
                   name="breed"
                   placeholder="Type breed"
                   required
                 />
-              </InputWrapperLast>
+              </InputWrapperLast> */}
               {props.isSubmitting && props.errors.breed
                 ? toast('Breed is required')
                 : null}
