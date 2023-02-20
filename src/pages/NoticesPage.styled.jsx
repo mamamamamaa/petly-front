@@ -138,6 +138,11 @@ export const NoticesNavLink = styled(NavLink)`
     background-color: #f59256;
     color: ${theme.colors.accentText};
   }
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
 `;
 export const NoticesNavText = styled.p`
   font-style: normal;
