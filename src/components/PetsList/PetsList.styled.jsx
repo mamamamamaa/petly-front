@@ -26,5 +26,7 @@ export const PetLi = styled.li`
   }
   ${media.tabletAndDesktop} {
     position: relative;
+    height: 230px;
+    padding-top: 0;
   }
 `;
