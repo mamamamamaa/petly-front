@@ -61,23 +61,27 @@ const schema = yup.object().shape({
 });
 
 export const AddNoticeStepOne = ({ next, data, cancel }) => {
-  //   const [selectedType, setSelectedType] = useState('');
+  // const [selectedDate, setSelectedDate] = useState('');
+  // const [dateToSubmit, setDateToSubmit] = useState();
 
-  const [selectedDate, setSelectedDate] = useState('');
-  const [dateToSubmit, setDateToSubmit] = useState();
+  const [selectedDate, setSelectedDate] = useState(data.dateOfBirth);
+  const [selectedDateInNumber, setSelectedDateINNumber] = useState(
+    data.dateOfBirth
+  );
 
-  //   const typeChange = event => {
-  //     const { value } = event.target;
-  //     setSelectedType(value);
-  //   };
+  const handleSubmit = (values, actions) => {
+    actions.setFieldValue('dateOfBirth', selectedDate);
 
-  const handleSubmit = values => {
-    next({ ...values, dateOfBirth: dateToSubmit });
+    next({
+      ...values,
+      dateOfBirth: selectedDate,
+      selectedDateInNumber,
+    });
   };
 
   const handleDate = e => {
     setSelectedDate(e.target.value);
-    setDateToSubmit(e.target.valueAsNumber);
+    setSelectedDateINNumber(e.target.valueAsNumber);
   };
   const [selectedOption, setSelectedOption] = useState('sell');
 
@@ -119,10 +123,25 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
         </RadioButtonContainer> */}
 
         <AddNoticeStepOneTitle>Add pet</AddNoticeStepOneTitle>
-        <AddNoticeStepOneText>
+        {/* <AddNoticeStepOneText>
           Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
           consectetur
-        </AddNoticeStepOneText>
+        </AddNoticeStepOneText> */}
+        {data.type === 'sell' && (
+          <AddNoticeStepOneText>
+            Lets find a new home for you pet
+          </AddNoticeStepOneText>
+        )}
+        {data.type === 'good-hands' && (
+          <AddNoticeStepOneText>
+            You give your pet to a good people
+          </AddNoticeStepOneText>
+        )}
+        {data.type === 'lost/found' && (
+          <AddNoticeStepOneText>
+            Your pet will find his home
+          </AddNoticeStepOneText>
+        )}
         <AddNoticeStepOneTopBtnsWrapper>
           <AddNoticeLostFound
             type="radio"
@@ -161,6 +180,7 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           id="title"
           component={AddNoticeStepOneInput}
           placeholder="Type name pet"
+          required
         />
 
         <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
@@ -169,6 +189,7 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           id="name"
           component={AddNoticeStepOneInput}
           placeholder="Type name pet"
+          required
         />
 
         <AddNoticeStepOneLabel htmlFor="dateOfBirth">
@@ -178,14 +199,20 @@ export const AddNoticeStepOne = ({ next, data, cancel }) => {
           type="date"
           name="dateOfBirth"
           id="dateOfBirth"
-          // required
+          required
           onChange={handleDate}
           max={moment(moment.now()).format('YYYY-MM-DD')}
           value={selectedDate}
           component={AddNoticeStepOneInput}
         />
         <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
-        <Field component={AddNoticeStepOneSelect} name="breed" id="breed">
+        <Field
+          as="select"
+          component={AddNoticeStepOneSelect}
+          name="breed"
+          id="breed"
+          required
+        >
           {filterByLengthBreeds.map(breed => (
             <option value={breed} key={breed}>
               {breed}

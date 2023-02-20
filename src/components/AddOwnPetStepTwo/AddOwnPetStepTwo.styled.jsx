@@ -1,6 +1,4 @@
 import styled from '@emotion/styled';
-import { Form, Field } from 'formik';
-// import adver from 'utils/svg/adv.svg';
 import { theme } from 'utils/theme';
 
 export const Container = styled.div`
@@ -8,120 +6,105 @@ export const Container = styled.div`
     height: 670px;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    height: 431px;
-    width: 448px;
+    height: 662px;
+    width: 608px;
+    padding-left: 27px;
+    padding-right: 27px;
   }
   @media screen and (min-width: 1280px) {
-    height: 431px;
+    height: 502px;
     width: 448px;
+    padding-left: 27px;
+    padding-right: 27px;
   }
+  position: relative;
 `;
 
-export const Wraper = styled.div`
-  @media screen and (max-width: 767px) {
-    margin-top: 16px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    margin-top: 28px;
-  }
-  @media screen and (min-width: 1280px) {
-    margin-top: 28px;
-  }
-`;
-
-export const BoxWarning = styled.span`
-  color: red;
-  font-weight: 400;
-  font-size: 12px;
-`;
-
-export const FormEl = styled(Form)``;
-
-export const BoxLabel = styled.div`
-  display: flex;
-  flex-direction: column;
+export const Title = styled.h2`
+  text-align: center;
   font-family: Manrope;
   font-weight: 500;
-  font-size: 24px;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    font-size: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
+`;
+
+export const Box = styled.div`
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fdf7f2;
+  background-color: #fdf7f2;
+  border-radius: 20px;
+  @media screen and (max-width: 767px) {
+    width: 208px;
+    height: 208px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 182px;
+    height: 182px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 182px;
+    height: 182px;
+  }
+`;
+
+export const BoxImg = styled.div`
+  position: absolute;
+  z-index: 999;
+  fill: rgba(17, 17, 17, 0.6);
+  @media screen and (max-width: 767px) {
+    top: 38%;
+    left: 38%;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    top: 36%;
+    left: 36%;
+  }
+  @media screen and (min-width: 1280px) {
+    top: 36%;
+    left: 36%;
+  }
+`;
+
+export const BoxComent = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TitleComent = styled.h2`
+  font-family: Manrope;
+  font-weight: 500;
   line-height: 1.3;
   @media screen and (max-width: 767px) {
     font-size: 18px;
+    margin-bottom: 8px;
+    margin-top: 20px;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-bottom: 12px;
+    margin-top: 40px;
     font-size: 24px;
   }
   @media screen and (min-width: 1280px) {
+    margin-bottom: 12px;
+    margin-top: 40px;
     font-size: 24px;
   }
 `;
-
-export const Input = styled(Field)`
-  margin: 0;
-  height: 48px;
-  font-family: Manrope;
+export const BoxWarning = styled.div`
+  color: red;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 1.3;
-  background-color: #fdf7f2;
-  outline: none;
-  border: 1px solid #f59256;
-  border-radius: 40px;
-  @media screen and (max-width: 767px) {
-    margin-top: 8px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 14px;
-    padding-right: 14px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    margin-top: 12px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  @media screen and (min-width: 1280px) {
-    margin-top: 12px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-`;
-
-export const InputSelect = styled(Field)`
-  font-family: Manrope;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.3;
-  background-color: #fdf7f2;
-  outline: none;
-  border: 1px solid #f59256;
-  border-radius: 40px;
-  @media screen and (max-width: 767px) {
-    height: 48px;
-    margin-top: 8px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 14px;
-    padding-right: 14px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    height: 48px;
-    margin-top: 12px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  @media screen and (min-width: 1280px) {
-    height: 48px;
-    margin-top: 12px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
+  font-size: 12px;
 `;
 
 export const BoxButton = styled.div`
@@ -144,40 +127,7 @@ export const BoxButton = styled.div`
   }
 `;
 
-export const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1.3;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1.3;
-  color: ${theme.colors.primary};
-  background: ${theme.colors.accentText};
-  border: 2px solid #f59256;
-  border-radius: 40px;
-  cursor: pointer;
-  :hover {
-    border: 2px solid #ff6101;
-    color: #ff6101;
-  }
-  @media screen and (max-width: 767px) {
-    height: 40px;
-    width: 240px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    height: 44px;
-    width: 180px;
-  }
-  @media screen and (min-width: 1280px) {
-    height: 44px;
-    width: 180px;
-  }
-`;
-
-export const ButtonNext = styled.button`
+export const ButtonDone = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -209,3 +159,36 @@ export const ButtonNext = styled.button`
     width: 180px;
   }
 `;
+export const ButtonBack = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.3;
+  color: ${theme.colors.primary};
+  background: ${theme.colors.accentText};
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  cursor: pointer;
+  :hover {
+    border: 2px solid #ff6101;
+    color: #ff6101;
+  }
+  @media screen and (max-width: 767px) {
+    height: 40px;
+    width: 240px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    height: 44px;
+    width: 180px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 44px;
+    width: 180px;
+  }
+`;
+// =============

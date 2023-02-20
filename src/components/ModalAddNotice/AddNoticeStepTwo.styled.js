@@ -3,6 +3,7 @@ import { media } from 'components/Layout/Layout.styled';
 import male from 'utils/svg/male.svg';
 import female from 'utils/svg/female.svg';
 import loadCross from 'utils/svg/loadCross.svg';
+import { theme } from 'utils';
 
 export const AddNoticeStepTwoForm = styled.form`
   width: 280px;
@@ -38,6 +39,12 @@ export const AddNoticeStepTwoLabelSex = styled.label`
   line-height: 26px;
   color: #000000;
   margin-bottom: 18px;
+  :after {
+    content: '*';
+    color: ${theme.colors.primary};
+    position: absolute;
+    margin-left: 4px;
+  }
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;
@@ -75,19 +82,20 @@ export const AddNoticeStepTwoMale = styled.img`
   height: 40px;
   margin-right: 40px;
   margin-bottom: 12px;
-  box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
+  /* box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
     inset 0px -3px 4px rgba(0, 0, 0, 0.25);
   outline: 1px solid ${props => (props.checked ? '#f59256' : '#ffffff')};
   ${media.tabletAndDesktop} {
     margin-bottom: 23px;
-  }
+  } */
 `;
 export const AddNoticeStepTwoMaleSpan = styled.span`
   display: block;
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${props => (props.checked ? '#f59256' : '#ffffff')};
+
+  color: ${props => (props.checked ? '#f59256' : '#000000')};
 `;
 export const AddNoticeStepTwoFemaleWrapper = styled.div`
   display: inline-flex;
@@ -99,16 +107,17 @@ export const AddNoticeStepTwoFemale = styled.img`
   width: 40px;
   height: 40px;
   margin-bottom: 12px;
-  box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
+  /* box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
     inset 0px -3px 4px rgba(0, 0, 0, 0.25);
-  outline: 1px solid ${props => (props.checked ? '#ffffff' : '#f59256')};
+  outline: 1px solid ${props => (props.checked ? '#ffffff' : '#f59256')}; */
 `;
 export const AddNoticeStepTwoFemaleSpan = styled.span`
   display: block;
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${props => (props.checked ? '#ffffff' : '#f59256')};
+
+  color: ${props => (props.checked ? '#000000' : '#f59256')};
 `;
 
 export const AddNoticeStepTwoLabelLocation = styled.label`
@@ -118,6 +127,12 @@ export const AddNoticeStepTwoLabelLocation = styled.label`
   line-height: 26px;
   color: #111111;
   margin-bottom: 8px;
+  :after {
+    content: '*';
+    color: ${theme.colors.primary};
+    position: absolute;
+    margin-left: 4px;
+  }
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;
@@ -279,7 +294,7 @@ export const AddNoticeStepTwoLoadImageInput = styled.input`
   position: relative;
   width: 116px;
   height: 116px;
-  opacity: 20%;
+  opacity: 0;
 `;
 export const AddNoticeStepTwoButtonBackDoneWrapper = styled.div`
   ${media.tabletAndDesktop} {

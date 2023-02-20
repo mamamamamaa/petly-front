@@ -12,11 +12,14 @@ export const NavList = styled.ul`
     align-items: center;
     justify-content: center;
     flex-direction: column; 
+    ${media.mobile} {
+        /* padding-bottom: 147px; */
+    }
     ${media.tablet} {
         opacity: ${({ isClosed }) => isClosed ? 0 : 1};
         visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
         pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
-        padding-top: 160px;
+        
     }
     ${media.desktop} {
         flex-direction: row;
@@ -69,10 +72,13 @@ export const NavListItem = styled.li`
 export const NavigLink = styled(NavLink)`
     color: inherit;
     text-decoration: none;
-    /* color: ${({ isActive }) => isActive ? 'red' : 'black'}; */
     &.active {
         color: ${theme.colors.primary};
         text-decoration: underline;
         font-weight: ${theme.fontWeights.bold}
     };
+    &.inActive {
+        color: inherit;
+        text-decoration: none;
+    }
 `;

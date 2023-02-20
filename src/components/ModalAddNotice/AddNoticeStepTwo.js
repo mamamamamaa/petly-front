@@ -30,6 +30,7 @@ import {
   AddNoticeStepTwoInputComments,
   AddNoticeStepTwoInputPrice,
 } from './AddNoticeStepTwo.styled';
+
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
   place: string()
@@ -65,11 +66,12 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
       sex: data.sex,
       place: data.place,
       price: data.price,
-      pictureURL: data.pictureURL,
+      photoUrl: data.photoUrl,
       comments: data.comments,
     },
     validationSchema: addNoticeSchema,
     onSubmit: (values, actions) => {
+      actions.setFieldValue('photoUrl', values.photoUrl, values.photoUrl.name);
       actions.validateForm();
       const newValue = {
         ...data,
@@ -143,7 +145,7 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
           accept="image/*"
           onChange={e =>
             formik.setFieldValue(
-              'pictureURL',
+              'photoUrl',
               e.currentTarget.files[0],
               e.currentTarget.files[0].name
             )

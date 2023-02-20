@@ -5,15 +5,13 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   @media screen and (max-width: 767px) {
-    width: 240px;
+    width: 280px;
     padding-top: 40px;
     padding-bottom: 40px;
     padding-left: 20px;
     padding-right: 20px;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    width: 448px;
-    height: 505px;
     padding-top: 40px;
     padding-bottom: 40px;
     padding-left: 80px;
@@ -22,8 +20,6 @@ export const Container = styled.div`
     align-items: center;
   }
   @media screen and (min-width: 1280px) {
-    width: 448px;
-    height: 505px;
     padding-top: 40px;
     padding-bottom: 40px;
     padding-left: 80px;

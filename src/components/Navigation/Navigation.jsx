@@ -3,7 +3,6 @@ import { NavList, NavListItem, NavigLink } from './Navigation.styled';
 
 const Navigation = ({ close }) => {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <NavList>
@@ -17,16 +16,7 @@ const Navigation = ({ close }) => {
           // Specify the route?
           to="/notice/sell"
           onClick={close}
-          isActive={() =>
-            [
-              '/notice',
-              '/good-hands',
-              '/sell',
-              '/lost',
-              '/favorite',
-              '/my-ads',
-            ].includes(pathname)
-          }
+          className={pathname.includes('/notice') ? 'active' : 'inActive'}
         >
           Find pet
         </NavigLink>

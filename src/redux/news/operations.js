@@ -1,8 +1,24 @@
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// const { REACT_APP_SERVER_HOST: HOST } = process.env;
-// axios.defaults.baseURL = HOST;
+// const { NEWSSERVER, NEWSKEY } = process.env;
+
+// ======== second way for news ========= down
+export const getNews = createAsyncThunk(
+  'news',
+  async (query = 'pets', thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/api/news?query=${query}`);
+      // console.log(query);
+      // console.log(data);
+      return data.data.result.articles;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+// ======== second way for news ========= up
 
 // export const getNews = createAsyncThunk(
 //   'news',
@@ -17,30 +33,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 //   }
 // );
 
-// ======== second way for news ========= down
-
-export const getNews = createAsyncThunk(
-  'news',
-  async (query = 'pets', thunkAPI) => {
-    try {
-      const { data } = await axios.get(
-        `https://newsapi.org/v2/everything?q=${query}&pageSize=6&apiKey=542cd052e17c46769d10d50b01159abd`
-      );
-      console.log(query);
-      console.log(data);
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-// ======== second way for news ========= up
-
 // =====================
 // const { REACT_APP_SERVER_HOST: HOST } = process.env;
-
 // axios.defaults.baseURL = HOST;
-
 // export const getNews = createAsyncThunk(
 //   'news',
 //   async (page = 1, query = 'dog', thunkAPI) => {

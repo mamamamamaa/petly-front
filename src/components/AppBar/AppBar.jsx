@@ -9,26 +9,30 @@ import { Container } from "utils";
 import {BarContainer,
         LogoBlack,
         LogoAccent,
+        LogoMenu,
         MenuWrpr,
+        MenuMobWrpr,
         UserMenuWrpr,
+        UserMenuWrprMob,
         BurgerBtn,
+        BurgerMenuBtn,
         Nav,
+        NavMob,
         TabletWrapper,
         HomePageLink
 } from "./AppBar.styled";
 
 
 const AppBar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const toggleClickHandler = () => {
-      setIsMenuOpen(!isMenuOpen);
-    }
+  const toggleClickHandler = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-    const closeMenu = () => {
-        setIsMenuOpen(false);
-    }
-
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
 
     const { isLoggedIn } = useAuth();
     return (
@@ -39,7 +43,6 @@ const AppBar = () => {
                 <BurgerBtn onClick={toggleClickHandler}>
                     {!isMenuOpen ? <BurgerIcon/> : <CloseIcon/>}
                 </BurgerBtn>
-                
                 <MenuWrpr isClosed={!isMenuOpen}>
                     <Nav isClosed={!isMenuOpen}>
                         <Navigation close={closeMenu} />
@@ -50,8 +53,23 @@ const AppBar = () => {
                     </UserMenuWrpr>
                 </MenuWrpr>
                 </TabletWrapper>
-                
         </BarContainer>
+
+        {/* <MenuMobWrpr isClosed={!isMenuOpen}>
+        <LogoMenu><HomePageLink to="/" onClick={closeMenu}>pe<LogoAccent>t</LogoAccent>ly</HomePageLink></LogoMenu>
+                    <BurgerMenuBtn onClick={toggleClickHandler}>
+                             {!isMenuOpen ? <BurgerIcon/> : <CloseIcon/>}
+                    </BurgerMenuBtn>
+                    <NavMob isClosed={!isMenuOpen}>
+                        <Navigation close={closeMenu} />
+                    </NavMob>
+                    <UserMenuWrprMob>{isLoggedIn ?
+                         <UserMenu close={closeMenu} /> 
+                        : <AuthMenu close={closeMenu} />}
+                    </UserMenuWrprMob>
+                    
+        </MenuMobWrpr> */}
+
         </Container>
     )
 };
