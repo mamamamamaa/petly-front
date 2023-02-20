@@ -188,6 +188,7 @@ const noticeSlice = createSlice({
           default:
             break;
         }
+        state.myAdsNotices.filter(({ _id }) => _id !== id);
         state.sellNotices = action.payload;
         state.isLoading = false;
       })

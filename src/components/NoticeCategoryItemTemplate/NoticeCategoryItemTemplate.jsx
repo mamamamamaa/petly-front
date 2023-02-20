@@ -57,7 +57,9 @@ export const NoticeCategoryItemTemplate = ({
   const { user, isLoggedIn } = useAuth();
 
   const isFavorite = user.favorite.includes(_id);
-  const isOwn = owner === user.id;
+
+  const isOwn =
+    typeof owner === 'object' && '_id' in owner ? true : owner === user.id;
 
   const [fav, setFav] = useState(isFavorite);
 
@@ -80,11 +82,11 @@ export const NoticeCategoryItemTemplate = ({
     if (fav) {
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
-      toast.success('Removed from favorite!')
+      toast.success('Removed from favorite!');
     } else {
       dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
-      toast.success('Successfully added to favorite!')
+      toast.success('Successfully added to favorite!');
     }
     setFav(prevState => !prevState);
   };
