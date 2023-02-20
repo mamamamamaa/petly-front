@@ -52,13 +52,14 @@ export const Notification = styled.div`
   width: 200px;
   height: 50px;  
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 50px;
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
   color: #000000;  
   ${media.tablet} {
+    margin-top: 100px;
     display: inline-block;
     font-size: 16px;
     line-height: 22px;    
