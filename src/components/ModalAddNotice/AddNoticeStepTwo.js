@@ -150,13 +150,10 @@ export const AddNoticeStepTwo = ({ data, next, prev, onClose }) => {
         Comments
       </AddNoticeStepTwoLabelCommentArea>
       <AddNoticeStepTwoCommentArea
-        rows="5"
-        cols="30"
         id="commentsArea"
         name="commentsArea"
         placeholder="Type comments"
         onChange={formik.handleChange}
-        value={formik.values.comments}
       />
 
       <AddNoticeStepTwoLabelComments htmlFor="comments">

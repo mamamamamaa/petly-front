@@ -146,32 +146,36 @@ export const AddNoticeStepTwoLabelComments = styled.label`
   color: #111111;
   margin-bottom: 8px;
   ${media.tabletAndDesktop} {
-    // font-size: 24px;
-    // color: #000000;
-    // margin-bottom: 12px;
     display: none;
   }
-  // &:nth-of-type(4) {
-  //   margin-bottom: 180px;
-  // }
 `;
 
 export const AddNoticeStepTwoLabelCommentArea = styled.label`
   ${media.mobile} {
     display: none;
   }
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 26px;
+  color: #000000;
 `;
 export const AddNoticeStepTwoCommentArea = styled.textarea`
   ${media.mobile} {
     display: none;
   }
-  width: 448px;
-  height: 113px;
-  left: 80px;
-  top: 807px;
+  width: 100%;
+  height: 191px;
+  padding: 16px 18px;
+  margin-bottom: 40px;
   background-color: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #000000;
 `;
 export const AddNoticeStepTwoInput = styled.input`
   display: block;
