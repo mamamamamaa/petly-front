@@ -1,10 +1,16 @@
 import styled from '@emotion/styled';
 import PetDeleteIcon from 'utils/svg/petDeleteIcon.svg';
 import { media } from 'components/Layout/Layout.styled';
+
+
 export const PetTextWrapper = styled.div`
-  // ${media.desktop} {
-  //   display: inline-block;
-  // }
+  ${media.tablet} {
+    display: block;
+    width: 471px;    
+  }
+  ${media.desktop} {
+    width: 580px;    
+  }
 `;
 export const PetArticle = styled.article`
   padding-left: 20px;
@@ -13,7 +19,6 @@ export const PetArticle = styled.article`
   padding-bottom: 40px;
   ${media.tablet} {
     display: flex;
-    margin-right: 32px;
     padding: 20px;
   }
   ${media.desktop} {
@@ -24,25 +29,40 @@ export const PetArticle = styled.article`
     display: flex;
   }
 `;
-export const PetImg = styled.img`
+
+export const PetImgWrapper = styled.div`
   width: 100%;
-  object-fit: fill;
-  display: block;
-  border-radius: 20px;
+  height:auto;
+  overflow: hidden;
   margin-bottom: 20px;
+  border-radius: 20px;
   ${media.tabletAndDesktop} {
+    border-radius: 40px;
+    margin-bottom: 0;
     width: 161px;
     height: 161px;
     margin-right: 32px;
   }
-  ${media.desktop} {
-    display: inline-block;
-  }
+`; 
+
+export const PetImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 `;
-export const PetSpanWrapper = styled.div``;
+export const PetSpanWrapper = styled.div`
+${media.tablet} {
+  display: block;
+  width: 100%;
+}
+`;
 export const PetSpanWrapperFlex = styled.div`
   display: flex;
   justify-content: space-between;
+  ${media.tablet} {
+    width: 471px;
+  }
 `;
 export const PetSpan = styled.span`
   font-weight: 500;
@@ -50,7 +70,13 @@ export const PetSpan = styled.span`
   line-height: 19px;
   letter-spacing: 0.04em;
   color: #000000;
-  margin-right: 7px;
+  margin-right: 5px;
+  ${media.tablet} {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 22px;
+    margin-right: 6px;
+  }
 `;
 export const PetComments = styled.span`
   font-weight: 500;
@@ -64,30 +90,54 @@ export const PetDeleteButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
-  background-color: #fdf7f2;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 44px;
-  height: 44px;
-  ${media.mobile} {
-    display: none;
+  cursor: pointer;
+  position: relative;  
+  width: 20px;
+  height: 20px;  
+  background-color: transparent;
+  ${media.tabletAndDesktop} {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #fdf7f2;
+    width: 44px;
+    height: 44px; 
+    top: 20px;
+    right: 20px;
   }
 `;
 export const PetDeleteButton = styled.button`
+  top: 20px;
+  right: 20px;
   width: 20px;
-  height: 21px;
+  height: 20px;
   background-image: url(${PetDeleteIcon});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 0vw left 0vw;
+  cursor: pointer;
   border: none;
+  ${media.tabletAndDesktop} {
+    width: 24px;
+    height: 24px;
+    margin-left: 0;    
+  }  
+`;
+
+
+export const PetInfoWrapper = styled.div`
+  margin-top: 12px;
+`;
+
+export const Text = styled.p`
+  -webkit-line-clamp: 6; /* Число отображаемых строк */
+  display: -webkit-box; /* Включаем флексбоксы */
+  -webkit-box-orient: vertical; /* Вертикальная ориентация */
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.3;
   ${media.tablet} {
-    width: 20px;
-    height: 21px;
-    margin-left: 0;
-  }
-  ${media.desktop} {
+    max-width: 471px;
   }
 `;
+

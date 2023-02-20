@@ -10,6 +10,9 @@ import {
   PetComments,
   PetTextWrapper,
   PetDeleteButtonWrapper,
+  PetInfoWrapper,
+  PetImgWrapper,
+  Text
 } from './UserPetCard.styled';
 
 export const UserPetCard = ({
@@ -20,7 +23,11 @@ export const UserPetCard = ({
   const dispatch = useDispatch();
   return (
     <PetArticle>
-      <PetImg alt={alt} src={pictureURL} />
+
+      <PetImgWrapper>
+        <PetImg alt={alt} src={pictureURL} />
+      </PetImgWrapper>
+      
       <PetTextWrapper>
         <PetSpanWrapperFlex>
           <PetSpanWrapper>
@@ -34,18 +41,26 @@ export const UserPetCard = ({
             />
           </PetDeleteButtonWrapper>
         </PetSpanWrapperFlex>
-        <PetSpanWrapper>
-          <PetSpan>Date of birth:</PetSpan>
-          <PetSpan>{pet.dateOfBirth}</PetSpan>
-        </PetSpanWrapper>
-        <PetSpanWrapper>
-          <PetSpan>Breed:</PetSpan>
-          <PetSpan>{pet.breed}</PetSpan>
-        </PetSpanWrapper>
-        <PetSpanWrapper>
-          <PetComments>Comments:</PetComments>
-          <PetComments>{pet.comments}</PetComments>
-        </PetSpanWrapper>
+        <PetInfoWrapper>
+          <PetSpanWrapper>
+            <PetSpan>Date of birth:</PetSpan>
+            <PetSpan>{pet.dateOfBirth}</PetSpan>
+          </PetSpanWrapper>
+        </PetInfoWrapper>
+        <PetInfoWrapper>
+          <PetSpanWrapper>
+            <PetSpan>Breed:</PetSpan>
+            <PetSpan>{pet.breed}</PetSpan>
+          </PetSpanWrapper>
+        </PetInfoWrapper>
+        <PetInfoWrapper>
+          <PetSpanWrapper>
+            <Text>
+              <PetComments>Comments:</PetComments>
+              <PetComments>{pet.comments}</PetComments>
+            </Text>
+          </PetSpanWrapper>
+        </PetInfoWrapper>
       </PetTextWrapper>
     </PetArticle>
   );

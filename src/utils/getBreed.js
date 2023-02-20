@@ -1,5 +1,4 @@
-export const breeds = [
-  '',
+export const breedsMixedAlphbet = [
   'Affenpinscher',
   'Afghan Hound',
   'Airedale Terrier',
@@ -835,6 +834,7 @@ export const breeds = [
   'Long-tailed duck',
   'Mallard',
 ];
-
+const breedsByAlphbet = [...breedsMixedAlphbet].sort();
+export const breeds = ['', ...breedsByAlphbet, 'other'];
 export const getBreed = query =>
   breeds.filter(breed => breed.includes(query)) || ['Idk'];
