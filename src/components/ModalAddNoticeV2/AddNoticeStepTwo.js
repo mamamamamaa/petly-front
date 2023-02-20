@@ -52,12 +52,6 @@ export const AddNoticeStepTwo = ({
   onClose,
   selectedOption,
 }) => {
-  // const [selectedSex, setSelectedSex] = useState('');
-  // const sexChange = event => {
-  //   const { value } = event.target;
-  //   setSelectedSex(value);
-  // };
-
   const handleBack = () => {
     const newValue = {
       ...data,
@@ -89,108 +83,125 @@ export const AddNoticeStepTwo = ({
     selectedOption,
   });
   const [isChecked, setIsChecked] = useState(false);
-  return (
-    <AddNoticeStepTwoForm
-      onSubmit={formik.handleSubmit}
-      encType="multipart/form-data"
-    >
-      <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
-      <AddNoticeStepTwoLabelSex htmlFor="title">
-        The sex:
-      </AddNoticeStepTwoLabelSex>
-      <AddNoticeStepTwoInputSexCheckboxWrapper>
-        <AddNoticeStepTwoMaleWrapper>
-          <AddNoticeStepTwoMale checked={isChecked} />
-          <AddNoticeStepTwoMaleSpan checked={isChecked}>
-            Male
-          </AddNoticeStepTwoMaleSpan>
-        </AddNoticeStepTwoMaleWrapper>
-
-        <AddNoticeStepTwoFemaleWrapper>
-          <AddNoticeStepTwoFemale checked={isChecked} />
-          <AddNoticeStepTwoFemaleSpan checked={isChecked}>
-            Female
-          </AddNoticeStepTwoFemaleSpan>
-        </AddNoticeStepTwoFemaleWrapper>
-
-        <AddNoticeStepTwoInputSex
-          name="title"
-          id="title"
-          type="checkbox"
-          placeholder="Type sex"
-          checked={isChecked}
-          onChange={() => setIsChecked(prev => !prev)}
-        />
-      </AddNoticeStepTwoInputSexCheckboxWrapper>
-      <AddNoticeStepTwoLabelLocation htmlFor="location">
-        Location:
-      </AddNoticeStepTwoLabelLocation>
-      <AddNoticeStepTwoInput
-        name="location"
-        id="location"
-        placeholder="Type location"
-      />
-      <AddNoticeStepTwoLabelPrice
-        htmlFor="price"
-        selectedOption={selectedOption}
+  const [preview, setPreview] = useState(null);
+  const [file, setFile] = useState(null);
+  const handleImageLoad = e => {
+    const url = e.currentTarget?.files[0];
+    formik.setFieldValue('pictureURL', url, url?.name);
+    setFile(url);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreview(reader.result);
+    };
+    reader.readAsDataURL(url);
+    // if (url && url !== image) {
+    //   const img = new Image();
+    //   img.src = url;
+    //   console.log(img.src);
+    //   setImage(img.src);
+    // }
+  }
+    return (
+      <AddNoticeStepTwoForm
+        onSubmit={formik.handleSubmit}
+        encType="multipart/form-data"
       >
-        Price:
-      </AddNoticeStepTwoLabelPrice>
-      <AddNoticeStepTwoInputPrice
-        selectedOption={selectedOption}
-        name="price"
-        id="price"
-        placeholder="Type price"
-      />
-      <AddNoticeStepTwoLabelPictureURL htmlFor="pictureURL">
-        Load the pet’s image
-      </AddNoticeStepTwoLabelPictureURL>
-      <AddNoticeStepTwoLoadImageInputWrapper selectedOption={selectedOption}>
-        <AddNoticeStepTwoLoadImageInput
-          type="file"
-          id="pictureURL"
-          name="pictureURL"
-          accept="image/*"
-          onChange={e =>
-            formik.setFieldValue(
-              'pictureURL',
-              e.currentTarget.files[0],
-              e.currentTarget.files[0].name
-            )
-          }
+        <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
+        <AddNoticeStepTwoLabelSex htmlFor="title">
+          The sex:
+        </AddNoticeStepTwoLabelSex>
+        <AddNoticeStepTwoInputSexCheckboxWrapper>
+          <AddNoticeStepTwoMaleWrapper>
+            <AddNoticeStepTwoMale checked={isChecked} />
+            <AddNoticeStepTwoMaleSpan checked={isChecked}>
+              Male
+            </AddNoticeStepTwoMaleSpan>
+          </AddNoticeStepTwoMaleWrapper>
+
+          <AddNoticeStepTwoFemaleWrapper>
+            <AddNoticeStepTwoFemale checked={isChecked} />
+            <AddNoticeStepTwoFemaleSpan checked={isChecked}>
+              Female
+            </AddNoticeStepTwoFemaleSpan>
+          </AddNoticeStepTwoFemaleWrapper>
+
+          <AddNoticeStepTwoInputSex
+            name="title"
+            id="title"
+            type="checkbox"
+            placeholder="Type sex"
+            checked={isChecked}
+            onChange={() => setIsChecked(prev => !prev)}
+          />
+        </AddNoticeStepTwoInputSexCheckboxWrapper>
+        <AddNoticeStepTwoLabelLocation htmlFor="location">
+          Location:
+        </AddNoticeStepTwoLabelLocation>
+        <AddNoticeStepTwoInput
+          name="location"
+          id="location"
+          placeholder="Type location"
         />
-      </AddNoticeStepTwoLoadImageInputWrapper>
-      <div>{formik.errors.pictureURL}</div>
+        <AddNoticeStepTwoLabelPrice
+          htmlFor="price"
+          selectedOption={selectedOption}
+        >
+          Price:
+        </AddNoticeStepTwoLabelPrice>
+        <AddNoticeStepTwoInputPrice
+          selectedOption={selectedOption}
+          name="price"
+          id="price"
+          placeholder="Type price"
+        />
+        <AddNoticeStepTwoLabelPictureURL htmlFor="pictureURL">
+          Load the pet’s image
+        </AddNoticeStepTwoLabelPictureURL>
+        <AddNoticeStepTwoLoadImageInputWrapper selectedOption={selectedOption}>
+          <AddNoticeStepTwoLoadImageInput
+            type="file"
+            id="pictureURL"
+            name="pictureURL"
+            accept="image/*"
+            onChange={handleImageLoad}
+          />
+        </AddNoticeStepTwoLoadImageInputWrapper>
+        {/* {image && <img src={image} alt="preview" width="100" height="100" />} */}
+        {preview && (
+          <img src={preview} alt="preview" width="100" height="100" />
+        )}
+        <div>{formik.errors.pictureURL}</div>
 
-      <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
-        Comments
-      </AddNoticeStepTwoLabelCommentArea>
-      <AddNoticeStepTwoCommentArea
-        id="commentsArea"
-        name="commentsArea"
-        placeholder="Type comments"
-        onChange={formik.handleChange}
-      />
+        <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
+          Comments
+        </AddNoticeStepTwoLabelCommentArea>
+        <AddNoticeStepTwoCommentArea
+          id="commentsArea"
+          name="commentsArea"
+          placeholder="Type comments"
+          onChange={formik.handleChange}
+        />
 
-      <AddNoticeStepTwoLabelComments htmlFor="comments">
-        Comments
-      </AddNoticeStepTwoLabelComments>
-      <AddNoticeStepTwoInputComments
-        type="text"
-        id="comments"
-        name="comments"
-        placeholder="Type comments"
-        onChange={formik.handleChange}
-        value={formik.values.comments}
-      />
-      <AddNoticeStepTwoButtonBackDoneWrapper>
-        <AddNoticeStepOneButtonDone type="submit">
-          Done
-        </AddNoticeStepOneButtonDone>
-        <AddNoticeStepOneButtonBack type="button" onClick={handleBack}>
-          Back
-        </AddNoticeStepOneButtonBack>
-      </AddNoticeStepTwoButtonBackDoneWrapper>
-    </AddNoticeStepTwoForm>
-  );
-};
+        <AddNoticeStepTwoLabelComments htmlFor="comments">
+          Comments
+        </AddNoticeStepTwoLabelComments>
+        <AddNoticeStepTwoInputComments
+          type="text"
+          id="comments"
+          name="comments"
+          placeholder="Type comments"
+          onChange={formik.handleChange}
+          value={formik.values.comments}
+        />
+        <AddNoticeStepTwoButtonBackDoneWrapper>
+          <AddNoticeStepOneButtonDone type="submit">
+            Done
+          </AddNoticeStepOneButtonDone>
+          <AddNoticeStepOneButtonBack type="button" onClick={handleBack}>
+            Back
+          </AddNoticeStepOneButtonBack>
+        </AddNoticeStepTwoButtonBackDoneWrapper>
+      </AddNoticeStepTwoForm>
+    );
+  };
+ 
