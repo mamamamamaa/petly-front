@@ -66,10 +66,11 @@ export const ListModalCardNotice = ({ date }) => {
     if (fav) {
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
+      toast.success('Removed from favorite!')
     } else {
       dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
-      toast.success('Successfully added to favorite!');
+      toast.success('Successfully added to favorite!')
     }
     setFav(prevState => !prevState);
   };
@@ -191,7 +192,7 @@ export const ListModalCardNotice = ({ date }) => {
 
       <BoxButton>
         <ButtonModal onClick={favoriteHandler}>
-          Add to
+          {!fav ? 'Add to' : 'Remove'}
           <AddToFavImg src={strokeHeart} alt="Add to favorites" />
         </ButtonModal>
         <CallModal href={getCall}>Contact</CallModal>
