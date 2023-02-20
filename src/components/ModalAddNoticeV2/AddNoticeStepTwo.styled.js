@@ -5,16 +5,6 @@ import female from 'utils/svg/female.svg';
 import loadCross from 'utils/svg/loadCross.svg';
 
 export const AddNoticeStepTwoForm = styled.form`
-  width: 280px;
-  margin: 0 20px 40px 20px;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: flex-start;
-  ${media.tabletAndDesktop} {
-    width: 608px;
-    margin: 0 80px 40px 80px;
-  }
 `;
 export const AddNoticeStepTwoTitle = styled.h3`
   font-weight: 500;
@@ -254,11 +244,11 @@ export const AddNoticeStepTwoLabelPictureURL = styled.label`
   font-size: 18px;
   line-height: 26px;
   color: #111111;
-  margin-bottom: 144px;
+  margin-bottom: 8px;
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;
-    margin-bottom: 180px;
+    margin-bottom: 12px;
   }
 `;
 export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
@@ -271,7 +261,7 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
   background-position: center;
   background-image: url(${loadCross});
   background-image: ${({ preview }) => (preview ? `url(${preview})` : 'none')};
-  position: absolute;
+  // position: absolute;
   left: 20px;
   top: ${props => (props.selectedOption === 'sell' ? '464px' : '373px')};
   ${media.tabletAndDesktop} {

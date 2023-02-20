@@ -3,10 +3,6 @@ import { media } from 'components/Layout/Layout.styled';
 import { Form } from 'formik';
 
 export const AddNoticeStepOneForm = styled(Form)`
-  width: 280px;
-  ${media.tabletAndDesktop} {
-    width: 608px;
-  }
 `;
 
 export const AddNoticeStepOneTitle = styled.h3`
