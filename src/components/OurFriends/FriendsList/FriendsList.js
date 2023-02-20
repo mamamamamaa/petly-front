@@ -6,7 +6,7 @@ import friendsSelectors from '../../../redux/friends/selectors';
 import fetchFriends from '../../../redux/friends/operations';
 import Spinner from '../../../components/Spinner/Spinner';
 import Friend from '../Friend/Friend';
-import { FriendsCard } from '../../../utils/reusable';
+import { FriendsCard } from '../../../utils';
 import { Modal } from '../../Modal/Modal';
 import ListOurTeams from '../ListOurTeams/ListOurTeams';
 import poster from '../../../utils/svg/easter-egg.png';
@@ -45,7 +45,7 @@ const FriendsList = () => {
       <Button onClick={modalHandler}>
         <Title>push me ...</Title>
         <Img src={poster} alt="egg" />
-        <easterEgg />
+        {/*<EasterEgg />*/}
       </Button>
     </StyledList>
   );
