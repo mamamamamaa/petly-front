@@ -4,7 +4,6 @@ import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  NoticesTitle,
   NoticesSearch,
   SearchField,
   NoticesNavLink,
@@ -25,6 +24,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import AddNoticeButton from '../components/AddNoticeButton/AddNoticeButton';
 import { Container } from 'utils';
 import { setQuery } from '../redux/notices/noticeSlice';
+import { MainHeader } from './NewsPage.styled';
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
@@ -43,8 +43,8 @@ const NoticesPage = () => {
   const handleChangeQuery = e => dispatch(setQuery(e.target.value));
 
   return (
-    <Container>
-      <NoticesTitle>Find your favorite pet</NoticesTitle>
+    <Container type="notice">
+      <MainHeader>Find your favorite pet</MainHeader>
       <NoticesSearch>
         <SearchField
           placeholder="Search"
