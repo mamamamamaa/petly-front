@@ -28,36 +28,17 @@ import {
 const formOneValidationSchema = Yup.object({
   type: Yup.string().required('Type is required'),
   title: Yup.string()
-    .min(2, 'Title Too Short!')
-    .max(16, 'Title Too Long!')
-    .label('Name')
-    .required('Title is required')
-    .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z\s]+?$/iu, 'Only letters in "Title"'),
+    .min(2, 'Must be 2 or more letter')
+    .max(16, 'Must be 16 or less letter')
+    .trim()
+    .required('Required'),
   name: Yup.string()
     .min(2, 'Name Too Short!')
     .max(16, 'Name Too Long!')
     .label('Name')
     .required('Name is required')
     .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z\s]+?$/iu, 'Only letters in "Name"'),
-  dateOfBirth: Yup.string()
-    .matches(
-      /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
-      'Correct format: dd.mm.yyyy'
-    )
-    .test(
-      'is-date-valid',
-      () => `Future date not allowed`,
-      value => {
-        if (value) {
-          let date = value.split('.');
-          const corectFormat = new Date(`${date[2]}/${date[1]}/${date[0]}`);
-          return corectFormat.getTime() < Date.now();
-        }
-        return true;
-      }
-    )
-    .label('Date of birth'),
-  // .required('Date of birth is required'),
+  dateOfBirth: Yup.date().nullable().min(new Date(1900, 0, 1)),
   breed: Yup.string()
     .min(2, 'Breed Too Short!')
     .max(16, 'Breed Too Long!')
@@ -144,7 +125,7 @@ export const AddNoticeStepOne = props => {
                   id="title"
                   name="title"
                   placeholder="Type title ad"
-                  // required
+                  required
                 />
               </InputWrapper>
               {props.isSubmitting && props.errors.title
@@ -158,7 +139,7 @@ export const AddNoticeStepOne = props => {
                   id="name"
                   name="name"
                   placeholder="Type name pet"
-                  // required
+                  required
                 />
               </InputWrapper>
               {props.isSubmitting && props.errors.name
@@ -172,7 +153,7 @@ export const AddNoticeStepOne = props => {
                   id="dateOfBirth"
                   name="dateOfBirth"
                   placeholder="Type date of birth"
-                  // required
+                  required
                 />
               </InputWrapper>
               {props.isSubmitting && props.errors.dateOfBirth
@@ -186,7 +167,7 @@ export const AddNoticeStepOne = props => {
                   id="breed"
                   name="breed"
                   placeholder="Type breed"
-                  // required
+                  required
                 />
               </InputWrapperLast>
               {props.isSubmitting && props.errors.breed
