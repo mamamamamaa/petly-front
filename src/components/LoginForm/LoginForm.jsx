@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Formik,  useFormik } from "formik"
 import * as yup from "yup";
-// import  { useAuth }  from "redux/hooks";
+import  { useAuth }  from "redux/hooks";
 import { useDispatch} from "react-redux";
 import toast from 'react-hot-toast';
 import {login}  from "../../redux/auth/operations";
 
-// import Spinner from '../Spinner';
+import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from "react-icons/im";
 import {
     Container,
@@ -55,7 +55,7 @@ const loginSchema = yup.object().shape({
 
 const LoginForm = () => {
     const [showPass, setShowPass] = useState(false);
-//  const isLoading = useAuth();
+    const isLoading = useAuth().isRefreshing;
     const dispatch = useDispatch();
 
     const onSubmit = async (values, actions) => {
@@ -84,9 +84,9 @@ const LoginForm = () => {
 
     return (
         <>
-        {/* {isLoading ? (
+        {isLoading ? (
           <Spinner />
-        ) : ( */}
+        ) : (
         <Container>
             <Formik
                 initialValues={formik.initialValues}
@@ -143,7 +143,7 @@ const LoginForm = () => {
                 </FormLogin>
             </Formik>
             <Background></Background>
-        </Container>
+        </Container>)}
         </>
     )
  }
