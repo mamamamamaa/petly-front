@@ -66,8 +66,8 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
   const dispatch = useDispatch();
 
   const { user } = useUser();
- console.log(user)
-  
+  //console.log(user)
+
   const onChangeHandler = e => {
     console.log('1111');
     const formData = new FormData();
@@ -84,14 +84,14 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
     initialValues: {
       name: user.user.name || '',
       email: user.user.email || '',
-      birthday: user.user.birthday,
+      birthday: user.user.birthday || '',
       mobilePhone: user.user.mobilePhone || '',
       city: user.user.city || '',
     },
     validationSchema: userSchema,
     onSubmit: values => {
       const { name, email, birthday, mobilePhone, city } = values;
-     
+
       dispatch(
         updateUser({
           name,
@@ -138,7 +138,7 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
                     type="name"
                     placeholder="name"
                     onChange={formik.handleChange}
-                    onSubmit={formik.handleClick}
+                    onSubmit={handleClick}
                     value={formik.values.name}
                   />
                   <ErrorMessage name="name" component="span" />
@@ -166,7 +166,7 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
                     type="email"
                     placeholder="email"
                     onChange={formik.handleChange}
-                    onSubmit={formik.handleClick}
+                    onSubmit={handleClick}
                     value={formik.values.email}
                     onBlur={formik.handleBlur}
                   />
@@ -202,6 +202,7 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
                   <ErrorMessage name="birthday" component="span" />
                 </FormLabel>
 
+
                 <BtnInput type="button" onClick={handleClick}>
                   {changeBtn === true ? (
                     <HiPencil
@@ -224,12 +225,13 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
                     type="text"
                     placeholder="+38000000000"
                     onChange={formik.handleChange}
-                    onClick={handleClick}
+                    onSubmit={handleClick}
                     value={formik.values.mobilePhone}
                     onBlur={formik.handleBlur}
                   />
                   <ErrorMessage name="mobilePhone" component="span" />
                 </FormLabel>
+
 
                 <BtnInput type="button" onClick={handleClick}>
                   {Input.name === active || changeBtn === true ? (
@@ -253,11 +255,13 @@ const UserCard = ({ handleDragEmpty, handleDrop }) => {
                     type="text"
                     placeholder="City, region"
                     onChange={formik.handleChange}
+                    onSubmit={handleClick}
                     value={formik.values.city}
                     onBlur={formik.handleBlur}
                   />
                   <ErrorMessage name="city" component="span" />
                 </FormLabel>
+
 
                 <BtnInput type="button" onClick={handleClick}>
                   {Input.name === active || changeBtn === true ? (

@@ -1,10 +1,11 @@
 import React from 'react';
 import { PageTitle } from './FriendsContainer.styled';
+import { MainHeader } from '../../../pages/NewsPage.styled';
 
 const FriendsContainer = ({ children }) => {
   return (
     <>
-      <PageTitle>Our Friends</PageTitle>
+      <MainHeader>Our Friends</MainHeader>
       {children}
     </>
   );

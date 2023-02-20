@@ -64,6 +64,9 @@ const noticeSlice = createSlice({
         state.searchNotices = [];
       }
     },
+    clearCurrentNotice(state) {
+      state.currentNotice = null;
+    },
   },
   extraReducers: builder =>
     builder
@@ -238,4 +241,4 @@ const noticeSlice = createSlice({
 
 export const noticeReducer = noticeSlice.reducer;
 
-export const { setQuery } = noticeSlice.actions;
+export const { setQuery, clearCurrentNotice } = noticeSlice.actions;
