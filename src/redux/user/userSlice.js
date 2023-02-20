@@ -7,7 +7,7 @@ import { updateUser, getUserData, updateAvatar } from './operations';
 import {fetchUserPets, addOwnPet, deleteOneOwnPet} from './operations';
 
 // const extraActions = [updateUserData, getUserData, fetchUserPets, addOwnPet, deleteOneOwnPet];
-
+console.log('')
 const initialState = {
   user: {
     email: ' ',
