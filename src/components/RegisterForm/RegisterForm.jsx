@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
 import { object, string, ref } from 'yup';
-// import Spinner from "../Spinner";
+import Spinner from "../Spinner";
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-// import { useAuth } from "../../redux/hooks";
+import { useAuth } from "../../redux/hooks";
 import { register } from '../../redux/auth/operations';
 
 import {
@@ -60,6 +60,7 @@ const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const isLoading = useAuth().isRefreshing;
   // const [error, setError] = useState(false);
   const dispatch = useDispatch();
 
@@ -116,9 +117,9 @@ const RegisterForm = () => {
 
   return (
     <>
-      {/* {loading ? (
+      {isLoading ? (
         <Spinner />
-      ) : ( */}
+      ) : (
       <FormContainer>
         <Formik validationSchema={registerSchema}>
           <Form1 onSubmit={formik.handleSubmit} autoComplete="off">
@@ -257,7 +258,7 @@ const RegisterForm = () => {
         </Formik>
         <Background></Background>
       </FormContainer>
-      {/* )} */}
+       )} 
     </>
   );
 };
