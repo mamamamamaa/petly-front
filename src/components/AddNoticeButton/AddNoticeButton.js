@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../redux/hooks';
 import toast, { Toaster } from 'react-hot-toast';
 import {
@@ -13,11 +13,8 @@ import { Modal } from 'components/Modal/Modal';
 
 const AddNoticeButton = () => {
   const { isLoggedIn } = useAuth();
-  // const [showModal, setShowModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  // const handleModal = () => {
-  //   setShowModal(prevShowModal => !prevShowModal);
-  // };
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -25,6 +22,7 @@ const AddNoticeButton = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
+
   const onButtonClick = () => {
     !isLoggedIn
       ? toast.error(
@@ -33,11 +31,15 @@ const AddNoticeButton = () => {
       : openModal();
   };
 
+  useEffect(() => {
+    openModal(); // removes double click button issue
+  }, []);
+  
   return (
     <>
-      <AddPetToNoticesBtnWrapper onClick={onButtonClick}>
+      <AddPetToNoticesBtnWrapper>
         <AddPetToNoticesText>Add pet</AddPetToNoticesText>
-        <AddPetToNoticesBtn type="button">
+        <AddPetToNoticesBtn type="button" onClick={onButtonClick}>
           <AddPetToNoticesImg src={cross} alt="Add pet to notices" />
         </AddPetToNoticesBtn>
       </AddPetToNoticesBtnWrapper>
