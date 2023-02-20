@@ -180,6 +180,12 @@ export const PetDetailsButtonText = styled.p`
   color: #f59256;
 `;
 export const PetDeleteButton = styled.button`
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  cursor: pointer;
   color: ${theme.colors.accentButton};
   background: ${theme.colors.accentText};
   width: 100%;
