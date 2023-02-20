@@ -66,7 +66,7 @@ export const AddNoticeStepTwoInputSex = styled.input`
   top: 0px;
   bottom: 0;
   right: 0;
-  opacity: 50%;
+  opacity: 0;
 `;
 export const AddNoticeStepTwoMaleWrapper = styled.div`
   display: inline-flex;
@@ -78,12 +78,7 @@ export const AddNoticeStepTwoMale = styled.img`
   width: 40px;
   height: 40px;
   margin-right: 40px;
-  margin-bottom: 12px;
-  box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
-    inset 0px -3px 4px rgba(0, 0, 0, 0.25);
-  outline: 1px solid ${props => (props.checked ? '#f59256' : '#ffffff')};
-  ${media.tabletAndDesktop} {
-    margin-bottom: 23px;
+  margin-bottom: 14px;
   }
 `;
 export const AddNoticeStepTwoMaleSpan = styled.span`
@@ -91,7 +86,7 @@ export const AddNoticeStepTwoMaleSpan = styled.span`
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${props => (props.checked ? '#f59256' : '#ffffff')};
+  color: ${props => (props.checked ? '#f59256' : '#000')};
 `;
 export const AddNoticeStepTwoFemaleWrapper = styled.div`
   display: inline-flex;
@@ -103,16 +98,13 @@ export const AddNoticeStepTwoFemale = styled.img`
   width: 40px;
   height: 40px;
   margin-bottom: 12px;
-  box-shadow: inset -1px 2px 3px rgba(255, 255, 255, 0.57),
-    inset 0px -3px 4px rgba(0, 0, 0, 0.25);
-  outline: 1px solid ${props => (props.checked ? '#ffffff' : '#f59256')};
 `;
 export const AddNoticeStepTwoFemaleSpan = styled.span`
   display: block;
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${props => (props.checked ? '#ffffff' : '#f59256')};
+  color: ${props => (props.checked ? '#000' : '#f59256')};
 `;
 
 export const AddNoticeStepTwoLabelLocation = styled.label`
@@ -291,7 +283,7 @@ export const AddNoticeStepTwoLoadImageInput = styled.input`
   position: relative;
   width: 116px;
   height: 116px;
-  opacity: 20%;
+  opacity: 0;
 `;
 export const AddNoticeStepTwoButtonBackDoneWrapper = styled.div`
   ${media.tabletAndDesktop} {
