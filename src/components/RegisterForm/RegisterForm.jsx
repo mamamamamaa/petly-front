@@ -24,13 +24,15 @@ import {
 
 const registerSchema = object().shape({
   password: string()
-    .min(7, 'Too Short!')
-    .max(32, 'Too Long!')
+    .min(7, 'Password must be at least 7 characters')
+    .max(32, 'Password must be at most 32 characters')
+    .matches(/^\S*$/, 'Must not contain spaces')
     .required('Password is required'),
   confirmPassword: string()
     .required('Please confirm your password')
     .oneOf([ref('password')], 'Passwords does not match'),
   email: string()
+  .email('Invalid email address')
     .matches(
       // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
@@ -40,11 +42,11 @@ const registerSchema = object().shape({
     )
     .required('Email is required'),
   name: string()
-    .min(2, 'min 2 symbols')
+    .min(2, 'Min 2 symbols')
     .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters')
     .required('Name is required'),
   mobilePhone: string()
-    .matches(/^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/, 'Bad phone number')
+    .matches(/^\+380\d{2}\d{3}\d{2}\d{2}$/, 'Bad phone number')
     .required('Phone is required'),
   city: string()
     .matches(
@@ -58,7 +60,7 @@ const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
   const dispatch = useDispatch();
 
   const showForm = () => {
@@ -81,9 +83,6 @@ const RegisterForm = () => {
       }),
       hideForm()
     );
-  
-    
-    console.log(values);
   };
 
 
@@ -99,12 +98,13 @@ const RegisterForm = () => {
     validationSchema: registerSchema,
     onSubmit,
   });
+
   const isValid =
     (formik.errors.email && formik.touched.email) ||
     (formik.errors.password && formik.touched.password) ||
     (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
     formik.values.email === '' ||
-    formik.values.confirmPassword === '';
+    formik.values.confirmPassword === ''
 
   const showPassword = () => {
     setShowPass(!showPass);
