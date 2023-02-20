@@ -68,19 +68,18 @@ export const NoticesContainer = ({ type }) => {
     };
   }, [lastElement]);
 
+  const nothingFound = query !== '' && searchNotices.length === 0 && !isLoading;
+
   return (
     <>
       <NoticesCategoriesNav>
-        {query &&
-          items.length > 0 &&
-          searchNotices.length === 0 &&
-          !isLoading && (
-            <NothingFound>Nothing found for this query</NothingFound>
-          )}
+        {nothingFound && (
+          <NothingFound>Nothing found for this query</NothingFound>
+        )}
         {!query && items.length === 0 && !isLoading && (
           <NothingFound>We have no notes for this category</NothingFound>
         )}
-        {items.length > 0 && (
+        {!nothingFound && items.length > 0 && (
           <NoticesCategoriesList>
             {items.map(
               (
