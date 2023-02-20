@@ -60,7 +60,7 @@ export const ListModalCardNotice = ({ date }) => {
   // добавить в избранное логика
   const favoriteHandler = () => {
     if (!isLoggedIn) {
-      return toast.success('Your pet was successfully added to favorites!');
+      return toast.error('You should login/sign up your account!');
     }
 
     if (fav) {
@@ -69,7 +69,7 @@ export const ListModalCardNotice = ({ date }) => {
     } else {
       dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
-      toast.success('Successfully toasted!');
+      toast.success('Successfully added to favorite!');
     }
     setFav(prevState => !prevState);
   };
