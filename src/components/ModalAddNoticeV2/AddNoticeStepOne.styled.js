@@ -159,6 +159,13 @@ export const AddNoticeStepOneLabel = styled.label`
   line-height: 26px;
   color: #111111;
   margin-bottom: 8px;
+  &:nth-of-type(1) {
+    &::after {
+      content: '*';
+      color: #f59256;
+    }
+  }
+
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;

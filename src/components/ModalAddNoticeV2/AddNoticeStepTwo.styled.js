@@ -38,6 +38,10 @@ export const AddNoticeStepTwoLabelSex = styled.label`
   line-height: 26px;
   color: #000000;
   margin-bottom: 18px;
+  &::after {
+    content: '*';
+    color: #F59256;
+  }
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;
@@ -118,6 +122,10 @@ export const AddNoticeStepTwoLabelLocation = styled.label`
   line-height: 26px;
   color: #111111;
   margin-bottom: 8px;
+  &::after {
+    content: '*';
+    color: #f59256;
+  }
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;
@@ -195,6 +203,10 @@ export const AddNoticeStepTwoLabelPrice = styled.label`
   line-height: 26px;
   color: #111111;
   margin-bottom: 8px;
+  &::after {
+    content: '*';
+    color: #f59256;
+  }
   ${media.tabletAndDesktop} {
     font-size: 24px;
     color: #000000;
