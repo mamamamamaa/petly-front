@@ -42,7 +42,7 @@ const formTwoValidationSchema = Yup.object({
     .required('Comment is required'),
   place: Yup.string().required('Location is required'),
   photoUrl: Yup.mixed().label('Pet image').required('Pet image is required'),
-  price: Yup.string().matches(/^\d+$/, 'Price must be in numbers'),
+  price: Yup.number(),
 });
 
 export const AddNoticeStepTwo = props => {
@@ -92,7 +92,7 @@ export const AddNoticeStepTwo = props => {
             formData.append('comments', comments);
             dispatch(addNotice(formData));
 
-            // props.closeModal();
+            props.closeModal();
           }}
         >
           {({
@@ -137,6 +137,7 @@ export const AddNoticeStepTwo = props => {
                   onChange={handleChange}
                   value={values.place}
                   placeholder="Type location"
+                  required
                 />
               </InputWrapper>
               {props.isSubmitting && props.errors.place
@@ -181,6 +182,7 @@ export const AddNoticeStepTwo = props => {
                     setFieldValue('photoUrl', e.target.files[0]);
                     setImg(URL.createObjectURL(fileUploaded));
                   }}
+                  required
                 />
                 {props.isSubmitting && props.errors.photoUrl
                   ? toast.failure('Pet image is required')
@@ -194,6 +196,7 @@ export const AddNoticeStepTwo = props => {
                   name="comments"
                   as="textarea"
                   placeholder="Type comments"
+                  required
                 />
               </WraperTextarea>
               {props.isSubmitting && props.errors.comments
