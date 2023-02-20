@@ -28,6 +28,11 @@ export const Close = styled.button`
 
   display: inline-flex;
   align-items: center;
+  :hover,
+  :focus {
+    transform: rotate(90deg) scale(1.05);
+    transition: transform 0.5s; 
+  }
 `;
 
 export const Icon = styled.svg`

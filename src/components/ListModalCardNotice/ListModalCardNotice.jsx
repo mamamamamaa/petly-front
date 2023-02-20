@@ -27,6 +27,7 @@ import {
   ButtonModal,
   AddToFavImg,
   CallModal,
+  ContactLink,
 } from './ListModalCardNotice.styled';
 import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import noPoster from 'noPoster.jpg';
@@ -59,7 +60,7 @@ export const ListModalCardNotice = ({ date }) => {
   // добавить в избранное логика
   const favoriteHandler = () => {
     if (!isLoggedIn) {
-      return toast.error('Your pet was successfully added to favorites!');
+      return toast.success('Your pet was successfully added to favorites!');
     }
 
     if (fav) {
@@ -79,6 +80,14 @@ export const ListModalCardNotice = ({ date }) => {
     return fullNumber;
   };
   const getCall = call(phone);
+
+  // send email
+
+  const mail = email => {
+    const mailTo = 'mailto:' + email;
+    return mailTo;
+  };
+  const sendMail = mail(email);
 
   const changeTitle = type => {
     if (type === 'good-hands') {
@@ -149,10 +158,22 @@ export const ListModalCardNotice = ({ date }) => {
                   <Text>{sex}</Text>
                 </Li>
                 <Li>
-                  <Text>{email}</Text>
+                  <Text>
+                    <ContactLink 
+                      href={sendMail}
+                      className={email === 'unknown' ? 'noHover' : 'hover'}>
+                      {email}
+                    </ContactLink>
+                  </Text>
                 </Li>
                 <Li>
-                  <Text>{phone}</Text>
+                  <Text>
+                    <ContactLink 
+                      href={getCall}
+                      className={phone === 'unknown' ? 'noHover' : 'hover'}>
+                      {phone}
+                    </ContactLink>
+                  </Text>
                 </Li>
                 {price !== undefined && type === 'sell' && (
                   <Li>
