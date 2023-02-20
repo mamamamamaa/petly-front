@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Formik,  useFormik } from "formik"
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
-import toast, { Toaster } from 'react-hot-toast';
 import {login}  from "../../redux/auth/operations";
 
 // import Spinner from '../Spinner';
@@ -64,10 +63,6 @@ const LoginForm = () => {
 
         if (!error) {
         resetForm() 
-        }
-
-        if (error) {
-            return toast.error('Please check if email and password are correct or sign up');
         }
                         
      }
@@ -143,7 +138,6 @@ const LoginForm = () => {
                     </Text>
                 </FormLogin>
             </Formik>
-            <Toaster />
             <Background></Background>
         </Container>
         </>
