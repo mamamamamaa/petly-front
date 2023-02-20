@@ -35,6 +35,7 @@ import { ListModalCardNotice } from '../ListModalCardNotice/ListModalCardNotice.
 import toast from 'react-hot-toast';
 import { addFav, delFav } from '../../redux/auth/authSlice';
 import noPoster from 'noPoster.jpg';
+import { clearCurrentNotice } from '../../redux/notices/noticeSlice';
 
 export const NoticeCategoryItemTemplate = ({
   _id,
@@ -64,6 +65,7 @@ export const NoticeCategoryItemTemplate = ({
   const modalHandler = () => setModal(prevState => !prevState);
   useEffect(() => {
     if (!modal) {
+      dispatch(clearCurrentNotice());
       return;
     }
     dispatch(getNoticeById(_id));

@@ -60,7 +60,6 @@ export const Img = styled.img`
   display: block;
   cursor: pointer;
   @media screen and (max-width: 767px) {
-    width: 280px;
     height: 280px;
     border-radius: 0px 0px 40px 40px;
   }
