@@ -41,15 +41,14 @@ const formOneValidationSchema = Yup.object({
     .trim()
     .required('Name is required')
     .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z\s]+?$/iu, 'Only letters in "Name"'),
-  dateOfBirth: Yup.string().matches(
-    /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
-    'Correct format: dd.mm.yyyy'
-  ),
+  // dateOfBirth: Yup.string().matches(
+  //   /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
+  //   'Correct format: dd.mm.yyyy'
+  // ),
+  dateOfBirth: Yup.date(),
   breed: Yup.string()
     .min(2, 'Breed Too Short!')
     .max(16, 'Breed Too Long!')
-    // .label('breed')
-    // .trim()
 
     .required('Breed is required'),
 });
@@ -98,16 +97,9 @@ export const AddNoticeStepOne = props => {
     return title;
   };
 
-  const noticeType = 'lost/found';
-  const noticeTitle = getTitle(noticeType);
-
   const handleOnClick = () => {
     props.closeModal();
   };
-
-  // const textByTypeLost = props.data.type === 'lost/found';
-  // const textByTypeHands = props.data.type === 'good-hands';
-  // const textByTypeSell = props.data.type === 'sell';
 
   return (
     <Container>
@@ -185,6 +177,7 @@ export const AddNoticeStepOne = props => {
               </Label>
               <InputWrapper>
                 <Input
+                  type="date"
                   id="dateOfBirth"
                   name="dateOfBirth"
                   placeholder="Type date of birth"
@@ -198,12 +191,7 @@ export const AddNoticeStepOne = props => {
                 Breed<SpanStar>*</SpanStar>
               </Label>
               <InputWrapperLast>
-                <InputLast
-                  as="select"
-                  // component={AddNoticeStepOneSelect}
-                  name="breed"
-                  id="breed"
-                >
+                <InputLast as="select" name="breed" id="breed">
                   {filterByLengthBreeds.map(breed => (
                     <option value={breed} key={breed}>
                       {breed}
@@ -211,14 +199,6 @@ export const AddNoticeStepOne = props => {
                   ))}
                 </InputLast>
               </InputWrapperLast>
-              {/* <InputWrapperLast>
-                <InputLast
-                  id="breed"
-                  name="breed"
-                  placeholder="Type breed"
-                  required
-                />
-              </InputWrapperLast> */}
               {props.isSubmitting && props.errors.breed
                 ? toast('Breed is required')
                 : null}

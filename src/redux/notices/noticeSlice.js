@@ -53,7 +53,9 @@ const findNotice = (state, id, type) => {
       break;
     case 'lost/found':
       state.lostFoundNotices.find(notice => notice._id === id);
-
+      break;
+    case 'my-ads':
+      state.myAdsNotices.find(notice => notice._id === id);
       break;
     default:
       console.log('Done');

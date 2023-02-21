@@ -18,7 +18,7 @@ export const ModalAddNotice = props => {
     selectedDateInNumber: '',
   });
 
-  let Child = undefined;
+  let Child;
   if (page === 0) {
     Child = (
       <AddNoticeStepOne

@@ -32,6 +32,7 @@ import {
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/operations';
+import moment from 'moment/moment';
 
 const formTwoValidationSchema = Yup.object({
   sex: Yup.string().required('Sex is required'),
@@ -79,11 +80,13 @@ export const AddNoticeStepTwo = props => {
             const { type, title, name, dateOfBirth, breed } = props.data;
             const { sex, place, price, photoUrl, comments } = values;
 
+            const date = moment(new Date(dateOfBirth)).format('DD.MM.YYYY');
+
             const formData = new FormData();
             formData.append('type', type);
             formData.append('title', title);
             formData.append('name', name);
-            formData.append('dateOfBirth', dateOfBirth);
+            formData.append('dateOfBirth', date);
             formData.append('breed', breed);
             formData.append('sex', sex);
             formData.append('place', place);

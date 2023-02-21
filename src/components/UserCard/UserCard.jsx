@@ -32,7 +32,7 @@ const userSchema = Yup.object().shape({
     .max(30, 'Too Long!')
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
-  birthday: Yup.date().required('Required'),
+  birthday: Yup.string().required('Required'),
   mobilePhone: Yup.string()
     .matches(phoneRegExp, 'Phone number is not valid')
     .notRequired(),
