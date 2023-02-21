@@ -3,9 +3,7 @@ import { media } from 'components/Layout/Layout.styled';
 import male from 'utils/svg/male.svg';
 import female from 'utils/svg/female.svg';
 import loadCross from 'utils/svg/loadCross.svg';
-
-export const AddNoticeStepTwoForm = styled.form`
-`;
+export const AddNoticeStepTwoForm = styled.form``;
 export const AddNoticeStepTwoTitle = styled.h3`
   font-weight: 500;
   font-size: 24px;
@@ -30,7 +28,7 @@ export const AddNoticeStepTwoLabelSex = styled.label`
   margin-bottom: 18px;
   &::after {
     content: '*';
-    color: #F59256;
+    color: #f59256;
   }
   ${media.tabletAndDesktop} {
     font-size: 24px;
@@ -255,20 +253,16 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
   width: 116px;
   height: 116px;
   background-color: #fdf7f2;
-  background-size: 116px 116px;
+  background-size: ${({ preview }) => (preview ? '116px' : `47px`)};
   border-radius: 20px;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url(${loadCross});
-  background-image: ${({ preview }) => (preview ? `url(${preview})` : 'none')};
-  // position: absolute;
+  background-image: ${({ preview }) =>
+    preview ? `url(${preview})` : `url(${loadCross})`};
   left: 20px;
-  top: ${props => (props.selectedOption === 'sell' ? '464px' : '373px')};
   ${media.tabletAndDesktop} {
     width: 140px;
     height: 140px;
-    top: ${props => (props.selectedOption === 'sell' ? '600px' : '485px')};
-    left: 80px;
   }
 `;
 export const AddNoticeStepTwoLoadImageInput = styled.input`

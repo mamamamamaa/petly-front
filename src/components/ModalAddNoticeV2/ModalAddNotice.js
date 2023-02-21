@@ -6,23 +6,26 @@ import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/operations';
 import { ModalAddNoticeWrapper } from './ModalAddNotice.styled';
 import moment from 'moment';
-
+const initialState = {
+  type: '',
+  title: '',
+  name: '',
+  dateOfBirth: '',
+  breed: '',
+  sex: '',
+  place: '',
+  price: '',
+  photoUrl: '',
+  comments: '',
+};
 export const ModalAddNotice = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
-  const [data, setData] = useState({
-    type: '',
-    title: '',
-    name: '',
-    dateOfBirth: '',
-    breed: '',
-    sex: '',
-    place: '',
-    price: '',
-    photoUrl: '',
-    comments: '',
-  });
-
-  const handleNextStep = (newData = {}, final = false) => {
+  const [data, setData] = useState(initialState);
+  const [final, setFinal] = useState(false);
+  const onFinal = () => {
+    setFinal(true);
+  };
+  const handleNextStep = (newData = {}) => {
     const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
       'DD.MM.YYYY'
     );
@@ -65,18 +68,7 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
   };
 
   const cancelData = e => {
-    setData({
-      type: '',
-      title: '',
-      name: '',
-      dateOfBirth: '',
-      breed: '',
-      sex: '',
-      place: '',
-      price: '',
-      photoUrl: '',
-      comments: '',
-    });
+    setData(initialState);
     setCurrentStep(0);
     onClose();
   };
@@ -113,6 +105,7 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       handleOptionChange={handleOptionChange}
     />,
     <AddNoticeStepTwo
+      onFinal={onFinal}
       next={handleNextStep}
       data={data}
       prev={handlePrevStep}
