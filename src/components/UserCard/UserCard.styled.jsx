@@ -409,6 +409,12 @@ export const BtnLogOut = styled.button`
   padding: 0;
   font-size: 16px;
   line-height: 22px;
+  :hover,
+  :focus {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
   ${media.mobile} {
     margin-left: auto;
   } ;

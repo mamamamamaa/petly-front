@@ -24,7 +24,7 @@ import { logout } from '../../redux/auth/operations';
 import { FileUploader } from '../UseAvatar/UserAvatar';
 import { getUserData, updateUser } from '../../redux/user/operations';
 import { useEffect, useState } from 'react';
-import { useUser } from '../../redux/hooks';
+import { useAuth, useUser } from '../../redux/hooks';
 
 const phoneRegExp = /^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/;
 const userSchema = Yup.object().shape({
@@ -60,6 +60,9 @@ export const UserCard = () => {
   });
 
   const [current, setCurrent] = useState('');
+
+  // const {isLoading} = useAuth();
+  // console.log(isLoading);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -271,7 +274,7 @@ export const UserCard = () => {
           </div>
         </FormAndPhotoWrapper>
 
-        <BtnLogOut onClick={() => handleLogout()}>
+        <BtnLogOut onClick={handleLogout}>
           {<FiLogOut color="#F59256" />}
           <LogOutSpan>Log Out</LogOutSpan>
         </BtnLogOut>
