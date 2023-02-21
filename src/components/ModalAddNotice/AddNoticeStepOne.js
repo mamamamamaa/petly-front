@@ -31,7 +31,7 @@ const formOneValidationSchema = Yup.object({
   type: Yup.string().required('Type is required'),
   title: Yup.string()
     .min(2, 'Must be 2 or more letter')
-    .max(16, 'Must be 16 or less letter')
+    .max(50, 'Must be 16 or less letter')
     .trim()
     .required('Required'),
   name: Yup.string()
