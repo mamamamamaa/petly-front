@@ -59,6 +59,7 @@ export const TabletWrapper = styled.div`
 
 
 export const MenuWrpr = styled.div`
+    /* overflow-y: scroll; */
     display: flex;
     flex-direction: column-reverse;
     background-color: ${theme.colors.secondary};
@@ -76,12 +77,10 @@ export const MenuWrpr = styled.div`
         left: 0;
         top: 0;
         justify-content: flex-end;
-        overflow-y: scroll;
-        /* overscroll-behavior: none; */
     }
     ${media.tablet} {
         margin-right: 25px;
-        overflow-y: scroll;
+        /* overflow-y: scroll; */
         /* overscroll-behavior: none; */
 
     }
@@ -107,6 +106,7 @@ export const MenuWrpr = styled.div`
 `;
 
 export const Nav = styled.nav`
+overflow-y: scroll;
     ${media.mobile} {
         margin-top: 60px;
     }

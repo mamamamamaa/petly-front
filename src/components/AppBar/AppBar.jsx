@@ -25,21 +25,12 @@ const AppBar = () => {
   const toggleClickHandler = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [isMenuOpen])
-  
   
 
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+  
 
   const { isLoggedIn } = useAuth();
   return (
@@ -68,21 +59,6 @@ const AppBar = () => {
           </MenuWrpr>
         </TabletWrapper>
       </BarContainer>
-
-      {/* <MenuMobWrpr isClosed={!isMenuOpen}>
-        <LogoMenu><HomePageLink to="/" onClick={closeMenu}>pe<LogoAccent>t</LogoAccent>ly</HomePageLink></LogoMenu>
-                    <BurgerMenuBtn onClick={toggleClickHandler}>
-                             {!isMenuOpen ? <BurgerIcon/> : <CloseIcon/>}
-                    </BurgerMenuBtn>
-                    <NavMob isClosed={!isMenuOpen}>
-                        <Navigation close={closeMenu} />
-                    </NavMob>
-                    <UserMenuWrprMob>{isLoggedIn ?
-                         <UserMenu close={closeMenu} />
-                        : <AuthMenu close={closeMenu} />}
-                    </UserMenuWrprMob>
-
-        </MenuMobWrpr> */}
     </ContainerHeader>
   );
 };
