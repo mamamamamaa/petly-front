@@ -28,9 +28,7 @@ function ListOurTeams() {
       <TitleBy>We wish successful projects and peace to everyone !</TitleBy>
       <BoxVideo>
         <Iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/Rz-_6o9GR3o"
+          src="https://www.youtube.com/embed/zrCgBxfB5jQ"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -43,8 +41,7 @@ function ListOurTeams() {
 
 export default ListOurTeams;
 
-{
-  /* <Card>
+/* <Card>
 <Wraper>
   <Img src={poster} alt="egg" />
   <Ul>
@@ -61,4 +58,3 @@ export default ListOurTeams;
   <Li>Phone Mail Telegram Linkedin GitHub</Li>
 </Ul>
 </Card> */
-}
