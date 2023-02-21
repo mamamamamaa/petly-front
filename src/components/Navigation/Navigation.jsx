@@ -13,7 +13,6 @@ const Navigation = ({ close }) => {
       </NavListItem>
       <NavListItem>
         <NavigLink
-          // Specify the route?
           to="/notice/sell"
           onClick={close}
           className={pathname.includes('/notice') ? 'active' : 'inActive'}

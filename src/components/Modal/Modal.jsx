@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { CloseButton } from '../CloseButton/CloseButton';
 import { Backdrop, Window } from './Modal.styled';
 
-export const Modal = ({ children, onClose }) => {
+export const Modal = ({ children, onClose, className }) => {
   const modalRoot = document.querySelector('#modal-root');
   // console.log(date);
   const onBackdropClose = event => {
@@ -27,7 +27,7 @@ export const Modal = ({ children, onClose }) => {
 
   return createPortal(
     <Backdrop onClick={onBackdropClose}>
-      <Window>
+      <Window className={className}>
         <CloseButton onClose={onClose} />
         {children}
       </Window>
