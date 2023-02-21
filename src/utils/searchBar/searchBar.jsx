@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 // import PropTypes from 'prop-types';
 import { Suspense } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -11,16 +12,37 @@ import {
   FormEl,
   Input,
   SearchFormButton,
-  InputBox,
+  InputBox, IconBtn
 } from './searchBar.styled';
+//import { AiOutlineCloseCircle, AiOutlineSearch } from "react-icons/ai";
 // ====================================
 
 export default function SearchBar({ onSubmit }) {
+const [isSearch, setIsSearch] = useState(false);
+const [searchText, setSearchText] = useState('');
+  
+
   const [searchParams] = useSearchParams();
   const handleSubmit = async (values, actions) => {
-    await onSubmit(values);
+    setIsSearch(true);
+    console.log("jjjjj")
+    await onSubmit(values); 
     actions.setSubmitting(false);
   };
+
+  //disabled={isSubmitting}
+  
+  const handleInputChange = (e) => {
+    //e.preventDefault();
+    
+    setSearchText(e.target.value);
+    console.log("ffff")
+  }
+  const handleSearchClick = () => {
+    console.log("dddd")
+    setSearchText("");
+     setIsSearch(false);
+ }
   return (
     <Search as="main">
       <Formik
@@ -36,10 +58,18 @@ export default function SearchBar({ onSubmit }) {
                 autoComplete="off"
                 autoFocus
                 placeholder="Search"
+               value={searchText}
+               onChange={handleInputChange} 
               />
-              <SearchFormButton type="submit" disabled={isSubmitting}>
-                <GoSearch />
-              </SearchFormButton>
+              
+              {isSearch  ? (<SearchFormButton type="button" onClick={handleSearchClick} >
+                           <IconBtn style={{
+                  fontSize: '24px',
+                  backgroundColor: 'transparent'                  
+                }} />        
+              </SearchFormButton>) : (<SearchFormButton type="submit"  >
+                 <GoSearch />         </SearchFormButton>)}
+              
             </InputBox>
           </FormEl>
         )}

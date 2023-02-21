@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
+import {css} from '@emotion/react'
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 export const Search = styled.div`
   display: flex;
@@ -18,7 +20,13 @@ export const Input = styled(Field)`
   background-color: #fff;
   border: 1px solid #fff;
   font-weight: 500px;
-
+   padding-right: 12px;
+  &:active {    
+    border: 2px solid #F59256;
+  }
+  :hover {
+   border: 2px solid #F59256;
+  }
   @media screen and (max-width: 767px) {
     font-size: 16px;
     line-height: 1.4;
@@ -33,6 +41,7 @@ export const Input = styled(Field)`
     padding-left: 20px;
     height: 40px;
   }
+  
 `;
 
 export const SearchFormButton = styled.button`
@@ -40,15 +49,19 @@ export const SearchFormButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: transparent;
   border: 1px solid #fff;
   color: black;
   cursor: pointer;
   outline: none;
   border-radius: 50%;
+  padding: 0px;
 
   &:hover {
-    background-color: #d4d1d1;
+    background-color: transparent;
+     > .IconBtn {
+  transform: translateY(-4px);
+  }
   }
   @media screen and (max-width: 767px) {
     height: 38px;
@@ -72,3 +85,21 @@ export const InputBox = styled.div`
     width: 280px;
   }
 `;
+
+export const IconBtn = styled(AiOutlineCloseCircle)`
+margin: 0;
+padding: 0;
+border: 0; 
+outline: none; 
+background-color: transparent;
+width: 30px;
+
+
+background-color: #fff;
+color: #111111;
+:hover {
+  width: 34px;
+}
+
+`
+ 
