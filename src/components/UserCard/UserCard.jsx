@@ -188,35 +188,33 @@ export const UserCard = () => {
             <DivInput>
               <FormLabel>
                 Birthday:
-                <DataContainer>
-                  <BirthdayContainer>
-                    {userData.birthday || 'add date'}
-                    <DateInput
-                      name="birthday"
-                      id="birthday"
-                      type="date"
-                      value={userData.birthday}
-                      placeholder={' '}
-                      disabled={current !== 'birthday'}
-                      onChange={userStateBirthdayHandler}
+                <BirthdayContainer>
+                  {userData.birthday || 'add date'}
+                  <DateInput
+                    name="birthday"
+                    id="birthday"
+                    type="date"
+                    value={userData.birthday}
+                    placeholder={' '}
+                    disabled={current !== 'birthday'}
+                    onChange={userStateBirthdayHandler}
+                  />
+                  <CalendarIcon />
+                </BirthdayContainer>
+                <BtnInput
+                  type="button"
+                  onClick={() => handleCurrent('birthday')}
+                >
+                  {current === 'birthday' ? (
+                    <FiCheck color="#F59256" width="30" heigh="30" />
+                  ) : (
+                    <HiPencil
+                      color="rgba(17, 17, 17, 0.6)"
+                      width="30"
+                      heigh="30"
                     />
-                    <CalendarIcon />
-                  </BirthdayContainer>
-                  <BtnInput
-                    type="button"
-                    onClick={() => handleCurrent('birthday')}
-                  >
-                    {current === 'birthday' ? (
-                      <FiCheck color="#F59256" width="30" heigh="30" />
-                    ) : (
-                      <HiPencil
-                        color="rgba(17, 17, 17, 0.6)"
-                        width="30"
-                        heigh="30"
-                      />
-                    )}
-                  </BtnInput>
-                </DataContainer>
+                  )}
+                </BtnInput>
               </FormLabel>
             </DivInput>
             <DivInput>

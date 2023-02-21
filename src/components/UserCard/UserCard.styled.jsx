@@ -346,7 +346,7 @@ export const CalendarIcon = styled(BsCalendar)`
   position: absolute;
   pointer-events: none;
   top: 8px;
-  right: 5px;
+  right: 0;
   color: ${theme.colors.black};
 
   &:hover {
@@ -373,6 +373,7 @@ export const DateInput = styled.input`
 
   ${media.mobile} {
     height: 24px;
+    width: 25px;
   }
 `;
 
