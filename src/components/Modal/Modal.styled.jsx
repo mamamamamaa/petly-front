@@ -29,10 +29,10 @@ export const Window = styled.div`
   height: auto;
   width: auto;
   border-radius: 40px;
-  body {
+  /* body {
     overflow: hidden;
     position: fixed;
-  }
+  } */
   &.addNotice {
     align-self: flex-start;
   }

@@ -102,6 +102,15 @@ export const NoticeCategoryItemTemplate = ({
   };
   const getNewType = changeTitle(type);
 
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [modal]);
+
+  
   return (
     <>
       {modal && currentNotice && (

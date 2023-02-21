@@ -35,6 +35,15 @@ export const PetsData = () => {
     setShowModal(prevShowModal => !prevShowModal);
   };
 
+
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [showModal]);
+
   return (
     <PetsDataSection>
       <PetsDataAddBtnContainer>
