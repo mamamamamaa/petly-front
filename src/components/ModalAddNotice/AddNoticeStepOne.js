@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import toast, { Toaster } from 'react-hot-toast';
 import * as Yup from 'yup';
@@ -82,16 +82,13 @@ export const AddNoticeStepOne = props => {
         title = 'Your pet will find his home';
         break;
       case 'good-hands':
-        title =
-          'Це кіт. Коти дуже незалежні і не потребують багато уваги, але в той же час можуть бути дуже ласкавими.';
+        title = 'You give your pet to a good people';
         break;
       case 'sell':
-        title =
-          'Це птах. Птахи дуже красиві тварини і можуть бути дуже цікавими для спостереження.';
+        title = 'Lets find a new home for you pet';
         break;
       default:
-        title =
-          'Це тварина. Ми не можемо дати відповідну опис для цього типу тварини.';
+        title = 'Your pet will find his home';
     }
 
     return title;
