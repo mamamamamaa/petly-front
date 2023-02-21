@@ -16,6 +16,7 @@ import {
   BirthdayContainer,
   DateInput,
   CalendarIcon,
+  DataContainer,
 } from './UserCard.styled';
 import { HiPencil } from 'react-icons/hi';
 import { FiLogOut, FiCheck } from 'react-icons/fi';
@@ -187,33 +188,35 @@ export const UserCard = () => {
             <DivInput>
               <FormLabel>
                 Birthday:
-                <BirthdayContainer>
-                  {userData.birthday || 'add date'}
-                  <DateInput
-                    name="birthday"
-                    id="birthday"
-                    type="date"
-                    value={userData.birthday}
-                    placeholder={' '}
-                    disabled={current !== 'birthday'}
-                    onChange={userStateBirthdayHandler}
-                  />
-                  <CalendarIcon />
-                </BirthdayContainer>
-                <BtnInput
-                  type="button"
-                  onClick={() => handleCurrent('birthday')}
-                >
-                  {current === 'birthday' ? (
-                    <FiCheck color="#F59256" width="30" heigh="30" />
-                  ) : (
-                    <HiPencil
-                      color="rgba(17, 17, 17, 0.6)"
-                      width="30"
-                      heigh="30"
+                <DataContainer>
+                  <BirthdayContainer>
+                    {userData.birthday || 'add date'}
+                    <DateInput
+                      name="birthday"
+                      id="birthday"
+                      type="date"
+                      value={userData.birthday}
+                      placeholder={' '}
+                      disabled={current !== 'birthday'}
+                      onChange={userStateBirthdayHandler}
                     />
-                  )}
-                </BtnInput>
+                    <CalendarIcon />
+                  </BirthdayContainer>
+                  <BtnInput
+                    type="button"
+                    onClick={() => handleCurrent('birthday')}
+                  >
+                    {current === 'birthday' ? (
+                      <FiCheck color="#F59256" width="30" heigh="30" />
+                    ) : (
+                      <HiPencil
+                        color="rgba(17, 17, 17, 0.6)"
+                        width="30"
+                        heigh="30"
+                      />
+                    )}
+                  </BtnInput>
+                </DataContainer>
               </FormLabel>
             </DivInput>
             <DivInput>

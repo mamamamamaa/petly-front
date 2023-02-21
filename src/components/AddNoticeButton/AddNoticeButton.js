@@ -36,7 +36,7 @@ const AddNoticeButton = () => {
         </AddPetToNoticesBtn>
       </AddPetToNoticesBtnWrapper>
       {showModal && (
-        <Modal onClose={handleModal}>
+        <Modal onClose={handleModal} className='addNotice'>
           <ModalAddNotice onClose={handleModal} />
         </Modal>
       )}
