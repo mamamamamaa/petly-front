@@ -105,6 +105,7 @@ export const MenuWrpr = styled.div`
 export const Nav = styled.nav`
     ${media.mobile} {
         margin-top: 60px;
+    }
   ${media.tablet} {
     display: flex;
     align-items: flex-start;
