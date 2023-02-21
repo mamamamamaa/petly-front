@@ -37,7 +37,7 @@ const NoticesPage = () => {
       ? toast.error(
           'Dear friend, please sign up or log in to add your pet to notice'
         )
-      : setIsModalOpen(true);
+      : (setIsModalOpen(true));
   };
 
   const handleChangeQuery = e => dispatch(setQuery(e.target.value));

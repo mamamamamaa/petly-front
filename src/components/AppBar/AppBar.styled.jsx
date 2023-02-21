@@ -3,6 +3,7 @@ import { media } from "../Layout/Layout.styled";
 import { theme } from '../../utils/theme';
 import { NavLink } from 'react-router-dom';
 
+// document.body.style.overflow = "hidden"
 
 export const BarContainer = styled.div`
     font-family: ${theme.fonts.body};
@@ -15,11 +16,9 @@ export const BarContainer = styled.div`
     };
     ${media.tablet} {
         padding-top: 24px;
-        /* max-height: 72px; */
     };
     ${media.desktop} {
         padding-top: 20px;
-        /* max-height: 68px; */
     };
     /* outline: 1px solid red; */
 `;
@@ -62,7 +61,6 @@ export const TabletWrapper = styled.div`
 export const MenuWrpr = styled.div`
     display: flex;
     flex-direction: column-reverse;
-    /* width: 100%; */
     background-color: ${theme.colors.secondary};
     opacity: ${({ isClosed }) => isClosed ? 0 : 1};
     visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
@@ -78,16 +76,19 @@ export const MenuWrpr = styled.div`
         left: 0;
         top: 0;
         justify-content: flex-end;
+        overflow-y: scroll;
+        /* overscroll-behavior: none; */
     }
     ${media.tablet} {
         margin-right: 25px;
-        /* width: 100%; */
+        overflow-y: scroll;
+        /* overscroll-behavior: none; */
+
     }
     ${media.tabletAndDesktop} {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
-        /* position: static; */
         background-color: inherit;
         /* outline: 1px solid blue; */
         width: auto;
@@ -98,7 +99,6 @@ export const MenuWrpr = styled.div`
     ${media.desktop} {
         margin-left: 80px;
         z-index: auto;
-        /* justify-self: flex-end; */
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
@@ -109,12 +109,9 @@ export const MenuWrpr = styled.div`
 export const Nav = styled.nav`
     ${media.mobile} {
         margin-top: 60px;
-        /* padding-bottom: 147px; */
-        /* padding-bottom: 147px; */
     }
     ${media.tablet} {
         display: flex;
-        /* align-items: center; */
         align-items: flex-start;
         justify-content: center;
         opacity: ${({ isClosed }) => isClosed ? 0 : 1};
@@ -126,7 +123,6 @@ export const Nav = styled.nav`
         left: 0;
         top: 0;
         padding-bottom: 60px;
-        /* height: 100%; */
         min-height: 100vh;
         padding-top: 160px;
         width: 100%;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../redux/hooks';
 import Navigation from '../Navigation/Navigation';
 import AuthMenu from '../AuthMenu/AuthMenu';
@@ -10,15 +10,10 @@ import {
   BarContainer,
   LogoBlack,
   LogoAccent,
-  LogoMenu,
   MenuWrpr,
-  MenuMobWrpr,
   UserMenuWrpr,
-  UserMenuWrprMob,
   BurgerBtn,
-  BurgerMenuBtn,
   Nav,
-  NavMob,
   TabletWrapper,
   HomePageLink,
 } from './AppBar.styled';
@@ -30,6 +25,17 @@ const AppBar = () => {
   const toggleClickHandler = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isMenuOpen])
+  
+  
 
   const closeMenu = () => {
     setIsMenuOpen(false);

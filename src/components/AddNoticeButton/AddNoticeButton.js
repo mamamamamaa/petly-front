@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../redux/hooks';
 import toast, { Toaster } from 'react-hot-toast';
 import {
@@ -26,6 +26,14 @@ const AddNoticeButton = () => {
         )
       : setShowModal(true);
   };
+
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [showModal]);
 
   return (
     <>
