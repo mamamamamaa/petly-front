@@ -106,7 +106,6 @@ export const MenuWrpr = styled.div`
 `;
 
 export const Nav = styled.nav`
-overflow-y: scroll;
     ${media.mobile} {
         margin-top: 60px;
     }

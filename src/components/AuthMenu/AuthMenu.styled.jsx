@@ -27,8 +27,6 @@ export const Button = styled.li`
   }
   :hover,
   :focus {
-    // background-color: ${theme.colors.primary};
-    // color: ${theme.colors.accentText};
     transform: scale(1.05);
     transition: transform 0.5s;
   }
