@@ -3,10 +3,10 @@ import { media } from 'components/Layout/Layout.styled';
 export const UserPageContainer = styled.div`
   ${media.desktop} {
     display: flex;
+    justify-content: space-between;
   }
 `;
 export const PetsDataWrapper = styled.div`
-  
   margin-top: 40px;
   ${media.tablet} {
     width: 704px;

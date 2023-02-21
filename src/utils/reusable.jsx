@@ -67,7 +67,7 @@ export const FriendsCard = styled.li`
   background: ${theme.colors.accentText};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
-  cursor: pointer;
+  /* cursor: pointer; */
   @media (min-width: 768px) {
     border-radius: 40px;
     width: 336px;

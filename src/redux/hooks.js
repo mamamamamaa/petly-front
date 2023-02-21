@@ -50,6 +50,7 @@ export const useNotices = () => {
   const totalCounts = useSelector(state => state.notices.totalCounts);
   const pages = useSelector(state => state.notices.pages);
   const query = useSelector(state => state.notices.query);
+
   return {
     searchNotices,
     totalCounts,
