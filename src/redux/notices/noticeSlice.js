@@ -264,7 +264,7 @@ const noticeSlice = createSlice({
           case 'good-hands':
             state.goodHandsNotices = [
               action.payload,
-              ...state.lostFoundNotices,
+              ...state.goodHandsNotices,
             ];
             break;
           default:
