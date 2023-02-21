@@ -17,6 +17,7 @@ export const Backdrop = styled.div`
 
 export const Window = styled.div`
   position: relative;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -26,6 +27,9 @@ export const Window = styled.div`
   width: auto;
 
   border-radius: 40px;
+  body {
+    position: fixed;
+  }
 `;
 
 export const Container = styled.div``;

@@ -14,6 +14,14 @@ export const Container = styled.div`
   }
 `;
 
+export const NothingFound = styled.div`
+  font-size: 30px;
+  font-weight: bold;
+  color: #696969;
+  text-align: center;
+  padding: 60px;
+`;
+
 export const MainHeader = styled.h1`
   //margin-top: 0;
   //margin-bottom: 28px;

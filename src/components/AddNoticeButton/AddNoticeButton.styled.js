@@ -3,6 +3,11 @@ import { theme } from 'utils/theme';
 import { media } from 'components/Layout/Layout.styled';
 
 export const AddPetToNoticesBtnWrapper = styled.div`
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
   ${media.mobile} {
     position: fixed;
     left: 68%;
@@ -41,6 +46,7 @@ export const AddPetToNoticesBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  
 `;
 
 export const AddPetToNoticesImg = styled.img`

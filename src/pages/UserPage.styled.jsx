@@ -6,16 +6,17 @@ export const UserPageContainer = styled.div`
   }
 `;
 export const PetsDataWrapper = styled.div`
-  margin-left: 32px;
+  
   margin-top: 40px;
   ${media.tablet} {
+    width: 704px;
     margin-top: 20px;
-    width: 768px;
     margin-left: auto;
     margin-right: auto;
   }
   ${media.desktop} {
+    margin-left: 32px;
+    width: 821px;
     margin-top: 0;
-    width: 862px;
   }
 `;

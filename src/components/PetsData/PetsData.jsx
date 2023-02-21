@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {fetchUserPets } from "../../redux/user/operations";
@@ -12,6 +13,7 @@ import {
   PetsDataSection,
   PetsDataAddBtnWrapper,
   PetsDataAddBtnContainer,
+  Notification
 } from './PetsData.styled';
 const selectPets = state => state.user.pets;
 const selectIsLoading = state => state.isLoading;
@@ -36,23 +38,26 @@ export const PetsData = () => {
   return (
     <PetsDataSection>
       <PetsDataAddBtnContainer>
-        <PetsDataTitle>My pets:</PetsDataTitle>
+        <PetsDataTitle>My pets:</PetsDataTitle>        
         <PetsDataAddBtnWrapper>
           <PetsDataAddText>Add pet</PetsDataAddText>
           <PetsDataButton type="button" onClick={handleModal}></PetsDataButton>
-        </PetsDataAddBtnWrapper>
+        </PetsDataAddBtnWrapper>  
       </PetsDataAddBtnContainer>
-      {isLoading && <div>Loading...</div>}
-      {error && <div>error</div>}
-      {!error && !isLoading && pets.length === 0 && (
-        <div>you have no pets yet</div>
-      )}
-      {!error && !isLoading && pets.length > 0 && <PetsList pets={pets} />}
-      {showModal && (
-        <Modal onClose={handleModal}>
-          <ModalAddsPet onClose={handleModal} />
-        </Modal>
-      )}
+      <PetsDataAddBtnContainer>
+      {isLoading && <Notification>Loading...</Notification>}
+        {error && <Notification>Sorry, something went wrong, try again later</Notification>}
+        {!error && !isLoading && pets.length === 0 && (
+          <Notification>You have no pets yet</Notification>
+        )}
+        {!error && !isLoading && pets.length > 0 && <PetsList pets={pets} />}
+        {showModal && (
+          <Modal onClose={handleModal}>
+            <ModalAddsPet onClose={handleModal} />
+          </Modal>
+        )}
+      </PetsDataAddBtnContainer>
     </PetsDataSection>
+    
   );
 };

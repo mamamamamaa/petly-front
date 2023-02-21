@@ -30,7 +30,8 @@ export const register = createAsyncThunk(
       }
     } catch (e) {
       toast.error(
-        'Sorry, there are no news matching your query. Please try again.'
+        'Make sure your email isn`t registered yet. And try again.'
+        // 'Sorry, there are no news matching your query. Please try again.'
       );
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -45,6 +46,9 @@ export const login = createAsyncThunk(
       setAuthHeader(res.data.accessToken);
       return res.data;
     } catch (e) {
+      toast.error(
+        'Please check if email and password are correct or sign up'
+        );
       return thunkAPI.rejectWithValue(e.message);
     }
   }

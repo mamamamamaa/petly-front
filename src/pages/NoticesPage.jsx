@@ -51,6 +51,7 @@ const NoticesPage = () => {
           onChange={debounce(handleChangeQuery, 300)}
         />
       </NoticesSearch>
+      
       <NoticesNavWrapper>
         <NoticesNavUl>
           <NoticesNavLi>

@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   color: #3c3c4f;
   background: #dbe8f4;
-  font-family: Manrope;
   line-height: 1.3;
 
   padding: 20px;

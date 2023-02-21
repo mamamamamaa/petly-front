@@ -70,6 +70,9 @@ const noticeSlice = createSlice({
         state.searchNotices = [];
       }
     },
+    clearCurrentNotice(state) {
+      state.currentNotice = null;
+    },
   },
   extraReducers: builder =>
     builder
@@ -188,6 +191,7 @@ const noticeSlice = createSlice({
           default:
             break;
         }
+        state.myAdsNotices.filter(({ _id }) => _id !== id);
         state.sellNotices = action.payload;
         state.isLoading = false;
       })
@@ -241,4 +245,4 @@ const noticeSlice = createSlice({
 
 export const noticeReducer = noticeSlice.reducer;
 
-export const { setQuery } = noticeSlice.actions;
+export const { setQuery, clearCurrentNotice } = noticeSlice.actions;
