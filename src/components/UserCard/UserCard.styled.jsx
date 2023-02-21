@@ -337,6 +337,11 @@ export const BirthdayContainer = styled.span`
   color: ${theme.colors.black};
 `;
 
+export const DataContainer = styled.span`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const CalendarIcon = styled(BsCalendar)`
   position: absolute;
   pointer-events: none;

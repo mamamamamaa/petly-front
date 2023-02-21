@@ -33,14 +33,22 @@ export const Window = styled.div`
     overflow: hidden;
     position: fixed;
   }
-  &.addNotice{
+  &.addNotice {
     align-self: flex-start;
   }
-  
+
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #f59256;
+    border-radius: 50px;
+  }
 `;
 
-export const Container = styled.div`
-`;
+export const Container = styled.div``;
 
 export const Wraper = styled.div`
   display: flex;
