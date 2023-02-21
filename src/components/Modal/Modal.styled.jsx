@@ -19,8 +19,9 @@ export const Backdrop = styled.div`
 `;
 
 export const Window = styled.div`
-  /* max-height: 100vh; */
   position: relative;
+  /* top: 5vh; */
+  top: 0;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -33,12 +34,12 @@ export const Window = styled.div`
   border-radius: 40px;
   body {
     overflow: hidden;
-    height: 100vh;
-    position: fixed;
+    /* position: fixed; */
   }
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+`;
 
 export const Wraper = styled.div`
   display: flex;
