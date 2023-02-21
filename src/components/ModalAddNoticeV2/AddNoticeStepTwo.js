@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { object, string, mixed, number } from 'yup';
 // import { ErrorMessage, Field, Form, Formik } from 'formik';
 import {
-  AddNoticeStepTwoForm,
+  // AddNoticeStepTwoForm,
   AddNoticeStepOneButtonBack,
   AddNoticeStepOneButtonDone,
   AddNoticeStepTwoButtonBackDoneWrapper,
@@ -30,7 +30,6 @@ import {
   AddNoticeStepTwoInputComments,
   AddNoticeStepTwoInputPrice,
 } from './AddNoticeStepTwo.styled';
-
 
 const addNoticeSchema = object().shape({
   sex: string().required('Sex is required'),
@@ -62,31 +61,39 @@ export const AddNoticeStepTwo = ({
     };
     prev(newValue);
   };
-
+  //   const handleSubmit = (values) => {
+  // next({ ...values, dateOfBirth: '2015-01-01' });
+  // }
   const formik = useFormik({
     initialValues: {
       sex: data.sex,
       place: data.place,
       price: data.price,
       photoUrl: data.photoUrl,
-      comments: data.comments,
+      comments: data.comments || data.commentsArea,
     },
-    validationSchema: addNoticeSchema,
+    // validationSchema: addNoticeSchema,
     onSubmit: (values, actions) => {
-      actions.validateForm();
+      const errors = actions.validateForm();
+      console.log(errors);
       const newValue = {
         ...data,
         ...values,
       };
-
-      next(newValue, onFinal());
-      actions.resetForm();
-      onClose();
+      console.log(newValue);
+      next(newValue, onFinal);
+      // actions.resetForm();
+      // onClose();
     },
+    // onSubmit: values => {
+    //   // alert(JSON.stringify(values, null, 2));
+    //   handleSubmit(values);
+    //   // setSubmitting(false);
+    // },
     selectedOption,
   });
-  const [isChecked, setIsChecked] = useState(false);
-  const [preview, setPreview] = useState(null);
+  const [isChecked, setIsChecked] = useState(false); // MALE /FEMALE
+  const [preview, setPreview] = useState(null); // LOAD PREVIEW IMAGE
   const handleImageLoad = e => {
     const url = e.currentTarget?.files[0];
     formik.setFieldValue('pictureURL', url, url?.name);
@@ -97,10 +104,7 @@ export const AddNoticeStepTwo = ({
     reader.readAsDataURL(url);
   };
   return (
-    <AddNoticeStepTwoForm
-      onSubmit={formik.handleSubmit}
-      encType="multipart/form-data"
-    >
+    <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
       <AddNoticeStepTwoLabelSex htmlFor="title">
         The sex:
@@ -126,7 +130,10 @@ export const AddNoticeStepTwo = ({
           type="checkbox"
           placeholder="Type sex"
           checked={isChecked}
-          onChange={() => setIsChecked(prev => !prev)}
+          value={formik.values.sex}
+          onChange={() => {
+            setIsChecked(prev => !prev);
+          }}
         />
       </AddNoticeStepTwoInputSexCheckboxWrapper>
       <AddNoticeStepTwoLabelLocation htmlFor="location">
@@ -136,6 +143,8 @@ export const AddNoticeStepTwo = ({
         name="location"
         id="location"
         placeholder="Type location"
+        onChange={formik.handleChange}
+        value={formik.values.location}
       />
       <AddNoticeStepTwoLabelPrice
         htmlFor="price"
@@ -148,6 +157,8 @@ export const AddNoticeStepTwo = ({
         name="price"
         id="price"
         placeholder="Type price"
+        onChange={formik.handleChange}
+        value={formik.values.price}
       />
       <AddNoticeStepTwoLabelPictureURL htmlFor="pictureURL">
         Load the pet’s image
@@ -158,10 +169,11 @@ export const AddNoticeStepTwo = ({
       >
         <AddNoticeStepTwoLoadImageInput
           type="file"
-          id="pictureURL"
-          name="pictureURL"
+          id="photoUrl"
+          name="photoUrl"
           accept="image/*"
           onChange={handleImageLoad}
+          value={formik.values.photoUrl}
         />
       </AddNoticeStepTwoLoadImageInputWrapper>
       <div>{formik.errors.pictureURL}</div>
@@ -174,6 +186,7 @@ export const AddNoticeStepTwo = ({
         name="commentsArea"
         placeholder="Type comments"
         onChange={formik.handleChange}
+        value={formik.values.commentsArea}
       />
 
       <AddNoticeStepTwoLabelComments htmlFor="comments">
@@ -195,7 +208,6 @@ export const AddNoticeStepTwo = ({
           Back
         </AddNoticeStepOneButtonBack>
       </AddNoticeStepTwoButtonBackDoneWrapper>
-    </AddNoticeStepTwoForm>
+    </form>
   );
 };
- 

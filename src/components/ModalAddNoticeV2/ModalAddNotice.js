@@ -12,16 +12,16 @@ const initialState = {
   name: '',
   dateOfBirth: '',
   breed: '',
-  sex: '',
+  sex: 'male',
   place: '',
   price: '',
   photoUrl: '',
-  comments: '',
+  comments: null,
 };
 const testState = {
   type: 'sell',
-  title: 'kantor',
-  name: 'kantor',
+  title: 'demon',
+  name: 'demon',
   dateOfBirth: '2020-01-01',
   breed: 'barbet',
   sex: 'male',
@@ -38,10 +38,13 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
   const onFinal = () => {
     setFinal(true);
   };
-  const handleNextStep = (newData = {}) => {
+  const handleNextStep = (newData = {}, final ) => {
+    console.log('IN NEXT STEP');
     const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
       'DD.MM.YYYY'
     );
+    console.log(newData);
+    console.log(final);
     if (final) {
       setData({
         ...newData,
@@ -50,19 +53,40 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
 
       const formData = new FormData();
       console.log(formData);
-      formData.append('photoUrl', newData.photoUrl, newData.photoUrl.name);
-      formData.append('comments', newData.comments);
-      formData.append('breed', newData.breed);
-      formData.append('dateOfBirth', newData.dateOfBirth);
-      formData.append('name', newData.name);
-      formData.append('type', newData.type);
-      formData.append('title', newData.title);
-      formData.append('sex', newData.sex);
-      formData.append('place', newData.place);
-      formData.append('price', newData.price);
-      console.log(formData);
+      // formData.append('photoUrl', newData.photoUrl, newData.photoUrl.name);
+      formData.append(
+        'photoUrl',
+        testState.photoUrl ||
+          'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
+      );
+      formData.append('comments', testState.comments || 'demon');
+      formData.append('breed', testState.breed || 'barbet');
+      formData.append('dateOfBirth', testState.dateOfBirth);
+      formData.append('name', testState.name || 'demon');
+      formData.append('type', testState.type || 'sell');
+      formData.append('title', testState.title ||'demon');
+      formData.append('sex', testState.sex  ||'male');
+      formData.append('place', testState.place || 'demon');
+      formData.append('price', testState.price || 200);
+      // formData.append(
+      //   'photoUrl',
+      //   newData.photoUrl ||
+      //     'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
+      // );
+      // formData.append('comments', newData.comments || 'demon');
+      // formData.append('breed', newData.breed || 'barbet');
+      // formData.append('dateOfBirth', newData.dateOfBirth);
+      // formData.append('name', newData.name || 'demon');
+      // formData.append('type', newData.type || 'sell');
+      // formData.append('title', newData.title ||'demon');
+      // formData.append('sex', newData.sex  ||'male');
+      // formData.append('place', newData.place || 'demon');
+      // formData.append('price', newData.price || 200);
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
 
-      dispatch(addNotice(newData));
+      dispatch(addNotice(formData));
       // dispatch(addNotice(testState));
       return;
     }
@@ -114,8 +138,8 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       next={handleNextStep}
       data={data}
       cancel={cancelData}
-      selectedOption={selectedOption}
-      handleOptionChange={handleOptionChange}
+      selectedOption={selectedOption} // FOR BUTTONS SWAPING OPTION 'SELL', 'inGoodHands', 'lostFound'
+      handleOptionChange={handleOptionChange} //TAKE DATA 'SELL', 'inGoodHands', 'lostFound' FROM INPUTS
     />,
     <AddNoticeStepTwo
       onFinal={onFinal}
@@ -123,7 +147,7 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       data={data}
       prev={handlePrevStep}
       onClose={onClose}
-      selectedOption={selectedOption}
+      selectedOption={selectedOption} // TO SHOW SELL FILED OR NO
     />,
   ];
   return (
