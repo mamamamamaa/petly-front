@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
+import { media } from 'components/Layout/Layout.styled';
 import { theme } from '../../utils';
 
 export const Backdrop = styled.div`
   position: fixed;
+  overflow-y: scroll;
+  overscroll-behavior: none;
   top: 0px;
   left: 0px;
   z-index: 30;
@@ -16,6 +19,7 @@ export const Backdrop = styled.div`
 `;
 
 export const Window = styled.div`
+  /* max-height: 100vh; */
   position: relative;
   overflow-y: scroll;
   display: flex;
@@ -28,6 +32,8 @@ export const Window = styled.div`
 
   border-radius: 40px;
   body {
+    overflow: hidden;
+    height: 100vh;
     position: fixed;
   }
 `;
