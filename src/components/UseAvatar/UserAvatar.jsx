@@ -26,7 +26,6 @@ export const FileUploader = () => {
   const [avatarURL, setAvatarURL] = useState();
   const dispatch = useDispatch();
 
-  
   const onChangeHandler = e => {
     e.preventDefault();
     // console.log(e.target.files[0])
@@ -35,27 +34,29 @@ export const FileUploader = () => {
 
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      setAvatarURL(fileReader.result);      
+      setAvatarURL(fileReader.result);
     };
 
     const newFile = new File([file], file.name);
-    
+
     fileReader.readAsDataURL(file);
 
     let formData = new FormData();
-    
+
     formData.append('avatarURL', newFile);
     dispatch(updateAvatar(formData));
-
   };
-
-  
 
   return (
     <>
       <DivPhoto>
-        { user ? (
-          <Imgav src={avatarURL || user.user.avatarURL} alt="preview" accept="image/*" multiple />
+        {user.avatar ? (
+          <Imgav
+            src={avatarURL || user.user.avatarURL}
+            alt="preview"
+            accept="image/*"
+            multiple
+          />
         ) : (
           <NoAvatarContainer>
             <NoPhotoIcon />
