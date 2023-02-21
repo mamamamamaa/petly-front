@@ -68,7 +68,7 @@ export const AddNoticeStepTwo = ({
       sex: data.sex,
       place: data.place,
       price: data.price,
-      pictureURL: data.pictureURL,
+      photoUrl: data.photoUrl,
       comments: data.comments,
     },
     validationSchema: addNoticeSchema,

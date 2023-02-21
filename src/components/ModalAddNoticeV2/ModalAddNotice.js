@@ -18,6 +18,19 @@ const initialState = {
   photoUrl: '',
   comments: '',
 };
+const testState = {
+  type: 'sell',
+  title: 'kantor',
+  name: 'kantor',
+  dateOfBirth: '2020-01-01',
+  breed: 'barbet',
+  sex: 'male',
+  place: 'Kharkiv',
+  price: '500',
+  photoUrl:
+    'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg',
+  comments: 'nice creature',
+};
 export const ModalAddNotice = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState(initialState);
@@ -36,12 +49,8 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       });
 
       const formData = new FormData();
-
-      formData.append(
-        'pictureURL',
-        newData.pictureURL,
-        newData.pictureURL.name
-      );
+      console.log(formData);
+      formData.append('photoUrl', newData.photoUrl, newData.photoUrl.name);
       formData.append('comments', newData.comments);
       formData.append('breed', newData.breed);
       formData.append('dateOfBirth', newData.dateOfBirth);
@@ -51,8 +60,10 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       formData.append('sex', newData.sex);
       formData.append('place', newData.place);
       formData.append('price', newData.price);
+      console.log(formData);
 
       dispatch(addNotice(newData));
+      // dispatch(addNotice(testState));
       return;
     }
     setData({
@@ -80,6 +91,8 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       const screenHeight = window.innerHeight;
       const maxModalHeight = screenHeight * 0.8;
       setMaxHeight(maxModalHeight);
+      // dispatch(addNotice(testState));
+      // dispatch(addNotice(testState));
     } else {
       // Allow scrolling when the modal is closed
       document.body.style.overflow = 'auto';
@@ -89,7 +102,7 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isOpen]);
+  }, [isOpen, dispatch]);
   const [selectedOption, setSelectedOption] = useState('sell');
 
   const handleOptionChange = event => {

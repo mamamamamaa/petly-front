@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Formik } from 'formik';
+import { ErrorMessage, Field, Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { useState } from 'react';
 import { breeds } from '../../utils/getBreed';
@@ -64,110 +64,151 @@ export const AddNoticeStepOne = ({
   selectedOption,
   handleOptionChange,
 }) => {
-
   const [selectedDate, setSelectedDate] = useState('');
   const [dateToSubmit, setDateToSubmit] = useState();
-
+  // const [name, setName] = useState('');
+  // const [title, setTitle] = useState('');
 
   const handleSubmit = values => {
+    console.log(values);
     next({ ...values, dateOfBirth: dateToSubmit });
   };
 
-  const handleDate = e => {
-    setSelectedDate(e.target.value);
-    setDateToSubmit(e.target.valueAsNumber);
+  const handleDate = event => {
+    setSelectedDate(event.target.value);
+    setDateToSubmit(event.target.valueAsNumber);
+    console.log(selectedDate);
+    // console.log(e.target.form);
+    // console.log(e.target.valueAsNumber);
   };
+  // const handleName = event => {
+  //   setName(event.target.value);
+  //   console.log(name);
+  // };
+  // const handleTitle = event => {
+  //   setName(event.target.value);
+  //   console.log(title);
+  // };
 
   return (
     <Formik
       initialValues={data}
       // validationSchema={schema}
       onSubmit={handleSubmit}
+      validate={values => {
+        // const errors = {};
+        // if (!values.name) {
+        //   errors.name = 'Required';
+        // }
+        // if (!values.email) {
+        //   errors.email = 'Required';
+        // }
+        // return errors;
+        console.log(values);
+      }}
     >
-      <AddNoticeStepOneForm>
-        <AddNoticeStepOneTitle>Add pet</AddNoticeStepOneTitle>
-        <AddNoticeStepOneText>
-          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-          consectetur
-        </AddNoticeStepOneText>
-        <AddNoticeStepOneTopBtnsWrapper>
-          <AddNoticeLostFound
-            type="radio"
-            id="lostFound"
-            value="lostFound"
-            name="lostFound"
-            checked={selectedOption === 'lostFound'}
-            onChange={handleOptionChange}
-          ></AddNoticeLostFound>
-          <label htmlFor="lostFound">lostFound</label>
-          <AddNoticeInGoodHands
-            name="inGoodHands"
-            type="radio"
-            id="inGoodHands"
-            value="inGoodHands"
-            checked={selectedOption === 'inGoodHands'}
-            onChange={handleOptionChange}
-          ></AddNoticeInGoodHands>
-          <label htmlFor="inGoodHands">inGoodHands</label>
-          <AddNoticeSell
-            name="sell"
-            type="radio"
-            id="sell"
-            value="sell"
-            checked={selectedOption === 'sell'}
-            onChange={handleOptionChange}
-          ></AddNoticeSell>
-          <label htmlFor="sell">sell</label>
-        </AddNoticeStepOneTopBtnsWrapper>
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+        /* and other goodies */
+      }) => (
+        <form>
+          <AddNoticeStepOneTitle>Add pet</AddNoticeStepOneTitle>
+          <AddNoticeStepOneText>
+            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+            consectetur
+          </AddNoticeStepOneText>
+          <AddNoticeStepOneTopBtnsWrapper>
+            <AddNoticeLostFound
+              type="radio"
+              id="lostFound"
+              value="lostFound"
+              name="lostFound"
+              checked={selectedOption === 'lostFound'}
+              onChange={handleOptionChange}
+            ></AddNoticeLostFound>
+            <label htmlFor="lostFound">lostFound</label>
+            <AddNoticeInGoodHands
+              name="inGoodHands"
+              type="radio"
+              id="inGoodHands"
+              value="inGoodHands"
+              checked={selectedOption === 'inGoodHands'}
+              onChange={handleOptionChange}
+            ></AddNoticeInGoodHands>
+            <label htmlFor="inGoodHands">inGoodHands</label>
+            <AddNoticeSell
+              name="sell"
+              type="radio"
+              id="sell"
+              value="sell"
+              checked={selectedOption === 'sell'}
+              onChange={handleOptionChange}
+            ></AddNoticeSell>
+            <label htmlFor="sell">sell</label>
+          </AddNoticeStepOneTopBtnsWrapper>
 
-        <AddNoticeStepOneLabel htmlFor="title">
-          Tittle of ad
-        </AddNoticeStepOneLabel>
-        <Field
-          name="title"
-          id="title"
-          component={AddNoticeStepOneInput}
-          placeholder="Type name pet"
-        />
+          <AddNoticeStepOneLabel htmlFor="title">
+            Tittle of ad
+          </AddNoticeStepOneLabel>
+          <Field
+            name="title"
+            id="title"
+            onChange={handleChange}
+            value={values.title}
+            component={AddNoticeStepOneInput}
+            placeholder="Type name pet"
+          />
 
-        <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
-        <Field
-          name="name"
-          id="name"
-          component={AddNoticeStepOneInput}
-          placeholder="Type name pet"
-        />
+          <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
+          <Field
+            name="name"
+            id="name"
+            onChange={handleChange}
+            value={values.name}
+            component={AddNoticeStepOneInput}
+            placeholder="Type name pet"
+          />
 
-        <AddNoticeStepOneLabel htmlFor="dateOfBirth">
-          Date of birth
-        </AddNoticeStepOneLabel>
-        <Field
-          type="date"
-          name="dateOfBirth"
-          id="dateOfBirth"
-          required
-          onChange={handleDate}
-          max={moment(moment.now()).format('YYYY-MM-DD')}
-          value={selectedDate}
-          component={AddNoticeStepOneInput}
-        />
-        <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
-        <Field component={AddNoticeStepOneSelect} name="breed" id="breed">
-          {filterByLengthBreeds.map(breed => (
-            <option value={breed} key={breed}>
-              {breed}
-            </option>
-          ))}
-        </Field>
-        <AddNoticeStepOneButtonNextCancelWrapper>
-          <AddNoticeStepOneButtonNext type="submit">
-            Next
-          </AddNoticeStepOneButtonNext>
-          <AddNoticeStepOneButtonCancel type="button" onClick={() => cancel()}>
-            Cancel
-          </AddNoticeStepOneButtonCancel>
-        </AddNoticeStepOneButtonNextCancelWrapper>
-      </AddNoticeStepOneForm>
+          <AddNoticeStepOneLabel htmlFor="dateOfBirth">
+            Date of birth
+          </AddNoticeStepOneLabel>
+          <Field
+            type="date"
+            name="dateOfBirth"
+            id="dateOfBirth"
+            required
+            onChange={handleDate}
+            // max={moment(moment.now()).format('YYYY-MM-DD')}
+            value={selectedDate}
+            component={AddNoticeStepOneInput}
+          />
+          <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
+          <Field component={AddNoticeStepOneSelect} name="breed" id="breed">
+            {filterByLengthBreeds.map(breed => (
+              <option value={breed} key={breed}>
+                {breed}
+              </option>
+            ))}
+          </Field>
+          <AddNoticeStepOneButtonNextCancelWrapper>
+            <AddNoticeStepOneButtonNext type="submit">
+              Next
+            </AddNoticeStepOneButtonNext>
+            <AddNoticeStepOneButtonCancel
+              type="button"
+              onClick={() => cancel()}
+            >
+              Cancel
+            </AddNoticeStepOneButtonCancel>
+          </AddNoticeStepOneButtonNextCancelWrapper>
+        </form>
+      )}
     </Formik>
   );
 };
