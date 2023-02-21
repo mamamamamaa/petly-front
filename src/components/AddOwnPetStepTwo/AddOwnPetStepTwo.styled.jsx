@@ -60,20 +60,11 @@ export const Box = styled.div`
 
 export const BoxImg = styled.div`
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 999;
   fill: rgba(17, 17, 17, 0.6);
-  @media screen and (max-width: 767px) {
-    top: 38%;
-    left: 38%;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    top: 36%;
-    left: 36%;
-  }
-  @media screen and (min-width: 1280px) {
-    top: 36%;
-    left: 36%;
-  }
 `;
 
 export const BoxComent = styled.div`
