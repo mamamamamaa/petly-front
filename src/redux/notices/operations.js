@@ -30,7 +30,7 @@ export const sell = createAsyncThunk(
       const not = res.data.items.reverse();
       console.log(not);
 
-      return { data: res.data.items, page };
+      return { data: res.data, page };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
