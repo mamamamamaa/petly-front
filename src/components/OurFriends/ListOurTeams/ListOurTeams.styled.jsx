@@ -13,6 +13,11 @@ export const Container = styled.div`
     border-radius: 40px;
     height: 600px;
   }
+  @media screen and (min-width: 1280px) {
+    width: 1000px;
+    border-radius: 40px;
+    height: 700px;
+  }
 `;
 
 export const Title = styled.h1`
@@ -30,6 +35,11 @@ export const TitleHi = styled.h2`
     font-weight: 700;
     font-size: 24px;
   }
+  @media screen and (min-width: 1280px) {
+    font-weight: 700;
+    font-size: 24px;
+    margin-left: 120px;
+  }
 `;
 
 export const Text = styled.p`
@@ -38,6 +48,13 @@ export const Text = styled.p`
     font-weight: 400;
     font-size: 18px;
     line-height: 1.4;
+  }
+  @media screen and (min-width: 1280px) {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.4;
+    margin-left: 120px;
+    margin-right: 80px;
   }
 `;
 export const TitleBy = styled.h2`
@@ -50,6 +67,12 @@ export const TitleBy = styled.h2`
     font-weight: 700;
     font-size: 18px;
     line-height: 1.4;
+  }
+  @media screen and (min-width: 1280px) {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+    margin-left: 120px;
   }
 `;
 
@@ -64,6 +87,11 @@ export const Iframe = styled.iframe`
     width: 500px;
     height: 380px;
     margin-left: 80px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 750px;
+    height: 480px;
+    margin-left: 120px;
   }
 `;
 
