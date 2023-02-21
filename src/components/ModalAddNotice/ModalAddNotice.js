@@ -15,6 +15,7 @@ export const ModalAddNotice = props => {
     place: '',
     price: '',
     comments: '',
+    selectedDateInNumber: '',
   });
 
   let Child = undefined;

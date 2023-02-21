@@ -132,7 +132,10 @@ const noticeSlice = createSlice({
         state.error = null;
       })
       .addCase(sell.fulfilled, (state, action) => {
-        state.sellNotices = [...state.sellNotices, ...action.payload.data];
+        state.sellNotices = [
+          ...state.sellNotices,
+          ...action.payload.data.items,
+        ];
         state.pages.sell += 1;
         state.totalCounts.sell = action.payload.data.totalCount;
         state.isLoading = false;
