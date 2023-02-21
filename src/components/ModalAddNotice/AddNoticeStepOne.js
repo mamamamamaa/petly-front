@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import toast, { Toaster } from 'react-hot-toast';
 import * as Yup from 'yup';
@@ -59,6 +59,8 @@ const filterByLengthBreeds = breeds.filter(
 );
 
 export const AddNoticeStepOne = props => {
+  const [type, setType] = useState('sell');
+
   const handleSubmit = values => {
     props.setData(prev => {
       return {
@@ -113,18 +115,8 @@ export const AddNoticeStepOne = props => {
         <VscClose size={65} />
       </ButtonClose>
       <Title>Add pet</Title>
-      <SubTitle>{noticeTitle}</SubTitle>
-      {/* {textByTypeHands && (
-        <SubTitle>You give your pet to a good people</SubTitle>
-      )}
-      {textByTypeSell && <SubTitle>Lets find a new home for you pet</SubTitle>}
+      <SubTitle>{getTitle(type)}</SubTitle>
 
-      {textByTypeLost && <SubTitle>Your pet will find his home</SubTitle>} */}
-
-      {/* <SubTitle>
-        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-        consectetur
-      </SubTitle> */}
       <FormWrapper>
         <Formik
           validationSchema={formOneValidationSchema}
@@ -133,7 +125,11 @@ export const AddNoticeStepOne = props => {
         >
           {props => (
             <FormFirst>
-              <RadioWrapp role="group" aria-labelledby="type-group">
+              <RadioWrapp
+                role="group"
+                aria-labelledby="type-group"
+                onChange={e => setType(e.target.value)}
+              >
                 <RadioBtn
                   id="lost/found"
                   type="radio"
