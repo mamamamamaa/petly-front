@@ -2,9 +2,7 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 
 import { object, string, mixed, number } from 'yup';
-// import { ErrorMessage, Field, Form, Formik } from 'formik';
 import {
-  // AddNoticeStepTwoForm,
   AddNoticeStepOneButtonBack,
   AddNoticeStepOneButtonDone,
   AddNoticeStepTwoButtonBackDoneWrapper,
@@ -61,10 +59,7 @@ export const AddNoticeStepTwo = ({
     };
     prev(newValue);
   };
-  //   const handleSubmit = (values) => {
-  // next({ ...values, dateOfBirth: '2015-01-01' });
-  // }
-   
+
   const formik = useFormik({
     initialValues: {
       sex: data.sex,
@@ -72,43 +67,41 @@ export const AddNoticeStepTwo = ({
       price: data.price,
       photoUrl: data.photoUrl,
       comments: data.comments,
-      // commentsArea: data.commentsArea,
     },
     // validationSchema: addNoticeSchema,
     onSubmit: (values, actions) => {
       const errors = actions.validateForm();
       console.log(errors);
+      console.log(values);
       const newValue = {
         ...data,
         ...values,
       };
-      console.log(newValue);
+      // console.log(newValue);
+
       next(newValue, onFinal);
       // actions.resetForm();
       // onClose();
     },
-    // onSubmit: values => {
-    //   // alert(JSON.stringify(values, null, 2));
-    //   handleSubmit(values);
-    //   // setSubmitting(false);
-    // },
     selectedOption,
   });
   const [isChecked, setIsChecked] = useState(false); // MALE /FEMALE
   const [preview, setPreview] = useState(null); // LOAD PREVIEW IMAGE
-  const handleImageLoad = e => {
-    const url = e.currentTarget?.files[0];
-    formik.setFieldValue('photoUrl', url, url?.name);
+  const handleImageLoad = event => {
+    const url = event.currentTarget?.files[0];
+    const shouldValidate = true; // or false, depending on whether you want to trigger validation
+    formik.setFieldValue('photoUrl', url, shouldValidate, url.name);
     const reader = new FileReader();
-    reader.onloadend = () => {
+    reader.onload = () => {
       setPreview(reader.result);
     };
     reader.readAsDataURL(url);
+    // event.currentTarget.value = url?.name;
   };
-  const handleCommentsChange = e => {
+  const handleCommentsChange = event => {
     formik.setValues({
       ...formik.values,
-      comments: e.target.value,
+      comments: event.target.value,
     });
   };
   return (
@@ -168,7 +161,7 @@ export const AddNoticeStepTwo = ({
         onChange={formik.handleChange}
         value={formik.values.price}
       />
-      <AddNoticeStepTwoLabelPictureURL htmlFor="pictureURL">
+      <AddNoticeStepTwoLabelPictureURL htmlFor="photoUrl">
         Load the pet’s image
       </AddNoticeStepTwoLabelPictureURL>
       <AddNoticeStepTwoLoadImageInputWrapper
@@ -181,7 +174,7 @@ export const AddNoticeStepTwo = ({
           name="photoUrl"
           accept="image/*"
           onChange={handleImageLoad}
-          value={formik.values.photoUrl}
+          value=""
         />
       </AddNoticeStepTwoLoadImageInputWrapper>
       <div>{formik.errors.pictureURL}</div>

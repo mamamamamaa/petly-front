@@ -28,24 +28,20 @@ const testState = {
   sex: 'male',
   place: 'Kharkiv',
   price: '500',
-  photoUrl:
-    'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg',
+  photoUrl: '',
+    // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg',
   comments: 'nice creature',
 };
 export const ModalAddNotice = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState(initialState);
   const [final, setFinal] = useState(false);
-  const onFinal = () => {
-    setFinal(true);
-  };
-  const handleNextStep = (newData = {}, final ) => {
-    console.log('IN NEXT STEP');
+  const onFinal = () => setFinal(final);
+  
+  const next = (newData = {}, final) => {
     const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
       'DD.MM.YYYY'
     );
-    console.log(newData);
-    console.log(final);
     if (final) {
       setData({
         ...newData,
@@ -53,34 +49,18 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       });
 
       const formData = new FormData();
-      console.log(formData);
-      // formData.append('photoUrl', newData.photoUrl, newData.photoUrl.name);
-      // formData.append(
-      //   'photoUrl',
-      //   testState.photoUrl ||
-      //     'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
-      // );
-      // formData.append('comments', testState.comments || 'lemonad');
-      // formData.append('breed', testState.breed || 'barbet');
-      // formData.append('dateOfBirth', testState.dateOfBirth);
-      // formData.append('name', testState.name || 'demon');
-      // formData.append('type', testState.type || 'sell');
-      // formData.append('title', testState.title ||'demon');
-      // formData.append('sex', testState.sex  ||'male');
-      // formData.append('place', testState.place || 'demon');
-      // formData.append('price', testState.price || 200);
       formData.append(
         'photoUrl',
-        newData.photoUrl ||
-          'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
+        newData.photoUrl.name || '',
+          // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
       );
       formData.append('comments', newData.comments || 'lemonad');
       formData.append('breed', newData.breed || 'barbet');
       formData.append('dateOfBirth', newData.dateOfBirth);
       formData.append('name', newData.name || 'demon');
       formData.append('type', newData.type || 'sell');
-      formData.append('title', newData.title ||'demon');
-      formData.append('sex', newData.sex  ||'male');
+      formData.append('title', newData.title || 'demon');
+      formData.append('sex', newData.sex || 'male');
       formData.append('place', newData.place || 'demon');
       formData.append('price', newData.price || 200);
       for (const [key, value] of formData.entries()) {
@@ -88,7 +68,6 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       }
 
       dispatch(addNotice(formData));
-      // dispatch(addNotice(testState));
       return;
     }
     setData({
@@ -98,12 +77,12 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
     setCurrentStep(prevStep => prevStep + 1);
   };
 
-  const handlePrevStep = (newData = {}) => {
+  const prev = (newData = {}) => {
     setData(prevData => ({ ...prevData, ...newData }));
     setCurrentStep(prevStep => prevStep - 1);
   };
 
-  const cancelData = e => {
+  const cancel = () => {
     setData(initialState);
     setCurrentStep(0);
     onClose();
@@ -116,8 +95,6 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       const screenHeight = window.innerHeight;
       const maxModalHeight = screenHeight * 0.8;
       setMaxHeight(maxModalHeight);
-      // dispatch(addNotice(testState));
-      // dispatch(addNotice(testState));
     } else {
       // Allow scrolling when the modal is closed
       document.body.style.overflow = 'auto';
@@ -136,19 +113,12 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const steps = [
     <AddNoticeStepOne
-      next={handleNextStep}
-      data={data}
-      cancel={cancelData}
-      selectedOption={selectedOption} // FOR BUTTONS SWAPING OPTION 'SELL', 'inGoodHands', 'lostFound'
-      handleOptionChange={handleOptionChange} //TAKE DATA 'SELL', 'inGoodHands', 'lostFound' FROM INPUTS
+      {...{ next, data, cancel, selectedOption, handleOptionChange }}
+      // selectedOption FOR BUTTONS SWAPING OPTION 'SELL', 'inGoodHands', 'lostFound'
+      //handleOptionChange TAKE DATA 'SELL', 'inGoodHands', 'lostFound' FROM INPUTS
     />,
     <AddNoticeStepTwo
-      onFinal={onFinal}
-      next={handleNextStep}
-      data={data}
-      prev={handlePrevStep}
-      onClose={onClose}
-      selectedOption={selectedOption} // TO SHOW SELL FILED OR NO
+      {...{ final, onFinal, next, data, prev, onClose, selectedOption }} //selectedOption TO SHOW SELL FILED OR NO
     />,
   ];
   return (

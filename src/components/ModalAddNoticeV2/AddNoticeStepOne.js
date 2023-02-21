@@ -1,7 +1,6 @@
-import { ErrorMessage, Field, Formik, Form, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { useState } from 'react';
-import { breeds } from '../../utils/getBreed';
+import { breeds } from 'utils/getBreed';
 import {
   AddNoticeStepOneLabel,
   AddNoticeStepOneInput,
@@ -9,7 +8,6 @@ import {
   AddNoticeStepOneButtonCancel,
   AddNoticeStepOneSelect,
   AddNoticeStepOneButtonNextCancelWrapper,
-  AddNoticeStepOneForm,
   AddNoticeStepOneTopBtnsWrapper,
   AddNoticeLostFound,
   AddNoticeInGoodHands,
@@ -17,7 +15,6 @@ import {
   AddNoticeStepOneText,
   AddNoticeStepOneTitle,
 } from './AddNoticeStepOne.styled';
-import moment from 'moment';
 
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
@@ -64,171 +61,100 @@ export const AddNoticeStepOne = ({
   selectedOption,
   handleOptionChange,
 }) => {
-  // const [selectedDate, setSelectedDate] = useState('');
-  // const [dateToSubmit, setDateToSubmit] = useState();
-  // const [name, setName] = useState('');
-  // const [title, setTitle] = useState('');
-
-  const handleSubmit = values => {
-    alert(JSON.stringify(values, null, 2));
-    console.log(values);
-    console.log(formik);
-
-      // next({ ...values, dateOfBirth: dateToSubmit });
+  const formik = useFormik({
+    initialValues: data,
+    onSubmit: values => {
       next({ ...values, dateOfBirth: '2015-01-01' });
-  };
+    },
+  });
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <AddNoticeStepOneTitle>Add pet</AddNoticeStepOneTitle>
+      <AddNoticeStepOneText>
+        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+        consectetur
+      </AddNoticeStepOneText>
+      <AddNoticeStepOneTopBtnsWrapper>
+        <AddNoticeLostFound
+          type="radio"
+          id="lostFound"
+          value="lostFound"
+          name="lostFound"
+          checked={selectedOption === 'lostFound'}
+          onChange={handleOptionChange}
+        ></AddNoticeLostFound>
+        <label htmlFor="lostFound">lostFound</label>
+        <AddNoticeInGoodHands
+          name="inGoodHands"
+          type="radio"
+          id="inGoodHands"
+          value="inGoodHands"
+          checked={selectedOption === 'inGoodHands'}
+          onChange={handleOptionChange}
+        ></AddNoticeInGoodHands>
+        <label htmlFor="inGoodHands">inGoodHands</label>
+        <AddNoticeSell
+          name="sell"
+          type="radio"
+          id="sell"
+          value="sell"
+          checked={selectedOption === 'sell'}
+          onChange={handleOptionChange}
+        ></AddNoticeSell>
+        <label htmlFor="sell">sell</label>
+      </AddNoticeStepOneTopBtnsWrapper>
 
-  // const handleDate = event => {
-  //   setSelectedDate(event.target.value);
-  //   setDateToSubmit(event.target.valueAsNumber);
-  //   console.log(selectedDate);
-  //   // console.log(e.target.form);
-  //   // console.log(e.target.valueAsNumber);
-  // };
-  // const handleName = event => {
-  //   setName(event.target.value);
-  //   console.log(name);
-  // };
-  // const handleTitle = event => {
-  //   setName(event.target.value);
-  //   console.log(title);
-  // };
-const formik = useFormik({
-  // initialValues: {
-  //   firstName: '',
-  //   lastName: '',
-  //   email: '',
-  // },
-   
-  initialValues: data,
-  onSubmit: values => {
-    // alert(JSON.stringify(values, null, 2));
-    handleSubmit(values);
-    // setSubmitting(false);
-  },
-});
-return (
-  // <Formik
-  //   initialValues={data}
-  //   // validationSchema={schema}
-  //   onSubmit={handleSubmit}
-  //   validate={values => {
-  //     // const errors = {};
-  //     // if (!values.name) {
-  //     //   errors.name = 'Required';
-  //     // }
-  //     // if (!values.email) {
-  //     //   errors.email = 'Required';
-  //     // }
-  //     // return errors;
-  //     console.log(values);
-  //   }}
-  // >
-  //   {({
-  //     values,
-  //     errors,
-  //     touched,
-  //     handleChange,
-  //     handleBlur,
-  //     handleSubmit,
-  //     isSubmitting,
-  //     /* and other goodies */
-  //   }) => (
-  <form onSubmit={formik.handleSubmit}>
-    <AddNoticeStepOneTitle>Add pet</AddNoticeStepOneTitle>
-    <AddNoticeStepOneText>
-      Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-      consectetur
-    </AddNoticeStepOneText>
-    <AddNoticeStepOneTopBtnsWrapper>
-      <AddNoticeLostFound
-        type="radio"
-        id="lostFound"
-        value="lostFound"
-        name="lostFound"
-        checked={selectedOption === 'lostFound'}
-        onChange={handleOptionChange}
-      ></AddNoticeLostFound>
-      <label htmlFor="lostFound">lostFound</label>
-      <AddNoticeInGoodHands
-        name="inGoodHands"
-        type="radio"
-        id="inGoodHands"
-        value="inGoodHands"
-        checked={selectedOption === 'inGoodHands'}
-        onChange={handleOptionChange}
-      ></AddNoticeInGoodHands>
-      <label htmlFor="inGoodHands">inGoodHands</label>
-      <AddNoticeSell
-        name="sell"
-        type="radio"
-        id="sell"
-        value="sell"
-        checked={selectedOption === 'sell'}
-        onChange={handleOptionChange}
-      ></AddNoticeSell>
-      <label htmlFor="sell">sell</label>
-    </AddNoticeStepOneTopBtnsWrapper>
+      <AddNoticeStepOneLabel htmlFor="title">
+        Tittle of ad
+      </AddNoticeStepOneLabel>
+      <AddNoticeStepOneInput
+        name="title"
+        id="title"
+        onChange={formik.handleChange}
+        value={formik.values.title}
+        placeholder="Type name pet"
+      />
 
-    <AddNoticeStepOneLabel htmlFor="title">Tittle of ad</AddNoticeStepOneLabel>
-    <AddNoticeStepOneInput
-      name="title"
-      id="title"
-      onChange={formik.handleChange}
-      value={formik.values.title}
-      // component={AddNoticeStepOneInput}
-      placeholder="Type name pet"
-    />
+      <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
+      <AddNoticeStepOneInput
+        name="name"
+        id="name"
+        onChange={formik.handleChange}
+        value={formik.values.name}
+        placeholder="Type name pet"
+      />
 
-    <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
-    <AddNoticeStepOneInput
-      name="name"
-      id="name"
-      onChange={formik.handleChange}
-      value={formik.values.name}
-      // component={AddNoticeStepOneInput}
-      placeholder="Type name pet"
-    />
-
-    <AddNoticeStepOneLabel htmlFor="dateOfBirth">
-      Date of birth
-    </AddNoticeStepOneLabel>
-    <AddNoticeStepOneInput
-      type="date"
-      name="dateOfBirth"
-      id="dateOfBirth"
-      onChange={formik.handleChange}
-      value={formik.values.dateOfBirth}
-      // required
-      // onChange={handleDate}
-      // max={moment(moment.now()).format('YYYY-MM-DD')}
-      // value={selectedDate}
-      // component={AddNoticeStepOneInput}
-    />
-    <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
-    <AddNoticeStepOneSelect
-      // component={AddNoticeStepOneSelect}
-      name="breed"
-      id="breed"
-      onChange={formik.handleChange}
-      value={formik.values.breed}
-    >
-      {filterByLengthBreeds.map(breed => (
-        <option value={breed} key={breed}>
-          {breed}
-        </option>
-      ))}
-    </AddNoticeStepOneSelect>
-    <AddNoticeStepOneButtonNextCancelWrapper>
-      <AddNoticeStepOneButtonNext type="submit" >
-        Next
-      </AddNoticeStepOneButtonNext>
-      <AddNoticeStepOneButtonCancel type="button" onClick={() => cancel()}>
-        Cancel
-      </AddNoticeStepOneButtonCancel>
-    </AddNoticeStepOneButtonNextCancelWrapper>
-  </form>
-);}
-  //   </Formik>
-  // );
-// };
+      <AddNoticeStepOneLabel htmlFor="dateOfBirth">
+        Date of birth
+      </AddNoticeStepOneLabel>
+      <AddNoticeStepOneInput
+        type="date"
+        name="dateOfBirth"
+        id="dateOfBirth"
+        onChange={formik.handleChange}
+        value={formik.values.dateOfBirth}
+      />
+      <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
+      <AddNoticeStepOneSelect
+        name="breed"
+        id="breed"
+        onChange={formik.handleChange}
+        value={formik.values.breed}
+      >
+        {filterByLengthBreeds.map(breed => (
+          <option value={breed} key={breed}>
+            {breed}
+          </option>
+        ))}
+      </AddNoticeStepOneSelect>
+      <AddNoticeStepOneButtonNextCancelWrapper>
+        <AddNoticeStepOneButtonNext type="submit">
+          Next
+        </AddNoticeStepOneButtonNext>
+        <AddNoticeStepOneButtonCancel type="button" onClick={() => cancel()}>
+          Cancel
+        </AddNoticeStepOneButtonCancel>
+      </AddNoticeStepOneButtonNextCancelWrapper>
+    </form>
+  );
+};
