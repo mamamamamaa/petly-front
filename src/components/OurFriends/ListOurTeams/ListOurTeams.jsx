@@ -19,20 +19,21 @@ function ListOurTeams() {
   return (
     <Container>
       <Title>Our Team</Title>
-      <TitleHi>Hello everybody!</TitleHi>
+      <TitleHi>Hello everybody !</TitleHi>
       <Text>
         We are glad to present to your attention our team, that worked on this
         project. In a short video, you can see a presentation for each
         participant.
       </Text>
-      <TitleBy>We wish successful projects and peace to everyone!</TitleBy>
+      <TitleBy>We wish successful projects and peace to everyone !</TitleBy>
       <BoxVideo>
         <Iframe
-          video
-          src="https://www.youtube.com/embed/qgnsmJCy9FQ"
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/Rz-_6o9GR3o"
           title="YouTube video player"
           frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></Iframe>
       </BoxVideo>
