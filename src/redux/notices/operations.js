@@ -27,9 +27,10 @@ export const sell = createAsyncThunk(
         `/api/notices/paginateNotice?type=sell&page=${page}&limit=${limit}`
       );
 
-      // const not = res.data.items.reverse();
+      const not = res.data.items.reverse();
+      console.log(not);
 
-      return { data: res.data.items.reverse(), page };
+      return { data: res.data.items, page };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -59,7 +60,7 @@ export const lostFound = createAsyncThunk(
       const res = await axios.get(
         `/api/notices/paginateNotice?type=lost/found&page=${page}&limit=${limit}`
       );
-      return { data: res.data.items.reverse(), page };
+      return { data: res.data, page };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

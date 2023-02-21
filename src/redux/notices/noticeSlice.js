@@ -46,11 +46,17 @@ const initialState = {
 const findNotice = (state, id, type) => {
   switch (type) {
     case 'sell':
-      return state.sellNotices.find(notice => notice._id === id);
+      state.sellNotices.find(notice => notice._id === id);
+      break;
     case 'good-hands':
-      return state.goodHandsNotices.find(notice => notice._id === id);
+      state.goodHandsNotices.find(notice => notice._id === id);
+      break;
     case 'lost/found':
-      return state.lostFoundNotices.find(notice => notice._id === id);
+      state.lostFoundNotices.find(notice => notice._id === id);
+
+      break;
+    default:
+      console.log('Done');
   }
 };
 
@@ -123,10 +129,7 @@ const noticeSlice = createSlice({
         state.error = null;
       })
       .addCase(sell.fulfilled, (state, action) => {
-        state.sellNotices = [
-          ...state.sellNotices,
-          ...action.payload.data.items,
-        ];
+        state.sellNotices = [...state.sellNotices, ...action.payload.data];
         state.pages.sell += 1;
         state.totalCounts.sell = action.payload.data.totalCount;
         state.isLoading = false;
