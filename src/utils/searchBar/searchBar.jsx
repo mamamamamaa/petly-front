@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 // import PropTypes from 'prop-types';
 import { Suspense } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 // ============= styled ===============
-import { GoSearch } from 'react-icons/go';
+import { GoSearch, GoTrashcan } from 'react-icons/go';
 import { Formik } from 'formik';
 import {
   Search,
@@ -17,10 +17,21 @@ import {
 
 export default function SearchBar({ onSubmit }) {
   const [searchParams] = useSearchParams();
+  const [isDelete, setDelete] = useState(false);
+  const inputRef = useRef();
+
   const handleSubmit = async (values, actions) => {
-    await onSubmit(values);
-    actions.setSubmitting(false);
+    if (!isDelete && values.query) {
+      setDelete(true);
+      await onSubmit(values);
+      actions.setSubmitting(false);
+    } else {
+      setDelete(false);
+      actions.setValues({ query: '' });
+      inputRef.current.focus();
+    }
   };
+
   return (
     <Search as="main">
       <Formik
@@ -31,14 +42,16 @@ export default function SearchBar({ onSubmit }) {
           <FormEl>
             <InputBox>
               <Input
+                innerRef={inputRef}
                 name="query"
                 type="text"
                 autoComplete="off"
                 autoFocus
                 placeholder="Search"
               />
+
               <SearchFormButton type="submit" disabled={isSubmitting}>
-                <GoSearch />
+                {!isDelete ? <GoSearch /> : <GoTrashcan />}
               </SearchFormButton>
             </InputBox>
           </FormEl>
