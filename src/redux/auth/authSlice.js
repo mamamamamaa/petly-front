@@ -26,7 +26,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     addFav(state, action) {
-      state.user.favorite.push(action.payload);
+      state.user.favorite.unshift(action.payload);
     },
     delFav(state, action) {
       state.user.favorite = state.user.favorite.filter(

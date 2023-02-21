@@ -103,11 +103,10 @@ const noticeSlice = createSlice({
       })
       .addCase(addNoticeToFav.fulfilled, (state, action) => {
         const { id, type } = action.payload;
-        console.log(action.payload);
         const notice = findNotice(state, id, type);
 
         if (notice) {
-          state.favoriteNotices.push(notice);
+          state.favoriteNotices.unshift(notice);
         }
         state.isLoading = false;
         state.error = null;
