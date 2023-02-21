@@ -71,6 +71,7 @@ export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async (newNotice, thunkAPI) => {
     try {
+      console.log(newNotice);
       const response = await axios.post('/api/notices', newNotice, {
         headers: {
           'Content-Type': 'multipart/form-data',

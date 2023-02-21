@@ -71,7 +71,7 @@ export const NoticeCategoryItemTemplate = ({
       return;
     }
     dispatch(getNoticeById(_id));
-  }, [_id, dispatch, modal]);
+  }, [modal]);
   // ===========================================
 
   const favoriteHandler = () => {
