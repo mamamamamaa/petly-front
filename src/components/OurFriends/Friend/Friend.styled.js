@@ -59,11 +59,12 @@ export const DescList = styled.ul`
 export const AdressLink = styled.a`
   text-decoration-line: underline;
   color: #000000;
-  &:hover,
-  &:focus {
+  :hover,
+  :focus {
     color: ${theme.colors.primary};
-  }
+  } 
 `;
+
 export const WorkingModal = styled.div`
   position: absolute;
   /* max-width: 120px; */
