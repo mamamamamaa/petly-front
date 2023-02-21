@@ -32,6 +32,7 @@ import {
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/operations';
+import moment from 'moment/moment';
 
 const formTwoValidationSchema = Yup.object({
   sex: Yup.string().required('Sex is required'),
@@ -63,7 +64,7 @@ export const AddNoticeStepTwo = props => {
     props.setPage(prev => prev - 1);
   };
 
-  const resultOfCategory = props.data.type === 'sell';
+  const noticeType = props.data.type === 'sell';
 
   return (
     <Container>
@@ -79,18 +80,35 @@ export const AddNoticeStepTwo = props => {
             const { type, title, name, dateOfBirth, breed } = props.data;
             const { sex, place, price, photoUrl, comments } = values;
 
+            const date = moment(new Date(dateOfBirth)).format('DD.MM.YYYY');
+
             const formData = new FormData();
             formData.append('type', type);
             formData.append('title', title);
             formData.append('name', name);
-            formData.append('dateOfBirth', dateOfBirth);
+            formData.append('dateOfBirth', date);
             formData.append('breed', breed);
             formData.append('sex', sex);
             formData.append('place', place);
             formData.append('price', price);
             formData.append('photoUrl', photoUrl);
             formData.append('comments', comments);
-            dispatch(addNotice(formData));
+            const newData = {
+              type,
+              title,
+              name,
+              dateOfBirth,
+              breed,
+              sex,
+              place,
+              photoUrl,
+              comments,
+            };
+            if (type === 'sell') {
+              dispatch(addNotice(formData));
+            } else {
+              dispatch(addNotice(newData));
+            }
 
             props.closeModal();
           }}
@@ -144,12 +162,12 @@ export const AddNoticeStepTwo = props => {
                 ? toast('Location is required')
                 : null}
 
-              {resultOfCategory && (
+              {noticeType && (
                 <Label htmlFor="price">
                   Price<SpanStar>*</SpanStar>:
                 </Label>
               )}
-              {resultOfCategory && (
+              {noticeType && (
                 <InputWrapper>
                   <Input
                     id="price"
@@ -185,7 +203,7 @@ export const AddNoticeStepTwo = props => {
                   required
                 />
                 {props.isSubmitting && props.errors.photoUrl
-                  ? toast.failure('Pet image is required')
+                  ? toast('Pet image is required')
                   : null}
               </ButtonAddPhoto>
               <WraperTextarea>
@@ -200,7 +218,7 @@ export const AddNoticeStepTwo = props => {
                 />
               </WraperTextarea>
               {props.isSubmitting && props.errors.comments
-                ? toast.failure('Comment is required')
+                ? toast('Comment is required')
                 : null}
               <ButtonWrapper>
                 <ButtonFill type="submit" onSubmit={handleSubmit}>

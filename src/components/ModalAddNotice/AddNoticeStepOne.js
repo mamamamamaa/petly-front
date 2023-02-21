@@ -1,8 +1,10 @@
 import { Formik } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import toast, { Toaster } from 'react-hot-toast';
 import * as Yup from 'yup';
+
+import { breeds } from '../../utils/getBreed';
 
 import {
   Container,
@@ -36,17 +38,28 @@ const formOneValidationSchema = Yup.object({
     .min(2, 'Name Too Short!')
     .max(16, 'Name Too Long!')
     .label('Name')
+    .trim()
     .required('Name is required')
     .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z\s]+?$/iu, 'Only letters in "Name"'),
-  dateOfBirth: Yup.date().nullable().min(new Date(1900, 0, 1)),
+  // dateOfBirth: Yup.string().matches(
+  //   /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
+  //   'Correct format: dd.mm.yyyy'
+  // ),
+  dateOfBirth: Yup.date(),
   breed: Yup.string()
     .min(2, 'Breed Too Short!')
     .max(16, 'Breed Too Long!')
-    .label('breed')
+
     .required('Breed is required'),
 });
 
+const filterByLengthBreeds = breeds.filter(
+  breed => breed.split('').length < 16
+);
+
 export const AddNoticeStepOne = props => {
+  const [type, setType] = useState('sell');
+
   const handleSubmit = values => {
     props.setData(prev => {
       return {
@@ -61,6 +74,29 @@ export const AddNoticeStepOne = props => {
     props.setPage(prev => prev + 1);
   };
 
+  const getTitle = type => {
+    let title;
+
+    switch (type) {
+      case 'lost/found':
+        title = 'Your pet will find his home';
+        break;
+      case 'good-hands':
+        title =
+          'Це кіт. Коти дуже незалежні і не потребують багато уваги, але в той же час можуть бути дуже ласкавими.';
+        break;
+      case 'sell':
+        title =
+          'Це птах. Птахи дуже красиві тварини і можуть бути дуже цікавими для спостереження.';
+        break;
+      default:
+        title =
+          'Це тварина. Ми не можемо дати відповідну опис для цього типу тварини.';
+    }
+
+    return title;
+  };
+
   const handleOnClick = () => {
     props.closeModal();
   };
@@ -71,21 +107,8 @@ export const AddNoticeStepOne = props => {
         <VscClose size={65} />
       </ButtonClose>
       <Title>Add pet</Title>
+      <SubTitle>{getTitle(type)}</SubTitle>
 
-      {props.setData.type === 'sell' && (
-        <SubTitle>Lets find a new home for you pet</SubTitle>
-      )}
-      {props.setData.type === 'good-hands' && (
-        <SubTitle>You give your pet to a good people</SubTitle>
-      )}
-      {props.setData.type === 'lost/found' && (
-        <SubTitle>Your pet will find his home</SubTitle>
-      )}
-
-      <SubTitle>
-        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-        consectetur
-      </SubTitle>
       <FormWrapper>
         <Formik
           validationSchema={formOneValidationSchema}
@@ -94,7 +117,11 @@ export const AddNoticeStepOne = props => {
         >
           {props => (
             <FormFirst>
-              <RadioWrapp role="group" aria-labelledby="type-group">
+              <RadioWrapp
+                role="group"
+                aria-labelledby="type-group"
+                onChange={e => setType(e.target.value)}
+              >
                 <RadioBtn
                   id="lost/found"
                   type="radio"
@@ -150,6 +177,7 @@ export const AddNoticeStepOne = props => {
               </Label>
               <InputWrapper>
                 <Input
+                  type="date"
                   id="dateOfBirth"
                   name="dateOfBirth"
                   placeholder="Type date of birth"
@@ -163,12 +191,13 @@ export const AddNoticeStepOne = props => {
                 Breed<SpanStar>*</SpanStar>
               </Label>
               <InputWrapperLast>
-                <InputLast
-                  id="breed"
-                  name="breed"
-                  placeholder="Type breed"
-                  required
-                />
+                <InputLast as="select" name="breed" id="breed">
+                  {filterByLengthBreeds.map(breed => (
+                    <option value={breed} key={breed}>
+                      {breed}
+                    </option>
+                  ))}
+                </InputLast>
               </InputWrapperLast>
               {props.isSubmitting && props.errors.breed
                 ? toast('Breed is required')

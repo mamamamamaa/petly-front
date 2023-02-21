@@ -4,6 +4,7 @@ import { theme } from '../../utils/theme';
 import { MdMale } from 'react-icons/md';
 import { MdFemale } from 'react-icons/md';
 import { TfiPlus } from 'react-icons/tfi';
+import { media } from '../../components/Layout/Layout.styled';
 
 export const Container = styled.div`
   background-color: ${theme.colors.accentText};
@@ -311,8 +312,8 @@ export const InputPhoto = styled.input`
 `;
 
 export const AvatarImg = styled.img`
-  min-width: 182px;
-  min-height: 182px;
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -572,5 +573,23 @@ export const BoxLabel = styled.div`
   }
   @media screen and (min-width: 1280px) {
     font-size: 24px;
+  }
+`;
+
+export const AddNoticeStepOneSelect = styled.select`
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  margin-bottom: 40px;
+  padding-left: 14px;
+  padding-right: 20px;
+  ${media.tabletAndDesktop} {
+    height: 48px;
+    padding-left: 16px;
+    padding-top: 11px;
+    padding-bottom: 10px;
   }
 `;

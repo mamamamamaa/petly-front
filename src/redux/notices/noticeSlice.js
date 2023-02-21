@@ -46,11 +46,19 @@ const initialState = {
 const findNotice = (state, id, type) => {
   switch (type) {
     case 'sell':
-      return state.sellNotices.find(notice => notice._id === id);
+      state.sellNotices.find(notice => notice._id === id);
+      break;
     case 'good-hands':
-      return state.goodHandsNotices.find(notice => notice._id === id);
+      state.goodHandsNotices.find(notice => notice._id === id);
+      break;
     case 'lost/found':
-      return state.lostFoundNotices.find(notice => notice._id === id);
+      state.lostFoundNotices.find(notice => notice._id === id);
+      break;
+    case 'my-ads':
+      state.myAdsNotices.find(notice => notice._id === id);
+      break;
+    default:
+      console.log('Done');
   }
 };
 
