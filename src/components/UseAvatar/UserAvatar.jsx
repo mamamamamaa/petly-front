@@ -50,7 +50,7 @@ export const FileUploader = () => {
   return (
     <>
       <DivPhoto>
-        {user.avatar ? (
+        {user ? (
           <Imgav
             src={avatarURL || user.user.avatarURL}
             alt="preview"

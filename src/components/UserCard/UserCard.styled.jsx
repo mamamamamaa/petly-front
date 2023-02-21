@@ -327,6 +327,7 @@ export const Input = styled(Field)`
 
 export const BirthdayContainer = styled.span`
   position: relative;
+  width: 125px;
   display: flex;
   align-items: center;
   justify-content: center;

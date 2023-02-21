@@ -192,7 +192,7 @@ export const UserCard = () => {
               <FormLabel>
                 Birthday:
                 <BirthdayContainer>
-                  {userData.birthday || 'add date'}
+                  {userData.birthday || 'date'}
                   <DateInput
                     name="birthday"
                     id="birthday"
