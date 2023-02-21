@@ -64,13 +64,15 @@ export const AddNoticeStepTwo = ({
   //   const handleSubmit = (values) => {
   // next({ ...values, dateOfBirth: '2015-01-01' });
   // }
+   
   const formik = useFormik({
     initialValues: {
       sex: data.sex,
       place: data.place,
       price: data.price,
       photoUrl: data.photoUrl,
-      comments: data.comments || data.commentsArea,
+      comments: data.comments,
+      // commentsArea: data.commentsArea,
     },
     // validationSchema: addNoticeSchema,
     onSubmit: (values, actions) => {
@@ -96,12 +98,18 @@ export const AddNoticeStepTwo = ({
   const [preview, setPreview] = useState(null); // LOAD PREVIEW IMAGE
   const handleImageLoad = e => {
     const url = e.currentTarget?.files[0];
-    formik.setFieldValue('pictureURL', url, url?.name);
+    formik.setFieldValue('photoUrl', url, url?.name);
     const reader = new FileReader();
     reader.onloadend = () => {
       setPreview(reader.result);
     };
     reader.readAsDataURL(url);
+  };
+  const handleCommentsChange = e => {
+    formik.setValues({
+      ...formik.values,
+      comments: e.target.value,
+    });
   };
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -185,8 +193,8 @@ export const AddNoticeStepTwo = ({
         id="commentsArea"
         name="commentsArea"
         placeholder="Type comments"
-        onChange={formik.handleChange}
-        value={formik.values.commentsArea}
+        onChange={handleCommentsChange}
+        value={formik.values.comments}
       />
 
       <AddNoticeStepTwoLabelComments htmlFor="comments">
@@ -197,7 +205,7 @@ export const AddNoticeStepTwo = ({
         id="comments"
         name="comments"
         placeholder="Type comments"
-        onChange={formik.handleChange}
+        onChange={handleCommentsChange}
         value={formik.values.comments}
       />
       <AddNoticeStepTwoButtonBackDoneWrapper>

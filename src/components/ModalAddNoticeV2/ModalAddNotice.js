@@ -17,6 +17,7 @@ const initialState = {
   price: '',
   photoUrl: '',
   comments: null,
+  commentsArea: null,
 };
 const testState = {
   type: 'sell',
@@ -54,34 +55,34 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       const formData = new FormData();
       console.log(formData);
       // formData.append('photoUrl', newData.photoUrl, newData.photoUrl.name);
-      formData.append(
-        'photoUrl',
-        testState.photoUrl ||
-          'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
-      );
-      formData.append('comments', testState.comments || 'demon');
-      formData.append('breed', testState.breed || 'barbet');
-      formData.append('dateOfBirth', testState.dateOfBirth);
-      formData.append('name', testState.name || 'demon');
-      formData.append('type', testState.type || 'sell');
-      formData.append('title', testState.title ||'demon');
-      formData.append('sex', testState.sex  ||'male');
-      formData.append('place', testState.place || 'demon');
-      formData.append('price', testState.price || 200);
       // formData.append(
       //   'photoUrl',
-      //   newData.photoUrl ||
+      //   testState.photoUrl ||
       //     'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
       // );
-      // formData.append('comments', newData.comments || 'demon');
-      // formData.append('breed', newData.breed || 'barbet');
-      // formData.append('dateOfBirth', newData.dateOfBirth);
-      // formData.append('name', newData.name || 'demon');
-      // formData.append('type', newData.type || 'sell');
-      // formData.append('title', newData.title ||'demon');
-      // formData.append('sex', newData.sex  ||'male');
-      // formData.append('place', newData.place || 'demon');
-      // formData.append('price', newData.price || 200);
+      // formData.append('comments', testState.comments || 'lemonad');
+      // formData.append('breed', testState.breed || 'barbet');
+      // formData.append('dateOfBirth', testState.dateOfBirth);
+      // formData.append('name', testState.name || 'demon');
+      // formData.append('type', testState.type || 'sell');
+      // formData.append('title', testState.title ||'demon');
+      // formData.append('sex', testState.sex  ||'male');
+      // formData.append('place', testState.place || 'demon');
+      // formData.append('price', testState.price || 200);
+      formData.append(
+        'photoUrl',
+        newData.photoUrl ||
+          'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
+      );
+      formData.append('comments', newData.comments || 'lemonad');
+      formData.append('breed', newData.breed || 'barbet');
+      formData.append('dateOfBirth', newData.dateOfBirth);
+      formData.append('name', newData.name || 'demon');
+      formData.append('type', newData.type || 'sell');
+      formData.append('title', newData.title ||'demon');
+      formData.append('sex', newData.sex  ||'male');
+      formData.append('place', newData.place || 'demon');
+      formData.append('price', newData.price || 200);
       for (const [key, value] of formData.entries()) {
         console.log(`${key}: ${value}`);
       }
