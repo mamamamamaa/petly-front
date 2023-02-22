@@ -47,12 +47,13 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
         ...newData,
         dateOfBirth: normalizedDateOfBirth,
       });
-
+  // Retrieve the file URL from local storage
+  const fileUrlFromStorage = localStorage.getItem('fileUrl');
       const formData = new FormData();
-      console.log(newData.photoUrl);
+      console.log(fileUrlFromStorage);
       formData.append(
         'photoUrl',
-        newData.photoUrl || ''
+        fileUrlFromStorage || ''
         // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
       );
       formData.append('comments', newData.comments || 'lemonad');

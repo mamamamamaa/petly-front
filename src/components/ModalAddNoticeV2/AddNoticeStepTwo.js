@@ -89,21 +89,20 @@ export const AddNoticeStepTwo = ({
   const [preview, setPreview] = useState(null); // LOAD PREVIEW IMAGE
   const handleImageLoad = event => {
     const files = event.currentTarget?.files[0]; //FILE NAME, size, type, lastmodified
+    // Update the form values with the file
     const reader = new FileReader();
     reader.onload = () => {
       setPreview(reader.result); //=== EVENT.TARGET.RESULT MAKES SET PREVIEW IMAGE TO DIV
     };
-    // const shouldValidate = true; // or false, depending on whether you want to trigger validation
-    // formik.setFieldValue('photoUrl', files, shouldValidate, file.name);
     reader.readAsDataURL(files); //return the data as a data URL (base64-encoded string)
-    //  Array.from(files).forEach(file => {
-    //    reader.readAsText(file);
-    //  });
     formik.setFieldValue('photoUrl', files);
+    // Create a local URL for the file
+    const fileUrl = URL.createObjectURL(files);
+    // Store the file URL locally
+    localStorage.setItem('fileUrl', fileUrl);
     console.log(files);
     console.log(reader);
     console.log(preview);
-    // event.currentTarget.value = url?.name;
   };
   const handleCommentsChange = event => {
     formik.setValues({
@@ -176,7 +175,7 @@ export const AddNoticeStepTwo = ({
         preview={preview}
       >
         <AddNoticeStepTwoLoadImageInput
-          webkitdirectory
+          // webkitdirectory
           type="file"
           id="photoUrl"
           name="photoUrl"
