@@ -1,38 +1,35 @@
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 import { useAuth } from '../../redux/hooks';
 import { addFav, delFav } from '../../redux/auth/authSlice';
 import {
   addNoticeToFav,
   deleteNoticeFromFav,
 } from '../../redux/notices/operations';
-// ===================
 import {
-  Container,
-  WraperMain,
-  Img,
-  AdvWrapper,
+  AddToFavImg,
   AdvTitle,
-  BoxSecond,
-  Wraper,
-  Title,
-  BoxList,
-  Ul,
-  Li,
-  TitleProperty,
-  Text,
+  AdvWrapper,
   Box,
   BoxButton,
+  BoxList,
+  BoxSecond,
   ButtonModal,
-  AddToFavImg,
   CallModal,
   ContactLink,
+  Container,
+  Img,
+  Li,
+  Text,
+  Title,
+  TitleProperty,
+  Ul,
+  Wraper,
+  WraperMain,
 } from './ListModalCardNotice.styled';
 import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import noPoster from 'noPoster.jpg';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
-// ===================
 
 export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
   const {
@@ -47,15 +44,13 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
     place = 'unknown',
     sex = 'unknown',
     email = 'unknown',
-    phone = 'unknown',
+    mobilePhone = 'unknown',
     comments = 'unknown',
   } = date;
 
-  // добавить в избранное помошники
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
 
-  // добавить в избранное логика
   const favoriteHandler = () => {
     if (!isLoggedIn) {
       return toast.error('You should login/sign up your account!');
@@ -64,39 +59,22 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
     if (fav) {
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
-      toast.success('Removed from favorite!')
+      toast.success('Removed from favorite!');
     } else {
       dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
-      toast.success('Successfully added to favorite!')
+      toast.success('Successfully added to favorite!');
     }
     setFav(prevState => !prevState);
   };
 
-  // сделать звонок
-  const call = phone => {
-    const fullNumber = 'tel:' + phone;
-    return fullNumber;
-  };
-  const getCall = call(phone);
+  const call = phone => 'tel:' + phone;
+  const mail = email => 'mailto:' + email;
+  const changeTitle = type => (type === 'good-hands' ? 'In good hands' : type);
 
-  // send email
-
-  const mail = email => {
-    const mailTo = 'mailto:' + email;
-    return mailTo;
-  };
   const sendMail = mail(email);
+  const getCall = call(mobilePhone);
 
-  const changeTitle = type => {
-    if (type === 'good-hands') {
-      const newType = 'In good hands';
-      return newType;
-    } else {
-      const newType = type;
-      return newType;
-    }
-  };
   const getNewType = changeTitle(type);
 
   return (
@@ -158,19 +136,23 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
                 </Li>
                 <Li>
                   <Text>
-                    <ContactLink 
+                    <ContactLink
                       href={sendMail}
-                      className={email === 'unknown' ? 'noHover' : 'hover'}>
+                      className={email === 'unknown' ? 'noHover' : 'hover'}
+                    >
                       {email}
                     </ContactLink>
                   </Text>
                 </Li>
                 <Li>
                   <Text>
-                    <ContactLink 
+                    <ContactLink
                       href={getCall}
-                      className={phone === 'unknown' ? 'noHover' : 'hover'}>
-                      {phone}
+                      className={
+                        mobilePhone === 'unknown' ? 'noHover' : 'hover'
+                      }
+                    >
+                      {mobilePhone}
                     </ContactLink>
                   </Text>
                 </Li>
