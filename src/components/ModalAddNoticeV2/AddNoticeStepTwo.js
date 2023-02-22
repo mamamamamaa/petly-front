@@ -88,14 +88,21 @@ export const AddNoticeStepTwo = ({
   const [isChecked, setIsChecked] = useState(false); // MALE /FEMALE
   const [preview, setPreview] = useState(null); // LOAD PREVIEW IMAGE
   const handleImageLoad = event => {
-    const url = event.currentTarget?.files[0];
-    const shouldValidate = true; // or false, depending on whether you want to trigger validation
-    formik.setFieldValue('photoUrl', url, shouldValidate, url.name);
+    const files = event.currentTarget?.files[0]; //FILE NAME, size, type, lastmodified
     const reader = new FileReader();
     reader.onload = () => {
-      setPreview(reader.result);
+      setPreview(reader.result); //=== EVENT.TARGET.RESULT MAKES SET PREVIEW IMAGE TO DIV
     };
-    reader.readAsDataURL(url);
+    // const shouldValidate = true; // or false, depending on whether you want to trigger validation
+    // formik.setFieldValue('photoUrl', files, shouldValidate, file.name);
+    reader.readAsDataURL(files); //return the data as a data URL (base64-encoded string)
+    //  Array.from(files).forEach(file => {
+    //    reader.readAsText(file);
+    //  });
+    formik.setFieldValue('photoUrl', files);
+    console.log(files);
+    console.log(reader);
+    console.log(preview);
     // event.currentTarget.value = url?.name;
   };
   const handleCommentsChange = event => {
@@ -169,6 +176,7 @@ export const AddNoticeStepTwo = ({
         preview={preview}
       >
         <AddNoticeStepTwoLoadImageInput
+          webkitdirectory
           type="file"
           id="photoUrl"
           name="photoUrl"

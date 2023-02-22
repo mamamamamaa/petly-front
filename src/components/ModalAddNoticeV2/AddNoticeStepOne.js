@@ -68,7 +68,7 @@ export const AddNoticeStepOne = ({
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepOneTitle>Add pet</AddNoticeStepOneTitle>
       <AddNoticeStepOneText>
         Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,

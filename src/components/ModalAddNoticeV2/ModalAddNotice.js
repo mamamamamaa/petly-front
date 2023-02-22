@@ -16,8 +16,8 @@ const initialState = {
   place: '',
   price: '',
   photoUrl: '',
-  comments: null,
-  commentsArea: null,
+  comments: '',
+  // commentsArea: null,
 };
 const testState = {
   type: 'sell',
@@ -49,10 +49,11 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       });
 
       const formData = new FormData();
+      console.log(newData.photoUrl);
       formData.append(
         'photoUrl',
-        newData.photoUrl.name || '',
-          // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
+        newData.photoUrl || ''
+        // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
       );
       formData.append('comments', newData.comments || 'lemonad');
       formData.append('breed', newData.breed || 'barbet');
