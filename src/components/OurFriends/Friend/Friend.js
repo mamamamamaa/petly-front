@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import {
   Title,
-  Link,
   Description,
   DescList,
   Image,
@@ -26,10 +25,8 @@ const Friend = ({ friend }) => {
   const color = showModal ? '#F59256' : '#111111';
   return (
     <>
-      <Title>
-        <Link href={url} target="_blank" rel="noopener noreferrer">
-          {title}
-        </Link>
+      <Title href={url} target="_blank" rel="noopener noreferrer">
+        {title}
       </Title>
 
       <Description>

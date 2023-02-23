@@ -1,5 +1,4 @@
 import React from 'react';
-import { PageTitle } from './FriendsContainer.styled';
 import { MainHeader } from '../../../pages/NewsPage.styled';
 
 const FriendsContainer = ({ children }) => {
