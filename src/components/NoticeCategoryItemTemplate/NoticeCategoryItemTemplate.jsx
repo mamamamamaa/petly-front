@@ -104,13 +104,14 @@ export const NoticeCategoryItemTemplate = ({
 
   useEffect(() => {
     if (modal) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     }
   }, [modal]);
 
-  
+  console.log(price);
+
   return (
     <>
       {modal && currentNotice && (
@@ -143,7 +144,7 @@ export const NoticeCategoryItemTemplate = ({
             <Li>Breed:</Li>
             <Li>Place:</Li>
             <Li>Age:</Li>
-            {price !== undefined && type === 'sell' && <Li>Price:</Li>}
+            <Li>Price:</Li>
           </Ul>
           <Ul>
             <Li>{breed}</Li>
@@ -152,6 +153,8 @@ export const NoticeCategoryItemTemplate = ({
               <CardNewDate date={dateOfBirth} />
             </Li>
             {price !== undefined && type === 'sell' && <Li>{price}$</Li>}
+            {price !== '0' && type === 'good-hands' && <Li>for free</Li>}
+            {price !== '0' && type === 'lost/found' && <Li>for free</Li>}
           </Ul>
         </WraperPetDetails>
         <PetDetailsButton onClick={modalHandler}>
