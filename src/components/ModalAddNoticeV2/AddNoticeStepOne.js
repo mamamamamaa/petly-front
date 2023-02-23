@@ -67,9 +67,11 @@ export const AddNoticeStepOne = ({
       next({
         ...data,
         ...values,
+        selectedOption,
       });
     },
   });
+  formik.values.type = selectedOption;
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepOneTitle>Add pet</AddNoticeStepOneTitle>

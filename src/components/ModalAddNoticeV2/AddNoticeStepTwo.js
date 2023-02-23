@@ -106,6 +106,9 @@ export const AddNoticeStepTwo = ({
       comments: event.target.value,
     });
   };
+  if (isChecked === true) {
+    formik.values.sex = 'male';
+  } else formik.values.sex = 'female';
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
