@@ -29,7 +29,7 @@ const testState = {
   place: 'Kharkiv',
   price: '500',
   photoUrl: '',
-    // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg',
+  // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg',
   comments: 'nice creature',
 };
 export const ModalAddNotice = ({ onClose, isOpen }) => {
@@ -37,7 +37,7 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
   const [data, setData] = useState(initialState);
   const [final, setFinal] = useState(false);
   const onFinal = () => setFinal(final);
-  
+
   const next = (newData = {}, final) => {
     const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
       'DD.MM.YYYY'
@@ -47,14 +47,20 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
         ...newData,
         dateOfBirth: normalizedDateOfBirth,
       });
-  // Retrieve the file URL from local storage
+      // Retrieve the file URL from local storage
       const formData = new FormData();
-      formData.append(
-        'photoUrl',
-        newData?.photoUrl,
-        newData?.photoUrl?.name
-        // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
-      );
+      // if (newData.photoUrl) {
+ 
+        if (typeof newData.photoUrl === 'string') {
+          const photoUrlFile = new File(
+            [newData.photoUrl],
+            newData.photoUrl.name,
+            { type: 'image/jpeg' }
+          );
+          formData.append('photoUrl', photoUrlFile);
+        } else {
+          formData.append('photoUrl', newData.photoUrl);
+        }
       formData.append('comments', newData.comments || 'lemonad');
       formData.append('breed', newData.breed || 'barbet');
       formData.append('dateOfBirth', newData.dateOfBirth);

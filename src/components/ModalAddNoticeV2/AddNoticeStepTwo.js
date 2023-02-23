@@ -88,7 +88,8 @@ export const AddNoticeStepTwo = ({
   const [isChecked, setIsChecked] = useState(false); // MALE /FEMALE
   const [preview, setPreview] = useState(null); // LOAD PREVIEW IMAGE
   const handleImageLoad = event => {
-    const files = event.currentTarget?.files[0]; //FILE NAME, size, type, lastmodified
+    const files = event.currentTarget.files[0]; //FILE NAME, size, type, lastmodified
+
     // Update the form values with the file
     const reader = new FileReader();
     reader.onload = () => {
@@ -174,7 +175,6 @@ export const AddNoticeStepTwo = ({
         preview={preview}
       >
         <AddNoticeStepTwoLoadImageInput
-          // webkitdirectory
           type="file"
           id="photoUrl"
           name="photoUrl"
