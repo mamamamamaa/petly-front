@@ -45,7 +45,6 @@ const FriendsList = () => {
       <Button onClick={modalHandler}>
         <Title>push me ...</Title>
         <Img src={poster} alt="egg" />
-        {/*<EasterEgg />*/}
       </Button>
     </StyledList>
   );

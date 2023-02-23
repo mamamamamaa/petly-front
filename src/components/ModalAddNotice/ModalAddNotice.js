@@ -5,7 +5,7 @@ import { AddNoticeStepTwo } from './AddNoticeStepTwo';
 export const ModalAddNotice = props => {
   const [page, setPage] = useState(0);
   const [data, setData] = useState({
-    type: '',
+    type: 'sell',
     title: '',
     name: '',
     dateOfBirth: '',
