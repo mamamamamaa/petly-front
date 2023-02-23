@@ -15,7 +15,7 @@ import {
   AddNoticeStepOneText,
   AddNoticeStepOneTitle,
 } from './AddNoticeStepOne.styled';
-
+import moment from 'moment';
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
 );
@@ -64,7 +64,10 @@ export const AddNoticeStepOne = ({
   const formik = useFormik({
     initialValues: data,
     onSubmit: values => {
-      next({ ...values, dateOfBirth: '2015-01-01' });
+      next({
+        ...data,
+        ...values,
+      });
     },
   });
   return (

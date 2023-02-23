@@ -96,10 +96,6 @@ export const AddNoticeStepTwo = ({
     };
     reader.readAsDataURL(files); //return the data as a data URL (base64-encoded string)
     formik.setFieldValue('photoUrl', files);
-    // Create a local URL for the file
-    const fileUrl = URL.createObjectURL(files);
-    // Store the file URL locally
-    localStorage.setItem('fileUrl', fileUrl);
     console.log(files);
     console.log(reader);
     console.log(preview);

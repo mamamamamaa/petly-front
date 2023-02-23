@@ -10,7 +10,7 @@ const initialState = {
   type: '',
   title: '',
   name: '',
-  dateOfBirth: '',
+  dateOfBirth: '2015-01-01',
   breed: '',
   sex: 'male',
   place: '',
@@ -23,7 +23,7 @@ const testState = {
   type: 'sell',
   title: 'demon',
   name: 'demon',
-  dateOfBirth: '2020-01-01',
+  dateOfBirth: '01-01-2020',
   breed: 'barbet',
   sex: 'male',
   place: 'Kharkiv',
@@ -48,12 +48,11 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
         dateOfBirth: normalizedDateOfBirth,
       });
   // Retrieve the file URL from local storage
-  const fileUrlFromStorage = localStorage.getItem('fileUrl');
       const formData = new FormData();
-      console.log(fileUrlFromStorage);
       formData.append(
         'photoUrl',
-        fileUrlFromStorage || ''
+        newData?.photoUrl,
+        newData?.photoUrl?.name
         // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg'
       );
       formData.append('comments', newData.comments || 'lemonad');
