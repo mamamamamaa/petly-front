@@ -85,7 +85,7 @@ export const FriendsCard = styled.li`
   @media (min-width: 1280px) {
     padding-right: 35px;
     width: 394px;
-    height: 325px;
+    /* height: 325px; */
   }
 `;
 
