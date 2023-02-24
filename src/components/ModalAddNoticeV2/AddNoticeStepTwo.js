@@ -31,17 +31,16 @@ import {
 import { BoxWarning } from './ModalAddNotice.styled';
 
 const addNoticeStepTwoSchema = yup.object().shape({
-  sex: yup.string().required('Sex is required'),
+  sex: yup.string().oneOf(['male', 'female']).required('Sex is required'),
   place: yup
     .string()
     .min(4, 'Too Short!')
     .max(60, 'Too Long!')
     .required('Location is required'),
   price: yup.number().required('The price is required'),
-  photoUrl: yup
-    .string(),
+  photoUrl: yup.string(),
   //mixed()
-    // .required('Image is required (jpg, jpeg, png)'),
+  // .required('Image is required (jpg, jpeg, png)'),
   comments: yup
     .string()
     .min(8, 'Must be 8 or more letter')
@@ -74,7 +73,7 @@ export const AddNoticeStepTwo = ({
       photoUrl: data.photoUrl,
       comments: data.comments,
     },
-    // validationSchema: addNoticeStepTwoSchema,
+    validationSchema: addNoticeStepTwoSchema,
     onSubmit: (values, actions) => {
       const errors = actions.validateForm();
       console.log(errors);
@@ -90,9 +89,8 @@ export const AddNoticeStepTwo = ({
     },
     selectedOption,
   });
-  console.log(formik.errors);
-  console.log(formik.values);
-  const [isChecked, setIsChecked] = useState(null); // MALE / false means FEMALE by default
+  const [isChecked, setIsChecked] = useState(true); // true means MALE by default / false means FEMALE by default
+  const [isDisabled, setIsDisabled] = useState(true); // disable checkbox by default
   const [preview, setPreview] = useState(null); // LOAD PREVIEW IMAGE
   const handleImageLoad = event => {
     const files = event.currentTarget.files[0]; //FILE NAME, size, type, lastmodified
@@ -104,9 +102,6 @@ export const AddNoticeStepTwo = ({
     };
     reader.readAsDataURL(files); //return the data as a data URL (base64-encoded string)
     formik.setFieldValue('photoUrl', files);
-    // console.log(files);
-    // console.log(reader);
-    // console.log(preview);
   };
   const handleCommentsChange = event => {
     formik.setValues({
@@ -114,9 +109,23 @@ export const AddNoticeStepTwo = ({
       comments: event.target.value,
     });
   };
-  // if (isChecked === true) {
-  //   formik.values.sex = 'male';
-  // } else formik.values.sex = 'female';
+
+  const onSexChange = event => {
+    setIsDisabled(false);
+
+    if (isChecked === true) {
+      formik.setValues({
+        ...formik.values,
+        sex: 'female',
+      });
+    } else {
+      formik.setValues({
+        ...formik.values,
+        sex: 'male',
+      });
+    }
+    setIsChecked(prev => !prev);
+  };
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
@@ -125,14 +134,14 @@ export const AddNoticeStepTwo = ({
       </AddNoticeStepTwoLabelSex>
       <AddNoticeStepTwoInputSexCheckboxWrapper>
         <AddNoticeStepTwoMaleWrapper>
-          <AddNoticeStepTwoMale checked={isChecked} />
-          <AddNoticeStepTwoMaleSpan checked={isChecked}>
+          <AddNoticeStepTwoMale />
+          <AddNoticeStepTwoMaleSpan checked={isChecked} isDisabled={isDisabled}>
             Male
           </AddNoticeStepTwoMaleSpan>
         </AddNoticeStepTwoMaleWrapper>
 
         <AddNoticeStepTwoFemaleWrapper>
-          <AddNoticeStepTwoFemale checked={isChecked} />
+          <AddNoticeStepTwoFemale />
           <AddNoticeStepTwoFemaleSpan checked={isChecked}>
             Female
           </AddNoticeStepTwoFemaleSpan>
@@ -145,10 +154,8 @@ export const AddNoticeStepTwo = ({
           placeholder="Type sex"
           checked={isChecked}
           value={formik.values.sex}
-          onChange={() => {
-            setIsChecked(prev => !prev);
-          }}
-          disabled={!formik.touched.sex}
+          onChange={onSexChange}
+          isDisabled={isDisabled}
         />
       </AddNoticeStepTwoInputSexCheckboxWrapper>
       <BoxWarning>{formik.errors.sex}</BoxWarning>

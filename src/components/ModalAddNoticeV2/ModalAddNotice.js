@@ -12,7 +12,7 @@ const initialState = {
   name: '',
   dateOfBirth: '2015-01-01',
   breed: '',
-  sex: undefined,
+  sex: '',
   place: '',
   price: '',
   photoUrl: '',
@@ -70,9 +70,9 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       formData.append('sex', newData.sex || 'male');
       formData.append('place', newData.place || 'demon');
       formData.append('price', newData.price || 200);
-      // for (const [key, value] of formData.entries()) {
-      //   console.log(`${key}: ${value}`);
-      // }
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
 
       dispatch(addNotice(formData));
       return;

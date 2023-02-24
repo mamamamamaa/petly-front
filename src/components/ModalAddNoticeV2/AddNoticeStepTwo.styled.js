@@ -54,7 +54,7 @@ export const AddNoticeStepTwoInputSex = styled.input`
   top: 0px;
   bottom: 0;
   right: 0;
-  opacity: 0;
+  opacity: 0%;
 `;
 export const AddNoticeStepTwoMaleWrapper = styled.div`
   display: inline-flex;
@@ -74,7 +74,7 @@ export const AddNoticeStepTwoMaleSpan = styled.span`
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${props => (props.checked ? '#f59256' : '#000')};
+  color: ${props => props.checked && !props.isDisabled ? '#f59256' : '#000'};
 `;
 export const AddNoticeStepTwoFemaleWrapper = styled.div`
   display: inline-flex;

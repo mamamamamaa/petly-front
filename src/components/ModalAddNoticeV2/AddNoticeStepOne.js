@@ -52,7 +52,7 @@ export const AddNoticeStepOne = ({
 }) => {
   const formik = useFormik({
     initialValues: data,
-    validationSchema: addNoticeStepOneSchema,
+    // validationSchema: addNoticeStepOneSchema,
     onSubmit: values => {
       next({
         ...data,
