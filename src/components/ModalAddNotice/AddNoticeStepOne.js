@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import toast, { Toaster } from 'react-hot-toast';
 import * as Yup from 'yup';
-
 import { breeds } from '../../utils/getBreed';
 
 import {
