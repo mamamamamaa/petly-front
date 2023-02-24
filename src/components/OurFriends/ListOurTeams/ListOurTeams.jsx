@@ -1,13 +1,12 @@
 import {
   Container,
+  Wraper,
   Title,
   TitleHi,
   Text,
   TitleBy,
   BoxVideo,
   Iframe,
-  // Card,
-  // Wraper,
   // Img,
   // Ul,
   // Li,
@@ -18,14 +17,16 @@ import {
 function ListOurTeams() {
   return (
     <Container>
-      <Title>Our Team</Title>
-      <TitleHi>Hello everybody !</TitleHi>
-      <Text>
-        We are glad to present to your attention our team, that worked on this
-        project. In a short video, you can see a presentation for each
-        participant.
-      </Text>
-      <TitleBy>We wish successful projects and peace to everyone !</TitleBy>
+      <Wraper>
+        <Title>Our Team</Title>
+        <TitleHi>Hello everybody !</TitleHi>
+        <Text>
+          We are glad to present to your attention our team, that worked on this
+          project. In a short video, you can see a presentation for each
+          participant.
+        </Text>
+        <TitleBy>We wish successful projects and peace to everyone !</TitleBy>
+      </Wraper>
       <BoxVideo>
         <Iframe
           src="https://www.youtube.com/embed/zrCgBxfB5jQ"
