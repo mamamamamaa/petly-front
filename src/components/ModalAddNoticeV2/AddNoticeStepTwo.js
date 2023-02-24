@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
-
-import { object, string, mixed, number } from 'yup';
+import * as yup from 'yup';
+// import { object, string, mixed, number } from 'yup';
 import {
   AddNoticeStepOneButtonBack,
   AddNoticeStepOneButtonDone,
@@ -28,16 +28,22 @@ import {
   AddNoticeStepTwoInputComments,
   AddNoticeStepTwoInputPrice,
 } from './AddNoticeStepTwo.styled';
+import { BoxWarning } from './ModalAddNotice.styled';
 
-const addNoticeSchema = object().shape({
-  sex: string().required('Sex is required'),
-  place: string()
+const addNoticeStepTwoSchema = yup.object().shape({
+  sex: yup.string().required('Sex is required'),
+  place: yup
+    .string()
     .min(4, 'Too Short!')
     .max(60, 'Too Long!')
     .required('Location is required'),
-  price: number().required('The price is required'),
-  photoUrl: mixed().required('Image is required'),
-  comments: string()
+  price: yup.number().required('The price is required'),
+  photoUrl: yup
+    .string(),
+  //mixed()
+    // .required('Image is required (jpg, jpeg, png)'),
+  comments: yup
+    .string()
     .min(8, 'Must be 8 or more letter')
     .max(120, 'Must be 120 or less letter')
     .trim()
@@ -68,7 +74,7 @@ export const AddNoticeStepTwo = ({
       photoUrl: data.photoUrl,
       comments: data.comments,
     },
-    // validationSchema: addNoticeSchema,
+    // validationSchema: addNoticeStepTwoSchema,
     onSubmit: (values, actions) => {
       const errors = actions.validateForm();
       console.log(errors);
@@ -77,7 +83,6 @@ export const AddNoticeStepTwo = ({
         ...data,
         ...values,
       };
-      // console.log(newValue);
 
       next(newValue, onFinal);
       // actions.resetForm();
@@ -85,7 +90,9 @@ export const AddNoticeStepTwo = ({
     },
     selectedOption,
   });
-  const [isChecked, setIsChecked] = useState(false); // MALE /FEMALE
+  console.log(formik.errors);
+  console.log(formik.values);
+  const [isChecked, setIsChecked] = useState(null); // MALE / false means FEMALE by default
   const [preview, setPreview] = useState(null); // LOAD PREVIEW IMAGE
   const handleImageLoad = event => {
     const files = event.currentTarget.files[0]; //FILE NAME, size, type, lastmodified
@@ -97,9 +104,9 @@ export const AddNoticeStepTwo = ({
     };
     reader.readAsDataURL(files); //return the data as a data URL (base64-encoded string)
     formik.setFieldValue('photoUrl', files);
-    console.log(files);
-    console.log(reader);
-    console.log(preview);
+    // console.log(files);
+    // console.log(reader);
+    // console.log(preview);
   };
   const handleCommentsChange = event => {
     formik.setValues({
@@ -107,13 +114,13 @@ export const AddNoticeStepTwo = ({
       comments: event.target.value,
     });
   };
-  if (isChecked === true) {
-    formik.values.sex = 'male';
-  } else formik.values.sex = 'female';
+  // if (isChecked === true) {
+  //   formik.values.sex = 'male';
+  // } else formik.values.sex = 'female';
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
-      <AddNoticeStepTwoLabelSex htmlFor="title">
+      <AddNoticeStepTwoLabelSex htmlFor="sex">
         The sex:
       </AddNoticeStepTwoLabelSex>
       <AddNoticeStepTwoInputSexCheckboxWrapper>
@@ -132,8 +139,8 @@ export const AddNoticeStepTwo = ({
         </AddNoticeStepTwoFemaleWrapper>
 
         <AddNoticeStepTwoInputSex
-          name="title"
-          id="title"
+          name="sex"
+          id="sex"
           type="checkbox"
           placeholder="Type sex"
           checked={isChecked}
@@ -141,8 +148,10 @@ export const AddNoticeStepTwo = ({
           onChange={() => {
             setIsChecked(prev => !prev);
           }}
+          disabled={!formik.touched.sex}
         />
       </AddNoticeStepTwoInputSexCheckboxWrapper>
+      <BoxWarning>{formik.errors.sex}</BoxWarning>
       <AddNoticeStepTwoLabelLocation htmlFor="location">
         Location:
       </AddNoticeStepTwoLabelLocation>

@@ -12,26 +12,26 @@ const initialState = {
   name: '',
   dateOfBirth: '2015-01-01',
   breed: '',
-  sex: 'male',
+  sex: undefined,
   place: '',
   price: '',
   photoUrl: '',
   comments: '',
   // commentsArea: null,
 };
-const testState = {
-  type: 'sell',
-  title: 'demon',
-  name: 'demon',
-  dateOfBirth: '01-01-2020',
-  breed: 'barbet',
-  sex: 'male',
-  place: 'Kharkiv',
-  price: '500',
-  photoUrl: '',
-  // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg',
-  comments: 'nice creature',
-};
+// const testState = {
+//   type: 'sell',
+//   title: 'demon',
+//   name: 'demon',
+//   dateOfBirth: '01-01-2020',
+//   breed: 'barbet',
+//   sex: 'male',
+//   place: 'Kharkiv',
+//   price: '500',
+//   photoUrl: '',
+//   // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg',
+//   comments: 'nice creature',
+// };
 export const ModalAddNotice = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState(initialState);
@@ -70,9 +70,9 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       formData.append('sex', newData.sex || 'male');
       formData.append('place', newData.place || 'demon');
       formData.append('price', newData.price || 200);
-      for (const [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
+      // for (const [key, value] of formData.entries()) {
+      //   console.log(`${key}: ${value}`);
+      // }
 
       dispatch(addNotice(formData));
       return;

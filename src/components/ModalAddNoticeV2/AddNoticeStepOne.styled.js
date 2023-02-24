@@ -147,7 +147,7 @@ export const AddNoticeSell = styled.input`
     }
   }
 `;
-export const AddNoticeStepOneButtonSpan = styled.span``;
+// export const AddNoticeStepOneButtonSpan = styled.span``;
 export const AddNoticeStepOneLabel = styled.label`
   display: block;
   font-weight: 500;
@@ -168,6 +168,13 @@ export const AddNoticeStepOneLabel = styled.label`
     margin-bottom: 12px;
   }
 `;
+export const AddNoticeStepOneInputWrapper = styled.div`
+  margin-bottom: 16px;
+  ${media.tabletAndDesktop} {
+    margin-bottom: 28px;
+  }
+`;
+
 export const AddNoticeStepOneInput = styled.input`
   display: block;
   width: 100%;
@@ -176,7 +183,6 @@ export const AddNoticeStepOneInput = styled.input`
   background-color: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin-bottom: 16px;
   padding-left: 14px;
   padding-right: 20px;
   &::placeholder {
@@ -190,13 +196,15 @@ export const AddNoticeStepOneInput = styled.input`
     padding-left: 16px;
     padding-top: 11px;
     padding-bottom: 10px;
-    margin-bottom: 28px;
     &::placeholder {
       font-size: 16px;
       line-height: 26px;
       color: rgba(17, 17, 17, 0.6);
     }
   }
+`;
+export const AddNoticeStepOneSelectWrapper = styled.div`
+margin-bottom: 40px;
 `;
 export const AddNoticeStepOneSelect = styled.select`
   width: 100%;
@@ -205,7 +213,6 @@ export const AddNoticeStepOneSelect = styled.select`
   background-color: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin-bottom: 40px;
   padding-left: 14px;
   padding-right: 20px;
   ${media.tabletAndDesktop} {

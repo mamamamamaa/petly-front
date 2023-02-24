@@ -14,14 +14,16 @@ import {
   AddNoticeSell,
   AddNoticeStepOneText,
   AddNoticeStepOneTitle,
+  AddNoticeStepOneInputWrapper,
+  AddNoticeStepOneSelectWrapper,
 } from './AddNoticeStepOne.styled';
-import moment from 'moment';
+import { BoxWarning } from './ModalAddNotice.styled';
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
 );
 
-const schema = yup.object().shape({
-  type: yup.string().required(),
+const addNoticeStepOneSchema = yup.object().shape({
+  // type: yup.string().required(),
   title: yup
     .string()
     .min(2, 'Title should be from 2 to 48 symbols')
@@ -39,19 +41,6 @@ const schema = yup.object().shape({
     .required('The name is required'),
   dateOfBirth: yup.date(),
   breed: yup.string().required('The breed is required'),
-  sex: yup.string().required('The sex is required'),
-  place: yup
-    .string()
-    .min(4, 'Too Short!')
-    .max(60, 'Too Long!')
-    .required('The place is required'),
-  price: yup.number().required('The price is required'),
-  comments: yup
-    .string()
-    .min(8, 'Too Short!')
-    .max(120, 'Too Long!')
-    .required('The comments are required'),
-  photoUrl: yup.string().required('Image is required (jpg, jpeg, png)'),
 });
 
 export const AddNoticeStepOne = ({
@@ -63,6 +52,7 @@ export const AddNoticeStepOne = ({
 }) => {
   const formik = useFormik({
     initialValues: data,
+    validationSchema: addNoticeStepOneSchema,
     onSubmit: values => {
       next({
         ...data,
@@ -71,6 +61,7 @@ export const AddNoticeStepOne = ({
       });
     },
   });
+  // (console.log(formik.values.title));
   formik.values.type = selectedOption;
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -112,22 +103,28 @@ export const AddNoticeStepOne = ({
       <AddNoticeStepOneLabel htmlFor="title">
         Tittle of ad
       </AddNoticeStepOneLabel>
-      <AddNoticeStepOneInput
-        name="title"
-        id="title"
-        onChange={formik.handleChange}
-        value={formik.values.title}
-        placeholder="Type name pet"
-      />
+      <AddNoticeStepOneInputWrapper>
+        <AddNoticeStepOneInput
+          name="title"
+          id="title"
+          onChange={formik.handleChange}
+          value={formik.values.title}
+          placeholder="Type name pet"
+        />
+        <BoxWarning>{formik.errors.title}</BoxWarning>
+      </AddNoticeStepOneInputWrapper>
 
       <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
-      <AddNoticeStepOneInput
-        name="name"
-        id="name"
-        onChange={formik.handleChange}
-        value={formik.values.name}
-        placeholder="Type name pet"
-      />
+      <AddNoticeStepOneInputWrapper>
+        <AddNoticeStepOneInput
+          name="name"
+          id="name"
+          onChange={formik.handleChange}
+          value={formik.values.name}
+          placeholder="Type name pet"
+        />
+        <BoxWarning>{formik.errors.name}</BoxWarning>
+      </AddNoticeStepOneInputWrapper>
 
       <AddNoticeStepOneLabel htmlFor="dateOfBirth">
         Date of birth
@@ -139,19 +136,24 @@ export const AddNoticeStepOne = ({
         onChange={formik.handleChange}
         value={formik.values.dateOfBirth}
       />
+
       <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
-      <AddNoticeStepOneSelect
-        name="breed"
-        id="breed"
-        onChange={formik.handleChange}
-        value={formik.values.breed}
-      >
-        {filterByLengthBreeds.map(breed => (
-          <option value={breed} key={breed}>
-            {breed}
-          </option>
-        ))}
-      </AddNoticeStepOneSelect>
+      <AddNoticeStepOneSelectWrapper>
+        <AddNoticeStepOneSelect
+          name="breed"
+          id="breed"
+          onChange={formik.handleChange}
+          value={formik.values.breed}
+        >
+          {filterByLengthBreeds.map(breed => (
+            <option value={breed} key={breed}>
+              {breed}
+            </option>
+          ))}
+        </AddNoticeStepOneSelect>
+        <BoxWarning>{formik.errors.breed}</BoxWarning>
+      </AddNoticeStepOneSelectWrapper>
+
       <AddNoticeStepOneButtonNextCancelWrapper>
         <AddNoticeStepOneButtonNext type="submit">
           Next

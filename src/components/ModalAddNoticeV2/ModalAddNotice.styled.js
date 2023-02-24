@@ -11,3 +11,10 @@ export const ModalAddNoticeWrapper = styled.div`
     margin: 40px 80px;
   }
 `;
+export const BoxWarning = styled.p`
+  margin-top: 10px;
+  color: red;
+  font-weight: 400;
+  font-size: 22px;
+  // line-height: 1;
+`;
