@@ -149,8 +149,8 @@ export const ButtonFill = styled.button`
   &:focus {
     background-color: rgb(245, 97, 1);
     color: ${theme.colors.accentText};
-    border-color: #ff6101;
-    background-color: #ff6101;
+    border-color: ${theme.colors.primary};
+    background-color: ${theme.colors.primary};
   }
   @media screen and (min-width: 767px) {
     max-width: 180px;
@@ -180,10 +180,9 @@ export const ButtonEmpty = styled.button`
 
   &:hover,
   &:focus {
-    background-color: rgb(245, 97, 1);
-    color: ${theme.colors.white};
-    border-color: #ff6101;
-    background-color: #ff6101;
+    background-color: ${theme.colors.primary};
+    border-color: ${theme.colors.primary};
+    color: ${theme.colors.accentText};
   }
   @media screen and (min-width: 768px) {
     width: 180px;
@@ -247,6 +246,7 @@ export const Input = styled(Field)`
   border: 1px solid ${theme.colors.primary};
   border-radius: 40px;
   padding-left: 14px;
+  padding-right: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
@@ -267,12 +267,17 @@ export const Input = styled(Field)`
 `;
 
 export const InputLast = styled(Field)`
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M6 9l6 6 6-6" /></svg>');
+  background-repeat: no-repeat;
+  background-position: right bottom;
   width: 240px;
   height: 40px;
   background-color: ${theme.colors.background};
   border: 1px solid ${theme.colors.primary};
   border-radius: 40px;
   padding-left: 14px;
+  padding-right: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
@@ -427,6 +432,7 @@ export const LabelRadioBtn = styled.label`
   font-size: 14px;
   padding: 10px 28px;
   text-decoration: none;
+  color: ${theme.colors.black};
   background: ${theme.colors.accentText};
   border: 2px solid ${theme.colors.primary};
   border-radius: 40px;
@@ -449,9 +455,9 @@ export const LabelRadioBtn = styled.label`
   &.active,
   :hover,
   :focus {
-    background-color: ${theme.colors.accentButton};
-    border-color: ${theme.colors.accentButton};
-    color: ${theme.colors.white};
+    background-color: ${theme.colors.primary};
+    border-color: ${theme.colors.primary};
+    color: ${theme.colors.accentText};
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -466,6 +472,7 @@ export const RadioBtn = styled(Field)`
   :checked + label {
     background: ${theme.colors.primary};
     color: ${theme.colors.accentText};
+    border: 2px solid #f59256;
   }
 `;
 
