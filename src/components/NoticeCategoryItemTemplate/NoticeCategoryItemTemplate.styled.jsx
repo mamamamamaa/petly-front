@@ -129,6 +129,10 @@ export const Title = styled.h3`
 
 export const BoxPetDetails = styled.div`
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 278px;
 `;
 
 export const WraperPetDetails = styled.div`
@@ -168,7 +172,6 @@ export const PetDetailsButton = styled.button`
   background: ${theme.colors.accentText};
   cursor: pointer;
   color: ${theme.colors.primary};
-  margin-bottom: 12px;
   color: ${theme.colors.accentButton};
   ${media.tabletAndDesktop} {
     width: 248px;

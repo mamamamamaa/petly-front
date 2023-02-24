@@ -138,25 +138,25 @@ export const NoticeCategoryItemTemplate = ({
         </AddToFavBtn>
       </PhotoPetWrapper>
       <BoxPetDetails>
-        <Title>{title}</Title>
-        <WraperPetDetails>
-          <Ul>
-            <Li>Breed:</Li>
-            <Li>Place:</Li>
-            <Li>Age:</Li>
-            <Li>Price:</Li>
-          </Ul>
-          <Ul>
-            <Li>{breed}</Li>
-            <Li>{place}</Li>
-            <Li>
-              <CardNewDate date={dateOfBirth} />
-            </Li>
-            {price !== undefined && type === 'sell' && <Li>{price}$</Li>}
-            {price !== '0' && type === 'good-hands' && <Li>for free</Li>}
-            {price !== '0' && type === 'lost/found' && <Li>for free</Li>}
-          </Ul>
-        </WraperPetDetails>
+        <div>
+          <Title>{title}</Title>
+          <WraperPetDetails>
+            <Ul>
+              <Li>Breed:</Li>
+              <Li>Place:</Li>
+              <Li>Age:</Li>
+              {price !== undefined && type === 'sell' && <Li>Price:</Li>}
+            </Ul>
+            <Ul>
+              <Li>{breed}</Li>
+              <Li>{place}</Li>
+              <Li>
+                <CardNewDate date={dateOfBirth} />
+              </Li>
+              {price !== undefined && type === 'sell' && <Li>{price}$</Li>}
+            </Ul>
+          </WraperPetDetails>
+        </div>
         <PetDetailsButton onClick={modalHandler}>
           <PetDetailsButtonText>Learn More</PetDetailsButtonText>
         </PetDetailsButton>

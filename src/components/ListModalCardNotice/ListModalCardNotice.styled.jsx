@@ -61,7 +61,6 @@ export const Img = styled.img`
   cursor: pointer;
   @media screen and (max-width: 767px) {
     height: 280px;
-    border-radius: 0px 0px 40px 40px;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     height: 328px;
@@ -175,13 +174,13 @@ export const ContactLink = styled.a`
     cursor: text;
     pointer-events: none;
     color: inherit;
-  };
+  }
   &.hover {
     :hover,
     :focus {
-    color: ${theme.colors.accentButton}
-  };
-}
+      color: ${theme.colors.accentButton};
+    }
+  }
 `;
 
 export const Box = styled.div`
