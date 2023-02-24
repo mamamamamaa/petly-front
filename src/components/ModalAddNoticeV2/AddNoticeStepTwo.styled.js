@@ -43,12 +43,12 @@ export const AddNoticeStepTwoInputSexCheckboxWrapper = styled.div`
   margin-bottom: 32px;
   ${media.tabletAndDesktop} {
     margin-bottom: 40px;
-    height: 107px;
+    // height: 107px;
   }
 `;
 export const AddNoticeStepTwoInputSex = styled.input`
   width: 160px;
-  height: 100%;
+  // height: 100%;
   position: absolute;
   left: 0px;
   top: 0px;
@@ -74,7 +74,7 @@ export const AddNoticeStepTwoMaleSpan = styled.span`
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${props => props.checked && !props.isDisabled ? '#f59256' : '#000'};
+  color: ${props => (props.checked && !props.isDisabled ? '#f59256' : '#000')};
 `;
 export const AddNoticeStepTwoFemaleWrapper = styled.div`
   display: inline-flex;
@@ -112,6 +112,116 @@ export const AddNoticeStepTwoLabelLocation = styled.label`
     margin-bottom: 12px;
   }
 `;
+export const AddNoticeStepTwoInputLocationWrapper = styled.div`
+  margin-bottom: 16px;
+  ${media.tabletAndDesktop} {
+    margin-bottom: 28px;
+  }
+`;
+export const AddNoticeStepTwoInputLocation = styled.input`
+  display: block;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  padding-left: 14px;
+  padding-right: 20px;
+  &::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: rgba(27, 27, 27, 0.6);
+  }
+  ${media.tabletAndDesktop} {
+    height: 48px;
+  }
+`;
+
+export const AddNoticeStepTwoLabelPrice = styled.label`
+  display: ${props => (props.selectedOption === 'sell' ? 'block' : 'none')};
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #111111;
+  margin-bottom: 8px;
+  &::after {
+    content: '*';
+    color: #f59256;
+  }
+  ${media.tabletAndDesktop} {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 12px;
+  }
+`;
+export const AddNoticeStepTwoInputPriceWrapper = styled.div`
+  margin-bottom: 16px;
+  ${media.tabletAndDesktop} {
+    margin-bottom: 28px;
+  }
+`;
+export const AddNoticeStepTwoInputPrice = styled.input`
+  display: ${props => (props.selectedOption === 'sell' ? 'block' : 'none')};
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  background-color: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  padding-left: 14px;
+  padding-right: 20px;
+  &::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: rgba(27, 27, 27, 0.6);
+  }
+  ${media.tabletAndDesktop} {
+    height: 48px;
+  }
+`;
+
+export const AddNoticeStepTwoLabelPictureURL = styled.label`
+  display: block;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #111111;
+  margin-bottom: 8px;
+  ${media.tabletAndDesktop} {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 12px;
+  }
+`;
+export const AddNoticeStepTwoLoadImageInputWarningWrapper = styled.div`
+  display: flex;
+`;
+export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
+  width: 116px;
+  height: 116px;
+  background-color: #fdf7f2;
+  background-size: ${({ preview }) => (preview ? '116px' : `47px`)};
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: ${({ preview }) =>
+    preview ? `url(${preview})` : `url(${loadCross})`};
+  left: 20px;
+  margin-bottom: 28px;
+  ${media.tabletAndDesktop} {
+    width: 140px;
+    height: 140px;
+  }
+`;
+export const AddNoticeStepTwoLoadImageInput = styled.input`
+  // position: relative;
+  width: 116px;
+  height: 116px;
+  opacity: 0;
+`;
 
 export const AddNoticeStepTwoLabelComments = styled.label`
   display: block;
@@ -136,6 +246,18 @@ export const AddNoticeStepTwoLabelCommentArea = styled.label`
   line-height: 26px;
   color: #000000;
 `;
+export const AddNoticeStepTwoCommentWrapper = styled.div`
+  ${media.tabletAndDesktop} {
+    display: none;
+  }
+  margin-bottom: 40px;
+`;
+export const AddNoticeStepTwoCommentAreaWrapper = styled.div`
+  ${media.mobile} {
+    display: none;
+  }
+  margin-bottom: 40px;
+`;
 export const AddNoticeStepTwoCommentArea = styled.textarea`
   ${media.mobile} {
     display: none;
@@ -143,7 +265,6 @@ export const AddNoticeStepTwoCommentArea = styled.textarea`
   width: 100%;
   height: 191px;
   padding: 16px 18px;
-  margin-bottom: 40px;
   background-color: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 20px;
@@ -154,67 +275,7 @@ export const AddNoticeStepTwoCommentArea = styled.textarea`
     color: #000000;
   }
 `;
-export const AddNoticeStepTwoInput = styled.input`
-  display: block;
-  width: 100%;
-  height: 40px;
-  box-sizing: border-box;
-  background-color: #fdf7f2;
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  margin-bottom: 16px;
-  padding-left: 14px;
-  padding-right: 20px;
-  &::placeholder {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 19px;
-    color: rgba(27, 27, 27, 0.6);
-  }
-  ${media.tabletAndDesktop} {
-    height: 48px;
-    margin-bottom: 28px;
-  }
-`;
-export const AddNoticeStepTwoLabelPrice = styled.label`
-  display: ${props => (props.selectedOption === 'sell' ? 'block' : 'none')};
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 26px;
-  color: #111111;
-  margin-bottom: 8px;
-  &::after {
-    content: '*';
-    color: #f59256;
-  }
-  ${media.tabletAndDesktop} {
-    font-size: 24px;
-    color: #000000;
-    margin-bottom: 12px;
-  }
-`;
-export const AddNoticeStepTwoInputPrice = styled.input`
-  display: ${props => (props.selectedOption === 'sell' ? 'block' : 'none')};
-  width: 100%;
-  height: 40px;
-  box-sizing: border-box;
-  background-color: #fdf7f2;
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  margin-bottom: 16px;
-  padding-left: 14px;
-  padding-right: 20px;
-  &::placeholder {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 19px;
-    color: rgba(27, 27, 27, 0.6);
-  }
-  ${media.tabletAndDesktop} {
-    height: 48px;
-    margin-bottom: 28px;
-  }
-`;
+
 export const AddNoticeStepTwoInputComments = styled.input`
   display: block;
   width: 100%;
@@ -223,7 +284,7 @@ export const AddNoticeStepTwoInputComments = styled.input`
   background-color: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin-bottom: 40px;
+  // margin-bottom: 40px;
   padding-left: 14px;
   padding-right: 20px;
   &::placeholder {
@@ -236,41 +297,7 @@ export const AddNoticeStepTwoInputComments = styled.input`
     display: none;
   }
 `;
-export const AddNoticeStepTwoLabelPictureURL = styled.label`
-  display: block;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 26px;
-  color: #111111;
-  margin-bottom: 8px;
-  ${media.tabletAndDesktop} {
-    font-size: 24px;
-    color: #000000;
-    margin-bottom: 12px;
-  }
-`;
-export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
-  width: 116px;
-  height: 116px;
-  background-color: #fdf7f2;
-  background-size: ${({ preview }) => (preview ? '116px' : `47px`)};
-  border-radius: 20px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: ${({ preview }) =>
-    preview ? `url(${preview})` : `url(${loadCross})`};
-  left: 20px;
-  ${media.tabletAndDesktop} {
-    width: 140px;
-    height: 140px;
-  }
-`;
-export const AddNoticeStepTwoLoadImageInput = styled.input`
-  position: relative;
-  width: 116px;
-  height: 116px;
-  opacity: 0;
-`;
+
 export const AddNoticeStepTwoButtonBackDoneWrapper = styled.div`
   ${media.tabletAndDesktop} {
     display: flex;

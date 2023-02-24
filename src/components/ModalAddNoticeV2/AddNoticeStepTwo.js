@@ -6,7 +6,7 @@ import {
   AddNoticeStepOneButtonBack,
   AddNoticeStepOneButtonDone,
   AddNoticeStepTwoButtonBackDoneWrapper,
-  AddNoticeStepTwoInput,
+  AddNoticeStepTwoInputLocation,
   AddNoticeStepTwoLabelComments,
   AddNoticeStepTwoInputSex,
   AddNoticeStepTwoInputSexCheckboxWrapper,
@@ -27,20 +27,37 @@ import {
   AddNoticeStepTwoLabelPictureURL,
   AddNoticeStepTwoInputComments,
   AddNoticeStepTwoInputPrice,
+  AddNoticeStepTwoInputLocationWrapper,
+  AddNoticeStepTwoInputPriceWrapper,
+  AddNoticeStepTwoLoadImageInputWarningWrapper,
+  AddNoticeStepTwoCommentAreaWrapper,
+  AddNoticeStepTwoCommentWrapper,
+
 } from './AddNoticeStepTwo.styled';
-import { BoxWarning } from './ModalAddNotice.styled';
+import { BoxWarning, BoxWarningSex } from './ModalAddNotice.styled';
 
 const addNoticeStepTwoSchema = yup.object().shape({
   sex: yup.string().oneOf(['male', 'female']).required('Sex is required'),
-  place: yup
+  location: yup
     .string()
     .min(4, 'Too Short!')
     .max(60, 'Too Long!')
     .required('Location is required'),
   price: yup.number().required('The price is required'),
-  photoUrl: yup.string(),
-  //mixed()
-  // .required('Image is required (jpg, jpeg, png)'),
+  photoUrl: yup
+    .mixed()
+    .test(
+      'fileFormat',
+      'Image must be either a JPG, JPEG or PNG file.',
+      value => {
+        if (!value) return true; // allow empty values
+        return ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type);
+      }
+    )
+    .test('fileSize', 'File size is too large', value => {
+      if (!value) return true; // allow empty values
+      return value.size <= 7 * 1024 * 1024; // 7MB
+    }),
   comments: yup
     .string()
     .min(8, 'Must be 8 or more letter')
@@ -68,7 +85,7 @@ export const AddNoticeStepTwo = ({
   const formik = useFormik({
     initialValues: {
       sex: data.sex,
-      place: data.place,
+      location: data.location,
       price: data.price,
       photoUrl: data.photoUrl,
       comments: data.comments,
@@ -157,72 +174,92 @@ export const AddNoticeStepTwo = ({
           onChange={onSexChange}
           isDisabled={isDisabled}
         />
+        <BoxWarningSex>{formik.errors.sex}</BoxWarningSex>
       </AddNoticeStepTwoInputSexCheckboxWrapper>
-      <BoxWarning>{formik.errors.sex}</BoxWarning>
       <AddNoticeStepTwoLabelLocation htmlFor="location">
         Location:
       </AddNoticeStepTwoLabelLocation>
-      <AddNoticeStepTwoInput
-        name="location"
-        id="location"
-        placeholder="Type location"
-        onChange={formik.handleChange}
-        value={formik.values.location}
-      />
+
+      <AddNoticeStepTwoInputLocationWrapper>
+        <AddNoticeStepTwoInputLocation
+          name="location"
+          id="location"
+          placeholder="Type location"
+          onChange={formik.handleChange}
+          value={formik.values.location}
+        />
+        <BoxWarning>{formik.errors.location}</BoxWarning>
+      </AddNoticeStepTwoInputLocationWrapper>
+
       <AddNoticeStepTwoLabelPrice
         htmlFor="price"
         selectedOption={selectedOption}
       >
         Price:
       </AddNoticeStepTwoLabelPrice>
-      <AddNoticeStepTwoInputPrice
-        selectedOption={selectedOption}
-        name="price"
-        id="price"
-        placeholder="Type price"
-        onChange={formik.handleChange}
-        value={formik.values.price}
-      />
+
+      <AddNoticeStepTwoInputPriceWrapper>
+        <AddNoticeStepTwoInputPrice
+          selectedOption={selectedOption}
+          name="price"
+          id="price"
+          placeholder="Type price"
+          onChange={formik.handleChange}
+          value={formik.values.price}
+        />
+        <BoxWarning>{formik.errors.price}</BoxWarning>
+      </AddNoticeStepTwoInputPriceWrapper>
+
       <AddNoticeStepTwoLabelPictureURL htmlFor="photoUrl">
         Load the pet’s image
       </AddNoticeStepTwoLabelPictureURL>
-      <AddNoticeStepTwoLoadImageInputWrapper
-        selectedOption={selectedOption}
-        preview={preview}
-      >
-        <AddNoticeStepTwoLoadImageInput
-          type="file"
-          id="photoUrl"
-          name="photoUrl"
-          accept="image/*"
-          onChange={handleImageLoad}
-          value=""
-        />
-      </AddNoticeStepTwoLoadImageInputWrapper>
-      <div>{formik.errors.pictureURL}</div>
+      <AddNoticeStepTwoLoadImageInputWarningWrapper>
+        <AddNoticeStepTwoLoadImageInputWrapper
+          selectedOption={selectedOption}
+          preview={preview}
+        >
+          <AddNoticeStepTwoLoadImageInput
+            type="file"
+            id="photoUrl"
+            name="photoUrl"
+            accept="image/*"
+            onChange={handleImageLoad}
+            value=""
+          />
+        </AddNoticeStepTwoLoadImageInputWrapper>
+        {console.log(formik.errors)}
+        <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
+      </AddNoticeStepTwoLoadImageInputWarningWrapper>
 
       <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
         Comments
       </AddNoticeStepTwoLabelCommentArea>
-      <AddNoticeStepTwoCommentArea
-        id="commentsArea"
-        name="commentsArea"
-        placeholder="Type comments"
-        onChange={handleCommentsChange}
-        value={formik.values.comments}
-      />
+      <AddNoticeStepTwoCommentAreaWrapper>
+        <AddNoticeStepTwoCommentArea
+          id="commentsArea"
+          name="commentsArea"
+          placeholder="Type comments"
+          onChange={handleCommentsChange}
+          value={formik.values.comments}
+        />
+        <BoxWarning>{formik.errors.comments}</BoxWarning>
+      </AddNoticeStepTwoCommentAreaWrapper>
 
       <AddNoticeStepTwoLabelComments htmlFor="comments">
         Comments
       </AddNoticeStepTwoLabelComments>
-      <AddNoticeStepTwoInputComments
-        type="text"
-        id="comments"
-        name="comments"
-        placeholder="Type comments"
-        onChange={handleCommentsChange}
-        value={formik.values.comments}
-      />
+      <AddNoticeStepTwoCommentWrapper>
+        <AddNoticeStepTwoInputComments
+          type="text"
+          id="comments"
+          name="comments"
+          placeholder="Type comments"
+          onChange={handleCommentsChange}
+          value={formik.values.comments}
+        />
+        <BoxWarning>{formik.errors.comments}</BoxWarning>
+      </AddNoticeStepTwoCommentWrapper>
+
       <AddNoticeStepTwoButtonBackDoneWrapper>
         <AddNoticeStepOneButtonDone type="submit">
           Done

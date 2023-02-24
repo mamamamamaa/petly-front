@@ -13,7 +13,7 @@ const initialState = {
   dateOfBirth: '2015-01-01',
   breed: '',
   sex: '',
-  place: '',
+  location: '',
   price: '',
   photoUrl: '',
   comments: '',
@@ -26,7 +26,7 @@ const initialState = {
 //   dateOfBirth: '01-01-2020',
 //   breed: 'barbet',
 //   sex: 'male',
-//   place: 'Kharkiv',
+//   location: 'Kharkiv',
 //   price: '500',
 //   photoUrl: '',
 //   // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg',
@@ -68,7 +68,7 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       formData.append('type', newData.type || 'sell');
       formData.append('title', newData.title || 'demon');
       formData.append('sex', newData.sex || 'male');
-      formData.append('place', newData.place || 'demon');
+      formData.append('location', newData.location || 'demon');
       formData.append('price', newData.price || 200);
       for (const [key, value] of formData.entries()) {
         console.log(`${key}: ${value}`);
