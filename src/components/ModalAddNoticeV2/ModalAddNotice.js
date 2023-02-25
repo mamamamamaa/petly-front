@@ -17,21 +17,7 @@ const initialState = {
   price: '',
   photoUrl: '',
   comments: '',
-  // commentsArea: null,
 };
-// const testState = {
-//   type: 'sell',
-//   title: 'demon',
-//   name: 'demon',
-//   dateOfBirth: '01-01-2020',
-//   breed: 'barbet',
-//   sex: 'male',
-//   location: 'Kharkiv',
-//   price: '500',
-//   photoUrl: '',
-//   // 'https://res.cloudinary.com/dmwntn6pl/image/upload/v1676226383/errsg3cyfmmclldf7amh.jpg',
-//   comments: 'nice creature',
-// };
 export const ModalAddNotice = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState(initialState);
@@ -39,24 +25,19 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
   const onFinal = () => setFinal(final);
 
   const next = (newData = {}, final) => {
-    let normalizedDateOfBirth;
-    console.log(newData);
-    if (newData.dateOfBirth !== '') {
-      normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
-        'DD.MM.YYYY'
-      );
-    }
-    else normalizedDateOfBirth = newData.dateOfBirth;
-    console.log(normalizedDateOfBirth);
     if (final) {
       setData({
         ...newData,
-        // dateOfBirth: normalizedDateOfBirth,
       });
-      // Retrieve the file URL from local storage
+      let normalizedDateOfBirth;
+      if (newData.dateOfBirth !== '') {
+        normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
+          'DD.MM.YYYY'
+        );
+      } else {
+        normalizedDateOfBirth = newData.dateOfBirth;
+      }
       const formData = new FormData();
-      // if (newData.photoUrl) {
-
       if (typeof newData.photoUrl === 'string') {
         const photoUrlFile = new File(
           [newData.photoUrl],
@@ -71,11 +52,23 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       formData.append('breed', newData.breed || 'barbet');
       formData.append('dateOfBirth', normalizedDateOfBirth);
       formData.append('name', newData.name || 'demon');
-      formData.append('type', newData.type || 'sell');
-      formData.append('title', newData.title || 'demon');
-      formData.append('sex', newData.sex || 'male');
-      formData.append('place', newData.location || 'demon');
-      formData.append('price', newData.price || 200);
+      formData.append('title', newData.title);
+      formData.append('sex', newData.sex);
+      formData.append('place', newData.location);
+      if (selectedOption === 'sell') {
+        formData.append('price', newData.price);
+      }
+      switch (newData.type) {
+        case 'inGoodHands':
+          formData.append('type', 'good-hands');
+          break;
+        case 'lostFound':
+          formData.append('type', 'lost/found');
+          break;
+        default:
+          formData.append('type', 'sell');
+          break;
+      }
       for (const [key, value] of formData.entries()) {
         console.log(`${key}: ${value}`);
       }
@@ -83,10 +76,6 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       dispatch(addNotice(formData));
       return;
     }
-    setData({
-      ...newData,
-      dateOfBirth: normalizedDateOfBirth,
-    });
     setCurrentStep(prevStep => prevStep + 1);
   };
 

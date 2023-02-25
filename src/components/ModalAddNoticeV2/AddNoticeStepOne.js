@@ -23,7 +23,6 @@ const filterByLengthBreeds = breeds.filter(
 );
 
 const addNoticeStepOneSchema = yup.object().shape({
-  // type: yup.string().required(),
   title: yup
     .string()
     .min(2, 'Title should be from 2 to 48 symbols')
@@ -39,13 +38,6 @@ const addNoticeStepOneSchema = yup.object().shape({
     .max(16, 'Must be 16 or less letter')
     .trim()
     .required('The name is required'),
-  // dateOfBirth: yup
-  //   .string()
-  //   .matches(
-  //     /^(\d{4})-(\d{2})-(\d{2})$/,
-  //     "Date must be in the format 'yyyy-MM-dd'"
-  //   )
-  //   .nullable(true),
   breed: yup.string().required('The breed is required'),
 });
 
@@ -66,19 +58,7 @@ export const AddNoticeStepOne = ({
         selectedOption,
       });
     },
-    // validate: (values) => {
-    //   const errors = {};
-    //   if (values.dateOfBirth && isNaN(new Date(values.dateOfBirth))) {
-    //     // Set the date value to null if it's an invalid date
-    //     errors.dateOfBirth = 'Invalid date';
-    //     values.dateOfBirth = null;
-    //     console.log(errors);
-    //   }
-    //   return errors;
-    // },
   });
-  // const { dateOfBirth, ...rest } = formik.values;
-  console.log(data);
   formik.values.type = selectedOption;
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -96,7 +76,7 @@ export const AddNoticeStepOne = ({
           checked={selectedOption === 'lostFound'}
           onChange={handleOptionChange}
         ></AddNoticeLostFound>
-        <label htmlFor="lostFound">lostFound</label>
+        <label htmlFor="lostFound">lost/found</label>
         <AddNoticeInGoodHands
           name="inGoodHands"
           type="radio"
@@ -105,7 +85,7 @@ export const AddNoticeStepOne = ({
           checked={selectedOption === 'inGoodHands'}
           onChange={handleOptionChange}
         ></AddNoticeInGoodHands>
-        <label htmlFor="inGoodHands">inGoodHands</label>
+        <label htmlFor="inGoodHands">in good hands</label>
         <AddNoticeSell
           name="sell"
           type="radio"
@@ -153,9 +133,6 @@ export const AddNoticeStepOne = ({
         onChange={formik.handleChange}
         value={ formik.values.dateOfBirth}
       />
-      { formik.errors.dateOfBirth ? (
-        <div>{formik.errors.dateOfBirth}</div>
-      ) : null}
       <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
       <AddNoticeStepOneSelectWrapper>
         <AddNoticeStepOneSelect

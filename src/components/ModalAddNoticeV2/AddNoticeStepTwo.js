@@ -1,7 +1,6 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as yup from 'yup';
-// import { object, string, mixed, number } from 'yup';
 import {
   AddNoticeStepOneButtonBack,
   AddNoticeStepOneButtonDone,
@@ -92,17 +91,16 @@ export const AddNoticeStepTwo = ({
     },
     validationSchema: addNoticeStepTwoSchema,
     onSubmit: (values, actions) => {
-      const errors = actions.validateForm();
-      console.log(errors);
-      console.log(values);
+      // const errors = actions.validateForm();
+      // console.log(errors);
       const newValue = {
         ...data,
         ...values,
       };
 
       next(newValue, onFinal);
-      // actions.resetForm();
-      // onClose();
+      actions.resetForm();
+      onClose();
     },
     selectedOption,
   });
@@ -143,9 +141,6 @@ export const AddNoticeStepTwo = ({
     }
     setIsChecked(prev => !prev);
   };
-  // const { dateOfBirth, ...rest } = formik.data;
-  console.log(data);
-  // console.log(rest);
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
@@ -230,7 +225,6 @@ export const AddNoticeStepTwo = ({
             value=""
           />
         </AddNoticeStepTwoLoadImageInputWrapper>
-        {console.log(formik.errors)}
         <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
 
