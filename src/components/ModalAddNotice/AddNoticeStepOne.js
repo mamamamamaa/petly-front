@@ -38,7 +38,7 @@ const formOneValidationSchema = Yup.object({
     .max(16, 'Name Too Long!')
     .label('Name')
     .trim()
-    .required('Name is required')
+    // .required('Name is required')
     .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z\s]+?$/iu, 'Only letters in "Name"'),
   dateOfBirth: Yup.date(),
   breed: Yup.string()
@@ -92,6 +92,8 @@ export const AddNoticeStepOne = props => {
   const handleOnClick = () => {
     props.closeModal();
   };
+
+  const noticeType = type === 'sell';
 
   return (
     <Container>
@@ -150,17 +152,30 @@ export const AddNoticeStepOne = props => {
               {props.isSubmitting && props.errors.title
                 ? toast('Title is required')
                 : null}
-              <Label htmlFor="namePet">
-                Name pet<SpanStar>*</SpanStar>
-              </Label>
-              <InputWrapper>
-                <Input
-                  id="name"
-                  name="name"
-                  placeholder="Type name pet"
-                  required
-                />
-              </InputWrapper>
+
+              {noticeType && <Label htmlFor="namePet">Name pet:</Label>}
+
+              {!noticeType && (
+                <Label htmlFor="namePet">
+                  Name pet<SpanStar>*</SpanStar>:
+                </Label>
+              )}
+
+              {noticeType && (
+                <InputWrapper>
+                  <Input id="name" name="name" placeholder="Type name pet" />
+                </InputWrapper>
+              )}
+              {!noticeType && (
+                <InputWrapper>
+                  <Input
+                    id="name"
+                    name="name"
+                    placeholder="Type name pet"
+                    required
+                  />
+                </InputWrapper>
+              )}
               {props.isSubmitting && props.errors.name
                 ? toast('Name is required')
                 : null}

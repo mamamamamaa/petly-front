@@ -41,7 +41,13 @@ const formTwoValidationSchema = Yup.object({
     .max(120, 'Comments Too Long!')
     .label('Comment')
     .required('Comment is required'),
-  place: Yup.string().required('Location is required'),
+  place: Yup.string()
+    .min(4, 'Location should be from 4 to 40 symbols')
+    .max(40, 'Location should be from 4 to 40 symbols')
+    .matches(
+      /^[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+$/
+    )
+    .required('Location is required'),
   photoUrl: Yup.mixed().label('Pet image').required('Pet image is required'),
   price: Yup.number(),
 });
@@ -96,7 +102,7 @@ export const AddNoticeStepTwo = props => {
             const newData = {
               type,
               title,
-              name,
+
               dateOfBirth,
               breed,
               sex,
