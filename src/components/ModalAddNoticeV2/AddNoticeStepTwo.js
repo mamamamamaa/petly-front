@@ -31,7 +31,6 @@ import {
   AddNoticeStepTwoLoadImageInputWarningWrapper,
   AddNoticeStepTwoCommentAreaWrapper,
   AddNoticeStepTwoCommentWrapper,
-
 } from './AddNoticeStepTwo.styled';
 import { BoxWarning, BoxWarningSex } from './ModalAddNotice.styled';
 
@@ -73,9 +72,11 @@ export const AddNoticeStepTwo = ({
   selectedOption,
   onFinal,
 }) => {
+  console.log(data);
   const handleBack = () => {
+    console.log(formik.values);
     const newValue = {
-      ...data,
+      // ...data,
       ...formik.values,
     };
     prev(newValue);
@@ -91,27 +92,33 @@ export const AddNoticeStepTwo = ({
     },
     validationSchema: addNoticeStepTwoSchema,
     onSubmit: (values, actions) => {
-      // const errors = actions.validateForm();
-      // console.log(errors);
+      const errors = actions.validateForm();
+      console.log(errors);
       const newValue = {
-        ...data,
+        // ...data,
         ...values,
       };
 
       next(newValue, onFinal);
-      actions.resetForm();
-      onClose();
+      // actions.resetForm();
+      // onClose();
     },
     selectedOption,
   });
   const [isChecked, setIsChecked] = useState(true); // true means MALE by default / false means FEMALE by default
   const [isDisabled, setIsDisabled] = useState(true); // disable checkbox by default
   const [preview, setPreview] = useState(null); // LOAD PREVIEW IMAGE
+
+  const reader = new FileReader();
+  if (formik.values.photoUrl) {
+    reader.readAsDataURL(formik.values.photoUrl); // RESTORE FILE image ON BACK
+    reader.onload = () => {
+      setPreview(reader.result); //=== EVENT.TARGET.RESULT MAKES SET PREVIEW IMAGE TO DIV
+    };
+  }
   const handleImageLoad = event => {
     const files = event.currentTarget.files[0]; //FILE NAME, size, type, lastmodified
-
     // Update the form values with the file
-    const reader = new FileReader();
     reader.onload = () => {
       setPreview(reader.result); //=== EVENT.TARGET.RESULT MAKES SET PREVIEW IMAGE TO DIV
     };
