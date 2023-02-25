@@ -19,6 +19,7 @@ const initialState = {
   isRefreshing: false,
   verifyPart: false,
   error: null,
+  isLoading: false,
 };
 
 const authSlice = createSlice({
@@ -26,7 +27,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     addFav(state, action) {
-      state.user.favorite.push(action.payload);
+      state.user.favorite.unshift(action.payload);
     },
     delFav(state, action) {
       state.user.favorite = state.user.favorite.filter(
@@ -40,6 +41,13 @@ const authSlice = createSlice({
         state.verifyPart = true;
         state.user.email = action.payload.email;
       })
+      .addCase(register.pending, (state, action) => {
+        state.isRefreshing = true;
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.isRefreshing = false;
+        state.error = action.payload;
+      })
       .addCase(login.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
@@ -49,6 +57,14 @@ const authSlice = createSlice({
         state.expiresIn = action.payload.expiresIn;
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(login.pending, (state, action) => {
+        state.isRefreshing = true;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isRefreshing = false;
+        state.error = action.payload;
       })
       .addCase(current.pending, state => {
         state.isRefreshing = true;
@@ -82,6 +98,17 @@ const authSlice = createSlice({
         state.user = { name: null, email: null, favorite: [], id: null };
         state.token = null;
         state.isLoggedIn = false;
+        // state.isLoading = false;
+        state.isRefreshing = false;
+      })
+      .addCase(logout.pending, (state, action) => {
+        // state.isLoading = true;
+        state.isRefreshing = true;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        // state.isLoading = false;
+        state.isRefreshing = false;
+        state.error = action.payload;
       })
       .addMatcher(
         isAnyOf(...extraActions.map(action => action.pending)),

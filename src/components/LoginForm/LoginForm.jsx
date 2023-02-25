@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Formik,  useFormik } from "formik"
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
-import toast, { Toaster } from 'react-hot-toast';
+import  { useAuth }  from "redux/hooks";
+import { useDispatch} from "react-redux";
+import toast from 'react-hot-toast';
 import {login}  from "../../redux/auth/operations";
 
-// import Spinner from '../Spinner';
+import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from "react-icons/im";
 import {
     Container,
@@ -32,7 +33,7 @@ const loginSchema = yup.object().shape({
     email: yup
     .string()
     .matches(securityEmail, 'Email must contain symbol @')
-    .email('Invalid email adress')
+    .email('Invalid email address')
     .required('Email is required'),
    password: yup
    .string()
@@ -54,7 +55,7 @@ const loginSchema = yup.object().shape({
 
 const LoginForm = () => {
     const [showPass, setShowPass] = useState(false);
-
+    const isLoading = useAuth().isRefreshing;
     const dispatch = useDispatch();
 
     const onSubmit = async (values, actions) => {
@@ -64,12 +65,7 @@ const LoginForm = () => {
 
         if (!error) {
         resetForm() 
-        }
-
-        if (error) {
-            return toast.error('Please check if email and password are correct or sign up');
-        }
-                        
+        }        
      }
 
     
@@ -85,15 +81,15 @@ const LoginForm = () => {
 
     return (
         <>
-        {/* {isLoading ? (
+        {isLoading ? (
           <Spinner />
-        ) : ( */}
+        ) : (
         <Container>
             <Formik
                 initialValues={formik.initialValues}
                 validationSchema={loginSchema}
             >               
-                <FormLogin onSubmit={formik.handleSubmit} autoComplete="on">
+                <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
                 <Title>Login</Title>
                     <FieldLogin>
                         <label htmlFor="email">  
@@ -143,9 +139,8 @@ const LoginForm = () => {
                     </Text>
                 </FormLogin>
             </Formik>
-            <Toaster />
             <Background></Background>
-        </Container>
+        </Container>)}
         </>
     )
  }

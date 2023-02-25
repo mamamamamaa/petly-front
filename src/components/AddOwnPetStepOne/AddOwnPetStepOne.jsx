@@ -34,25 +34,24 @@ const schema = yup.object().shape({
 
 export const AddOwnPetStepOne = ({ next, data, cancel }) => {
   const [selectedDate, setSelectedDate] = useState(data.dateOfBirth);
-  const [selectedDateInNumber, setSelectedDateINNumber] = useState(data.selectedDateInNumber);
+  const [selectedDateInNumber, setSelectedDateINNumber] = useState(
+    data.selectedDateInNumber
+  );
 
   const handleSubmit = (values, actions) => {
     actions.setFieldValue('dateOfBirth', selectedDate);
 
-    next({ 
-      ...values, 
+    next({
+      ...values,
       dateOfBirth: selectedDate,
-      selectedDateInNumber
+      selectedDateInNumber,
     });
-  }; 
-
-  const handleDate = e => {    
-    setSelectedDate(e.target.value);
-    setSelectedDateINNumber(e.target.valueAsNumber)
   };
-  
-  // const placeholderDateOfBirth = "aa.bb.mmmm"
-  // selectedDateInNumber? moment(new Date(selectedDateInNumber).format('DD.MM.YYYY')) : "dd.mm.yyyy"
+
+  const handleDate = e => {
+    setSelectedDate(e.target.value);
+    setSelectedDateINNumber(e.target.valueAsNumber);
+  };
 
   return (
     <Container>
@@ -78,7 +77,6 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
             <Input
               type="date"
               name="dateOfBirth"
-              // placeholder={placeholderDateOfBirth}
               required
               onChange={handleDate}
               max={moment(moment.now()).format('YYYY-MM-DD')}

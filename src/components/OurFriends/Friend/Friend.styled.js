@@ -1,95 +1,79 @@
 import styled from '@emotion/styled';
 import { theme } from '../../../utils';
 
-export const Title = styled.h3`
+export const Title = styled.a`
+  display: block;
   font-weight: ${theme.fontWeights.bold};
   font-size: 12px;
-  line-height: ${theme.lineHeights.body};
+  line-height: 1.33;
+  color: ${theme.colors.primary};
+  text-decoration-line: underline;
 
-  line-height: 27px;
-
-  align-items: center;
   text-align: center;
-
   @media (min-width: 768px) {
+    line-height: 1.375;
     font-size: 16px;
   }
   @media (min-width: 1280px) {
+    line-height: 1.35;
     font-size: 20px;
   }
-`;
-
-export const Link = styled.a`
-  color: ${theme.colors.primary};
-  text-decoration-line: underline;
 `;
 
 export const Description = styled.div`
   display: flex;
   gap: 12px;
   margin-top: 12px;
+  @media (min-width: 768px) {
+    gap: 14px;
+    margin-top: 16px;
+  }
+  @media (min-width: 1280px) {
+    gap: 16px;
+  }
 `;
 
 export const Image = styled.img`
   width: 110px;
   height: 78px;
-  margin-top: 12px;
-  margin-right: 12px;
+
   margin-bottom: 74px;
   margin-left: 4px;
   @media (min-width: 768px) {
     width: 120px;
     height: 85px;
-    margin-top: 13px;
-    margin-right: 14px;
+
     margin-bottom: 107px;
   }
   @media (min-width: 1280px) {
     width: 158px;
     height: 112px;
-    margin-top: 16px;
-    margin-right: 16px;
+    margin-bottom: 116px;
   }
 `;
 
 export const DescList = styled.ul`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-`;
-
-export const Item = styled.li`
-  font-weight: ${theme.fontWeights.normal};
-  font-size: 12px;
-  color: ${theme.colors.titleText};
-  margin-bottom: 12px;
-  font-size: 12px;
-  line-height: 1.3;
-  &:hover,
-  &:focus {
-    color: ${theme.colors.primary};
-  }
+  gap: 4px;
   @media screen and (min-width: 768px) {
-    margin-bottom: 8px;
-    font-size: 14px;
-    line-height: 1.35;
+    gap: 8px;
   }
   @media screen and (min-width: 1280px) {
-    margin-bottom: 12px;
-    font-size: 16px;
-    line-height: 1.4;
-  }
-  &:last-child {
-    margin-bottom: 0;
+    gap: 12px;
   }
 `;
 
 export const AdressLink = styled.a`
   text-decoration-line: underline;
   color: #000000;
-  &:hover,
-  &:focus {
+  :hover,
+  :focus {
     color: ${theme.colors.primary};
   }
 `;
+
 export const WorkingModal = styled.div`
   position: absolute;
   /* max-width: 120px; */
@@ -102,12 +86,11 @@ export const WorkingModal = styled.div`
   padding: 12px;
   font-weight: ${theme.fontWeights.normal};
   font-size: 12px;
-  line-height: ${theme.lineHeights.body};
+  line-height: 1.33;
   display: flex;
   align-items: center;
   text-align: center;
-  color: #000000;
-  background-color: ${theme.colors.accentText};
+  color: ${theme.colors.black};
 `;
 
 export const Day = styled.li`
@@ -120,6 +103,21 @@ export const Day = styled.li`
 
 export const DayOfWeek = styled.span`
   margin-right: 4px;
+`;
+
+export const Item = styled.li`
+  font-weight: ${theme.fontWeights.normal};
+  font-size: 12px;
+  color: ${theme.colors.black};
+  line-height: 1.3;
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+    line-height: 1.4;
+  }
 `;
 
 export const HoursBtn = styled.button`

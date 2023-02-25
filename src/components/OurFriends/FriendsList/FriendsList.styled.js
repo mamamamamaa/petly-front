@@ -18,6 +18,11 @@ export const Button = styled.button`
   border-radius: 20px;
   background: white;
   border: 2px solid white;
+  &:hover,
+  &:focus {
+    transition: 0.5s ease all;
+    transform: scale(1.05);
+  }
   @media screen and (min-width: 768px) {
     width: 336px;
     height: 268px;
@@ -41,8 +46,6 @@ export const Title = styled.h2`
     left: 38%;
   }
 `;
-
-export const Box = styled.div``;
 
 export const Img = styled.img`
   height: 160px;

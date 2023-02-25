@@ -8,6 +8,7 @@ export const useAuth = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const user = useSelector(state => state.auth.user);
   const isRefreshing = useSelector(state => state.auth.isRefreshing);
+  const isLoading = useSelector(state => state.auth.isLoading);
   const verifyPart = useSelector(state => state.auth.verifyPart);
   const error = useSelector(state => state.auth.error);
 
@@ -17,6 +18,7 @@ export const useAuth = () => {
     isLoggedIn,
     user,
     isRefreshing,
+    isLoading,
     expiresIn,
     verifyPart,
     error,
@@ -48,6 +50,7 @@ export const useNotices = () => {
   const totalCounts = useSelector(state => state.notices.totalCounts);
   const pages = useSelector(state => state.notices.pages);
   const query = useSelector(state => state.notices.query);
+
   return {
     searchNotices,
     totalCounts,
@@ -98,10 +101,3 @@ export const useUserAvatar = () => {
     userAvatar,
   };
 };
-
-// export const useFilter = () => {
-//   const getFilterValue = useSelector(state => state.notices.filter);
-//   return {getFilterValue};
-// }
-
-// export const getFilterValue = state => state.notices.filter;

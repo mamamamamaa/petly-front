@@ -12,14 +12,10 @@ export const NavList = styled.ul`
     align-items: center;
     justify-content: center;
     flex-direction: column; 
-    ${media.mobile} {
-        /* padding-bottom: 147px; */
-    }
     ${media.tablet} {
         opacity: ${({ isClosed }) => isClosed ? 0 : 1};
         visibility: ${({ isClosed }) => isClosed ? 'hidden' : 'visible'};
         pointer-events:  ${({ isClosed }) => isClosed ? 'none' : 'auto'};
-        
     }
     ${media.desktop} {
         flex-direction: row;
@@ -40,7 +36,6 @@ export const NavListItem = styled.li`
     :focus{
         color: ${theme.colors.primary};
         text-decoration: underline;
-        font-weight: 700;
     };
     ${media.mobile} {
         font-size: 32px;

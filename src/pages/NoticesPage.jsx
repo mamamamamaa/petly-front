@@ -1,6 +1,6 @@
 import debounce from 'lodash.debounce';
-import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Suspense, useEffect, useRef } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
@@ -19,7 +19,7 @@ import {
   AddPetToNoticesBtnWrapper,
 } from 'components/AddNoticeButton/AddNoticeButton.styled';
 import cross from 'utils/svg/cross.svg';
-import { useAuth, useNotices } from '../redux/hooks';
+import { useAuth } from '../redux/hooks';
 import toast, { Toaster } from 'react-hot-toast';
 import AddNoticeButton from '../components/AddNoticeButton/AddNoticeButton';
 import { Container } from 'utils';
@@ -29,8 +29,9 @@ import { MainHeader } from './NewsPage.styled';
 const NoticesPage = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
-  const { query } = useNotices();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const ref = useRef(null);
+  const location = useLocation();
 
   const onButtonClick = () => {
     !isLoggedIn
@@ -40,6 +41,10 @@ const NoticesPage = () => {
       : setIsModalOpen(true);
   };
 
+  useEffect(() => {
+    ref.current.value = '';
+  }, [location]);
+
   const handleChangeQuery = e => dispatch(setQuery(e.target.value));
 
   return (
@@ -47,10 +52,12 @@ const NoticesPage = () => {
       <MainHeader>Find your favorite pet</MainHeader>
       <NoticesSearch>
         <SearchField
+          ref={ref}
           placeholder="Search"
           onChange={debounce(handleChangeQuery, 300)}
         />
       </NoticesSearch>
+
       <NoticesNavWrapper>
         <NoticesNavUl>
           <NoticesNavLi>

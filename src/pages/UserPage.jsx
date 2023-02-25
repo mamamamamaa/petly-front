@@ -1,19 +1,27 @@
+import { useAuth } from 'redux/hooks';
+import Spinner from 'components/Spinner';
 import { Container } from '../utils/reusable';
-import UserCard from '../components/UserCard/UserCard';
+import { UserCard } from '../components/UserCard/UserCard';
 import { PetsData } from '../components/PetsData/PetsData';
 import { UserPageContainer, PetsDataWrapper } from './UserPage.styled';
 
 const UserPage = () => {
+
+  const {isRefreshing} = useAuth();
+
   return (
-    <Container>
+    <>
+    {isRefreshing ? <Spinner/> : (
+      <Container>
       <UserPageContainer>
-        {/* <h1>User page</h1> */}
         <UserCard />
         <PetsDataWrapper>
           <PetsData />
         </PetsDataWrapper>
       </UserPageContainer>
     </Container>
+    )}
+    </>
   );
 };
 

@@ -35,6 +35,7 @@ import { ListModalCardNotice } from '../ListModalCardNotice/ListModalCardNotice.
 import toast from 'react-hot-toast';
 import { addFav, delFav } from '../../redux/auth/authSlice';
 import noPoster from 'noPoster.jpg';
+import { clearCurrentNotice } from '../../redux/notices/noticeSlice';
 
 export const NoticeCategoryItemTemplate = ({
   _id,
@@ -56,7 +57,9 @@ export const NoticeCategoryItemTemplate = ({
   const { user, isLoggedIn } = useAuth();
 
   const isFavorite = user.favorite.includes(_id);
-  const isOwn = owner === user.id;
+
+  const isOwn =
+    typeof owner === 'object' && '_id' in owner ? true : owner === user.id;
 
   const [fav, setFav] = useState(isFavorite);
 
@@ -64,10 +67,11 @@ export const NoticeCategoryItemTemplate = ({
   const modalHandler = () => setModal(prevState => !prevState);
   useEffect(() => {
     if (!modal) {
+      dispatch(clearCurrentNotice());
       return;
     }
     dispatch(getNoticeById(_id));
-  }, [_id, dispatch, modal]);
+  }, [modal]);
   // ===========================================
 
   const favoriteHandler = () => {
@@ -78,16 +82,18 @@ export const NoticeCategoryItemTemplate = ({
     if (fav) {
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
+      toast.success('Removed from favorite!');
     } else {
       dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
+      toast.success('Successfully added to favorite!');
     }
     setFav(prevState => !prevState);
   };
 
   const changeTitle = type => {
     if (type === 'good-hands') {
-      const newType = 'In good hands';
+      const newType = 'in good hands';
       return newType;
     } else {
       const newType = type;
@@ -96,11 +102,26 @@ export const NoticeCategoryItemTemplate = ({
   };
   const getNewType = changeTitle(type);
 
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [modal]);
+
+  console.log(price);
+
   return (
     <>
       {modal && currentNotice && (
         <Modal onClose={modalHandler}>
-          <ListModalCardNotice date={currentNotice} />
+          <ListModalCardNotice
+            date={currentNotice}
+            setFav={setFav}
+            fav={fav}
+            isFavorite={isFavorite}
+          />
         </Modal>
       )}
       <PhotoPetWrapper>
@@ -117,23 +138,25 @@ export const NoticeCategoryItemTemplate = ({
         </AddToFavBtn>
       </PhotoPetWrapper>
       <BoxPetDetails>
-        <Title>{title}</Title>
-        <WraperPetDetails>
-          <Ul>
-            <Li>Breed:</Li>
-            <Li>Place:</Li>
-            <Li>Age:</Li>
-            {price !== undefined && type === 'sell' && <Li>Price:</Li>}
-          </Ul>
-          <Ul>
-            <Li>{breed}</Li>
-            <Li>{place}</Li>
-            <Li>
-              <CardNewDate date={dateOfBirth} />
-            </Li>
-            {price !== undefined && type === 'sell' && <Li>{price}$</Li>}
-          </Ul>
-        </WraperPetDetails>
+        <div>
+          <Title>{title}</Title>
+          <WraperPetDetails>
+            <Ul>
+              <Li>Breed:</Li>
+              <Li>Place:</Li>
+              <Li>Age:</Li>
+              {price !== undefined && type === 'sell' && <Li>Price:</Li>}
+            </Ul>
+            <Ul>
+              <Li>{breed}</Li>
+              <Li>{place}</Li>
+              <Li>
+                <CardNewDate date={dateOfBirth} />
+              </Li>
+              {price !== undefined && type === 'sell' && <Li>{price}$</Li>}
+            </Ul>
+          </WraperPetDetails>
+        </div>
         <PetDetailsButton onClick={modalHandler}>
           <PetDetailsButtonText>Learn More</PetDetailsButtonText>
         </PetDetailsButton>

@@ -26,6 +26,10 @@ export const sell = createAsyncThunk(
       const res = await axios.get(
         `/api/notices/paginateNotice?type=sell&page=${page}&limit=${limit}`
       );
+
+      const not = res.data.items.reverse();
+      console.log(not);
+
       return { data: res.data, page };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -67,6 +71,7 @@ export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async (newNotice, thunkAPI) => {
     try {
+      console.log(newNotice);
       const response = await axios.post('/api/notices', newNotice, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -83,7 +88,7 @@ export const deleteNotice = createAsyncThunk(
   'notices/delete',
   async ({ id, type }, thunkAPI) => {
     try {
-      await axios.delete(`/api/notices/${id}`);
+      await axios.delete(`/api/notices/ads/${id}`);
       return { id, type };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

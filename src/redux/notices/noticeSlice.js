@@ -38,7 +38,6 @@ const initialState = {
   favoriteNotices: [],
   myAdsNotices: [],
   searchNotices: [],
-  notices: [],
   currentNotice: null,
   query: '',
 };
@@ -51,6 +50,10 @@ const findNotice = (state, id, type) => {
       return state.goodHandsNotices.find(notice => notice._id === id);
     case 'lost/found':
       return state.lostFoundNotices.find(notice => notice._id === id);
+    case 'my-ads':
+      return state.myAdsNotices.find(notice => notice._id === id);
+    default:
+      console.log('Done');
   }
 };
 
@@ -64,6 +67,9 @@ const noticeSlice = createSlice({
         state.searchNotices = [];
       }
     },
+    clearCurrentNotice(state) {
+      state.currentNotice = null;
+    },
   },
   extraReducers: builder =>
     builder
@@ -74,6 +80,7 @@ const noticeSlice = createSlice({
       .addCase(getNoticeById.fulfilled, (state, action) => {
         state.currentNotice = action.payload;
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(getNoticeById.rejected, (state, action) => {
         state.isLoading = false;
@@ -85,6 +92,7 @@ const noticeSlice = createSlice({
       .addCase(search.fulfilled, (state, action) => {
         state.searchNotices = action.payload;
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(search.rejected, (state, action) => {
         state.isLoading = false;
@@ -95,12 +103,13 @@ const noticeSlice = createSlice({
       })
       .addCase(addNoticeToFav.fulfilled, (state, action) => {
         const { id, type } = action.payload;
-
         const notice = findNotice(state, id, type);
 
         if (notice) {
-          state.favoriteNotices.push(notice);
+          state.favoriteNotices.unshift(notice);
         }
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(addNoticeToFav.rejected, (state, action) => {
         state.isLoading = false;
@@ -114,6 +123,7 @@ const noticeSlice = createSlice({
           ({ _id }) => _id !== action.payload
         );
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(deleteNoticeFromFav.rejected, (state, action) => {
         state.isLoading = false;
@@ -130,6 +140,7 @@ const noticeSlice = createSlice({
         state.pages.sell += 1;
         state.totalCounts.sell = action.payload.data.totalCount;
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(sell.rejected, (state, action) => {
         state.isLoading = false;
@@ -146,6 +157,7 @@ const noticeSlice = createSlice({
         state.pages.goodHands += 1;
         state.totalCounts.goodHands = action.payload.data.totalCount;
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(goodHands.rejected, (state, action) => {
         state.isLoading = false;
@@ -162,6 +174,7 @@ const noticeSlice = createSlice({
         state.pages.lostFound += 1;
         state.totalCounts.lostFound = action.payload.data.totalCount;
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(lostFound.rejected, (state, action) => {
         state.isLoading = false;
@@ -174,19 +187,26 @@ const noticeSlice = createSlice({
         const { id, type } = action.payload;
         switch (type) {
           case 'sell':
-            state.sellNotices.filter(({ _id }) => _id !== id);
+            state.sellNotices = state.sellNotices.filter(
+              ({ _id }) => _id !== id
+            );
             break;
           case 'lost/found':
-            state.lostFoundNotices.filter(({ _id }) => _id !== id);
+            state.lostFoundNotices = state.lostFoundNotices.filter(
+              ({ _id }) => _id !== id
+            );
             break;
           case 'good-hands':
-            state.goodHandsNotices.filter(({ _id }) => _id !== id);
+            state.goodHandsNotices = state.goodHandsNotices.filter(
+              ({ _id }) => _id !== id
+            );
             break;
           default:
             break;
         }
-        state.sellNotices = action.payload;
+        state.myAdsNotices = state.myAdsNotices.filter(({ _id }) => _id !== id);
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(deleteNotice.rejected, (state, action) => {
         state.isLoading = false;
@@ -203,6 +223,7 @@ const noticeSlice = createSlice({
         state.pages.favorite += 1;
         state.totalCounts.favorite = action.payload.data.totalCount;
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(favorite.rejected, (state, action) => {
         state.isLoading = false;
@@ -219,6 +240,7 @@ const noticeSlice = createSlice({
         state.pages.myAds += 1;
         state.totalCounts.myAds = action.payload.data.totalCount;
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(myAds.rejected, (state, action) => {
         state.isLoading = false;
@@ -228,7 +250,29 @@ const noticeSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(addNotice.fulfilled, (state, action) => {
-        state.notices = [action.payload, ...state.notices];
+        const { type } = action.payload;
+        switch (type) {
+          case 'sell':
+            state.sellNotices = [action.payload, ...state.sellNotices];
+            break;
+          case 'lost/found':
+            state.lostFoundNotices = [
+              action.payload,
+              ...state.lostFoundNotices,
+            ];
+            break;
+          case 'good-hands':
+            state.goodHandsNotices = [
+              action.payload,
+              ...state.goodHandsNotices,
+            ];
+            break;
+          default:
+            break;
+        }
+        state.myAdsNotices = [action.payload, ...state.myAdsNotices];
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(addNotice.rejected, (state, action) => {
         state.isLoading = false;
@@ -238,4 +282,4 @@ const noticeSlice = createSlice({
 
 export const noticeReducer = noticeSlice.reducer;
 
-export const { setQuery } = noticeSlice.actions;
+export const { setQuery, clearCurrentNotice } = noticeSlice.actions;

@@ -1,6 +1,7 @@
 import React from 'react';
-
+import styled, { css } from 'styled-components';
 import { WorkingModal, Day, DayOfWeek } from '../Friend/Friend.styled';
+import { theme } from '../../../utils';
 
 const daysOfWeek = {
   0: 'MN',
@@ -12,22 +13,35 @@ const daysOfWeek = {
   6: 'SU',
 };
 
+const StyledDay = styled(Day)`
+  background-color: white;
+  color: black;
+
+  ${({ isCurrentDay }) =>
+    isCurrentDay &&
+    css`
+      background-color: transparent;
+      color: ${theme.colors.primary};
+    `}
+`;
+
 const HoursModal = ({ timeTable }) => {
   if (!timeTable || timeTable.length === 0) {
-    return;
+    return null;
   }
 
   return (
     <WorkingModal>
       <ul>
         {timeTable.map((day, idx) => {
+          const isCurrentDay = new Date().getDay() === idx + 1;
           return (
-            <Day key={idx}>
+            <StyledDay key={idx} isCurrentDay={isCurrentDay}>
               <DayOfWeek>{daysOfWeek[idx]}</DayOfWeek>
               <span>
                 {day.from} - {day.to}
               </span>
-            </Day>
+            </StyledDay>
           );
         })}
       </ul>

@@ -62,6 +62,8 @@ export const Input = styled(Field)`
   font-weight: 400;
   font-size: 16px;
   line-height: 1.3;
+  padding-left: 14px;
+
   background-color: #fdf7f2;
   outline: none;
   border: 1px solid #f59256;
@@ -90,6 +92,10 @@ export const Input = styled(Field)`
 `;
 
 export const InputSelect = styled(Field)`
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M6 9l6 6 6-6" /></svg>');
+  background-repeat: no-repeat;
+  background-position: right bottom;
   font-family: Manrope;
   font-weight: 400;
   font-size: 16px;

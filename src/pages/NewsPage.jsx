@@ -19,8 +19,6 @@ export default function NewsPage() {
 
   const dispatch = useDispatch();
   const { currentNews } = useNews();
-  // console.log(currentNews);
-  // const { value } = currentNews;
 
   useEffect(() => {
     dispatch(getNews(query));
@@ -60,43 +58,3 @@ export default function NewsPage() {
     </Container>
   );
 }
-// ======== second way for news ========= up
-
-// currentNews && articles && <ListNews news={articles} />
-
-// ======= old ========
-// ================= запрос
-// export async function fetchSearchNews(query) {
-//   if (query === '') {
-//     query = 'dog';
-//   }
-//   const { data } = await axios.get(
-//     http://localhost:3001/api/news?query=${query}
-//   );
-//   return data;
-// }
-// =================
-// console.log(searchParams);
-// useEffect(() => {
-//   async function fetchNews(query) {
-//     try {
-//         setIsLoading(true);
-//         // const response = await selectNews(query);
-//         const response = await fetchSearchNews(query);
-//         const news = response.data.result.value;
-//         const total = response.data.result.totalCount;
-//         if (total === 0) {
-//           toast.error(
-//             'Sorry, there are no news matching your query. Please try again.'
-//           );
-//           return;
-//         }
-//       setSearchNews(query);
-//     } catch {
-//       setError('Can`t load news!');
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   }
-//   fetchNews(query);
-// }, [query]);

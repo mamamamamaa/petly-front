@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import {
   Title,
-  Link,
   Description,
   DescList,
   Image,
@@ -16,7 +15,6 @@ import HoursModal from '../Friend/HoursModal';
 
 const Friend = ({ friend }) => {
   const [showModal, setShowModal] = useState(false);
-
   const { address, addressUrl, email, phone, title, url, workDays, imageUrl } =
     friend;
 
@@ -24,24 +22,23 @@ const Friend = ({ friend }) => {
     setShowModal(!showModal);
   };
 
+  const color = showModal ? '#F59256' : '#111111';
   return (
     <>
-      <Title>
-        <Link href={url} target="_blank" rel="noopener noreferrer">
-          {title}
-        </Link>
+      <Title href={url} target="_blank" rel="noopener noreferrer">
+        {title}
       </Title>
 
       <Description>
         <Image src={imageUrl ? imageUrl : defaultImage} alt="company logo" />
 
         <DescList>
-          <Item>
+          <Item clr={color}>
             Time: <br />
             {!workDays || workDays.length === 0 ? (
               '--------------------'
             ) : (
-              <HoursBtn type="button" onClick={toggleModal}>
+              <HoursBtn type="button" onClick={toggleModal} clr={color}>
                 {workDays.find(day => day.isOpen === true).from} -
                 {workDays.find(day => day.isOpen === true).to}
               </HoursBtn>

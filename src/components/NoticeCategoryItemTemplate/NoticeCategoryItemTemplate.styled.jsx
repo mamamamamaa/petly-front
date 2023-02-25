@@ -129,6 +129,10 @@ export const Title = styled.h3`
 
 export const BoxPetDetails = styled.div`
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 278px;
 `;
 
 export const WraperPetDetails = styled.div`
@@ -152,6 +156,11 @@ export const Li = styled.li`
 `;
 
 export const PetDetailsButton = styled.button`
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
   width: 100%;
   display: flex;
   justify-content: center;
@@ -163,7 +172,6 @@ export const PetDetailsButton = styled.button`
   background: ${theme.colors.accentText};
   cursor: pointer;
   color: ${theme.colors.primary};
-  margin-bottom: 12px;
   color: ${theme.colors.accentButton};
   ${media.tabletAndDesktop} {
     width: 248px;
@@ -175,6 +183,12 @@ export const PetDetailsButtonText = styled.p`
   color: #f59256;
 `;
 export const PetDeleteButton = styled.button`
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  cursor: pointer;
   color: ${theme.colors.accentButton};
   background: ${theme.colors.accentText};
   width: 100%;
