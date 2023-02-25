@@ -1,7 +1,6 @@
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import React, { useState } from 'react';
 import { VscClose } from 'react-icons/vsc';
-import toast, { Toaster } from 'react-hot-toast';
 import * as Yup from 'yup';
 import { breeds } from '../../utils/getBreed';
 
@@ -24,6 +23,7 @@ import {
   LabelRadioBtn,
   RadioBtn,
   SpanStar,
+  BoxWarning,
 } from './ModalAddNotice.styled';
 
 const formOneValidationSchema = Yup.object({
@@ -134,10 +134,11 @@ export const AddNoticeStepOne = props => {
                 </LabelRadioBtn>
                 <RadioBtn id="sell" type="radio" name="type" value="sell" />
                 <LabelRadioBtn htmlFor="sell">sell</LabelRadioBtn>
+                <BoxWarning>
+                  <ErrorMessage name="type" component="div" />
+                </BoxWarning>
               </RadioWrapp>
-              {props.isSubmitting && props.errors.type
-                ? toast('Type is required')
-                : null}
+
               <Label htmlFor="titleAd">
                 Title of ad<SpanStar>*</SpanStar>
               </Label>
@@ -148,10 +149,10 @@ export const AddNoticeStepOne = props => {
                   placeholder="Type title ad"
                   required
                 />
+                <BoxWarning>
+                  <ErrorMessage name="title" component="div" />
+                </BoxWarning>
               </InputWrapper>
-              {props.isSubmitting && props.errors.title
-                ? toast('Title is required')
-                : null}
 
               {noticeType && <Label htmlFor="namePet">Name pet:</Label>}
 
@@ -174,11 +175,12 @@ export const AddNoticeStepOne = props => {
                     placeholder="Type name pet"
                     required
                   />
+                  <BoxWarning>
+                    <ErrorMessage name="name" component="div" />
+                  </BoxWarning>
                 </InputWrapper>
               )}
-              {props.isSubmitting && props.errors.name
-                ? toast('Name is required')
-                : null}
+
               <Label htmlFor="dateOfBirth">
                 Date of birth<SpanStar>*</SpanStar>
               </Label>
@@ -190,10 +192,11 @@ export const AddNoticeStepOne = props => {
                   placeholder="Type date of birth"
                   required
                 />
+                <BoxWarning>
+                  <ErrorMessage name="dateOfBirth" component="div" />
+                </BoxWarning>
               </InputWrapper>
-              {props.isSubmitting && props.errors.dateOfBirth
-                ? toast('Date of birth is required. Correct format: dd.mm.yyyy')
-                : null}
+
               <Label htmlFor="breed">
                 Breed<SpanStar>*</SpanStar>
               </Label>
@@ -205,10 +208,11 @@ export const AddNoticeStepOne = props => {
                     </option>
                   ))}
                 </InputLast>
+                <BoxWarning>
+                  <ErrorMessage name="breed" component="div" />
+                </BoxWarning>
               </InputWrapperLast>
-              {props.isSubmitting && props.errors.breed
-                ? toast('Breed is required')
-                : null}
+
               <ButtonWrapper>
                 <ButtonFill type="submit">Next</ButtonFill>
                 <ButtonEmpty type="button" onClick={handleOnClick}>
@@ -219,7 +223,6 @@ export const AddNoticeStepOne = props => {
           )}
         </Formik>
       </FormWrapper>
-      <Toaster />
     </Container>
   );
 };

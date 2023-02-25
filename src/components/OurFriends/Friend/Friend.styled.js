@@ -16,7 +16,7 @@ export const Title = styled.a`
   }
   @media (min-width: 1280px) {
     line-height: 1.35;
-    font-size: 20px;
+    font-size: 18px;
   }
 `;
 
@@ -55,7 +55,7 @@ export const Image = styled.img`
 export const DescList = styled.ul`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 4px;
   @media screen and (min-width: 768px) {
     gap: 8px;

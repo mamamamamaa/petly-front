@@ -603,3 +603,9 @@ export const AddNoticeStepOneSelect = styled.select`
     padding-bottom: 10px;
   }
 `;
+
+export const BoxWarning = styled.span`
+  color: red;
+  font-weight: 400;
+  font-size: 12px;
+`;
