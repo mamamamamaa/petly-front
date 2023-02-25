@@ -35,19 +35,19 @@ export const Description = styled.div`
 
 export const Image = styled.img`
   width: 110px;
-  height: 78px;
+  /* height: 78px; */
 
   margin-bottom: 74px;
   margin-left: 4px;
   @media (min-width: 768px) {
     width: 120px;
-    height: 85px;
+    /* height: 85px; */
 
     margin-bottom: 107px;
   }
   @media (min-width: 1280px) {
     width: 158px;
-    height: 112px;
+    /* height: 112px; */
     margin-bottom: 116px;
   }
 `;
