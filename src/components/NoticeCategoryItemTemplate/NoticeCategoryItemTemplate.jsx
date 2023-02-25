@@ -5,13 +5,15 @@ import {
   WraperPetDetails,
   Ul,
   Li,
-  PetDetailsButton,
+  EmptyBox,
+  BtnDetails,
   PetDetailsButtonText,
   PhotoPetWrapper,
   AddToFavImg,
   AddToFavBtn,
   AdvWrapper,
   AdvTitle,
+  WraperButton,
   PetDeleteButton,
   PetDeleteButtonDiv,
   PetDeleteButtonImg,
@@ -110,7 +112,7 @@ export const NoticeCategoryItemTemplate = ({
     }
   }, [modal]);
 
-  console.log(price);
+  console.log(isOwn);
 
   return (
     <>
@@ -138,14 +140,18 @@ export const NoticeCategoryItemTemplate = ({
         </AddToFavBtn>
       </PhotoPetWrapper>
       <BoxPetDetails>
-        <div>
+        <>
           <Title>{title}</Title>
           <WraperPetDetails>
             <Ul>
               <Li>Breed:</Li>
               <Li>Place:</Li>
               <Li>Age:</Li>
-              {price !== undefined && type === 'sell' && <Li>Price:</Li>}
+              {price !== undefined && type === 'sell' ? (
+                <Li>Price:</Li>
+              ) : (
+                <EmptyBox></EmptyBox>
+              )}
             </Ul>
             <Ul>
               <Li>{breed}</Li>
@@ -156,25 +162,27 @@ export const NoticeCategoryItemTemplate = ({
               {price !== undefined && type === 'sell' && <Li>{price}$</Li>}
             </Ul>
           </WraperPetDetails>
-        </div>
-        <PetDetailsButton onClick={modalHandler}>
-          <PetDetailsButtonText>Learn More</PetDetailsButtonText>
-        </PetDetailsButton>
-        {isOwn && (
-          <PetDeleteButton
-            onClick={() => {
-              dispatch(deleteNotice({ id: _id, type }));
-            }}
-          >
-            <PetDeleteButtonDiv>
-              <PetDeleteButtonText>Delete</PetDeleteButtonText>
-              <PetDeleteButtonImg
-                src={recycleBin}
-                alt="Recycle bin"
-              ></PetDeleteButtonImg>
-            </PetDeleteButtonDiv>
-          </PetDeleteButton>
-        )}
+        </>
+        <WraperButton>
+          <BtnDetails onClick={modalHandler}>
+            <PetDetailsButtonText>Learn More</PetDetailsButtonText>
+          </BtnDetails>
+          {isOwn && (
+            <PetDeleteButton
+              onClick={() => {
+                dispatch(deleteNotice({ id: _id, type }));
+              }}
+            >
+              <PetDeleteButtonDiv>
+                <PetDeleteButtonText>Delete</PetDeleteButtonText>
+                <PetDeleteButtonImg
+                  src={recycleBin}
+                  alt="Recycle bin"
+                ></PetDeleteButtonImg>
+              </PetDeleteButtonDiv>
+            </PetDeleteButton>
+          )}
+        </WraperButton>
       </BoxPetDetails>
     </>
   );
