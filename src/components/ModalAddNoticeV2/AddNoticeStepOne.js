@@ -39,7 +39,13 @@ const addNoticeStepOneSchema = yup.object().shape({
     .max(16, 'Must be 16 or less letter')
     .trim()
     .required('The name is required'),
-  dateOfBirth: yup.date(),
+  // dateOfBirth: yup
+  //   .string()
+  //   .matches(
+  //     /^(\d{4})-(\d{2})-(\d{2})$/,
+  //     "Date must be in the format 'yyyy-MM-dd'"
+  //   )
+  //   .nullable(true),
   breed: yup.string().required('The breed is required'),
 });
 
@@ -52,7 +58,7 @@ export const AddNoticeStepOne = ({
 }) => {
   const formik = useFormik({
     initialValues: data,
-    // validationSchema: addNoticeStepOneSchema,
+    validationSchema: addNoticeStepOneSchema,
     onSubmit: values => {
       next({
         ...data,
@@ -60,8 +66,19 @@ export const AddNoticeStepOne = ({
         selectedOption,
       });
     },
+    // validate: (values) => {
+    //   const errors = {};
+    //   if (values.dateOfBirth && isNaN(new Date(values.dateOfBirth))) {
+    //     // Set the date value to null if it's an invalid date
+    //     errors.dateOfBirth = 'Invalid date';
+    //     values.dateOfBirth = null;
+    //     console.log(errors);
+    //   }
+    //   return errors;
+    // },
   });
-  // (console.log(formik.values.title));
+  // const { dateOfBirth, ...rest } = formik.values;
+  console.log(data);
   formik.values.type = selectedOption;
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -134,9 +151,11 @@ export const AddNoticeStepOne = ({
         name="dateOfBirth"
         id="dateOfBirth"
         onChange={formik.handleChange}
-        value={formik.values.dateOfBirth}
+        value={ formik.values.dateOfBirth}
       />
-
+      { formik.errors.dateOfBirth ? (
+        <div>{formik.errors.dateOfBirth}</div>
+      ) : null}
       <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
       <AddNoticeStepOneSelectWrapper>
         <AddNoticeStepOneSelect

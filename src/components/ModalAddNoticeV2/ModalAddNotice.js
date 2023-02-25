@@ -10,7 +10,7 @@ const initialState = {
   type: '',
   title: '',
   name: '',
-  dateOfBirth: '2015-01-01',
+  dateOfBirth: '',
   breed: '',
   sex: '',
   location: '',
@@ -39,36 +39,42 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
   const onFinal = () => setFinal(final);
 
   const next = (newData = {}, final) => {
-    const normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
-      'DD.MM.YYYY'
-    );
+    let normalizedDateOfBirth;
+    console.log(newData);
+    if (newData.dateOfBirth !== '') {
+      normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
+        'DD.MM.YYYY'
+      );
+    }
+    else normalizedDateOfBirth = newData.dateOfBirth;
+    console.log(normalizedDateOfBirth);
     if (final) {
       setData({
         ...newData,
-        dateOfBirth: normalizedDateOfBirth,
+        // dateOfBirth: normalizedDateOfBirth,
       });
       // Retrieve the file URL from local storage
       const formData = new FormData();
       // if (newData.photoUrl) {
- 
-        if (typeof newData.photoUrl === 'string') {
-          const photoUrlFile = new File(
-            [newData.photoUrl],
-            newData.photoUrl.name,
-            { type: 'image/jpeg' }
-          );
-          formData.append('photoUrl', photoUrlFile);
-        } else {
-          formData.append('photoUrl', newData.photoUrl);
-        }
+
+      if (typeof newData.photoUrl === 'string') {
+        const photoUrlFile = new File(
+          [newData.photoUrl],
+          newData.photoUrl.name,
+          { type: 'image/jpeg' }
+        );
+        formData.append('photoUrl', photoUrlFile);
+      } else {
+        formData.append('photoUrl', newData.photoUrl);
+      }
       formData.append('comments', newData.comments || 'lemonad');
       formData.append('breed', newData.breed || 'barbet');
-      formData.append('dateOfBirth', newData.dateOfBirth);
+      formData.append('dateOfBirth', normalizedDateOfBirth);
       formData.append('name', newData.name || 'demon');
       formData.append('type', newData.type || 'sell');
       formData.append('title', newData.title || 'demon');
       formData.append('sex', newData.sex || 'male');
-      formData.append('location', newData.location || 'demon');
+      formData.append('place', newData.location || 'demon');
       formData.append('price', newData.price || 200);
       for (const [key, value] of formData.entries()) {
         console.log(`${key}: ${value}`);

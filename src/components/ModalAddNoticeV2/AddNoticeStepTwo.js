@@ -143,6 +143,9 @@ export const AddNoticeStepTwo = ({
     }
     setIsChecked(prev => !prev);
   };
+  // const { dateOfBirth, ...rest } = formik.data;
+  console.log(data);
+  // console.log(rest);
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
