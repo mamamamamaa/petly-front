@@ -18,11 +18,11 @@ function ListNews({ news }) {
   return (
     <Ul>
       {news.map(item => (
-        <Li key={item.id}>
+        <Li key={item.url}>
           <Box>
             <ColorBox></ColorBox>
             <Header>{item.title}</Header>
-            <Paragraph>{item.body || item.content}</Paragraph>
+            <Paragraph>{item.description || item.content}</Paragraph>
             <Wraper>
               <DateBox>
                 <NewsNewDate date={item.datePublished || item.publishedAt} />
