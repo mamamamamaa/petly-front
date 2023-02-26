@@ -24,3 +24,5 @@ yarn-error.log*
 
 .idea
 package-lock.json
+src/components/ModalAddNotice/jptBtnExample.js
+src/components/ModalAddNoticeV2/useFormikactions.js

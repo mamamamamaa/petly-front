@@ -7,16 +7,20 @@ import {
   AddPetToNoticesText,
   AddPetToNoticesBtnWrapper,
 } from '../AddNoticeButton/AddNoticeButton.styled';
-import { ModalAddNotice } from '../../components/ModalAddNotice/ModalAddNotice';
+import { ModalAddNotice } from '../ModalAddNoticeV2/ModalAddNotice';
 import cross from 'utils/svg/cross.svg';
 import { Modal } from 'components/Modal/Modal';
 
 const AddNoticeButton = () => {
   const { isLoggedIn } = useAuth();
-  const [showModal, setShowModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleModal = () => {
-    setShowModal(prevShowModal => !prevShowModal);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   const onButtonClick = () => {
@@ -24,28 +28,24 @@ const AddNoticeButton = () => {
       ? toast.error(
           'Dear friend, please sign up or log in to add your pet to notice'
         )
-      : setShowModal(true);
+      : openModal();
   };
 
   useEffect(() => {
-    if (showModal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [showModal]);
-
+    openModal(); // removes double click button issue
+  }, []);
+  
   return (
     <>
-      <AddPetToNoticesBtnWrapper type="button" onClick={onButtonClick}>
+      <AddPetToNoticesBtnWrapper>
         <AddPetToNoticesText>Add pet</AddPetToNoticesText>
-        <AddPetToNoticesBtn>
+        <AddPetToNoticesBtn type="button" onClick={onButtonClick}>
           <AddPetToNoticesImg src={cross} alt="Add pet to notices" />
         </AddPetToNoticesBtn>
       </AddPetToNoticesBtnWrapper>
-      {showModal && (
-        <Modal onClose={handleModal} className='addNotice'>
-          <ModalAddNotice onClose={handleModal} />
+      {isOpen && (
+        <Modal onClose={closeModal}>
+          <ModalAddNotice isOpen={isOpen} onClose={closeModal} />
         </Modal>
       )}
 
