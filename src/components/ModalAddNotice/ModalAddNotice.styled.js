@@ -236,6 +236,7 @@ export const InputWrapperLast = styled.div`
 `;
 
 export const Input = styled(Field)`
+  outline-color: ${theme.colors.primary};
   font-weight: 500;
   font-size: 0.8rem;
   line-height: 1.6rem;
@@ -267,6 +268,8 @@ export const Input = styled(Field)`
 `;
 
 export const InputLast = styled(Field)`
+  outline-color: ${theme.colors.primary};
+
   appearance: none;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M6 9l6 6 6-6" /></svg>');
   background-repeat: no-repeat;
@@ -599,4 +602,10 @@ export const AddNoticeStepOneSelect = styled.select`
     padding-top: 11px;
     padding-bottom: 10px;
   }
+`;
+
+export const BoxWarning = styled.span`
+  color: red;
+  font-weight: 400;
+  font-size: 12px;
 `;

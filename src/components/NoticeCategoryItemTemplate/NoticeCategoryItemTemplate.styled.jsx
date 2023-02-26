@@ -132,7 +132,7 @@ export const BoxPetDetails = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 278px;
+  /* height: 278px; */
 `;
 
 export const WraperPetDetails = styled.div`
@@ -155,7 +155,19 @@ export const Li = styled.li`
   }
 `;
 
-export const PetDetailsButton = styled.button`
+export const EmptyBox = styled.div`
+  height: 26px;
+  width: 60px;
+  background-color: transparent;
+`;
+
+export const WraperButton = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+// ==============
+export const BtnDetails = styled.button`
   :hover,
   :focus {
     transform: scale(1.05);
@@ -166,6 +178,7 @@ export const PetDetailsButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 8px 28px;
+
   height: 38px;
   border: 2px solid ${theme.colors.primary};
   border-radius: 40px;
@@ -179,9 +192,11 @@ export const PetDetailsButton = styled.button`
     margin-right: auto;
   }
 `;
+
 export const PetDetailsButtonText = styled.p`
   color: #f59256;
 `;
+
 export const PetDeleteButton = styled.button`
   :hover,
   :focus {
@@ -192,6 +207,7 @@ export const PetDeleteButton = styled.button`
   color: ${theme.colors.accentButton};
   background: ${theme.colors.accentText};
   width: 100%;
+  margin-top: 12px;
   border: 2px solid ${theme.colors.accentButton};
   border-radius: 40px;
   display: flex;
@@ -204,8 +220,9 @@ export const PetDeleteButton = styled.button`
     margin-right: auto;
   }
 `;
+
 export const PetDeleteButtonDiv = styled.div`
-  width: 86px;
+  width: 74px;
   display: flex;
   justify-content: space-between;
   align-items: center;

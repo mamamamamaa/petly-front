@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import { VscClose } from 'react-icons/vsc';
-import toast, { Toaster } from 'react-hot-toast';
 import * as Yup from 'yup';
 
 import {
@@ -29,6 +28,7 @@ import {
   IconFemale,
   SpanStar,
   AddImg,
+  BoxWarning,
 } from './ModalAddNotice.styled';
 import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/operations';
@@ -41,7 +41,13 @@ const formTwoValidationSchema = Yup.object({
     .max(120, 'Comments Too Long!')
     .label('Comment')
     .required('Comment is required'),
-  place: Yup.string().required('Location is required'),
+  place: Yup.string()
+    .min(4, 'Location should be from 4 to 40 symbols')
+    .max(40, 'Location should be from 4 to 40 symbols')
+    .matches(
+      /^[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+(-| )?[a-zA-zа-яіїєА-ЯІЇЄ']+$/
+    )
+    .required('Location is required'),
   photoUrl: Yup.mixed().label('Pet image').required('Pet image is required'),
   price: Yup.number(),
 });
@@ -96,7 +102,7 @@ export const AddNoticeStepTwo = props => {
             const newData = {
               type,
               title,
-              name,
+
               dateOfBirth,
               breed,
               sex,
@@ -141,10 +147,11 @@ export const AddNoticeStepTwo = props => {
                   <IconFemale />
                   Female
                 </LabelRadioSexBtn>
+                <BoxWarning>
+                  <ErrorMessage name="sex" component="div" />
+                </BoxWarning>
               </RadioWrapp>
-              {props.isSubmitting && props.errors.sex
-                ? toast('Sex is required')
-                : null}
+
               <Label htmlFor="place">
                 Location<SpanStar>*</SpanStar>:
               </Label>
@@ -157,10 +164,10 @@ export const AddNoticeStepTwo = props => {
                   placeholder="Type location"
                   required
                 />
+                <BoxWarning>
+                  <ErrorMessage name="place" component="div" />
+                </BoxWarning>
               </InputWrapper>
-              {props.isSubmitting && props.errors.place
-                ? toast('Location is required')
-                : null}
 
               {noticeType && (
                 <Label htmlFor="price">
@@ -176,12 +183,12 @@ export const AddNoticeStepTwo = props => {
                     value={values.price}
                     placeholder="Type price"
                   />
+                  <BoxWarning>
+                    <ErrorMessage name="price" component="div" />
+                  </BoxWarning>
                 </InputWrapper>
               )}
 
-              {props.isSubmitting && props.errors.price
-                ? toast('Price must be in numbers')
-                : null}
               <Label>Load the pet’s image</Label>
               <ButtonAddPhoto type="button">
                 {!img ? (
@@ -202,9 +209,9 @@ export const AddNoticeStepTwo = props => {
                   }}
                   required
                 />
-                {props.isSubmitting && props.errors.photoUrl
-                  ? toast('Pet image is required')
-                  : null}
+                <BoxWarning>
+                  <ErrorMessage name="photoUrl" component="div" />
+                </BoxWarning>
               </ButtonAddPhoto>
               <WraperTextarea>
                 <Label>Comments</Label>
@@ -216,10 +223,11 @@ export const AddNoticeStepTwo = props => {
                   placeholder="Type comments"
                   required
                 />
+                <BoxWarning>
+                  <ErrorMessage name="comments" component="div" />
+                </BoxWarning>
               </WraperTextarea>
-              {props.isSubmitting && props.errors.comments
-                ? toast('Comment is required')
-                : null}
+
               <ButtonWrapper>
                 <ButtonFill type="submit" onSubmit={handleSubmit}>
                   Done
@@ -235,7 +243,6 @@ export const AddNoticeStepTwo = props => {
           )}
         </Formik>
       </FormWrapper>
-      <Toaster />
     </Container>
   );
 };
