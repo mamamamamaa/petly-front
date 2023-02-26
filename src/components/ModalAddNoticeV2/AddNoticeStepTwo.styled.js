@@ -74,7 +74,7 @@ export const AddNoticeStepTwoMaleSpan = styled.span`
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${props => (props.checked && !props.isDisabled ? '#f59256' : '#000')};
+  color: ${props => (props.checked && !props.isDisabled ? '#000' : '#f59256')};
 `;
 export const AddNoticeStepTwoFemaleWrapper = styled.div`
   display: inline-flex;
@@ -92,7 +92,7 @@ export const AddNoticeStepTwoFemaleSpan = styled.span`
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${props => (props.checked ? '#000' : '#f59256')};
+  color: ${props => (props.checked ? '#f59256' : '#000')};
 `;
 
 export const AddNoticeStepTwoLabelLocation = styled.label`

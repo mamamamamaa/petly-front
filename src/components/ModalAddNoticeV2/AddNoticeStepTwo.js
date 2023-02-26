@@ -72,11 +72,10 @@ export const AddNoticeStepTwo = ({
   selectedOption,
   onFinal,
 }) => {
-  console.log(data);
-  const handleBack = () => {
-    console.log(formik.values);
+   const handleBack = () => {
+    console.log(formik.values.sex);
     const newValue = {
-      // ...data,
+      ...data,
       ...formik.values,
     };
     prev(newValue);
@@ -95,7 +94,7 @@ export const AddNoticeStepTwo = ({
       const errors = actions.validateForm();
       console.log(errors);
       const newValue = {
-        // ...data,
+        ...data,
         ...values,
       };
 
@@ -134,7 +133,7 @@ export const AddNoticeStepTwo = ({
 
   const onSexChange = event => {
     setIsDisabled(false);
-
+    console.log(formik.values.sex);
     if (isChecked === true) {
       formik.setValues({
         ...formik.values,
