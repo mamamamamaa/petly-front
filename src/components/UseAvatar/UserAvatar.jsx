@@ -1,5 +1,5 @@
-// ========================add, but not send
-import React, { useState, useEffect } from 'react';
+// ========================
+import React, { useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { updateAvatar } from 'redux/user/operations';
 import {
@@ -16,20 +16,18 @@ import {
   Wrap,
   DivPhoto,
 } from '../UserCard/UserCard.styled';
-import { NoPhotoIcon } from 'utils/svg/noPhotoCross';
+
 import { useUser } from 'redux/hooks';
+import { RxAvatar } from "react-icons/rx"
 
 export const FileUploader = () => {
-  const { user } = useUser();
-  const [files, setFiles] = useState(null);
-  const [image, setImage] = useState();
+  const { user } = useUser();  
   const [avatarURL, setAvatarURL] = useState();
   const dispatch = useDispatch();
 
   const onChangeHandler = e => {
     e.preventDefault();
-    // console.log(e.target.files[0])
-
+    
     const file = e.target.files[0];
 
     const fileReader = new FileReader();
@@ -50,16 +48,16 @@ export const FileUploader = () => {
   return (
     <>
       <DivPhoto>
-        {user ? (
-          <Imgav
+        {user && (avatarURL || user.user.avatarURL) ? (
+         <Imgav
             src={avatarURL || user.user.avatarURL}
-            alt="preview"
+            alt=" "
             accept="image/*"
             multiple
           />
         ) : (
-          <NoAvatarContainer>
-            <NoPhotoIcon />
+           <NoAvatarContainer>
+              <RxAvatar size={70} color="rgba(17, 17, 17, 0.6)" />
           </NoAvatarContainer>
         )}
       </DivPhoto>

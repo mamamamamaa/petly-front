@@ -4,7 +4,7 @@ import { theme } from '../../utils';
 import { media } from '../Layout/Layout.styled';
 import { BsCalendar } from 'react-icons/bs';
 
-//===========пробная загрузка==========================================
+//===========for avatar==========================================
 
 export const Inputav = styled.input`
   opacity: 0;
@@ -19,10 +19,12 @@ export const Formav = styled.form`
   gap: 12px;
 `;
 export const Imgav = styled.img`
+  display: block;
   width: 233px;
   height: 233px;
   border-radius: 50%;
-  filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+  object-fit: cover;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
 `;
 
 export const Title = styled.h2`
@@ -97,12 +99,14 @@ export const FormAndPhotoWrapper = styled.div`
   }
 `;
 export const DivPhoto = styled.div`
+  // border: 1px solid tomato;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 233px;
   height: 233px;
-  filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+  border-radius: 50%;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
   ${media.mobile} {
     margin-left: auto;
     margin-right: auto;
@@ -114,17 +118,9 @@ export const DivPhoto = styled.div`
   } ;
 `;
 
-export const UserPhoto = styled.img`
-  position: relative;
-  filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
-  width: 233px;
-  height: 233px;
-  border-radius: 50%;
-`;
-
 export const NoAvatarContainer = styled.div`
   width: 233px;
-  height: 233px;
+  height: 233px;  
   background-color: ${theme.colors.secondary};
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 50%;
@@ -133,12 +129,6 @@ export const NoAvatarContainer = styled.div`
   justify-content: center;
 `;
 
-// export const ImgAvatar = styled.svg`
-/* filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
-  width: 233px;
-  height: 233px;
-  border-radius: 50%; */
-// `;
 
 export const Btn = styled.button`
   border: none;
