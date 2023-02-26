@@ -20,6 +20,9 @@ const initialState = {
 };
 export const ModalAddNotice = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
+  const [isChecked, setIsChecked] = useState(false); // true means MALE by default / false means FEMALE by default
+  const [isDisabled, setIsDisabled] = useState(true); // disable checkbox by default
+
   const [data, setData] = useState(initialState);
   const [final, setFinal] = useState(false);
   const onFinal = () => setFinal(final);
@@ -118,12 +121,30 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const steps = [
     <AddNoticeStepOne
-      {...{ next, data, cancel, selectedOption, handleOptionChange }}
+      {...{
+        next,
+        data,
+        cancel,
+        selectedOption,
+        handleOptionChange,
+      }}
       // selectedOption FOR BUTTONS SWAPING OPTION 'SELL', 'inGoodHands', 'lostFound'
       //handleOptionChange TAKE DATA 'SELL', 'inGoodHands', 'lostFound' FROM INPUTS
     />,
     <AddNoticeStepTwo
-      {...{ final, onFinal, next, data, prev, onClose, selectedOption }} //selectedOption TO SHOW SELL FILED OR NO
+      {...{
+        final,
+        onFinal,
+        next,
+        data,
+        prev,
+        onClose,
+        selectedOption,
+        isDisabled,
+        setIsDisabled,
+        isChecked,
+        setIsChecked,
+      }} //selectedOption TO SHOW SELL FILED OR NO
     />,
   ];
   return (

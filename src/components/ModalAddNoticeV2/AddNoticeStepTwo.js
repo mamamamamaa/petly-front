@@ -71,9 +71,12 @@ export const AddNoticeStepTwo = ({
   onClose,
   selectedOption,
   onFinal,
+  isDisabled,
+  setIsDisabled,
+  isChecked,
+  setIsChecked,
 }) => {
-   const handleBack = () => {
-    console.log(formik.values.sex);
+  const handleBack = () => {
     const newValue = {
       ...data,
       ...formik.values,
@@ -91,21 +94,19 @@ export const AddNoticeStepTwo = ({
     },
     validationSchema: addNoticeStepTwoSchema,
     onSubmit: (values, actions) => {
-      const errors = actions.validateForm();
-      console.log(errors);
+      // const errors = actions.validateForm();
+      // console.log(errors);
       const newValue = {
         ...data,
         ...values,
       };
 
       next(newValue, onFinal);
-      // actions.resetForm();
-      // onClose();
+      actions.resetForm();
+      onClose();
     },
     selectedOption,
   });
-  const [isChecked, setIsChecked] = useState(true); // true means MALE by default / false means FEMALE by default
-  const [isDisabled, setIsDisabled] = useState(true); // disable checkbox by default
   const [preview, setPreview] = useState(null); // LOAD PREVIEW IMAGE
 
   const reader = new FileReader();
@@ -133,19 +134,18 @@ export const AddNoticeStepTwo = ({
 
   const onSexChange = event => {
     setIsDisabled(false);
-    console.log(formik.values.sex);
+    setIsChecked(prev => !prev);
     if (isChecked === true) {
       formik.setValues({
         ...formik.values,
-        sex: 'female',
+        sex: 'male', // but, actually(!) male if isChecked === false
       });
     } else {
       formik.setValues({
         ...formik.values,
-        sex: 'male',
+        sex: 'female', // but, actually(!) female if isChecked === true
       });
     }
-    setIsChecked(prev => !prev);
   };
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -163,7 +163,10 @@ export const AddNoticeStepTwo = ({
 
         <AddNoticeStepTwoFemaleWrapper>
           <AddNoticeStepTwoFemale />
-          <AddNoticeStepTwoFemaleSpan checked={isChecked}>
+          <AddNoticeStepTwoFemaleSpan
+            checked={isChecked}
+            isDisabled={isDisabled}
+          >
             Female
           </AddNoticeStepTwoFemaleSpan>
         </AddNoticeStepTwoFemaleWrapper>
