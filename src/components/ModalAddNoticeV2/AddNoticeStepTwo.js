@@ -43,18 +43,37 @@ const addNoticeStepTwoSchema = yup.object().shape({
     .required('Location is required'),
   price: yup.number().required('The price is required'),
   photoUrl: yup
-    .mixed()
+    .array()
+    .test(
+      'max',
+      'You can upload up to 2 files.',
+      value => !value || value.filter(file => file !== null).length <= 2
+    )
     .test(
       'fileFormat',
       'Image must be either a JPG, JPEG or PNG file.',
       value => {
-        if (!value) return true; // allow empty values
-        return ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type);
+        if (
+          !value ||
+          value.length === 0 
+        )
+          return true; // allow empty values
+        return value.every(file => {
+          if (!file) return true; // allow null values
+          return ['image/jpeg', 'image/png', 'image/jpg'].includes(file.type);
+        });
       }
     )
     .test('fileSize', 'File size is too large', value => {
-      if (!value) return true; // allow empty values
-      return value.size <= 7 * 1024 * 1024; // 7MB
+      if (
+        !value ||
+        value.length === 0 
+      )
+        return true; // allow empty values
+      return value.every(file => {
+        if (!file) return true; // allow null values
+        return file.size <= 7 * 1024 * 1024; // 7MB
+      });
     }),
   comments: yup
     .string()
@@ -107,23 +126,48 @@ export const AddNoticeStepTwo = ({
     },
     selectedOption,
   });
-  const [preview, setPreview] = useState(null); // LOAD PREVIEW IMAGE
+  const [preview, setPreview] = useState([]); // LOAD PREVIEW IMAGE
 
-  const reader = new FileReader();
-  if (formik.values.photoUrl) {
-    reader.readAsDataURL(formik.values.photoUrl); // RESTORE FILE image ON BACK
-    reader.onload = () => {
-      setPreview(reader.result); //=== EVENT.TARGET.RESULT MAKES SET PREVIEW IMAGE TO DIV
-    };
-  }
-  const handleImageLoad = event => {
-    const files = event.currentTarget.files[0]; //FILE NAME, size, type, lastmodified
-    // Update the form values with the file
-    reader.onload = () => {
-      setPreview(reader.result); //=== EVENT.TARGET.RESULT MAKES SET PREVIEW IMAGE TO DIV
-    };
-    reader.readAsDataURL(files); //return the data as a data URL (base64-encoded string)
-    formik.setFieldValue('photoUrl', files);
+  // const reader = new FileReader();
+  // if (formik.values.photoUrl) {
+  //   reader.readAsDataURL(formik.values.photoUrl); // RESTORE FILE image ON BACK
+  //   reader.onload = () => {
+  //     setPreview(reader.result); //=== EVENT.TARGET.RESULT MAKES SET PREVIEW IMAGE TO DIV
+  //   };
+  // }
+  const handleImageLoad = async event => {
+    
+    const files = event.currentTarget.files; // get all selected files
+    const fileArray = [];
+
+    // Reset error message when new files are loaded
+    // const errors = formik.actions.validateForm();
+    console.log(formik);
+
+    // setErrorMsg('');
+
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      // console.log(reader);
+      fileArray.push(
+        new Promise(resolve => {
+          reader.onload = () => resolve(reader.result);
+        })
+      );
+      reader.readAsDataURL(files[i]);
+      formik.setFieldValue(`photoUrl[${i}]`, files[i]);
+    }
+
+    const loadedFiles = await Promise.all(fileArray);
+    setPreview(prevState => [...loadedFiles]);
+    // console.log(files);
+    // console.log(fileArray);
+    // console.log(preview);
+    // formik.setFieldError('photoUrl', '');
+    // formik.setErrors({
+    //   ...formik.errors,
+    //   photoUrl: '',
+    // });
   };
   const handleCommentsChange = event => {
     formik.setValues({
@@ -232,6 +276,7 @@ export const AddNoticeStepTwo = ({
             accept="image/*"
             onChange={handleImageLoad}
             value=""
+            multiple
           />
         </AddNoticeStepTwoLoadImageInputWrapper>
         <BoxWarning>{formik.errors.photoUrl}</BoxWarning>

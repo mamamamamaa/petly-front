@@ -219,7 +219,12 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
   width: 116px;
   height: 116px;
   background-color: #fdf7f2;
-  background-size: ${({ preview }) => (preview ? '116px' : `47px`)};
+  background-size: ${({ preview }) => {
+    console.log(preview);
+    // if (preview) {
+
+    // preview[0] ? '116px' : `47px`;}};
+  }};
   border-radius: 20px;
   background-repeat: no-repeat;
   background-position: center;

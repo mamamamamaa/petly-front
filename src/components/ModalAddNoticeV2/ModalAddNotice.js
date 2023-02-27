@@ -15,7 +15,7 @@ const initialState = {
   sex: '',
   location: '',
   price: '',
-  photoUrl: '',
+  photoUrl: [],
   comments: '',
 };
 export const ModalAddNotice = ({ onClose, isOpen }) => {
@@ -72,11 +72,11 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
           formData.append('type', 'sell');
           break;
       }
-      // for (const [key, value] of formData.entries()) {
-      //   console.log(`${key}: ${value}`);
-      // }
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
 
-      dispatch(addNotice(formData));
+      // dispatch(addNotice(formData));
       return;
     }
     setData({
