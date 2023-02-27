@@ -32,15 +32,12 @@ const userSlice = createSlice({
       })
       .addCase(getUserData.fulfilled, (state, action) => {
         state.user = action.payload;
-        // state.isLoading = false;
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.user.phone = action.payload.phone;
         state.user.city = action.payload.city;
-        //state.user.avatarURL = action.payload.avatarURL;
         state.user.birthday = action.payload.birthday ?? '';
-        state.isLoggedIn = true;
-        console.log(state.user.avatarURL);
+        state.isLoggedIn = true;        
       })
       .addCase(getUserData.rejected, (state, action) => {
         //state.error = action.payload;
