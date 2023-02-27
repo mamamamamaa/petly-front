@@ -33,7 +33,8 @@ import {
   AddNoticeStepTwoCommentWrapper,
 } from './AddNoticeStepTwo.styled';
 import { BoxWarning, BoxWarningSex } from './ModalAddNotice.styled';
-
+import React from 'react';
+import useSwiper from 'hooks/useSwiper';
 const addNoticeStepTwoSchema = yup.object().shape({
   sex: yup.string().oneOf(['male', 'female']).required('Sex is required'),
   location: yup
@@ -53,11 +54,7 @@ const addNoticeStepTwoSchema = yup.object().shape({
       'fileFormat',
       'Image must be either a JPG, JPEG or PNG file.',
       value => {
-        if (
-          !value ||
-          value.length === 0 
-        )
-          return true; // allow empty values
+        if (!value || value.length === 0) return true; // allow empty values
         return value.every(file => {
           if (!file) return true; // allow null values
           return ['image/jpeg', 'image/png', 'image/jpg'].includes(file.type);
@@ -65,11 +62,7 @@ const addNoticeStepTwoSchema = yup.object().shape({
       }
     )
     .test('fileSize', 'File size is too large', value => {
-      if (
-        !value ||
-        value.length === 0 
-      )
-        return true; // allow empty values
+      if (!value || value.length === 0) return true; // allow empty values
       return value.every(file => {
         if (!file) return true; // allow null values
         return file.size <= 7 * 1024 * 1024; // 7MB
@@ -136,19 +129,12 @@ export const AddNoticeStepTwo = ({
   //   };
   // }
   const handleImageLoad = async event => {
-    
     const files = event.currentTarget.files; // get all selected files
     const fileArray = [];
-
-    // Reset error message when new files are loaded
-    // const errors = formik.actions.validateForm();
-    console.log(formik);
-
-    // setErrorMsg('');
+    // console.log(formik);
 
     for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
-      // console.log(reader);
       fileArray.push(
         new Promise(resolve => {
           reader.onload = () => resolve(reader.result);
@@ -159,15 +145,20 @@ export const AddNoticeStepTwo = ({
     }
 
     const loadedFiles = await Promise.all(fileArray);
-    setPreview(prevState => [...loadedFiles]);
-    // console.log(files);
-    // console.log(fileArray);
-    // console.log(preview);
+    setPreview(loadedFiles);
     // formik.setFieldError('photoUrl', '');
     // formik.setErrors({
     //   ...formik.errors,
     //   photoUrl: '',
     // });
+  };
+  const MyComponent = () => {
+    const swiperRef = useSwiper({
+      loop: true,
+      autoplay: {
+        delay: 5000,
+      },
+    });
   };
   const handleCommentsChange = event => {
     formik.setValues({
@@ -191,6 +182,7 @@ export const AddNoticeStepTwo = ({
       });
     }
   };
+
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
@@ -281,6 +273,18 @@ export const AddNoticeStepTwo = ({
         </AddNoticeStepTwoLoadImageInputWrapper>
         <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
+      {console.log(MyComponent )}
+      <div className="swiper-container" ref={MyComponent.swiperRef}>
+        <div className="swiper-wrapper">
+          {preview.map((url, index) => (
+            <div
+              className="swiper-slide"
+              key={index}
+              style={{ backgroundImage: `url(${url})` }}
+            ></div>
+          ))}
+        </div>
+      </div>
 
       <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
         Comments
