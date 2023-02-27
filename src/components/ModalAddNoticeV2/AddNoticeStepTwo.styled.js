@@ -234,8 +234,8 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
 `;
 export const AddNoticeStepTwoLoadImageInput = styled.input`
   // position: relative;
-  width: 116px;
-  height: 116px;
+  width: 100%;
+  height: 100%;
   opacity: 0;
 `;
 
