@@ -153,13 +153,14 @@ export const AddNoticeStepTwo = ({
     // });
   };
   const MyComponent = () => {
+    // const [preview, setPreview] = useState([]);
     const swiperRef = useSwiper({
       loop: true,
       autoplay: {
         delay: 5000,
       },
     });
-  };
+  }
   const handleCommentsChange = event => {
     formik.setValues({
       ...formik.values,
@@ -273,15 +274,13 @@ export const AddNoticeStepTwo = ({
         </AddNoticeStepTwoLoadImageInputWrapper>
         <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
-      {console.log(MyComponent )}
+      {console.log(MyComponent)}
       <div className="swiper-container" ref={MyComponent.swiperRef}>
         <div className="swiper-wrapper">
           {preview.map((url, index) => (
-            <div
-              className="swiper-slide"
-              key={index}
-              style={{ backgroundImage: `url(${url})` }}
-            ></div>
+            <div className="swiper-slide" key={index}>
+              <img src={url} alt={`Slide ${index}`} />
+            </div>
           ))}
         </div>
       </div>
