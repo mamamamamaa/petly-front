@@ -151,7 +151,6 @@ export const AddNoticeSell = styled.input`
     }
   }
 `;
-export const AddNoticeStepOneButtonSpan = styled.span``;
 export const AddNoticeStepOneLabel = styled.label`
   display: block;
   font-weight: 500;
@@ -210,6 +209,7 @@ export const AddNoticeStepOneSelect = styled.select`
     padding-left: 16px;
     padding-top: 11px;
     padding-bottom: 10px;
+  }
 `;
 export const AddNoticeStepOneButtonNextCancelWrapper = styled.div`
   ${media.tabletAndDesktop} {
