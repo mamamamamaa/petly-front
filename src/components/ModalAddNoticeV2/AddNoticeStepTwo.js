@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import {
   AddNoticeStepOneButtonBack,
@@ -34,7 +34,7 @@ import {
 } from './AddNoticeStepTwo.styled';
 import { BoxWarning, BoxWarningSex } from './ModalAddNotice.styled';
 import React from 'react';
-import useSwiper from 'hooks/useSwiper';
+
 const addNoticeStepTwoSchema = yup.object().shape({
   sex: yup.string().oneOf(['male', 'female']).required('Sex is required'),
   location: yup
@@ -115,23 +115,17 @@ export const AddNoticeStepTwo = ({
 
       next(newValue, onFinal);
       // actions.resetForm();
+      localStorage.setItem('preview', '');
       // onClose();
     },
     selectedOption,
   });
   const [preview, setPreview] = useState([]); // LOAD PREVIEW IMAGE
 
-  // const reader = new FileReader();
-  // if (formik.values.photoUrl) {
-  //   reader.readAsDataURL(formik.values.photoUrl); // RESTORE FILE image ON BACK
-  //   reader.onload = () => {
-  //     setPreview(reader.result); //=== EVENT.TARGET.RESULT MAKES SET PREVIEW IMAGE TO DIV
-  //   };
-  // }
+ 
   const handleImageLoad = async event => {
     const files = event.currentTarget.files; // get all selected files
     const fileArray = [];
-    // console.log(formik);
 
     for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
@@ -146,21 +140,20 @@ export const AddNoticeStepTwo = ({
 
     const loadedFiles = await Promise.all(fileArray);
     setPreview(loadedFiles);
-    // formik.setFieldError('photoUrl', '');
-    // formik.setErrors({
-    //   ...formik.errors,
-    //   photoUrl: '',
-    // });
+    localStorage.setItem('preview', JSON.stringify(loadedFiles));
   };
-  const MyComponent = () => {
-    // const [preview, setPreview] = useState([]);
-    const swiperRef = useSwiper({
-      loop: true,
-      autoplay: {
-        delay: 5000,
-      },
-    });
-  }
+  const restorePreview = () => {
+    // retrieve the image URLs from localStorage
+    const storedPreview = localStorage.getItem('preview');
+    if (storedPreview) {
+      setPreview(JSON.parse(storedPreview));
+    }
+  };
+
+  useEffect(() => {
+    // restore the preview images when the component mounts
+    restorePreview();
+  }, []);
   const handleCommentsChange = event => {
     formik.setValues({
       ...formik.values,
@@ -274,8 +267,8 @@ export const AddNoticeStepTwo = ({
         </AddNoticeStepTwoLoadImageInputWrapper>
         <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
-      
-      <div className="swiper-container" ref={MyComponent.swiperRef}>
+
+      <div className="swiper-container">
         <div className="swiper-wrapper">
           {preview.map((url, index) => (
             <div className="swiper-slide" key={index}>
