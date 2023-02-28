@@ -127,7 +127,10 @@ export const NoticeCategoryItemTemplate = ({
         </Modal>
       )}
       <PhotoPetWrapper>
-        <PhotoPet src={photoUrl} alt="Pet" />
+        <PhotoPet
+          src={photoUrl.length > 0 ? photoUrl[0] : noPoster}
+          alt="Pet"
+        />
         <AdvWrapper>
           <AdvTitle>{getNewType}</AdvTitle>
         </AdvWrapper>

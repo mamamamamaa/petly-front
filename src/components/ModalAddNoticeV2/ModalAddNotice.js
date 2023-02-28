@@ -29,9 +29,6 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
 
   const next = (newData = {}, final) => {
     if (final) {
-      setData({
-        ...newData,
-      });
       let normalizedDateOfBirth;
       if (newData.dateOfBirth !== '') {
         normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
@@ -41,16 +38,17 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
         normalizedDateOfBirth = newData.dateOfBirth;
       }
       const formData = new FormData();
-      if (typeof newData.photoUrl === 'string') {
-        const photoUrlFile = new File(
-          [newData.photoUrl],
-          newData.photoUrl.name,
-          { type: 'image/jpeg' }
-        );
+
+      // При первом клике на гендер всегда выбирается женский, даже если кликнул на мужской
+      // При вводе первого символа в одну из форм, валидируются сразу все и выбирают ошибки из-за того что они пустые, когда пользователь даже не добрался туда
+      // Фотография питомца ставновится крипо (не обрезается)
+      // Скролл на модалке
+      newData.photoUrl.forEach(file => {
+        const photoUrlFile = new File([file], file.name, {
+          type: 'image/jpeg',
+        });
         formData.append('photoUrl', photoUrlFile);
-      } else {
-        formData.append('photoUrl', newData.photoUrl);
-      }
+      });
       formData.append('comments', newData.comments || 'lemonad');
       formData.append('breed', newData.breed || 'barbet');
       formData.append('dateOfBirth', normalizedDateOfBirth);
@@ -76,7 +74,7 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
         console.log(`${key}: ${value}`);
       }
 
-      // dispatch(addNotice(formData));
+      dispatch(addNotice(formData));
       return;
     }
     setData({

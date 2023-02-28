@@ -30,11 +30,12 @@ import {
 import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import noPoster from 'noPoster.jpg';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
+import useSwiper from 'hooks/useSwiper';
 
 export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
   const {
     _id,
-    photoUrl = noPoster,
+    photoUrl,
     type = 'unknown',
     title,
     price,
@@ -76,12 +77,35 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
   const getCall = call(mobilePhone);
 
   const getNewType = changeTitle(type);
-
+  const swiperRef = useSwiper({
+    loop: true,
+    autoplay: {
+      delay: 5000,
+    },
+  });
   return (
     <Container>
       <WraperMain>
         <Wraper>
-          <Img src={photoUrl} alt="Pet" />
+          <div className="swiper-container" ref={swiperRef}>
+            <div className="swiper-wrapper">
+              {photoUrl.length > 0
+                ? photoUrl.map((element, index) => (
+                    <div className="swiper-slide" key={index}>
+                      <Img src={element} alt={`Pet slide ${index}`} />
+                    </div>
+                  ))
+                : // Render noPoster image for each slide if photoUrl is empty
+                  Array(1)
+                    .fill()
+                    .map((_, index) => (
+                      <div className="swiper-slide" key={index}>
+                        <Img src={noPoster} alt={`Pet slide ${index}`} />
+                      </div>
+                    ))}
+            </div>
+          </div>
+
           <AdvWrapper>
             <AdvTitle>{getNewType}</AdvTitle>
           </AdvWrapper>

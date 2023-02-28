@@ -104,7 +104,7 @@ export const AddNoticeStepTwo = ({
       photoUrl: data.photoUrl,
       comments: data.comments,
     },
-    validationSchema: addNoticeStepTwoSchema,
+    // validationSchema: addNoticeStepTwoSchema,
     onSubmit: (values, actions) => {
       // const errors = actions.validateForm();
       // console.log(errors);
@@ -114,8 +114,8 @@ export const AddNoticeStepTwo = ({
       };
 
       next(newValue, onFinal);
-      actions.resetForm();
-      onClose();
+      // actions.resetForm();
+      // onClose();
     },
     selectedOption,
   });
@@ -274,7 +274,7 @@ export const AddNoticeStepTwo = ({
         </AddNoticeStepTwoLoadImageInputWrapper>
         <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
-      {console.log(MyComponent)}
+      
       <div className="swiper-container" ref={MyComponent.swiperRef}>
         <div className="swiper-wrapper">
           {preview.map((url, index) => (
