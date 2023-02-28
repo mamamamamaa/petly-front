@@ -125,7 +125,7 @@ export const AddNoticeStepTwo = ({
   });
   const [preview, setPreview] = useState([]); // LOAD PREVIEW IMAGE
 
-  const handleImageLoad = async event => {
+  const handleImageLoad = async (event) => {
     const files = event.currentTarget.files; // get all selected files
     const fileArray = [];
 
@@ -151,8 +151,9 @@ export const AddNoticeStepTwo = ({
       setPreview(JSON.parse(storedPreview));
     }
   };
-  const deleteImage = index => {
+  const deleteImage = (index) => {
     // create a copy of the preview array
+    formik.setFieldValue('photoUrl', '');
     const updatedPreview = [...preview];
     // remove the image at the specified index
     updatedPreview.splice(index, 1);

@@ -40,13 +40,14 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       const formData = new FormData();
 
       // При первом клике на гендер всегда выбирается женский, даже если кликнул на мужской
-      
-      newData.photoUrl.forEach(file => {
-        const photoUrlFile = new File([file], file.name, {
-          type: 'image/jpeg',
+      if (Array.isArray(newData.photoUrl)) {
+        newData.photoUrl.forEach(file => {
+          const photoUrlFile = new File([file], file.name, {
+            type: 'image/jpeg',
+          });
+          formData.append('photoUrl', photoUrlFile);
         });
-        formData.append('photoUrl', photoUrlFile);
-      });
+      }
       formData.append('comments', newData.comments || 'lemonad');
       formData.append('breed', newData.breed || 'barbet');
       formData.append('dateOfBirth', normalizedDateOfBirth);
