@@ -104,7 +104,10 @@ export const AddNoticeStepTwo = ({
       photoUrl: data.photoUrl,
       comments: data.comments,
     },
-    // validationSchema: addNoticeStepTwoSchema,
+    validationSchema: addNoticeStepTwoSchema,
+    validateOnBlur: true,
+    validateOnChange: true,
+    validateOnMount: false,
     onSubmit: (values, actions) => {
       // const errors = actions.validateForm();
       // console.log(errors);
@@ -122,7 +125,6 @@ export const AddNoticeStepTwo = ({
   });
   const [preview, setPreview] = useState([]); // LOAD PREVIEW IMAGE
 
- 
   const handleImageLoad = async event => {
     const files = event.currentTarget.files; // get all selected files
     const fileArray = [];
@@ -176,7 +178,10 @@ export const AddNoticeStepTwo = ({
       });
     }
   };
-
+  const handleBlur = fieldName => {
+    formik.setFieldTouched(fieldName, true);
+    formik.validateForm();
+  };
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
@@ -210,8 +215,9 @@ export const AddNoticeStepTwo = ({
           value={formik.values.sex}
           onChange={onSexChange}
           isDisabled={isDisabled}
+          onBlur={() => handleBlur('sex')}
         />
-        <BoxWarningSex>{formik.errors.sex}</BoxWarningSex>
+        <BoxWarningSex>{formik.touched.sex && formik.errors.sex}</BoxWarningSex>
       </AddNoticeStepTwoInputSexCheckboxWrapper>
       <AddNoticeStepTwoLabelLocation htmlFor="location">
         Location:
@@ -224,8 +230,11 @@ export const AddNoticeStepTwo = ({
           placeholder="Type location"
           onChange={formik.handleChange}
           value={formik.values.location}
+          onBlur={() => handleBlur('location')}
         />
-        <BoxWarning>{formik.errors.location}</BoxWarning>
+        <BoxWarning>
+          {formik.touched.location && formik.errors.location}
+        </BoxWarning>
       </AddNoticeStepTwoInputLocationWrapper>
 
       <AddNoticeStepTwoLabelPrice
@@ -243,8 +252,9 @@ export const AddNoticeStepTwo = ({
           placeholder="Type price"
           onChange={formik.handleChange}
           value={formik.values.price}
+          onBlur={() => handleBlur('price')}
         />
-        <BoxWarning>{formik.errors.price}</BoxWarning>
+        <BoxWarning>{formik.touched.price && formik.errors.price}</BoxWarning>
       </AddNoticeStepTwoInputPriceWrapper>
 
       <AddNoticeStepTwoLabelPictureURL htmlFor="photoUrl">
@@ -263,9 +273,12 @@ export const AddNoticeStepTwo = ({
             onChange={handleImageLoad}
             value=""
             multiple
+            onBlur={() => handleBlur('photoUrl')}
           />
         </AddNoticeStepTwoLoadImageInputWrapper>
-        <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
+        <BoxWarning>
+          {formik.touched.photoUrl && formik.errors.photoUrl}
+        </BoxWarning>
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
 
       <div className="swiper-container">
@@ -288,8 +301,11 @@ export const AddNoticeStepTwo = ({
           placeholder="Type comments"
           onChange={handleCommentsChange}
           value={formik.values.comments}
+          onBlur={() => handleBlur('comments')}
         />
-        <BoxWarning>{formik.errors.comments}</BoxWarning>
+        <BoxWarning>
+          {formik.touched.comments && formik.errors.comments}
+        </BoxWarning>
       </AddNoticeStepTwoCommentAreaWrapper>
 
       <AddNoticeStepTwoLabelComments htmlFor="comments">
@@ -303,8 +319,11 @@ export const AddNoticeStepTwo = ({
           placeholder="Type comments"
           onChange={handleCommentsChange}
           value={formik.values.comments}
+          onBlur={() => handleBlur('comments')}
         />
-        <BoxWarning>{formik.errors.comments}</BoxWarning>
+        <BoxWarning>
+          {formik.touched.comments && formik.errors.comments}
+        </BoxWarning>
       </AddNoticeStepTwoCommentWrapper>
 
       <AddNoticeStepTwoButtonBackDoneWrapper>
