@@ -151,7 +151,15 @@ export const AddNoticeStepTwo = ({
       setPreview(JSON.parse(storedPreview));
     }
   };
-
+  const deleteImage = index => {
+    // create a copy of the preview array
+    const updatedPreview = [...preview];
+    // remove the image at the specified index
+    updatedPreview.splice(index, 1);
+    // update the preview state and localStorage
+    setPreview(updatedPreview);
+    localStorage.setItem('preview', JSON.stringify(updatedPreview));
+  };
   useEffect(() => {
     // restore the preview images when the component mounts
     restorePreview();
@@ -286,6 +294,7 @@ export const AddNoticeStepTwo = ({
           {preview.map((url, index) => (
             <div className="swiper-slide" key={index}>
               <img src={url} alt={`Slide ${index}`} />
+              <button onClick={() => deleteImage(index)}>Delete</button>
             </div>
           ))}
         </div>

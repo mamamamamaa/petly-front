@@ -40,7 +40,6 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       const formData = new FormData();
 
       // При первом клике на гендер всегда выбирается женский, даже если кликнул на мужской
-      // При вводе первого символа в одну из форм, валидируются сразу все и выбирают ошибки из-за того что они пустые, когда пользователь даже не добрался туда
       
       newData.photoUrl.forEach(file => {
         const photoUrlFile = new File([file], file.name, {
