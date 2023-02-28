@@ -1,24 +1,22 @@
 import axios from 'axios';
-import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// const { NEWSSERVER, NEWSKEY } = process.env;
-
-// ======== second way for news ========= down
-export const getNews = createAsyncThunk(
-  'news',
-  async (query = 'pets', thunkAPI) => {
-    try {
-      const { data } = await axios.get(`/api/news?query=${query}`);
-      // console.log(query);
-      // console.log(data);
-      return data.data.result.articles;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+// ======== first way for news =========
+export const getNews = createAsyncThunk('news', async (newsData, thunkAPI) => {
+  const { query, pageNews } = newsData;
+  try {
+    const { data } = await axios.get(
+      `/api/news?query=${query}&pageNews=${pageNews}`
+    );
+    const getDataNews = data.data.result;
+    return getDataNews;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
-// ======== second way for news ========= up
+});
+// ======================================
+
+// const { NEWSSERVER, NEWSKEY } = process.env;
 
 // export const getNews = createAsyncThunk(
 //   'news',
