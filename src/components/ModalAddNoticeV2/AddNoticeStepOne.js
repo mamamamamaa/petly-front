@@ -50,7 +50,10 @@ export const AddNoticeStepOne = ({
 }) => {
   const formik = useFormik({
     initialValues: data,
-    // validationSchema: addNoticeStepOneSchema,
+    validationSchema: addNoticeStepOneSchema,
+    validateOnBlur: true,
+    validateOnChange: true,
+    validateOnMount: false,
     onSubmit: values => {
       next({
         ...data,
@@ -59,6 +62,10 @@ export const AddNoticeStepOne = ({
       });
     },
   });
+  const handleBlur = fieldName => {
+    formik.setFieldTouched(fieldName, true);
+    formik.validateForm();
+  };
   formik.values.type = selectedOption;
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -107,8 +114,9 @@ export const AddNoticeStepOne = ({
           onChange={formik.handleChange}
           value={formik.values.title}
           placeholder="Type name pet"
+          onBlur={() => handleBlur('title')}
         />
-        <BoxWarning>{formik.errors.title}</BoxWarning>
+        <BoxWarning>{formik.touched.title && formik.errors.title}</BoxWarning>
       </AddNoticeStepOneInputWrapper>
 
       <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
@@ -119,8 +127,9 @@ export const AddNoticeStepOne = ({
           onChange={formik.handleChange}
           value={formik.values.name}
           placeholder="Type name pet"
+          onBlur={() => handleBlur('name')}
         />
-        <BoxWarning>{formik.errors.name}</BoxWarning>
+        <BoxWarning>{formik.touched.name && formik.errors.name}</BoxWarning>
       </AddNoticeStepOneInputWrapper>
 
       <AddNoticeStepOneLabel htmlFor="dateOfBirth">
@@ -131,7 +140,7 @@ export const AddNoticeStepOne = ({
         name="dateOfBirth"
         id="dateOfBirth"
         onChange={formik.handleChange}
-        value={ formik.values.dateOfBirth}
+        value={formik.values.dateOfBirth}
       />
       <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
       <AddNoticeStepOneSelectWrapper>
@@ -140,6 +149,7 @@ export const AddNoticeStepOne = ({
           id="breed"
           onChange={formik.handleChange}
           value={formik.values.breed}
+          onBlur={() => handleBlur('breed')}
         >
           {filterByLengthBreeds.map(breed => (
             <option value={breed} key={breed}>
@@ -147,7 +157,7 @@ export const AddNoticeStepOne = ({
             </option>
           ))}
         </AddNoticeStepOneSelect>
-        <BoxWarning>{formik.errors.breed}</BoxWarning>
+        <BoxWarning>{formik.touched.breed && formik.errors.breed}</BoxWarning>
       </AddNoticeStepOneSelectWrapper>
 
       <AddNoticeStepOneButtonNextCancelWrapper>

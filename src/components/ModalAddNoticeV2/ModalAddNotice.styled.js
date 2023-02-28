@@ -6,6 +6,11 @@ export const ModalAddNoticeWrapper = styled.div`
   overflow: ${({ maxHeight }) => (maxHeight ? `auto` : 'hidden')};
   max-height: ${({ maxHeight }) => (maxHeight ? `${maxHeight}px` : 'auto')};
   margin: 40px 20px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    display: none; // diable view of modal scroll line
+  }
   ${media.tabletAndDesktop} {
     // overflow: hidden;
     width: 608px;
