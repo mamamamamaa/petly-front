@@ -1,4 +1,3 @@
-import toast from 'react-hot-toast';
 import {
   Ul,
   Li,
@@ -22,7 +21,7 @@ function ListNews({ news }) {
           <Box>
             <ColorBox></ColorBox>
             <Header>{item.title}</Header>
-            <Paragraph>{item.description || item.content}</Paragraph>
+            <Paragraph>{item.content || item.description}</Paragraph>
             <Wraper>
               <DateBox>
                 <NewsNewDate date={item.datePublished || item.publishedAt} />
