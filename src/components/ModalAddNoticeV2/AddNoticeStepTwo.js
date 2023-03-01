@@ -31,6 +31,9 @@ import {
   AddNoticeStepTwoLoadImageInputWarningWrapper,
   AddNoticeStepTwoCommentAreaWrapper,
   AddNoticeStepTwoCommentWrapper,
+  AddNoticeStepTwoImg,
+  AddNoticeStepTwoButtonDelImg,
+  AddNoticeStepTwoSlide,
 } from './AddNoticeStepTwo.styled';
 import { BoxWarning } from './ModalAddNotice.styled';
 import React from 'react';
@@ -225,7 +228,7 @@ export const AddNoticeStepTwo = ({
         </AddNoticeStepTwoFemaleWrapper>
         <BoxWarning>{formik.errors.gender}</BoxWarning>
       </AddNoticeStepTwoGenderWrapper>
-      
+
       <AddNoticeStepTwoLabelLocation htmlFor="location">
         Location:
       </AddNoticeStepTwoLabelLocation>
@@ -291,10 +294,10 @@ export const AddNoticeStepTwo = ({
       <div className="swiper-container">
         <div className="swiper-wrapper">
           {preview.map((url, index) => (
-            <div className="swiper-slide" key={index}>
-              <img src={url} alt={`Slide ${index}`} />
-              <button onClick={() => deleteImage(index)}>Delete</button>
-            </div>
+            <AddNoticeStepTwoSlide className="swiper-slide" key={index}>
+              <AddNoticeStepTwoImg src={url} alt={`Slide ${index}`} />
+              <AddNoticeStepTwoButtonDelImg onClick={() => deleteImage(index)}/>
+            </AddNoticeStepTwoSlide>
           ))}
         </div>
       </div>

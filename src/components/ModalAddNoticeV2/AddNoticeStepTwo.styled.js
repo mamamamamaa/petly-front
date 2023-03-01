@@ -3,6 +3,8 @@ import { media } from 'components/Layout/Layout.styled';
 import male from 'utils/svg/male.svg';
 import female from 'utils/svg/female.svg';
 import loadCross from 'utils/svg/loadCross.svg';
+import PetDeleteIcon from 'utils/svg/petDeleteIcon.svg';
+
 export const AddNoticeStepTwoForm = styled.form``;
 export const AddNoticeStepTwoTitle = styled.h3`
   font-weight: 500;
@@ -37,13 +39,9 @@ export const AddNoticeStepTwoGenderText = styled.span`
   }
 `;
 export const AddNoticeStepTwoGenderWrapper = styled.div`
-  // width: 100%;
-  // height: 77px;
-  // position: relative;
   margin-bottom: 32px;
   ${media.tabletAndDesktop} {
     margin-bottom: 40px;
-    // height: 107px;
   }
 `;
 export const AddNoticeStepTwoInputGenderRadio = styled.input`
@@ -192,6 +190,27 @@ export const AddNoticeStepTwoInputPrice = styled.input`
   }
 `;
 
+export const AddNoticeStepTwoSlide = styled.div`
+  position: relative;
+`;
+export const AddNoticeStepTwoImg = styled.img``;
+export const AddNoticeStepTwoButtonDelImg = styled.button`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 34px;
+  height: 34px;
+  background-image: url(${PetDeleteIcon});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top 0vw left 0vw;
+  cursor: pointer;
+  border: none;
+  ${media.tabletAndDesktop} {
+    width: 44px;
+    height: 44px;
+  }
+`;
 export const AddNoticeStepTwoLabelPictureURL = styled.label`
   display: block;
   font-weight: 500;

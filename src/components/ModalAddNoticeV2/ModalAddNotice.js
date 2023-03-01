@@ -44,10 +44,10 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
           formData.append('photoUrl', photoUrlFile);
         });
       }
-      formData.append('comments', newData.comments || 'lemonad');
-      formData.append('breed', newData.breed || 'barbet');
+      formData.append('comments', newData.comments);
+      formData.append('breed', newData.breed);
       formData.append('dateOfBirth', normalizedDateOfBirth);
-      formData.append('name', newData.name || 'demon');
+      formData.append('name', newData.name);
       formData.append('title', newData.title);
       formData.append('sex', newData.gender);
       formData.append('place', newData.location);
