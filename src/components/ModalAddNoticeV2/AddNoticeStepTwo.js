@@ -45,7 +45,11 @@ const addNoticeStepTwoSchema = yup.object().shape({
     .min(4, 'Too Short!')
     .max(60, 'Too Long!')
     .required('Location is required'),
-  price: yup.number().required('The price is required'),
+  price: yup.number().when('selectedOption', {
+    is: val => val === 'sell',
+    then: yup.number().required('The price is required'),
+    otherwise: yup.number(),
+  }),
   photoUrl: yup
     .array()
     .test(
@@ -123,7 +127,8 @@ export const AddNoticeStepTwo = ({
     },
     selectedOption,
   });
-  console.log(formik);
+  console.log(formik.errors);
+
   const [preview, setPreview] = useState([]); // LOAD PREVIEW IMAGE
 
   const handleImageLoad = async event => {
@@ -254,7 +259,7 @@ export const AddNoticeStepTwo = ({
         Price:
       </AddNoticeStepTwoLabelPrice>
 
-      <AddNoticeStepTwoInputPriceWrapper>
+      <AddNoticeStepTwoInputPriceWrapper selectedOption={selectedOption}>
         <AddNoticeStepTwoInputPrice
           selectedOption={selectedOption}
           name="price"
@@ -296,7 +301,9 @@ export const AddNoticeStepTwo = ({
           {preview.map((url, index) => (
             <AddNoticeStepTwoSlide className="swiper-slide" key={index}>
               <AddNoticeStepTwoImg src={url} alt={`Slide ${index}`} />
-              <AddNoticeStepTwoButtonDelImg onClick={() => deleteImage(index)}/>
+              <AddNoticeStepTwoButtonDelImg
+                onClick={() => deleteImage(index)}
+              />
             </AddNoticeStepTwoSlide>
           ))}
         </div>

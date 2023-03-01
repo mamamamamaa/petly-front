@@ -65,9 +65,9 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
           formData.append('type', 'sell');
           break;
       }
-      for (const [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
+      // for (const [key, value] of formData.entries()) {
+      //   console.log(`${key}: ${value}`);
+      // }
 
       dispatch(addNotice(formData));
       return;

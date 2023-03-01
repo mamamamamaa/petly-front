@@ -164,6 +164,7 @@ export const AddNoticeStepTwoLabelPrice = styled.label`
   }
 `;
 export const AddNoticeStepTwoInputPriceWrapper = styled.div`
+  display: ${props => (props.selectedOption === 'sell' ? 'block' : 'none')};
   margin-bottom: 16px;
   ${media.tabletAndDesktop} {
     margin-bottom: 28px;
