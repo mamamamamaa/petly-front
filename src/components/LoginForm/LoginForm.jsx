@@ -26,13 +26,18 @@ import {
 
 const securityEmail =
   /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+//   /^(([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5}))$/;
 //   /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-const securityPassword = /^\S*$/;
+const securityPassword =
+//  /^\S*$/;
+ /^(?=.{7,32})([\S])*$/;
 
 const loginSchema = yup.object().shape({
     email: yup
     .string()
-    .matches(securityEmail, 'Email must contain symbol @')
+    .min(10)
+    .max(63)
+    .matches(securityEmail, 'Contain only latin letters, numbers and symbols')
     .email('Invalid email address')
     .required('Email is required'),
    password: yup
@@ -42,16 +47,6 @@ const loginSchema = yup.object().shape({
    .matches(securityPassword, 'Must not contain spaces')
    .required('Password is required'),
 });
-
-// const FormError = ({ name }) => {
-//     return (
-//         <ErrorMessage
-//             name={name}            
-//             render={message => <ErrorText>{message}</ErrorText>}
-//         />
-//     )
-// }
-
 
 const LoginForm = () => {
     const [showPass, setShowPass] = useState(false);
@@ -105,7 +100,6 @@ const LoginForm = () => {
                         {formik.errors.email || formik.touched.email ? (
                     <ErrorText>{formik.errors.email}</ErrorText>
                          ) : null}
-                            {/* <FormError name="email" /> */}
                         </label>                     
                     </FieldLogin>
 
@@ -128,7 +122,6 @@ const LoginForm = () => {
                   {formik.errors.password && formik.touched.password ? (
                     <ErrorText>{formik.errors.password}</ErrorText>
                   ) : null}
-                            {/* <FormError name="password" /> */}
                         </label>
                     </FieldPass>
                                   
