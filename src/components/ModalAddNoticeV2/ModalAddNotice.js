@@ -12,7 +12,7 @@ const initialState = {
   name: '',
   dateOfBirth: '',
   breed: '',
-  sex: '',
+  gender: '',
   location: '',
   price: '',
   photoUrl: [],
@@ -20,9 +20,7 @@ const initialState = {
 };
 export const ModalAddNotice = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
-  const [isChecked, setIsChecked] = useState(false); // true means MALE by default / false means FEMALE by default
   const [isDisabled, setIsDisabled] = useState(true); // disable checkbox by default
-
   const [data, setData] = useState(initialState);
   const [final, setFinal] = useState(false);
   const onFinal = () => setFinal(final);
@@ -38,8 +36,6 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
         normalizedDateOfBirth = newData.dateOfBirth;
       }
       const formData = new FormData();
-
-      // При первом клике на гендер всегда выбирается женский, даже если кликнул на мужской
       if (Array.isArray(newData.photoUrl)) {
         newData.photoUrl.forEach(file => {
           const photoUrlFile = new File([file], file.name, {
@@ -53,7 +49,7 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
       formData.append('dateOfBirth', normalizedDateOfBirth);
       formData.append('name', newData.name || 'demon');
       formData.append('title', newData.title);
-      formData.append('sex', newData.sex);
+      formData.append('sex', newData.gender);
       formData.append('place', newData.location);
       if (selectedOption === 'sell') {
         formData.append('price', newData.price);
@@ -139,8 +135,6 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
         selectedOption,
         isDisabled,
         setIsDisabled,
-        isChecked,
-        setIsChecked,
       }} //selectedOption TO SHOW SELL FILED OR NO
     />,
   ];

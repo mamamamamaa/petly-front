@@ -7,15 +7,15 @@ import {
   AddNoticeStepTwoButtonBackDoneWrapper,
   AddNoticeStepTwoInputLocation,
   AddNoticeStepTwoLabelComments,
-  AddNoticeStepTwoInputSex,
-  AddNoticeStepTwoInputSexCheckboxWrapper,
+  AddNoticeStepTwoInputGenderRadio,
+  AddNoticeStepTwoGenderWrapper,
   AddNoticeStepTwoMale,
   AddNoticeStepTwoFemale,
   AddNoticeStepTwoMaleSpan,
   AddNoticeStepTwoFemaleSpan,
   AddNoticeStepTwoFemaleWrapper,
   AddNoticeStepTwoMaleWrapper,
-  AddNoticeStepTwoLabelSex,
+  AddNoticeStepTwoGenderText,
   AddNoticeStepTwoLoadImageInput,
   AddNoticeStepTwoLoadImageInputWrapper,
   AddNoticeStepTwoTitle,
@@ -32,11 +32,11 @@ import {
   AddNoticeStepTwoCommentAreaWrapper,
   AddNoticeStepTwoCommentWrapper,
 } from './AddNoticeStepTwo.styled';
-import { BoxWarning, BoxWarningSex } from './ModalAddNotice.styled';
+import { BoxWarning } from './ModalAddNotice.styled';
 import React from 'react';
 
 const addNoticeStepTwoSchema = yup.object().shape({
-  sex: yup.string().oneOf(['male', 'female']).required('Sex is required'),
+  gender: yup.string().oneOf(['male', 'female']).required('Gender is required'),
   location: yup
     .string()
     .min(4, 'Too Short!')
@@ -85,8 +85,6 @@ export const AddNoticeStepTwo = ({
   onFinal,
   isDisabled,
   setIsDisabled,
-  isChecked,
-  setIsChecked,
 }) => {
   const handleBack = () => {
     const newValue = {
@@ -98,7 +96,7 @@ export const AddNoticeStepTwo = ({
 
   const formik = useFormik({
     initialValues: {
-      sex: data.sex,
+      gender: data.gender,
       location: data.location,
       price: data.price,
       photoUrl: data.photoUrl,
@@ -117,15 +115,15 @@ export const AddNoticeStepTwo = ({
       };
 
       next(newValue, onFinal);
-      // actions.resetForm();
       localStorage.setItem('preview', '');
-      // onClose();
+      onClose();
     },
     selectedOption,
   });
+  console.log(formik);
   const [preview, setPreview] = useState([]); // LOAD PREVIEW IMAGE
 
-  const handleImageLoad = async (event) => {
+  const handleImageLoad = async event => {
     const files = event.currentTarget.files; // get all selected files
     const fileArray = [];
 
@@ -151,7 +149,7 @@ export const AddNoticeStepTwo = ({
       setPreview(JSON.parse(storedPreview));
     }
   };
-  const deleteImage = (index) => {
+  const deleteImage = index => {
     // create a copy of the preview array
     formik.setFieldValue('photoUrl', '');
     const updatedPreview = [...preview];
@@ -171,21 +169,13 @@ export const AddNoticeStepTwo = ({
       comments: event.target.value,
     });
   };
-
-  const onSexChange = event => {
+  const handleMale = () => {
     setIsDisabled(false);
-    setIsChecked(prev => !prev);
-    if (isChecked === true) {
-      formik.setValues({
-        ...formik.values,
-        sex: 'male', // but, actually(!) male if isChecked === false
-      });
-    } else {
-      formik.setValues({
-        ...formik.values,
-        sex: 'female', // but, actually(!) female if isChecked === true
-      });
-    }
+    formik.setFieldValue('gender', 'male');
+  };
+  const handleFemale = () => {
+    setIsDisabled(false);
+    formik.setFieldValue('gender', 'female');
   };
   const handleBlur = fieldName => {
     formik.setFieldTouched(fieldName, true);
@@ -194,40 +184,48 @@ export const AddNoticeStepTwo = ({
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
-      <AddNoticeStepTwoLabelSex htmlFor="sex">
-        The sex:
-      </AddNoticeStepTwoLabelSex>
-      <AddNoticeStepTwoInputSexCheckboxWrapper>
-        <AddNoticeStepTwoMaleWrapper>
+      <AddNoticeStepTwoGenderText>The sex:</AddNoticeStepTwoGenderText>
+      <AddNoticeStepTwoGenderWrapper
+        role="group"
+        aria-labelledby="gender-group"
+      >
+        <AddNoticeStepTwoMaleWrapper htmlFor="male">
           <AddNoticeStepTwoMale />
-          <AddNoticeStepTwoMaleSpan checked={isChecked} isDisabled={isDisabled}>
+          <AddNoticeStepTwoInputGenderRadio
+            id="male"
+            type="radio"
+            name="gender"
+            value="male"
+            checked={formik.values.gender === 'male'}
+            onChange={handleMale}
+          />
+          <AddNoticeStepTwoMaleSpan
+            gender={formik.values.gender}
+            isDisabled={isDisabled}
+          >
             Male
           </AddNoticeStepTwoMaleSpan>
         </AddNoticeStepTwoMaleWrapper>
-
-        <AddNoticeStepTwoFemaleWrapper>
+        <AddNoticeStepTwoFemaleWrapper htmlFor="female">
           <AddNoticeStepTwoFemale />
+          <AddNoticeStepTwoInputGenderRadio
+            id="female"
+            type="radio"
+            name="gender"
+            value="female"
+            checked={formik.values.gender === 'female'}
+            onChange={handleFemale}
+          />
           <AddNoticeStepTwoFemaleSpan
-            checked={isChecked}
+            gender={formik.values.gender}
             isDisabled={isDisabled}
           >
             Female
           </AddNoticeStepTwoFemaleSpan>
         </AddNoticeStepTwoFemaleWrapper>
-
-        <AddNoticeStepTwoInputSex
-          name="sex"
-          id="sex"
-          type="checkbox"
-          placeholder="Type sex"
-          checked={isChecked}
-          value={formik.values.sex}
-          onChange={onSexChange}
-          isDisabled={isDisabled}
-          onBlur={() => handleBlur('sex')}
-        />
-        <BoxWarningSex>{formik.touched.sex && formik.errors.sex}</BoxWarningSex>
-      </AddNoticeStepTwoInputSexCheckboxWrapper>
+        <BoxWarning>{formik.errors.gender}</BoxWarning>
+      </AddNoticeStepTwoGenderWrapper>
+      
       <AddNoticeStepTwoLabelLocation htmlFor="location">
         Location:
       </AddNoticeStepTwoLabelLocation>

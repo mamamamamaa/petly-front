@@ -19,7 +19,7 @@ export const AddNoticeStepTwoTitle = styled.h3`
     color: #000000;
   }
 `;
-export const AddNoticeStepTwoLabelSex = styled.label`
+export const AddNoticeStepTwoGenderText = styled.span`
   display: block;
   font-weight: 500;
   font-size: 18px;
@@ -36,27 +36,20 @@ export const AddNoticeStepTwoLabelSex = styled.label`
     margin-bottom: 31px;
   }
 `;
-export const AddNoticeStepTwoInputSexCheckboxWrapper = styled.div`
-  width: 100%;
-  height: 77px;
-  position: relative;
+export const AddNoticeStepTwoGenderWrapper = styled.div`
+  // width: 100%;
+  // height: 77px;
+  // position: relative;
   margin-bottom: 32px;
   ${media.tabletAndDesktop} {
     margin-bottom: 40px;
     // height: 107px;
   }
 `;
-export const AddNoticeStepTwoInputSex = styled.input`
-  width: 160px;
-  // height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  bottom: 0;
-  right: 0;
-  opacity: 0%;
+export const AddNoticeStepTwoInputGenderRadio = styled.input`
+  display: none;
 `;
-export const AddNoticeStepTwoMaleWrapper = styled.div`
+export const AddNoticeStepTwoMaleWrapper = styled.label`
   display: inline-flex;
   flex-direction: column;
 `;
@@ -74,17 +67,17 @@ export const AddNoticeStepTwoMaleSpan = styled.span`
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${({ isDisabled, checked }) => {
+  color: ${({ isDisabled, gender }) => {
     if (isDisabled) {
       return '#000';
     }
-    if (checked) {
-      return '#000';
+    if (gender === 'male') {
+      return '#f59256';
     }
-    return '#f59256';
+    return '#000';
   }};
 `;
-export const AddNoticeStepTwoFemaleWrapper = styled.div`
+export const AddNoticeStepTwoFemaleWrapper = styled.label`
   display: inline-flex;
   flex-direction: column;
 `;
@@ -100,11 +93,11 @@ export const AddNoticeStepTwoFemaleSpan = styled.span`
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${({ isDisabled, checked }) => {
+  color: ${({ isDisabled, gender }) => {
     if (isDisabled) {
       return '#000';
     }
-    if (checked) {
+    if (gender === 'female') {
       return '#f59256';
     }
     return '#000';
