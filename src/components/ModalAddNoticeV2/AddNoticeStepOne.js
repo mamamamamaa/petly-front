@@ -32,12 +32,16 @@ const addNoticeStepOneSchema = yup.object().shape({
       'title should be from 2 to 48 symbols'
     )
     .required('The title is required'),
-  name: yup
-    .string()
-    .min(2, 'Must be 2 or more letter')
-    .max(16, 'Must be 16 or less letter')
-    .trim()
-    .required('The name is required'),
+  name: yup.string().when('type', {
+    is: val => val !== 'lostFound',
+    then: yup
+      .string()
+      .min(2, 'Must be 2 or more letter')
+      .max(16, 'Must be 16 or less letter')
+      .trim()
+      .required('The name is required'),
+    otherwise: yup.string(),
+  }),
   breed: yup.string().required('The breed is required'),
 });
 
@@ -81,7 +85,10 @@ export const AddNoticeStepOne = ({
           value="lostFound"
           name="lostFound"
           checked={selectedOption === 'lostFound'}
-          onChange={handleOptionChange}
+          onChange={(event) => {
+            formik.setFieldError('name', '');
+            handleOptionChange(event);
+          }}
         ></AddNoticeLostFound>
         <label htmlFor="lostFound">lost/found</label>
         <AddNoticeInGoodHands
@@ -118,7 +125,6 @@ export const AddNoticeStepOne = ({
         />
         <BoxWarning>{formik.touched.title && formik.errors.title}</BoxWarning>
       </AddNoticeStepOneInputWrapper>
-
       <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
       <AddNoticeStepOneInputWrapper>
         <AddNoticeStepOneInput

@@ -127,7 +127,6 @@ export const AddNoticeStepTwo = ({
     },
     selectedOption,
   });
-  console.log(formik.errors);
 
   const [preview, setPreview] = useState([]); // LOAD PREVIEW IMAGE
 
