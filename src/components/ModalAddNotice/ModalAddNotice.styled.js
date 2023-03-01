@@ -271,9 +271,10 @@ export const InputLast = styled(Field)`
   outline-color: ${theme.colors.primary};
 
   appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M6 9l6 6 6-6" /></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M6 9l6 6 6-6" /></svg>');
   background-repeat: no-repeat;
-  background-position: right bottom;
+  background-position: right;
+  background-size: 7%;
   width: 240px;
   height: 40px;
   background-color: ${theme.colors.background};

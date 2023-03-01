@@ -11,7 +11,7 @@ export const Ul = styled.ul`
   }
   @media screen and (min-width: 768px) {
     gap: 35px;
-    margin-top: 60px;
+    /* margin-top: 60px; */
     flex-wrap: wrap;
   }
   @media screen and (min-width: 1280px) {
@@ -22,7 +22,7 @@ export const Ul = styled.ul`
 export const Li = styled.li`
   list-style: none;
   /* outline: 2px solid red; */
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   width: 280px;
   padding-left: 0px;
   padding-right: 0px;
@@ -35,13 +35,13 @@ export const Li = styled.li`
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     width: 335px;
     &:nth-of-type(-n + 2) {
-      margin-bottom: 25px;
+      margin-bottom: 5px;
     }
   }
   @media screen and (min-width: 1280px) {
     width: 395px;
     &:nth-of-type(-n + 3) {
-      margin-bottom: 60px;
+      margin-bottom: 40px;
     }
   }
 `;
@@ -91,7 +91,7 @@ export const Paragraph = styled.p`
   display: -webkit-box; /* Включаем флексбоксы */
   -webkit-box-orient: vertical; /* Вертикальная ориентация */
   @media screen and (min-width: 768px) {
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     height: 130px;
     -webkit-line-clamp: 7; /* Число отображаемых строк */
   }
