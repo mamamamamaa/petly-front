@@ -51,7 +51,8 @@ const addNoticeStepTwoSchema = yup.object().shape({
     otherwise: yup.number(),
   }),
   photoUrl: yup
-    .array()
+  .array()
+  .nullable()
     .test(
       'max',
       'You can upload up to 2 files.',
@@ -144,10 +145,11 @@ export const AddNoticeStepTwo = ({
       reader.readAsDataURL(files[i]);
       formik.setFieldValue(`photoUrl[${i}]`, files[i]);
     }
-
+    
     const loadedFiles = await Promise.all(fileArray);
     setPreview(loadedFiles);
     localStorage.setItem('preview', JSON.stringify(loadedFiles));
+    formik.validateField('photoUrl');
   };
   const restorePreview = () => {
     // retrieve the image URLs from localStorage
@@ -158,14 +160,17 @@ export const AddNoticeStepTwo = ({
   };
   const deleteImage = index => {
     // create a copy of the preview array
-    formik.setFieldValue('photoUrl', '');
     const updatedPreview = [...preview];
     // remove the image at the specified index
     updatedPreview.splice(index, 1);
     // update the preview state and localStorage
     setPreview(updatedPreview);
     localStorage.setItem('preview', JSON.stringify(updatedPreview));
-  };
+    let updatedPhotoUrl = [...formik.values.photoUrl];
+    updatedPhotoUrl.splice(index, 1);
+    formik.setFieldValue('photoUrl', updatedPhotoUrl);
+    formik.validateField('photoUrl');
+  }; 
   useEffect(() => {
     // restore the preview images when the component mounts
     restorePreview();
@@ -189,7 +194,10 @@ export const AddNoticeStepTwo = ({
     formik.validateForm();
   };
   return (
-    <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
+    <form
+      onSubmit={formik.handleSubmit}
+      encType="multipart/form-data"
+    >
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
       <AddNoticeStepTwoGenderText>The sex:</AddNoticeStepTwoGenderText>
       <AddNoticeStepTwoGenderWrapper
@@ -301,6 +309,7 @@ export const AddNoticeStepTwo = ({
             <AddNoticeStepTwoSlide className="swiper-slide" key={index}>
               <AddNoticeStepTwoImg src={url} alt={`Slide ${index}`} />
               <AddNoticeStepTwoButtonDelImg
+                type="button"
                 onClick={() => deleteImage(index)}
               />
             </AddNoticeStepTwoSlide>
