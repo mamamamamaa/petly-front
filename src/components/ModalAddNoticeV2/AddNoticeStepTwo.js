@@ -55,8 +55,8 @@ const addNoticeStepTwoSchema = yup.object().shape({
   .nullable()
     .test(
       'max',
-      'You can upload up to 2 files.',
-      value => !value || value.filter(file => file !== null).length <= 2
+      'You can upload up to 5 files.',
+      value => !value || value.filter(file => file !== null).length <= 5
     )
     .test(
       'fileFormat',
