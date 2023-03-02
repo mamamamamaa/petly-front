@@ -1,4 +1,4 @@
-import { useFormik } from 'formik';
+import { Field, Form, Formik, useFormik } from 'formik';
 import { object, string, mixed } from 'yup';
 import { useState } from 'react';
 import { GrAdd } from 'react-icons/gr';
@@ -61,16 +61,17 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
     },
   });
   return (
+    <Formik>
     <Container>
       <Title>Add photo and some comments</Title>
-      <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
+      <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
         <Box>
           <label>
             <BoxImg>
               { isFileUpload && <FiCheck color="#F59256" width="150" heigh="150"/>}
               { !isFileUpload && <GrAdd className={css.iconForm} />}
             </BoxImg>
-            <input
+            <Field
               className={css.inputFormImg}
               type="file"
               name="pictureURL"
@@ -85,7 +86,7 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
               }
             }
             />
-            <BoxWarning>{formik.errors.pictureURL}</BoxWarning>
+            { formik.touched.pictureURL && <BoxWarning>{formik.errors.pictureURL}</BoxWarning>}
           </label>
         </Box>
         <BoxComent>
@@ -93,15 +94,17 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
             <label>Comments</label>
           </TitleComent>
 
-          <textarea
+          <Field as="textarea"
             name="comments"
             type="text"
             placeholder="Type comments"
             className={css.textForm}
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.comments}
-          ></textarea>
-          <BoxWarning>{formik.errors.pictureURL}</BoxWarning>
+          />
+          { formik.touched.comments && formik.errors.comments ? <BoxWarning>{formik.errors.comments}</BoxWarning> : null} 
+          
         </BoxComent>
         <BoxButton>
           <ButtonBack type="button" onClick={handleBack}>
@@ -109,7 +112,8 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
           </ButtonBack>
           <ButtonDone type="submit">Done</ButtonDone>
         </BoxButton>
-      </form>
+      </Form>
     </Container>
+    </Formik>
   );
 };
