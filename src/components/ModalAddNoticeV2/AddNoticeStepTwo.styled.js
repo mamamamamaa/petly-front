@@ -232,13 +232,13 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
   width: 116px;
   height: 116px;
   background-color: #fdf7f2;
-  background-size: 47px;
+  // background-size: 47px;
   border-radius: 20px;
   background-repeat: no-repeat;
   background-position: center;
   background-image: ${({ preview }) =>
     preview ? `url(${preview[0]})` : `url(${loadCross})`};
-  background-image: url(${loadCross});
+  // background-image: url(${loadCross});
   left: 20px;
   margin-bottom: 28px;
   ${media.tabletAndDesktop} {
