@@ -12,23 +12,21 @@ const initialState = {
   name: '',
   dateOfBirth: '',
   breed: '',
-  sex: '',
+  gender: '',
   location: '',
   price: '',
-  photoUrl: '',
+  photoUrl: [],
   comments: '',
 };
 export const ModalAddNotice = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
+  const [isDisabled, setIsDisabled] = useState(true); // disable checkbox by default
   const [data, setData] = useState(initialState);
   const [final, setFinal] = useState(false);
   const onFinal = () => setFinal(final);
 
   const next = (newData = {}, final) => {
     if (final) {
-      setData({
-        ...newData,
-      });
       let normalizedDateOfBirth;
       if (newData.dateOfBirth !== '') {
         normalizedDateOfBirth = moment(new Date(newData.dateOfBirth)).format(
@@ -38,22 +36,20 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
         normalizedDateOfBirth = newData.dateOfBirth;
       }
       const formData = new FormData();
-      if (typeof newData.photoUrl === 'string') {
-        const photoUrlFile = new File(
-          [newData.photoUrl],
-          newData.photoUrl.name,
-          { type: 'image/jpeg' }
-        );
-        formData.append('photoUrl', photoUrlFile);
-      } else {
-        formData.append('photoUrl', newData.photoUrl);
+      if (Array.isArray(newData.photoUrl)) {
+        newData.photoUrl.forEach(file => {
+          const photoUrlFile = new File([file], file.name, {
+            type: 'image/jpeg',
+          });
+          formData.append('photoUrl', photoUrlFile);
+        });
       }
-      formData.append('comments', newData.comments || 'lemonad');
-      formData.append('breed', newData.breed || 'barbet');
+      formData.append('comments', newData.comments);
+      formData.append('breed', newData.breed);
       formData.append('dateOfBirth', normalizedDateOfBirth);
-      formData.append('name', newData.name || 'demon');
+      formData.append('name', newData.name);
       formData.append('title', newData.title);
-      formData.append('sex', newData.sex);
+      formData.append('sex', newData.gender);
       formData.append('place', newData.location);
       if (selectedOption === 'sell') {
         formData.append('price', newData.price);
@@ -118,12 +114,28 @@ export const ModalAddNotice = ({ onClose, isOpen }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const steps = [
     <AddNoticeStepOne
-      {...{ next, data, cancel, selectedOption, handleOptionChange }}
+      {...{
+        next,
+        data,
+        cancel,
+        selectedOption,
+        handleOptionChange,
+      }}
       // selectedOption FOR BUTTONS SWAPING OPTION 'SELL', 'inGoodHands', 'lostFound'
       //handleOptionChange TAKE DATA 'SELL', 'inGoodHands', 'lostFound' FROM INPUTS
     />,
     <AddNoticeStepTwo
-      {...{ final, onFinal, next, data, prev, onClose, selectedOption }} //selectedOption TO SHOW SELL FILED OR NO
+      {...{
+        final,
+        onFinal,
+        next,
+        data,
+        prev,
+        onClose,
+        selectedOption,
+        isDisabled,
+        setIsDisabled,
+      }} //selectedOption TO SHOW SELL FILED OR NO
     />,
   ];
   return (

@@ -3,6 +3,8 @@ import { media } from 'components/Layout/Layout.styled';
 import male from 'utils/svg/male.svg';
 import female from 'utils/svg/female.svg';
 import loadCross from 'utils/svg/loadCross.svg';
+import PetDeleteIcon from 'utils/svg/petDeleteIcon.svg';
+
 export const AddNoticeStepTwoForm = styled.form``;
 export const AddNoticeStepTwoTitle = styled.h3`
   font-weight: 500;
@@ -19,7 +21,7 @@ export const AddNoticeStepTwoTitle = styled.h3`
     color: #000000;
   }
 `;
-export const AddNoticeStepTwoLabelSex = styled.label`
+export const AddNoticeStepTwoGenderText = styled.span`
   display: block;
   font-weight: 500;
   font-size: 18px;
@@ -36,27 +38,16 @@ export const AddNoticeStepTwoLabelSex = styled.label`
     margin-bottom: 31px;
   }
 `;
-export const AddNoticeStepTwoInputSexCheckboxWrapper = styled.div`
-  width: 100%;
-  height: 77px;
-  position: relative;
+export const AddNoticeStepTwoGenderWrapper = styled.div`
   margin-bottom: 32px;
   ${media.tabletAndDesktop} {
     margin-bottom: 40px;
-    // height: 107px;
   }
 `;
-export const AddNoticeStepTwoInputSex = styled.input`
-  width: 160px;
-  // height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  bottom: 0;
-  right: 0;
-  opacity: 0%;
+export const AddNoticeStepTwoInputGenderRadio = styled.input`
+  display: none;
 `;
-export const AddNoticeStepTwoMaleWrapper = styled.div`
+export const AddNoticeStepTwoMaleWrapper = styled.label`
   display: inline-flex;
   flex-direction: column;
 `;
@@ -74,9 +65,17 @@ export const AddNoticeStepTwoMaleSpan = styled.span`
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${props => (props.checked && !props.isDisabled ? '#f59256' : '#000')};
+  color: ${({ isDisabled, gender }) => {
+    if (isDisabled) {
+      return '#000';
+    }
+    if (gender === 'male') {
+      return '#f59256';
+    }
+    return '#000';
+  }};
 `;
-export const AddNoticeStepTwoFemaleWrapper = styled.div`
+export const AddNoticeStepTwoFemaleWrapper = styled.label`
   display: inline-flex;
   flex-direction: column;
 `;
@@ -92,7 +91,15 @@ export const AddNoticeStepTwoFemaleSpan = styled.span`
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: ${props => (props.checked ? '#000' : '#f59256')};
+  color: ${({ isDisabled, gender }) => {
+    if (isDisabled) {
+      return '#000';
+    }
+    if (gender === 'female') {
+      return '#f59256';
+    }
+    return '#000';
+  }};
 `;
 
 export const AddNoticeStepTwoLabelLocation = styled.label`
@@ -157,6 +164,7 @@ export const AddNoticeStepTwoLabelPrice = styled.label`
   }
 `;
 export const AddNoticeStepTwoInputPriceWrapper = styled.div`
+  display: ${props => (props.selectedOption === 'sell' ? 'block' : 'none')};
   margin-bottom: 16px;
   ${media.tabletAndDesktop} {
     margin-bottom: 28px;
@@ -183,6 +191,27 @@ export const AddNoticeStepTwoInputPrice = styled.input`
   }
 `;
 
+export const AddNoticeStepTwoSlide = styled.div`
+  position: relative;
+`;
+export const AddNoticeStepTwoImg = styled.img``;
+export const AddNoticeStepTwoButtonDelImg = styled.button`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 34px;
+  height: 34px;
+  background-image: url(${PetDeleteIcon});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top 0vw left 0vw;
+  cursor: pointer;
+  border: none;
+  ${media.tabletAndDesktop} {
+    width: 44px;
+    height: 44px;
+  }
+`;
 export const AddNoticeStepTwoLabelPictureURL = styled.label`
   display: block;
   font-weight: 500;
@@ -203,12 +232,13 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
   width: 116px;
   height: 116px;
   background-color: #fdf7f2;
-  background-size: ${({ preview }) => (preview ? '116px' : `47px`)};
+  // background-size: 47px;
   border-radius: 20px;
   background-repeat: no-repeat;
   background-position: center;
   background-image: ${({ preview }) =>
-    preview ? `url(${preview})` : `url(${loadCross})`};
+    preview ? `url(${preview[0]})` : `url(${loadCross})`};
+  // background-image: url(${loadCross});
   left: 20px;
   margin-bottom: 28px;
   ${media.tabletAndDesktop} {
@@ -218,8 +248,8 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
 `;
 export const AddNoticeStepTwoLoadImageInput = styled.input`
   // position: relative;
-  width: 116px;
-  height: 116px;
+  width: 100%;
+  height: 100%;
   opacity: 0;
 `;
 

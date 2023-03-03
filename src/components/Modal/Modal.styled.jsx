@@ -3,7 +3,7 @@ import { theme } from '../../utils';
 
 export const Backdrop = styled.div`
   position: fixed;
-  overflow-y: scroll;
+  // overflow-y: scroll; // if this property is uncommented orange buttom line apperars on AddNotice modal on resolution from 768 to 800px, also vertical scroll arears
   overscroll-behavior: none;
   top: 0px;
   left: 0px;
