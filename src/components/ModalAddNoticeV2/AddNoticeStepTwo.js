@@ -124,7 +124,7 @@ export const AddNoticeStepTwo = ({
 
       next(newValue, onFinal);
       localStorage.setItem('preview', '');
-      onClose();
+      // onClose();
     },
     selectedOption,
   });
@@ -135,7 +135,7 @@ export const AddNoticeStepTwo = ({
     const files = event.currentTarget.files; // get all selected files
     const fileArray = [];
 
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
       fileArray.push(
         new Promise(resolve => {
@@ -303,7 +303,7 @@ export const AddNoticeStepTwo = ({
         </BoxWarning>
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
 
-      {/* <div className="swiper-container">
+      <div className="swiper-container">
         <div className="swiper-wrapper">
           {preview.map((url, index) => (
             <AddNoticeStepTwoSlide className="swiper-slide" key={index}>
@@ -315,7 +315,7 @@ export const AddNoticeStepTwo = ({
             </AddNoticeStepTwoSlide>
           ))}
         </div>
-      </div> */}
+      </div>
 
       <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
         Comments
