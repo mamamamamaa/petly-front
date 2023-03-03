@@ -43,6 +43,7 @@ export const PetsDataButton = styled.button`
   background-size: 16px 16px;
   background-repeat: no-repeat;
   display: inline-block;
+  cursor: pointer;
 `;
 export const PetsDataSection = styled.div`
   background-color: #fdf7f2;
