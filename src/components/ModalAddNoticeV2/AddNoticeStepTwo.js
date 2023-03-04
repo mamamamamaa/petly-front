@@ -34,6 +34,7 @@ import {
   AddNoticeStepTwoImg,
   AddNoticeStepTwoButtonDelImg,
   AddNoticeStepTwoSlide,
+  AddNoticeStepTwoSwiperWrapper,
 } from './AddNoticeStepTwo.styled';
 import { BoxWarning } from './ModalAddNotice.styled';
 import React from 'react';
@@ -51,8 +52,8 @@ const addNoticeStepTwoSchema = yup.object().shape({
     otherwise: yup.number(),
   }),
   photoUrl: yup
-  .array()
-  .nullable()
+    .array()
+    .nullable()
     .test(
       'max',
       'You can upload up to 5 files.',
@@ -145,7 +146,7 @@ export const AddNoticeStepTwo = ({
       reader.readAsDataURL(files[i]);
       formik.setFieldValue(`photoUrl[${i}]`, files[i]);
     }
-    
+
     const loadedFiles = await Promise.all(fileArray);
     setPreview(loadedFiles);
     localStorage.setItem('preview', JSON.stringify(loadedFiles));
@@ -170,7 +171,7 @@ export const AddNoticeStepTwo = ({
     updatedPhotoUrl.splice(index, 1);
     formik.setFieldValue('photoUrl', updatedPhotoUrl);
     formik.validateField('photoUrl');
-  }; 
+  };
   useEffect(() => {
     // restore the preview images when the component mounts
     restorePreview();
@@ -194,10 +195,7 @@ export const AddNoticeStepTwo = ({
     formik.validateForm();
   };
   return (
-    <form
-      onSubmit={formik.handleSubmit}
-      encType="multipart/form-data"
-    >
+    <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
       <AddNoticeStepTwoGenderText>The sex:</AddNoticeStepTwoGenderText>
       <AddNoticeStepTwoGenderWrapper
@@ -304,7 +302,7 @@ export const AddNoticeStepTwo = ({
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
 
       <div className="swiper-container">
-        <div className="swiper-wrapper">
+        <AddNoticeStepTwoSwiperWrapper className="swiper-wrapper">
           {preview.map((url, index) => (
             <AddNoticeStepTwoSlide className="swiper-slide" key={index}>
               <AddNoticeStepTwoImg src={url} alt={`Slide ${index}`} />
@@ -314,7 +312,7 @@ export const AddNoticeStepTwo = ({
               />
             </AddNoticeStepTwoSlide>
           ))}
-        </div>
+        </AddNoticeStepTwoSwiperWrapper>
       </div>
 
       <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">

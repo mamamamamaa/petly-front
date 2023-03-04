@@ -191,6 +191,11 @@ export const AddNoticeStepTwoInputPrice = styled.input`
   }
 `;
 
+export const AddNoticeStepTwoSwiperWrapper = styled.div`
+display: flex;
+flex-wrap: wrap;
+`;
+
 export const AddNoticeStepTwoSlide = styled.div`
   position: relative;
 `;
@@ -202,17 +207,19 @@ export const AddNoticeStepTwoButtonDelImg = styled.button`
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 34px;
-  height: 34px;
+  width: 16px;
+  height: 16px;
   background-image: url(${PetDeleteIcon});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 0vw left 0vw;
   cursor: pointer;
   border: none;
-  ${media.tabletAndDesktop} {
-    width: 44px;
-    height: 44px;
+  &::after {
+    content: '';
+    display: block;
+    width: 116px;
+    height: 116px;
   }
 `;
 export const AddNoticeStepTwoLabelPictureURL = styled.label`
