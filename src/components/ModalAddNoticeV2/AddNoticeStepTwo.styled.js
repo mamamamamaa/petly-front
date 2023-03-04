@@ -197,7 +197,7 @@ export const AddNoticeStepTwoSliderContainer = styled.div`
 `;
 export const AddNoticeStepTwoSlide = styled.div`
   position: relative;
-  margin-right: 10px; // add some space between the images
+  margin-right: 4px; // add some space between the images
 `;
 export const AddNoticeStepTwoImg = styled.img`
   width: 116px;
