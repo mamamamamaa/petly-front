@@ -34,6 +34,9 @@ const AddNoticeButton = () => {
   useEffect(() => {
     openModal(); // removes double click button issue
   }, []);
+  useEffect(() => {
+  !isOpen &&  localStorage.setItem('preview', ''); // removes pets from localStorage if accidently? close window
+  }, [isOpen]);
 
   return (
     <>

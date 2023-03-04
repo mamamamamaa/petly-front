@@ -54,7 +54,7 @@ export const AddNoticeStepOne = ({
 }) => {
   const formik = useFormik({
     initialValues: data,
-    validationSchema: addNoticeStepOneSchema,
+    // validationSchema: addNoticeStepOneSchema,
     validateOnBlur: true,
     validateOnChange: true,
     validateOnMount: false,

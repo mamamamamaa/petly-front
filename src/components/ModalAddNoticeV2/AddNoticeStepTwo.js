@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import * as yup from 'yup';
 import {
   AddNoticeStepOneButtonBack,
@@ -176,6 +176,11 @@ export const AddNoticeStepTwo = ({
     // restore the preview images when the component mounts
     restorePreview();
   }, []);
+const formikRef = useRef(formik);
+
+useEffect(() => { // validate photos when you click back and than return
+  formikRef.current.validateField('photoUrl'); //This ensures that the formikRef object is only re-assigned when the formik object changes, not on every render. If directly set formik to dependency array get endless rerender, if not set formikRef as dependency will cause eslint warning
+}, [formik.values.photoUrl, formikRef]);
   const handleCommentsChange = event => {
     formik.setValues({
       ...formik.values,
@@ -297,7 +302,7 @@ export const AddNoticeStepTwo = ({
           />
         </AddNoticeStepTwoLoadImageInputWrapper>
         <BoxWarning>
-          {formik.touched.photoUrl && formik.errors.photoUrl}
+          {formik.errors.photoUrl}
         </BoxWarning>
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
 
