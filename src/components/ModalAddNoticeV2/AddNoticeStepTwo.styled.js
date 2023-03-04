@@ -190,9 +190,14 @@ export const AddNoticeStepTwoInputPrice = styled.input`
     height: 48px;
   }
 `;
-
+export const AddNoticeStepTwoSliderContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
 export const AddNoticeStepTwoSlide = styled.div`
   position: relative;
+  margin-right: 10px; // add some space between the images
 `;
 export const AddNoticeStepTwoImg = styled.img`
   width: 116px;

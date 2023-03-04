@@ -34,6 +34,7 @@ import {
   AddNoticeStepTwoImg,
   AddNoticeStepTwoButtonDelImg,
   AddNoticeStepTwoSlide,
+  AddNoticeStepTwoSliderContainer,
 } from './AddNoticeStepTwo.styled';
 import { BoxWarning } from './ModalAddNotice.styled';
 import React from 'react';
@@ -313,9 +314,12 @@ export const AddNoticeStepTwo = ({
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
 
       <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="slider">
+        <Droppable droppableId="slider" direction="horizontal">
           {(provided, snapshot) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
+            <AddNoticeStepTwoSliderContainer
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
               {preview.map((url, index) => (
                 <Draggable key={index} draggableId={`${index}`} index={index}>
                   {(provided, snapshot) => (
@@ -324,17 +328,17 @@ export const AddNoticeStepTwo = ({
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                        <AddNoticeStepTwoButtonDelImg
-                          type="button"
-                          onClick={() => deleteImage(index)}
-                        />
-                        <AddNoticeStepTwoImg src={url} alt={`Slide ${index}`} />
+                      <AddNoticeStepTwoButtonDelImg
+                        type="button"
+                        onClick={() => deleteImage(index)}
+                      />
+                      <AddNoticeStepTwoImg src={url} alt={`Slide ${index}`} />
                     </AddNoticeStepTwoSlide>
                   )}
                 </Draggable>
               ))}
               {provided.placeholder}
-            </div>
+            </AddNoticeStepTwoSliderContainer>
           )}
         </Droppable>
       </DragDropContext>
