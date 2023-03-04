@@ -191,20 +191,16 @@ export const AddNoticeStepTwoInputPrice = styled.input`
   }
 `;
 
-export const AddNoticeStepTwoSwiperWrapper = styled.div`
-display: flex;
-flex-wrap: wrap;
-`;
-
 export const AddNoticeStepTwoSlide = styled.div`
   position: relative;
 `;
 export const AddNoticeStepTwoImg = styled.img`
-width: 116px;
-height: 116px;
+  width: 116px;
+  height: 116px;
 `;
 export const AddNoticeStepTwoButtonDelImg = styled.button`
   position: absolute;
+  z-index: 1;
   top: 0px;
   left: 0px;
   width: 16px;
@@ -218,8 +214,8 @@ export const AddNoticeStepTwoButtonDelImg = styled.button`
   &::after {
     content: '';
     display: block;
-    width: 116px;
-    height: 116px;
+    width: 44px;
+    height: 44px;
   }
 `;
 export const AddNoticeStepTwoLabelPictureURL = styled.label`

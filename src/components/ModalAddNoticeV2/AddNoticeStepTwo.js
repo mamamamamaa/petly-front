@@ -34,10 +34,10 @@ import {
   AddNoticeStepTwoImg,
   AddNoticeStepTwoButtonDelImg,
   AddNoticeStepTwoSlide,
-  AddNoticeStepTwoSwiperWrapper,
 } from './AddNoticeStepTwo.styled';
 import { BoxWarning } from './ModalAddNotice.styled';
 import React from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const addNoticeStepTwoSchema = yup.object().shape({
   gender: yup.string().oneOf(['male', 'female']).required('Gender is required'),
@@ -176,11 +176,12 @@ export const AddNoticeStepTwo = ({
     // restore the preview images when the component mounts
     restorePreview();
   }, []);
-const formikRef = useRef(formik);
+  const formikRef = useRef(formik);
 
-useEffect(() => { // validate photos when you click back and than return
-  formikRef.current.validateField('photoUrl'); //This ensures that the formikRef object is only re-assigned when the formik object changes, not on every render. If directly set formik to dependency array get endless rerender, if not set formikRef as dependency will cause eslint warning
-}, [formik.values.photoUrl, formikRef]);
+  useEffect(() => {
+    // validate photos when you click back and than return
+    formikRef.current.validateField('photoUrl'); //This ensures that the formikRef object is only re-assigned when the formik object changes, not on every render. If directly set formik to dependency array get endless rerender, if not set formikRef as dependency will cause eslint warning
+  }, [formik.values.photoUrl, formikRef]);
   const handleCommentsChange = event => {
     formik.setValues({
       ...formik.values,
@@ -198,6 +199,13 @@ useEffect(() => { // validate photos when you click back and than return
   const handleBlur = fieldName => {
     formik.setFieldTouched(fieldName, true);
     formik.validateForm();
+  };
+  const handleOnDragEnd = result => {
+    if (!result.destination) return;
+    const items = Array.from(preview);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setPreview(items);
   };
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -301,24 +309,35 @@ useEffect(() => { // validate photos when you click back and than return
             onBlur={() => handleBlur('photoUrl')}
           />
         </AddNoticeStepTwoLoadImageInputWrapper>
-        <BoxWarning>
-          {formik.errors.photoUrl}
-        </BoxWarning>
+        <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
 
-      <div className="swiper-container">
-        <AddNoticeStepTwoSwiperWrapper className="swiper-wrapper">
-          {preview.map((url, index) => (
-            <AddNoticeStepTwoSlide className="swiper-slide" key={index}>
-              <AddNoticeStepTwoImg src={url} alt={`Slide ${index}`} />
-              <AddNoticeStepTwoButtonDelImg
-                type="button"
-                onClick={() => deleteImage(index)}
-              />
-            </AddNoticeStepTwoSlide>
-          ))}
-        </AddNoticeStepTwoSwiperWrapper>
-      </div>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="slider">
+          {(provided, snapshot) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {preview.map((url, index) => (
+                <Draggable key={index} draggableId={`${index}`} index={index}>
+                  {(provided, snapshot) => (
+                    <AddNoticeStepTwoSlide
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                        <AddNoticeStepTwoButtonDelImg
+                          type="button"
+                          onClick={() => deleteImage(index)}
+                        />
+                        <AddNoticeStepTwoImg src={url} alt={`Slide ${index}`} />
+                    </AddNoticeStepTwoSlide>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
 
       <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
         Comments
