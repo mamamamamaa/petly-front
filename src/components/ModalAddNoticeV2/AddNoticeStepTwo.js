@@ -137,7 +137,10 @@ export const AddNoticeStepTwo = ({
     const files = event.currentTarget.files; // get all selected files
     const fileArray = [];
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < files.length; i++) {
+      if (i === 5) {
+        break;
+      }
       const reader = new FileReader();
       fileArray.push(
         new Promise(resolve => {
