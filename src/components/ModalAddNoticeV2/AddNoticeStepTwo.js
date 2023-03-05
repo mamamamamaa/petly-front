@@ -211,6 +211,29 @@ export const AddNoticeStepTwo = ({
     items.splice(result.destination.index, 0, reorderedItem);
     setPreview(items);
   };
+  function useWindowSize() {
+    const [windowSize, setWindowSize] = useState({
+      width: undefined,
+      height: undefined,
+    });
+
+    useEffect(() => {
+      function handleResize() {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+
+      window.addEventListener('resize', handleResize);
+      handleResize();
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return windowSize;
+  }
+  const { width } = useWindowSize();
+  const isScreenSmall = width <= 767;
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
@@ -317,7 +340,7 @@ export const AddNoticeStepTwo = ({
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
 
       <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="slider" direction="horizontal">
+        <Droppable droppableId="slider" direction={isScreenSmall ? 'vertical' : 'horizontal'}>
           {(provided, snapshot) => (
             <AddNoticeStepTwoSliderContainer
               {...provided.droppableProps}

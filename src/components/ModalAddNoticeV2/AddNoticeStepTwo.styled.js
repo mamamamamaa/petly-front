@@ -191,17 +191,28 @@ export const AddNoticeStepTwoInputPrice = styled.input`
   }
 `;
 export const AddNoticeStepTwoSliderContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  ${media.tabletAndDesktop} {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `;
 export const AddNoticeStepTwoSlide = styled.div`
   position: relative;
-  margin-right: 4px; // add some space between the images
+  margin-bottom: 4px;
+  ${media.tabletAndDesktop} {
+    margin-right: 4px; // add some space between the images
+  }
 `;
 export const AddNoticeStepTwoImg = styled.img`
-  width: 116px;
-  height: 116px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  ${media.tabletAndDesktop} {
+    width: 116px;
+    height: 116px;
+  }
 `;
 export const AddNoticeStepTwoButtonDelImg = styled.button`
   position: absolute;
