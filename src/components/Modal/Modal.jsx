@@ -5,7 +5,6 @@ import { Backdrop, Window } from './Modal.styled';
 
 export const Modal = ({ children, onClose, className }) => {
   const modalRoot = document.querySelector('#modal-root');
-  // console.log(date);
   const onBackdropClose = event => {
     if (event.currentTarget === event.target) {
       onClose();

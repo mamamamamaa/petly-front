@@ -28,11 +28,19 @@ const FriendsList = () => {
   const modalHandler = () => setModal(prevState => !prevState);
   // ===========================================
 
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [modal]);
+
   return (
     <StyledList>
       {isLoading && <Spinner />}
       {modal && (
-        <Modal onClose={modalHandler}>
+        <Modal onClose={modalHandler} className='OurTeam'>
           <ListOurTeams />
         </Modal>
       )}

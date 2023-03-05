@@ -61,7 +61,7 @@ export const PetsData = () => {
         )}
         {!error && !isLoading && pets.length > 0 && <PetsList pets={pets} />}
         {showModal && (
-          <Modal onClose={handleModal}>
+          <Modal onClose={handleModal} className='AddPet'>
             <ModalAddsPet onClose={handleModal} />
           </Modal>
         )}
