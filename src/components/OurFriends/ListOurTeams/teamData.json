@@ -1,0 +1,142 @@
+[
+  {
+    "id": "1",
+    "photo": "/static/media/Max.c94e2825b474e9e5e7b6.png",
+    "name": "Max Denishchuk",
+    "role": "Team Lead, Developer",
+    "mail": "mailto:maks.denishchuk@gmail.com",
+    "telegram": "tg://@mamamaama",
+    "linkedin": "https://www.linkedin.com/in/max-denishchuk/",
+    "github": "https://github.com/mamamamamaa?tab=overview&from=2023-02-01&to=2023-02-19"
+  },
+  {
+    "id": "2",
+    "photo": "/static/media/Mykola.ac998a3504a42c27c2de.png",
+    "name": "Mykola Tankov",
+    "role": "Scrum Master, Developer",
+    "mail": "mailto:tankov.n.k@gmail.com",
+    "telegram": "tg://@Mykola_Tankov",
+    "linkedin": "https://www.linkedin.com/in/mykola-tankov-99ab79193/",
+    "github": "https://github.com/Tank-Nkolay"
+  },
+  {
+    "id": "3",
+    "photo": "/static/media/Julia.53c966ad78475c57b402.png",
+    "name": "Yulia Semenyuk",
+    "role": "Developer",
+    "mail": "mailto:yuliasemenyukyp@gmail.com",
+    "telegram": "tg://@yuliasemenyuk",
+    "linkedin": "https://www.linkedin.com/in/yulia-semenyuk-8b22b6226",
+    "github": "https://github.com/yuliasemenyuk"
+  },
+  {
+    "id": "4",
+    "photo": "/static/media/Sahko.a6c3937fdf0c5b73faa9.png",
+    "name": "Oleksandr Ovrakh",
+    "role": "Developer",
+    "mail": "mailto:oleksandr.ovrakh@gmail.com",
+    "telegram": "tg://@alexovr",
+    "linkedin": "https://www.linkedin.com/in/oleksandr-ovrakh",
+    "github": "https://github.com/alexovr1"
+  },
+  {
+    "id": "5",
+    "photo": "/static/media/Lyubov.f462c4c979f697272b78.png",
+    "name": "Lyubov Karman",
+    "role": "Developer",
+    "mail": "mailto:inkkli24@gmail.com ",
+    "telegram": "tg://+380679629111",
+    "linkedin": "http://www.linkedin.com/in/liubov-karman",
+    "github": ""
+  },
+  {
+    "id": "6",
+    "photo": "/static/media/Volodymyr.3d0e5888036e7a0cff88.png",
+    "name": "Volodymyr Proskurin",
+    "role": "Developer",
+    "mail": "",
+    "telegram": "tg://@p_volodymyr_g",
+    "linkedin": "",
+    "github": ""
+  },
+  {
+    "id": "7",
+    "photo": "",
+    "name": "Andrey Kovalenko",
+    "role": "Developer",
+    "mail": "",
+    "telegram": "tg://@kovalenkoandri",
+    "linkedin": "",
+    "github": ""
+  },
+  {
+    "id": "8",
+    "photo": "/static/media/Olena.520d227fb4b2b8bf1b8b.png",
+    "name": "Olena Nesteruk",
+    "role": "Developer",
+    "mail": "mailto:pavlena81@gmail.com",
+    "telegram": "tg://@olenanesteruk",
+    "linkedin": "https://www.linkedin.com/in/lena-nesteruk-6511a9249/",
+    "github": "https://github.com/pavlena81"
+  },
+  {
+    "id": "9",
+    "photo": "/static/media/Olga.eb24cc73eca5f7909bc1.png",
+    "name": "Olga Sumaruk",
+    "role": "Developer",
+    "mail": "mailto:sumaruk29@gmail.com",
+    "telegram": "tg://@SumarukOlga",
+    "linkedin": "https://www.linkedin.com/in/olga-sumaruk/",
+    "github": "https://github.com/Sumaruk-Olga"
+  },
+  {
+    "id": "10",
+    "photo": "/static/media/DmytroMtlnychuk.3857ac6a667eaeeabdf6.png",
+    "name": "Dmytro Melnychuk",
+    "role": "Team Lead, QA engineer",
+    "mail": "mailto:dm.am87@yahoo.com",
+    "telegram": "tg://@melni4q",
+    "linkedin": "https://www.linkedin.com/in/dmytro-melnychuk-b4936b259",
+    "github": ""
+  },
+  {
+    "id": "11",
+    "photo": "/static/media/Maryna.29ea5925f7f37a90748f.png",
+    "name": "Maryna Svynarenko",
+    "role": "QA engineer",
+    "mail": "mailto:magnoli84@gmail.com",
+    "telegram": "tg://@magnoli84",
+    "linkedin": "https://www.linkedin.com/in/maryna-svynarenko/",
+    "github": ""
+  },
+  {
+    "id": "12",
+    "photo": "/static/media/Lilia.0676c05a88f2d976a514.png",
+    "name": "Lilia Poberezhnyk",
+    "role": "QA engineer",
+    "mail": "mailto:Liliapoberezhnik16@gmail.com",
+    "telegram": "tg://@LiliaPoberezhnyk",
+    "linkedin": "www.linkedin.com/in/liliia-poberezhnyk",
+    "github": ""
+  },
+  {
+    "id": "13",
+    "photo": "/static/media/Victor.c5b1ec9f29a06c62bf0f.png",
+    "name": "Victor Bosenko",
+    "role": "QA engineer",
+    "mail": "",
+    "telegram": "tg://@BosenkoV",
+    "linkedin": "https://www.linkedin.com/in/victorbosenko",
+    "github": ""
+  },
+  {
+    "id": "14",
+    "photo": "/static/media/DmytroShmyhol.ca39e6a4eeff1b4eb95b.png",
+    "name": "Dmytro Shmyhol",
+    "role": "QA engineer",
+    "mail": "",
+    "telegram": "tg://https://t.me/DmytroShmyhol",
+    "linkedin": "https://www.linkedin.com/in/dmytro-shmyhol-75b68425b/",
+    "github": ""
+  }
+]
