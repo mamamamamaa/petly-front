@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-// import { Button } from 'utils';
 import { CloseButton } from '../CloseButton/CloseButton';
 import { Backdrop, Window } from './Modal.styled';
 

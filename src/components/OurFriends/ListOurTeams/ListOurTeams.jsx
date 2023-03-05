@@ -7,11 +7,10 @@ import {
   TitleBy,
   BoxVideo,
   Iframe,
-  // Img,
-  // Ul,
-  // Li,
+  BoxInsert,
 } from './ListOurTeams.styled';
-// import poster from '../../../utils/svg/easter-egg.png';
+import ListTeam from '../ListTeam/ListTeam';
+import teamData from '../ListOurTeams/teamData.json';
 
 // ======== second way for news ========= down
 function ListOurTeams() {
@@ -23,7 +22,8 @@ function ListOurTeams() {
         <Text>
           We are glad to present to your attention our team, that worked on this
           project. In a short video, you can see a presentation for each
-          participant.
+          participant. <br />
+          Under the video, you can find our roles and contacts.
         </Text>
         <TitleBy>We wish successful projects and peace to everyone !</TitleBy>
       </Wraper>
@@ -36,26 +36,10 @@ function ListOurTeams() {
           allowfullscreen
         ></Iframe>
       </BoxVideo>
+      <ListTeam team={teamData} />
+      <BoxInsert></BoxInsert>
     </Container>
   );
 }
 
 export default ListOurTeams;
-
-/* <Card>
-<Wraper>
-  <Img src={poster} alt="egg" />
-  <Ul>
-    <Li>Name:</Li>
-    <Li>Ivan Sirco</Li>
-  </Ul>
-  <Ul>
-    <Li>Role:</Li>
-    <Li>Team Lead, Developer</Li>
-  </Ul>
-</Wraper>
-<Ul>
-  <Li>Сontacts (link):</Li>
-  <Li>Phone Mail Telegram Linkedin GitHub</Li>
-</Ul>
-</Card> */

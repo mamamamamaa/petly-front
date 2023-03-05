@@ -2,15 +2,13 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   color: #3c3c4f;
-  /* background: #dbe8f4; */
   line-height: 1.3;
-  padding: 20px 20px;
+  padding: 40px 20px;
   border-radius: 20px;
   @media screen and (min-width: 768px) {
     width: 700px;
     border-radius: 40px;
     height: 600px;
-    padding: 20px 40px;
   }
   @media screen and (min-width: 1280px) {
     width: 1000px;
@@ -106,26 +104,7 @@ export const Iframe = styled.iframe`
   }
 `;
 
-export const Img = styled.img`
-  height: 60px;
-  @media screen and (min-width: 768px) {
-    height: 100px;
-  }
-  @media (min-width: 1280px) {
-    height: 100px;
-  }
-`;
-
-export const Ul = styled.ul`
-  @media screen and (min-width: 768px) {
-  }
-  @media (min-width: 1280px) {
-  }
-`;
-
-export const Li = styled.li`
-  @media screen and (min-width: 768px) {
-  }
-  @media (min-width: 1280px) {
-  }
+export const BoxInsert = styled.div`
+  height: 40px;
+  width: 50px;
 `;
