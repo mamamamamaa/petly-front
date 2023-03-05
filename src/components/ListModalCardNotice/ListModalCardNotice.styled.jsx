@@ -48,20 +48,13 @@ export const Wraper = styled.div`
   }
 `;
 
-export const WraperMain = styled.div`
-  /* display: flex;
-  flex-direction: column; */
-`;
+export const WraperMain = styled.div``;
+
 export const Img = styled.img`
-  position: relative;
-  top: 0;
-  left: 0;
   object-fit: cover;
   display: block;
-  cursor: pointer;
-  @media screen and (max-width: 767px) {
-    height: 280px;
-  }
+  height: 240px;
+  width: 240px;
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     height: 328px;
     width: 288px;
@@ -87,7 +80,7 @@ export const AdvTitle = styled.span`
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 1.3;
   letter-spacing: 0.04em;
   color: ${theme.colors.titleText};
   margin-left: 20px;
@@ -97,8 +90,6 @@ export const AdvTitle = styled.span`
 export const BoxSecond = styled.div`
   display: flex;
   flex-direction: column;
-  @media screen and (max-width: 767px) {
-  }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     margin-left: 20px;
   }
@@ -125,9 +116,12 @@ export const Title = styled.h2`
 
 export const BoxList = styled.div`
   display: flex;
+  gap: 50px;
 `;
 
-export const Ul = styled.ul``;
+export const Ul = styled.ul`
+  margin: 20px 0;
+`;
 
 export const Li = styled.li`
   display: flex;
@@ -146,14 +140,6 @@ export const TitleProperty = styled.h3`
   font-weight: 600;
   font-size: 16px;
   line-height: 1.3;
-  @media screen and (max-width: 767px) {
-    margin-right: 50px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-  }
-  @media screen and (min-width: 1280px) {
-    margin-right: 50px;
-  }
 `;
 
 export const Text = styled.p`
@@ -170,6 +156,7 @@ export const Text = styled.p`
 
 export const ContactLink = styled.a`
   color: inherit;
+  word-break: break-all;
   &.noHover {
     cursor: text;
     pointer-events: none;
@@ -189,26 +176,16 @@ export const Box = styled.div`
 `;
 
 export const BoxButton = styled.div`
-  @media screen and (max-width: 767px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 38px;
-    margin-top: 50px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
     justify-content: flex-end;
-    height: 38px;
-    gap: 12px;
     margin-right: 20px;
-  }
-  @media screen and (min-width: 1280px) {
-    display: flex;
-    justify-content: flex-end;
-    height: 38px;
+    margin-top: 32px;
     gap: 12px;
-    margin-right: 20px;
   }
 `;
 
@@ -227,12 +204,12 @@ export const ButtonModal = styled.button`
   border: 2px solid #f59256;
   border-radius: 40px;
   height: 40px;
+  margin: 0;
   cursor: pointer;
   :hover {
     border: 2px solid #ff6101;
     color: #ff6101;
   }
-
   @media screen and (max-width: 767px) {
     width: 240px;
     margin-bottom: 12px;
@@ -240,14 +217,10 @@ export const ButtonModal = styled.button`
       margin-bottom: 0;
     }
   }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-  }
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
 export const CallModal = styled.a`
-  width: 160px;
+  width: 240px;
   height: 40px;
   background-color: #f59256;
   color: #ffffff;
@@ -256,15 +229,15 @@ export const CallModal = styled.a`
   font-size: 16px;
   line-height: 1.3;
   border-radius: 40px;
-  padding-left: 47px;
-  padding-right: 47px;
-  padding-top: 9px;
-  padding-bottom: 9px;
-
+  padding: 9px 87px;
   cursor: pointer;
   :hover {
     border: 2px solid #ff6101;
     color: #ff6101;
+  }
+  @media screen and (min-width: 768px) {
+    width: 160px;
+    padding: 9px 47px;
   }
 `;
 
