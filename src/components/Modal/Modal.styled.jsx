@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
+import { media } from 'components/Layout/Layout.styled';
 import { theme } from '../../utils';
 
 export const Backdrop = styled.div`
   position: fixed;
   overscroll-behavior: none;
+  overflow: scroll;
   top: 0px;
   left: 0px;
   z-index: 30;
@@ -27,10 +29,6 @@ export const Window = styled.div`
   height: auto;
   width: auto;
   border-radius: 40px;
-  &.addNotice {
-    align-self: flex-start;
-  }
-
   &::-webkit-scrollbar {
     background-color: transparent;
     width: 4px;
@@ -39,6 +37,13 @@ export const Window = styled.div`
   &::-webkit-scrollbar-thumb {
     background-color: #f59256;
     border-radius: 50px;
+  }
+  ${media.mobile} {
+    &.OurTeam,
+    &.addNotice,
+    &.AddPet {
+    align-self: flex-start;
+  }
   }
 `;
 
