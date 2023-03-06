@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import { useAuth } from '../../redux/hooks';
 import Navigation from '../Navigation/Navigation';
 import AuthMenu from '../AuthMenu/AuthMenu';
 import UserMenu from '../UserMenu/UserMenu';
 import { BurgerIcon } from '../../utils/svg/burgerBtn';
 import { CloseIcon } from '../../utils/svg/close';
-import { Container } from 'utils';
 import {
   BarContainer,
   LogoBlack,
@@ -31,6 +30,14 @@ const AppBar = () => {
     setIsMenuOpen(false);
   };
   
+
+  // useEffect(() => {
+  //   if (isMenuOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'auto';
+  //   }
+  // }, [isMenuOpen]);
 
   const { isLoggedIn } = useAuth();
   return (
