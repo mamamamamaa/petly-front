@@ -18,7 +18,6 @@ import {
   CallModal,
   ContactLink,
   Container,
-  Img,
   Li,
   Text,
   Title,
@@ -28,10 +27,9 @@ import {
   WraperMain,
 } from './ListModalCardNotice.styled';
 import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
-import noPoster from 'noPoster.jpg';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { useState } from 'react';
+import { ListModalCardNoticeDragDropContext } from './ListModalCardNoticeDragDropContext';
+
 export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
   const {
     _id,
@@ -77,68 +75,12 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
   const getCall = call(mobilePhone);
 
   const getNewType = changeTitle(type);
-  const [preview, setPreview] = useState(photoUrl); // LOAD PREVIEW IMAGE
-  const handleOnDragEnd = result => {
-    if (!result.destination) return;
-    const items = Array.from(preview);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-    setPreview(items);
-  };
+
   return (
     <Container>
       <WraperMain>
         <Wraper>
-          <DragDropContext onDragEnd={handleOnDragEnd}>
-            <Droppable droppableId="photos">
-              {provided => (
-                <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {preview.length > 0
-                    ? preview.map((element, index) => (
-                        <Draggable
-                          key={index}
-                          draggableId={`photo-${index}`}
-                          index={index}
-                        >
-                          {provided => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                            >
-                              <Img src={element} alt={`Pet slide ${index}`} />
-                            </div>
-                          )}
-                        </Draggable>
-                      ))
-                    : // Render noPoster image for each slide if photoUrl is empty
-                      Array(1)
-                        .fill()
-                        .map((_, index) => (
-                          <Draggable
-                            key={index}
-                            draggableId={`no-photo-${index}`}
-                            index={index}
-                          >
-                            {provided => (
-                              <div
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                              >
-                                <Img
-                                  src={noPoster}
-                                  alt={`Pet slide ${index}`}
-                                />
-                              </div>
-                            )}
-                          </Draggable>
-                        ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+          <ListModalCardNoticeDragDropContext {...{ photoUrl }} />
           <AdvWrapper>
             <AdvTitle>{getNewType}</AdvTitle>
           </AdvWrapper>
