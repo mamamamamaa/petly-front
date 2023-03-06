@@ -25,7 +25,7 @@ export const Modal = ({ children, onClose, className }) => {
 
   return createPortal(
     <Backdrop onClick={onBackdropClose}>
-      <Window className={className}>
+      <Window>
         <CloseButton onClose={onClose} />
         {children}
       </Window>

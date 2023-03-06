@@ -42,8 +42,8 @@ export const Window = styled.div`
     &.OurTeam,
     &.addNotice,
     &.AddPet {
-    align-self: flex-start;
-  }
+      align-self: flex-start;
+    }
   }
 `;
 
@@ -58,7 +58,6 @@ export const Img = styled.img`
   top: 0;
   left: 0;
   object-fit: cover;
-  height: 288px;
   width: 100%;
   display: block;
   cursor: pointer;
