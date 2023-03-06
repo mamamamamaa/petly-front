@@ -45,16 +45,16 @@ export const Box = styled.div`
   background-color: #fdf7f2;
   border-radius: 20px;
   @media screen and (max-width: 767px) {
-    width: 208px;
-    height: 208px;
+    // width: 208px;
+    // height: 208px;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    width: 182px;
-    height: 182px;
+    // width: 182px;
+    // height: 182px;
   }
   @media screen and (min-width: 1280px) {
-    width: 182px;
-    height: 182px;
+    // width: 182px;
+    // height: 182px;
   }
 `;
 

@@ -34,6 +34,11 @@ import {
 import { BoxWarning } from './ModalAddNotice.styled';
 import { AddNoticeStepTwoSchema } from './AddNoticeSchema';
 import { AddNoticeStepTwoDragDropContext } from './AddNoticeStepTwoDragDropContext';
+import {
+  handleImageLoad,
+  restorePreview,
+} from './handleImageLoadRestorePreview';
+
 export const AddNoticeStepTwo = ({
   data,
   next,
@@ -95,39 +100,9 @@ export const AddNoticeStepTwo = ({
 
   const [preview, setPreview] = useState([]); // LOAD PREVIEW IMAGE
 
-  const handleImageLoad = async event => {
-    const files = event.currentTarget.files; // get all selected files
-    const fileArray = [];
-
-    for (let i = 0; i < files.length; i++) {
-      if (i === 5) {
-        break;
-      }
-      const reader = new FileReader();
-      fileArray.push(
-        new Promise(resolve => {
-          reader.onload = () => resolve(reader.result);
-        })
-      );
-      reader.readAsDataURL(files[i]);
-      formik.setFieldValue(`photoUrl[${i}]`, files[i]);
-    }
-
-    const loadedFiles = await Promise.all(fileArray);
-    setPreview(loadedFiles);
-    localStorage.setItem('preview', JSON.stringify(loadedFiles));
-    formik.validateField('photoUrl');
-  };
-  const restorePreview = () => {
-    // retrieve the image URLs from localStorage
-    const storedPreview = localStorage.getItem('preview');
-    if (storedPreview) {
-      setPreview(JSON.parse(storedPreview));
-    }
-  };
   useEffect(() => {
     // restore the preview images when the component mounts
-    restorePreview();
+    restorePreview(setPreview);
   }, []);
   const formikRef = useRef(formik);
 
@@ -246,7 +221,7 @@ export const AddNoticeStepTwo = ({
             id="photoUrl"
             name="photoUrl"
             accept="image/*"
-            onChange={handleImageLoad}
+            onChange={event => handleImageLoad(setPreview, formik, event)}
             value=""
             multiple
             onBlur={() => handleBlur('photoUrl')}

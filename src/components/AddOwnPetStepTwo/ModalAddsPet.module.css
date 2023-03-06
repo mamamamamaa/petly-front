@@ -13,8 +13,8 @@
   }
   .inputFormImg {
     background-color: #fdf7f2;
-    height: 208px;
-    position: absolute;
+    /* height: 208px; */
+    /* position: absolute; */
     visibility: hidden;
   }
 }
@@ -33,8 +33,8 @@
   }
   .inputFormImg {
     background-color: #fdf7f2;
-    height: 208px;
-    position: absolute;
+    /* height: 208px; */
+    /* position: absolute; */
     visibility: hidden;
   }
 }
@@ -52,8 +52,8 @@
   }
   .inputFormImg {
     background-color: #fdf7f2;
-    height: 208px;
-    position: absolute;
+    /* height: 208px; */
+    /* position: absolute; */
     visibility: hidden;
   }
   .iconForm {
