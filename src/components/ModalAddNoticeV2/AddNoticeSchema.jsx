@@ -31,11 +31,6 @@ export const AddNoticeStepTwoSchema = yup.object().shape({
     .min(4, 'Too Short!')
     .max(60, 'Too Long!')
     .required('Location is required'),
-  price: yup.number().when('selectedOption', {
-    is: val => val === 'sell',
-    then: yup.number().required('The price is required'),
-    otherwise: yup.number(),
-  }),
   photoUrl: yup
     .array()
     .nullable()

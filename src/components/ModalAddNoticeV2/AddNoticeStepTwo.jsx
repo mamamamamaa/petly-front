@@ -64,6 +64,20 @@ export const AddNoticeStepTwo = ({
     validateOnBlur: true,
     validateOnChange: true,
     validateOnMount: false,
+    validate: values => {
+      const errors = {};
+      if (selectedOption === 'sell') {
+        if (!values.price) {
+          errors.price = 'The price is required';
+        } else if (isNaN(values.price)) {
+          errors.price = 'The price must be a number';
+        } else if (parseFloat(values.price) <= 0) {
+          errors.price = 'The price must be a positive number';
+        }
+      }
+      // other validation rules
+      return errors;
+    },
     onSubmit: (values, actions) => {
       // const errors = actions.validateForm();
       // console.log(errors);
@@ -216,6 +230,7 @@ export const AddNoticeStepTwo = ({
           value={formik.values.price}
           onBlur={() => handleBlur('price')}
         />
+        {console.log(formik.errors.price)}
         <BoxWarning>{formik.touched.price && formik.errors.price}</BoxWarning>
       </AddNoticeStepTwoInputPriceWrapper>
       <AddNoticeStepTwoLabelPictureURL htmlFor="photoUrl">
