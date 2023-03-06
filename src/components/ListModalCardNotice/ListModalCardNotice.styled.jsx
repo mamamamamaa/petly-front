@@ -50,11 +50,12 @@ export const Wraper = styled.div`
 
 export const WraperMain = styled.div``;
 
-export const Img = styled.img`
-  object-fit: cover;
+export const BigImg = styled.img`
   display: block;
+  object-fit: cover;
+  border-radius: 20px;
   height: 240px;
-  width: 240px;
+  max-width: 240px;
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     height: 328px;
     max-width: 288px;
@@ -63,6 +64,14 @@ export const Img = styled.img`
     height: 328px;
     max-width: 288px;
   }
+`;
+export const Img = styled.img`
+  object-fit: cover;
+  display: block;
+  height: 80px;
+  width: 80px;
+  margin-bottom: 6px;
+  border-radius: 10px;
 `;
 export const AdvWrapper = styled.div`
   position: absolute;
