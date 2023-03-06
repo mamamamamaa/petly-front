@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-export const addNoticeStepOneSchema = yup.object().shape({
+export const AddNoticeStepOneSchema = yup.object().shape({
   title: yup
     .string()
     .min(2, 'Title should be from 2 to 48 symbols')
@@ -21,7 +21,7 @@ export const addNoticeStepOneSchema = yup.object().shape({
   }),
   breed: yup.string().required('The breed is required'),
 });
-export const addNoticeStepTwoSchema = yup.object().shape({
+export const AddNoticeStepTwoSchema = yup.object().shape({
   gender: yup.string().oneOf(['male', 'female']).required('Gender is required'),
   location: yup
     .string()

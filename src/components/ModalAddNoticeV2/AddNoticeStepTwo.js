@@ -30,16 +30,10 @@ import {
   AddNoticeStepTwoLoadImageInputWarningWrapper,
   AddNoticeStepTwoCommentAreaWrapper,
   AddNoticeStepTwoCommentWrapper,
-  AddNoticeStepTwoImg,
-  AddNoticeStepTwoButtonDelImg,
-  AddNoticeStepTwoSlide,
-  AddNoticeStepTwoSliderContainer,
 } from './AddNoticeStepTwo.styled';
 import { BoxWarning } from './ModalAddNotice.styled';
-import React from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { addNoticeStepTwoSchema } from './addNoticeSchema';
-
+import { AddNoticeStepTwoSchema } from './AddNoticeSchema';
+import { AddNoticeStepTwoDragDropContext } from './AddNoticeStepTwoDragDropContext';
 export const AddNoticeStepTwo = ({
   data,
   next,
@@ -66,7 +60,7 @@ export const AddNoticeStepTwo = ({
       photoUrl: data.photoUrl,
       comments: data.comments,
     },
-    validationSchema: addNoticeStepTwoSchema,
+    validationSchema: AddNoticeStepTwoSchema,
     validateOnBlur: true,
     validateOnChange: true,
     validateOnMount: false,
@@ -117,19 +111,6 @@ export const AddNoticeStepTwo = ({
       setPreview(JSON.parse(storedPreview));
     }
   };
-  const deleteImage = index => {
-    // create a copy of the preview array
-    const updatedPreview = [...preview];
-    // remove the image at the specified index
-    updatedPreview.splice(index, 1);
-    // update the preview state and localStorage
-    setPreview(updatedPreview);
-    localStorage.setItem('preview', JSON.stringify(updatedPreview));
-    let updatedPhotoUrl = [...formik.values.photoUrl];
-    updatedPhotoUrl.splice(index, 1);
-    formik.setFieldValue('photoUrl', updatedPhotoUrl);
-    formik.validateField('photoUrl');
-  };
   useEffect(() => {
     // restore the preview images when the component mounts
     restorePreview();
@@ -158,36 +139,7 @@ export const AddNoticeStepTwo = ({
     formik.setFieldTouched(fieldName, true);
     formik.validateForm();
   };
-  const handleOnDragEnd = result => {
-    if (!result.destination) return;
-    const items = Array.from(preview);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-    setPreview(items);
-  };
-  function useWindowSize() {
-    const [windowSize, setWindowSize] = useState({
-      width: undefined,
-      height: undefined,
-    });
 
-    useEffect(() => {
-      function handleResize() {
-        setWindowSize({
-          width: window.innerWidth,
-          height: window.innerHeight,
-        });
-      }
-
-      window.addEventListener('resize', handleResize);
-      handleResize();
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    return windowSize;
-  }
-  const { width } = useWindowSize();
-  const isScreenSmall = width <= 767;
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
@@ -232,11 +184,9 @@ export const AddNoticeStepTwo = ({
         </AddNoticeStepTwoFemaleWrapper>
         <BoxWarning>{formik.errors.gender}</BoxWarning>
       </AddNoticeStepTwoGenderWrapper>
-
       <AddNoticeStepTwoLabelLocation htmlFor="location">
         Location:
       </AddNoticeStepTwoLabelLocation>
-
       <AddNoticeStepTwoInputLocationWrapper>
         <AddNoticeStepTwoInputLocation
           name="location"
@@ -250,14 +200,12 @@ export const AddNoticeStepTwo = ({
           {formik.touched.location && formik.errors.location}
         </BoxWarning>
       </AddNoticeStepTwoInputLocationWrapper>
-
       <AddNoticeStepTwoLabelPrice
         htmlFor="price"
         selectedOption={selectedOption}
       >
         Price:
       </AddNoticeStepTwoLabelPrice>
-
       <AddNoticeStepTwoInputPriceWrapper selectedOption={selectedOption}>
         <AddNoticeStepTwoInputPrice
           selectedOption={selectedOption}
@@ -270,7 +218,6 @@ export const AddNoticeStepTwo = ({
         />
         <BoxWarning>{formik.touched.price && formik.errors.price}</BoxWarning>
       </AddNoticeStepTwoInputPriceWrapper>
-
       <AddNoticeStepTwoLabelPictureURL htmlFor="photoUrl">
         Load the pet’s image
       </AddNoticeStepTwoLabelPictureURL>
@@ -292,37 +239,7 @@ export const AddNoticeStepTwo = ({
         </AddNoticeStepTwoLoadImageInputWrapper>
         <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
-
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="slider" direction={isScreenSmall ? 'vertical' : 'horizontal'}>
-          {(provided, snapshot) => (
-            <AddNoticeStepTwoSliderContainer
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {preview.map((url, index) => (
-                <Draggable key={index} draggableId={`${index}`} index={index}>
-                  {(provided, snapshot) => (
-                    <AddNoticeStepTwoSlide
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <AddNoticeStepTwoButtonDelImg
-                        type="button"
-                        onClick={() => deleteImage(index)}
-                      />
-                      <AddNoticeStepTwoImg src={url} alt={`Slide ${index}`} />
-                    </AddNoticeStepTwoSlide>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </AddNoticeStepTwoSliderContainer>
-          )}
-        </Droppable>
-      </DragDropContext>
-
+      <AddNoticeStepTwoDragDropContext {...{ formik, preview, setPreview }} />
       <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
         Comments
       </AddNoticeStepTwoLabelCommentArea>
@@ -339,7 +256,6 @@ export const AddNoticeStepTwo = ({
           {formik.touched.comments && formik.errors.comments}
         </BoxWarning>
       </AddNoticeStepTwoCommentAreaWrapper>
-
       <AddNoticeStepTwoLabelComments htmlFor="comments">
         Comments
       </AddNoticeStepTwoLabelComments>
@@ -357,7 +273,6 @@ export const AddNoticeStepTwo = ({
           {formik.touched.comments && formik.errors.comments}
         </BoxWarning>
       </AddNoticeStepTwoCommentWrapper>
-
       <AddNoticeStepTwoButtonBackDoneWrapper>
         <AddNoticeStepOneButtonDone type="submit">
           Done

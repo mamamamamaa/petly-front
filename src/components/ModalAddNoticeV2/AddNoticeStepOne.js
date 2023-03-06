@@ -17,7 +17,7 @@ import {
   AddNoticeStepOneSelectWrapper,
 } from './AddNoticeStepOne.styled';
 import { BoxWarning } from './ModalAddNotice.styled';
-import { addNoticeStepOneSchema } from './addNoticeSchema';
+import { AddNoticeStepOneSchema } from './AddNoticeSchema';
 
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
@@ -32,7 +32,7 @@ export const AddNoticeStepOne = ({
 }) => {
   const formik = useFormik({
     initialValues: data,
-    validationSchema: addNoticeStepOneSchema,
+    validationSchema: AddNoticeStepOneSchema,
     validateOnBlur: true,
     validateOnChange: true,
     validateOnMount: false,
