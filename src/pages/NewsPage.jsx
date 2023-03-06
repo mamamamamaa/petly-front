@@ -3,12 +3,24 @@ import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { BsChevronLeft } from 'react-icons/bs';
+import { BsChevronRight } from 'react-icons/bs';
+import { BsChevronDoubleLeft } from 'react-icons/bs';
 // =======
 import { useNews } from '../redux/hooks';
 import { getNews } from '../redux/news/operations';
 import SearchBar from '../utils/searchBar/searchBar';
 import ListNews from '../components/ListNews/ListNews';
-import { Container, MainHeader, NothingFound } from './NewsPage.styled';
+import {
+  Container,
+  MainHeader,
+  NothingFound,
+  BoxPagination,
+  ButtonArrow,
+  Arrow,
+  Plug,
+  Text,
+} from './NewsPage.styled';
 // =======
 
 export default function NewsPage() {
@@ -84,54 +96,37 @@ export default function NewsPage() {
       <MainHeader>News</MainHeader>
       <SearchBar onSubmit={handlerFormSubmit} />
       {isLoading && <h2>... is loading</h2>}
-      <div>
-        {pageNews !== 1 && (
-          <>
-            <button onClick={onePege}>1 Page</button>
-            <button onClick={prevPage}>Prev</button>
-          </>
-        )}
-        <span>{pageNews}</span>
-        {pageNews !== lastPageNews && <button onClick={nextPage}>Next</button>}
-      </div>
       {currentNews && currentNews.length > 0 && <ListNews news={currentNews} />}
       {(!currentNews || currentNews.length === 0) && (
         <NothingFound>Nothing found for this query</NothingFound>
       )}
+      <BoxPagination>
+        {pageNews === 1 && <Plug></Plug>}
+        {pageNews !== 1 && (
+          <>
+            <ButtonArrow onClick={onePege}>
+              <Arrow>
+                <BsChevronDoubleLeft size="26px" />
+              </Arrow>
+            </ButtonArrow>
+
+            <ButtonArrow onClick={prevPage}>
+              <Arrow>
+                <BsChevronLeft size="26px" />
+              </Arrow>
+            </ButtonArrow>
+          </>
+        )}
+        <Text>{pageNews}</Text>
+        {pageNews !== lastPageNews && (
+          <ButtonArrow onClick={nextPage}>
+            <Arrow>
+              <BsChevronRight size="26px" />
+            </Arrow>
+          </ButtonArrow>
+        )}
+      </BoxPagination>
       <Toaster />
     </Container>
   );
 }
-
-// ====================
-// ====================
-// ========= PAGINATION =============
-// window.onload = function () {
-//   setPageNews(1);
-//   const currPage = 1;
-//   console.log(`window ${pageNews}`);
-//   changeBtn(currPage);
-// };
-// ==================================
-// function changeBtn(currPage) {
-//   let btn_zero = document.getElementById('btn_zero');
-//   let btn_prev = document.getElementById('btn_prev');
-//   let btn_next = document.getElementById('btn_next');
-
-//   if (currPage === 1) {
-//     btn_zero.style.visibility = 'hidden';
-//     btn_prev.style.visibility = 'hidden';
-//   } else {
-//     btn_zero.style.visibility = 'visible';
-//     btn_prev.style.visibility = 'visible';
-//   }
-
-//   const lastPage = currPage + 1;
-//   if (lastPage === totalPage) {
-//     btn_next.style.visibility = 'hidden';
-//   } else {
-//     btn_next.style.visibility = 'visible';
-//   }
-//   console.log('changeBtn run');
-// }
-// ==================================

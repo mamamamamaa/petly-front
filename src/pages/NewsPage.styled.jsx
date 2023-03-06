@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   padding-top: 21px;
-  /* padding-bottom: 200px; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -23,21 +22,10 @@ export const NothingFound = styled.div`
 `;
 
 export const MainHeader = styled.h1`
-  //margin-top: 0;
-  //margin-bottom: 28px;
-  //font-weight: 700;
-  //font-size: 48px;
-  //color: #111111;
-  //font-size: 24px;
-  //@media screen and (min-width: 768px) {
-  //  font-size: 40px;
-  //  margin-bottom: 40px;
-  //}
-
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
-  line-height: 66px;
+  line-height: 1.3;
   margin-bottom: 40px;
   text-align: center;
 
@@ -46,4 +34,43 @@ export const MainHeader = styled.h1`
     line-height: 33px;
     margin-bottom: 28px;
   }
+`;
+
+export const BoxPagination = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 60px;
+`;
+
+export const ButtonArrow = styled.button`
+  height: 45px;
+  border: transparent;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+export const Arrow = styled.span`
+  color: rgba(17, 17, 17, 0.6);
+  :hover {
+    color: black;
+  }
+  :focus {
+    color: black;
+  }
+`;
+
+export const Plug = styled.div`
+  height: 45px;
+  width: 76px;
+`;
+
+export const Text = styled.text`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.3;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: rgba(17, 17, 17, 0.6);
 `;
