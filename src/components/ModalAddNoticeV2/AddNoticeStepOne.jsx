@@ -18,6 +18,7 @@ import {
 } from './AddNoticeStepOne.styled';
 import { BoxWarning } from './ModalAddNotice.styled';
 import { AddNoticeStepOneSchema } from './AddNoticeSchema';
+import moment from 'moment';
 
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
@@ -125,6 +126,7 @@ export const AddNoticeStepOne = ({
         id="dateOfBirth"
         onChange={formik.handleChange}
         value={formik.values.dateOfBirth}
+        max={moment(moment.now()).format('YYYY-MM-DD')}
       />
       <BoxWarning>
         {formik.touched.dateOfBirth && formik.errors.dateOfBirth}
