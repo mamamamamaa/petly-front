@@ -5,6 +5,7 @@ import {
   BsGithub,
 } from 'react-icons/bs';
 import DefaultPhoto from '../images/defaultPhoto.png';
+import foto from '../images/Andrey.png';
 
 import {
   Card,
@@ -17,7 +18,6 @@ import {
 } from './ListTeam.styled';
 
 function ListTeam({ team }) {
-  console.log(team);
   return (
     <ul>
       {team.map(item => (
