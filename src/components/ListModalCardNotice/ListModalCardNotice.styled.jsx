@@ -64,11 +64,11 @@ export const Img = styled.img`
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     height: 328px;
-    width: 288px;
+    max-width: 288px;
   }
   @media screen and (min-width: 1280px) {
     height: 328px;
-    width: 288px;
+    max-width: 288px;
   }
 `;
 export const AdvWrapper = styled.div`
