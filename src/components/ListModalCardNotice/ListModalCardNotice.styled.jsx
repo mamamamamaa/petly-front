@@ -50,12 +50,17 @@ export const Wraper = styled.div`
 
 export const WraperMain = styled.div``;
 
+export const DragDropContextContainer = styled.div`
+  display: flex;
+`;
 export const BigImg = styled.img`
+  margin-left: 10px;
+  margin-top: 50px;
   display: block;
   object-fit: cover;
   border-radius: 20px;
-  height: 240px;
-  max-width: 240px;
+  height: 150px;
+  max-width: 150px;
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     height: 328px;
     max-width: 288px;

@@ -1,7 +1,11 @@
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import noPoster from 'noPoster.jpg';
 import { useState } from 'react';
-import { Img, BigImg } from './ListModalCardNotice.styled';
+import {
+  Img,
+  BigImg,
+  DragDropContextContainer,
+} from './ListModalCardNotice.styled';
 
 export const ListModalCardNoticeDragDropContext = ({ photoUrl }) => {
   const [preview, setPreview] = useState(photoUrl);
@@ -19,8 +23,7 @@ export const ListModalCardNoticeDragDropContext = ({ photoUrl }) => {
   };
 
   return (
-    <div>
-      {headPhoto && <BigImg src={headPhoto} alt="Preview" />}
+    <DragDropContextContainer>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="photos">
           {provided => (
@@ -72,6 +75,7 @@ export const ListModalCardNoticeDragDropContext = ({ photoUrl }) => {
           )}
         </Droppable>
       </DragDropContext>
-    </div>
+      {headPhoto && <BigImg src={headPhoto} alt="Preview" />}
+    </DragDropContextContainer>
   );
 };
