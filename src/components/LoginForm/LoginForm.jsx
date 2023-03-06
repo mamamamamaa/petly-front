@@ -58,10 +58,10 @@ const LoginForm = () => {
     const isLoading = useAuth().isRefreshing;
     const dispatch = useDispatch();
 
-    const onSubmit = async (values, actions) => {
+    const onSubmit = (values, actions) => {
         const { resetForm } = actions; 
         const form = ({ 'email': values.email, 'password': values.password }); 
-        const { error } = await dispatch(login(form));
+        const { error } = dispatch(login(form));
 
         if (!error) {
         resetForm() 

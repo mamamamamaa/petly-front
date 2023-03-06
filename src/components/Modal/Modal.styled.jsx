@@ -40,7 +40,8 @@ export const Window = styled.div`
   }
   ${media.mobile} {
     &.OurTeam,
-    &.AddPet {
+    &.AddPet,
+    &.LearnMore {
     align-self: flex-start;
   }
   }
