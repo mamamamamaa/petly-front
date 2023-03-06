@@ -126,6 +126,9 @@ export const AddNoticeStepOne = ({
         onChange={formik.handleChange}
         value={formik.values.dateOfBirth}
       />
+      <BoxWarning>
+        {formik.touched.dateOfBirth && formik.errors.dateOfBirth}
+      </BoxWarning>
       <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
       <AddNoticeStepOneSelectWrapper>
         <AddNoticeStepOneSelect

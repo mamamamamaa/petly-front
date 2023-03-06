@@ -19,6 +19,9 @@ export const AddNoticeStepOneSchema = yup.object().shape({
       .required('The name is required'),
     otherwise: yup.string(),
   }),
+  dateOfBirth: yup
+    .date()
+    .max(new Date(), `dateOfBirth field must be at earlier than ${new Date()}`),
   breed: yup.string().required('The breed is required'),
 });
 export const AddNoticeStepTwoSchema = yup.object().shape({
