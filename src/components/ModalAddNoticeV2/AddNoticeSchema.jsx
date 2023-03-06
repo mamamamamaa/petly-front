@@ -29,7 +29,7 @@ export const AddNoticeStepTwoSchema = yup.object().shape({
   location: yup
     .string()
     .min(4, 'Too Short!')
-    .max(60, 'Too Long!')
+    .max(16, 'Too Long!')
     .required('Location is required'),
   photoUrl: yup
     .array()

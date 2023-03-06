@@ -230,7 +230,7 @@ export const AddNoticeStepTwo = ({
           value={formik.values.price}
           onBlur={() => handleBlur('price')}
         />
-        {console.log(formik.errors.price)}
+
         <BoxWarning>{formik.touched.price && formik.errors.price}</BoxWarning>
       </AddNoticeStepTwoInputPriceWrapper>
       <AddNoticeStepTwoLabelPictureURL htmlFor="photoUrl">
