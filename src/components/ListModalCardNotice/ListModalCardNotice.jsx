@@ -30,8 +30,8 @@ import {
 import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import noPoster from 'noPoster.jpg';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
-import useSwiper from 'hooks/useSwiper';
-
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useState } from 'react';
 export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
   const {
     _id,
@@ -77,35 +77,68 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
   const getCall = call(mobilePhone);
 
   const getNewType = changeTitle(type);
-  const swiperRef = useSwiper({
-    loop: true,
-    autoplay: {
-      delay: 5000,
-    },
-  });
+  const [preview, setPreview] = useState(photoUrl); // LOAD PREVIEW IMAGE
+  const handleOnDragEnd = result => {
+    if (!result.destination) return;
+    const items = Array.from(preview);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setPreview(items);
+  };
   return (
     <Container>
       <WraperMain>
         <Wraper>
-          <div className="swiper-container" ref={swiperRef}>
-            <div className="swiper-wrapper">
-              {photoUrl.length > 0
-                ? photoUrl.map((element, index) => (
-                    <div className="swiper-slide" key={index}>
-                      <Img src={element} alt={`Pet slide ${index}`} />
-                    </div>
-                  ))
-                : // Render noPoster image for each slide if photoUrl is empty
-                  Array(1)
-                    .fill()
-                    .map((_, index) => (
-                      <div className="swiper-slide" key={index}>
-                        <Img src={noPoster} alt={`Pet slide ${index}`} />
-                      </div>
-                    ))}
-            </div>
-          </div>
-
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            <Droppable droppableId="photos">
+              {provided => (
+                <div {...provided.droppableProps} ref={provided.innerRef}>
+                  {preview.length > 0
+                    ? preview.map((element, index) => (
+                        <Draggable
+                          key={index}
+                          draggableId={`photo-${index}`}
+                          index={index}
+                        >
+                          {provided => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <Img src={element} alt={`Pet slide ${index}`} />
+                            </div>
+                          )}
+                        </Draggable>
+                      ))
+                    : // Render noPoster image for each slide if photoUrl is empty
+                      Array(1)
+                        .fill()
+                        .map((_, index) => (
+                          <Draggable
+                            key={index}
+                            draggableId={`no-photo-${index}`}
+                            index={index}
+                          >
+                            {provided => (
+                              <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                              >
+                                <Img
+                                  src={noPoster}
+                                  alt={`Pet slide ${index}`}
+                                />
+                              </div>
+                            )}
+                          </Draggable>
+                        ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
           <AdvWrapper>
             <AdvTitle>{getNewType}</AdvTitle>
           </AdvWrapper>
