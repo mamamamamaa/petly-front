@@ -21,7 +21,6 @@ export const UserPetCard = ({
   alt = 'pets picture',
 }) => {
   const dispatch = useDispatch();
-  console.log(pictureURL);
   return (
     <PetArticle>
       <PetImgWrapper>
