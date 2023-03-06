@@ -42,8 +42,8 @@ export const Window = styled.div`
     &.OurTeam,
     &.addNotice,
     &.AddPet {
-    align-self: flex-start;
-  }
+      align-self: flex-start;
+    }
   }
 `;
 
