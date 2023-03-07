@@ -69,6 +69,9 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
     // restore the preview images when the component mounts
     restorePreview(setPreview);
   }, []);
+  useEffect(() => {
+    preview.length === 0 && setIsFileUpload(false);
+  }, [preview.length]);
   return (
     <Formik>
       <Container>
