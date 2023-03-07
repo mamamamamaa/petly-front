@@ -59,6 +59,7 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
       };
 
       next(newValue, true);
+      localStorage.setItem('preview', '');
       actions.resetForm();
       onClose();
     },
