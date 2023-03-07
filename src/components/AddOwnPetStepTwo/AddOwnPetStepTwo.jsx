@@ -88,7 +88,10 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
                 id="photoUrl"
                 name="photoUrl"
                 accept="image/*"
-                onChange={event => handleImageLoad(setPreview, formik, event)}
+                onChange={event => {
+                  handleImageLoad(setPreview, formik, event);
+                  setIsFileUpload(true);
+                }}
                 value=""
                 multiple
               />
