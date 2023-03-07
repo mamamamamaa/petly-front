@@ -12,7 +12,7 @@ import {
   PetDeleteButtonWrapper,
   PetInfoWrapper,
   PetImgWrapper,
-  Text
+  Text,
 } from './UserPetCard.styled';
 
 export const UserPetCard = ({
@@ -23,11 +23,10 @@ export const UserPetCard = ({
   const dispatch = useDispatch();
   return (
     <PetArticle>
-
       <PetImgWrapper>
         <PetImg alt={alt} src={pictureURL} />
       </PetImgWrapper>
-      
+
       <PetTextWrapper>
         <PetSpanWrapperFlex>
           <PetSpanWrapper>
