@@ -12,22 +12,22 @@ import {
   PetDeleteButtonWrapper,
   PetInfoWrapper,
   PetImgWrapper,
-  Text
+  Text,
 } from './UserPetCard.styled';
-
+import { ListModalCardNoticeDragDropContext } from 'components/ListModalCardNotice/ListModalCardNoticeDragDropContext';
 export const UserPetCard = ({
   pet = {},
-  pictureURL = '',
+  pictureURL = [],
   alt = 'pets picture',
 }) => {
   const dispatch = useDispatch();
   return (
     <PetArticle>
+      {/* <PetImgWrapper>
+        <PetImg alt={alt} src={pictureURL[0]} />
+      </PetImgWrapper> */}
+        <ListModalCardNoticeDragDropContext {...{ photoUrl: pictureURL }} />
 
-      <PetImgWrapper>
-        <PetImg alt={alt} src={pictureURL} />
-      </PetImgWrapper>
-      
       <PetTextWrapper>
         <PetSpanWrapperFlex>
           <PetSpanWrapper>

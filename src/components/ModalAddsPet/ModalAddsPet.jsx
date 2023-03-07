@@ -12,7 +12,7 @@ export const ModalAddsPet = ({ onClose }) => {
     name: '',
     dateOfBirth: '',
     breed: '',
-    photoUrl: '',
+    photoUrl: [],
     comments: '',
     selectedDateInNumber: '',
   });
@@ -22,23 +22,31 @@ export const ModalAddsPet = ({ onClose }) => {
       const normalizedDateOfBirth = moment(
         new Date(newData.selectedDateInNumber)
       ).format('DD.MM.YYYY');
-      const datatoSubmit = {
-        name: newData.name,
-        breed: newData.breed,
-        photoUrl: newData.photoUrl,
-        comments: newData.comments,
-        dateOfBirth: normalizedDateOfBirth,
-      };
-
+      // const datatoSubmit = {
+      //   name: newData.name,
+      //   breed: newData.breed,
+      //   photoUrl: newData.photoUrl,
+      //   comments: newData.comments,
+      //   dateOfBirth: normalizedDateOfBirth,
+      // };
+console.log(newData.photoUrl);
       const formData = new FormData();
-
-      formData.append('pictureURL', newData.photoUrl, newData.photoUrl.name);
+      if (Array.isArray(newData.photoUrl)) {
+        newData.photoUrl.forEach(file => {
+          const photoUrlFile = new File([file], file.name, {
+            type: 'image/jpeg',
+          });
+          formData.append('pictureURL', photoUrlFile);
+        });
+      }
       formData.append('comments', newData.comments);
       formData.append('breed', newData.breed);
-      formData.append('dateOfBirth', newData.dateOfBirth);
+      formData.append('dateOfBirth', normalizedDateOfBirth);
       formData.append('name', newData.name);
-
-      dispatch(addOwnPet(datatoSubmit));
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+      dispatch(addOwnPet(formData));
       return;
     }
     setData(newData);
@@ -55,7 +63,7 @@ export const ModalAddsPet = ({ onClose }) => {
       name: '',
       dateOfBirth: '',
       breed: '',
-      photoUrl: '',
+      photoUrl: [],
       comments: '',
       selectedDateInNumber: '',
     });

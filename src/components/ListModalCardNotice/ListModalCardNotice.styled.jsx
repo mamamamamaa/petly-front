@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import adver from 'utils/svg/adv.svg';
 import { theme } from '../../utils';
-import { media } from 'components/Layout/Layout.styled';
+// import { media } from 'components/Layout/Layout.styled';
 
 export const Container = styled.div`
   @media screen and (max-width: 767px) {
@@ -52,30 +52,24 @@ export const Wraper = styled.div`
 export const WraperMain = styled.div``;
 
 export const DragDropContextContainer = styled.div`
-  ${media.mobile} {
-    padding-top: 40px;
-  }
   display: flex;
-  padding-top: 70px;
+  gap: 20px;
+  margin-bottom: 20px;
 `;
 export const BigImg = styled.img`
-  ${media.mobile} {
-    margin-top: 130px;
-  }
   margin-left: 10px;
-  margin-top: 60px;
   display: block;
   object-fit: cover;
   border-radius: 20px;
   height: 150px;
-  max-width: 150px;
+  width: 150px;
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     height: 328px;
-    max-width: 288px;
+    width: 288px;
   }
   @media screen and (min-width: 1280px) {
     height: 328px;
-    max-width: 288px;
+    width: 288px;
   }
 `;
 export const Img = styled.img`
