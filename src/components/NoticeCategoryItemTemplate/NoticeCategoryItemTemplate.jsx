@@ -117,7 +117,7 @@ export const NoticeCategoryItemTemplate = ({
   return (
     <>
       {modal && currentNotice && (
-        <Modal onClose={modalHandler}>
+        <Modal onClose={modalHandler} className='LearnMore'>
           <ListModalCardNotice
             date={currentNotice}
             setFav={setFav}
