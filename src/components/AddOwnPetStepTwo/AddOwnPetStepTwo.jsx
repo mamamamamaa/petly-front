@@ -34,7 +34,7 @@ const addOwnPetSchema = object().shape({
 
 export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
   const [isFileUpload, setIsFileUpload] = useState(
-    data.photoUrl ? true : false
+    data.photoUrl.length > 0 ? true : false
   );
   const handleBack = () => {
     const newValue = {
