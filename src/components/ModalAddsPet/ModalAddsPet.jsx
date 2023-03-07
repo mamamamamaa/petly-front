@@ -22,14 +22,7 @@ export const ModalAddsPet = ({ onClose }) => {
       const normalizedDateOfBirth = moment(
         new Date(newData.selectedDateInNumber)
       ).format('DD.MM.YYYY');
-      // const datatoSubmit = {
-      //   name: newData.name,
-      //   breed: newData.breed,
-      //   photoUrl: newData.photoUrl,
-      //   comments: newData.comments,
-      //   dateOfBirth: normalizedDateOfBirth,
-      // };
-console.log(newData.photoUrl);
+      
       const formData = new FormData();
       if (Array.isArray(newData.photoUrl)) {
         newData.photoUrl.forEach(file => {
@@ -43,9 +36,9 @@ console.log(newData.photoUrl);
       formData.append('breed', newData.breed);
       formData.append('dateOfBirth', normalizedDateOfBirth);
       formData.append('name', newData.name);
-      for (const [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
+      // for (const [key, value] of formData.entries()) {
+      //   console.log(`${key}: ${value}`);
+      // }
       dispatch(addOwnPet(formData));
       return;
     }
