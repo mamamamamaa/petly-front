@@ -1,5 +1,4 @@
 import { useFormik } from 'formik';
-import * as yup from 'yup';
 import { breeds } from 'utils/getBreed';
 import {
   AddNoticeStepOneLabel,
@@ -18,32 +17,12 @@ import {
   AddNoticeStepOneSelectWrapper,
 } from './AddNoticeStepOne.styled';
 import { BoxWarning } from './ModalAddNotice.styled';
+import { AddNoticeStepOneSchema } from './AddNoticeSchema';
+import moment from 'moment';
+
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
 );
-
-const addNoticeStepOneSchema = yup.object().shape({
-  title: yup
-    .string()
-    .min(2, 'Title should be from 2 to 48 symbols')
-    .max(48, 'Title should be from 2 to 48 symbols')
-    .matches(
-      /^[a-zA-zа-яіїєА-ЯІЇЄ,.! ]+$/,
-      'title should be from 2 to 48 symbols'
-    )
-    .required('The title is required'),
-  name: yup.string().when('type', {
-    is: val => val !== 'lostFound',
-    then: yup
-      .string()
-      .min(2, 'Must be 2 or more letter')
-      .max(16, 'Must be 16 or less letter')
-      .trim()
-      .required('The name is required'),
-    otherwise: yup.string(),
-  }),
-  breed: yup.string().required('The breed is required'),
-});
 
 export const AddNoticeStepOne = ({
   next,
@@ -54,7 +33,7 @@ export const AddNoticeStepOne = ({
 }) => {
   const formik = useFormik({
     initialValues: data,
-    validationSchema: addNoticeStepOneSchema,
+    validationSchema: AddNoticeStepOneSchema,
     validateOnBlur: true,
     validateOnChange: true,
     validateOnMount: false,
@@ -85,7 +64,7 @@ export const AddNoticeStepOne = ({
           value="lostFound"
           name="lostFound"
           checked={selectedOption === 'lostFound'}
-          onChange={(event) => {
+          onChange={event => {
             formik.setFieldError('name', '');
             handleOptionChange(event);
           }}
@@ -147,7 +126,11 @@ export const AddNoticeStepOne = ({
         id="dateOfBirth"
         onChange={formik.handleChange}
         value={formik.values.dateOfBirth}
+        max={moment(moment.now()).format('YYYY-MM-DD')}
       />
+      <BoxWarning>
+        {formik.touched.dateOfBirth && formik.errors.dateOfBirth}
+      </BoxWarning>
       <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
       <AddNoticeStepOneSelectWrapper>
         <AddNoticeStepOneSelect

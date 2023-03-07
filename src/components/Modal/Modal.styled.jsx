@@ -44,7 +44,7 @@ export const Window = styled.div`
     &.LearnMore {
     align-self: flex-start;
   }
-  }
+}
 `;
 
 export const Container = styled.div``;

@@ -16,7 +16,6 @@ import {
   BirthdayContainer,
   DateInput,
   CalendarIcon,
-  DataContainer,
 } from './UserCard.styled';
 import { HiPencil } from 'react-icons/hi';
 import { FiLogOut, FiCheck } from 'react-icons/fi';
@@ -24,7 +23,9 @@ import { logout } from '../../redux/auth/operations';
 import { FileUploader } from '../UseAvatar/UserAvatar';
 import { getUserData, updateUser } from '../../redux/user/operations';
 import { useEffect, useState } from 'react';
-import { useAuth, useUser } from '../../redux/hooks';
+import { useUser } from '../../redux/hooks';
+import { Modal } from '../Modal/Modal';
+import { LogoutModal } from '../LogoutModal/LogoutModal';
 
 const phoneRegExp = /^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/;
 const userSchema = Yup.object().shape({
@@ -60,13 +61,9 @@ export const UserCard = () => {
   });
 
   const [current, setCurrent] = useState('');
+  const [isModal, setModal] = useState(false);
 
-  // const {isLoading} = useAuth();
-  // console.log(isLoading);
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+  const handleModal = () => setModal(prevState => !prevState);
 
   const userStateHandler = (e, key) => {
     const data = e.target.value;
@@ -274,10 +271,16 @@ export const UserCard = () => {
           </div>
         </FormAndPhotoWrapper>
 
-        <BtnLogOut onClick={handleLogout}>
+        <BtnLogOut onClick={handleModal}>
           {<FiLogOut color="#F59256" />}
           <LogOutSpan>Log Out</LogOutSpan>
         </BtnLogOut>
+
+        {isModal && (
+          <Modal onClose={handleModal}>
+            <LogoutModal />
+          </Modal>
+        )}
       </Card>
     </div>
   );
