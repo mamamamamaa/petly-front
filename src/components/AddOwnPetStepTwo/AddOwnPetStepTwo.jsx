@@ -15,6 +15,7 @@ import {
   BoxButton,
   ButtonDone,
   ButtonBack,
+  BoxLabel,
 } from './AddOwnPetStepTwo.styled';
 import css from './ModalAddsPet.module.css';
 import { AddNoticeStepTwoDragDropContext } from 'components/ModalAddNoticeV2/AddNoticeStepTwoDragDropContext';
@@ -73,10 +74,7 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
         <Title>Add photo and some comments</Title>
         <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
           <Box>
-            <label>
-              <AddNoticeStepTwoDragDropContext
-                {...{ formik, preview, setPreview }}
-              />
+            <BoxLabel>
               <BoxImg>
                 {isFileUpload && (
                   <FiCheck color="#F59256" width="150" heigh="150" />
@@ -96,8 +94,11 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
               {formik.touched.photoUrl && (
                 <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
               )}
-            </label>
+            </BoxLabel>
           </Box>
+          <AddNoticeStepTwoDragDropContext
+            {...{ formik, preview, setPreview }}
+          />
           <BoxComent>
             <TitleComent>
               <label>Comments</label>
