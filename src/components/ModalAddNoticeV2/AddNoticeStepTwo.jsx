@@ -1,6 +1,5 @@
 import { useFormik } from 'formik';
-import { useState, useEffect } from 'react';
-import * as yup from 'yup';
+import { useState, useEffect, useRef } from 'react';
 import {
   AddNoticeStepOneButtonBack,
   AddNoticeStepOneButtonDone,
@@ -31,59 +30,10 @@ import {
   AddNoticeStepTwoLoadImageInputWarningWrapper,
   AddNoticeStepTwoCommentAreaWrapper,
   AddNoticeStepTwoCommentWrapper,
-  AddNoticeStepTwoImg,
-  AddNoticeStepTwoButtonDelImg,
-  AddNoticeStepTwoSlide,
 } from './AddNoticeStepTwo.styled';
 import { BoxWarning } from './ModalAddNotice.styled';
-import React from 'react';
-
-const addNoticeStepTwoSchema = yup.object().shape({
-  gender: yup.string().oneOf(['male', 'female']).required('Gender is required'),
-  location: yup
-    .string()
-    .min(4, 'Too Short!')
-    .max(60, 'Too Long!')
-    .required('Location is required'),
-  price: yup.number().when('selectedOption', {
-    is: val => val === 'sell',
-    then: yup.number().required('The price is required'),
-    otherwise: yup.number(),
-  }),
-  photoUrl: yup
-  .array()
-  .nullable()
-    .test(
-      'max',
-      'You can upload up to 5 files.',
-      value => !value || value.filter(file => file !== null).length <= 5
-    )
-    .test(
-      'fileFormat',
-      'Image must be either a JPG, JPEG or PNG file.',
-      value => {
-        if (!value || value.length === 0) return true; // allow empty values
-        return value.every(file => {
-          if (!file) return true; // allow null values
-          return ['image/jpeg', 'image/png', 'image/jpg'].includes(file.type);
-        });
-      }
-    )
-    .test('fileSize', 'File size is too large', value => {
-      if (!value || value.length === 0) return true; // allow empty values
-      return value.every(file => {
-        if (!file) return true; // allow null values
-        return file.size <= 7 * 1024 * 1024; // 7MB
-      });
-    }),
-  comments: yup
-    .string()
-    .min(8, 'Must be 8 or more letter')
-    .max(120, 'Must be 120 or less letter')
-    .trim()
-    .required('The comments are required'),
-});
-
+import { AddNoticeStepTwoSchema } from './AddNoticeSchema';
+import { AddNoticeStepTwoDragDropContext } from './AddNoticeStepTwoDragDropContext';
 export const AddNoticeStepTwo = ({
   data,
   next,
@@ -110,10 +60,24 @@ export const AddNoticeStepTwo = ({
       photoUrl: data.photoUrl,
       comments: data.comments,
     },
-    validationSchema: addNoticeStepTwoSchema,
+    validationSchema: AddNoticeStepTwoSchema,
     validateOnBlur: true,
     validateOnChange: true,
     validateOnMount: false,
+    validate: values => {
+      const errors = {};
+      if (selectedOption === 'sell') {
+        if (!values.price) {
+          errors.price = 'The price is required';
+        } else if (isNaN(values.price)) {
+          errors.price = 'The price must be a number';
+        } else if (parseFloat(values.price) <= 0) {
+          errors.price = 'The price must be a positive number';
+        }
+      }
+      // other validation rules
+      return errors;
+    },
     onSubmit: (values, actions) => {
       // const errors = actions.validateForm();
       // console.log(errors);
@@ -135,7 +99,10 @@ export const AddNoticeStepTwo = ({
     const files = event.currentTarget.files; // get all selected files
     const fileArray = [];
 
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < files.length; i++) {
+      if (i === 5) {
+        break;
+      }
       const reader = new FileReader();
       fileArray.push(
         new Promise(resolve => {
@@ -145,7 +112,7 @@ export const AddNoticeStepTwo = ({
       reader.readAsDataURL(files[i]);
       formik.setFieldValue(`photoUrl[${i}]`, files[i]);
     }
-    
+
     const loadedFiles = await Promise.all(fileArray);
     setPreview(loadedFiles);
     localStorage.setItem('preview', JSON.stringify(loadedFiles));
@@ -158,23 +125,16 @@ export const AddNoticeStepTwo = ({
       setPreview(JSON.parse(storedPreview));
     }
   };
-  const deleteImage = index => {
-    // create a copy of the preview array
-    const updatedPreview = [...preview];
-    // remove the image at the specified index
-    updatedPreview.splice(index, 1);
-    // update the preview state and localStorage
-    setPreview(updatedPreview);
-    localStorage.setItem('preview', JSON.stringify(updatedPreview));
-    let updatedPhotoUrl = [...formik.values.photoUrl];
-    updatedPhotoUrl.splice(index, 1);
-    formik.setFieldValue('photoUrl', updatedPhotoUrl);
-    formik.validateField('photoUrl');
-  }; 
   useEffect(() => {
     // restore the preview images when the component mounts
     restorePreview();
   }, []);
+  const formikRef = useRef(formik);
+
+  useEffect(() => {
+    // validate photos when you click back and than return
+    formikRef.current.validateField('photoUrl'); //This ensures that the formikRef object is only re-assigned when the formik object changes, not on every render. If directly set formik to dependency array get endless rerender, if not set formikRef as dependency will cause eslint warning
+  }, [formik.values.photoUrl, formikRef]);
   const handleCommentsChange = event => {
     formik.setValues({
       ...formik.values,
@@ -193,11 +153,9 @@ export const AddNoticeStepTwo = ({
     formik.setFieldTouched(fieldName, true);
     formik.validateForm();
   };
+
   return (
-    <form
-      onSubmit={formik.handleSubmit}
-      encType="multipart/form-data"
-    >
+    <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
       <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
       <AddNoticeStepTwoGenderText>The sex:</AddNoticeStepTwoGenderText>
       <AddNoticeStepTwoGenderWrapper
@@ -240,11 +198,9 @@ export const AddNoticeStepTwo = ({
         </AddNoticeStepTwoFemaleWrapper>
         <BoxWarning>{formik.errors.gender}</BoxWarning>
       </AddNoticeStepTwoGenderWrapper>
-
       <AddNoticeStepTwoLabelLocation htmlFor="location">
         Location:
       </AddNoticeStepTwoLabelLocation>
-
       <AddNoticeStepTwoInputLocationWrapper>
         <AddNoticeStepTwoInputLocation
           name="location"
@@ -258,14 +214,12 @@ export const AddNoticeStepTwo = ({
           {formik.touched.location && formik.errors.location}
         </BoxWarning>
       </AddNoticeStepTwoInputLocationWrapper>
-
       <AddNoticeStepTwoLabelPrice
         htmlFor="price"
         selectedOption={selectedOption}
       >
         Price:
       </AddNoticeStepTwoLabelPrice>
-
       <AddNoticeStepTwoInputPriceWrapper selectedOption={selectedOption}>
         <AddNoticeStepTwoInputPrice
           selectedOption={selectedOption}
@@ -276,9 +230,9 @@ export const AddNoticeStepTwo = ({
           value={formik.values.price}
           onBlur={() => handleBlur('price')}
         />
+
         <BoxWarning>{formik.touched.price && formik.errors.price}</BoxWarning>
       </AddNoticeStepTwoInputPriceWrapper>
-
       <AddNoticeStepTwoLabelPictureURL htmlFor="photoUrl">
         Load the pet’s image
       </AddNoticeStepTwoLabelPictureURL>
@@ -298,25 +252,9 @@ export const AddNoticeStepTwo = ({
             onBlur={() => handleBlur('photoUrl')}
           />
         </AddNoticeStepTwoLoadImageInputWrapper>
-        <BoxWarning>
-          {formik.touched.photoUrl && formik.errors.photoUrl}
-        </BoxWarning>
+        <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
-
-      {/* <div className="swiper-container">
-        <div className="swiper-wrapper">
-          {preview.map((url, index) => (
-            <AddNoticeStepTwoSlide className="swiper-slide" key={index}>
-              <AddNoticeStepTwoImg src={url} alt={`Slide ${index}`} />
-              <AddNoticeStepTwoButtonDelImg
-                type="button"
-                onClick={() => deleteImage(index)}
-              />
-            </AddNoticeStepTwoSlide>
-          ))}
-        </div>
-      </div> */}
-
+      <AddNoticeStepTwoDragDropContext {...{ formik, preview, setPreview }} />
       <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
         Comments
       </AddNoticeStepTwoLabelCommentArea>
@@ -333,7 +271,6 @@ export const AddNoticeStepTwo = ({
           {formik.touched.comments && formik.errors.comments}
         </BoxWarning>
       </AddNoticeStepTwoCommentAreaWrapper>
-
       <AddNoticeStepTwoLabelComments htmlFor="comments">
         Comments
       </AddNoticeStepTwoLabelComments>
@@ -351,7 +288,6 @@ export const AddNoticeStepTwo = ({
           {formik.touched.comments && formik.errors.comments}
         </BoxWarning>
       </AddNoticeStepTwoCommentWrapper>
-
       <AddNoticeStepTwoButtonBackDoneWrapper>
         <AddNoticeStepOneButtonDone type="submit">
           Done

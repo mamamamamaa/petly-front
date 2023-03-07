@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import adver from 'utils/svg/adv.svg';
 import { theme } from '../../utils';
+import { media } from 'components/Layout/Layout.styled';
 
 export const Container = styled.div`
   @media screen and (max-width: 767px) {
@@ -50,19 +51,40 @@ export const Wraper = styled.div`
 
 export const WraperMain = styled.div``;
 
-export const Img = styled.img`
-  object-fit: cover;
+export const DragDropContextContainer = styled.div`
+  ${media.mobile} {
+    padding-top: 40px;
+  }
+  display: flex;
+  padding-top: 70px;
+`;
+export const BigImg = styled.img`
+  ${media.mobile} {
+    margin-top: 130px;
+  }
+  margin-left: 10px;
+  margin-top: 60px;
   display: block;
-  height: 240px;
-  width: 240px;
+  object-fit: cover;
+  border-radius: 20px;
+  height: 150px;
+  max-width: 150px;
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     height: 328px;
-    width: 288px;
+    max-width: 288px;
   }
   @media screen and (min-width: 1280px) {
     height: 328px;
-    width: 288px;
+    max-width: 288px;
   }
+`;
+export const Img = styled.img`
+  object-fit: cover;
+  display: block;
+  height: 80px;
+  width: 80px;
+  margin-bottom: 6px;
+  border-radius: 10px;
 `;
 export const AdvWrapper = styled.div`
   position: absolute;

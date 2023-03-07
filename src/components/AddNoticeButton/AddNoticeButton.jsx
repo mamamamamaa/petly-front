@@ -6,7 +6,7 @@ import {
   AddPetToNoticesImg,
   AddPetToNoticesText,
   AddPetToNoticesBtnWrapper,
-} from '../AddNoticeButton/AddNoticeButton.styled';
+} from './AddNoticeButton.styled';
 import { ModalAddNotice } from '../ModalAddNoticeV2/ModalAddNotice';
 import cross from 'utils/svg/cross.svg';
 import { Modal } from 'components/Modal/Modal';
@@ -34,6 +34,9 @@ const AddNoticeButton = () => {
   useEffect(() => {
     openModal(); // removes double click button issue
   }, []);
+  useEffect(() => {
+  !isOpen &&  localStorage.setItem('preview', ''); // removes pets from localStorage if accidently? close window
+  }, [isOpen]);
 
   return (
     <>

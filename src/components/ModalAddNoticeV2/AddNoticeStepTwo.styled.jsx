@@ -190,24 +190,46 @@ export const AddNoticeStepTwoInputPrice = styled.input`
     height: 48px;
   }
 `;
-
+export const AddNoticeStepTwoSliderContainer = styled.div`
+  ${media.tabletAndDesktop} {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+`;
 export const AddNoticeStepTwoSlide = styled.div`
   position: relative;
+  margin-bottom: 4px;
+  ${media.tabletAndDesktop} {
+    margin-right: 4px; // add some space between the images
+  }
 `;
-export const AddNoticeStepTwoImg = styled.img``;
+export const AddNoticeStepTwoImg = styled.img`
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  ${media.tabletAndDesktop} {
+    width: 116px;
+    height: 116px;
+  }
+`;
 export const AddNoticeStepTwoButtonDelImg = styled.button`
   position: absolute;
+  z-index: 1;
   top: 0px;
   left: 0px;
-  width: 34px;
-  height: 34px;
+  width: 16px;
+  height: 16px;
   background-image: url(${PetDeleteIcon});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 0vw left 0vw;
   cursor: pointer;
   border: none;
-  ${media.tabletAndDesktop} {
+  &::after {
+    content: '';
+    display: block;
     width: 44px;
     height: 44px;
   }
@@ -232,13 +254,13 @@ export const AddNoticeStepTwoLoadImageInputWrapper = styled.div`
   width: 116px;
   height: 116px;
   background-color: #fdf7f2;
-  // background-size: 47px;
+  background-size: 47px;
   border-radius: 20px;
   background-repeat: no-repeat;
   background-position: center;
   background-image: ${({ preview }) =>
     preview ? `url(${preview[0]})` : `url(${loadCross})`};
-  // background-image: url(${loadCross});
+  background-image: url(${loadCross});
   left: 20px;
   margin-bottom: 28px;
   ${media.tabletAndDesktop} {
