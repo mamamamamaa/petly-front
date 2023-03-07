@@ -7,13 +7,13 @@ export const Container = styled.div`
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     height: 662px;
-    width: 608px;
+    // width: 608px;
     padding-left: 27px;
     padding-right: 27px;
   }
   @media screen and (min-width: 1280px) {
     height: 502px;
-    width: 448px;
+    // width: 448px;
     padding-left: 27px;
     padding-right: 27px;
   }
@@ -41,23 +41,30 @@ export const Box = styled.div`
   position: relative;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 40px;
   color: #fdf7f2;
   background-color: #fdf7f2;
   border-radius: 20px;
+  height: 100px;
   @media screen and (max-width: 767px) {
-    width: 208px;
-    height: 208px;
+    // width: 208px;
+    // height: 208px;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    width: 182px;
-    height: 182px;
+    // width: 182px;
+    // height: 182px;
   }
   @media screen and (min-width: 1280px) {
-    width: 182px;
-    height: 182px;
+    // width: 182px;
+    // height: 182px;
   }
 `;
 
+export const BoxLabel = styled.label`
+  display: block;
+  width: 100%;
+  height: 100%;
+`;
 export const BoxImg = styled.div`
   position: absolute;
   top: 50%;

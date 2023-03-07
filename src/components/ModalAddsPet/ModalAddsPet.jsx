@@ -6,42 +6,47 @@ import { addOwnPet } from '../../redux/user/operations';
 import moment from 'moment';
 import { Container, Title } from './ModalAddsPet.styled';
 
-export const ModalAddsPet = ({onClose}) => {
-    const dispatch = useDispatch();
-    const [data, setData] = useState({
-        name: "",
-        dateOfBirth:"",
-        breed:"",
-        pictureURL: "",
-        comments:"",
-        selectedDateInNumber:""
-    });
+export const ModalAddsPet = ({ onClose }) => {
+  const dispatch = useDispatch();
+  const [data, setData] = useState({
+    name: '',
+    dateOfBirth: '',
+    breed: '',
+    photoUrl: [],
+    comments: '',
+    selectedDateInNumber: '',
+  });
 
-
-  const handleNextStep = (newData, final = false) => {   
+  const handleNextStep = (newData, final = false) => {
     if (final) {
-      const normalizedDateOfBirth = moment(new Date(newData.selectedDateInNumber)).format("DD.MM.YYYY");
-      const datatoSubmit = {
-        name: newData.name,        
-        breed:newData.breed,
-        pictureURL: newData.pictureURL,
-        comments:newData.comments,       
-        dateOfBirth: normalizedDateOfBirth,
-      };
-
+      const normalizedDateOfBirth = moment(
+        new Date(newData.selectedDateInNumber)
+      ).format('DD.MM.YYYY');
+      // const datatoSubmit = {
+      //   name: newData.name,
+      //   breed: newData.breed,
+      //   photoUrl: newData.photoUrl,
+      //   comments: newData.comments,
+      //   dateOfBirth: normalizedDateOfBirth,
+      // };
+console.log(newData.photoUrl);
       const formData = new FormData();
-
-      formData.append(
-        'pictureURL',
-        newData.pictureURL,
-        newData.pictureURL.name
-      );
+      if (Array.isArray(newData.photoUrl)) {
+        newData.photoUrl.forEach(file => {
+          const photoUrlFile = new File([file], file.name, {
+            type: 'image/jpeg',
+          });
+          formData.append('pictureURL', photoUrlFile);
+        });
+      }
       formData.append('comments', newData.comments);
       formData.append('breed', newData.breed);
-      formData.append('dateOfBirth', newData.dateOfBirth);
+      formData.append('dateOfBirth', normalizedDateOfBirth);
       formData.append('name', newData.name);
-      
-      dispatch(addOwnPet(datatoSubmit));
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+      dispatch(addOwnPet(formData));
       return;
     }
     setData(newData);
@@ -55,23 +60,19 @@ export const ModalAddsPet = ({onClose}) => {
 
   const cancelData = e => {
     setData({
-      name: "",
-        dateOfBirth:"",
-        breed:"",
-        pictureURL: "",
-        comments:"",
-        selectedDateInNumber:""
+      name: '',
+      dateOfBirth: '',
+      breed: '',
+      photoUrl: [],
+      comments: '',
+      selectedDateInNumber: '',
     });
     setCurrentStep(0);
     onClose();
   };
   const [currentStep, setCurrentStep] = useState(0);
   const steps = [
-    <AddOwnPetStepOne 
-      next={handleNextStep} 
-      data={data} 
-      cancel={cancelData}
-    />,
+    <AddOwnPetStepOne next={handleNextStep} data={data} cancel={cancelData} />,
     <AddOwnPetStepTwo
       next={handleNextStep}
       data={data}
@@ -79,7 +80,7 @@ export const ModalAddsPet = ({onClose}) => {
       onClose={onClose}
     />,
   ];
-  
+
   return (
     <Container>
       <Title>Add pet</Title>
