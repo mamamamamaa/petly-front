@@ -40,11 +40,11 @@ export const Window = styled.div`
   }
   ${media.mobile} {
     &.OurTeam,
-    &.addNotice,
-    &.AddPet {
-      align-self: flex-start;
-    }
+    &.AddPet,
+    &.LearnMore {
+    align-self: flex-start;
   }
+}
 `;
 
 export const Container = styled.div``;

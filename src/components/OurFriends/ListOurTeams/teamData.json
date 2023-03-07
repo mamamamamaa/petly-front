@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "photo": "/static/media/Max.c94e2825b474e9e5e7b6.png",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137039/kg1l8sqoffa6pszwzwpm.png",
     "name": "Max Denishchuk",
     "role": "Team Lead, Developer",
     "mail": "mailto:maks.denishchuk@gmail.com",
@@ -11,7 +11,7 @@
   },
   {
     "id": "2",
-    "photo": "/static/media/Mykola.ac998a3504a42c27c2de.png",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137105/iwgnqgtd3c1kzwfikpna.png",
     "name": "Mykola Tankov",
     "role": "Scrum Master, Developer",
     "mail": "mailto:tankov.n.k@gmail.com",
@@ -21,7 +21,7 @@
   },
   {
     "id": "3",
-    "photo": "/static/media/Julia.53c966ad78475c57b402.png",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137186/abzi1levpdfqi9c2wu6d.png",
     "name": "Yulia Semenyuk",
     "role": "Developer",
     "mail": "mailto:yuliasemenyukyp@gmail.com",
@@ -31,7 +31,7 @@
   },
   {
     "id": "4",
-    "photo": "/static/media/Sahko.a6c3937fdf0c5b73faa9.png",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137272/wmnuxryfgk7x1qu5jht6.png",
     "name": "Oleksandr Ovrakh",
     "role": "Developer",
     "mail": "mailto:oleksandr.ovrakh@gmail.com",
@@ -41,37 +41,37 @@
   },
   {
     "id": "5",
-    "photo": "/static/media/Lyubov.f462c4c979f697272b78.png",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137329/xkzykdqzrrnbs35eybf6.png",
     "name": "Lyubov Karman",
     "role": "Developer",
     "mail": "mailto:inkkli24@gmail.com ",
     "telegram": "tg://+380679629111",
     "linkedin": "http://www.linkedin.com/in/liubov-karman",
-    "github": ""
+    "github": "https://github.com/Liubov36"
   },
   {
     "id": "6",
-    "photo": "/static/media/Volodymyr.3d0e5888036e7a0cff88.png",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137394/bjfvotynhlisfxkfxkkk.png",
     "name": "Volodymyr Proskurin",
     "role": "Developer",
-    "mail": "",
+    "mail": "proskyrinv.g@gmail.com",
     "telegram": "tg://@p_volodymyr_g",
-    "linkedin": "",
-    "github": ""
+    "linkedin": "https://www.linkedin.com/in/volodymyr-proskurin-a85b7b24a/",
+    "github": "https://github.com/ProskurinV"
   },
   {
     "id": "7",
-    "photo": "",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137449/ibzvndfemphptc4gsev9.png",
     "name": "Andrey Kovalenko",
     "role": "Developer",
-    "mail": "",
+    "mail": "kovalenkoandrii@gmail.com",
     "telegram": "tg://@kovalenkoandri",
-    "linkedin": "",
-    "github": ""
+    "linkedin": "https://www.linkedin.com/in/andrii-kovalenko-015146248/",
+    "github": "https://github.com/kovalenkoandri"
   },
   {
     "id": "8",
-    "photo": "/static/media/Olena.520d227fb4b2b8bf1b8b.png",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137496/ntopgr8scz2qamrejehj.png",
     "name": "Olena Nesteruk",
     "role": "Developer",
     "mail": "mailto:pavlena81@gmail.com",
@@ -81,7 +81,7 @@
   },
   {
     "id": "9",
-    "photo": "/static/media/Olga.eb24cc73eca5f7909bc1.png",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137547/pv9baxcrfson46xjy0wb.png",
     "name": "Olga Sumaruk",
     "role": "Developer",
     "mail": "mailto:sumaruk29@gmail.com",
@@ -91,7 +91,7 @@
   },
   {
     "id": "10",
-    "photo": "/static/media/DmytroMtlnychuk.3857ac6a667eaeeabdf6.png",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137637/axamrynal0quhk9ohdc3.png",
     "name": "Dmytro Melnychuk",
     "role": "Team Lead, QA engineer",
     "mail": "mailto:dm.am87@yahoo.com",
@@ -101,7 +101,7 @@
   },
   {
     "id": "11",
-    "photo": "/static/media/Maryna.29ea5925f7f37a90748f.png",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137691/syclgtswzb5xsilrfsx5.png",
     "name": "Maryna Svynarenko",
     "role": "QA engineer",
     "mail": "mailto:magnoli84@gmail.com",
@@ -111,7 +111,17 @@
   },
   {
     "id": "12",
-    "photo": "/static/media/Lilia.0676c05a88f2d976a514.png",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137744/oqd3bwck119qgudllfzc.png",
+    "name": "Yana Furkalenko",
+    "role": "QA engineer",
+    "mail": "yanafurkalenko@gmail.com",
+    "telegram": "tg://@YanokF",
+    "linkedin": "https://www.linkedin.com/in/yana-furkalenko/",
+    "github": ""
+  },
+  {
+    "id": "13",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137802/f1bqinlisdbkg2akdyki.png",
     "name": "Lilia Poberezhnyk",
     "role": "QA engineer",
     "mail": "mailto:Liliapoberezhnik16@gmail.com",
@@ -120,18 +130,18 @@
     "github": ""
   },
   {
-    "id": "13",
-    "photo": "/static/media/Victor.c5b1ec9f29a06c62bf0f.png",
+    "id": "14",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137866/pq8u0dmfvpxlxau7uflb.png",
     "name": "Victor Bosenko",
     "role": "QA engineer",
-    "mail": "",
+    "mail": "victorbosenko@gmail.com",
     "telegram": "tg://@BosenkoV",
     "linkedin": "https://www.linkedin.com/in/victorbosenko",
     "github": ""
   },
   {
-    "id": "14",
-    "photo": "/static/media/DmytroShmyhol.ca39e6a4eeff1b4eb95b.png",
+    "id": "15",
+    "photo": "https://res.cloudinary.com/dmwntn6pl/image/upload/v1678137928/aobp9qtdtnuqk96uetvb.png",
     "name": "Dmytro Shmyhol",
     "role": "QA engineer",
     "mail": "",

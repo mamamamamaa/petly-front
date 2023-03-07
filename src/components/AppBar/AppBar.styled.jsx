@@ -3,8 +3,6 @@ import { media } from '../Layout/Layout.styled';
 import { theme } from '../../utils/theme';
 import { NavLink } from 'react-router-dom';
 
-// document.body.style.overflow = "hidden"
-
 export const BarContainer = styled.div`
   font-family: ${theme.fonts.body};
   display: flex;
@@ -57,7 +55,6 @@ export const TabletWrapper = styled.div`
 `;
 
 export const MenuWrpr = styled.div`
-  /* overflow-y: scroll; */
   display: flex;
   flex-direction: column-reverse;
   background-color: ${theme.colors.secondary};
@@ -78,8 +75,6 @@ export const MenuWrpr = styled.div`
   }
   ${media.tablet} {
     margin-right: 25px;
-    /* overflow-y: scroll; */
-    /* overscroll-behavior: none; */
   }
   ${media.tabletAndDesktop} {
     opacity: 1;
