@@ -42,17 +42,9 @@ export const FileUploader = () => {
       let formData = new FormData();
 
       formData.append('avatarURL', newFile);
-      const fetchAvatarURL = () => dispatch => {
-        try {
-          dispatch(updateAvatar(formData));
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchAvatarURL(dispatch);
+      dispatch(updateAvatar(formData));
     }
   };
-
   return (
     <>
       <DivPhoto>
