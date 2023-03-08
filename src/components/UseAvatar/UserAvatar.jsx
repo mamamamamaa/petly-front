@@ -42,7 +42,14 @@ export const FileUploader = () => {
       let formData = new FormData();
 
       formData.append('avatarURL', newFile);
-      dispatch(updateAvatar(formData));
+      const fetchAvatarURL = () => dispatch => {
+        try {
+          dispatch(updateAvatar(formData));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchAvatarURL(dispatch);
     }
   };
 
