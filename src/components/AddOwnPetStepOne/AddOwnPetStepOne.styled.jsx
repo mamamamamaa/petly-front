@@ -31,7 +31,6 @@ export const Wraper = styled.div`
 
 export const BoxWarning = styled.span`
   margin-top: 10px;
-  margin-bottom: 10px;
   margin-left: 10px;
   color: red;
   font-weight: 400;
