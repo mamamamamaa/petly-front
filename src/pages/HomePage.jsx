@@ -1,12 +1,13 @@
 import { Container } from 'utils';
-import {HomePageTitle, HomepageSection} from './HomePage.styled';
+import { HomePageTitle, HomepageSection } from './HomePage.styled';
+import { FormattedMessage } from 'react-intl';
 
 const HomePage = () => {
   return (
     <HomepageSection>
       <Container>
       <HomePageTitle>
-        Take good care of your small pets
+        <FormattedMessage id="homePageMsg" values={{ break: <br /> }} />
       </HomePageTitle>
       {/* <HomePageBg> */}
         {/* <HomePageWomanWrapper>

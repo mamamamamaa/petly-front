@@ -19,7 +19,8 @@ import {
 } from './AppBar.styled';
 import { ContainerHeader } from '../Layout/Layout.styled';
 
-const AppBar = () => {
+const AppBar = ({ handleLocaleChange }) => {
+  console.log(handleLocaleChange)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleClickHandler = () => {
@@ -57,6 +58,10 @@ const AppBar = () => {
               )}
             </UserMenuWrpr>
           </MenuWrpr>
+          <div>
+            <button onClick={() => handleLocaleChange('uk')}>uk</button>
+            <button onClick={() => handleLocaleChange('en')}>en</button>
+          </div>
         </TabletWrapper>
       </BarContainer>
     </ContainerHeader>

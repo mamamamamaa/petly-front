@@ -26,6 +26,7 @@ import { useEffect, useState } from 'react';
 import { useUser } from '../../redux/hooks';
 import { Modal } from '../Modal/Modal';
 import { LogoutModal } from '../LogoutModal/LogoutModal';
+import { useIntl } from 'react-intl';
 
 const phoneRegExp = /^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/;
 const userSchema = Yup.object().shape({
@@ -47,6 +48,7 @@ const userSchema = Yup.object().shape({
 });
 
 export const UserCard = () => {
+  const { formatMessage } = useIntl();
   const dispatch = useDispatch();
   const {
     user: { user },
@@ -96,7 +98,7 @@ export const UserCard = () => {
         callback(dataForValidation);
       }
     } catch {
-      toast.error(isValid);
+      toast.error(formatMessage({ id: 'toastUserCardFieldsFil' }));
     }
   };
 

@@ -1,0 +1,25 @@
+{
+  "news": "Новини",
+  "findPet": "Знайти улюбленця",
+  "ourFriends": "Наші друзі",
+
+  "homePageMsg": "Піклуйтесь про {break} своїх маленьких {break} улюбленців",
+
+  "login": "Увійти",
+  "registration": "Реєстрація",
+  "registerBtn": "Реєстрація",
+
+  "email": "Пошта",
+  "password": "Пароль",
+  "сonfirmPassword": "Підтвердити пароль",
+  "name": "Ім'я",
+  "сity": "Місто, Область",
+  "mobilePhone": "Телефон",
+  "back": "Назад",
+
+  "doYouHaveAnAccount": "Немає облікового запису?",
+  "haveAnAccount": "Вже є аккаунт?",
+  "next": "Далі",
+
+  "toastUserCardFieldsFil": "Будь ласка заповніть поля корректно"
+}

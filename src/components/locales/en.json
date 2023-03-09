@@ -1,0 +1,25 @@
+{
+  "news": "News",
+  "findPet": "Find pet",
+  "ourFriends": "Our friends",
+
+  "homePageMsg": "Take good care of {break} your small pets",
+
+  "login": "Login",
+  "registration": "Registration",
+  "registerBtn": "Register",
+
+  "email": "Email",
+  "password": "Password",
+  "сonfirmPassword": "Confirm Password",
+  "name": "Name",
+  "сity": "City, region",
+  "mobilePhone": "Mobile phone",
+  "back": "Back",
+
+  "doYouHaveAnAccount": "Don't have an account?",
+  "haveAnAccount": "Already have an account?",
+  "next": "Next",
+
+  "toastUserCardFieldsFil": "Please fill field correct"
+}

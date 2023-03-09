@@ -1,4 +1,4 @@
-import { lazy, useEffect } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { Layout } from './Layout/Layout';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { RestrictedRoute, PrivateRoute } from '../helpers';
@@ -6,6 +6,9 @@ import { useDispatch } from 'react-redux';
 import { current, refresh } from '../redux/auth/operations';
 import { useAuth } from '../redux/hooks';
 import NoticesContainer from './NoticesContainer/NoticesContainer';
+import { IntlProvider} from 'react-intl';
+import en from '../components/locales/en.json';
+import uk from '../components/locales/uk.json'
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const NewsPage = lazy(() => import('../pages/NewsPage'));
@@ -16,6 +19,14 @@ const RegisterPage = lazy(() => import('../pages/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
 
 export const App = () => {
+  const [locale, setLocale] = useState('uk');
+  const messages = { en: en, uk: uk };
+  const handleLocaleChange = (e) => {
+    setLocale(e);
+    console.log(en)
+     console.log(uk)
+  }
+  
   const { expiresIn, accessToken } = useAuth();
   const dispatch = useDispatch();
 
@@ -37,8 +48,9 @@ export const App = () => {
 
 
   return (
+     <IntlProvider messages={messages[locale]} locale={locale}>
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout locale={locale} handleLocaleChange={handleLocaleChange}/>}>
         <Route index element={<HomePage />} />
 
         <Route path="/news" element={<NewsPage />} />
@@ -95,6 +107,6 @@ export const App = () => {
 
         <Route path="*" element={<Navigate to="/" replace={<HomePage />} />} />
       </Route>
-    </Routes>
+    </Routes></IntlProvider>
   );
 };

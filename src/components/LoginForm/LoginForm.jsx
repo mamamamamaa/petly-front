@@ -23,6 +23,7 @@ import {
     ErrorText,
     Background,
     } from "./LoginForm.styled";
+import { FormattedMessage } from 'react-intl';   
 
 const securityEmail =
   /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
@@ -90,7 +91,7 @@ const LoginForm = () => {
                 validationSchema={loginSchema}
             >               
                 <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
-                <Title>Login</Title>
+                <Title><FormattedMessage id="login"/></Title>
                     <FieldLogin>
                         <label htmlFor="email">  
                             <Input 
@@ -132,10 +133,10 @@ const LoginForm = () => {
                         </label>
                     </FieldPass>
                                   
-                    <Button type="submit">Login</Button>
+                    <Button type="submit"><FormattedMessage id="login"/></Button>
                     <Text>
-                        <span>Don't have an account?</span>{' '}
-                        <StyledLink to='/register'>Register</StyledLink>                
+                        <span><FormattedMessage id="doYouHaveAnAccount"/></span>{' '}
+                        <StyledLink to='/register'><FormattedMessage id="registration"/></StyledLink>                
                     </Text>
                 </FormLogin>
             </Formik>
