@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const { REACT_APP_SERVER_HOST } = process.env;
 
-const fetchFriends = createAsyncThunk(
+export const fetchFriends = createAsyncThunk(
   'friends/fetchAll',
   async (_, thunkAPI) => {
     try {
@@ -15,4 +15,16 @@ const fetchFriends = createAsyncThunk(
   }
 );
 
-export default fetchFriends;
+export const fetchTeam = createAsyncThunk(
+  'friends/team',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `${REACT_APP_SERVER_HOST}/api/friends/team`
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
