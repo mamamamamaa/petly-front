@@ -8,7 +8,7 @@
   "login": "Увійти",
   "registration": "Реєстрація",
   "registerBtn": "Реєстрація",
-
+  "account": "Профіль",
   "email": "Пошта",
   "password": "Пароль",
   "сonfirmPassword": "Підтвердити пароль",
@@ -16,10 +16,22 @@
   "сity": "Місто, Область",
   "mobilePhone": "Телефон",
   "back": "Назад",
-
   "doYouHaveAnAccount": "Немає облікового запису?",
   "haveAnAccount": "Вже є аккаунт?",
   "next": "Далі",
 
+  "myInfo": "Моя інформація",
+  "editPhoto": "Додати фото",
+  "birthday": "Д. н-ня",
+  "date": "дата",
+  "phone": "Телефон",
+  "cityLabel": "Місто",
+  "logOut": "Вийти",
+
+  "myPet": "Мої улюбленці",
+  "addPet": "Додати улюбленця",
+
+  "infoAboutPet": "Улюбленців поки не має",
+  
   "toastUserCardFieldsFil": "Будь ласка заповніть поля корректно"
 }

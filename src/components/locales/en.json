@@ -8,6 +8,7 @@
   "login": "Login",
   "registration": "Registration",
   "registerBtn": "Register",
+  "account": "Account",
 
   "email": "Email",
   "password": "Password",
@@ -21,5 +22,18 @@
   "haveAnAccount": "Already have an account?",
   "next": "Next",
 
+  "myInfo": "My information",
+  "editPhoto": "Edit photo",
+  "birthday": "Birthday",
+  "date": "date",
+  "phone": "Phone",
+  "cityLabel": "City",
+  "logOut": "Log out",
+
+  "myPet": "My pets",
+  "addPet": "Add pet",
+
+  "infoAboutPet": "You have no pets yet",
+  
   "toastUserCardFieldsFil": "Please fill field correct"
 }

@@ -18,7 +18,9 @@ import {
 } from '../UserCard/UserCard.styled';
 
 import { useUser } from 'redux/hooks';
-import { RxAvatar } from "react-icons/rx"
+import { RxAvatar } from "react-icons/rx";
+import { FormattedMessage } from 'react-intl';
+
 
 export const FileUploader = () => {
   const { user } = useUser();  
@@ -66,7 +68,7 @@ export const FileUploader = () => {
           <Labelav htmlFor="file-loader-button">
             <Wrap>
               <HiCamera color="#F59256" />
-              <Span>Edit photo</Span>
+              <Span><FormattedMessage id="editPhoto"/></Span>
             </Wrap>
           </Labelav>
           <Inputav

@@ -15,6 +15,7 @@ import {
   PetsDataAddBtnContainer,
   Notification
 } from './PetsData.styled';
+import { FormattedMessage } from 'react-intl';
 const selectPets = state => state.user.pets;
 const selectIsLoading = state => state.isLoading;
 const selectError = state => state.error;
@@ -47,9 +48,9 @@ export const PetsData = () => {
   return (
     <PetsDataSection>
       <PetsDataAddBtnContainer>
-        <PetsDataTitle>My pets:</PetsDataTitle>        
+        <PetsDataTitle><FormattedMessage id="myPet"/>:</PetsDataTitle>        
         <PetsDataAddBtnWrapper>
-          <PetsDataAddText>Add pet</PetsDataAddText>
+          <PetsDataAddText><FormattedMessage id="addPet"/></PetsDataAddText>
           <PetsDataButton type="button" onClick={handleModal}></PetsDataButton>
         </PetsDataAddBtnWrapper>  
       </PetsDataAddBtnContainer>
@@ -57,7 +58,7 @@ export const PetsData = () => {
       {isLoading && <Notification>Loading...</Notification>}
         {error && <Notification>Sorry, something went wrong, try again later</Notification>}
         {!error && !isLoading && pets.length === 0 && (
-          <Notification>You have no pets yet</Notification>
+          <Notification><FormattedMessage id="infoAboutPet"/></Notification>
         )}
         {!error && !isLoading && pets.length > 0 && <PetsList pets={pets} />}
         {showModal && (
