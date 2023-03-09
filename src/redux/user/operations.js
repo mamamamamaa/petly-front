@@ -46,7 +46,7 @@ export const updateAvatar = createAsyncThunk(
       });
       toast.success('Avatar have updated successfully');
 
-      return res.data.avatarURL;
+      return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
