@@ -1,4 +1,5 @@
 import { useState, useEffect} from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { useAuth } from '../../redux/hooks';
 import Navigation from '../Navigation/Navigation';
 import AuthMenu from '../AuthMenu/AuthMenu';
@@ -17,8 +18,14 @@ import {
   HomePageLink,
 } from './AppBar.styled';
 import { ContainerHeader } from '../Layout/Layout.styled';
+import { Modal } from 'components/ModalMenu/ModalMenu';
 
 const AppBar = () => {
+
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleClickHandler = () => {
@@ -29,18 +36,21 @@ const AppBar = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
-  
 
-  // useEffect(() => {
-  //   if (isMenuOpen) {
-  //     document.body.style.overflow = 'hidden';
-  //   } else {
-  //     document.body.style.overflow = 'auto';
-  //   }
-  // }, [isMenuOpen]);
+
+  
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      // document.window.scrollBy(10, 0);
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isMenuOpen]);
 
   const { isLoggedIn } = useAuth();
   return (
+    <>
     <ContainerHeader>
       <BarContainer>
         <LogoBlack>
@@ -49,10 +59,13 @@ const AppBar = () => {
           </HomePageLink>
         </LogoBlack>
         <TabletWrapper>
-          <BurgerBtn onClick={toggleClickHandler}>
+          <BurgerBtn 
+           onClick={toggleClickHandler}>
             {!isMenuOpen ? <BurgerIcon /> : <CloseIcon />}
           </BurgerBtn>
+
           <MenuWrpr isClosed={!isMenuOpen}>
+  
             <Nav isClosed={!isMenuOpen}>
               <Navigation close={closeMenu} />
             </Nav>
@@ -67,6 +80,7 @@ const AppBar = () => {
         </TabletWrapper>
       </BarContainer>
     </ContainerHeader>
+    </>
   );
 };
 

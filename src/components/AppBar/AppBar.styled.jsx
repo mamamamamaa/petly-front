@@ -11,9 +11,11 @@ export const BarContainer = styled.div`
   margin: 0 auto;
   ${media.mobile} {
     padding-top: 16px;
+    overflow-y: scroll;
   }
   ${media.tablet} {
     padding-top: 24px;
+    overflow-y: scroll;
   }
   ${media.desktop} {
     padding-top: 20px;
@@ -58,6 +60,7 @@ export const MenuWrpr = styled.div`
   display: flex;
   flex-direction: column-reverse;
   background-color: ${theme.colors.secondary};
+  /* background-color: blueviolet; */
   opacity: ${({ isClosed }) => (isClosed ? 0 : 1)};
   visibility: ${({ isClosed }) => (isClosed ? 'hidden' : 'visible')};
   pointer-events: ${({ isClosed }) => (isClosed ? 'none' : 'auto')};
@@ -72,6 +75,9 @@ export const MenuWrpr = styled.div`
     left: 0;
     top: 0;
     justify-content: flex-end;
+    overflow: scroll;
+    /* align-items: stretch; */
+    /* position: fixed; */
   }
   ${media.tablet} {
     margin-right: 25px;
@@ -165,3 +171,13 @@ export const BurgerBtn = styled.button`
 export const HomePageLink = styled(NavLink)`
   color: inherit;
 `;
+
+
+// export const HeaderStyled = styled.header`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   @media (min-width: 1280px) {
+//     align-items: baseline;
+//   }
+// `;
