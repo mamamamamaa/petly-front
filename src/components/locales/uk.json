@@ -4,6 +4,7 @@
   "ourFriends": "Наші друзі",
 
   "homePageMsg": "Піклуйтесь про {break} своїх маленьких {break} улюбленців",
+  "search": "Пошук",
 
   "login": "Увійти",
   "registration": "Реєстрація",
@@ -30,8 +31,15 @@
 
   "myPet": "Мої улюбленці",
   "addPet": "Додати улюбленця",
+  "sell": "продаж",
+  "lostFound": "загублені/знайдені",
+  "goodHands": "в добрі руки",
+  "favorite": "улюблені",
+  "myAds": "власні",
 
   "infoAboutPet": "Улюбленців поки не має",
   
+  "findFavoritePet": "Знайди свого улюбленця",
+
   "toastUserCardFieldsFil": "Будь ласка заповніть поля корректно"
 }

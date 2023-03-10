@@ -13,9 +13,11 @@ import {
   SearchFormButton,
   InputBox,
 } from './searchBar.styled';
+import { useIntl } from 'react-intl';
 // ====================================
 
 export default function SearchBar({ onSubmit }) {
+  const { formatMessage } = useIntl();
   const [searchParams] = useSearchParams();
   const [isDelete, setDelete] = useState(false);
   const inputRef = useRef();
@@ -47,7 +49,7 @@ export default function SearchBar({ onSubmit }) {
                 type="text"
                 autoComplete="off"
                 autoFocus
-                placeholder="Search"
+                placeholder={formatMessage({ id: 'search' })}
               />
 
               <SearchFormButton type="submit" disabled={isSubmitting}>

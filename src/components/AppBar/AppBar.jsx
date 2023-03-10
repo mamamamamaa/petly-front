@@ -16,6 +16,7 @@ import {
   Nav,
   TabletWrapper,
   HomePageLink,
+  Btn
 } from './AppBar.styled';
 import { ContainerHeader } from '../Layout/Layout.styled';
 
@@ -59,8 +60,8 @@ const AppBar = ({ handleLocaleChange }) => {
             </UserMenuWrpr>
           </MenuWrpr>
           <div>
-            <button onClick={() => handleLocaleChange('uk')}>uk</button>
-            <button onClick={() => handleLocaleChange('en')}>en</button>
+            <Btn onClick={() => handleLocaleChange('uk')}>uk</Btn>
+            <Btn onClick={() => handleLocaleChange('en')}>en</Btn>
           </div>
         </TabletWrapper>
       </BarContainer>

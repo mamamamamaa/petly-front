@@ -170,3 +170,13 @@ export const BurgerBtn = styled.button`
 export const HomePageLink = styled(NavLink)`
   color: inherit;
 `;
+
+export const Btn = styled.button`
+cursor: pointer;
+border: none;
+padding: 2px 5px;
+margin: 2px;
+font-size: 18px;
+background-color: ${theme.colors.primary};
+color: ${theme.colors.accentText} 
+`

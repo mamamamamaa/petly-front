@@ -4,12 +4,12 @@
   "ourFriends": "Our friends",
 
   "homePageMsg": "Take good care of {break} your small pets",
+  "search": "Search",
 
   "login": "Login",
   "registration": "Registration",
   "registerBtn": "Register",
   "account": "Account",
-
   "email": "Email",
   "password": "Password",
   "сonfirmPassword": "Confirm Password",
@@ -17,7 +17,6 @@
   "сity": "City, region",
   "mobilePhone": "Mobile phone",
   "back": "Back",
-
   "doYouHaveAnAccount": "Don't have an account?",
   "haveAnAccount": "Already have an account?",
   "next": "Next",
@@ -32,8 +31,15 @@
 
   "myPet": "My pets",
   "addPet": "Add pet",
+  "sell": "sell",
+  "lostFound": "lost/found",
+  "goodHands": "in good hands",
+  "favorite": "favorite ads",
+  "myAds": "my ads",
 
   "infoAboutPet": "You have no pets yet",
-  
+
+  "findFavoritePet": "Find your favorite pet",
+
   "toastUserCardFieldsFil": "Please fill field correct"
 }

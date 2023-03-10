@@ -21,6 +21,7 @@ import {
   Plug,
   Text,
 } from './NewsPage.styled';
+import { FormattedMessage } from 'react-intl';
 // =======
 
 export default function NewsPage() {
@@ -93,7 +94,7 @@ export default function NewsPage() {
 
   return (
     <Container>
-      <MainHeader>News</MainHeader>
+      <MainHeader><FormattedMessage id="news"/></MainHeader>
       <SearchBar onSubmit={handlerFormSubmit} />
       {isLoading && <h2>... is loading</h2>}
       {currentNews && currentNews.length > 0 && <ListNews news={currentNews} />}
