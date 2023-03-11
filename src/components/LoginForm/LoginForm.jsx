@@ -23,7 +23,8 @@ import {
     ErrorText,
     Background,
     } from "./LoginForm.styled";
-import { FormattedMessage } from 'react-intl';   
+import { FormattedMessage } from 'react-intl'; 
+import { useIntl } from 'react-intl';  
 
 const securityEmail =
   /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
@@ -55,6 +56,7 @@ const loginSchema = yup.object().shape({
 
 
 const LoginForm = () => {
+    const { formatMessage } = useIntl();
     const [showPass, setShowPass] = useState(false);
     const isLoading = useAuth().isRefreshing;
     const dispatch = useDispatch();
@@ -98,7 +100,7 @@ const LoginForm = () => {
                             id="loginEmail" 
                             type="email" 
                             name="email" 
-                            placeholder="Email" 
+                            placeholder={formatMessage({ id: 'email' })} 
                             onChange={formik.handleChange}
                             value={formik.values.email}
                             onBlur={formik.handleBlur} 
@@ -117,7 +119,7 @@ const LoginForm = () => {
                             id="password" 
                             type={showPass ? 'text' : 'password'}
                             name="password" 
-                            placeholder="Password"
+                            placeholder={formatMessage({ id: 'password' })}
                             onChange={formik.handleChange}
                             value={formik.values.password}
                             onBlur={formik.handleBlur} 

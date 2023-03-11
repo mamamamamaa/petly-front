@@ -14,6 +14,7 @@ import {
   PetImgWrapper,
   Text,
 } from './UserPetCard.styled';
+import { FormattedMessage } from 'react-intl';
 
 export const UserPetCard = ({
   pet = {},
@@ -30,7 +31,7 @@ export const UserPetCard = ({
       <PetTextWrapper>
         <PetSpanWrapperFlex>
           <PetSpanWrapper>
-            <PetSpan>Name:</PetSpan>
+            <PetSpan><FormattedMessage id="namePet"/>:</PetSpan>
             <PetSpan>{pet.name}</PetSpan>
           </PetSpanWrapper>
           <PetDeleteButtonWrapper>
@@ -42,20 +43,20 @@ export const UserPetCard = ({
         </PetSpanWrapperFlex>
         <PetInfoWrapper>
           <PetSpanWrapper>
-            <PetSpan>Date of birth:</PetSpan>
+            <PetSpan><FormattedMessage id="dateBirth"/>:</PetSpan>
             <PetSpan>{pet.dateOfBirth}</PetSpan>
           </PetSpanWrapper>
         </PetInfoWrapper>
         <PetInfoWrapper>
           <PetSpanWrapper>
-            <PetSpan>Breed:</PetSpan>
+            <PetSpan><FormattedMessage id="breed"/>:</PetSpan>
             <PetSpan>{pet.breed}</PetSpan>
           </PetSpanWrapper>
         </PetInfoWrapper>
         <PetInfoWrapper>
           <PetSpanWrapper>
             <Text>
-              <PetComments>Comments:</PetComments>
+              <PetComments><FormattedMessage id="comment"/>:</PetComments>
               <PetComments>{pet.comments}</PetComments>
             </Text>
           </PetSpanWrapper>

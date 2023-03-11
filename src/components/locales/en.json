@@ -37,6 +37,19 @@
   "favorite": "favorite ads",
   "myAds": "my ads",
 
+  "namePet": "Name",
+  "dateBirth": "Date of birth",  
+  "breed": "Breed",
+  "comment": "Comments",
+  "place": "Place",
+  "age": "Age",
+  "price": "Price",
+  "learnMore": "Learn More",
+  "delete": "Delete",
+  "birthdayPet": "Birthday",
+  "sex": "The sex",
+  "contact": "Contact",
+  
   "infoAboutPet": "You have no pets yet",
 
   "findFavoritePet": "Find your favorite pet",

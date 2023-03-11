@@ -38,6 +38,7 @@ import toast from 'react-hot-toast';
 import { addFav, delFav } from '../../redux/auth/authSlice';
 import noPoster from 'noPoster.jpg';
 import { clearCurrentNotice } from '../../redux/notices/noticeSlice';
+import { FormattedMessage } from 'react-intl';
 
 export const NoticeCategoryItemTemplate = ({
   _id,
@@ -147,11 +148,11 @@ export const NoticeCategoryItemTemplate = ({
           <Title>{title}</Title>
           <WraperPetDetails>
             <Ul>
-              <Li>Breed:</Li>
-              <Li>Place:</Li>
-              <Li>Age:</Li>
+              <Li><FormattedMessage id="breed"/>:</Li>
+              <Li><FormattedMessage id="place"/>:</Li>
+              <Li><FormattedMessage id="age"/>:</Li>
               {price !== undefined && type === 'sell' ? (
-                <Li>Price:</Li>
+                <Li><FormattedMessage id="price"/>:</Li>
               ) : (
                 <EmptyBox></EmptyBox>
               )}
@@ -168,7 +169,7 @@ export const NoticeCategoryItemTemplate = ({
         </>
         <WraperButton>
           <BtnDetails onClick={modalHandler}>
-            <PetDetailsButtonText>Learn More</PetDetailsButtonText>
+            <PetDetailsButtonText><FormattedMessage id="learnMore"/></PetDetailsButtonText>
           </BtnDetails>
           {isOwn && (
             <PetDeleteButton
@@ -177,7 +178,7 @@ export const NoticeCategoryItemTemplate = ({
               }}
             >
               <PetDeleteButtonDiv>
-                <PetDeleteButtonText>Delete</PetDeleteButtonText>
+                <PetDeleteButtonText><FormattedMessage id="delete"/></PetDeleteButtonText>
                 <PetDeleteButtonImg
                   src={recycleBin}
                   alt="Recycle bin"

@@ -37,6 +37,19 @@
   "favorite": "улюблені",
   "myAds": "власні",
 
+  "namePet": "Ім'я",
+  "dateBirth": "Дата народження",  
+  "breed": "Порода",
+  "comment": "Коментарі",
+  "place": "Місце",
+  "age": "Вік",
+  "price": "Ціна",
+  "learnMore": "Детальніше",
+  "delete": "Видалити",
+  "birthdayPet": "День народження",
+  "sex": "Стать",
+  "contact": "Контакти",
+  
   "infoAboutPet": "Улюбленців поки не має",
   
   "findFavoritePet": "Знайди свого улюбленця",

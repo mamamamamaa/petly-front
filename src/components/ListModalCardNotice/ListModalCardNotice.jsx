@@ -29,6 +29,7 @@ import {
 import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
 import { ListModalCardNoticeDragDropContext } from './ListModalCardNoticeDragDropContext';
+import { FormattedMessage } from 'react-intl';
 
 export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
   const {
@@ -89,29 +90,29 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
             <BoxList>
               <Ul>
                 <Li>
-                  <TitleProperty>Name:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="namePet"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>Birthday:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="birthdayPet"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>Breed:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="breed"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>Place:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="place"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>The sex:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="sex"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>Email:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="email"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>Phone:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="phone"/>:</TitleProperty>
                 </Li>
                 {price !== undefined && type === 'sell' && (
                   <Li>
-                    <TitleProperty>Price:</TitleProperty>
+                    <TitleProperty><FormattedMessage id="price"/>:</TitleProperty>
                   </Li>
                 )}
               </Ul>
@@ -165,7 +166,7 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
           </BoxSecond>
         </Wraper>
         <Box>
-          <Text>Comments: {comments}</Text>
+          <Text><FormattedMessage id="comment"/>: {comments}</Text>
         </Box>
       </WraperMain>
 
@@ -174,7 +175,7 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
           {!fav ? 'Add to' : 'Remove'}
           <AddToFavImg src={strokeHeart} alt="Add to favorites" />
         </ButtonModal>
-        <CallModal href={getCall}>Contact</CallModal>
+        <CallModal href={getCall}><FormattedMessage id="contact"/></CallModal>
       </BoxButton>
     </Container>
   );
