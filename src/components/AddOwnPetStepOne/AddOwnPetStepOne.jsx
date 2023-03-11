@@ -16,6 +16,7 @@ import {
   ButtonNext,
   BoxButton,
 } from './AddOwnPetStepOne.styled';
+import { FormattedMessage } from 'react-intl';
 
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
@@ -63,7 +64,7 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
         <FormEl>
           <BoxLabel>
             <Wraper>
-              <label>Name pet</label>
+              <label><FormattedMessage id="namePet"/></label>
             </Wraper>
             <Input type="text" name="name" required />
             <BoxWarning>
@@ -72,7 +73,7 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
           </BoxLabel>
           <BoxLabel>
             <Wraper>
-              <label>Date of birth</label>
+              <label><FormattedMessage id="dateBirth"/></label>
             </Wraper>
             <Input
               type="date"
@@ -88,7 +89,7 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
           </BoxLabel>
           <BoxLabel>
             <Wraper>
-              <label>Breed</label>
+              <label><FormattedMessage id="breed"/></label>
             </Wraper>
             <InputSelect as="select" name="breed" required>
               {filterByLengthBreeds.map(breed => (
@@ -104,9 +105,9 @@ export const AddOwnPetStepOne = ({ next, data, cancel }) => {
 
           <BoxButton>
             <Button type="button" onClick={() => cancel()}>
-              Cancel
+              <FormattedMessage id="cancel"/>
             </Button>
-            <ButtonNext type="submit">Next</ButtonNext>
+            <ButtonNext type="submit"><FormattedMessage id="next"/></ButtonNext>
           </BoxButton>
         </FormEl>
       </Formik>

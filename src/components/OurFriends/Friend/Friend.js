@@ -12,6 +12,7 @@ import {
 
 import defaultImage from '../images/defaultImage.jpg';
 import HoursModal from '../Friend/HoursModal';
+import { FormattedMessage } from 'react-intl';
 
 const Friend = ({ friend }) => {
   const [showModal, setShowModal] = useState(false);
@@ -34,7 +35,7 @@ const Friend = ({ friend }) => {
 
         <DescList>
           <Item clr={color}>
-            Time: <br />
+            <FormattedMessage id="time"/>: <br />
             {!workDays || workDays.length === 0 ? (
               '--------------------'
             ) : (
@@ -47,7 +48,7 @@ const Friend = ({ friend }) => {
           </Item>
 
           <Item>
-            Adress: <br />
+             <FormattedMessage id="adress"/>: <br />
             {!addressUrl ? (
               !address ? (
                 '--------------------'
@@ -66,7 +67,7 @@ const Friend = ({ friend }) => {
           </Item>
 
           <Item>
-            Email: <br />
+            <FormattedMessage id="email"/>: <br />
             {!email ? (
               '--------------------'
             ) : (
@@ -75,7 +76,7 @@ const Friend = ({ friend }) => {
           </Item>
 
           <Item>
-            Phone: <br />
+            <FormattedMessage id="phone"/>: <br />
             {!phone ? (
               '--------------------'
             ) : (

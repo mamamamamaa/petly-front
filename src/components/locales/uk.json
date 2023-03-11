@@ -20,6 +20,8 @@
   "doYouHaveAnAccount": "Немає облікового запису?",
   "haveAnAccount": "Вже є аккаунт?",
   "next": "Далі",
+  "cancel": "Скасувати",
+  "done": "Готово",
 
   "myInfo": "Моя інформація",
   "editPhoto": "Додати фото",
@@ -50,8 +52,14 @@
   "sex": "Стать",
   "contact": "Контакти",
   
-  "infoAboutPet": "Улюбленців поки не має",
   
+  "infoAboutPet": "Улюбленців поки не має",
+  "addPhotoComment": "Додайте фото та кілька коментарів",
+  "typeComments": "Напишіть коментар",
+
+  "time": "Час",
+  "adress": "Адреса",
+
   "findFavoritePet": "Знайди свого улюбленця",
 
   "toastUserCardFieldsFil": "Будь ласка заповніть поля корректно"

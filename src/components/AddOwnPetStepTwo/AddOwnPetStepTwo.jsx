@@ -17,6 +17,8 @@ import {
   ButtonBack,
 } from './AddOwnPetStepTwo.styled';
 import css from './ModalAddsPet.module.css';
+import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 const addOwnPetSchema = object().shape({
   pictureURL: mixed().required('Required'),
@@ -28,6 +30,7 @@ const addOwnPetSchema = object().shape({
 });
 
 export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
+  const { formatMessage } = useIntl();
   const [isFileUpload, setIsFileUpload] = useState(data.pictureURL? true : false);
   const handleBack = () => {
     const newValue = {
@@ -63,7 +66,7 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
   return (
     <Formik>
     <Container>
-      <Title>Add photo and some comments</Title>
+      <Title><FormattedMessage id="addPhotoComment"/></Title>
       <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
         <Box>
           <label>
@@ -91,13 +94,13 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
         </Box>
         <BoxComent>
           <TitleComent>
-            <label>Comments</label>
+            <label><FormattedMessage id="comment"/></label>
           </TitleComent>
 
           <Field as="textarea"
             name="comments"
             type="text"
-            placeholder="Type comments"
+            placeholder={formatMessage({ id: 'typeComments' })}
             className={css.textForm}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -108,9 +111,9 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
         </BoxComent>
         <BoxButton>
           <ButtonBack type="button" onClick={handleBack}>
-            Back
+            <FormattedMessage id="back"/>
           </ButtonBack>
-          <ButtonDone type="submit">Done</ButtonDone>
+          <ButtonDone type="submit"><FormattedMessage id="done"/></ButtonDone>
         </BoxButton>
       </Form>
     </Container>

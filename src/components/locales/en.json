@@ -20,6 +20,8 @@
   "doYouHaveAnAccount": "Don't have an account?",
   "haveAnAccount": "Already have an account?",
   "next": "Next",
+  "cancel": "Cancel",
+   "done": "Done",
 
   "myInfo": "My information",
   "editPhoto": "Edit photo",
@@ -50,7 +52,13 @@
   "sex": "The sex",
   "contact": "Contact",
   
+  
   "infoAboutPet": "You have no pets yet",
+  "addPhotoComment": "Add photo and some comments",
+  "typeComments": "Type comments",
+
+  "time": "Time",
+  "adress": "Adress",
 
   "findFavoritePet": "Find your favorite pet",
 
