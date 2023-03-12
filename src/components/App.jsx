@@ -17,7 +17,17 @@ const RegisterPage = lazy(() => import('../pages/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
 
 export const App = () => {
-  const { expiresIn, accessToken } = useAuth();
+  const {
+    error,
+    verifyPart,
+    user,
+    isLoggedIn,
+    expiresIn,
+    refreshToken,
+    accessToken,
+    isRefreshing,
+    isLoading,
+  } = useAuth();
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
 
@@ -36,21 +46,51 @@ export const App = () => {
 
     return () => clearInterval(interval);
   }, [dispatch, expiresIn, accessToken]);
-  useEffect(() => {
+
+  const memoizedGoogleData = useMemo(() => {
     try {
-      const googleData = Object.fromEntries([...searchParams]);
-      if (googleData) {
-      console.log(typeof googleData);
-      // for (const [key, value] of googleData.entries()) {
-      //   console.log(`${key}: ${value}`);
-      // }
-      dispatch(googleAuth(googleData));
-    }
+      const memorizedSearchParams = Object.fromEntries([...searchParams]);
+      if (Object.keys(memorizedSearchParams).length > 0) {
+        return memorizedSearchParams;
+      }
+      const userData = {
+        error,
+        verifyPart,
+        user,
+        isLoggedIn,
+        expiresIn,
+        refreshToken,
+        accessToken,
+        isRefreshing,
+        isLoading,
+      };
+      if (isLoggedIn) {
+
+        return userData;
+      }
     } catch (error) {
       console.log(error);
+      return null;
     }
+  }, [
+    // searchParams,
+    // error,
+    // verifyPart,
+    // user,
+    // isLoggedIn,
+    // expiresIn,
+    // refreshToken,
+    // accessToken,
+    // isRefreshing,
+    // isLoading,
+  ]);
 
-  }, [dispatch, searchParams]);
+  useEffect(() => {
+    if (memoizedGoogleData) {
+      dispatch(googleAuth(memoizedGoogleData));
+      console.log(memoizedGoogleData);
+    }
+  }, [dispatch, memoizedGoogleData]);
 
   return (
     <Routes>

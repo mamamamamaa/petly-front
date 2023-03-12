@@ -121,11 +121,6 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 export const googleAuth = createAsyncThunk(
   'auth/google',
   async (userData, thunkAPI) => {
-    // const state = thunkAPI.getState();
-    // const savedAccessToken = state.auth.accessToken;
-    // if (savedAccessToken === null) {
-    //   return thunkAPI.rejectWithValue('Unable to fetch googleAuth user');
-    // }
     try {
       console.log(userData);
       setAuthHeader(userData.accessToken);
