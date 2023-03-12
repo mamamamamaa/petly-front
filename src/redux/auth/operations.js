@@ -46,9 +46,7 @@ export const login = createAsyncThunk(
       setAuthHeader(res.data.accessToken);
       return res.data;
     } catch (e) {
-      toast.error(
-        'Please check if email and password are correct or sign up'
-        );
+      toast.error('Please check if email and password are correct or sign up');
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -119,3 +117,24 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(e.message);
   }
 });
+
+export const googleAuth = createAsyncThunk(
+  'auth/google',
+  async (userData, thunkAPI) => {
+    // const state = thunkAPI.getState();
+    // const savedAccessToken = state.auth.accessToken;
+    // if (savedAccessToken === null) {
+    //   return thunkAPI.rejectWithValue('Unable to fetch googleAuth user');
+    // }
+    try {
+      console.log(userData);
+      setAuthHeader(userData.accessToken);
+      return userData;
+    } catch (e) {
+      toast.error(
+        'Please, try another way of registering and logining, not by google authorization'
+      );
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

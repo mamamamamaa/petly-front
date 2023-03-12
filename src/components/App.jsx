@@ -1,11 +1,12 @@
-import { lazy, useEffect } from 'react';
+import { lazy, useEffect, useMemo } from 'react';
 import { Layout } from './Layout/Layout';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { RestrictedRoute, PrivateRoute } from '../helpers';
 import { useDispatch } from 'react-redux';
-import { current, refresh } from '../redux/auth/operations';
+import { current, refresh, googleAuth } from '../redux/auth/operations';
 import { useAuth } from '../redux/hooks';
 import NoticesContainer from './NoticesContainer/NoticesContainer';
+import { useSearchParams } from 'react-router-dom';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const NewsPage = lazy(() => import('../pages/NewsPage'));
@@ -17,6 +18,7 @@ const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
 
 export const App = () => {
   const { expiresIn, accessToken } = useAuth();
+  const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +36,21 @@ export const App = () => {
 
     return () => clearInterval(interval);
   }, [dispatch, expiresIn, accessToken]);
+  useEffect(() => {
+    try {
+      const googleData = Object.fromEntries([...searchParams]);
+      if (googleData) {
+      console.log(typeof googleData);
+      // for (const [key, value] of googleData.entries()) {
+      //   console.log(`${key}: ${value}`);
+      // }
+      dispatch(googleAuth(googleData));
+    }
+    } catch (error) {
+      console.log(error);
+    }
 
+  }, [dispatch, searchParams]);
 
   return (
     <Routes>
