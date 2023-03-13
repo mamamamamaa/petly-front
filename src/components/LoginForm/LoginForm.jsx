@@ -5,7 +5,6 @@ import { useAuth } from 'redux/hooks';
 import { useDispatch } from 'react-redux';
 // import toast from 'react-hot-toast';
 import { login } from '../../redux/auth/operations';
-import { Link } from 'react-router-dom';
 import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import {
@@ -22,6 +21,7 @@ import {
   StyledLink,
   ErrorText,
   Background,
+  GoogleAuthLink,
 } from './LoginForm.styled';
 
 const securityEmail =
@@ -89,9 +89,9 @@ const LoginForm = () => {
           >
             <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
               <Title>Login</Title>
-              <Link to="http://localhost:3001/api/auth/google">
-                Click to authorize with Google!
-              </Link>
+              <GoogleAuthLink to="http://localhost:3001/api/auth/google">
+                Login with Google
+              </GoogleAuthLink>
               <FieldLogin>
                 <label htmlFor="email">
                   <Input

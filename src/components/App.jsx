@@ -22,6 +22,7 @@ export const App = () => {
     expiresIn,
     refreshToken,
     accessToken,
+    isLoggedIn
   } = useAuth();
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
@@ -57,12 +58,16 @@ export const App = () => {
         return updatedParams;
       }
       const userData = {
-        user,
+        favorite: user.favorite,
+        name: user.name,
+        email: user.email,
+        id: user.id,
         expiresIn,
         refreshToken,
         accessToken,
+        isLoggedIn
       };
-      if (refreshToken || accessToken) {
+      if (isLoggedIn) {
         return userData;
       }
     } catch (error) {
@@ -75,6 +80,7 @@ export const App = () => {
     expiresIn,
     refreshToken,
     accessToken,
+    isLoggedIn
   ]);
 
   useEffect(() => {

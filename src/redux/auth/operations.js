@@ -122,9 +122,8 @@ export const googleAuth = createAsyncThunk(
   'auth/google',
   async (userData, thunkAPI) => {
     try {
-      console.log(userData);
-      console.log(thunkAPI.getState());
       setAuthHeader(userData.accessToken);
+      console.log(userData);
       return userData;
     } catch (e) {
       toast.error(
