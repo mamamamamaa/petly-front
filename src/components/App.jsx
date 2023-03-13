@@ -25,7 +25,6 @@ export const App = () => {
     expiresIn,
     refreshToken,
     accessToken,
-    isRefreshing,
     isLoading,
   } = useAuth();
   const [searchParams] = useSearchParams();
@@ -50,7 +49,12 @@ export const App = () => {
   const memoizedGoogleData = useMemo(() => {
     try {
       const memorizedSearchParams = Object.fromEntries([...searchParams]);
-      if (Object.keys(memorizedSearchParams).length > 0) {
+      console.log(memorizedSearchParams);
+
+      if (
+        memorizedSearchParams.accessToken ||
+        memorizedSearchParams.refreshToken
+      ) {
         return memorizedSearchParams;
       }
       const userData = {
@@ -61,11 +65,9 @@ export const App = () => {
         expiresIn,
         refreshToken,
         accessToken,
-        isRefreshing,
         isLoading,
       };
       if (isLoggedIn) {
-
         return userData;
       }
     } catch (error) {
@@ -73,22 +75,21 @@ export const App = () => {
       return null;
     }
   }, [
-    // searchParams,
-    // error,
-    // verifyPart,
-    // user,
-    // isLoggedIn,
-    // expiresIn,
-    // refreshToken,
-    // accessToken,
-    // isRefreshing,
-    // isLoading,
+    searchParams,
+    error,
+    verifyPart,
+    user,
+    isLoggedIn,
+    expiresIn,
+    refreshToken,
+    accessToken,
+    isLoading,
   ]);
 
   useEffect(() => {
     if (memoizedGoogleData) {
-      dispatch(googleAuth(memoizedGoogleData));
       console.log(memoizedGoogleData);
+      dispatch(googleAuth(memoizedGoogleData));
     }
   }, [dispatch, memoizedGoogleData]);
 
