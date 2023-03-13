@@ -65,7 +65,7 @@ export const App = () => {
         expiresIn,
         refreshToken,
         accessToken,
-        isLoggedIn
+        isLoggedIn,
       };
       if (isLoggedIn) {
         return userData;
@@ -80,7 +80,7 @@ export const App = () => {
     expiresIn,
     refreshToken,
     accessToken,
-    isLoggedIn
+    isLoggedIn,
   ]);
 
   useEffect(() => {
