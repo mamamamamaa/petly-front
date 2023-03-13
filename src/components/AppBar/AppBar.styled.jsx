@@ -177,6 +177,10 @@ border: none;
 padding: 2px 5px;
 margin: 2px;
 font-size: 18px;
-background-color: ${theme.colors.primary};
-color: ${theme.colors.accentText} 
+// background-color: ${theme.colors.primary}; 
+// color: ${theme.colors.accentText} 
+`
+
+export const ImgBtn = styled.img`
+background-color: #fdf7f2;;
 `

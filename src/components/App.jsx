@@ -22,9 +22,7 @@ export const App = () => {
   const [locale, setLocale] = useState('uk');
   const messages = { en: en, uk: uk };
   const handleLocaleChange = (e) => {
-    setLocale(e);
-    console.log(en)
-     console.log(uk)
+    setLocale(e);     
   }
   
   const { expiresIn, accessToken } = useAuth();

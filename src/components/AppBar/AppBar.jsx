@@ -16,12 +16,14 @@ import {
   Nav,
   TabletWrapper,
   HomePageLink,
-  Btn
+  Btn,
+  ImgBtn
 } from './AppBar.styled';
 import { ContainerHeader } from '../Layout/Layout.styled';
+import UKR from '../../images/UKR.png';
+import GB from '../../images/GB.png';
 
-const AppBar = ({ handleLocaleChange }) => {
-  console.log(handleLocaleChange)
+const AppBar = ({ handleLocaleChange }) => {  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleClickHandler = () => {
@@ -60,8 +62,10 @@ const AppBar = ({ handleLocaleChange }) => {
             </UserMenuWrpr>
           </MenuWrpr>
           <div>
-            <Btn onClick={() => handleLocaleChange('uk')}>uk</Btn>
-            <Btn onClick={() => handleLocaleChange('en')}>en</Btn>
+            <Btn onClick={() => handleLocaleChange('uk')}>
+              <ImgBtn src={UKR} width="25" height ="25" alt="flag Ukraine"/></Btn>
+            <Btn onClick={() => handleLocaleChange('en')}>
+              <ImgBtn src={GB} width="25" height ="25" alt="flag Ukraine"/></Btn>
           </div>
         </TabletWrapper>
       </BarContainer>
