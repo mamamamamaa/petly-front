@@ -123,6 +123,7 @@ export const googleAuth = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       console.log(userData);
+      console.log(thunkAPI.getState());
       setAuthHeader(userData.accessToken);
       return userData;
     } catch (e) {

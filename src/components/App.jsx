@@ -18,14 +18,10 @@ const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
 
 export const App = () => {
   const {
-    error,
-    verifyPart,
     user,
-    isLoggedIn,
     expiresIn,
     refreshToken,
     accessToken,
-    isLoading,
   } = useAuth();
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
@@ -49,25 +45,24 @@ export const App = () => {
   const memoizedGoogleData = useMemo(() => {
     try {
       const memorizedSearchParams = Object.fromEntries([...searchParams]);
-      console.log(memorizedSearchParams);
 
       if (
         memorizedSearchParams.accessToken ||
         memorizedSearchParams.refreshToken
       ) {
-        return memorizedSearchParams;
+        const splittedFav = {
+          favorite: memorizedSearchParams.favorite.split(','),
+        };
+        const updatedParams = { ...memorizedSearchParams, ...splittedFav };
+        return updatedParams;
       }
       const userData = {
-        error,
-        verifyPart,
         user,
-        isLoggedIn,
         expiresIn,
         refreshToken,
         accessToken,
-        isLoading,
       };
-      if (isLoggedIn) {
+      if (refreshToken || accessToken) {
         return userData;
       }
     } catch (error) {
@@ -76,19 +71,14 @@ export const App = () => {
     }
   }, [
     searchParams,
-    error,
-    verifyPart,
-    user,
-    isLoggedIn,
+    // user, // if uncomment than endless rerender
     expiresIn,
     refreshToken,
     accessToken,
-    isLoading,
   ]);
 
   useEffect(() => {
     if (memoizedGoogleData) {
-      console.log(memoizedGoogleData);
       dispatch(googleAuth(memoizedGoogleData));
     }
   }, [dispatch, memoizedGoogleData]);

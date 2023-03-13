@@ -122,7 +122,8 @@ const authSlice = createSlice({
       .addCase(googleAuth.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
-        state.user.favorite = action.payload.favorite;
+        console.log(action.payload);
+        state.user.favorite = [...action.payload.user.favorite];
         state.user.id = action.payload.id;
         state.accessToken = action.payload.accessToken;
         state.expiresIn = action.payload.expiresIn;
