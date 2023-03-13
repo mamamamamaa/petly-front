@@ -15,7 +15,6 @@ export const BarContainer = styled.div`
   }
   ${media.tablet} {
     padding-top: 24px;
-    overflow-y: scroll;
   }
   ${media.desktop} {
     padding-top: 20px;
@@ -75,7 +74,6 @@ export const MenuWrpr = styled.div`
     left: 0;
     top: 0;
     justify-content: flex-end;
-    overflow: scroll;
     /* align-items: stretch; */
     /* position: fixed; */
   }

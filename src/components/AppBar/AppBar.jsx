@@ -42,7 +42,6 @@ const AppBar = () => {
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
-      // document.window.scrollBy(10, 0);
     } else {
       document.body.style.overflow = 'auto';
     }
