@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { current, refresh } from '../redux/auth/operations';
 import { useAuth } from '../redux/hooks';
 import NoticesContainer from './NoticesContainer/NoticesContainer';
+import { useCookies } from 'react-cookie';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const NewsPage = lazy(() => import('../pages/NewsPage'));
@@ -18,6 +19,8 @@ const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
 export const App = () => {
   const { expiresIn, accessToken } = useAuth();
   const dispatch = useDispatch();
+  const [cookies, setCookie] = useCookies();
+  console.log(cookies);
 
   useEffect(() => {
     dispatch(current());
@@ -34,7 +37,6 @@ export const App = () => {
 
     return () => clearInterval(interval);
   }, [dispatch, expiresIn, accessToken]);
-
 
   return (
     <Routes>
