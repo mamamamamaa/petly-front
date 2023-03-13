@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
 
 export const useAuth = () => {
   const accessToken = useSelector(state => state.auth.accessToken);

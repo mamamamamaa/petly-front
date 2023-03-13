@@ -3,7 +3,7 @@ import { deleteOneOwnPet } from '../../redux/user/operations';
 import {
   PetArticle,
   PetDeleteButton,
-  PetImg,
+  // PetImg,
   PetSpanWrapperFlex,
   PetSpanWrapper,
   PetSpan,
@@ -11,7 +11,7 @@ import {
   PetTextWrapper,
   PetDeleteButtonWrapper,
   PetInfoWrapper,
-  PetImgWrapper,
+  // PetImgWrapper,
   Text,
 } from './UserPetCard.styled';
 import { ListModalCardNoticeDragDropContext } from 'components/ListModalCardNotice/ListModalCardNoticeDragDropContext';

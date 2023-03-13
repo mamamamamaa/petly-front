@@ -100,9 +100,11 @@ export const TitleComent = styled.h2`
   }
 `;
 export const BoxWarning = styled.div`
+  margin-top: 10px;
+  margin-left: 10px;
   color: red;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 22px;
 `;
 
 export const BoxButton = styled.div`
