@@ -7,18 +7,27 @@ export const BarContainer = styled.div`
   font-family: ${theme.fonts.body};
   display: flex;
   align-items: center;
-  justify-content: space-between;
+
   margin: 0 auto;
   ${media.mobile} {
     padding-top: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: space-between;
   }
   ${media.tablet} {
+    width: 768px;
     padding-top: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
   ${media.desktop} {
+    width: 1280px;
     padding-top: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+    justify-content: space-between;
   }
-  /* outline: 1px solid red; */
 `;
 
 export const LogoBlack = styled.span`
@@ -27,7 +36,6 @@ export const LogoBlack = styled.span`
   font-style: normal;
   font-weight: ${theme.fontWeights.bold};
   letter-spacing: 0.07em;
-  z-index: 21;
   ${media.mobile} {
     font-size: 28px;
     line-height: 42px;
@@ -42,32 +50,15 @@ export const LogoAccent = styled.span`
   color: ${theme.colors.primary};
 `;
 
-export const TabletWrapper = styled.div`
-  ${media.tablet} {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  ${media.desktop} {
-    justify-self: flex-end;
-    display: flex;
-  }
-`;
-
 export const MenuWrpr = styled.div`
   display: flex;
   flex-direction: column-reverse;
   background-color: ${theme.colors.secondary};
-  opacity: ${({ isClosed }) => (isClosed ? 0 : 1)};
-  visibility: ${({ isClosed }) => (isClosed ? 'hidden' : 'visible')};
-  pointer-events: ${({ isClosed }) => (isClosed ? 'none' : 'auto')};
-  /* outline: 1px solid blue; */
   ${media.mobile} {
     padding-top: 104px;
     padding-bottom: 40px;
     width: 100vw;
     min-height: 100vh;
-    z-index: 20;
     position: absolute;
     left: 0;
     top: 0;
@@ -81,7 +72,6 @@ export const MenuWrpr = styled.div`
     visibility: visible;
     pointer-events: auto;
     background-color: inherit;
-    /* outline: 1px solid blue; */
     width: auto;
     height: auto;
     padding-top: 0;
@@ -92,22 +82,19 @@ export const MenuWrpr = styled.div`
     z-index: auto;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    min-width: 1073px;
+    /* justify-content: space-between; */
+    /* min-width: 1073px; */
   }
 `;
 
 export const Nav = styled.nav`
-    ${media.mobile} {
-        margin-top: 60px;
-    }
+  ${media.mobile} {
+    margin-top: 60px;
+  }
   ${media.tablet} {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    opacity: ${({ isClosed }) => (isClosed ? 0 : 1)};
-    display: ${({ isClosed }) => (isClosed ? 'none' : 'auto')};
-    pointer-events: ${({ isClosed }) => (isClosed ? 'none' : 'auto')};
     margin: 0, auto;
     z-index: 20;
     position: absolute;
@@ -116,20 +103,16 @@ export const Nav = styled.nav`
     padding-bottom: 60px;
     min-height: 100vh;
     padding-top: 160px;
-    width: 100%;
+    width: 100vw;
     background-color: ${theme.colors.secondary};
-    /* outline: 1px solid green; */
+  };
     ${media.desktop} {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
+      margin-left: 80px;
       position: static;
       background-color: inherit;
-      outline: 1px solid orange;
       width: auto;
       height: auto;
     }
-  }
 `;
 
 export const UserMenuWrpr = styled.div`
@@ -139,7 +122,10 @@ export const UserMenuWrpr = styled.div`
   }
   ${media.tablet} {
     padding-top: 0;
-    align-self: flex-end;
+    margin-left: auto;
+  }
+  ${media.desktop} {
+    margin-left: auto;
   }
 `;
 
@@ -156,6 +142,7 @@ export const BurgerBtn = styled.button`
   z-index: 21;
   ${media.tablet} {
     order: +1;
+    margin-left: 25px;
   }
   ${media.desktop} {
     display: none;
