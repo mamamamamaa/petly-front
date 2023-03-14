@@ -171,16 +171,19 @@ export const HomePageLink = styled(NavLink)`
   color: inherit;
 `;
 
+export const Lang = styled.div`
+ display: flex;
+`
 export const Btn = styled.button`
 cursor: pointer;
 border: none;
 padding: 2px 5px;
 margin: 2px;
 font-size: 18px;
-// background-color: ${theme.colors.primary}; 
-// color: ${theme.colors.accentText} 
+background-color: transparent;
 `
 
 export const ImgBtn = styled.img`
-background-color: #fdf7f2;;
+
+margin: 2px;
 `

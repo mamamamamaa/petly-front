@@ -5,6 +5,8 @@
 
   "homePageMsg": "Take good care of {break} your small pets",
   "search": "Search",
+  "readMore": "Read more",
+  "titleAd": "Title of ad",
 
   "login": "Login",
   "registration": "Registration",
@@ -39,7 +41,7 @@
   "favorite": "favorite ads",
   "myAds": "my ads",
 
-  "namePet": "Name",
+  "namePet": "Name pet",
   "dateBirth": "Date of birth",  
   "breed": "Breed",
   "comment": "Comments",
@@ -62,5 +64,9 @@
 
   "findFavoritePet": "Find your favorite pet",
 
-  "toastUserCardFieldsFil": "Please fill field correct"
+  "toastUserCardFieldsFil": "Please fill field correct",
+  "toastAddNoticeButton" : "Dear friend, please sign up or log in to add your pet to notice",
+  "toastLoginSignUp": "You should login/sign up your account!",
+  "toastRemoveFavorite": "Removed from favorite!",
+  "toastAddFavorite": "Successfully added to favorite!"
 }

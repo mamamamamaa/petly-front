@@ -8,11 +8,7 @@ export const Layout = ({ handleLocaleChange }) => {
     <>
     {/* // <Container> */}
       <header >
-        <AppBar handleLocaleChange={handleLocaleChange}/>
-        <select>
-          <option value="en">en</option>          
-          <option value="uk">uk</option>
-      </select>
+        <AppBar handleLocaleChange={handleLocaleChange}/>        
       </header>
       <main>
       <Suspense fallback={null}>

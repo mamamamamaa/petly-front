@@ -17,11 +17,13 @@ import {
   TabletWrapper,
   HomePageLink,
   Btn,
-  ImgBtn
+  ImgBtn,
+  Lang
 } from './AppBar.styled';
 import { ContainerHeader } from '../Layout/Layout.styled';
 import UKR from '../../images/UKR.png';
 import GB from '../../images/GB.png';
+
 
 const AppBar = ({ handleLocaleChange }) => {  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,7 +54,7 @@ const AppBar = ({ handleLocaleChange }) => {
           <MenuWrpr isClosed={!isMenuOpen}>
             <Nav isClosed={!isMenuOpen}>
               <Navigation close={closeMenu} />
-            </Nav>
+            </Nav>             
             <UserMenuWrpr>
               {isLoggedIn ? (
                 <UserMenu close={closeMenu} />
@@ -61,12 +63,12 @@ const AppBar = ({ handleLocaleChange }) => {
               )}
             </UserMenuWrpr>
           </MenuWrpr>
-          <div>
-            <Btn onClick={() => handleLocaleChange('uk')}>
-              <ImgBtn src={UKR} width="25" height ="25" alt="flag Ukraine"/></Btn>
+          <Lang>
             <Btn onClick={() => handleLocaleChange('en')}>
-              <ImgBtn src={GB} width="25" height ="25" alt="flag Ukraine"/></Btn>
-          </div>
+              <ImgBtn src={GB} width="25" height ="25" alt="Great Britan flag"/></Btn>
+            <Btn onClick={() => handleLocaleChange('uk')}>
+              <ImgBtn src={UKR} width="25" height ="25" alt="flag Ukraine"/></Btn>            
+          </Lang>
         </TabletWrapper>
       </BarContainer>
     </ContainerHeader>

@@ -19,7 +19,7 @@ const RegisterPage = lazy(() => import('../pages/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
 
 export const App = () => {
-  const [locale, setLocale] = useState('uk');
+  const [locale, setLocale] = useState('en');
   const messages = { en: en, uk: uk };
   const handleLocaleChange = (e) => {
     setLocale(e);     

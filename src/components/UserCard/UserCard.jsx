@@ -100,7 +100,8 @@ export const UserCard = () => {
         callback(dataForValidation);
       }
     } catch {
-      toast.error(formatMessage({ id: 'toastUserCardFieldsFil' }));
+      toast.error(isValid);
+      //toast.error(formatMessage({ id: 'toastUserCardFieldsFil' }));
     }
   };
 

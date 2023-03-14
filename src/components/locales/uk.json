@@ -5,6 +5,9 @@
 
   "homePageMsg": "Піклуйтесь про {break} своїх маленьких {break} улюбленців",
   "search": "Пошук",
+  "readMore": "Переглянути більше",
+  "titleAd": "Назва оголошення",
+
 
   "login": "Увійти",
   "registration": "Реєстрація",
@@ -62,5 +65,9 @@
 
   "findFavoritePet": "Знайди свого улюбленця",
 
-  "toastUserCardFieldsFil": "Будь ласка заповніть поля корректно"
+  "toastUserCardFieldsFil": "Будь ласка заповніть поля корректно",
+  "toastAddNoticeButton" : "Будь ласка, зареєструйтеся або увійдіть, щоб додати повідомлення",
+  "toastLoginSignUp": "Зареєструйтеся або увійдіть в аккаунт!",
+  "toastRemoveFavorite": "Видалено з улюблених!",
+  "toastAddFavorite": "Успішно додано до улюблених!"
 }

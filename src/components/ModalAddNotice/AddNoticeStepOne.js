@@ -25,6 +25,7 @@ import {
   SpanStar,
   BoxWarning,
 } from './ModalAddNotice.styled';
+import { FormattedMessage } from 'react-intl';
 
 const formOneValidationSchema = Yup.object({
   type: Yup.string().required('Type is required'),
@@ -100,7 +101,7 @@ export const AddNoticeStepOne = props => {
       <ButtonClose type="button" onClick={props.closeModal}>
         <VscClose size={65} />
       </ButtonClose>
-      <Title>Add pet</Title>
+      <Title><FormattedMessage id="addPet"/></Title>
       <SubTitle>{getTitle(type)}</SubTitle>
 
       <FormWrapper>
@@ -122,7 +123,7 @@ export const AddNoticeStepOne = props => {
                   name="type"
                   value="lost/found"
                 />
-                <LabelRadioBtn htmlFor="lost/found">lost/found</LabelRadioBtn>
+                <LabelRadioBtn htmlFor="lost/found"><FormattedMessage id="lostFound"/></LabelRadioBtn>
                 <RadioBtn
                   id="good-hands"
                   type="radio"
@@ -130,17 +131,17 @@ export const AddNoticeStepOne = props => {
                   value="good-hands"
                 />
                 <LabelRadioBtn htmlFor="good-hands">
-                  in good hands
+                  <FormattedMessage id="goodHands"/>
                 </LabelRadioBtn>
                 <RadioBtn id="sell" type="radio" name="type" value="sell" />
-                <LabelRadioBtn htmlFor="sell">sell</LabelRadioBtn>
+                <LabelRadioBtn htmlFor="sell"><FormattedMessage id="sell"/></LabelRadioBtn>
                 <BoxWarning>
                   <ErrorMessage name="type" component="div" />
                 </BoxWarning>
               </RadioWrapp>
 
               <Label htmlFor="titleAd">
-                Title of ad<SpanStar>*</SpanStar>
+                <FormattedMessage id="titleAd"/><SpanStar>*</SpanStar>
               </Label>
               <InputWrapper>
                 <Input
@@ -154,11 +155,11 @@ export const AddNoticeStepOne = props => {
                 </BoxWarning>
               </InputWrapper>
 
-              {noticeType && <Label htmlFor="namePet">Name pet:</Label>}
+              {noticeType && <Label htmlFor="namePet"><FormattedMessage id="namePet"/>:</Label>}
 
               {!noticeType && (
                 <Label htmlFor="namePet">
-                  Name pet<SpanStar>*</SpanStar>:
+                  <FormattedMessage id="namePet"/><SpanStar>*</SpanStar>:
                 </Label>
               )}
 
@@ -182,7 +183,7 @@ export const AddNoticeStepOne = props => {
               )}
 
               <Label htmlFor="dateOfBirth">
-                Date of birth<SpanStar>*</SpanStar>
+                <FormattedMessage id="dateBirth"/><SpanStar>*</SpanStar>
               </Label>
               <InputWrapper>
                 <Input
@@ -198,7 +199,7 @@ export const AddNoticeStepOne = props => {
               </InputWrapper>
 
               <Label htmlFor="breed">
-                Breed<SpanStar>*</SpanStar>
+                <FormattedMessage id="breed"/><SpanStar>*</SpanStar>
               </Label>
               <InputWrapperLast>
                 <InputLast as="select" name="breed" id="breed">
@@ -214,9 +215,9 @@ export const AddNoticeStepOne = props => {
               </InputWrapperLast>
 
               <ButtonWrapper>
-                <ButtonFill type="submit">Next</ButtonFill>
+                <ButtonFill type="submit"><FormattedMessage id="next"/></ButtonFill>
                 <ButtonEmpty type="button" onClick={handleOnClick}>
-                  Сancel
+                  <FormattedMessage id="cancel"/>
                 </ButtonEmpty>
               </ButtonWrapper>
             </FormFirst>

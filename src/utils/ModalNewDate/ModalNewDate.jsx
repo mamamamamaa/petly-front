@@ -1,7 +1,6 @@
 import moment from 'moment';
 
-function ModalNewDate({ date }) {
-  console.log(date);
+function ModalNewDate({ date }) { 
   if (date === 'unknown') {
     const mixDate = 'unknown';
     return mixDate;

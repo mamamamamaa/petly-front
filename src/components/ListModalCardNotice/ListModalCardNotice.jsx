@@ -30,6 +30,7 @@ import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
 import { ListModalCardNoticeDragDropContext } from './ListModalCardNoticeDragDropContext';
 import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
   const {
@@ -47,23 +48,24 @@ export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
     mobilePhone = 'unknown',
     comments = 'unknown',
   } = date;
-
+  const { formatMessage } = useIntl();
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
 
   const favoriteHandler = () => {
     if (!isLoggedIn) {
-      return toast.error('You should login/sign up your account!');
+      console.log('tost')
+      return toast.error(formatMessage({ id: 'toastLoginSignUp'}));
     }
 
     if (fav) {
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
-      toast.success('Removed from favorite!');
+      toast.success(formatMessage({ id: 'toastRemoveFavorite'}));
     } else {
       dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
-      toast.success('Successfully added to favorite!');
+      toast.success(formatMessage({ id: 'toastAddFavorite'}));
     }
     setFav(prevState => !prevState);
   };
