@@ -53,11 +53,17 @@
   "birthdayPet": "Birthday",
   "sex": "The sex",
   "contact": "Contact",
-  
+  "male": "Male",
+  "female": "Female",
+  "location": "Location",
+  "typeLocation": "Type location", 
+  "loadPetImage": "Load the pet’s image",  
   
   "infoAboutPet": "You have no pets yet",
   "addPhotoComment": "Add photo and some comments",
   "typeComments": "Type comments",
+  "typePrice": "Type price",
+  "typeNamePet": "Type name pet",
 
   "time": "Time",
   "adress": "Adress",

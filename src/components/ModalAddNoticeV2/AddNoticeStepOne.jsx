@@ -19,6 +19,8 @@ import {
 import { BoxWarning } from './ModalAddNotice.styled';
 import { AddNoticeStepOneSchema } from './AddNoticeSchema';
 import moment from 'moment';
+import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 const filterByLengthBreeds = breeds.filter(
   breed => breed.split('').length < 16
@@ -31,6 +33,7 @@ export const AddNoticeStepOne = ({
   selectedOption,
   handleOptionChange,
 }) => {
+  const { formatMessage } = useIntl();
   const formik = useFormik({
     initialValues: data,
     validationSchema: AddNoticeStepOneSchema,
@@ -52,7 +55,7 @@ export const AddNoticeStepOne = ({
   formik.values.type = selectedOption;
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
-      <AddNoticeStepOneTitle>Add pet</AddNoticeStepOneTitle>
+      <AddNoticeStepOneTitle><FormattedMessage id="addPet"/></AddNoticeStepOneTitle>
       <AddNoticeStepOneText>
         Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
         consectetur
@@ -69,7 +72,7 @@ export const AddNoticeStepOne = ({
             handleOptionChange(event);
           }}
         ></AddNoticeLostFound>
-        <label htmlFor="lostFound">lost/found</label>
+        <label htmlFor="lostFound"><FormattedMessage id="lostFound"/></label>
         <AddNoticeInGoodHands
           name="inGoodHands"
           type="radio"
@@ -78,7 +81,7 @@ export const AddNoticeStepOne = ({
           checked={selectedOption === 'inGoodHands'}
           onChange={handleOptionChange}
         ></AddNoticeInGoodHands>
-        <label htmlFor="inGoodHands">in good hands</label>
+        <label htmlFor="inGoodHands"><FormattedMessage id="goodHands"/></label>
         <AddNoticeSell
           name="sell"
           type="radio"
@@ -87,11 +90,11 @@ export const AddNoticeStepOne = ({
           checked={selectedOption === 'sell'}
           onChange={handleOptionChange}
         ></AddNoticeSell>
-        <label htmlFor="sell">sell</label>
+        <label htmlFor="sell"><FormattedMessage id="sell"/></label>
       </AddNoticeStepOneTopBtnsWrapper>
 
       <AddNoticeStepOneLabel htmlFor="title">
-        Tittle of ad
+      <FormattedMessage id="titleAd"/>
       </AddNoticeStepOneLabel>
       <AddNoticeStepOneInputWrapper>
         <AddNoticeStepOneInput
@@ -99,26 +102,26 @@ export const AddNoticeStepOne = ({
           id="title"
           onChange={formik.handleChange}
           value={formik.values.title}
-          placeholder="Type name pet"
+          placeholder={formatMessage({ id: 'typeNamePet' })}
           onBlur={() => handleBlur('title')}
         />
         <BoxWarning>{formik.touched.title && formik.errors.title}</BoxWarning>
       </AddNoticeStepOneInputWrapper>
-      <AddNoticeStepOneLabel htmlFor="name">Name pet</AddNoticeStepOneLabel>
+      <AddNoticeStepOneLabel htmlFor="name"><FormattedMessage id="namePet"/></AddNoticeStepOneLabel>
       <AddNoticeStepOneInputWrapper>
         <AddNoticeStepOneInput
           name="name"
           id="name"
           onChange={formik.handleChange}
           value={formik.values.name}
-          placeholder="Type name pet"
+          placeholder={formatMessage({ id: 'typeNamePet' })}
           onBlur={() => handleBlur('name')}
         />
         <BoxWarning>{formik.touched.name && formik.errors.name}</BoxWarning>
       </AddNoticeStepOneInputWrapper>
 
       <AddNoticeStepOneLabel htmlFor="dateOfBirth">
-        Date of birth
+        <FormattedMessage id="dateBirth"/>
       </AddNoticeStepOneLabel>
       <AddNoticeStepOneInput
         type="date"
@@ -131,7 +134,7 @@ export const AddNoticeStepOne = ({
       <BoxWarning>
         {formik.touched.dateOfBirth && formik.errors.dateOfBirth}
       </BoxWarning>
-      <AddNoticeStepOneLabel htmlFor="breed">Breed</AddNoticeStepOneLabel>
+      <AddNoticeStepOneLabel htmlFor="breed"><FormattedMessage id="breed"/></AddNoticeStepOneLabel>
       <AddNoticeStepOneSelectWrapper>
         <AddNoticeStepOneSelect
           name="breed"
@@ -151,10 +154,10 @@ export const AddNoticeStepOne = ({
 
       <AddNoticeStepOneButtonNextCancelWrapper>
         <AddNoticeStepOneButtonNext type="submit">
-          Next
+          <FormattedMessage id="next"/>
         </AddNoticeStepOneButtonNext>
         <AddNoticeStepOneButtonCancel type="button" onClick={() => cancel()}>
-          Cancel
+          <FormattedMessage id="cancel"/>
         </AddNoticeStepOneButtonCancel>
       </AddNoticeStepOneButtonNextCancelWrapper>
     </form>

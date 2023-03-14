@@ -8,7 +8,6 @@
   "readMore": "Переглянути більше",
   "titleAd": "Назва оголошення",
 
-
   "login": "Увійти",
   "registration": "Реєстрація",
   "registerBtn": "Реєстрація",
@@ -54,11 +53,17 @@
   "birthdayPet": "День народження",
   "sex": "Стать",
   "contact": "Контакти",
-  
+  "male": "Чоловіча",
+  "female": "Жіноча",
+  "location": "Розташування",
+  "typeLocation": "Місце розташування",
+  "loadPetImage": "Завантажте зображення тварини",  
   
   "infoAboutPet": "Улюбленців поки не має",
   "addPhotoComment": "Додайте фото та кілька коментарів",
   "typeComments": "Напишіть коментар",
+  "typePrice": "Тип ціни",
+  "typeNamePet": "Введіть назву",
 
   "time": "Час",
   "adress": "Адреса",
