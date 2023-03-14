@@ -1,33 +1,53 @@
-import styled from "styled-components";
-import { media } from "components/Layout/Layout.styled";
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+import { media } from 'components/Layout/Layout.styled';
+import { theme } from '../../utils/theme';
 
 export const Overlay = styled.div`
-position: fixed;
-  display: flex;
-  justify-Content: center;
+  position: fixed;
+  justify-content: center;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
-  background-color: #FDF7F2;
-  z-index: 10;
-  overflow-Y: auto;
-`
+  background-color: #fdf7f2;
+  z-index: 20;
+  overflow: auto;
+`;
 export const ModalWindow = styled.div`
-background-color: #FDF7F2;
-position: absolute;
-padding: 30px;
-z-index: 10;
-/* width: 35%; */
-/* border-Radius: .5em; */
-/* display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-background-color: #FDF7F2; */
-`
+  background-color: #fdf7f2;
+  position: absolute;
+  padding: 30px;
+  z-index: 20;
+`;
 
-export const StyledModalBurger = styled.button`
+export const ModalLogo = styled.span`
+  color: ${theme.colors.titleText};
+  font-family: ${theme.fonts.heading};
+  font-style: normal;
+  font-weight: ${theme.fontWeights.bold};
+  letter-spacing: 0.07em;
+  z-index: 21;
+  position: absolute;
+  ${media.mobile} {
+    font-size: 28px;
+    line-height: 42px;
+    top: 16px;
+    left: 20px;
+  }
+  ${media.tablet} {
+    font-size: 32px;
+    line-height: 48px;
+    top: 24px;
+    left: 32px;
+  }
+`;
+
+export const LogoAccent = styled.span`
+  color: ${theme.colors.primary};
+`;
+
+export const ModalBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,76 +56,18 @@ export const StyledModalBurger = styled.button`
   height: 40px;
   background-color: transparent;
   border: none;
-  position: relative;
-  z-index: 21;
-  ${media.tablet} {
-    order: +1;
+  position: absolute;
+  z-index: 30;
+  ${media.mobile} {
+    top: 16px;
+    right: 20px;
   }
-  ${media.desktop} {
-    display: none;
+  ${media.tablet} {
+    top: 24px;
+    right: 32px;
   }
 `;
 
-// const MODAL_STYLES = {
-//   position: "absolute",
-//   backgroundColor: "#FFF",
-//   padding: "15px",
-//   zIndex: "1000",
-//   width: "35%",
-//   borderRadius: ".5em"
-// };
-
-// const OVERLAY_STYLE = {
-//   position: "fixed",
-//   display: "flex",
-//   justifyContent: "center",
-//   top: "0",
-//   left: "0",
-//   width: "100%",
-//   height: "100%",
-//   backgroundColor: "rgba(0,0,0, .8)",
-//   zIndex: "1000",
-//   overflowY: "auto"
-// };
-
-// export const StyledModalBurger = styled.button`
-// position: absolute;
-// right: 10px;
-// top: 10px;
-// z-index: 1001;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-around;
-//   width: 2rem;
-//   height: 2rem;
-//   background: transparent;
-//   border: none;
-//   cursor: pointer;
-//   padding: 0;
-//   margin-left: ${({ open }) => open && 'auto'};
-//   @media (min-width: 1280px) {
-//     display: none;
-//   }
-//   &:focus {
-//     outline: none;
-//   }
-//   div {
-//     width: 2rem;
-//     height: 0.25rem;
-//     background: ${({ open }) => (open ? '#0D0C1D' : '#111111')};
-//     border-radius: 10px;
-//     transition: all 0.3s linear;
-//     position: relative;
-//     transform-origin: 1px;
-//     :first-child {
-//       transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0)')};
-//     }
-//     :nth-child(2) {
-//       opacity: ${({ open }) => (open ? '0' : '1')};
-//       transform: ${({ open }) => (open ? 'translateX(20px)' : 'translateX(0)')};
-//     }
-//     :nth-child(3) {
-//       transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
-//     }
-//   }
-// `;
+export const HomePageLink = styled(NavLink)`
+  color: inherit;
+`;
