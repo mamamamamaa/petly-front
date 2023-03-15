@@ -15,6 +15,7 @@ import {
   BoxInsert,
 } from './ListOurTeams.styled';
 import ListTeam from '../ListTeam/ListTeam';
+import { useFriends } from '../../../redux/hooks';
 // import teamData from '../ListOurTeams/teamData.json';
 
 const { selectTeam } = friendsSelectors;
@@ -22,12 +23,14 @@ const { selectTeam } = friendsSelectors;
 function ListOurTeams() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchTeam());
-  }, [dispatch]);
-
   const team = useSelector(selectTeam);
   const sortTeam = [...team].sort((e1, e2) => e1.id - e2.id);
+
+  useEffect(() => {
+    if (team.length === 0) {
+      dispatch(fetchTeam());
+    }
+  }, [dispatch]);
 
   return (
     <Container>
