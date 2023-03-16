@@ -34,7 +34,7 @@ const addOwnPetSchema = object().shape({
 
 export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
   const [isFileUpload, setIsFileUpload] = useState(
-    data.pictureURL ? true : false
+    data.photoUrl.length > 0 ? true : false
   );
   const handleBack = () => {
     const newValue = {
@@ -59,6 +59,7 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
       };
 
       next(newValue, true);
+      localStorage.setItem('preview', '');
       actions.resetForm();
       onClose();
     },
@@ -68,6 +69,9 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
     // restore the preview images when the component mounts
     restorePreview(setPreview);
   }, []);
+  useEffect(() => {
+    preview.length === 0 && setIsFileUpload(false);
+  }, [preview.length]);
   return (
     <Formik>
       <Container>
@@ -87,7 +91,10 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
                 id="photoUrl"
                 name="photoUrl"
                 accept="image/*"
-                onChange={event => handleImageLoad(setPreview, formik, event)}
+                onChange={event => {
+                  handleImageLoad(setPreview, formik, event);
+                  setIsFileUpload(true);
+                }}
                 value=""
                 multiple
               />
