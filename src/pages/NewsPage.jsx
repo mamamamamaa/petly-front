@@ -96,10 +96,10 @@ export default function NewsPage() {
     <Container>
       <MainHeader><FormattedMessage id="news"/></MainHeader>
       <SearchBar onSubmit={handlerFormSubmit} />
-      {isLoading && <h2>... is loading</h2>}
+      {isLoading && <h2>... <FormattedMessage id="loading"/></h2>}
       {currentNews && currentNews.length > 0 && <ListNews news={currentNews} />}
       {(!currentNews || currentNews.length === 0) && (
-        <NothingFound>Nothing found for this query</NothingFound>
+        <NothingFound><FormattedMessage id="nothingForQuery"/></NothingFound>
       )}
       <BoxPagination>
         {pageNews === 1 && <Plug></Plug>}

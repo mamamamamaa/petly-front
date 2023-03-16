@@ -2,6 +2,8 @@
   "news": "News",
   "findPet": "Find pet",
   "ourFriends": "Our friends",
+  "loading": "is loading",
+  "nothingForQuery":"Nothing found for this query",
 
   "homePageMsg": "Take good care of {break} your small pets",
   "search": "Search",

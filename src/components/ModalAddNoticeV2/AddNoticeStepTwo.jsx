@@ -34,6 +34,8 @@ import {
 import { BoxWarning } from './ModalAddNotice.styled';
 import { AddNoticeStepTwoSchema } from './AddNoticeSchema';
 import { AddNoticeStepTwoDragDropContext } from './AddNoticeStepTwoDragDropContext';
+import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 export const AddNoticeStepTwo = ({
   data,
   next,
@@ -44,6 +46,7 @@ export const AddNoticeStepTwo = ({
   isDisabled,
   setIsDisabled,
 }) => {
+  const { formatMessage } = useIntl();
   const handleBack = () => {
     const newValue = {
       ...data,
@@ -156,8 +159,8 @@ export const AddNoticeStepTwo = ({
 
   return (
     <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
-      <AddNoticeStepTwoTitle>Add pet</AddNoticeStepTwoTitle>
-      <AddNoticeStepTwoGenderText>The sex:</AddNoticeStepTwoGenderText>
+      <AddNoticeStepTwoTitle><FormattedMessage id="addPet"/></AddNoticeStepTwoTitle>
+      <AddNoticeStepTwoGenderText><FormattedMessage id="sex"/>:</AddNoticeStepTwoGenderText>
       <AddNoticeStepTwoGenderWrapper
         role="group"
         aria-labelledby="gender-group"
@@ -176,7 +179,7 @@ export const AddNoticeStepTwo = ({
             gender={formik.values.gender}
             isDisabled={isDisabled}
           >
-            Male
+            <FormattedMessage id="male"/>
           </AddNoticeStepTwoMaleSpan>
         </AddNoticeStepTwoMaleWrapper>
         <AddNoticeStepTwoFemaleWrapper htmlFor="female">
@@ -193,19 +196,19 @@ export const AddNoticeStepTwo = ({
             gender={formik.values.gender}
             isDisabled={isDisabled}
           >
-            Female
+            <FormattedMessage id="female"/>
           </AddNoticeStepTwoFemaleSpan>
         </AddNoticeStepTwoFemaleWrapper>
         <BoxWarning>{formik.errors.gender}</BoxWarning>
       </AddNoticeStepTwoGenderWrapper>
       <AddNoticeStepTwoLabelLocation htmlFor="location">
-        Location:
+        <FormattedMessage id="location"/>:
       </AddNoticeStepTwoLabelLocation>
       <AddNoticeStepTwoInputLocationWrapper>
         <AddNoticeStepTwoInputLocation
           name="location"
-          id="location"
-          placeholder="Type location"
+          id="location"          
+          placeholder={formatMessage({ id: 'typeLocation' })}
           onChange={formik.handleChange}
           value={formik.values.location}
           onBlur={() => handleBlur('location')}
@@ -218,14 +221,14 @@ export const AddNoticeStepTwo = ({
         htmlFor="price"
         selectedOption={selectedOption}
       >
-        Price:
+        <FormattedMessage id="price"/>:
       </AddNoticeStepTwoLabelPrice>
       <AddNoticeStepTwoInputPriceWrapper selectedOption={selectedOption}>
         <AddNoticeStepTwoInputPrice
           selectedOption={selectedOption}
           name="price"
           id="price"
-          placeholder="Type price"
+          placeholder={formatMessage({ id: 'typePrice' })}
           onChange={formik.handleChange}
           value={formik.values.price}
           onBlur={() => handleBlur('price')}
@@ -234,7 +237,7 @@ export const AddNoticeStepTwo = ({
         <BoxWarning>{formik.touched.price && formik.errors.price}</BoxWarning>
       </AddNoticeStepTwoInputPriceWrapper>
       <AddNoticeStepTwoLabelPictureURL htmlFor="photoUrl">
-        Load the pet’s image
+        <FormattedMessage id="loadPetImage"/>
       </AddNoticeStepTwoLabelPictureURL>
       <AddNoticeStepTwoLoadImageInputWarningWrapper>
         <AddNoticeStepTwoLoadImageInputWrapper
@@ -256,13 +259,13 @@ export const AddNoticeStepTwo = ({
       </AddNoticeStepTwoLoadImageInputWarningWrapper>
       <AddNoticeStepTwoDragDropContext {...{ formik, preview, setPreview }} />
       <AddNoticeStepTwoLabelCommentArea htmlFor="commentsArea">
-        Comments
+        <FormattedMessage id="сomment"/>
       </AddNoticeStepTwoLabelCommentArea>
       <AddNoticeStepTwoCommentAreaWrapper>
         <AddNoticeStepTwoCommentArea
           id="commentsArea"
           name="commentsArea"
-          placeholder="Type comments"
+          placeholder={formatMessage({ id: 'typeComments' })}
           onChange={handleCommentsChange}
           value={formik.values.comments}
           onBlur={() => handleBlur('comments')}
@@ -272,7 +275,7 @@ export const AddNoticeStepTwo = ({
         </BoxWarning>
       </AddNoticeStepTwoCommentAreaWrapper>
       <AddNoticeStepTwoLabelComments htmlFor="comments">
-        Comments
+        <FormattedMessage id="сomment"/>
       </AddNoticeStepTwoLabelComments>
       <AddNoticeStepTwoCommentWrapper>
         <AddNoticeStepTwoInputComments
@@ -290,10 +293,10 @@ export const AddNoticeStepTwo = ({
       </AddNoticeStepTwoCommentWrapper>
       <AddNoticeStepTwoButtonBackDoneWrapper>
         <AddNoticeStepOneButtonDone type="submit">
-          Done
+          <FormattedMessage id="done"/>
         </AddNoticeStepOneButtonDone>
         <AddNoticeStepOneButtonBack type="button" onClick={handleBack}>
-          Back
+          <FormattedMessage id="back"/>
         </AddNoticeStepOneButtonBack>
       </AddNoticeStepTwoButtonBackDoneWrapper>
     </form>
