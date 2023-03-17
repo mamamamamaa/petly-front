@@ -39,7 +39,7 @@ const NoticesPage = () => {
   const onButtonClick = () => {
     !isLoggedIn
       ? toast.error(
-          'Dear friend, please sign up or log in to add your pet to notice'
+          <FormattedMessage id="toastAddNoticeButton"/>
         )
       : setIsModalOpen(true);
   };

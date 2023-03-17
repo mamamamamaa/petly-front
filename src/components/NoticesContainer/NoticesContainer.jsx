@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { setQuery } from '../../redux/notices/noticeSlice';
 import { search } from '../../redux/notices/operations';
 import { NothingFound } from '../../pages/NewsPage.styled';
+import { FormattedMessage } from 'react-intl';
 
 const LIMIT = 20;
 
@@ -77,7 +78,7 @@ export const NoticesContainer = ({ type }) => {
           <NothingFound>Nothing found for this query</NothingFound>
         )}
         {!query && items.length === 0 && !isLoading && (
-          <NothingFound>We have no notes for this category</NothingFound>
+          <NothingFound><FormattedMessage id="noNotes"/></NothingFound>
         )}
         {!nothingFound && items.length > 0 && (
           <NoticesCategoriesList>

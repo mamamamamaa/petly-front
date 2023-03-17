@@ -42,6 +42,7 @@
   "goodHands": "in good hands",
   "favorite": "favorite ads",
   "myAds": "my ads",
+  "noNotes":"We have no notes for this category",
 
   "namePet": "Name pet",
   "dateBirth": "Date of birth",  
@@ -76,5 +77,10 @@
   "toastAddNoticeButton" : "Dear friend, please sign up or log in to add your pet to notice",
   "toastLoginSignUp": "You should login/sign up your account!",
   "toastRemoveFavorite": "Removed from favorite!",
-  "toastAddFavorite": "Successfully added to favorite!"
+  "toastAddFavorite": "Successfully added to favorite!",
+  "toastVerifyEmail": "Verify your email!",
+  "toastSomethingWrong": "Sorry, something going wrong... Please try again.",
+  "toastMakeSureIsNotRegister": "Make sure your email isn`t registered yet. And try again.",
+  "toastLoginError": "Please check if email and password are correct or sign up",
+  "toastReSent": "We re-sent the verification email to your email"
 }
