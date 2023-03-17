@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import friendsSelectors from '../../../redux/friends/selectors';
 import { fetchFriends } from '../../../redux/friends/operations';
-import Spinner from '../../../components/Spinner/Spinner';
+import { Spinner } from '../../Spinner/Spinner';
 import Friend from '../Friend/Friend';
 import { FriendsCard } from '../../../utils';
 import { Modal } from '../../Modal/Modal';

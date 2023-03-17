@@ -11,7 +11,7 @@ import {
 } from './Friend.styled';
 
 import defaultImage from '../images/defaultImage.jpg';
-import HoursModal from '../Friend/HoursModal';
+import HoursModal from './HoursModal';
 
 const Friend = ({ friend }) => {
   const [showModal, setShowModal] = useState(false);

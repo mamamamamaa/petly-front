@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { useAuth } from 'redux/hooks';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/operations';
-import Spinner from '../Spinner';
+import { Spinner } from '../Spinner/Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import {
   Container,
@@ -43,7 +43,7 @@ const loginSchema = yup.object().shape({
 
 const { REACT_APP_SERVER_HOST } = process.env;
 
-const LoginForm = () => {
+export const LoginForm = () => {
   const [showPass, setShowPass] = useState(false);
   const isLoading = useAuth().isRefreshing;
   const dispatch = useDispatch();
@@ -133,5 +133,3 @@ const LoginForm = () => {
     </>
   );
 };
-
-export default LoginForm;

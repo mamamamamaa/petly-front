@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
 import { object, string, ref } from 'yup';
-import Spinner from '../Spinner';
+import { Spinner } from '../Spinner/Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import { useAuth } from '../../redux/hooks';
 import { register } from '../../redux/auth/operations';
@@ -55,7 +55,7 @@ const registerSchema = object().shape({
 
 const { REACT_APP_SERVER_HOST } = process.env;
 
-const RegisterForm = () => {
+export const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
@@ -262,5 +262,3 @@ const RegisterForm = () => {
     </>
   );
 };
-
-export default RegisterForm;

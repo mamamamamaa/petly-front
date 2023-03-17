@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-// import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { BsChevronLeft } from 'react-icons/bs';
 import { BsChevronRight } from 'react-icons/bs';
 import { BsChevronDoubleLeft } from 'react-icons/bs';
-// =======
 import { useNews } from '../redux/hooks';
 import { getNews } from '../redux/news/operations';
 import SearchBar from '../utils/searchBar/searchBar';
@@ -41,7 +39,6 @@ export default function NewsPage() {
     }
   }, [error]);
 
-  // ========= take VALUE =============
   const handlerFormSubmit = values => {
     if (values.query.trim() === '') {
       setQuery('pets');
@@ -57,7 +54,6 @@ export default function NewsPage() {
     }
   };
 
-  // ========= PAGINATION =============
   const totalPage = getDataNews.currentNews.totalResults;
 
   useEffect(() => {
