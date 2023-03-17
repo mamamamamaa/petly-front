@@ -6,7 +6,7 @@ import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import { useAuth } from '../../redux/hooks';
 import { register } from '../../redux/auth/operations';
-import { GoogleAuthLink } from 'components/LoginForm/LoginForm.styled';
+import { GoogleAuth } from 'components/LoginForm/LoginForm.styled';
 import {
   Form1,
   FormContainer,
@@ -34,10 +34,7 @@ const registerSchema = object().shape({
   email: string()
     .email('Invalid email address')
     .matches(
-      // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
-      // /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      // /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
       'Invalid email'
     )
     .required('Email is required'),
@@ -56,12 +53,13 @@ const registerSchema = object().shape({
     .required('City is required'),
 });
 
+const { REACT_APP_SERVER_HOST } = process.env;
+
 const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const isLoading = useAuth().isRefreshing;
-  // const [error, setError] = useState(false);
   const dispatch = useDispatch();
 
   const showForm = () => {
@@ -123,9 +121,6 @@ const RegisterForm = () => {
           <Formik validationSchema={registerSchema}>
             <Form1 onSubmit={formik.handleSubmit} autoComplete="off">
               <Title>Registration</Title>
-              <GoogleAuthLink to="http://localhost:3001/api/auth/google">
-                Login with Google
-              </GoogleAuthLink>
               {isShown && (
                 <>
                   <div>
@@ -252,6 +247,9 @@ const RegisterForm = () => {
                   Back
                 </BackButton>
               )}
+              <GoogleAuth href={`${REACT_APP_SERVER_HOST}/api/auth/google`}>
+                Login with Google
+              </GoogleAuth>
               <Text>
                 <span>Already have an account?</span>{' '}
                 <StyledLink to="/login">Login</StyledLink>

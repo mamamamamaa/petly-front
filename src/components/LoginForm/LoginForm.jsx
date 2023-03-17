@@ -3,7 +3,6 @@ import { Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 import { useAuth } from 'redux/hooks';
 import { useDispatch } from 'react-redux';
-// import toast from 'react-hot-toast';
 import { login } from '../../redux/auth/operations';
 import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
@@ -21,12 +20,11 @@ import {
   StyledLink,
   ErrorText,
   Background,
-  GoogleAuthLink,
+  GoogleAuth,
 } from './LoginForm.styled';
 
 const securityEmail =
   /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
-//   /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 const securityPassword = /^\S*$/;
 
 const loginSchema = yup.object().shape({
@@ -43,14 +41,7 @@ const loginSchema = yup.object().shape({
     .required('Password is required'),
 });
 
-// const FormError = ({ name }) => {
-//     return (
-//         <ErrorMessage
-//             name={name}
-//             render={message => <ErrorText>{message}</ErrorText>}
-//         />
-//     )
-// }
+const { REACT_APP_SERVER_HOST } = process.env;
 
 const LoginForm = () => {
   const [showPass, setShowPass] = useState(false);
@@ -89,9 +80,6 @@ const LoginForm = () => {
           >
             <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
               <Title>Login</Title>
-              <GoogleAuthLink to="http://localhost:3001/api/auth/google">
-                Login with Google
-              </GoogleAuthLink>
               <FieldLogin>
                 <label htmlFor="email">
                   <Input
@@ -106,7 +94,6 @@ const LoginForm = () => {
                   {formik.errors.email || formik.touched.email ? (
                     <ErrorText>{formik.errors.email}</ErrorText>
                   ) : null}
-                  {/* <FormError name="email" /> */}
                 </label>
               </FieldLogin>
               <FieldPass>
@@ -128,10 +115,12 @@ const LoginForm = () => {
                   {formik.errors.password && formik.touched.password ? (
                     <ErrorText>{formik.errors.password}</ErrorText>
                   ) : null}
-                  {/* <FormError name="password" /> */}
                 </label>
               </FieldPass>
               <Button type="submit">Login</Button>
+              <GoogleAuth href={`${REACT_APP_SERVER_HOST}/api/auth/google`}>
+                Login with Google
+              </GoogleAuth>
               <Text>
                 <span>Don't have an account?</span>
                 <StyledLink to="/register">Register</StyledLink>

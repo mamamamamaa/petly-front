@@ -1,12 +1,82 @@
-import styled from "@emotion/styled";
-import { NavLink} from "react-router-dom";
-import { media } from "../Layout/Layout.styled";
-import { theme } from "../../utils/theme.jsx";
-import { Field, Form } from "formik";
+import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
+import { media } from '../Layout/Layout.styled';
+import { theme } from '../../utils/theme.jsx';
+import { Field, Form } from 'formik';
 import mobileBackground from '../../images/mobile/log-registr-mobile.png';
 import tabletBackground from '../../images/tablet/log-registr-tablet.png';
 import desktopBackground from '../../images/desktop/log-registr-desktop.png';
 
+export const GoogleAuth = styled.a`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 280px;
+  height: 44px;
+  padding: 10px 28px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 40px;
+  color: ${theme.colors.primary};
+  background-color: ${theme.colors.accentText};
+  cursor: pointer;
+  font-family: 'Manrope';
+  font-weight: ${theme.fontWeights.normal};
+  font-size: 20px;
+  line-height: 1.35px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+  border: 1px solid ${theme.colors.primary};
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  :hover,
+  :focus {
+    /* color: ${theme.colors.black};
+    border: 2px solid ${theme.colors.primary};
+    background-color: ${theme.colors.accentText}; */
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
+  }
+  :disabled {
+    opacity: 0.5;
+    cursor: auto;
+    transform: none;
+    transition: none;
+  }
+  :disabled:before {
+    transform: none;
+    transition: none;
+  }
+  ${media.tabletAndDesktop} {
+    width: 458px;
+  }
+  ${media.desktop} {
+    height: 48px;
+  }
+`;
 
 export const Container = styled.div`
   padding-top: 42px;
@@ -183,7 +253,7 @@ export const Button = styled.button`
     transform: none;
     transition: none;
   }
-  ${media.tabletAndDesktop}  {
+  ${media.tabletAndDesktop} {
     width: 458px;
   }
   ${media.desktop} {
@@ -217,7 +287,7 @@ export const StyledLink = styled(NavLink)`
 `;
 
 export const ErrorText = styled.div`
-position: absolute;
+  position: absolute;
   display: flex;
   align-items: center;
   margin-top: 8px;
@@ -277,75 +347,5 @@ export const Background = styled.div`
   }
   ${media.desktop} {
     background-image: url(${desktopBackground});
-  }
-`;
-export const GoogleAuthLink = styled(NavLink)`
- box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  width: 280px;
-  height: 44px;
-  padding: 10px 28px;
-  margin-bottom: 40px;
-  border: none;
-  border-radius: 40px;
-  color: ${theme.colors.accentText};
-  background-color: ${theme.colors.primary};
-  cursor: pointer;
-  font-family: 'Manrope';
-  font-weight: ${theme.fontWeights.normal};
-  font-size: 20px;
-  line-height: 1.35px;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.04em;
-
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  :hover,
-  :focus {
-    /* color: ${theme.colors.black};
-    border: 2px solid ${theme.colors.primary};
-    background-color: ${theme.colors.accentText}; */
-    transform: scale(1.05);
-    transition: transform 0.5s;
-  }
-  :hover:before {
-    left: 100%;
-  }
-  :before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent,
-      rgba(255, 255, 255, 0.6),
-      transparent
-    );
-    transition: all 650ms;
-  }
-  :disabled {
-    opacity: 0.5;
-    cursor: auto;
-    transform: none;
-    transition: none;
-  }
-  :disabled:before {
-    transform: none;
-    transition: none;
-  }
-  ${media.tabletAndDesktop}  {
-    width: 458px;
-  }
-  ${media.desktop} {
-    height: 48px;
   }
 `;
