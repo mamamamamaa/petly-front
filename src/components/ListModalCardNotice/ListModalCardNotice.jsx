@@ -30,7 +30,7 @@ import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
 import { ListModalCardNoticeDragDropContext } from './ListModalCardNoticeDragDropContext';
 
-export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
+export const ListModalCardNotice = ({ date, setFav, fav }) => {
   const {
     _id,
     photoUrl,
