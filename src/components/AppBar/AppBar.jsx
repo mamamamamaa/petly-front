@@ -18,7 +18,8 @@ import {
   HomePageLink,
   Btn,
   ImgBtn,
-  Lang
+  Lang,
+  Line
 } from './AppBar.styled';
 import { ContainerHeader } from '../Layout/Layout.styled';
 import UKR from '../../images/UKR.png';
@@ -65,7 +66,8 @@ const AppBar = ({ handleLocaleChange }) => {
           </MenuWrpr>
           <Lang>
             <Btn onClick={() => handleLocaleChange('en')}>
-              <ImgBtn src={GB} width="25" height ="25" alt="Great Britan flag"/></Btn>
+              <ImgBtn src={GB} width="25" height="25" alt="Great Britan flag" />
+              <Line/></Btn>
             <Btn onClick={() => handleLocaleChange('uk')}>
               <ImgBtn src={UKR} width="25" height ="25" alt="flag Ukraine"/></Btn>            
           </Lang>

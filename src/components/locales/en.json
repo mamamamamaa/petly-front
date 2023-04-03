@@ -82,5 +82,7 @@
   "toastSomethingWrong": "Sorry, something going wrong... Please try again.",
   "toastMakeSureIsNotRegister": "Make sure your email isn`t registered yet. And try again.",
   "toastLoginError": "Please check if email and password are correct or sign up",
-  "toastReSent": "We re-sent the verification email to your email"
+  "toastReSent": "We re-sent the verification email to your email",
+
+  "leaveAccount": "Are you ready to leave your personal account?"
 }
