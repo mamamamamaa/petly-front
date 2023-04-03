@@ -58,7 +58,6 @@ export const AddNoticeStepTwoMale = styled.img`
   height: 40px;
   margin-right: 40px;
   margin-bottom: 14px;
-  }
 `;
 export const AddNoticeStepTwoMaleSpan = styled.span`
   display: block;

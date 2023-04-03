@@ -5,7 +5,6 @@ import {
   BsGithub,
 } from 'react-icons/bs';
 import DefaultPhoto from '../images/defaultPhoto.png';
-import foto from '../images/Andrey.png';
 
 import {
   Card,

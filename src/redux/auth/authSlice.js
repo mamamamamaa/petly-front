@@ -6,9 +6,18 @@ import {
   current,
   refresh,
   reverify,
+  googleAuth,
 } from './operations';
 
-const extraActions = [login, logout, register, current, refresh, reverify];
+const extraActions = [
+  login,
+  logout,
+  register,
+  current,
+  refresh,
+  reverify,
+  googleAuth,
+];
 
 const initialState = {
   user: { name: null, email: null, favorite: [], id: null },
@@ -98,15 +107,31 @@ const authSlice = createSlice({
         state.user = { name: null, email: null, favorite: [], id: null };
         state.token = null;
         state.isLoggedIn = false;
-        // state.isLoading = false;
         state.isRefreshing = false;
       })
       .addCase(logout.pending, (state, action) => {
-        // state.isLoading = true;
         state.isRefreshing = true;
       })
       .addCase(logout.rejected, (state, action) => {
-        // state.isLoading = false;
+        state.isRefreshing = false;
+        state.error = action.payload;
+      })
+      .addCase(googleAuth.fulfilled, (state, action) => {
+        state.user.email = action.payload.email;
+        state.user.name = action.payload.name;
+        state.user.favorite = action.payload.favorite;
+        state.user.id = action.payload.id;
+        state.accessToken = action.payload.accessToken;
+        state.expiresIn = action.payload.expiresIn;
+        state.refreshToken = action.payload.refreshToken;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+        state.verifyPart = true;
+      })
+      .addCase(googleAuth.pending, (state, action) => {
+        state.isRefreshing = true;
+      })
+      .addCase(googleAuth.rejected, (state, action) => {
         state.isRefreshing = false;
         state.error = action.payload;
       })

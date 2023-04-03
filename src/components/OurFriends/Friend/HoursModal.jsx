@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { WorkingModal, Day, DayOfWeek } from '../Friend/Friend.styled';
+import { WorkingModal, Day, DayOfWeek } from './Friend.styled';
 import { theme } from '../../../utils';
 
 const daysOfWeek = {

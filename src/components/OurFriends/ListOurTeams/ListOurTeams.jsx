@@ -1,3 +1,8 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import friendsSelectors from '../../../redux/friends/selectors';
+import { fetchTeam } from '../../../redux/friends/operations';
 import {
   Container,
   Wraper,
@@ -10,10 +15,23 @@ import {
   BoxInsert,
 } from './ListOurTeams.styled';
 import ListTeam from '../ListTeam/ListTeam';
-import teamData from '../ListOurTeams/teamData.json';
+import { useFriends } from '../../../redux/hooks';
+// import teamData from '../ListOurTeams/teamData.json';
 
-// ======== second way for news ========= down
+const { selectTeam } = friendsSelectors;
+
 function ListOurTeams() {
+  const dispatch = useDispatch();
+
+  const team = useSelector(selectTeam);
+  const sortTeam = [...team].sort((e1, e2) => e1.id - e2.id);
+
+  useEffect(() => {
+    if (team.length === 0) {
+      dispatch(fetchTeam());
+    }
+  }, [dispatch]);
+
   return (
     <Container>
       <Wraper>
@@ -36,7 +54,7 @@ function ListOurTeams() {
           allowfullscreen
         ></Iframe>
       </BoxVideo>
-      <ListTeam team={teamData} />
+      <ListTeam team={sortTeam} />
       <BoxInsert></BoxInsert>
     </Container>
   );

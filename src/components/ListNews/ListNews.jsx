@@ -12,8 +12,6 @@ import {
 import NewsNewDate from '../../utils/NewsNewDate/NewsNewDate';
 
 function ListNews({ news }) {
-  // console.log(news);
-
   return (
     <Ul>
       {news.map(item => (

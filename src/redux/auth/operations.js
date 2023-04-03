@@ -47,9 +47,11 @@ export const login = createAsyncThunk(
       setAuthHeader(res.data.accessToken);
       return res.data;
     } catch (e) {
+
       toast.error(
         <FormattedMessage id="toastLoginError"/>
         );
+     
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -120,3 +122,18 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(e.message);
   }
 });
+
+export const googleAuth = createAsyncThunk(
+  'auth/google',
+  async (userData, thunkAPI) => {
+    try {
+      setAuthHeader(userData.accessToken);
+      return userData;
+    } catch (e) {
+      toast.error(
+        'Please, try another way of registering and logining, not by google authorization'
+      );
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

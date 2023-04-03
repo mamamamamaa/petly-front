@@ -1,4 +1,4 @@
-import LoginForm from '../components/LoginForm';
+import { LoginForm } from '../components/LoginForm/LoginForm';
 import { Toaster } from 'react-hot-toast';
 
 const LoginPage = () => {

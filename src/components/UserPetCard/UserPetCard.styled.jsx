@@ -7,9 +7,11 @@ export const PetTextWrapper = styled.div`
   ${media.tablet} {
     display: block;
     width: 471px;    
+    margin-left: 20px;
   }
   ${media.desktop} {
     width: 580px;    
+    margin-left: 20px;
   }
 `;
 export const PetArticle = styled.article`

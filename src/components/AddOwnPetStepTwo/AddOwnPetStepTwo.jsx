@@ -1,6 +1,6 @@
 import { Field, Form, Formik, useFormik } from 'formik';
 import { object, string, mixed } from 'yup';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GrAdd } from 'react-icons/gr';
 import { FiCheck } from 'react-icons/fi';
 
@@ -15,13 +15,19 @@ import {
   BoxButton,
   ButtonDone,
   ButtonBack,
+  BoxLabel,
 } from './AddOwnPetStepTwo.styled';
 import css from './ModalAddsPet.module.css';
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
+import { AddNoticeStepTwoDragDropContext } from 'components/ModalAddNoticeV2/AddNoticeStepTwoDragDropContext';
+import {
+  handleImageLoad,
+  restorePreview,
+} from 'components/ModalAddNoticeV2/handleImageLoadRestorePreview';
 
 const addOwnPetSchema = object().shape({
-  pictureURL: mixed().required('Required'),
+  photoUrl: mixed().required('Required'),
   comments: string()
     .min(8, 'Must be 8 or more letter')
     .max(120, 'Must be 120 or less letter')
@@ -31,7 +37,10 @@ const addOwnPetSchema = object().shape({
 
 export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
   const { formatMessage } = useIntl();
-  const [isFileUpload, setIsFileUpload] = useState(data.pictureURL? true : false);
+  const [isFileUpload, setIsFileUpload] = useState(
+    data.photoUrl.length > 0 ? true : false
+  );
+
   const handleBack = () => {
     const newValue = {
       ...data,
@@ -42,16 +51,12 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
 
   const formik = useFormik({
     initialValues: {
-      pictureURL: data.pictureURL,
+      photoUrl: data.photoUrl,
       comments: data.comments,
     },
     validationSchema: addOwnPetSchema,
     onSubmit: (values, actions) => {
-      actions.setFieldValue(
-        'pictureURL',
-        values.pictureURL,
-        values.pictureURL.name
-      );
+      actions.setFieldValue('photoUrl', values.photoUrl, values.photoUrl.name);
       actions.validateForm();
       const newValue = {
         ...data,
@@ -59,39 +64,54 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
       };
 
       next(newValue, true);
+      localStorage.setItem('preview', '');
       actions.resetForm();
       onClose();
     },
   });
+  const [preview, setPreview] = useState([]); // LOAD PREVIEW IMAGE
+  useEffect(() => {
+    // restore the preview images when the component mounts
+    restorePreview(setPreview);
+  }, []);
+  useEffect(() => {
+    preview.length === 0 && setIsFileUpload(false);
+  }, [preview.length]);
   return (
     <Formik>
-    <Container>
-      <Title><FormattedMessage id="addPhotoComment"/></Title>
-      <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
-        <Box>
-          <label>
-            <BoxImg>
-              { isFileUpload && <FiCheck color="#F59256" width="150" heigh="150"/>}
-              { !isFileUpload && <GrAdd className={css.iconForm} />}
-            </BoxImg>
-            <Field
-              className={css.inputFormImg}
-              type="file"
-              name="pictureURL"
-              accept="image/*"
-              onChange={e =>{
-                formik.setFieldValue(
-                  'pictureURL',
-                  e.currentTarget.files[0],
-                  e.currentTarget.files[0].name
-                );
-                setIsFileUpload(true);
-              }
-            }
-            />
-            { formik.touched.pictureURL && <BoxWarning>{formik.errors.pictureURL}</BoxWarning>}
-          </label>
-        </Box>
+      <Container>
+        <Title><FormattedMessage id="addPhotoComment"/></Title>
+        <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
+          <Box>
+            <BoxLabel>
+              <BoxImg>
+                {isFileUpload && (
+                  <FiCheck color="#F59256" width="150" heigh="150" />
+                )}
+                {!isFileUpload && <GrAdd className={css.iconForm} />}
+              </BoxImg>
+              <Field
+                className={css.inputFormImg}
+                type="file"
+                id="photoUrl"
+                name="photoUrl"
+                accept="image/*"
+                onChange={event => {
+                  handleImageLoad(setPreview, formik, event);
+                  setIsFileUpload(true);
+                }}
+                value=""
+                multiple
+              />
+              {formik.touched.photoUrl && (
+                <BoxWarning>{formik.errors.photoUrl}</BoxWarning>
+              )}
+            </BoxLabel>
+          </Box>
+          <AddNoticeStepTwoDragDropContext
+            {...{ formik, preview, setPreview }}
+          />
+                     
         <BoxComent>
           <TitleComent>
             <label><FormattedMessage id="comment"/></label>
@@ -116,7 +136,8 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
           <ButtonDone type="submit"><FormattedMessage id="done"/></ButtonDone>
         </BoxButton>
       </Form>
-    </Container>
+    </Container>        
+
     </Formik>
   );
 };

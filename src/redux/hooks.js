@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
 
 export const useAuth = () => {
   const accessToken = useSelector(state => state.auth.accessToken);
@@ -69,12 +68,12 @@ export const useNotices = () => {
 };
 
 export const useFriends = () => {
+  const selectTeam = useSelector(state => state.friends.team);
   const selectFriends = useSelector(state => state.friends.friends);
-
   const selectIsLoading = useSelector(state => state.friends.isLoading);
-
   const selectError = useSelector(state => state.friends.error);
   return {
+    selectTeam,
     selectFriends,
     selectIsLoading,
     selectError,
@@ -83,10 +82,8 @@ export const useFriends = () => {
 
 export const useUser = () => {
   const user = useSelector(state => state.user);
-
   const getUserData = useSelector(state => state.user.getUserData);
   const updateUser = useSelector(state => state.user.updateUser);
-
   return {
     user,
     getUserData,
@@ -96,7 +93,6 @@ export const useUser = () => {
 
 export const useUserAvatar = () => {
   const userAvatar = useSelector(state => state.auth.user.avatarURL);
-
   return {
     userAvatar,
   };

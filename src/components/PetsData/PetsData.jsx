@@ -45,6 +45,10 @@ export const PetsData = () => {
     }
   }, [showModal]);
 
+ useEffect(() => {
+   !showModal && localStorage.setItem('preview', ''); // removes pets from localStorage if accidently? close window
+ }, [showModal]);
+  
   return (
     <PetsDataSection>
       <PetsDataAddBtnContainer>

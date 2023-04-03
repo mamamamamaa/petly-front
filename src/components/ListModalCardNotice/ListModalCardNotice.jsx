@@ -32,7 +32,7 @@ import { ListModalCardNoticeDragDropContext } from './ListModalCardNoticeDragDro
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
 
-export const ListModalCardNotice = ({ date, setFav, fav, isFavorite }) => {
+export const ListModalCardNotice = ({ date, setFav, fav }) => {
   const {
     _id,
     photoUrl,

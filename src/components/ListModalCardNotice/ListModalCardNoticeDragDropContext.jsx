@@ -24,58 +24,42 @@ export const ListModalCardNoticeDragDropContext = ({ photoUrl }) => {
 
   return (
     <DragDropContextContainer>
+      {headPhoto ? (
+        <BigImg src={headPhoto} alt="Preview" />
+      ) : (
+        <BigImg src={noPoster} alt="Preview" />
+      )}
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="photos">
           {provided => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
-              {preview.length > 0
-                ? preview.map((element, index) => (
-                    <Draggable
-                      key={index}
-                      draggableId={`photo-${index}`}
-                      index={index}
-                    >
-                      {provided => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <Img
-                            src={element}
-                            alt={`Pet slide ${index}`}
-                            onClick={() => handleImgClick(index)}
-                          />
-                        </div>
-                      )}
-                    </Draggable>
-                  ))
-                : // Render noPoster image for each slide if photoUrl is empty
-                  Array(1)
-                    .fill()
-                    .map((_, index) => (
-                      <Draggable
-                        key={index}
-                        draggableId={`no-photo-${index}`}
-                        index={index}
+              {preview.length > 1 &&
+                preview.map((element, index) => (
+                  <Draggable
+                    key={index}
+                    draggableId={`photo-${index}`}
+                    index={index}
+                  >
+                    {provided => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
                       >
-                        {provided => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            <Img src={noPoster} alt={`Pet slide ${index}`} />
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
+                        <Img
+                          src={element}
+                          alt={`Pet slide ${index}`}
+                          onClick={() => handleImgClick(index)}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
               {provided.placeholder}
             </div>
           )}
         </Droppable>
       </DragDropContext>
-      {headPhoto && <BigImg src={headPhoto} alt="Preview" />}
     </DragDropContextContainer>
   );
 };

@@ -229,7 +229,7 @@ export const UserCard = () => {
                   name="mobilePhone"
                   id="mobilePhone"
                   type="text"
-                  value={userData.mobilePhone}
+                  value={userData.mobilePhone || ''}
                   disabled={current !== 'mobilePhone'}
                   onChange={e => userStateHandler(e, 'mobilePhone')}
                 />

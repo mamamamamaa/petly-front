@@ -3,7 +3,7 @@ import { deleteOneOwnPet } from '../../redux/user/operations';
 import {
   PetArticle,
   PetDeleteButton,
-  PetImg,
+  // PetImg,
   PetSpanWrapperFlex,
   PetSpanWrapper,
   PetSpan,
@@ -11,22 +11,24 @@ import {
   PetTextWrapper,
   PetDeleteButtonWrapper,
   PetInfoWrapper,
-  PetImgWrapper,
+  // PetImgWrapper,
   Text,
 } from './UserPetCard.styled';
 import { FormattedMessage } from 'react-intl';
+import { ListModalCardNoticeDragDropContext } from 'components/ListModalCardNotice/ListModalCardNoticeDragDropContext';
 
 export const UserPetCard = ({
   pet = {},
-  pictureURL = '',
+  pictureURL = [],
   alt = 'pets picture',
 }) => {
   const dispatch = useDispatch();
   return (
     <PetArticle>
-      <PetImgWrapper>
-        <PetImg alt={alt} src={pictureURL} />
-      </PetImgWrapper>
+      {/* <PetImgWrapper>
+        <PetImg alt={alt} src={pictureURL[0]} />
+      </PetImgWrapper> */}
+        <ListModalCardNoticeDragDropContext {...{ photoUrl: pictureURL }} />
 
       <PetTextWrapper>
         <PetSpanWrapperFlex>

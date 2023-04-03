@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
 import friendsSelectors from '../../../redux/friends/selectors';
-import fetchFriends from '../../../redux/friends/operations';
-import Spinner from '../../../components/Spinner/Spinner';
+import { fetchFriends } from '../../../redux/friends/operations';
+import { Spinner } from '../../Spinner/Spinner';
 import Friend from '../Friend/Friend';
 import { FriendsCard } from '../../../utils';
 import { Modal } from '../../Modal/Modal';
@@ -40,7 +40,7 @@ const FriendsList = () => {
     <StyledList>
       {isLoading && <Spinner />}
       {modal && (
-        <Modal onClose={modalHandler} className='OurTeam'>
+        <Modal onClose={modalHandler} className="OurTeam">
           <ListOurTeams />
         </Modal>
       )}

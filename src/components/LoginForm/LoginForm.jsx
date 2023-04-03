@@ -1,13 +1,11 @@
-import { useState } from "react";
-import { Formik,  useFormik } from "formik"
-import * as yup from "yup";
-import  { useAuth }  from "redux/hooks";
-import { useDispatch} from "react-redux";
-import toast from 'react-hot-toast';
-import {login}  from "../../redux/auth/operations";
-
-import Spinner from '../Spinner';
-import { ImEye, ImEyeBlocked } from "react-icons/im";
+import { useState } from 'react';
+import { Formik, useFormik } from 'formik';
+import * as yup from 'yup';
+import { useAuth } from 'redux/hooks';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/auth/operations';
+import { Spinner } from '../Spinner/Spinner';
+import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import {
     Container,
     FormLogin,
@@ -28,66 +26,57 @@ import { useIntl } from 'react-intl';
 
 const securityEmail =
   /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
-//   /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 const securityPassword = /^\S*$/;
 
 const loginSchema = yup.object().shape({
-    email: yup
+  email: yup
     .string()
     .matches(securityEmail, 'Email must contain symbol @')
     .email('Invalid email address')
     .required('Email is required'),
-   password: yup
-   .string()
-   .min(7, 'Password must be at least 7 characters')
-   .max(32, 'Password must be at most 32 characters')
-   .matches(securityPassword, 'Must not contain spaces')
-   .required('Password is required'),
+  password: yup
+    .string()
+    .min(7, 'Password must be at least 7 characters')
+    .max(32, 'Password must be at most 32 characters')
+    .matches(securityPassword, 'Must not contain spaces')
+    .required('Password is required'),
 });
 
-// const FormError = ({ name }) => {
-//     return (
-//         <ErrorMessage
-//             name={name}            
-//             render={message => <ErrorText>{message}</ErrorText>}
-//         />
-//     )
-// }
+const { REACT_APP_SERVER_HOST } = process.env;
 
-
-const LoginForm = () => {
+export const LoginForm = () => {
     const { formatMessage } = useIntl();
     const [showPass, setShowPass] = useState(false);
     const isLoading = useAuth().isRefreshing;
     const dispatch = useDispatch();
 
-    const onSubmit = async (values, actions) => {
-        const { resetForm } = actions; 
-        const form = ({ 'email': values.email, 'password': values.password }); 
-        const { error } = await dispatch(login(form));
+  const onSubmit = (values, actions) => {
+    const { resetForm } = actions;
+    const form = { email: values.email, password: values.password };
+    const { error } = dispatch(login(form));
 
-        if (!error) {
-        resetForm() 
-        }        
-     }
+    if (!error) {
+      resetForm();
+    }
+  };
 
-    
-     const formik = useFormik({
-        initialValues: { email: '', password: '' },
-        validationSchema: loginSchema,
-        onSubmit,
-      });
+  const formik = useFormik({
+    initialValues: { email: '', password: '' },
+    validationSchema: loginSchema,
+    onSubmit,
+  });
 
-     const showPassword = () => {
-        setShowPass(!showPass);
-      };
+  const showPassword = () => {
+    setShowPass(!showPass);
+  };
 
-    return (
-        <>
-        {isLoading ? (
-          <Spinner />
-        ) : (
+  return (
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
         <Container>
+
             <Formik
                 initialValues={formik.initialValues}
                 validationSchema={loginSchema}
@@ -125,17 +114,22 @@ const LoginForm = () => {
                             onBlur={formik.handleBlur} 
                             />
                             <ShowPassword onClick={showPassword}>
+
                       {!showPass ? <ImEyeBlocked /> : <ImEye />}
                     </ShowPassword>
                   </FieldWrap>
                   {formik.errors.password && formik.touched.password ? (
                     <ErrorText>{formik.errors.password}</ErrorText>
                   ) : null}
+
                             {/* <FormError name="password" /> */}
                         </label>
                     </FieldPass>
                                   
                     <Button type="submit"><FormattedMessage id="login"/></Button>
+                    <GoogleAuth href={`${REACT_APP_SERVER_HOST}/api/auth/google`}>
+                    <FormattedMessage id="loginGoogle"/>
+                    </GoogleAuth>
                     <Text>
                         <span><FormattedMessage id="doYouHaveAnAccount"/></span>{' '}
                         <StyledLink to='/register'><FormattedMessage id="registration"/></StyledLink>                
@@ -149,4 +143,5 @@ const LoginForm = () => {
  }
 
 
-export default LoginForm 
+
+

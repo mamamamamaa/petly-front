@@ -15,7 +15,7 @@ export const ContainerHeader = styled.div`
   font-family: ${theme.fonts.body};
   margin: 0 auto;
   @media screen and (max-width: 767px) {
-    padding: 0 20px;
+    padding: 0;
   }
   @media screen and (min-width: 768px) {
     width: 768px;
