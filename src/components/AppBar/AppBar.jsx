@@ -12,8 +12,7 @@ import {
   MenuWrpr,
   UserMenuWrpr,
   BurgerBtn,
-  Nav,
-  TabletWrapper,
+  Nav,  
   HomePageLink,
   Btn,
   ImgBtn,
@@ -26,8 +25,7 @@ import GB from '../../images/GB.png';
 import { Modal } from 'components/ModalMenu/ModalMenu';
 
 const AppBar = ({ handleLocaleChange }) => {  
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+ 
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ minWidth: 1280 });
@@ -61,7 +59,14 @@ const AppBar = ({ handleLocaleChange }) => {
               ) : (
                 <AuthMenu/>
               )}
-            </UserMenuWrpr>
+        </UserMenuWrpr>
+        <Lang>
+             <Btn onClick={() => handleLocaleChange('en')}>
+               <ImgBtn src={GB} width="25" height="25" alt="Great Britan flag" />
+               <Line/></Btn>
+             <Btn onClick={() => handleLocaleChange('uk')}>
+              <ImgBtn src={UKR} width="25" height ="25" alt="flag Ukraine"/></Btn>            
+           </Lang> 
       </BarContainer>
     )}
 
@@ -70,11 +75,18 @@ const AppBar = ({ handleLocaleChange }) => {
        <LogoBlack><HomePageLink to="/" onClick={closeMenu}>pe
         <LogoAccent>t</LogoAccent>ly
         </HomePageLink>
-       </LogoBlack>
+          </LogoBlack>
+          <Lang>
+             <Btn onClick={() => handleLocaleChange('en')}>
+               <ImgBtn src={GB} width="25" height="25" alt="Great Britan flag" />
+               <Line/></Btn>
+             <Btn onClick={() => handleLocaleChange('uk')}>
+              <ImgBtn src={UKR} width="25" height ="25" alt="flag Ukraine"/></Btn>            
+           </Lang> 
        <BurgerBtn 
            onClick={toggleClickHandler}>
             <BurgerIcon />
-          </BurgerBtn>
+          </BurgerBtn>          
       </BarContainer>
     )}
 
@@ -120,8 +132,7 @@ const AppBar = ({ handleLocaleChange }) => {
                <Line/></Btn>
              <Btn onClick={() => handleLocaleChange('uk')}>
               <ImgBtn src={UKR} width="25" height ="25" alt="flag Ukraine"/></Btn>            
-           </Lang>
-        
+           </Lang>        
 
       </BarContainer>
     )}

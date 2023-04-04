@@ -154,7 +154,7 @@ export const HomePageLink = styled(NavLink)`
 `;
 
 export const Lang = styled.div`
- display: flex;
+ display: flex; 
 `
 export const Btn = styled.button`
 position: relative;
