@@ -20,6 +20,7 @@ import {
     StyledLink,
     ErrorText,
     Background,
+    GoogleAuth
     } from "./LoginForm.styled";
 import { FormattedMessage } from 'react-intl'; 
 import { useIntl } from 'react-intl';  
