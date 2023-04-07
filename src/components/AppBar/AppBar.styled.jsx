@@ -152,3 +152,31 @@ export const BurgerBtn = styled.button`
 export const HomePageLink = styled(NavLink)`
   color: inherit;
 `;
+
+export const Lang = styled.div`
+ display: flex; 
+`
+export const Btn = styled.button`
+position: relative;
+cursor: pointer;
+border: none;
+padding: 2px 5px;
+margin: 2px;
+font-size: 18px;
+background-color: transparent;
+`
+export const Line = styled.span`
+content: "";
+border-left: 2px solid black;
+height: 25px; /* висота лінії */
+position: absolute;
+left: 100%;
+${media.tablet} {
+    bottom: 20%;
+  }
+`
+
+export const ImgBtn = styled.img`
+
+margin: 2px;
+`

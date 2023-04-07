@@ -25,8 +25,11 @@ import AddNoticeButton from '../components/AddNoticeButton/AddNoticeButton';
 import { Container } from 'utils';
 import { setQuery } from '../redux/notices/noticeSlice';
 import { MainHeader } from './NewsPage.styled';
+import { useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 const NoticesPage = () => {
+  const { formatMessage } = useIntl();
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,7 +39,7 @@ const NoticesPage = () => {
   const onButtonClick = () => {
     !isLoggedIn
       ? toast.error(
-          'Dear friend, please sign up or log in to add your pet to notice'
+          <FormattedMessage id="toastAddNoticeButton"/>
         )
       : setIsModalOpen(true);
   };
@@ -49,11 +52,11 @@ const NoticesPage = () => {
 
   return (
     <Container type="notice">
-      <MainHeader>Find your favorite pet</MainHeader>
+      <MainHeader><FormattedMessage id="findFavoritePet"/></MainHeader>
       <NoticesSearch>
         <SearchField
           ref={ref}
-          placeholder="Search"
+          placeholder={formatMessage({ id: 'search' })}
           onChange={debounce(handleChangeQuery, 300)}
         />
       </NoticesSearch>
@@ -62,30 +65,30 @@ const NoticesPage = () => {
         <NoticesNavUl>
           <NoticesNavLi>
             <NoticesNavLink to="sell">
-              <NoticesNavText>sell</NoticesNavText>
+              <NoticesNavText><FormattedMessage id="sell"/></NoticesNavText>
             </NoticesNavLink>
           </NoticesNavLi>
           <NoticesNavLi>
             <NoticesNavLink to="lost">
-              <NoticesNavText>lost/found</NoticesNavText>
+              <NoticesNavText><FormattedMessage id="lostFound"/></NoticesNavText>
             </NoticesNavLink>
           </NoticesNavLi>
           <NoticesNavLi>
             <NoticesNavLink to="good-hands">
-              <NoticesNavText>in good hands</NoticesNavText>
+              <NoticesNavText><FormattedMessage id="goodHands"/></NoticesNavText>
             </NoticesNavLink>
           </NoticesNavLi>
           {isLoggedIn && (
             <NoticesNavLi>
               <NoticesNavLink to="favorite">
-                <NoticesNavText>favorite ads</NoticesNavText>
+                <NoticesNavText><FormattedMessage id="favorite"/></NoticesNavText>
               </NoticesNavLink>
             </NoticesNavLi>
           )}
           {isLoggedIn && (
             <NoticesNavLi>
               <NoticesNavLink to="my-ads">
-                <NoticesNavText>my ads</NoticesNavText>
+                <NoticesNavText><FormattedMessage id="myAds"/></NoticesNavText>
               </NoticesNavLink>
             </NoticesNavLi>
           )}
@@ -99,7 +102,7 @@ const NoticesPage = () => {
           </>
         ) : (
           <AddPetToNoticesBtnWrapper type="button" onClick={onButtonClick}>
-            <AddPetToNoticesText>Add pet</AddPetToNoticesText>
+            <AddPetToNoticesText><FormattedMessage id="addPet"/></AddPetToNoticesText>
             <AddPetToNoticesBtn>
               <AddPetToNoticesImg src={cross} alt="Add pet to notices" />
             </AddPetToNoticesBtn>

@@ -10,10 +10,13 @@ import {
 import { ModalAddNotice } from '../ModalAddNoticeV2/ModalAddNotice';
 import cross from 'utils/svg/cross.svg';
 import { Modal } from 'components/Modal/Modal';
+import { useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
-const AddNoticeButton = () => {
+const AddNoticeButton = () => {  
   const { isLoggedIn } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const { formatMessage } = useIntl();
 
   const openModal = () => {
     setIsOpen(true);
@@ -25,9 +28,7 @@ const AddNoticeButton = () => {
 
   const onButtonClick = () => {
     !isLoggedIn
-      ? toast.error(
-          'Dear friend, please sign up or log in to add your pet to notice'
-        )
+      ? toast.error(formatMessage({ id: 'toastAddNoticeButton'}))
       : openModal();
   };
 
@@ -41,7 +42,7 @@ const AddNoticeButton = () => {
   return (
     <>
       <AddPetToNoticesBtnWrapper>
-        <AddPetToNoticesText>Add pet</AddPetToNoticesText>
+        <AddPetToNoticesText><FormattedMessage id="addPet"/></AddPetToNoticesText>
         <AddPetToNoticesBtn type="button" onClick={onButtonClick}>
           <AddPetToNoticesImg src={cross} alt="Add pet to notices" />
         </AddPetToNoticesBtn>

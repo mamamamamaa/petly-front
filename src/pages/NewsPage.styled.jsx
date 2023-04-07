@@ -65,7 +65,7 @@ export const Plug = styled.div`
   width: 76px;
 `;
 
-export const Text = styled.text`
+export const Text = styled.p`
   font-style: normal;
   font-weight: 700;
   font-size: 36px;

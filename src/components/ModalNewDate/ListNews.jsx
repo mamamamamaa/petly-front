@@ -10,6 +10,7 @@ import {
   BoxHref,
 } from './ListNews.styled';
 import NewsNewDateSecond from '../../utils/NewsNewDate/NewsNewDate';
+import { FormattedMessage } from 'react-intl';
 
 // ======== second way for news ========= down
 function ListNews({ news }) {
@@ -32,7 +33,7 @@ function ListNews({ news }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Read more
+                <FormattedMessage id=""/>
               </BoxHref>
             </Wraper>
           </Box>

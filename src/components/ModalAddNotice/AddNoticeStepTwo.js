@@ -33,6 +33,8 @@ import {
 import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/operations';
 import moment from 'moment/moment';
+import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 const formTwoValidationSchema = Yup.object({
   sex: Yup.string().required('Sex is required'),
@@ -53,6 +55,7 @@ const formTwoValidationSchema = Yup.object({
 });
 
 export const AddNoticeStepTwo = props => {
+  const { formatMessage } = useIntl();
   const [img, setImg] = useState(null);
   const dispatch = useDispatch();
 
@@ -77,7 +80,7 @@ export const AddNoticeStepTwo = props => {
       <ButtonClose type="button" onClick={props.closeModal}>
         <VscClose size={65} />
       </ButtonClose>
-      <Title>Add pet</Title>
+      <Title><FormattedMessage id="addPet"/></Title>
       <FormWrapper>
         <Formik
           validationSchema={formTwoValidationSchema}
@@ -128,13 +131,13 @@ export const AddNoticeStepTwo = props => {
           }) => (
             <FormSecond onSubmit={handleSubmit} encType="multipart/form-data">
               <Label htmlFor="sex">
-                The sex<SpanStar>*</SpanStar>:
+                <FormattedMessage id="sex"/><SpanStar>*</SpanStar>:
               </Label>
               <RadioWrapp role="group" aria-labelledby="sex-group">
                 <RadioSexBtn id="male" type="radio" name="sex" value="male" />
                 <LabelRadioSexBtn htmlFor="male">
                   <IconMale />
-                  Male
+                  <FormattedMessage id="male"/>
                 </LabelRadioSexBtn>
                 <RadioSexBtn
                   id="female"
@@ -145,7 +148,7 @@ export const AddNoticeStepTwo = props => {
                 />
                 <LabelRadioSexBtn htmlFor="female">
                   <IconFemale />
-                  Female
+                  <FormattedMessage id="female"/>
                 </LabelRadioSexBtn>
                 <BoxWarning>
                   <ErrorMessage name="sex" component="div" />
@@ -153,7 +156,7 @@ export const AddNoticeStepTwo = props => {
               </RadioWrapp>
 
               <Label htmlFor="place">
-                Location<SpanStar>*</SpanStar>:
+                <FormattedMessage id="location"/><SpanStar>*</SpanStar>:
               </Label>
               <InputWrapper>
                 <Input
@@ -161,7 +164,7 @@ export const AddNoticeStepTwo = props => {
                   name="place"
                   onChange={handleChange}
                   value={values.place}
-                  placeholder="Type location"
+                  placeholder={formatMessage({ id: 'typeLocation' })}
                   required
                 />
                 <BoxWarning>
@@ -171,7 +174,7 @@ export const AddNoticeStepTwo = props => {
 
               {noticeType && (
                 <Label htmlFor="price">
-                  Price<SpanStar>*</SpanStar>:
+                  <FormattedMessage id="price"/><SpanStar>*</SpanStar>:
                 </Label>
               )}
               {noticeType && (
@@ -181,7 +184,7 @@ export const AddNoticeStepTwo = props => {
                     name="price"
                     onChange={handleChange}
                     value={values.price}
-                    placeholder="Type price"
+                    placeholder={formatMessage({ id: 'typePrice' })}
                   />
                   <BoxWarning>
                     <ErrorMessage name="price" component="div" />
@@ -189,7 +192,7 @@ export const AddNoticeStepTwo = props => {
                 </InputWrapper>
               )}
 
-              <Label>Load the pet’s image</Label>
+              <Label><FormattedMessage id="loadPetImage"/></Label>
               <ButtonAddPhoto type="button">
                 {!img ? (
                   <CrossBig>
@@ -214,13 +217,13 @@ export const AddNoticeStepTwo = props => {
                 </BoxWarning>
               </ButtonAddPhoto>
               <WraperTextarea>
-                <Label>Comments</Label>
+                <Label><FormattedMessage id="сomment"/></Label>
                 <Textarea
                   onChange={handleChange}
                   value={values.comments}
                   name="comments"
                   as="textarea"
-                  placeholder="Type comments"
+                  placeholder={formatMessage({ id: 'typeComments' })}
                   required
                 />
                 <BoxWarning>
@@ -230,13 +233,13 @@ export const AddNoticeStepTwo = props => {
 
               <ButtonWrapper>
                 <ButtonFill type="submit" onSubmit={handleSubmit}>
-                  Done
+                  <FormattedMessage id="done"/>
                 </ButtonFill>
                 <ButtonEmpty
                   type="button"
                   onClick={() => handleBackClick(values)}
                 >
-                  Back
+                  <FormattedMessage id="back"/>
                 </ButtonEmpty>
               </ButtonWrapper>
             </FormSecond>

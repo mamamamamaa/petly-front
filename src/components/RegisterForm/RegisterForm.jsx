@@ -21,6 +21,8 @@ import {
   StyledLink,
   Background,
 } from './RegisterForm.styled';
+import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 const registerSchema = object().shape({
   password: string()
@@ -53,9 +55,11 @@ const registerSchema = object().shape({
     .required('City is required'),
 });
 
+
 const { REACT_APP_SERVER_HOST } = process.env;
 
 export const RegisterForm = () => {
+  const { formatMessage } = useIntl();
   const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
@@ -117,17 +121,18 @@ export const RegisterForm = () => {
       {isLoading ? (
         <Spinner />
       ) : (
+
         <FormContainer>
           <Formik validationSchema={registerSchema}>
             <Form1 onSubmit={formik.handleSubmit} autoComplete="off">
-              <Title>Registration</Title>
+              <Title><FormattedMessage id="registration" /></Title>
               {isShown && (
                 <>
                   <div>
                     <Input
                       name="email"
                       type="email"
-                      placeholder="Email"
+                      placeholder={formatMessage({ id: 'email' })}
                       onChange={formik.handleChange}
                       value={formik.values.email}
                       onBlur={formik.handleBlur}
@@ -139,14 +144,13 @@ export const RegisterForm = () => {
                   </div>
                 </>
               )}
-
               {isShown && (
                 <>
                   <div>
                     <Input
                       name="password"
                       type={showPass ? 'text' : 'password'}
-                      placeholder="Password"
+                      placeholder={formatMessage({ id: 'password' })}
                       onChange={formik.handleChange}
                       value={formik.values.password}
                       onBlur={formik.handleBlur}
@@ -167,7 +171,7 @@ export const RegisterForm = () => {
                     <Input
                       name="confirmPassword"
                       type={showConfirmPass ? 'text' : 'password'}
-                      placeholder="Confirm Password"
+                      placeholder={formatMessage({ id: 'сonfirmPassword' })}
                       onChange={formik.handleChange}
                       value={formik.values.confirmPassword}
                       onBlur={formik.handleBlur}
@@ -176,7 +180,7 @@ export const RegisterForm = () => {
                       {!showConfirmPass ? <ImEyeBlocked /> : <ImEye />}
                     </ShowPassword>
                     {formik.errors.confirmPassword &&
-                    formik.touched.confirmPassword ? (
+                      formik.touched.confirmPassword ? (
                       <ErrBox>{formik.errors.confirmPassword}</ErrBox>
                     ) : null}
                   </div>
@@ -184,7 +188,7 @@ export const RegisterForm = () => {
               )}
               {isShown && (
                 <Button type="button" onClick={showForm} disabled={isValid}>
-                  Next
+                  <FormattedMessage id="registration" />
                 </Button>
               )}
               {!isShown && (
@@ -193,7 +197,7 @@ export const RegisterForm = () => {
                     <Input
                       name="name"
                       type="text"
-                      placeholder="Name"
+                      placeholder={formatMessage({ id: 'name' })}
                       onChange={formik.handleChange}
                       value={formik.values.name}
                       onBlur={formik.handleBlur}
@@ -211,7 +215,7 @@ export const RegisterForm = () => {
                     <Input
                       name="city"
                       type="text"
-                      placeholder="City, region"
+                      placeholder={formatMessage({ id: 'сity' })}
                       onChange={formik.handleChange}
                       value={formik.values.city}
                       onBlur={formik.handleBlur}
@@ -228,7 +232,7 @@ export const RegisterForm = () => {
                   <div>
                     <PhoneInput
                       type="text"
-                      placeholder="Mobile phone"
+                      placeholder={formatMessage({ id: 'mobilePhone' })}
                       onChange={formik.handleChange}
                       value={formik.values.mobilePhone}
                       onBlur={formik.handleBlur}
@@ -241,24 +245,24 @@ export const RegisterForm = () => {
                   </div>
                 </>
               )}
-              {!isShown && <Button type="submit">Registration</Button>}
+              {!isShown && <Button type="submit"><FormattedMessage id="registration" /></Button>}
               {!isShown && (
                 <BackButton type="button" onClick={hideForm}>
-                  Back
+                  <FormattedMessage id="back" />
                 </BackButton>
               )}
               <GoogleAuth href={`${REACT_APP_SERVER_HOST}/api/auth/google`}>
-                Login with Google
+                <FormattedMessage id="loginGoogle" />
               </GoogleAuth>
               <Text>
-                <span>Already have an account?</span>{' '}
-                <StyledLink to="/login">Login</StyledLink>
+                <span><FormattedMessage id="haveAnAccount" /></span>{' '}
+                <StyledLink to="/login"><FormattedMessage id="login" /></StyledLink>
               </Text>
             </Form1>
           </Formik>
           <Background></Background>
         </FormContainer>
-      )}
+      )}  
     </>
   );
 };

@@ -7,21 +7,23 @@ import { login } from '../../redux/auth/operations';
 import { Spinner } from '../Spinner/Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import {
-  Container,
-  FormLogin,
-  FieldLogin,
-  FieldPass,
-  FieldWrap,
-  Title,
-  Input,
-  ShowPassword,
-  Button,
-  Text,
-  StyledLink,
-  ErrorText,
-  Background,
-  GoogleAuth,
-} from './LoginForm.styled';
+    Container,
+    FormLogin,
+    FieldLogin,
+    FieldPass,
+    FieldWrap,
+    Title,
+    Input,
+    ShowPassword,
+    Button,
+    Text,
+    StyledLink,
+    ErrorText,
+    Background,
+    GoogleAuth
+    } from "./LoginForm.styled";
+import { FormattedMessage } from 'react-intl'; 
+import { useIntl } from 'react-intl';  
 
 const securityEmail =
   /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
@@ -44,9 +46,10 @@ const loginSchema = yup.object().shape({
 const { REACT_APP_SERVER_HOST } = process.env;
 
 export const LoginForm = () => {
-  const [showPass, setShowPass] = useState(false);
-  const isLoading = useAuth().isRefreshing;
-  const dispatch = useDispatch();
+    const { formatMessage } = useIntl();
+    const [showPass, setShowPass] = useState(false);
+    const isLoading = useAuth().isRefreshing;
+    const dispatch = useDispatch();
 
   const onSubmit = (values, actions) => {
     const { resetForm } = actions;
@@ -74,62 +77,72 @@ export const LoginForm = () => {
         <Spinner />
       ) : (
         <Container>
-          <Formik
-            initialValues={formik.initialValues}
-            validationSchema={loginSchema}
-          >
-            <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
-              <Title>Login</Title>
-              <FieldLogin>
-                <label htmlFor="email">
-                  <Input
-                    id="loginEmail"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
-                    onBlur={formik.handleBlur}
-                  />
-                  {formik.errors.email || formik.touched.email ? (
+
+            <Formik
+                initialValues={formik.initialValues}
+                validationSchema={loginSchema}
+            >               
+                <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
+                <Title><FormattedMessage id="login"/></Title>
+                    <FieldLogin>
+                        <label htmlFor="email">  
+                            <Input 
+                            id="loginEmail" 
+                            type="email" 
+                            name="email" 
+                            placeholder={formatMessage({ id: 'email' })} 
+                            onChange={formik.handleChange}
+                            value={formik.values.email}
+                            onBlur={formik.handleBlur} 
+                            />
+                        {formik.errors.email || formik.touched.email ? (
                     <ErrorText>{formik.errors.email}</ErrorText>
-                  ) : null}
-                </label>
-              </FieldLogin>
-              <FieldPass>
-                <label htmlFor="password">
-                  <FieldWrap>
-                    <Input
-                      id="password"
-                      type={showPass ? 'text' : 'password'}
-                      name="password"
-                      placeholder="Password"
-                      onChange={formik.handleChange}
-                      value={formik.values.password}
-                      onBlur={formik.handleBlur}
-                    />
-                    <ShowPassword onClick={showPassword}>
+                         ) : null}
+                            {/* <FormError name="email" /> */}
+                        </label>                     
+                    </FieldLogin>
+
+                    <FieldPass>
+                        <label htmlFor="password">
+                        <FieldWrap>
+                            <Input 
+                            id="password" 
+                            type={showPass ? 'text' : 'password'}
+                            name="password" 
+                            placeholder={formatMessage({ id: 'password' })}
+                            onChange={formik.handleChange}
+                            value={formik.values.password}
+                            onBlur={formik.handleBlur} 
+                            />
+                            <ShowPassword onClick={showPassword}>
+
                       {!showPass ? <ImEyeBlocked /> : <ImEye />}
                     </ShowPassword>
                   </FieldWrap>
                   {formik.errors.password && formik.touched.password ? (
                     <ErrorText>{formik.errors.password}</ErrorText>
                   ) : null}
-                </label>
-              </FieldPass>
-              <Button type="submit">Login</Button>
-              <GoogleAuth href={`${REACT_APP_SERVER_HOST}/api/auth/google`}>
-                Login with Google
-              </GoogleAuth>
-              <Text>
-                <span>Don't have an account?</span>
-                <StyledLink to="/register">Register</StyledLink>
-              </Text>
-            </FormLogin>
-          </Formik>
-          <Background></Background>
-        </Container>
-      )}
-    </>
-  );
-};
+
+                            {/* <FormError name="password" /> */}
+                        </label>
+                    </FieldPass>
+                                  
+                    <Button type="submit"><FormattedMessage id="login"/></Button>
+                    <GoogleAuth href={`${REACT_APP_SERVER_HOST}/api/auth/google`}>
+                    <FormattedMessage id="loginGoogle"/>
+                    </GoogleAuth>
+                    <Text>
+                        <span><FormattedMessage id="doYouHaveAnAccount"/></span>{' '}
+                        <StyledLink to='/register'><FormattedMessage id="registration"/></StyledLink>                
+                    </Text>
+                </FormLogin>
+            </Formik>
+            <Background></Background>
+        </Container>)}
+        </>
+    )
+ }
+
+
+
+

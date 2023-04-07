@@ -29,6 +29,8 @@ import {
 import ModalNewDate from '../../utils/ModalNewDate/ModalNewDate';
 import strokeHeart from 'utils/svg/strokeHeart.svg';
 import { ListModalCardNoticeDragDropContext } from './ListModalCardNoticeDragDropContext';
+import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 export const ListModalCardNotice = ({ date, setFav, fav }) => {
   const {
@@ -46,23 +48,24 @@ export const ListModalCardNotice = ({ date, setFav, fav }) => {
     mobilePhone = 'unknown',
     comments = 'unknown',
   } = date;
-
+  const { formatMessage } = useIntl();
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
 
   const favoriteHandler = () => {
     if (!isLoggedIn) {
-      return toast.error('You should login/sign up your account!');
+      console.log('tost')
+      return toast.error(formatMessage({ id: 'toastLoginSignUp'}));
     }
 
     if (fav) {
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
-      toast.success('Removed from favorite!');
+      toast.success(formatMessage({ id: 'toastRemoveFavorite'}));
     } else {
       dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
-      toast.success('Successfully added to favorite!');
+      toast.success(formatMessage({ id: 'toastAddFavorite'}));
     }
     setFav(prevState => !prevState);
   };
@@ -89,29 +92,29 @@ export const ListModalCardNotice = ({ date, setFav, fav }) => {
             <BoxList>
               <Ul>
                 <Li>
-                  <TitleProperty>Name:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="namePet"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>Birthday:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="birthdayPet"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>Breed:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="breed"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>Place:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="place"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>The sex:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="sex"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>Email:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="email"/>:</TitleProperty>
                 </Li>
                 <Li>
-                  <TitleProperty>Phone:</TitleProperty>
+                  <TitleProperty><FormattedMessage id="phone"/>:</TitleProperty>
                 </Li>
                 {price !== undefined && type === 'sell' && (
                   <Li>
-                    <TitleProperty>Price:</TitleProperty>
+                    <TitleProperty><FormattedMessage id="price"/>:</TitleProperty>
                   </Li>
                 )}
               </Ul>
@@ -165,7 +168,7 @@ export const ListModalCardNotice = ({ date, setFav, fav }) => {
           </BoxSecond>
         </Wraper>
         <Box>
-          <Text>Comments: {comments}</Text>
+          <Text><FormattedMessage id="comment"/>: {comments}</Text>
         </Box>
       </WraperMain>
 
@@ -174,7 +177,7 @@ export const ListModalCardNotice = ({ date, setFav, fav }) => {
           {!fav ? 'Add to' : 'Remove'}
           <AddToFavImg src={strokeHeart} alt="Add to favorites" />
         </ButtonModal>
-        <CallModal href={getCall}>Contact</CallModal>
+        <CallModal href={getCall}><FormattedMessage id="contact"/></CallModal>
       </BoxButton>
     </Container>
   );

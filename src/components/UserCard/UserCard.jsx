@@ -26,6 +26,9 @@ import { useEffect, useState } from 'react';
 import { useUser } from '../../redux/hooks';
 import { Modal } from '../Modal/Modal';
 import { LogoutModal } from '../LogoutModal/LogoutModal';
+import { useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 
 const phoneRegExp = /^\+?3?8?(0\d{2}\d{3}\d{2}\d{2})$/;
 const userSchema = Yup.object().shape({
@@ -47,6 +50,7 @@ const userSchema = Yup.object().shape({
 });
 
 export const UserCard = () => {
+  const { formatMessage } = useIntl();
   const dispatch = useDispatch();
   const {
     user: { user },
@@ -97,6 +101,7 @@ export const UserCard = () => {
       }
     } catch {
       toast.error(isValid);
+      //toast.error(formatMessage({ id: 'toastUserCardFieldsFil' }));
     }
   };
 
@@ -129,7 +134,7 @@ export const UserCard = () => {
 
   return (
     <div>
-      <Title>My information:</Title>
+      <Title><FormattedMessage id="myInfo"/></Title>
       <Toaster />
       <Card>
         <FormAndPhotoWrapper>
@@ -139,7 +144,7 @@ export const UserCard = () => {
           <div>
             <DivInput>
               <FormLabel>
-                Name:
+                <FormattedMessage id="name"/>:
                 <MyInput
                   name="name"
                   id="name"
@@ -163,7 +168,7 @@ export const UserCard = () => {
             </DivInput>
             <DivInput>
               <FormLabel>
-                Email:
+                <FormattedMessage id="email"/>:
                 <MyInput
                   name="email"
                   id="email"
@@ -187,9 +192,9 @@ export const UserCard = () => {
             </DivInput>
             <DivInput>
               <FormLabel>
-                Birthday:
+                <FormattedMessage id="birthday"/>:
                 <BirthdayContainer>
-                  {userData.birthday || 'date'}
+                  {userData.birthday || <FormattedMessage id="date"/>}
                   <DateInput
                     name="birthday"
                     id="birthday"
@@ -219,7 +224,7 @@ export const UserCard = () => {
             </DivInput>
             <DivInput>
               <FormLabel>
-                Phone:
+                <FormattedMessage id="phone"/>:
                 <MyInput
                   name="mobilePhone"
                   id="mobilePhone"
@@ -246,7 +251,7 @@ export const UserCard = () => {
             </DivInput>
             <DivInput>
               <FormLabel>
-                City:
+                <FormattedMessage id="cityLabel"/>:
                 <MyInput
                   name="city"
                   id="city"
@@ -273,7 +278,7 @@ export const UserCard = () => {
 
         <BtnLogOut onClick={handleModal}>
           {<FiLogOut color="#F59256" />}
-          <LogOutSpan>Log Out</LogOutSpan>
+          <LogOutSpan><FormattedMessage id="logOut"/></LogOutSpan>
         </BtnLogOut>
 
         {isModal && (

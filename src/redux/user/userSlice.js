@@ -63,7 +63,6 @@ const userSlice = createSlice({
         state.data = { ...action.payload };
       })
       .addCase(updateAvatar.rejected, (state, action) => {
-        console.log('action', action);
         state.status = 'failed';
         state.error = action.error.message;
       })

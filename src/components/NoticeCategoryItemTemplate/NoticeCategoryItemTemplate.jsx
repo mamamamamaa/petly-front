@@ -38,6 +38,8 @@ import toast from 'react-hot-toast';
 import { addFav, delFav } from '../../redux/auth/authSlice';
 import noPoster from 'noPoster.jpg';
 import { clearCurrentNotice } from '../../redux/notices/noticeSlice';
+import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 export const NoticeCategoryItemTemplate = ({
   _id,
@@ -51,6 +53,7 @@ export const NoticeCategoryItemTemplate = ({
   price,
 }) => {
   // состояние модального окна
+  const { formatMessage } = useIntl();
   const [modal, setModal] = useState(false);
 
   const dispatch = useDispatch();
@@ -78,17 +81,17 @@ export const NoticeCategoryItemTemplate = ({
 
   const favoriteHandler = () => {
     if (!isLoggedIn) {
-      return toast.error('You should log in/sign up your account!');
+      return toast.error(formatMessage({ id: 'toastLoginSignUp'}));
     }
 
     if (fav) {
       dispatch(deleteNoticeFromFav(_id));
       dispatch(delFav(_id));
-      toast.success('Removed from favorite!');
+      toast.success(formatMessage({ id: 'toastRemoveFavorite'}));
     } else {
       dispatch(addNoticeToFav({ id: _id, type }));
       dispatch(addFav(_id));
-      toast.success('Successfully added to favorite!');
+      toast.success(formatMessage({ id: 'toastAddFavorite'}));
     }
     setFav(prevState => !prevState);
   };
@@ -111,8 +114,6 @@ export const NoticeCategoryItemTemplate = ({
       document.body.style.overflow = 'auto';
     }
   }, [modal]);
-
-  console.log(isOwn);
 
   return (
     <>
@@ -147,11 +148,11 @@ export const NoticeCategoryItemTemplate = ({
           <Title>{title}</Title>
           <WraperPetDetails>
             <Ul>
-              <Li>Breed:</Li>
-              <Li>Place:</Li>
-              <Li>Age:</Li>
+              <Li><FormattedMessage id="breed"/>:</Li>
+              <Li><FormattedMessage id="place"/>:</Li>
+              <Li><FormattedMessage id="age"/>:</Li>
               {price !== undefined && type === 'sell' ? (
-                <Li>Price:</Li>
+                <Li><FormattedMessage id="price"/>:</Li>
               ) : (
                 <EmptyBox></EmptyBox>
               )}
@@ -168,7 +169,7 @@ export const NoticeCategoryItemTemplate = ({
         </>
         <WraperButton>
           <BtnDetails onClick={modalHandler}>
-            <PetDetailsButtonText>Learn More</PetDetailsButtonText>
+            <PetDetailsButtonText><FormattedMessage id="learnMore"/></PetDetailsButtonText>
           </BtnDetails>
           {isOwn && (
             <PetDeleteButton
@@ -177,7 +178,7 @@ export const NoticeCategoryItemTemplate = ({
               }}
             >
               <PetDeleteButtonDiv>
-                <PetDeleteButtonText>Delete</PetDeleteButtonText>
+                <PetDeleteButtonText><FormattedMessage id="delete"/></PetDeleteButtonText>
                 <PetDeleteButtonImg
                   src={recycleBin}
                   alt="Recycle bin"

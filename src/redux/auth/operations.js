@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
+import { FormattedMessage } from 'react-intl';
 
 const { REACT_APP_SERVER_HOST: HOST } = process.env;
 
@@ -20,17 +21,17 @@ export const register = createAsyncThunk(
     try {
       const res = await axios.post('/api/auth/signup', userData);
       if (res.status === 201) {
-        toast.success('Verify your email!');
+        toast.success(<FormattedMessage id="toastVerifyEmail"/>);
         return res.data;
       } else {
-        toast.error('Sorry, something going wrong... Please try again.');
+        toast.error(<FormattedMessage id="toastSomethingWrong"/>);
         return thunkAPI.rejectWithValue(
           'Sorry, something going wrong... Please try again.'
         );
       }
     } catch (e) {
       toast.error(
-        'Make sure your email isn`t registered yet. And try again.'
+        <FormattedMessage id="toastMakeSureIsNotRegister"/>
         // 'Sorry, there are no news matching your query. Please try again.'
       );
       return thunkAPI.rejectWithValue(e.message);
@@ -46,7 +47,11 @@ export const login = createAsyncThunk(
       setAuthHeader(res.data.accessToken);
       return res.data;
     } catch (e) {
-      toast.error('Please check if email and password are correct or sign up');
+
+      toast.error(
+        <FormattedMessage id="toastLoginError"/>
+        );
+     
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -66,7 +71,7 @@ export const reverify = createAsyncThunk(
 
     try {
       await axios.post('/api/auth/verify', { email });
-      toast.success('We re-sent the verification email to your email');
+      toast.success(<FormattedMessage id="toastReSent"/>);
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

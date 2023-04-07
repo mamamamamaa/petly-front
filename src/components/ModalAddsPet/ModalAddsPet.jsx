@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addOwnPet } from '../../redux/user/operations';
 import moment from 'moment';
 import { Container, Title } from './ModalAddsPet.styled';
+import { FormattedMessage } from 'react-intl';
 
 export const ModalAddsPet = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ export const ModalAddsPet = ({ onClose }) => {
 
   return (
     <Container>
-      <Title>Add pet</Title>
+      <Title><FormattedMessage id="addPet"/></Title>
       {steps[currentStep]}
     </Container>
   );

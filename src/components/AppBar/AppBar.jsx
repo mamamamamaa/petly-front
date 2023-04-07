@@ -12,13 +12,20 @@ import {
   MenuWrpr,
   UserMenuWrpr,
   BurgerBtn,
-  Nav,
-  HomePageLink
+  Nav,  
+  HomePageLink,
+  Btn,
+  ImgBtn,
+  Lang,
+  Line
 } from './AppBar.styled';
+
+import UKR from '../../images/UKR.png';
+import GB from '../../images/GB.png';
 import { Modal } from 'components/ModalMenu/ModalMenu';
 
-const AppBar = () => {
-
+const AppBar = ({ handleLocaleChange }) => {  
+ 
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ minWidth: 1280 });
@@ -45,13 +52,21 @@ const AppBar = () => {
             <Nav>
               <Navigation/>
             </Nav>
+
             <UserMenuWrpr>
               {isLoggedIn ? (
                 <UserMenu/>
               ) : (
                 <AuthMenu/>
               )}
-            </UserMenuWrpr>
+        </UserMenuWrpr>
+        <Lang>
+             <Btn onClick={() => handleLocaleChange('en')}>
+               <ImgBtn src={GB} width="25" height="25" alt="Great Britan flag" />
+               <Line/></Btn>
+             <Btn onClick={() => handleLocaleChange('uk')}>
+              <ImgBtn src={UKR} width="25" height ="25" alt="flag Ukraine"/></Btn>            
+           </Lang> 
       </BarContainer>
     )}
 
@@ -60,11 +75,18 @@ const AppBar = () => {
        <LogoBlack><HomePageLink to="/" onClick={closeMenu}>pe
         <LogoAccent>t</LogoAccent>ly
         </HomePageLink>
-       </LogoBlack>
+          </LogoBlack>
+          <Lang>
+             <Btn onClick={() => handleLocaleChange('en')}>
+               <ImgBtn src={GB} width="25" height="25" alt="Great Britan flag" />
+               <Line/></Btn>
+             <Btn onClick={() => handleLocaleChange('uk')}>
+              <ImgBtn src={UKR} width="25" height ="25" alt="flag Ukraine"/></Btn>            
+           </Lang> 
        <BurgerBtn 
            onClick={toggleClickHandler}>
             <BurgerIcon />
-          </BurgerBtn>
+          </BurgerBtn>          
       </BarContainer>
     )}
 
@@ -102,7 +124,16 @@ const AppBar = () => {
               ) : (
                 <AuthMenu close={closeMenu} />
               )}
-            </UserMenuWrpr>
+            </UserMenuWrpr>          
+        
+           <Lang>
+             <Btn onClick={() => handleLocaleChange('en')}>
+               <ImgBtn src={GB} width="25" height="25" alt="Great Britan flag" />
+               <Line/></Btn>
+             <Btn onClick={() => handleLocaleChange('uk')}>
+              <ImgBtn src={UKR} width="25" height ="25" alt="flag Ukraine"/></Btn>            
+           </Lang>        
+
       </BarContainer>
     )}
 

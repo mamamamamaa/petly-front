@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { NavList, NavListItem, NavigLink } from './Navigation.styled';
+import { FormattedMessage } from 'react-intl';
 
 const Navigation = ({ close }) => {
   const { pathname } = useLocation();
@@ -8,7 +9,7 @@ const Navigation = ({ close }) => {
     <NavList>
       <NavListItem>
         <NavigLink to="/news" onClick={close}>
-          News
+          <FormattedMessage id="news" />
         </NavigLink>
       </NavListItem>
       <NavListItem>
@@ -17,12 +18,12 @@ const Navigation = ({ close }) => {
           onClick={close}
           className={pathname.includes('/notice') ? 'active' : 'inActive'}
         >
-          Find pet
+          <FormattedMessage id="findPet"/>
         </NavigLink>
       </NavListItem>
       <NavListItem>
         <NavigLink to="/friends" onClick={close}>
-          Our friends
+          <FormattedMessage id="ourFriends"/>
         </NavigLink>
       </NavListItem>
     </NavList>

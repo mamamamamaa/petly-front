@@ -18,11 +18,14 @@ import {
   BoxLabel,
 } from './AddOwnPetStepTwo.styled';
 import css from './ModalAddsPet.module.css';
+import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { AddNoticeStepTwoDragDropContext } from 'components/ModalAddNoticeV2/AddNoticeStepTwoDragDropContext';
 import {
   handleImageLoad,
   restorePreview,
 } from 'components/ModalAddNoticeV2/handleImageLoadRestorePreview';
+
 const addOwnPetSchema = object().shape({
   photoUrl: mixed().required('Required'),
   comments: string()
@@ -33,9 +36,11 @@ const addOwnPetSchema = object().shape({
 });
 
 export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
+  const { formatMessage } = useIntl();
   const [isFileUpload, setIsFileUpload] = useState(
     data.photoUrl.length > 0 ? true : false
   );
+
   const handleBack = () => {
     const newValue = {
       ...data,
@@ -75,7 +80,7 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
   return (
     <Formik>
       <Container>
-        <Title>Add photo and some comments</Title>
+        <Title><FormattedMessage id="addPhotoComment"/></Title>
         <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
           <Box>
             <BoxLabel>
@@ -106,33 +111,33 @@ export const AddOwnPetStepTwo = ({ data, next, prev, onClose }) => {
           <AddNoticeStepTwoDragDropContext
             {...{ formik, preview, setPreview }}
           />
-          <BoxComent>
-            <TitleComent>
-              <label>Comments</label>
-            </TitleComent>
+                     
+        <BoxComent>
+          <TitleComent>
+            <label><FormattedMessage id="comment"/></label>
+          </TitleComent>
 
-            <Field
-              as="textarea"
-              name="comments"
-              type="text"
-              placeholder="Type comments"
-              className={css.textForm}
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.comments}
-            />
-            {formik.touched.comments && formik.errors.comments ? (
-              <BoxWarning>{formik.errors.comments}</BoxWarning>
-            ) : null}
-          </BoxComent>
-          <BoxButton>
-            <ButtonBack type="button" onClick={handleBack}>
-              Back
-            </ButtonBack>
-            <ButtonDone type="submit">Done</ButtonDone>
-          </BoxButton>
-        </Form>
-      </Container>
+          <Field as="textarea"
+            name="comments"
+            type="text"
+            placeholder={formatMessage({ id: 'typeComments' })}
+            className={css.textForm}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            value={formik.values.comments}
+          />
+          { formik.touched.comments && formik.errors.comments ? <BoxWarning>{formik.errors.comments}</BoxWarning> : null} 
+          
+        </BoxComent>
+        <BoxButton>
+          <ButtonBack type="button" onClick={handleBack}>
+            <FormattedMessage id="back"/>
+          </ButtonBack>
+          <ButtonDone type="submit"><FormattedMessage id="done"/></ButtonDone>
+        </BoxButton>
+      </Form>
+    </Container>        
+
     </Formik>
   );
 };
